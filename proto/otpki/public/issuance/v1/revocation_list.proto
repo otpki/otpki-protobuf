@@ -1,0 +1,14 @@
+syntax = "proto3";
+package otpki.public.issuance.v1;
+
+import "buf/validate/validate.proto";
+import "otpki/common/x509/v1/revocation_list.proto";
+
+message CreateRevocationListRequest {
+  int64 ca_id = 1 [(buf.validate.field).required = true];
+  bool is_delta = 2;
+}
+
+message CreateRevocationListResponse {
+  common.x509.v1.RevocationList revocation_list = 1;
+}

@@ -1,0 +1,321 @@
+syntax = "proto3";
+package otpki.public.issuance.v1;
+
+import "google/api/annotations.proto";
+import "otpki/public/issuance/v1/certificate_authority.proto";
+import "otpki/public/issuance/v1/certificate_extension.proto";
+import "otpki/public/issuance/v1/certificate_profile.proto";
+import "otpki/public/issuance/v1/extended_key_usage.proto";
+import "otpki/public/issuance/v1/issued_certificate.proto";
+import "otpki/public/issuance/v1/issuer.proto";
+import "otpki/public/issuance/v1/key.proto";
+import "otpki/public/issuance/v1/key_storage_config.proto";
+import "otpki/public/issuance/v1/metrics.proto";
+import "otpki/public/issuance/v1/revocation_list.proto";
+
+service IssuanceService {
+  // CRL
+  rpc CreateRevocationList(CreateRevocationListRequest) returns (CreateRevocationListResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{ca_id}/generate-revocation-list"
+      body: "*"
+    };
+  }
+
+  // Certificate Profile
+  rpc CreateCertificateProfile(CreateCertificateProfileRequest) returns (CreateCertificateProfileResponse) {
+    option (google.api.http) = {
+      post: "/v1/profiles/certificate"
+      body: "profile"
+    };
+  }
+
+  rpc GetCertificateProfile(GetCertificateProfileRequest) returns (GetCertificateProfileResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/profiles/certificate/{id}"};
+  }
+
+  rpc UpdateCertificateProfile(UpdateCertificateProfileRequest) returns (UpdateCertificateProfileResponse) {
+    option (google.api.http) = {
+      put: "/v1/profiles/certificate/{profile.id}"
+      body: "profile"
+      additional_bindings: {
+        patch: "/v1/profiles/certificate/{profile.id}"
+        body: "profile"
+      }
+    };
+  }
+
+  rpc DeleteCertificateProfile(DeleteCertificateProfileRequest) returns (DeleteCertificateProfileResponse) {
+    option (google.api.http) = {delete: "/v1/profiles/certificate/{id}"};
+  }
+
+  rpc GetCertificateProfileList(GetCertificateProfileListRequest) returns (GetCertificateProfileListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/profiles/certificate"
+      body: "pagination"
+      additional_bindings: {get: "/v1/profiles/certificate"}
+    };
+  }
+
+  // Keys
+  rpc GetKey(GetKeyRequest) returns (GetKeyResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/keys/{id}"};
+  }
+  rpc GetKeyList(GetKeyListRequest) returns (GetKeyListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/keys"
+      body: "pagination"
+      additional_bindings: {get: "/v1/keys"}
+    };
+  }
+  rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse) {
+    option (google.api.http) = {
+      post: "/v1/keys"
+      body: "key"
+    };
+  }
+  rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse) {
+    option (google.api.http) = {delete: "/v1/keys/{id}"};
+  }
+  rpc GetPQKeyTypes(GetPQKeyTypesRequest) returns (GetPQKeyTypesResponse) {
+    option (google.api.http) = {get: "/v1/key-types/pq"};
+  }
+  rpc CreateKeyStorageConfig(CreateKeyStorageConfigRequest) returns (CreateKeyStorageConfigResponse) {
+    option (google.api.http) = {
+      post: "/v1/keystorageconfig"
+      body: "config"
+    };
+  }
+  rpc GetKeyStorageConfig(GetKeyStorageConfigRequest) returns (GetKeyStorageConfigResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/keystorageconfig/{id}"};
+  }
+  rpc UpdateKeyStorageConfig(UpdateKeyStorageConfigRequest) returns (UpdateKeyStorageConfigResponse) {
+    option (google.api.http) = {
+      put: "/v1/keystorageconfig/{config.id}"
+      body: "config"
+    };
+  }
+  rpc DeleteKeyStorageConfig(DeleteKeyStorageConfigRequest) returns (DeleteKeyStorageConfigResponse) {
+    option (google.api.http) = {delete: "/v1/keystorageconfig/{id}"};
+  }
+  rpc GetKeyStorageConfigList(GetKeyStorageConfigListRequest) returns (GetKeyStorageConfigListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/keystorageconfig"
+      body: "pagination"
+      additional_bindings: {get: "/v1/keystorageconfig"}
+    };
+  }
+  rpc SendKeyDriverMessage(SendKeyDriverMessageRequest) returns (SendKeyDriverMessageResponse) {
+    option (google.api.http) = {
+      post: "/v1/keystorageconfig/{message.key_storage_config_id}/message"
+      body: "message.message"
+    };
+  }
+
+  // Custom Certificate Extensions
+  rpc CreateCustomCertificateExtension(CreateCustomCertificateExtensionRequest) returns (CreateCustomCertificateExtensionResponse) {
+    option (google.api.http) = {
+      post: "/v1/custom-extensions"
+      body: "extension"
+    };
+  }
+  rpc GetCustomCertificateExtension(GetCustomCertificateExtensionRequest) returns (GetCustomCertificateExtensionResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/custom-extensions/{id}"};
+  }
+  rpc UpdateCustomCertificateExtension(UpdateCustomCertificateExtensionRequest) returns (UpdateCustomCertificateExtensionResponse) {
+    option (google.api.http) = {
+      put: "/v1/custom-extensions/{extension.id}"
+      body: "extension"
+      additional_bindings: {
+        patch: "/v1/custom-extensions/{extension.id}"
+        body: "extension"
+      }
+    };
+  }
+  rpc DeleteCustomCertificateExtension(DeleteCustomCertificateExtensionRequest) returns (DeleteCustomCertificateExtensionResponse) {
+    option (google.api.http) = {delete: "/v1/custom-extensions/{id}"};
+  }
+  rpc GetCustomCertificateExtensionList(GetCustomCertificateExtensionListRequest) returns (GetCustomCertificateExtensionListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/custom-extensions"
+      body: "pagination"
+      additional_bindings: {get: "/v1/custom-extensions"}
+    };
+  }
+
+  // Custom Extended Key Usage
+  rpc CreateCustomExtKeyUsage(CreateCustomExtKeyUsageRequest) returns (CreateCustomExtKeyUsageResponse) {
+    option (google.api.http) = {
+      post: "/v1/custom-ext-key-usages"
+      body: "key_usage"
+    };
+  }
+  rpc GetCustomExtKeyUsage(GetCustomExtKeyUsageRequest) returns (GetCustomExtKeyUsageResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/custom-ext-key-usages/{id}"};
+  }
+  rpc UpdateCustomExtKeyUsage(UpdateCustomExtKeyUsageRequest) returns (UpdateCustomExtKeyUsageResponse) {
+    option (google.api.http) = {
+      put: "/v1/custom-ext-key-usages/{key_usage.id}"
+      body: "key_usage"
+      additional_bindings: {
+        patch: "/v1/custom-ext-key-usages/{key_usage.id}"
+        body: "key_usage"
+      }
+    };
+  }
+  rpc DeleteCustomExtKeyUsage(DeleteCustomExtKeyUsageRequest) returns (DeleteCustomExtKeyUsageResponse) {
+    option (google.api.http) = {delete: "/v1/custom-ext-key-usages/{id}"};
+  }
+  rpc GetCustomExtKeyUsageList(GetCustomExtKeyUsageListRequest) returns (GetCustomExtKeyUsageListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/custom-ext-key-usages"
+      body: "pagination"
+      additional_bindings: {get: "/v1/custom-ext-key-usages"}
+    };
+  }
+
+  // Metrics
+  rpc GetDashboardMetrics(GetDashboardMetricsRequest) returns (GetDashboardMetricsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/metrics/dashboard"};
+  }
+  rpc GetWorkItems(GetWorkItemsRequest) returns (GetWorkItemsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      post: "/v1/metrics/work-items"
+      body: "*"
+      additional_bindings: {get: "/v1/metrics/work-items"}
+    };
+  }
+
+  // Issuance
+  rpc CreateIssuanceRequest(CreateIssuanceRequestRequest) returns (CreateIssuanceRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/issuance"
+      body: "issuance_request"
+    };
+  }
+  rpc ApproveIssuanceRequest(ApproveIssuanceRequestRequest) returns (ApproveIssuanceRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/issuance/{issuance_request_id}/approve"
+      body: "*"
+    };
+  }
+  rpc RejectIssuanceRequest(RejectIssuanceRequestRequest) returns (RejectIssuanceRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/issuance/{issuance_request_id}/reject"
+      body: "*"
+    };
+  }
+  rpc GetIssuanceByRequestID(GetIssuanceByRequestIDRequest) returns (GetIssuanceByRequestIDResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/issuance/{issuance_request_id}"};
+  }
+  rpc RevokeIssuedCertificates(RevokeIssuedCertificatesRequest) returns (RevokeIssuedCertificatesResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificates/revoke"
+      body: "*"
+    };
+  }
+  rpc GetIssuanceRequestList(GetIssuanceRequestListRequest) returns (GetIssuanceRequestListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/issuance"
+      body: "pagination"
+      additional_bindings: {get: "/v1/issuance"}
+    };
+  }
+
+  // Issued Certificate
+  rpc GetIssuedCertificate(GetIssuedCertificateRequest) returns (GetIssuedCertificateResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificates/{issued_certificate_id}"};
+  }
+  rpc GetIssuedCertificateBySerialNumber(GetIssuedCertificateBySerialNumberRequest) returns (GetIssuedCertificateBySerialNumberResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificates/by-serial-number/{serial_number}"};
+  }
+  rpc GetIssuedCertificateList(GetIssuedCertificateListRequest) returns (GetIssuedCertificateListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/certificates"
+      body: "pagination"
+      additional_bindings: {get: "/v1/certificates"}
+    };
+  }
+
+  // Certificate Authority
+  rpc CreateCertificateAuthority(CreateCertificateAuthorityRequest) returns (CreateCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities"
+      body: "certificate_authority"
+    };
+  }
+  rpc ImportCertificateAuthority(ImportCertificateAuthorityRequest) returns (ImportCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/import"
+      body: "*"
+    };
+  }
+  rpc ImportCertificateAuthorityPKCS12(ImportCertificateAuthorityPKCS12Request) returns (ImportCertificateAuthorityPKCS12Response) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/import-p12"
+      body: "*"
+    };
+  }
+  rpc CreateCertificateAuthorityCSR(CreateCertificateAuthorityCSRRequest) returns (CreateCertificateAuthorityCSRResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/key/{key_id}/generate-certificate-request"};
+  }
+  rpc ImportCertificateAuthorityCertificate(ImportCertificateAuthorityCertificateRequest) returns (ImportCertificateAuthorityCertificateResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{ca_id}/key/{key_id}/import-certificate"
+      body: "*"
+    };
+  }
+  rpc RenewCertificateAuthority(RenewCertificateAuthorityRequest) returns (RenewCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{ca_id}/renew"
+      body: "*"
+    };
+  }
+  rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}"};
+  }
+  rpc GetCertificateAuthorityList(GetCertificateAuthorityListRequest) returns (GetCertificateAuthorityListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/certificate-authorities"
+      body: "pagination"
+      additional_bindings: {get: "/v1/certificate-authorities"}
+    };
+  }
+  rpc UpdateCertificateAuthority(UpdateCertificateAuthorityRequest) returns (UpdateCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      put: "/v1/certificate-authorities/{certificate_authority.id}"
+      body: "certificate_authority"
+      additional_bindings: {
+        patch: "/v1/certificate-authorities/{certificate_authority.id}"
+        body: "certificate_authority"
+      }
+    };
+  }
+  rpc DeleteCertificateAuthority(DeleteCertificateAuthorityRequest) returns (DeleteCertificateAuthorityResponse) {
+    option (google.api.http) = {delete: "/v1/certificate-authorities/{ca_id}"};
+  }
+  rpc GetCertificateAuthorityCertificates(GetCertificateAuthorityCertificatesRequest) returns (GetCertificateAuthorityCertificatesResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/certificates"};
+  }
+}

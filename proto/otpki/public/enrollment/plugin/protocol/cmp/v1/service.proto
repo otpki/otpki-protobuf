@@ -1,0 +1,29 @@
+syntax = "proto3";
+package otpki.public.enrollment.plugin.protocol.cmp.v1;
+
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
+
+message HealthcheckRequest {}
+
+message CmpMessageRequest {
+  bytes data = 1;
+  string name = 2;
+}
+
+service CMPService {
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc Healthcheck(HealthcheckRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {get: "/.well-known/cmp/healthcheck"};
+  }
+
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc CmpMessage(CmpMessageRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      post: "/.well-known/cmp/{name}"
+      body: "data"
+    };
+  }
+}

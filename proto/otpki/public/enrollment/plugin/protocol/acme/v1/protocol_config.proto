@@ -1,0 +1,84 @@
+syntax = "proto3";
+package otpki.public.enrollment.plugin.protocol.acme.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/enrollment/plugin/protocol/acme/v1/acme.proto";
+
+message CreateACMEProtocolConfigRequest {
+  common.enrollment.plugin.protocol.acme.v1.ACMEProtocolConfig protocol_config = 1 [(buf.validate.field).required = true];
+}
+
+message CreateACMEProtocolConfigResponse {
+  int64 id = 1;
+}
+
+message GetACMEProtocolConfigRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message GetACMEProtocolConfigResponse {
+  common.enrollment.plugin.protocol.acme.v1.ACMEProtocolConfig protocol_config = 1;
+}
+
+message UpdateACMEProtocolConfigRequest {
+  common.enrollment.plugin.protocol.acme.v1.ACMEProtocolConfig protocol_config = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateACMEProtocolConfigResponse {}
+
+message DeleteACMEProtocolConfigRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message DeleteACMEProtocolConfigResponse {}
+
+message GetACMEProtocolConfigListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetACMEProtocolConfigListResponse {
+  repeated common.enrollment.plugin.protocol.acme.v1.ACMEProtocolConfig data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service ACMEProtocolConfigService {
+  rpc CreateACMEProtocolConfig(CreateACMEProtocolConfigRequest) returns (CreateACMEProtocolConfigResponse) {
+    option (google.api.http) = {
+      post: "/v1/protocol-configs/acme"
+      body: "protocol_config"
+    };
+  }
+
+  rpc GetACMEProtocolConfig(GetACMEProtocolConfigRequest) returns (GetACMEProtocolConfigResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/protocol-configs/acme/{id}"};
+  }
+
+  rpc UpdateACMEProtocolConfig(UpdateACMEProtocolConfigRequest) returns (UpdateACMEProtocolConfigResponse) {
+    option (google.api.http) = {
+      put: "/v1/protocol-configs/acme/{protocol_config.id}"
+      body: "protocol_config"
+      additional_bindings: {
+        patch: "/v1/protocol-configs/acme/{protocol_config.id}"
+        body: "protocol_config"
+      }
+    };
+  }
+
+  rpc DeleteACMEProtocolConfig(DeleteACMEProtocolConfigRequest) returns (DeleteACMEProtocolConfigResponse) {
+    option (google.api.http) = {delete: "/v1/protocol-configs/acme/{id}"};
+  }
+
+  rpc GetACMEProtocolConfigList(GetACMEProtocolConfigListRequest) returns (GetACMEProtocolConfigListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/protocol-configs/acme"
+      body: "pagination"
+      additional_bindings: {get: "/v1/protocol-configs/acme"}
+    };
+  }
+}

@@ -1,0 +1,36 @@
+syntax = "proto3";
+package otpki.common.issuance.plugin.key_driver.v1;
+
+import "google/protobuf/any.proto";
+import "otpki/common/issuance/key/v1/key.proto";
+
+message KeyModel {
+  key.v1.Key key_info = 1;
+  optional bytes private_key = 2;
+  bytes public_key = 3;
+}
+
+message KeyDriverMessage {
+  int64 key_storage_config_id = 1;
+  google.protobuf.Any message = 2;
+}
+
+message SignRequest {
+  int64 key_id = 1;
+  bytes digest = 2;
+  optional google.protobuf.Any opts = 3; // custom serialized format to build crypto.SignerOpts
+}
+
+message SignResponse {
+  bytes signature = 1;
+}
+
+message DecryptRequest {
+  int64 key_id = 1;
+  bytes ciphertext = 2;
+  optional google.protobuf.Any opts = 3; // custom serialized format to build crypto.DecrypterOpts
+}
+
+message DecryptResponse {
+  bytes plaintext = 1;
+}

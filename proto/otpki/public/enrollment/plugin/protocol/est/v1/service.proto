@@ -1,0 +1,59 @@
+syntax = "proto3";
+package otpki.public.enrollment.plugin.protocol.est.v1;
+
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
+
+message HealthcheckRequest {}
+message CaCertsRequest {
+  string name = 1;
+}
+message EnrollRequest {
+  bytes data = 1;
+  string name = 2;
+}
+message ReEnrollRequest {
+  bytes data = 1;
+  string name = 2;
+}
+message ServerKeyGenRequest {
+  bytes data = 1;
+  string name = 2;
+}
+
+service ESTService {
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc Healthcheck(HealthcheckRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {get: "/.well-known/est/healthcheck"};
+  }
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc CaCerts(CaCertsRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {get: "/.well-known/est/{name}/cacerts"};
+  }
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc Enroll(EnrollRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      post: "/.well-known/est/{name}/simpleenroll"
+      body: "data"
+    };
+  }
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc ReEnroll(ReEnrollRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      post: "/.well-known/est/{name}/simplereenroll"
+      body: "data"
+    };
+  }
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  rpc ServerKeyGen(ServerKeyGenRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      post: "/.well-known/est/{name}/serverkeygen"
+      body: "data"
+    };
+  }
+}

@@ -1,0 +1,171 @@
+syntax = "proto3";
+package otpki.common.auth.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+
+enum Action {
+  ACTION_UNSPECIFIED = 0;
+  ACTION_CREATE = 1;
+  ACTION_READ = 2;
+  ACTION_UPDATE = 3;
+  ACTION_DELETE = 4;
+
+  // certificates/ee
+  ACTION_ISSUE = 201;
+  ACTION_REVOKE = 202;
+}
+
+enum Resource {
+  RESOURCE_UNSPECIFIED = 0;
+
+  // issuance resources
+  RESOURCE_CERTIFICATE_AUTHORITY = 101;
+  RESOURCE_CERTIFICATE = 102; // works for both EE certs and IS certs
+  RESOURCE_END_ENTITY = 103;
+  RESOURCE_KEY = 104;
+  RESOURCE_CERTIFICATE_EXTENSION = 105;
+  RESOURCE_EXTENDED_KEY_USAGE = 106;
+  RESOURCE_CERTIFICATE_PROFILE = 107;
+  RESOURCE_END_ENTITY_PROFILE = 108;
+  RESOURCE_KEY_STORAGE_CONFIG = 109;
+
+  // enrollment protocol resources
+  RESOURCE_ACME_PROTOCOL_CONFIG = 201;
+  RESOURCE_EST_PROTOCOL_CONFIG = 202;
+  RESOURCE_MSAE_PROTOCOL_CONFIG = 203;
+  RESOURCE_SCEP_PROTOCOL_CONFIG = 204;
+  RESOURCE_MSAE_CERTIFICATE_TEMPLATE = 205;
+  RESOURCE_CMP_PROTOCOL_CONFIG = 206;
+
+  // auth resources
+  RESOURCE_GROUP = 301;
+  RESOURCE_ROLE = 302;
+  RESOURCE_USER = 303;
+  RESOURCE_OIDC_PROVIDER = 304;
+
+  // request resources
+  RESOURCE_ISSUANCE_REQUEST = 401;
+  RESOURCE_ENROLLMENT_REQUEST = 402;
+}
+
+message ResourceActions {
+  Resource resource = 1;
+  repeated Action actions = 2;
+}
+
+message Group {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2 [(buf.validate.field).string.min_len = 3];
+  string description = 3;
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+message Role {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2 [(buf.validate.field).string.min_len = 3];
+  string description = 3;
+  bool system_role = 4;
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+message Permission {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  bool is_allowed = 2;
+  Resource resource_type = 3; // when unspecified, is_allowed controls all resources
+  Action action_type = 4; // when unspecified, is_allowed grants all actions on a particular resource
+  int64 object_id = 5; // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
+  // when object_id is specified, is_allowed controls this specific action on this specific object
+  // when object_id is specified but action_type is unspecified, is_allowed grants all actions on this specific object
+}
+
+message User {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string username = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 64
+  ];
+  string first_name = 3;
+  string last_name = 4;
+  string email = 5 [(buf.validate.field).string.email = true];
+  string description = 6;
+  bool disabled = 7;
+  bool is_system_user = 8 [(gnostic.openapi.v3.property).read_only = true];
+  bytes certificate = 9;
+  string oidc_issuer = 10 [(gnostic.openapi.v3.property).read_only = true];
+  string oidc_subject = 11 [(gnostic.openapi.v3.property).read_only = true];
+  repeated int64 groups = 12;
+  repeated int64 roles = 13;
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+message OIDCProvider {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+
+  string name = 2 [(buf.validate.field).string.min_len = 3];
+  string client_id = 4;
+  string client_secret = 5;
+  string issuer_url = 6 [(buf.validate.field).string.uri = true];
+  string redirect_url = 7 [(buf.validate.field).string.uri = true];
+  string post_logout_url = 8;
+  repeated string scopes = 9 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items.string.min_len = 1
+  ];
+
+  google.protobuf.Duration max_skew = 10 [(buf.validate.field).duration.gte = {seconds: 0}];
+  google.protobuf.Duration session_max_inactive = 11 [(buf.validate.field).duration.gte = {seconds: 0}];
+  google.protobuf.Duration session_max_length = 12 [(buf.validate.field).duration.gte = {seconds: 0}];
+  bool create_unknown_users = 13;
+  bool create_unknown_roles = 14;
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

@@ -1,0 +1,134 @@
+syntax = "proto3";
+package otpki.common.api.query.v1;
+
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/string_enum.proto";
+
+extend google.protobuf.FieldOptions {
+  optional bool filterable = 60001;
+  optional bool sortable = 60002;
+  repeated FilterOperator allowed_filter_operators = 60003;
+  repeated SortOperator allowed_sort_operators = 60004;
+}
+
+enum SortOrder {
+  SORT_ORDER_UNSPECIFIED = 0;
+  SORT_ORDER_DESC = 1 [(api.v1.string_value) = "desc"];
+  SORT_ORDER_ASC = 2 [(api.v1.string_value) = "asc"];
+}
+
+enum FilterOperator {
+  FILTER_OPERATOR_UNSPECIFIED = 0;
+  FILTER_OPERATOR_EQUALS = 1;
+  FILTER_OPERATOR_NOT_EQUALS = 2;
+  FILTER_OPERATOR_GREATER_THAN = 3;
+  FILTER_OPERATOR_GREATER_THAN_OR_EQUAL = 4;
+  FILTER_OPERATOR_LESS_THAN = 5;
+  FILTER_OPERATOR_LESS_THAN_OR_EQUAL = 6;
+  FILTER_OPERATOR_BETWEEN = 7;
+  FILTER_OPERATOR_IN = 8;
+  FILTER_OPERATOR_NOT_IN = 9;
+  FILTER_OPERATOR_LIKE = 10;
+  FILTER_OPERATOR_ILIKE = 11;
+  FILTER_OPERATOR_IS_NULL = 12;
+  FILTER_OPERATOR_IS_NOT_NULL = 13;
+  FILTER_OPERATOR_JSON_CONTAINS = 14;
+  FILTER_OPERATOR_JSON_EXISTS = 15;
+  FILTER_OPERATOR_JSON_ANY_EXISTS = 16;
+  FILTER_OPERATOR_JSON_ALL_EXISTS = 17;
+  FILTER_OPERATOR_JSON_PATH = 18;
+  FILTER_OPERATOR_ARRAY_CONTAINS = 19;
+  FILTER_OPERATOR_ARRAY_CONTAINED_BY = 20;
+  FILTER_OPERATOR_ARRAY_OVERLAP = 21;
+  FILTER_OPERATOR_IS_EMPTY = 22;
+  FILTER_OPERATOR_IS_NOT_EMPTY = 23;
+}
+
+enum SortOperator {
+  SORT_OPERATOR_UNSPECIFIED = 0;
+  SORT_OPERATOR_STANDARD = 1;
+  SORT_OPERATOR_JSON_PATH = 2;
+  SORT_OPERATOR_JSON_TEXT = 3;
+  SORT_OPERATOR_JSON_NUMERIC = 4;
+  SORT_OPERATOR_ARRAY_INDEX = 5;
+  SORT_OPERATOR_ARRAY_LENGTH = 6;
+  SORT_OPERATOR_ARRAY_CONTAINS = 7;
+}
+
+enum FieldType {
+  FIELD_TYPE_UNSPECIFIED = 0;
+  FIELD_TYPE_STRING = 1;
+  FIELD_TYPE_INT = 2;
+  FIELD_TYPE_DOUBLE = 3;
+  FIELD_TYPE_BOOL = 4;
+  FIELD_TYPE_TIMESTAMP = 5;
+  FIELD_TYPE_DURATION = 6;
+  FIELD_TYPE_BYTES = 7;
+}
+
+message SortEntry {
+  string column = 1;
+  SortOrder order = 2;
+
+  // advanced sorting options (use only one)
+  string json_path = 3;
+  string json_text = 4;
+  string json_numeric = 5;
+  int64 array_index = 6;
+  bool array_length = 7;
+  string array_contains = 8;
+}
+
+message FilterValue {
+  string string_value = 1;
+  int64 int_value = 2;
+  double double_value = 3;
+  bool bool_value = 4;
+  google.protobuf.Timestamp timestamp_value = 5;
+  google.protobuf.Duration duration_value = 6;
+  bytes bytes_value = 7;
+}
+
+message Filter {
+  string column = 1;
+  FilterOperator operator = 2;
+  repeated FilterValue values = 3;
+}
+
+message PaginationInfoEntry {
+  string column = 1;
+  bool filterable = 2;
+  bool sortable = 3;
+  repeated FilterOperator allowed_filter_operators = 4;
+  repeated SortOperator allowed_sort_operators = 5;
+  FieldType field_type = 6;
+  bool repeated = 7;
+}
+
+message PaginationInfoResponse {
+  repeated PaginationInfoEntry columns = 1;
+}
+
+message PaginationRequest {
+  string page_token = 1;
+  int64 page_size = 2;
+  int64 skip = 3;
+  repeated SortEntry sort = 4;
+  repeated Filter filters = 5;
+  bool without_count = 6;
+  bool with_count_estimate = 7;
+  bool with_soft_deleted = 8;
+  bool with_pagination_info_only = 9;
+}
+
+message PaginationResponse {
+  int64 page_size = 1;
+  int64 skip = 2;
+  string next_page_token = 3;
+  bool has_more = 4;
+  int64 total_count = 5;
+  bool is_estimate = 6;
+  PaginationInfoResponse pagination_info = 7;
+}

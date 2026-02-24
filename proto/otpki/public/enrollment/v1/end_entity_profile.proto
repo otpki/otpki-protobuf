@@ -1,0 +1,45 @@
+syntax = "proto3";
+package otpki.public.enrollment.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/enrollment/end_entity_profile/v1/end_entity_profile.proto";
+
+message CreateEndEntityProfileRequest {
+  common.enrollment.end_entity_profile.v1.EndEntityProfile profile = 1 [(buf.validate.field).required = true];
+}
+
+message CreateEndEntityProfileResponse {
+  int64 id = 1;
+}
+
+message GetEndEntityProfileRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message GetEndEntityProfileResponse {
+  common.enrollment.end_entity_profile.v1.EndEntityProfile profile = 1;
+}
+
+message UpdateEndEntityProfileRequest {
+  common.enrollment.end_entity_profile.v1.EndEntityProfile profile = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateEndEntityProfileResponse {}
+
+message DeleteEndEntityProfileRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message DeleteEndEntityProfileResponse {}
+
+message GetEndEntityProfileListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetEndEntityProfileListResponse {
+  repeated common.enrollment.end_entity_profile.v1.EndEntityProfile data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}

@@ -1,0 +1,6 @@
+syntax = "proto3";
+package otpki.common.issuance.plugin.key_driver.softdbkms.v1;
+
+message ImportKeyPluginRequest {
+  bytes key_data_bytes = 1;
+}

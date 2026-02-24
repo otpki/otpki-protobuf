@@ -1,0 +1,45 @@
+syntax = "proto3";
+package otpki.public.issuance.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/issuance/certificate_profile/v1/certificate_profile.proto";
+
+message CreateCertificateProfileRequest {
+  common.issuance.certificate_profile.v1.CertificateProfile profile = 1 [(buf.validate.field).required = true];
+}
+
+message CreateCertificateProfileResponse {
+  int64 id = 1;
+}
+
+message GetCertificateProfileRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message GetCertificateProfileResponse {
+  common.issuance.certificate_profile.v1.CertificateProfile profile = 1;
+}
+
+message UpdateCertificateProfileRequest {
+  common.issuance.certificate_profile.v1.CertificateProfile profile = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateCertificateProfileResponse {}
+
+message DeleteCertificateProfileRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message DeleteCertificateProfileResponse {}
+
+message GetCertificateProfileListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetCertificateProfileListResponse {
+  repeated common.issuance.certificate_profile.v1.CertificateProfile data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}

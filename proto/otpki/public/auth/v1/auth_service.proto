@@ -1,0 +1,221 @@
+syntax = "proto3";
+package otpki.public.auth.v1;
+
+import "google/api/annotations.proto";
+import "otpki/common/api/v1/auth_required.proto";
+import "otpki/public/auth/v1/group.proto";
+import "otpki/public/auth/v1/oidc_provider.proto";
+import "otpki/public/auth/v1/resource.proto";
+import "otpki/public/auth/v1/role.proto";
+import "otpki/public/auth/v1/user.proto";
+
+service AuthStoreService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/users"
+      body: "user"
+    };
+  }
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/{id}"};
+  }
+  rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/by-username/{username}"};
+  }
+  rpc GetUserByOIDCSubjectAndIssuer(GetUserByOIDCSubjectAndIssuerRequest) returns (GetUserByOIDCSubjectAndIssuerResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/by-oidc"}; // needs query params to get
+  }
+  rpc GetUserByCertificate(GetUserByCertificateRequest) returns (GetUserByCertificateResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/by-cert/{certificate}"};
+  }
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/users/{user.id}"
+      body: "user"
+      additional_bindings: {
+        patch: "/v1/auth/users/{user.id}"
+        body: "user"
+      }
+    };
+  }
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+    option (google.api.http) = {delete: "/v1/auth/users/{id}"};
+  }
+  rpc GetUserList(GetUserListRequest) returns (GetUserListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/users"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/users"}
+    };
+  }
+  rpc GetCurrentUser(GetCurrentUserRequest) returns (GetCurrentUserResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      get: "/v1/auth/users/me"
+      additional_bindings: {get: "/auth/me"}
+    };
+  }
+  rpc CheckCurrentUserPermission(CheckCurrentUserPermissionRequest) returns (CheckCurrentUserPermissionResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      post: "/v1/auth/check-permission"
+      body: "*"
+    };
+  }
+
+  rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/groups"
+      body: "group"
+    };
+  }
+  rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/groups/{id}"};
+  }
+  rpc GetManyGroups(GetManyGroupsRequest) returns (GetManyGroupsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/groups/by-ids"
+      body: "*"
+    };
+  }
+  rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/groups/{group.id}"
+      body: "group"
+      additional_bindings: {
+        patch: "/v1/auth/groups/{group.id}"
+        body: "group"
+      }
+    };
+  }
+  rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {
+    option (google.api.http) = {delete: "/v1/auth/groups/{id}"};
+  }
+  rpc GetGroupList(GetGroupListRequest) returns (GetGroupListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/groups"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/groups"}
+    };
+  }
+
+  rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/roles"
+      body: "role"
+    };
+  }
+  rpc GetRole(GetRoleRequest) returns (GetRoleResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/roles/{id}"};
+  }
+  rpc GetManyRoles(GetManyRolesRequest) returns (GetManyRolesResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/roles/by-ids"
+      body: "*"
+    };
+  }
+  rpc GetManyRolesByNames(GetManyRolesByNamesRequest) returns (GetManyRolesByNamesResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/roles/by-names"
+      body: "*"
+    };
+  }
+  rpc CreateOrGetManyRolesByNames(CreateOrGetManyRolesByNamesRequest) returns (CreateOrGetManyRolesByNamesResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/roles/by-names"
+      body: "*"
+    };
+  }
+  rpc UpdateRole(UpdateRoleRequest) returns (UpdateRoleResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/roles/{role.id}"
+      body: "role"
+      additional_bindings: {
+        patch: "/v1/auth/roles/{role.id}"
+        body: "role"
+      }
+    };
+  }
+  rpc DeleteRole(DeleteRoleRequest) returns (DeleteRoleResponse) {
+    option (google.api.http) = {delete: "/v1/auth/roles/{id}"};
+  }
+  rpc GetRoleList(GetRoleListRequest) returns (GetRoleListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/roles"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/roles"}
+    };
+  }
+  rpc SetRolePermissions(SetRolePermissionsRequest) returns (SetRolePermissionsResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/roles/{role_id}/permissions"
+      body: "permissions"
+    };
+  }
+  rpc GetRolePermissions(GetRolePermissionsRequest) returns (GetRolePermissionsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/roles/{role_id}/permissions"};
+  }
+
+  rpc GetAllResources(GetAllResourcesRequest) returns (GetAllResourcesResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/resources"};
+  }
+
+  rpc CreateOIDCProvider(CreateOIDCProviderRequest) returns (CreateOIDCProviderResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/oidc-providers"
+      body: "oidc_provider"
+    };
+  }
+  rpc GetOIDCProvider(GetOIDCProviderRequest) returns (GetOIDCProviderResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/{id}"};
+  }
+  rpc GetOIDCProviderByIssuer(GetOIDCProviderByIssuerRequest) returns (GetOIDCProviderByIssuerResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/by-issuer/{issuer}"};
+  }
+  rpc GetOIDCProviderByName(GetOIDCProviderByNameRequest) returns (GetOIDCProviderByNameResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/by-name/{name}"};
+  }
+  rpc UpdateOIDCProvider(UpdateOIDCProviderRequest) returns (UpdateOIDCProviderResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/oidc-providers/{oidc_provider.id}"
+      body: "oidc_provider"
+      additional_bindings: {
+        patch: "/v1/auth/oidc-providers/{oidc_provider.id}"
+        body: "oidc_provider"
+      }
+    };
+  }
+  rpc DeleteOIDCProvider(DeleteOIDCProviderRequest) returns (DeleteOIDCProviderResponse) {
+    option (google.api.http) = {delete: "/v1/auth/oidc-providers/{id}"};
+  }
+  rpc GetOIDCProviderList(GetOIDCProviderListRequest) returns (GetOIDCProviderListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/oidc-providers"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/oidc-providers"}
+    };
+  }
+  rpc GetOIDCProviderNames(GetOIDCProviderNamesRequest) returns (GetOIDCProviderNamesResponse) {
+    option (common.api.v1.auth_required) = false;
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/names"};
+  }
+}

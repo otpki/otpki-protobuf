@@ -1,0 +1,30 @@
+syntax = "proto3";
+package otpki.common.enrollment.plugin.protocol.est.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "otpki/common/enrollment/end_entity/v1/end_entity.proto";
+import "otpki/common/issuance/key/v1/key.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message ESTProtocolConfig {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2 [(buf.validate.field).string.pattern = "^[a-zA-Z0-9_-]+$"];
+  int64 certificate_authority_id = 3 [(buf.validate.field).int64.gt = 0];
+  bool end_entity_required = 4;
+  end_entity.v1.LoginIDScheme login_id_scheme = 5;
+  repeated x509.v1.SubjectDNAttrType login_id_parts = 6; // TODO: in 'combo' mode, order is dictated by UI component
+  string login_id_fixed = 7;
+  int64 login_id_random_length = 8;
+  string login_id_prefix = 9;
+  string login_id_postfix = 10;
+  bool require_certificate_authentication = 11;
+  bool allow_certificate_authentication = 12;
+  bool allow_basic_authentication = 13;
+  string username = 14;
+  string password = 15;
+  int64 end_entity_profile_id = 16 [(buf.validate.field).int64.gt = 0];
+  int64 certificate_profile_id = 17 [(buf.validate.field).int64.gt = 0];
+  bool allow_keygen = 18;
+  issuance.key.v1.KeyType key_type = 19;
+}

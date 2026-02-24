@@ -1,0 +1,33 @@
+syntax = "proto3";
+package otpki.common.issuance.key_storage_config.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/issuance/key_storage_config/v1/driver.proto";
+
+message KeyStorageConfig {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string description = 3;
+  KeyDriver driver_type = 4 [(buf.validate.field).enum.defined_only = true];
+  google.protobuf.Any key_storage_config = 5;
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

@@ -1,0 +1,79 @@
+syntax = "proto3";
+package otpki.common.enrollment.plugin.protocol.msae.certificate_template.v1;
+
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/enrollment/plugin/protocol/msae/certificate_template/v1/enum.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message CertificateTemplate {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2;
+  string display_name = 3;
+  string common_name = 4;
+  string distinguished_name = 5;
+  google.protobuf.Timestamp when_created = 6 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp when_changed = 7 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  string oid = 8 [ // msPKI-Cert-Template-OID
+    (api.v1.go_native_type) = "asn1.ObjectIdentifier",
+    (api.v1.go_native_import_path) = "encoding/asn1"
+  ];
+  string version = 9; // "revision"."msPKI-Template-Minor-Revision"
+  SchemaVersion schema_version = 10; // Windows Server 2000, Windows Server 2003, etc.
+  repeated string certificate_application_policies = 11 [ // msPKI-Certificate-Application-Policy
+    (api.v1.go_native_type) = "[]asn1.ObjectIdentifier",
+    (api.v1.go_native_import_path) = "encoding/asn1"
+  ];
+  repeated string ra_application_policies = 12 [ // msPKI-RA-Application-Policies
+    (api.v1.go_native_type) = "[]asn1.ObjectIdentifier",
+    (api.v1.go_native_import_path) = "encoding/asn1"
+  ];
+  repeated string critical_extensions = 13 [ // pKICriticalExtensions
+    (api.v1.go_native_type) = "[]asn1.ObjectIdentifier",
+    (api.v1.go_native_import_path) = "encoding/asn1"
+  ];
+  repeated string extended_key_usage = 14 [ // pKIExtendedKeyUsage
+    (api.v1.go_native_type) = "[]asn1.ObjectIdentifier",
+    (api.v1.go_native_import_path) = "encoding/asn1"
+  ];
+  google.protobuf.Duration validity_period = 15 [ // pKIExpirationPeriod
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Duration renewal_period = 16 [ // pKIOverlapPeriod
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  repeated x509.v1.KeyUsage key_usage = 17 [ // pKIKeyUsage
+    (api.v1.go_native_type) = "x509.KeyUsage",
+    (api.v1.go_native_import_path) = "crypto/x509"
+  ];
+  KeySpec default_key_spec = 18; // pKIDefaultKeySpec
+  repeated CTFlag certificate_template_flags = 19; // flags
+  repeated CTNameFlag certificate_template_name_flags = 20; // msPKI-Certificate-Name-Flag
+  repeated CTEnrollmentFlag certificate_template_enrollment_flags = 21; // msPKI-Enrollment-Flag
+  repeated PrivateKeyFlag private_key_flags = 22; // msPKI-Private-Key-Flag
+  int64 minimum_key_size = 23; // msPKI-Minimal-Key-Size
+  repeated string default_csps = 24; // pKIDefaultCSPs
+  optional int64 protocol_config_id = 101 [(gnostic.openapi.v3.property).read_only = true];
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

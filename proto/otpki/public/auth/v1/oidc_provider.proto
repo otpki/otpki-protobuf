@@ -1,0 +1,69 @@
+syntax = "proto3";
+package otpki.public.auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateOIDCProviderRequest {
+  common.auth.v1.OIDCProvider oidc_provider = 1 [(buf.validate.field).required = true];
+}
+
+message CreateOIDCProviderResponse {
+  int64 id = 1;
+}
+
+message GetOIDCProviderRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message GetOIDCProviderResponse {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+}
+
+message GetOIDCProviderByIssuerRequest {
+  string issuer = 1 [(buf.validate.field).required = true];
+}
+
+message GetOIDCProviderByIssuerResponse {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+}
+
+message GetOIDCProviderByNameRequest {
+  string name = 1 [(buf.validate.field).required = true];
+}
+
+message GetOIDCProviderByNameResponse {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+}
+
+message UpdateOIDCProviderRequest {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateOIDCProviderResponse {}
+
+message DeleteOIDCProviderRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message DeleteOIDCProviderResponse {}
+
+message GetOIDCProviderListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetOIDCProviderListResponse {
+  repeated common.auth.v1.OIDCProvider data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+// unauthenticated route so user can make actual
+// login requests
+message GetOIDCProviderNamesRequest {}
+
+message GetOIDCProviderNamesResponse {
+  repeated string provider_names = 1;
+}

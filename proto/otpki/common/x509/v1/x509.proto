@@ -1,0 +1,230 @@
+syntax = "proto3";
+package otpki.common.x509.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+
+message Extension {
+  string id = 1; // OID as string
+  bool critical = 2;
+  bytes value = 3;
+}
+
+// TODO: replace this with SubjectDNAttribute
+// Name represents a distinguished name (DN)
+message Name {
+  repeated string country = 1 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
+  ];
+  repeated string organization = 2 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
+  ];
+  repeated string organizational_unit = 3 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
+  ];
+  repeated string locality = 4 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
+  ];
+  repeated string province = 5 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
+  ];
+  repeated string street_address = 6 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
+  ];
+  repeated string postal_code = 7 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
+  ];
+  string serial_number = 8 [(buf.validate.field).required = false];
+  string common_name = 9 [(buf.validate.field).string.min_len = 1];
+  repeated NameAttribute names = 10; // For additional name attributes
+  repeated NameAttribute extra_names = 11;
+}
+
+// NameAttribute represents a name attribute that may not be covered by the standard fields
+message NameAttribute {
+  string type = 1; // OID as string
+  google.protobuf.Any value = 2;
+}
+
+enum SignatureAlgorithm {
+  SIGNATURE_ALGORITHM_UNSPECIFIED = 0;
+  //  SIGNATURE_ALGORITHM_MD2_WITH_RSA = 1; // unsupported in go
+  //  SIGNATURE_ALGORITHM_MD5_WITH_RSA = 2; // cannot verify in go
+  SIGNATURE_ALGORITHM_SHA1_WITH_RSA = 3;
+  SIGNATURE_ALGORITHM_SHA256_WITH_RSA = 4;
+  SIGNATURE_ALGORITHM_SHA384_WITH_RSA = 5;
+  SIGNATURE_ALGORITHM_SHA512_WITH_RSA = 6;
+  //  SIGNATURE_ALGORITHM_DSA_WITH_SHA1 = 7; // unsupported in go
+  //  SIGNATURE_ALGORITHM_DSA_WITH_SHA256 = 8; // unsupported in go
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHA1 = 9;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHA256 = 10;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHA384 = 11;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHA512 = 12;
+  SIGNATURE_ALGORITHM_SHA256_WITH_RSA_PSS = 13;
+  SIGNATURE_ALGORITHM_SHA384_WITH_RSA_PSS = 14;
+  SIGNATURE_ALGORITHM_SHA512_WITH_RSA_PSS = 15;
+  SIGNATURE_ALGORITHM_PURE_ED25519 = 16;
+  SIGNATURE_ALGORITHM_PURE_ED448 = 17;
+  SIGNATURE_ALGORITHM_PURE_EDDILITHIUM2 = 18;
+  SIGNATURE_ALGORITHM_PURE_EDDILITHIUM3 = 19;
+  SIGNATURE_ALGORITHM_PURE_DILITHIUM_2 = 20;
+  SIGNATURE_ALGORITHM_PURE_DILITHIUM_3 = 21;
+  SIGNATURE_ALGORITHM_PURE_DILITHIUM_5 = 22;
+  SIGNATURE_ALGORITHM_PURE_MLDSA_44 = 23;
+  SIGNATURE_ALGORITHM_PURE_MLDSA_65 = 24;
+  SIGNATURE_ALGORITHM_PURE_MLDSA_87 = 25;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128S = 26;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128S = 27;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128F = 28;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128F = 29;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192S = 30;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192S = 31;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192F = 32;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192F = 33;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256S = 34;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256S = 35;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256F = 36;
+  SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256F = 37;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE128 = 38;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE256 = 39;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_256 = 40;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_384 = 41;
+  SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_512 = 42;
+  SIGNATURE_ALGORITHM_SHAKE128_WITH_RSA_PSS = 43;
+  SIGNATURE_ALGORITHM_SHAKE256_WITH_RSA_PSS = 44;
+  SIGNATURE_ALGORITHM_SHA3_256_WITH_RSA = 45;
+  SIGNATURE_ALGORITHM_SHA3_384_WITH_RSA = 46;
+  SIGNATURE_ALGORITHM_SHA3_512_WITH_RSA = 47;
+}
+
+enum KeyUsage {
+  KEY_USAGE_UNSPECIFIED = 0;
+  KEY_USAGE_DIGITAL_SIGNATURE = 1;
+  KEY_USAGE_CONTENT_COMMITMENT = 2;
+  KEY_USAGE_KEY_ENCIPHERMENT = 3;
+  KEY_USAGE_DATA_ENCIPHERMENT = 4;
+  KEY_USAGE_KEY_AGREEMENT = 5;
+  KEY_USAGE_CERT_SIGN = 6;
+  KEY_USAGE_CRL_SIGN = 7;
+  KEY_USAGE_ENCIPHER_ONLY = 8;
+  KEY_USAGE_DECIPHER_ONLY = 9;
+}
+
+enum ExtKeyUsage {
+  EXT_KEY_USAGE_ANY_UNSPECIFIED = 0;
+  EXT_KEY_USAGE_SERVER_AUTH = 1;
+  EXT_KEY_USAGE_CLIENT_AUTH = 2;
+  EXT_KEY_USAGE_CODE_SIGNING = 3;
+  EXT_KEY_USAGE_EMAIL_PROTECTION = 4;
+  EXT_KEY_USAGE_IPSEC_END_SYSTEM = 5;
+  EXT_KEY_USAGE_IPSEC_TUNNEL = 6;
+  EXT_KEY_USAGE_IPSEC_USER = 7;
+  EXT_KEY_USAGE_TIME_STAMPING = 8;
+  EXT_KEY_USAGE_OCSP_SIGNING = 9;
+  EXT_KEY_USAGE_MICROSOFT_SERVER_GATED_CRYPTO = 10;
+  EXT_KEY_USAGE_NETSCAPE_SERVER_GATED_CRYPTO = 11;
+  EXT_KEY_USAGE_MICROSOFT_COMMERCIAL_CODE_SIGNING = 12;
+  EXT_KEY_USAGE_MICROSOFT_KERNEL_CODE_SIGNING = 13;
+}
+
+enum RevocationReasonCode {
+  REVOCATION_REASON_CODE_UNSPECIFIED = 0;
+  REVOCATION_REASON_CODE_KEY_COMPROMISE = 1;
+  REVOCATION_REASON_CODE_CA_COMPROMISE = 2;
+  REVOCATION_REASON_CODE_AFFILIATION_CHANGE = 3;
+  REVOCATION_REASON_CODE_SUPERSEDED = 4;
+  REVOCATION_REASON_CODE_CESSATION_OF_OPERATION = 5;
+  REVOCATION_REASON_CODE_CERTIFICATE_HOLD = 6;
+  REVOCATION_REASON_CODE_REMOVE_FROM_CRL = 8;
+  REVOCATION_REASON_CODE_PRIVILEGE_WITHDRAWN = 9;
+  REVOCATION_REASON_CODE_AA_COMPROMISE = 10;
+}
+
+enum SubjectDNAttrType {
+  SUBJECT_DN_ATTR_TYPE_UNSPECIFIED = 0;
+  // go standard
+  SUBJECT_DN_ATTR_TYPE_COMMON_NAME = 1;
+  SUBJECT_DN_ATTR_TYPE_COUNTRY = 2;
+  SUBJECT_DN_ATTR_TYPE_ORGANIZATION = 3;
+  SUBJECT_DN_ATTR_TYPE_ORGANIZATIONAL_UNIT = 4;
+  SUBJECT_DN_ATTR_TYPE_LOCALITY = 5;
+  SUBJECT_DN_ATTR_TYPE_PROVINCE = 6;
+  SUBJECT_DN_ATTR_TYPE_STREET_ADDRESS = 7;
+  SUBJECT_DN_ATTR_TYPE_POSTAL_CODE = 8;
+  SUBJECT_DN_ATTR_TYPE_SERIAL_NUMBER = 9;
+  // requires marshaler
+  SUBJECT_DN_ATTR_TYPE_EMAIL = 10;
+  SUBJECT_DN_ATTR_TYPE_DOMAIN_COMPONENT = 11;
+
+  SUBJECT_DN_ATTR_TYPE_OID = 101;
+}
+
+enum SANAttrType {
+  SAN_ATTR_TYPE_UNSPECIFIED = 0;
+  // go standard
+  SAN_ATTR_TYPE_DNS_NAME = 1;
+  SAN_ATTR_TYPE_EMAIL_ADDRESS = 2;
+  SAN_ATTR_TYPE_IP_ADDRESS = 3;
+  SAN_ATTR_TYPE_URI = 4;
+  // requires marshaler
+  SAN_ATTR_TYPE_MS_UPN = 5;
+  SAN_ATTR_TYPE_KRB5_KPN = 6;
+
+  SAN_ATTR_TYPE_OID = 101;
+}
+
+message SubjectDNAttribute {
+  SubjectDNAttrType attribute_type = 1 [(buf.validate.field).enum = {
+    not_in: [0]
+    defined_only: true
+  }];
+  string attribute_value = 2;
+  string oid = 3; // oid only needed for SUBJECT_DN_ATTR_TYPE_OID
+}
+
+message SANAttribute {
+  SANAttrType attribute_type = 1 [(buf.validate.field).enum = {
+    not_in: [0]
+    defined_only: true
+  }];
+  string attribute_value = 2;
+  string oid = 3; // oid only needed for SAN_ATTR_TYPE_OID
+}
+
+enum DayOfWeek {
+  DAY_OF_WEEK_UNSPECIFIED = 0;
+  DAY_OF_WEEK_SUNDAY = 1;
+  DAY_OF_WEEK_MONDAY = 2;
+  DAY_OF_WEEK_TUESDAY = 3;
+  DAY_OF_WEEK_WEDNESDAY = 4;
+  DAY_OF_WEEK_THURSDAY = 5;
+  DAY_OF_WEEK_FRIDAY = 6;
+  DAY_OF_WEEK_SATURDAY = 7;
+}
+
+enum ExpirationAdjustmentDirection {
+  EXPIRATION_ADJUSTMENT_DIRECTION_UNSPECIFIED = 0; // default to day-- (earlier)
+  EXPIRATION_ADJUSTMENT_DIRECTION_EARLIER = 1; // day--
+  EXPIRATION_ADJUSTMENT_DIRECTION_LATER = 2; // day++
+}

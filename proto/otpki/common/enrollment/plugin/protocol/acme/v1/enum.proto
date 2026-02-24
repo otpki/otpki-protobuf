@@ -1,0 +1,56 @@
+syntax = "proto3";
+package otpki.common.enrollment.plugin.protocol.acme.v1;
+
+import "otpki/common/api/v1/string_enum.proto";
+
+// buf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE
+enum AccountStatus {
+  ACCOUNT_STATUS_UNSPECIFIED = 0;
+  ACCOUNT_STATUS_valid = 1 [(api.v1.string_value) = "valid"];
+  ACCOUNT_STATUS_deactivated = 2 [(api.v1.string_value) = "deactivated"];
+  ACCOUNT_STATUS_revoked = 3 [(api.v1.string_value) = "revoked"];
+}
+
+// buf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE
+enum OrderStatus {
+  ORDER_STATUS_UNSPECIFIED = 0;
+  ORDER_STATUS_pending = 1 [(api.v1.string_value) = "pending"];
+  ORDER_STATUS_ready = 2 [(api.v1.string_value) = "ready"];
+  ORDER_STATUS_processing = 3 [(api.v1.string_value) = "processing"];
+  ORDER_STATUS_valid = 4 [(api.v1.string_value) = "valid"];
+  ORDER_STATUS_invalid = 5 [(api.v1.string_value) = "invalid"];
+}
+
+// buf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE
+enum AuthorizationStatus {
+  AUTHORIZATION_STATUS_UNSPECIFIED = 0;
+  AUTHORIZATION_STATUS_pending = 1 [(api.v1.string_value) = "pending"];
+  AUTHORIZATION_STATUS_valid = 2 [(api.v1.string_value) = "valid"];
+  AUTHORIZATION_STATUS_invalid = 3 [(api.v1.string_value) = "invalid"];
+  AUTHORIZATION_STATUS_deactivated = 4 [(api.v1.string_value) = "deactivated"];
+  AUTHORIZATION_STATUS_expired = 5 [(api.v1.string_value) = "expired"];
+  AUTHORIZATION_STATUS_revoked = 6 [(api.v1.string_value) = "revoked"];
+}
+
+// buf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE
+enum ChallengeStatus {
+  CHALLENGE_STATUS_UNSPECIFIED = 0;
+  CHALLENGE_STATUS_pending = 1 [(api.v1.string_value) = "pending"];
+  CHALLENGE_STATUS_processing = 2 [(api.v1.string_value) = "processing"];
+  CHALLENGE_STATUS_valid = 3 [(api.v1.string_value) = "valid"];
+  CHALLENGE_STATUS_invalid = 4 [(api.v1.string_value) = "invalid"];
+}
+
+// buf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE
+enum ChallengeType {
+  CHALLENGE_TYPE_UNSPECIFIED = 0;
+  CHALLENGE_TYPE_http_01 = 1 [(api.v1.string_value) = "http-01"];
+  CHALLENGE_TYPE_dns_01 = 2 [(api.v1.string_value) = "dns-01"];
+  CHALLENGE_TYPE_tls_alpn_01 = 3 [(api.v1.string_value) = "tls-alpn-01"];
+}
+
+// buf:lint:ignore ENUM_VALUE_UPPER_SNAKE_CASE
+enum IdentifierType {
+  IDENTIFIER_TYPE_UNSPECIFIED = 0;
+  IDENTIFIER_TYPE_dns = 1 [(api.v1.string_value) = "dns"];
+}

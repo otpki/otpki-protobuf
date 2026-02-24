@@ -1,0 +1,32 @@
+name: Check
+
+on:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+        
+    - name: Setup Buf
+      uses: bufbuild/buf-setup-action@v1.50.0
+      with:
+        version: latest
+        
+    - name: Run make check
+      run: make check
+      
+    - name: Check for formatting changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Formatting changes required. Run 'make format' locally and commit the changes."
+          git diff --name-only
+          exit 1
+        else
+          echo "No formatting changes needed."
+        fi

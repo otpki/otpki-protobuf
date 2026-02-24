@@ -1,0 +1,11 @@
+syntax = "proto3";
+package otpki.common.api.v1;
+
+message HttpRequestBody {
+  bytes data = 1;
+}
+
+message HttpRequestBodyAndId {
+  bytes data = 1;
+  int64 id = 2;
+}

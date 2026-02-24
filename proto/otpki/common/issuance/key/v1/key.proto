@@ -1,0 +1,206 @@
+syntax = "proto3";
+package otpki.common.issuance.key.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/issuance/key_storage_config/v1/driver.proto";
+
+enum KeyType {
+  KEY_TYPE_UNSPECIFIED = 0;
+
+  // Supported RSA Keys
+  KEY_TYPE_RSA_1024 = 1000;
+  KEY_TYPE_RSA_1536 = 1001;
+  KEY_TYPE_RSA_2048 = 1002;
+  KEY_TYPE_RSA_3072 = 1003;
+  KEY_TYPE_RSA_4096 = 1004;
+  KEY_TYPE_RSA_6144 = 1005;
+  KEY_TYPE_RSA_8192 = 1006;
+
+  // Supported EC Keys https://neuromancer.sk/std
+  // NIST
+  KEY_TYPE_ECDSA_P192 = 2000;
+  KEY_TYPE_ECDSA_P224 = 2001;
+  KEY_TYPE_ECDSA_P256 = 2002;
+  KEY_TYPE_ECDSA_P384 = 2003;
+  KEY_TYPE_ECDSA_P521 = 2004;
+
+  // NIST binary curves
+  KEY_TYPE_ECDSA_B163 = 2005;
+  KEY_TYPE_ECDSA_K163 = 2006;
+  KEY_TYPE_ECDSA_B233 = 2007;
+  KEY_TYPE_ECDSA_K233 = 2008;
+  KEY_TYPE_ECDSA_B283 = 2009;
+  KEY_TYPE_ECDSA_K283 = 2010;
+  KEY_TYPE_ECDSA_B409 = 2011;
+  KEY_TYPE_ECDSA_K409 = 2012;
+  KEY_TYPE_ECDSA_B571 = 2013;
+  KEY_TYPE_ECDSA_K571 = 2014;
+
+  // Brainpool
+  KEY_TYPE_ECDSA_BP_P160T1 = 2100;
+  KEY_TYPE_ECDSA_BP_P192T1 = 2101;
+  KEY_TYPE_ECDSA_BP_P224T1 = 2102;
+  KEY_TYPE_ECDSA_BP_P256T1 = 2103;
+  KEY_TYPE_ECDSA_BP_P320T1 = 2104;
+  KEY_TYPE_ECDSA_BP_P384T1 = 2105;
+  KEY_TYPE_ECDSA_BP_P512T1 = 2106;
+
+  // Brainpool R-curves
+  KEY_TYPE_ECDSA_BP_P160R1 = 2107;
+  KEY_TYPE_ECDSA_BP_P192R1 = 2108;
+  KEY_TYPE_ECDSA_BP_P224R1 = 2109;
+  KEY_TYPE_ECDSA_BP_P256R1 = 2110;
+  KEY_TYPE_ECDSA_BP_P320R1 = 2111;
+  KEY_TYPE_ECDSA_BP_P384R1 = 2112;
+  KEY_TYPE_ECDSA_BP_P512R1 = 2113;
+
+  // SECG
+  KEY_TYPE_ECDSA_SECP192R1 = 2200;
+  KEY_TYPE_ECDSA_SECP224R1 = 2201;
+  KEY_TYPE_ECDSA_SECP256R1 = 2202;
+  KEY_TYPE_ECDSA_SECP384R1 = 2203;
+  KEY_TYPE_ECDSA_SECP521R1 = 2204;
+
+  // SECG binary curves
+  KEY_TYPE_ECDSA_SECT113R1 = 2205;
+  KEY_TYPE_ECDSA_SECT113R2 = 2206;
+  KEY_TYPE_ECDSA_SECT131R1 = 2207;
+  KEY_TYPE_ECDSA_SECT131R2 = 2208;
+  KEY_TYPE_ECDSA_SECT163K1 = 2209;
+  KEY_TYPE_ECDSA_SECT163R1 = 2210;
+  KEY_TYPE_ECDSA_SECT163R2 = 2211;
+  KEY_TYPE_ECDSA_SECT193R1 = 2212;
+  KEY_TYPE_ECDSA_SECT193R2 = 2213;
+  KEY_TYPE_ECDSA_SECT233K1 = 2214;
+  KEY_TYPE_ECDSA_SECT233R1 = 2215;
+  KEY_TYPE_ECDSA_SECT239K1 = 2216;
+  KEY_TYPE_ECDSA_SECT283K1 = 2217;
+  KEY_TYPE_ECDSA_SECT283R1 = 2218;
+  KEY_TYPE_ECDSA_SECT409K1 = 2219;
+  KEY_TYPE_ECDSA_SECT409R1 = 2220;
+  KEY_TYPE_ECDSA_SECT571K1 = 2221;
+  KEY_TYPE_ECDSA_SECT571R1 = 2222;
+
+  // ANSI X9.62
+  KEY_TYPE_ECDSA_PRIME192V1 = 2300;
+  KEY_TYPE_ECDSA_PRIME192V2 = 2301;
+  KEY_TYPE_ECDSA_PRIME192V3 = 2302;
+  KEY_TYPE_ECDSA_PRIME239V1 = 2303;
+  KEY_TYPE_ECDSA_PRIME239V2 = 2304;
+  KEY_TYPE_ECDSA_PRIME239V3 = 2305;
+  KEY_TYPE_ECDSA_PRIME256V1 = 2306;
+
+  // ANSI X9.62 binary curves
+  KEY_TYPE_ECDSA_C2PNG176W1 = 2307;
+  KEY_TYPE_ECDSA_C2PNG163V1 = 2308;
+  KEY_TYPE_ECDSA_C2PNG163V2 = 2309;
+  KEY_TYPE_ECDSA_C2PNG163V3 = 2310;
+  KEY_TYPE_ECDSA_C2PNG208W1 = 2311;
+  KEY_TYPE_ECDSA_C2TNB191V3 = 2312;
+  KEY_TYPE_ECDSA_C2TNB191V2 = 2313;
+  KEY_TYPE_ECDSA_C2TNB191V1 = 2314;
+  KEY_TYPE_ECDSA_C2TNB239V3 = 2315;
+  KEY_TYPE_ECDSA_C2TNB239V2 = 2316;
+  KEY_TYPE_ECDSA_C2TNB239V1 = 2317;
+  KEY_TYPE_ECDSA_C2PNB272W1 = 2318;
+  KEY_TYPE_ECDSA_C2PNB304W1 = 2319;
+  KEY_TYPE_ECDSA_C2PNB368W1 = 2320;
+  KEY_TYPE_ECDSA_C2TNB359V1 = 2321;
+  KEY_TYPE_ECDSA_C2TNB431R1 = 2322;
+
+  // ANSI X.963
+  KEY_TYPE_ECDSA_ANSIP224R1 = 2400;
+  KEY_TYPE_ECDSA_ANSIP384R1 = 2401;
+  KEY_TYPE_ECDSA_ANSIP521R1 = 2402;
+
+  // ANSI X.963 binary curves
+  KEY_TYPE_ECDSA_ANSIT163K1 = 2403;
+  KEY_TYPE_ECDSA_ANSIT163R1 = 2404;
+  KEY_TYPE_ECDSA_ANSIT163R2 = 2405;
+  KEY_TYPE_ECDSA_ANSIT193R1 = 2406;
+  KEY_TYPE_ECDSA_ANSIT193R2 = 2407;
+  KEY_TYPE_ECDSA_ANSIT233K1 = 2408;
+  KEY_TYPE_ECDSA_ANSIT233R1 = 2409;
+  KEY_TYPE_ECDSA_ANSIT239K1 = 2410;
+  KEY_TYPE_ECDSA_ANSIT283K1 = 2411;
+  KEY_TYPE_ECDSA_ANSIT283R1 = 2412;
+  KEY_TYPE_ECDSA_ANSIT409K1 = 2413;
+  KEY_TYPE_ECDSA_ANSIT409R1 = 2414;
+  KEY_TYPE_ECDSA_ANSIT571K1 = 2415;
+  KEY_TYPE_ECDSA_ANSIT571R1 = 2416;
+
+  // Supported ED Keys
+  KEY_TYPE_ED25519 = 3000;
+  KEY_TYPE_ED448 = 3001;
+
+  // PQC Keys
+  // EdDilithium
+  KEY_TYPE_EDDILITHIUM_2 = 4001;
+  KEY_TYPE_EDDILITHIUM_3 = 4002;
+
+  // Dilithium
+  KEY_TYPE_DILITHIUM_2 = 4003;
+  KEY_TYPE_DILITHIUM_3 = 4004;
+  KEY_TYPE_DILITHIUM_5 = 4005;
+
+  // ML-DSA
+  KEY_TYPE_MLDSA_44 = 4006;
+  KEY_TYPE_MLDSA_65 = 4007;
+  KEY_TYPE_MLDSA_87 = 4008;
+
+  // SLH-DSA
+  KEY_TYPE_SLHDSA_SHA128S = 4009;
+  KEY_TYPE_SLHDSA_SHAKE128S = 4010;
+  KEY_TYPE_SLHDSA_SHA128F = 4011;
+  KEY_TYPE_SLHDSA_SHAKE128F = 4012;
+  KEY_TYPE_SLHDSA_SHA192S = 4013;
+  KEY_TYPE_SLHDSA_SHAKE192S = 4014;
+  KEY_TYPE_SLHDSA_SHA192F = 4015;
+  KEY_TYPE_SLHDSA_SHAKE192F = 4016;
+  KEY_TYPE_SLHDSA_SHA256S = 4017;
+  KEY_TYPE_SLHDSA_SHAKE256S = 4018;
+  KEY_TYPE_SLHDSA_SHA256F = 4019;
+  KEY_TYPE_SLHDSA_SHAKE256F = 4020;
+}
+
+enum KeyUsage {
+  KEY_USAGE_UNSPECIFIED = 0;
+  KEY_USAGE_SIGN_VERIFY = 1;
+  KEY_USAGE_ENCRYPT_DECRYPT = 2;
+}
+
+// HSMProfile configures a connection to a PKCS#11 proxy server.
+message HSMProfile {
+  string server_address = 1; // gRPC address of the PKCS#11 proxy server (host:port)
+  string config_id = 2; // Server-side HSM config ID
+}
+
+message Key {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string name = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.pattern = "^[a-zA-Z0-9:/_-]+$"
+  ];
+  string description = 3;
+  KeyType key_type = 4;
+  repeated KeyUsage key_usage = 5;
+  google.protobuf.Any key_storage_key_config = 6;
+  int64 key_storage_config_id = 7 [(buf.validate.field).required = true];
+  key_storage_config.v1.KeyDriver key_location = 8;
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

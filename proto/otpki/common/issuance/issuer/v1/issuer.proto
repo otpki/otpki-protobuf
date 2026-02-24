@@ -1,0 +1,65 @@
+syntax = "proto3";
+package otpki.common.issuance.issuer.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/x509/v1/certificate_template.proto";
+
+// IssuanceStatus is congruent to EndEntityStatus
+enum IssuanceStatus {
+  ISSUANCE_STATUS_UNSPECIFIED = 0;
+  ISSUANCE_STATUS_NEW = 1; // request approved, waiting on cert, note: this state should never exist in the DB, an approved request is immediately generated.
+  ISSUANCE_STATUS_FAILED = 2; // certificate generation has failed
+  ISSUANCE_STATUS_GENERATED = 3; // certificate generation has succeeded
+  ISSUANCE_STATUS_REJECTED = 4; // certificate request was rejected
+  ISSUANCE_STATUS_WAITING_FOR_APPROVAL = 5; // certificate request has been created, waiting for approval
+}
+
+enum IssuingProtocol {
+  ISSUING_PROTOCOL_UNSPECIFIED = 0;
+  ISSUING_PROTOCOL_API = 1;
+  ISSUING_PROTOCOL_SCEP = 2;
+  ISSUING_PROTOCOL_ACME = 3;
+  ISSUING_PROTOCOL_EST = 4;
+  ISSUING_PROTOCOL_MSAE = 5;
+  ISSUING_PROTOCOL_CMP = 6;
+  ISSUING_PROTOCOL_IMPORT = 7;
+}
+
+message IssuanceRequest {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  IssuanceStatus status = 2 [(gnostic.openapi.v3.property).read_only = true];
+  IssuingProtocol protocol_used = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
+  x509.v1.CertificateTemplate certificate_template = 4 [(buf.validate.field).required = true];
+
+  // only used for self-signed root ca issuance
+  optional int64 signing_key_id = 5;
+  optional int64 alternative_signing_key_id = 6;
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+message IssuanceResponse {
+  int64 issuance_request_id = 1;
+  IssuanceStatus status = 2;
+  int64 certificate_id = 3;
+  bytes certificate = 4;
+  repeated bytes certificate_chain = 5; // does not contain end entity certificate
+}

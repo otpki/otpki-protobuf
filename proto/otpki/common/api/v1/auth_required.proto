@@ -1,0 +1,12 @@
+syntax = "proto3";
+package otpki.common.api.v1;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.ServiceOptions {
+  bool service_auth_required = 50010;
+}
+
+extend google.protobuf.MethodOptions {
+  bool auth_required = 50011;
+}

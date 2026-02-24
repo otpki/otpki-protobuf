@@ -1,0 +1,69 @@
+syntax = "proto3";
+package otpki.public.enrollment.v1;
+
+import "buf/validate/validate.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/enrollment/enroller/v1/enroller.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message CreateEnrollmentRequestRequest {
+  common.enrollment.enroller.v1.EnrollmentRequest enrollment_request = 1 [(buf.validate.field).required = true];
+}
+
+message CreateEnrollmentRequestResponse {
+  common.enrollment.enroller.v1.EnrollmentResponse enrollment_response = 1;
+}
+
+message CreateEnrollmentRequestForExistingEndEntityRequest {
+  common.enrollment.enroller.v1.EnrollmentRequest enrollment_request = 1;
+}
+
+message CreateEnrollmentRequestForExistingEndEntityResponse {
+  common.enrollment.enroller.v1.EnrollmentResponse enrollment_response = 1;
+}
+
+message ApproveEnrollmentRequestRequest {
+  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
+}
+
+message ApproveEnrollmentRequestResponse {}
+
+message RejectEnrollmentRequestRequest {
+  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
+}
+
+message RejectEnrollmentRequestResponse {}
+
+message GetEnrollmentByRequestIDRequest {
+  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
+  string password = 2;
+}
+
+message GetEnrollmentByRequestIDResponse {
+  common.enrollment.enroller.v1.EnrollmentRequest enrollment_request = 1;
+  common.enrollment.enroller.v1.EnrollmentResponse enrollment_response = 2;
+}
+
+message RevokeEndEntityRequest {
+  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+  common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
+}
+
+message RevokeEndEntityResponse {}
+
+message RevokeEndEntityCertificateRequest {
+  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+  int64 issued_certificate_id = 2 [(buf.validate.field).required = true];
+  common.x509.v1.RevocationReasonCode revocation_reason_code = 3;
+}
+
+message RevokeEndEntityCertificateResponse {}
+
+message GetEnrollmentRequestListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetEnrollmentRequestListResponse {
+  repeated common.enrollment.enroller.v1.EnrollmentRequest data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}

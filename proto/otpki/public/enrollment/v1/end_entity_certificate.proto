@@ -1,0 +1,32 @@
+syntax = "proto3";
+package otpki.public.enrollment.v1;
+
+import "buf/validate/validate.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto";
+
+message GetEndEntityCertificateBySerialNumberRequest {
+  bytes serial_number = 1 [(buf.validate.field).required = true];
+  int64 end_entity_id = 2; // this param does not do anything, it's for the path to satisfy a pattern
+}
+
+message GetEndEntityCertificateBySerialNumberResponse {
+  common.enrollment.end_entity_certificate.v1.EndEntityCertificate end_entity_certificate = 1;
+}
+
+message GetEndEntityCertificatesRequest {
+  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetEndEntityCertificatesResponse {
+  repeated common.enrollment.end_entity_certificate.v1.EndEntityCertificate end_entity_certificates = 1;
+}
+
+message GetEndEntityCertificateListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetEndEntityCertificateListResponse {
+  repeated common.enrollment.end_entity_certificate.v1.EndEntityCertificate data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}

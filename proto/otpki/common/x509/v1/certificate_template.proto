@@ -1,0 +1,127 @@
+syntax = "proto3";
+package otpki.common.x509.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message CertificateTemplate {
+  option (api.v1.generate_native) = true;
+
+  // public key information
+  bytes public_key = 201 [
+    (api.v1.go_native_type) = "PublicKey",
+    (api.v1.go_native_import_path) = "crypto"
+  ];
+  bytes alternative_public_key = 202 [
+    (api.v1.go_native_type) = "PublicKey",
+    (api.v1.go_native_import_path) = "crypto"
+  ];
+
+  // used for "allow CSR subject override"
+  bytes original_subject_dn = 301;
+
+  // requested extensions
+  repeated x509.v1.Extension extensions = 302 [
+    (api.v1.go_native_type) = "[]Extension",
+    (api.v1.go_native_import_path) = "crypto/x509/pkix"
+  ]; // could contain key usage extension for "allow csr key usage override"
+
+  // --- fields below here are mirrored by EndEntity ----
+
+  // subject DN
+  repeated x509.v1.SubjectDNAttribute subject_dn_attributes = 401;
+
+  // san
+  repeated x509.v1.SANAttribute subject_alternative_name_attributes = 501;
+
+  // issuance information
+  int64 certificate_profile_id = 601 [(buf.validate.field).required = true];
+  optional int64 certificate_authority_id = 602; // empty means self signed
+
+  // validity override
+  google.protobuf.Duration validity_start_time_offset = 701 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // offset from 'now' when to issue certificate
+  google.protobuf.Timestamp validity_start_date = 702 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ]; // start date for notBefore, if both are set, offset is added to start date rather than 'now'
+  google.protobuf.Duration validity_end_time_offset = 703 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // offset from 'now' when to expire certificate
+  google.protobuf.Timestamp validity_end_date = 704 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ]; // end date for notAfter, if both are set, offset is added to end date rather than 'now'
+
+  // other
+  // profile can prevent permitted constraints from being set
+  repeated string permitted_dns_domains = 801 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {hostname: true}
+    }
+  }];
+  repeated string permitted_ip_ranges = 802 [
+    (api.v1.go_native_type) = "[]*net.IPNet",
+    (api.v1.go_native_import_path) = "net",
+    (buf.validate.field).repeated = {
+      unique: true
+      items: {
+        string: {ip_with_prefixlen: true}
+      }
+    }
+  ];
+  repeated string permitted_email_addresses = 803 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {email: true}
+    }
+  }];
+  repeated string permitted_uri_domains = 804 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uri: true}
+    }
+  }];
+  // profile can prevent excluded constraints from being set
+  repeated string excluded_dns_domains = 805 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {hostname: true}
+    }
+  }];
+  repeated string excluded_ip_ranges = 806 [
+    (api.v1.go_native_type) = "[]*net.IPNet",
+    (api.v1.go_native_import_path) = "net",
+    (buf.validate.field).repeated = {
+      unique: true
+      items: {
+        string: {ip_with_prefixlen: true}
+      }
+    }
+  ];
+  repeated string excluded_email_addresses = 807 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {email: true}
+    }
+  }];
+  repeated string excluded_uri_domains = 808 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uri: true}
+    }
+  }];
+  repeated int64 custom_certificate_extension_ids = 809 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      int64: {gt: 0}
+    }
+  }];
+}

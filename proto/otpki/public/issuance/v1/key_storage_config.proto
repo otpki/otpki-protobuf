@@ -1,0 +1,55 @@
+syntax = "proto3";
+package otpki.public.issuance.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/issuance/key_storage_config/v1/key_storage_config.proto";
+import "otpki/common/issuance/plugin/key_driver/v1/plugin.proto";
+
+message CreateKeyStorageConfigRequest {
+  common.issuance.key_storage_config.v1.KeyStorageConfig config = 1 [(buf.validate.field).required = true];
+}
+
+message CreateKeyStorageConfigResponse {
+  int64 id = 1;
+}
+
+message GetKeyStorageConfigRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message GetKeyStorageConfigResponse {
+  common.issuance.key_storage_config.v1.KeyStorageConfig config = 1;
+}
+
+message UpdateKeyStorageConfigRequest {
+  common.issuance.key_storage_config.v1.KeyStorageConfig config = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateKeyStorageConfigResponse {}
+
+message DeleteKeyStorageConfigRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message DeleteKeyStorageConfigResponse {}
+
+message GetKeyStorageConfigListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetKeyStorageConfigListResponse {
+  repeated common.issuance.key_storage_config.v1.KeyStorageConfig data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message SendKeyDriverMessageRequest {
+  common.issuance.plugin.key_driver.v1.KeyDriverMessage message = 1;
+}
+
+message SendKeyDriverMessageResponse {
+  google.protobuf.Any response = 1;
+}

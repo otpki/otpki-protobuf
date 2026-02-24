@@ -1,0 +1,12 @@
+syntax = "proto3";
+package otpki.common.issuance.key_storage_config.v1;
+
+enum KeyDriver {
+  KEY_DRIVER_UNSPECIFIED = 0;
+  KEY_DRIVER_SOFTDBKMS = 1;
+  KEY_DRIVER_AWSKMS = 2;
+  KEY_DRIVER_AZUREKMS = 3;
+  KEY_DRIVER_GCLOUDKMS = 4;
+  KEY_DRIVER_ISSKMS = 5;
+  KEY_DRIVER_PKCS11 = 6;
+}

@@ -1,0 +1,35 @@
+syntax = "proto3";
+package otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1;
+
+import "buf/validate/validate.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/issuance/key/v1/key.proto";
+
+// this is the key storage config stored in the database
+message HSMProfile {
+  string server_address = 1 [(buf.validate.field).string.host_and_port = true];
+  string config_id = 2; // Server-side HSM config ID
+}
+
+// this is the key data stored in the database
+message HSMKeyData {
+  string key_label = 1;
+}
+
+// this is a list entry used for GetHSMKeyList
+message HSMKeyInfo {
+  string key_label = 1;
+  bytes key_id = 2;
+  key.v1.KeyType key_type = 3;
+  uint32 key_bits = 4;
+  bool imported = 5;
+}
+
+message GetHSMKeyListRequest {
+  api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetHSMKeyListResponse {
+  repeated HSMKeyInfo data = 1;
+  api.query.v1.PaginationResponse pagination = 2;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+package otpki.public.validation.v1;
+
+import "otpki/common/x509/v1/revocation_list.proto";
+
+message GetLatestRevocationListRequest {
+  int64 ca_id = 1;
+}
+
+message GetLatestRevocationListResponse {
+  common.x509.v1.RevocationList revocation_list = 1;
+}
+
+message GetRevocationListRequest {
+  int64 id = 1;
+}
+
+message GetRevocationListResponse {
+  common.x509.v1.RevocationList revocation_list = 1;
+}
+
+message CRLDistributionPointRequest {
+  string fingerprint = 1;
+}

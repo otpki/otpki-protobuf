@@ -1,0 +1,53 @@
+syntax = "proto3";
+package otpki.public.auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateGroupRequest {
+  common.auth.v1.Group group = 1 [(buf.validate.field).required = true];
+}
+
+message CreateGroupResponse {
+  int64 id = 1;
+}
+
+message GetGroupRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message GetGroupResponse {
+  common.auth.v1.Group group = 1;
+}
+
+message GetManyGroupsRequest {
+  repeated int64 ids = 1 [(buf.validate.field).required = true];
+}
+
+message GetManyGroupsResponse {
+  repeated common.auth.v1.Group groups = 1;
+}
+
+message UpdateGroupRequest {
+  common.auth.v1.Group group = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateGroupResponse {}
+
+message DeleteGroupRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message DeleteGroupResponse {}
+
+message GetGroupListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetGroupListResponse {
+  repeated common.auth.v1.Group data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}

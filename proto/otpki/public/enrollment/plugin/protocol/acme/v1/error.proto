@@ -1,0 +1,133 @@
+syntax = "proto3";
+package otpki.public.enrollment.plugin.protocol.acme.v1;
+
+// RFC 7807 Problem Details
+message Problem {
+  string type = 1;
+  string title = 2;
+  int64 status = 3;
+  string detail = 4;
+  string instance = 5;
+  repeated Subproblem subproblems = 6;
+}
+
+// Subproblems for aggregated errors
+message Subproblem {
+  string type = 1;
+  string detail = 2;
+  Identifier identifier = 3;
+}
+
+// Identifier for domain-specific problems
+message Identifier {
+  string type = 1;
+  string value = 2;
+}
+
+// Standard ACME error types
+enum AcmeErrorType {
+  ACME_ERROR_TYPE_UNSPECIFIED = 0;
+
+  // Standard ACME error types from RFC 8555
+  ACME_ERROR_TYPE_ACCOUNT_DOES_NOT_EXIST = 1;
+  ACME_ERROR_TYPE_ALREADY_REVOKED = 2;
+  ACME_ERROR_TYPE_BAD_CSR = 3;
+  ACME_ERROR_TYPE_BAD_NONCE = 4;
+  ACME_ERROR_TYPE_BAD_REVOCATION_REASON = 5;
+  ACME_ERROR_TYPE_BAD_SIGNATURE_ALGORITHM = 6;
+  ACME_ERROR_TYPE_CAA = 7;
+  ACME_ERROR_TYPE_COMPOUND = 8;
+  ACME_ERROR_TYPE_CONNECTION = 9;
+  ACME_ERROR_TYPE_DNS = 10;
+  ACME_ERROR_TYPE_EXTERNAL_ACCOUNT_REQUIRED = 11;
+  ACME_ERROR_TYPE_INCORRECT_RESPONSE = 12;
+  ACME_ERROR_TYPE_INVALID_CONTACT = 13;
+  ACME_ERROR_TYPE_MALFORMED = 14;
+  ACME_ERROR_TYPE_ORDER_NOT_READY = 15;
+  ACME_ERROR_TYPE_RATE_LIMITED = 16;
+  ACME_ERROR_TYPE_REJECTED_IDENTIFIER = 17;
+  ACME_ERROR_TYPE_SERVER_INTERNAL = 18;
+  ACME_ERROR_TYPE_TLS = 19;
+  ACME_ERROR_TYPE_UNAUTHORIZED = 20;
+  ACME_ERROR_TYPE_UNSUPPORTED_IDENTIFIER = 21;
+  ACME_ERROR_TYPE_USER_ACTION_REQUIRED = 22;
+  ACME_ERROR_TYPE_BAD_PUBLIC_KEY = 23;
+  ACME_ERROR_TYPE_UNSUPPORTED_CONTACT = 24;
+}
+
+/**
+      +-------------------------+-----------------------------------------+
+      | Type                    | Description                             |
+      +-------------------------+-----------------------------------------+
+      | accountDoesNotExist     | The request specified an account that   |
+      |                         | does not exist                          |
+      |                         |                                         |
+      | alreadyRevoked          | The request specified a certificate to  |
+      |                         | be revoked that has already been        |
+      |                         | revoked                                 |
+      |                         |                                         |
+      | badCSR                  | The CSR is unacceptable (e.g., due to a |
+      |                         | short key)                              |
+      |                         |                                         |
+      | badNonce                | The client sent an unacceptable anti-   |
+      |                         | replay nonce                            |
+      |                         |                                         |
+      | badPublicKey            | The JWS was signed by a public key the  |
+      |                         | server does not support                 |
+      |                         |                                         |
+      | badRevocationReason     | The revocation reason provided is not   |
+      |                         | allowed by the server                   |
+      |                         |                                         |
+      | badSignatureAlgorithm   | The JWS was signed with an algorithm    |
+      |                         | the server does not support             |
+      |                         |                                         |
+      | caa                     | Certification Authority Authorization   |
+      |                         | (CAA) records forbid the CA from        |
+      |                         | issuing a certificate                   |
+      |                         |                                         |
+      | compound                | Specific error conditions are indicated |
+      |                         | in the "subproblems" array              |
+      |                         |                                         |
+      | connection              | The server could not connect to         |
+      |                         | validation target                       |
+      |                         |                                         |
+      | dns                     | There was a problem with a DNS query    |
+      |                         | during identifier validation            |
+      |                         |                                         |
+      | externalAccountRequired | The request must include a value for    |
+      |                         | the "externalAccountBinding" field      |
+      |                         |                                         |
+      | incorrectResponse       | Response received didn't match the      |
+      |                         | challenge's requirements                |
+      |                         |                                         |
+      | invalidContact          | A contact URL for an account was        |
+      |                         | invalid                                 |
+      |                         |                                         |
+      | malformed               | The request message was malformed       |
+      |                         |                                         |
+      | orderNotReady           | The request attempted to finalize an    |
+      |                         | order that is not ready to be finalized |
+      |                         |                                         |
+      | rateLimited             | The request exceeds a rate limit        |
+      |                         |                                         |
+      | rejectedIdentifier      | The server will not issue certificates  |
+      |                         | for the identifier                      |
+      |                         |                                         |
+      | serverInternal          | The server experienced an internal      |
+      |                         | error                                   |
+      |                         |                                         |
+      | tls                     | The server received a TLS error during  |
+      |                         | validation                              |
+      |                         |                                         |
+      | unauthorized            | The client lacks sufficient             |
+      |                         | authorization                           |
+      |                         |                                         |
+      | unsupportedContact      | A contact URL for an account used an    |
+      |                         | unsupported protocol scheme             |
+      |                         |                                         |
+      | unsupportedIdentifier   | An identifier is of an unsupported type |
+      |                         |                                         |
+      | userActionRequired      | Visit the "instance" URL and take       |
+      |                         | actions specified there                 |
+      +-------------------------+-----------------------------------------+
+   **/

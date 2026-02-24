@@ -1,0 +1,42 @@
+syntax = "proto3";
+package otpki.common.enrollment.plugin.protocol.acme.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "otpki/common/enrollment/end_entity/v1/end_entity.proto";
+import "otpki/common/enrollment/plugin/protocol/acme/v1/enum.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message ACMEProtocolConfig {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2 [(buf.validate.field).string.pattern = "^[a-zA-Z0-9_-]+$"];
+  int64 certificate_authority_id = 3 [(buf.validate.field).int64.gt = 0];
+  bool end_entity_required = 4;
+  int64 end_entity_profile_id = 5 [(buf.validate.field).int64.gt = 0];
+  int64 certificate_profile_id = 6 [(buf.validate.field).int64.gt = 0];
+  end_entity.v1.LoginIDScheme login_id_scheme = 7;
+  repeated x509.v1.SubjectDNAttrType login_id_parts = 8; // TODO: in 'combo' mode, order is dictated by UI component
+  string login_id_fixed = 9;
+  int64 login_id_random_length = 10;
+  string login_id_prefix = 11;
+  string login_id_postfix = 12;
+  // bool eab_required = 1; // TODO: unsupported. EAB support required
+  // google.protobuf.Duration order_validity = 1; // TODO: unsupported. Order expires_at support needed
+  // Base URL of the acme server that the client should point to (to account for any proxing)
+  string base_url = 13 [(buf.validate.field).string.uri = true];
+  // URL to the TOS
+  string tos_url = 14 [(buf.validate.field).string.uri = true];
+  // Require TOS agreement by acme client
+  bool tos_required = 15;
+  ChallengeType challenge_type = 16;
+  int64 dns_challenge_port = 17 [
+    (buf.validate.field).int64.gte = 0,
+    (buf.validate.field).int64.lte = 65535,
+    (buf.validate.field).int64.example = 53
+  ];
+  int64 http_challenge_port = 18 [
+    (buf.validate.field).int64.gte = 0,
+    (buf.validate.field).int64.lte = 65535,
+    (buf.validate.field).int64.example = 80
+  ];
+}

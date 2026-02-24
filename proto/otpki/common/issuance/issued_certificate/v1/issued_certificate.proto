@@ -1,0 +1,53 @@
+syntax = "proto3";
+package otpki.common.issuance.issued_certificate.v1;
+
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/issuance/issuer/v1/issuer.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message IssuedCertificate {
+  option (api.v1.generate_native) = true;
+  int64 id = 1;
+  bytes certificate = 2;
+  repeated bytes certificate_chain = 3;
+  bytes serial_number = 4;
+  string display_name = 5;
+  repeated x509.v1.SubjectDNAttribute subject_dn = 6;
+  repeated x509.v1.SubjectDNAttribute issuer_dn = 7;
+  google.protobuf.Timestamp not_before = 8 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp not_after = 9 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+
+  optional google.protobuf.Timestamp revoked_at = 10 [
+    (api.v1.go_native_type) = "*time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  optional x509.v1.RevocationReasonCode revocation_reason_code = 11;
+  bool in_crl = 12;
+
+  optional int64 issued_by_ca_certificate_id = 13;
+  int64 issued_from_certificate_profile_id = 14;
+  int64 issued_from_issuance_request_id = 15;
+
+  issuer.v1.IssuingProtocol protocol_used = 16;
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

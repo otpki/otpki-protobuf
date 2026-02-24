@@ -1,0 +1,98 @@
+syntax = "proto3";
+package otpki.public.enrollment.plugin.protocol.acme.v1;
+
+import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
+import "otpki/public/enrollment/plugin/protocol/acme/v1/message.proto";
+
+service ACMEService {
+  // Directory endpoint - entry point for ACME clients
+  rpc GetDirectory(GetDirectoryRequest) returns (GetDirectoryResponse) {
+    option (google.api.http) = {get: "/v1/acme/{name}/directory"};
+  }
+  // Nonce endpoint - for replay protection
+  rpc GetNewNonce(GetNewNonceRequest) returns (GetNewNonceResponse) {
+    option (google.api.http) = {
+      custom: {
+        kind: "HEAD"
+        path: "/v1/acme/{name}/new-nonce"
+      }
+      additional_bindings: {get: "/v1/acme/{name}/new-nonce"}
+    };
+  }
+  // Account endpoints
+  rpc CreateOrGetAccount(CreateOrGetAccountRequest) returns (CreateOrGetAccountResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/new-account"
+      body: "data"
+    };
+  }
+  rpc GetOrUpdateAccount(GetOrUpdateAccountRequest) returns (GetOrUpdateAccountResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/account/{id}"
+      body: "data"
+    };
+  }
+  // Order endpoints
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/new-order"
+      body: "data"
+    };
+  }
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/order/{id}"
+      body: "data"
+    };
+  }
+  rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/orders/{id}"
+      body: "data"
+    };
+  }
+  rpc FinalizeOrder(FinalizeOrderRequest) returns (FinalizeOrderResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/order/{id}/finalize"
+      body: "data"
+    };
+  }
+  // Authorization endpoint
+  rpc GetOrDeactivateAuthorization(GetOrDeactivateAuthorizationRequest) returns (GetOrDeactivateAuthorizationResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/authz/{id}"
+      body: "data"
+    };
+  }
+  // Challenge endpoint
+  rpc GetOrValidateChallenge(GetOrValidateChallengeRequest) returns (GetOrValidateChallengeResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/challenge/{id}"
+      body: "data"
+    };
+  }
+  // Certificate endpoints
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  rpc GetCertificate(GetCertificateRequest) returns (google.api.HttpBody) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/cert/{id}"
+      body: "data"
+    };
+  }
+  // Revocation endpoint
+  rpc RevokeCertificate(RevokeCertificateRequest) returns (RevokeCertificateResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/revoke-cert"
+      body: "data"
+    };
+  }
+  // Key change endpoint
+  rpc KeyChange(KeyChangeRequest) returns (KeyChangeResponse) {
+    option (google.api.http) = {
+      post: "/v1/acme/{name}/key-change"
+      body: "data"
+    };
+  }
+}

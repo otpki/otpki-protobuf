@@ -1,0 +1,36 @@
+syntax = "proto3";
+package otpki.common.enrollment.plugin.protocol.scep.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "otpki/common/enrollment/end_entity/v1/end_entity.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message SCEPProtocolConfig {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2 [(buf.validate.field).string.pattern = "^[a-zA-Z0-9_-]+$"];
+  int64 certificate_authority_id = 3 [(buf.validate.field).int64.gt = 0];
+  bool end_entity_required = 4;
+  int64 end_entity_profile_id = 5 [(buf.validate.field).int64.gt = 0];
+  int64 certificate_profile_id = 6 [(buf.validate.field).int64.gt = 0];
+  end_entity.v1.LoginIDScheme login_id_scheme = 7;
+  repeated x509.v1.SubjectDNAttrType login_id_parts = 8; // TODO: in 'combo' mode, order is dictated by UI component
+  string login_id_fixed = 9;
+  int64 login_id_random_length = 10;
+  string login_id_prefix = 11;
+  string login_id_postfix = 12;
+  bool provide_chain = 13;
+  ScepChallengeType challenge_type = 14;
+  string challenge_config_resource = 15;
+  string challenge_config_app_id = 16;
+  string challenge_config_app_key = 17;
+  string challenge_config_tenant_id = 18;
+  string challenge_config_provider_name_and_version = 19;
+}
+
+enum ScepChallengeType {
+  SCEP_CHALLENGE_TYPE_UNSPECIFIED = 0;
+  SCEP_CHALLENGE_TYPE_STATIC = 1;
+  SCEP_CHALLENGE_TYPE_REMOTE = 2;
+  SCEP_CHALLENGE_TYPE_INTUNE = 3;
+}

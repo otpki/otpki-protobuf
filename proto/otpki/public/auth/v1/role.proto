@@ -1,0 +1,90 @@
+syntax = "proto3";
+package otpki.public.auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateRoleRequest {
+  common.auth.v1.Role role = 1 [(buf.validate.field).required = true];
+}
+
+message CreateRoleResponse {
+  int64 id = 1;
+}
+
+message GetRoleRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message GetRoleResponse {
+  common.auth.v1.Role role = 1;
+}
+
+message GetManyRolesRequest {
+  repeated int64 ids = 1 [(buf.validate.field).repeated.unique = true];
+}
+
+message GetManyRolesResponse {
+  repeated common.auth.v1.Role roles = 1;
+}
+
+message GetManyRolesByNamesRequest {
+  repeated string names = 1 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items.string.min_len = 1
+  ];
+}
+
+message GetManyRolesByNamesResponse {
+  repeated common.auth.v1.Role roles = 1;
+}
+
+message CreateOrGetManyRolesByNamesRequest {
+  repeated string names = 1 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items.string.min_len = 1
+  ];
+}
+
+message CreateOrGetManyRolesByNamesResponse {
+  repeated common.auth.v1.Role roles = 1;
+}
+
+message UpdateRoleRequest {
+  common.auth.v1.Role role = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateRoleResponse {}
+
+message DeleteRoleRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message DeleteRoleResponse {}
+
+message GetRoleListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetRoleListResponse {
+  repeated common.auth.v1.Role data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message SetRolePermissionsRequest {
+  repeated common.auth.v1.Permission permissions = 1;
+  int64 role_id = 2 [(buf.validate.field).required = true];
+}
+
+message SetRolePermissionsResponse {}
+
+message GetRolePermissionsRequest {
+  int64 role_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetRolePermissionsResponse {
+  repeated common.auth.v1.Permission permissions = 1;
+}

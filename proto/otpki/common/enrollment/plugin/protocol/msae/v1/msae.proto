@@ -1,0 +1,31 @@
+syntax = "proto3";
+package otpki.common.enrollment.plugin.protocol.msae.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/duration.proto";
+
+message MSAEProtocolConfig {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2 [(buf.validate.field).string.pattern = "^[a-zA-Z0-9_-]+$"];
+  int64 certificate_authority_id = 3 [(buf.validate.field).int64.gt = 0];
+  // does not have "RA" or "CA" mode
+  // does not have "login ID" scheme:
+  // computer cert always has DNS name as CN and in SAN
+  // user cert always has "email" (really just a UPN without domain prefix) as CN and in SAN (MS UPN attr)
+  string ldap_domain_controller = 4;
+  int64 ldap_port = 5;
+  bool ldap_start_tls = 6;
+  bool ldap_use_ldaps = 7;
+  google.protobuf.Duration ldap_ad_polling_interval = 8;
+  string ldap_service_account_username = 9;
+  string ldap_service_account_password = 10; // TODO: encrypt in DB
+  bytes keytab = 11;
+  repeated MSAETemplateMapping template_mapping = 12;
+}
+
+message MSAETemplateMapping {
+  int64 certificate_template_id = 1 [(buf.validate.field).int64.gt = 0];
+  int64 end_entity_profile_id = 2 [(buf.validate.field).int64.gt = 0];
+  int64 certificate_profile_id = 3 [(buf.validate.field).int64.gt = 0];
+}

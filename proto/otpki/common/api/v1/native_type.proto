@@ -1,0 +1,17 @@
+syntax = "proto3";
+package otpki.common.api.v1;
+
+import "google/protobuf/descriptor.proto";
+
+// when specified, both of these must be specified at the same time
+extend google.protobuf.FieldOptions {
+  // the type of a particular field (ex. x509.SignatureAlgorithm)
+  string go_native_type = 50001;
+  // the import path of the type (ex. crypto/x509)
+  string go_native_import_path = 50002;
+}
+
+extend google.protobuf.MessageOptions {
+  // when set to true, this message will be generate a corresponding native type
+  bool generate_native = 50003;
+}
