@@ -1,0 +1,71 @@
+syntax = "proto3";
+package otpki.public.issuance.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/issuance/publisher/v1/publisher.proto";
+
+// -- Publisher Configs
+
+message CreatePublisherConfigRequest {
+  common.issuance.publisher.v1.PublisherConfig config = 1 [(buf.validate.field).required = true];
+}
+
+message CreatePublisherConfigResponse {
+  int64 id = 1;
+}
+
+message GetPublisherConfigRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message GetPublisherConfigResponse {
+  common.issuance.publisher.v1.PublisherConfig config = 1;
+}
+
+message UpdatePublisherConfigRequest {
+  common.issuance.publisher.v1.PublisherConfig config = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdatePublisherConfigResponse {}
+
+message DeletePublisherConfigRequest {
+  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+}
+
+message DeletePublisherConfigResponse {}
+
+message GetPublisherConfigListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetPublisherConfigListResponse {
+  repeated common.issuance.publisher.v1.PublisherConfig data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+// -- Publishers
+
+message AddPublisherToCertificateAuthorityRequest {
+  int64 ca_id = 1;
+  int64 publisher_config_id = 2;
+}
+message AddPublisherToCertificateAuthorityResponse {}
+
+message RemovePublisherFromCertificateAuthorityRequest {
+  int64 ca_id = 1;
+  int64 publisher_id = 2;
+}
+message RemovePublisherFromCertificateAuthorityResponse {}
+
+message ListPublishersForCertificateAuthorityRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+  int64 ca_id = 2;
+}
+
+message ListPublishersForCertificateAuthorityResponse {
+  repeated common.issuance.publisher.v1.PublisherForCa data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}

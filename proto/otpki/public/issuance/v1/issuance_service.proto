@@ -11,6 +11,7 @@ import "otpki/public/issuance/v1/issuer.proto";
 import "otpki/public/issuance/v1/key.proto";
 import "otpki/public/issuance/v1/key_storage_config.proto";
 import "otpki/public/issuance/v1/metrics.proto";
+import "otpki/public/issuance/v1/publisher.proto";
 import "otpki/public/issuance/v1/revocation_list.proto";
 
 service IssuanceService {
@@ -317,5 +318,58 @@ service IssuanceService {
   rpc GetCertificateAuthorityCertificates(GetCertificateAuthorityCertificatesRequest) returns (GetCertificateAuthorityCertificatesResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/certificates"};
+  }
+
+  // Publishers (config->CA)
+  rpc AddPublisherToCertificateAuthority(AddPublisherToCertificateAuthorityRequest) returns (AddPublisherToCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{ca_id}/publishers"
+      body: "*"
+    };
+  }
+  rpc RemovePublisherFromCertificateAuthority(RemovePublisherFromCertificateAuthorityRequest) returns (RemovePublisherFromCertificateAuthorityResponse) {
+    option (google.api.http) = {delete: "/v1/certificate-authorities/{ca_id}/publishers/{publisher_id}"};
+  }
+  rpc ListPublishersForCertificateAuthority(ListPublishersForCertificateAuthorityRequest) returns (ListPublishersForCertificateAuthorityResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/certificate-authorities/{ca_id}/publishers"
+      body: "pagination"
+      additional_bindings: {get: "/v1/certificate-authorities/{ca_id}/publishers"}
+    };
+  }
+
+  // Publisher Configs
+  rpc CreatePublisherConfig(CreatePublisherConfigRequest) returns (CreatePublisherConfigResponse) {
+    option (google.api.http) = {
+      post: "/v1/publishers"
+      body: "config"
+    };
+  }
+  rpc GetPublisherConfig(GetPublisherConfigRequest) returns (GetPublisherConfigResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/publishers/{id}"};
+  }
+  rpc UpdatePublisherConfig(UpdatePublisherConfigRequest) returns (UpdatePublisherConfigResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/publishers/{config.id}"
+      body: "config"
+      additional_bindings: {
+        patch: "/v1/publishers/{config.id}"
+        body: "config"
+      }
+    };
+  }
+  rpc DeletePublisherConfig(DeletePublisherConfigRequest) returns (DeletePublisherConfigResponse) {
+    option (google.api.http) = {delete: "/v1/publishers/{id}"};
+  }
+  rpc GetPublisherConfigList(GetPublisherConfigListRequest) returns (GetPublisherConfigListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/publishers"
+      body: "pagination"
+      additional_bindings: {get: "/v1/publishers"}
+    };
   }
 }
