@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package otpki.common.issuance.publisher.v1;
+
+import "buf/validate/validate.proto";
+import "gnostic/openapi/v3/annotations.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+
+enum PublisherType {
+  PUBLISHER_TYPE_UNSPECIFIED = 0;
+  PUBLISHER_TYPE_VS = 1;
+  PUBLISHER_TYPE_LDAP = 2;
+}
+
+message PublisherConfig {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string description = 3;
+  PublisherType publisher_type = 4 [(buf.validate.field).enum.defined_only = true];
+  google.protobuf.Any config_data = 5;
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+message PublisherForCa {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  int64 ca_id = 2;
+  int64 publisher_config_id = 3;
+}
