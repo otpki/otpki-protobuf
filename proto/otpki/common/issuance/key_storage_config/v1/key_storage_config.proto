@@ -18,6 +18,7 @@ message KeyStorageConfig {
   string description = 3;
   KeyDriver driver_type = 4 [(buf.validate.field).enum.defined_only = true];
   google.protobuf.Any key_storage_config = 5;
+  optional int64 crypto_key_id = 6;
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,

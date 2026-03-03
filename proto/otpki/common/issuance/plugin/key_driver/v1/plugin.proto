@@ -6,8 +6,7 @@ import "otpki/common/issuance/key/v1/key.proto";
 
 message KeyModel {
   key.v1.Key key_info = 1;
-  optional bytes private_key = 2;
-  bytes public_key = 3;
+  bytes public_key = 2;
 }
 
 message KeyDriverMessage {
@@ -33,4 +32,14 @@ message DecryptRequest {
 
 message DecryptResponse {
   bytes plaintext = 1;
+}
+
+// Stored in KeyStorageConfig.key_storage_config.
+// Holds shared crypto material used to protect key_storage_key_config data.
+message KeyStorageCryptoConfig {
+  // Encrypted DEK bytes (wrapped by the configured crypto key).
+  bytes wrapped_dek = 1;
+
+  // Nonce used for key data encryption.
+  bytes key_data_nonce = 2;
 }
