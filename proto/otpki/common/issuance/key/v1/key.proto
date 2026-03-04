@@ -6,7 +6,7 @@ import "gnostic/openapi/v3/annotations.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "otpki/common/api/v1/native_type.proto";
-import "otpki/common/issuance/key_storage_config/v1/driver.proto";
+import "otpki/common/issuance/key_storage_config/v1/enum.proto";
 
 enum KeyType {
   KEY_TYPE_UNSPECIFIED = 0;
@@ -188,9 +188,9 @@ message Key {
   string description = 3;
   KeyType key_type = 4;
   repeated KeyUsage key_usage = 5;
-  google.protobuf.Any key_storage_key_config = 6;
+  google.protobuf.Any key_config_data = 6;
   int64 key_storage_config_id = 7 [(buf.validate.field).required = true];
-  key_storage_config.v1.KeyDriver key_location = 8;
+  key_storage_config.v1.KeyDriverType key_driver_type = 8;
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,

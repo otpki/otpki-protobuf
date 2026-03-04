@@ -6,7 +6,7 @@ import "gnostic/openapi/v3/annotations.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "otpki/common/api/v1/native_type.proto";
-import "otpki/common/issuance/key_storage_config/v1/driver.proto";
+import "otpki/common/issuance/key_storage_config/v1/enum.proto";
 
 message KeyStorageConfig {
   option (api.v1.generate_native) = true;
@@ -16,9 +16,31 @@ message KeyStorageConfig {
     (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
   string description = 3;
-  KeyDriver driver_type = 4 [(buf.validate.field).enum.defined_only = true];
-  google.protobuf.Any key_storage_config = 5;
+  KeyDriverType key_driver_type = 4 [(buf.validate.field).enum.defined_only = true];
+  google.protobuf.Any config_data = 5;
   optional int64 crypto_key_id = 6;
+
+  // activation
+  // if this is false, this config cannot be activated and is always "active"
+  // if it is true, activation is always required.
+  // note: if the key driver requires an activation pin (like pkcs11proxy) you
+  // must enable activation
+  bool enable_activation = 7;
+  // if this is true, on the first activation, the resulting activation code
+  // will be persisted and encrypted in the database
+  // if this is updated to be false, we delete any stored activation code.
+  // the latest manual activation is always stored as the pin to use for auto activation.
+  bool auto_activation = 8;
+  // this should be a calculated field, not stored in the DB and not settable by
+  // the end user
+  bool is_activated = 9 [(gnostic.openapi.v3.property).read_only = true];
+
+  // when verify activation is true, the resulting activation code (whether via SSS or direct)
+  // must match the activation_code_to_verify
+  // this is primarily used to protect keystores that do not have an external pin requirement (i.e. soft db)
+  bool verify_activation = 10;
+  string activation_code_to_verify = 11;
+
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,
