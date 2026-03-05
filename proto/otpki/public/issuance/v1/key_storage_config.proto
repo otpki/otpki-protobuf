@@ -5,6 +5,7 @@ import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/field_mask.proto";
 import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/issuance/key_storage_config/v1/activation.proto";
 import "otpki/common/issuance/key_storage_config/v1/key_storage_config.proto";
 import "otpki/common/issuance/plugin/key_driver/v1/plugin.proto";
 
@@ -53,3 +54,15 @@ message SendKeyDriverMessageRequest {
 message SendKeyDriverMessageResponse {
   google.protobuf.Any response = 1;
 }
+
+message ActivateKeyStorageConfigRequest {
+  common.issuance.key_storage_config.v1.Activation activation = 1 [(buf.validate.field).required = true];
+}
+
+message ActivateKeyStorageConfigResponse {}
+
+message DeactivateKeyStorageConfigRequest {
+  int64 key_storage_config_id = 1 [(buf.validate.field).required = true];
+}
+
+message DeactivateKeyStorageConfigResponse {}
