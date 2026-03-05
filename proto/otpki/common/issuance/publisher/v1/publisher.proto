@@ -8,10 +8,21 @@ import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "otpki/common/api/v1/native_type.proto";
 
+/***
+   CRL publisher, only assigned to CA, only on CRL pub event
+   CERT publisher, for CA or cert profile, on all events
+*/
+
 enum PublisherType {
   PUBLISHER_TYPE_UNSPECIFIED = 0;
   PUBLISHER_TYPE_VS = 1;
-  PUBLISHER_TYPE_LDAP = 2;
+  PUBLISHER_TYPE_HTTP = 2;
+}
+
+enum CertEventType {
+  CERT_EVENT_TYPE_UNSPECIFIED = 0;
+  CERT_EVENT_TYPE_CERT_ISSUE = 1;
+  CERT_EVENT_TYPE_CERT_REVOKE = 2;
 }
 
 message PublisherConfig {
@@ -38,8 +49,18 @@ message PublisherConfig {
   ];
 }
 
-message PublisherForCa {
+// CRL Publisher can only subscribe to CAs on CRL generation events
+message CrlPublisher {
   int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
-  int64 ca_id = 2;
-  int64 publisher_config_id = 3;
+  int64 ca_id = 2 [(buf.validate.field).int64.gte = 1];
+  int64 publisher_config_id = 3 [(buf.validate.field).int64.gte = 1];
+}
+
+// Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
+message CertificatePublisher {
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  int64 publisher_config_id = 2 [(buf.validate.field).int64.gte = 1];
+  int64 ca_id = 3 [(buf.validate.field).int64.gte = 0]; // CHECK: at least one of these two must be set
+  int64 certificate_profile_id = 4 [(buf.validate.field).int64.gte = 0]; // CHECK: at least one of these two must be set
+  repeated CertEventType subscribed_events = 5;
 }

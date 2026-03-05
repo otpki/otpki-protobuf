@@ -346,56 +346,75 @@ service IssuanceService {
     option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/certificates"};
   }
 
-  // Publishers (config->CA)
-  rpc AddPublisherToCertificateAuthority(AddPublisherToCertificateAuthorityRequest) returns (AddPublisherToCertificateAuthorityResponse) {
+  // CRL Publishers
+  rpc CreateCrlPublisher(CreateCrlPublisherRequest) returns (CreateCrlPublisherResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{ca_id}/publishers"
+      post: "/v1/publisher/crl"
       body: "*"
     };
   }
-  rpc RemovePublisherFromCertificateAuthority(RemovePublisherFromCertificateAuthorityRequest) returns (RemovePublisherFromCertificateAuthorityResponse) {
-    option (google.api.http) = {delete: "/v1/certificate-authorities/{ca_id}/publishers/{publisher_id}"};
+  rpc DeleteCrlPublisher(DeleteCrlPublisherRequest) returns (DeleteCrlPublisherResponse) {
+    option (google.api.http) = {delete: "/v1/publisher/crl/{publisher_id}"};
   }
-  rpc ListPublishersForCertificateAuthority(ListPublishersForCertificateAuthorityRequest) returns (ListPublishersForCertificateAuthorityResponse) {
+  rpc GetCrlPublisherList(GetCrlPublisherListRequest) returns (GetCrlPublisherListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/certificate-authorities/{ca_id}/publishers"
+      put: "/v1/publisher/crl"
       body: "pagination"
-      additional_bindings: {get: "/v1/certificate-authorities/{ca_id}/publishers"}
+      additional_bindings: {get: "/v1/publisher/crl"}
+    };
+  }
+
+  // Cert Publishers
+  rpc CreateCertificatePublisher(CreateCertificatePublisherRequest) returns (CreateCertificatePublisherResponse) {
+    option (google.api.http) = {
+      post: "/v1/publisher/certificate"
+      body: "*"
+    };
+  }
+  rpc DeleteCertificatePublisher(DeleteCertificatePublisherRequest) returns (DeleteCertificatePublisherResponse) {
+    option (google.api.http) = {delete: "/v1/publisher/certificate/{publisher_id}"};
+  }
+  rpc GetCertificatePublisherList(GetCertificatePublisherListRequest) returns (GetCertificatePublisherListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/publisher/certificate"
+      body: "pagination"
+      additional_bindings: {get: "/v1/publisher/certificate"}
     };
   }
 
   // Publisher Configs
   rpc CreatePublisherConfig(CreatePublisherConfigRequest) returns (CreatePublisherConfigResponse) {
     option (google.api.http) = {
-      post: "/v1/publishers"
+      post: "/v1/publisher/configs"
       body: "config"
     };
   }
   rpc GetPublisherConfig(GetPublisherConfigRequest) returns (GetPublisherConfigResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/publishers/{id}"};
+    option (google.api.http) = {get: "/v1/publisher/configs/{id}"};
   }
   rpc UpdatePublisherConfig(UpdatePublisherConfigRequest) returns (UpdatePublisherConfigResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/publishers/{config.id}"
+      put: "/v1/publisher/configs/{config.id}"
       body: "config"
       additional_bindings: {
-        patch: "/v1/publishers/{config.id}"
+        patch: "/v1/publisher/configs/{config.id}"
         body: "config"
       }
     };
   }
   rpc DeletePublisherConfig(DeletePublisherConfigRequest) returns (DeletePublisherConfigResponse) {
-    option (google.api.http) = {delete: "/v1/publishers/{id}"};
+    option (google.api.http) = {delete: "/v1/publisher/configs/{id}"};
   }
   rpc GetPublisherConfigList(GetPublisherConfigListRequest) returns (GetPublisherConfigListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/publishers"
+      put: "/v1/publisher/configs"
       body: "pagination"
-      additional_bindings: {get: "/v1/publishers"}
+      additional_bindings: {get: "/v1/publisher/configs"}
     };
   }
 }

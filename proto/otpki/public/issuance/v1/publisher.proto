@@ -46,26 +46,47 @@ message GetPublisherConfigListResponse {
   common.api.query.v1.PaginationResponse pagination = 2;
 }
 
-// -- Publishers
+// -- CRL Publishers
 
-message AddPublisherToCertificateAuthorityRequest {
-  int64 ca_id = 1;
-  int64 publisher_config_id = 2;
+message CreateCrlPublisherRequest {
+  common.issuance.publisher.v1.CrlPublisher publisher = 1;
 }
-message AddPublisherToCertificateAuthorityResponse {}
-
-message RemovePublisherFromCertificateAuthorityRequest {
-  int64 ca_id = 1;
-  int64 publisher_id = 2;
+message CreateCrlPublisherResponse {
+  int64 id = 1;
 }
-message RemovePublisherFromCertificateAuthorityResponse {}
 
-message ListPublishersForCertificateAuthorityRequest {
+message DeleteCrlPublisherRequest {
+  int64 publisher_id = 1 [(buf.validate.field).int64.gt = 0];
+}
+message DeleteCrlPublisherResponse {}
+
+message GetCrlPublisherListRequest {
   common.api.query.v1.PaginationRequest pagination = 1;
-  int64 ca_id = 2;
 }
 
-message ListPublishersForCertificateAuthorityResponse {
-  repeated common.issuance.publisher.v1.PublisherForCa data = 1;
+message GetCrlPublisherListResponse {
+  repeated common.issuance.publisher.v1.CrlPublisher data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+// -- Certificate Publishers
+message CreateCertificatePublisherRequest {
+  common.issuance.publisher.v1.CertificatePublisher publisher = 1;
+}
+message CreateCertificatePublisherResponse {
+  int64 id = 1;
+}
+
+message DeleteCertificatePublisherRequest {
+  int64 publisher_id = 1 [(buf.validate.field).int64.gt = 0];
+}
+message DeleteCertificatePublisherResponse {}
+
+message GetCertificatePublisherListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetCertificatePublisherListResponse {
+  repeated common.issuance.publisher.v1.CertificatePublisher data = 1;
   common.api.query.v1.PaginationResponse pagination = 2;
 }

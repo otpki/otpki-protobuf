@@ -1,0 +1,13 @@
+syntax = "proto3";
+package otpki.common.issuance.plugin.publisher.http.v1;
+
+message Header {
+  string name = 1;
+  string value = 2;
+}
+
+message HttpConfig {
+  string url = 1;
+  string method = 2;
+  repeated Header headers = 3;
+}
