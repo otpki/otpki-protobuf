@@ -56,7 +56,7 @@ message EndEntity {
     expression: "this == '' || (size(this) >= 3 && size(this) <= 64)"
   }];
   string password = 303;
-  string password_clear = 305 [(gnostic.openapi.v3.property).read_only = true];
+  bytes password_encrypt = 305 [(gnostic.openapi.v3.property).read_only = true];
   string email = 304 [(buf.validate.field).cel = {
     id: "email.isEmail"
     message: "value must be a valid email"

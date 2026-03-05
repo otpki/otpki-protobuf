@@ -23,6 +23,7 @@ message GetKeyStorageConfigRequest {
 
 message GetKeyStorageConfigResponse {
   common.issuance.key_storage_config.v1.KeyStorageConfig config = 1;
+  bool environment_token_enabled = 2;
 }
 
 message UpdateKeyStorageConfigRequest {
@@ -45,6 +46,7 @@ message GetKeyStorageConfigListRequest {
 message GetKeyStorageConfigListResponse {
   repeated common.issuance.key_storage_config.v1.KeyStorageConfig data = 1;
   common.api.query.v1.PaginationResponse pagination = 2;
+  bool environment_token_enabled = 3;
 }
 
 message SendKeyDriverMessageRequest {
