@@ -306,7 +306,7 @@ service IssuanceService {
   }
   rpc ImportCertificateAuthorityCertificate(ImportCertificateAuthorityCertificateRequest) returns (ImportCertificateAuthorityCertificateResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{ca_id}/key/{key_id}/import-certificate"
+      post: "/v1/certificate-authorities/{ca_id}/import-certificate"
       body: "*"
     };
   }

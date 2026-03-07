@@ -50,9 +50,8 @@ message CreateCertificateAuthorityCSRResponse {
 
 message ImportCertificateAuthorityCertificateRequest {
   int64 ca_id = 1 [(buf.validate.field).required = true];
-  int64 key_id = 2 [(buf.validate.field).required = true];
-  bytes certificate_pem = 3;
-  bytes p7b_certificate_chain = 4;
+  bytes certificate_pem = 2;
+  bytes p7b_certificate_chain = 3;
 }
 
 message ImportCertificateAuthorityCertificateResponse {
