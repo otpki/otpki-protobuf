@@ -1,0 +1,10 @@
+syntax = "proto3";
+package otpki.common.issuance.plugin.publisher.scp.v1;
+
+message ScpConfig {
+  int64 key_id = 1; // ssh key in keystore
+  string username = 2;
+  string host = 3;
+  int64 port = 4;
+  string destination_template = 5;
+}
