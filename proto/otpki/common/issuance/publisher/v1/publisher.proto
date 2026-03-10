@@ -9,14 +9,15 @@ import "google/protobuf/timestamp.proto";
 import "otpki/common/api/v1/native_type.proto";
 
 /***
-   CRL publisher, only assigned to CA, only on CRL pub event
-   CERT publisher, for CA or cert profile, on all events
-*/
+ * CRL publisher, only assigned to CA, only on CRL pub event
+ * CERT publisher, for CA or cert profile, on all events
+ */
 
 enum PublisherType {
   PUBLISHER_TYPE_UNSPECIFIED = 0;
   PUBLISHER_TYPE_VS = 1;
   PUBLISHER_TYPE_HTTP = 2;
+  PUBLISHER_TYPE_SCP = 3;
 }
 
 enum CertEventType {
