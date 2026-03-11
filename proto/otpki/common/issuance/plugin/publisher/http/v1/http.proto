@@ -1,6 +1,8 @@
 syntax = "proto3";
 package otpki.common.issuance.plugin.publisher.http.v1;
 
+import "otpki/common/api/v1/http_methods.proto";
+
 message Header {
   string name = 1;
   string value = 2;
@@ -8,6 +10,6 @@ message Header {
 
 message HttpConfig {
   string url = 1;
-  string method = 2;
+  api.v1.HttpMethod method = 2;
   repeated Header headers = 3;
 }

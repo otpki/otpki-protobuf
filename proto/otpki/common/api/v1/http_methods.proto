@@ -1,0 +1,11 @@
+syntax = "proto3";
+package otpki.common.api.v1;
+
+enum HttpMethod {
+  HTTP_METHOD_UNSPECIFIED = 0;
+  HTTP_METHOD_GET = 1;
+  HTTP_METHOD_POST = 2;
+  HTTP_METHOD_PUT = 3;
+  HTTP_METHOD_PATCH = 4;
+  HTTP_METHOD_DELETE = 5;
+}
