@@ -26,15 +26,15 @@ message GetCertificateTemplateListResponse {
 service CertificateTemplateService {
   rpc GetCertificateTemplate(GetCertificateTemplateRequest) returns (GetCertificateTemplateResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificatetemplate/{id}"};
+    option (google.api.http) = {get: "/v1/certificate-templates/{id}"};
   }
 
   rpc GetCertificateTemplateList(GetCertificateTemplateListRequest) returns (GetCertificateTemplateListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/certificatetemplates"
+      put: "/v1/certificate-templates"
       body: "pagination"
-      additional_bindings: {get: "/v1/certificatetemplates"}
+      additional_bindings: {get: "/v1/certificate-templates"}
     };
   }
 }
