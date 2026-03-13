@@ -173,12 +173,6 @@ enum KeyUsage {
   KEY_USAGE_ENCRYPT_DECRYPT = 2;
 }
 
-// HSMProfile configures a connection to a PKCS#11 proxy server.
-message HSMProfile {
-  string server_address = 1; // gRPC address of the PKCS#11 proxy server (host:port)
-  string config_id = 2; // Server-side HSM config ID
-}
-
 message Key {
   int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
   string name = 2 [
