@@ -1,10 +1,14 @@
 syntax = "proto3";
 package otpki.common.issuance.plugin.publisher.scp.v1;
 
+import "otpki/common/issuance/publisher/v1/publisher.proto";
+
 message ScpConfig {
   int64 key_id = 1; // ssh key in keystore
   string username = 2;
   string host = 3;
   int64 port = 4;
-  string destination_template = 5;
+  repeated otpki.common.issuance.publisher.v1.PkiArtifact allowed_for = 5;
+  string certificate_publisher_template_url = 6;
+  string crl_publisher_template_url = 7;
 }

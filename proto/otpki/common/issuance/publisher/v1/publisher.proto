@@ -20,6 +20,12 @@ enum PublisherType {
   PUBLISHER_TYPE_SCP = 3;
 }
 
+enum PkiArtifact {
+  PKI_ARTIFACT_UNSPECIFIED = 0;
+  PKI_ARTIFACT_CRL = 1;
+  PKI_ARTIFACT_CERTIFICATE = 2;
+}
+
 enum CertEventType {
   CERT_EVENT_TYPE_UNSPECIFIED = 0;
   CERT_EVENT_TYPE_CERT_ISSUE = 1;
