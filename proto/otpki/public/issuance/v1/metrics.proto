@@ -71,33 +71,3 @@ message GetDashboardMetricsRequest {
 message GetDashboardMetricsResponse {
   DashboardMetrics metrics = 1;
 }
-
-message WorkItem {
-  int64 certificate_id = 1;
-  string serial_number = 2;
-  string subject_dn = 3;
-  string issuer_dn = 4;
-  google.protobuf.Timestamp issued_at = 5;
-  google.protobuf.Timestamp expires_at = 6;
-  string status = 7;
-  string protocol_used = 8;
-  int64 ca_id = 9;
-  string ca_name = 10;
-}
-
-message GetWorkItemsRequest {
-  google.protobuf.Timestamp start_time = 1;
-  google.protobuf.Timestamp end_time = 2;
-
-  int64 ca_id = 3;
-  string protocol = 4;
-  string status = 5;
-
-  int64 limit = 6;
-  int64 offset = 7;
-}
-
-message GetWorkItemsResponse {
-  repeated WorkItem items = 1;
-  int64 total_count = 2;
-}

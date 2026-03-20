@@ -1,0 +1,45 @@
+syntax = "proto3";
+package otpki.public.auth.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateApprovalProfileRequest {
+  common.auth.v1.ApprovalProfile approval_profile = 1 [(buf.validate.field).required = true];
+}
+
+message CreateApprovalProfileResponse {
+  int64 id = 1;
+}
+
+message GetApprovalProfileRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message GetApprovalProfileResponse {
+  common.auth.v1.ApprovalProfile approval_profile = 1;
+}
+
+message UpdateApprovalProfileRequest {
+  common.auth.v1.ApprovalProfile approval_profile = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateApprovalProfileResponse {}
+
+message DeleteApprovalProfileRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message DeleteApprovalProfileResponse {}
+
+message GetApprovalProfileListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetApprovalProfileListResponse {
+  repeated common.auth.v1.ApprovalProfile data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}

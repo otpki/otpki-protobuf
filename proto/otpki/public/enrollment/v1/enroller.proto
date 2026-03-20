@@ -22,18 +22,6 @@ message CreateEnrollmentRequestForExistingEndEntityResponse {
   common.enrollment.enroller.v1.EnrollmentResponse enrollment_response = 1;
 }
 
-message ApproveEnrollmentRequestRequest {
-  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
-}
-
-message ApproveEnrollmentRequestResponse {}
-
-message RejectEnrollmentRequestRequest {
-  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
-}
-
-message RejectEnrollmentRequestResponse {}
-
 message GetEnrollmentByRequestIDRequest {
   int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
   string password = 2;

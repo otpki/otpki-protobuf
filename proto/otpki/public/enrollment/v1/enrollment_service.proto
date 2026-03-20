@@ -92,18 +92,6 @@ service EnrollmentService {
       body: "enrollment_request"
     };
   }
-  rpc ApproveEnrollmentRequest(ApproveEnrollmentRequestRequest) returns (ApproveEnrollmentRequestResponse) {
-    option (google.api.http) = {
-      post: "/v1/enrollment/{enrollment_request_id}/approve"
-      body: "*"
-    };
-  }
-  rpc RejectEnrollmentRequest(RejectEnrollmentRequestRequest) returns (RejectEnrollmentRequestResponse) {
-    option (google.api.http) = {
-      post: "/v1/enrollment/{enrollment_request_id}/reject"
-      body: "*"
-    };
-  }
   rpc GetEnrollmentByRequestID(GetEnrollmentByRequestIDRequest) returns (GetEnrollmentByRequestIDResponse) {
     option (google.api.http) = {
       post: "/v1/enrollment/{enrollment_request_id}"

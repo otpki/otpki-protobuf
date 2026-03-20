@@ -14,18 +14,6 @@ message CreateIssuanceRequestResponse {
   common.issuance.issuer.v1.IssuanceResponse issuance_response = 1;
 }
 
-message ApproveIssuanceRequestRequest {
-  int64 issuance_request_id = 1 [(buf.validate.field).required = true];
-}
-
-message ApproveIssuanceRequestResponse {}
-
-message RejectIssuanceRequestRequest {
-  int64 issuance_request_id = 1 [(buf.validate.field).required = true];
-}
-
-message RejectIssuanceRequestResponse {}
-
 message GetIssuanceByRequestIDRequest {
   int64 issuance_request_id = 1 [(buf.validate.field).required = true];
 }

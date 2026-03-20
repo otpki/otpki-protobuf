@@ -144,4 +144,5 @@ message EndEntityProfile {
   bool name_constraints_excluded_required = 804;
   // explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity
   bool use_custom_certificate_exts = 805; // allow EE to add to custom exts (will be concatenated with cert profile)
+  int64 approval_profile_id = 806;
 }

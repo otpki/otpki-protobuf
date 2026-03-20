@@ -216,32 +216,12 @@ service IssuanceService {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {get: "/v1/metrics/dashboard"};
   }
-  rpc GetWorkItems(GetWorkItemsRequest) returns (GetWorkItemsResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {
-      post: "/v1/metrics/work-items"
-      body: "*"
-      additional_bindings: {get: "/v1/metrics/work-items"}
-    };
-  }
 
   // Issuance
   rpc CreateIssuanceRequest(CreateIssuanceRequestRequest) returns (CreateIssuanceRequestResponse) {
     option (google.api.http) = {
       post: "/v1/issuance"
       body: "issuance_request"
-    };
-  }
-  rpc ApproveIssuanceRequest(ApproveIssuanceRequestRequest) returns (ApproveIssuanceRequestResponse) {
-    option (google.api.http) = {
-      post: "/v1/issuance/{issuance_request_id}/approve"
-      body: "*"
-    };
-  }
-  rpc RejectIssuanceRequest(RejectIssuanceRequestRequest) returns (RejectIssuanceRequestResponse) {
-    option (google.api.http) = {
-      post: "/v1/issuance/{issuance_request_id}/reject"
-      body: "*"
     };
   }
   rpc GetIssuanceByRequestID(GetIssuanceByRequestIDRequest) returns (GetIssuanceByRequestIDResponse) {

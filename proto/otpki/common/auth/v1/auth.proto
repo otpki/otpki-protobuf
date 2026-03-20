@@ -48,6 +48,8 @@ enum Resource {
   RESOURCE_ROLE = 302;
   RESOURCE_USER = 303;
   RESOURCE_OIDC_PROVIDER = 304;
+  RESOURCE_APPROVAL_PROFILE = 305;
+  RESOURCE_WORK_ITEM = 306;
 
   // request resources
   RESOURCE_ISSUANCE_REQUEST = 401;
@@ -138,6 +140,28 @@ message User {
   ];
 }
 
+message ApprovalProfile {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string name = 2 [(buf.validate.field).string.min_len = 3];
+  string description = 3;
+  int32 num_approvals_required = 4 [(buf.validate.field).int32.gte = 1];
+  repeated int64 approver_role_ids = 5;
+  repeated int64 approver_group_ids = 6;
+  repeated int64 approver_user_ids = 7;
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
 message OIDCProvider {
   option (api.v1.generate_native) = true;
   int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
@@ -166,6 +190,45 @@ message OIDCProvider {
     (api.v1.go_native_import_path) = "time"
   ];
   google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+enum WorkItemStatus {
+  WORK_ITEM_STATUS_UNSPECIFIED = 0;
+  WORK_ITEM_STATUS_PENDING = 1;
+  WORK_ITEM_STATUS_APPROVED = 2;
+  WORK_ITEM_STATUS_REJECTED = 3;
+}
+
+message WorkItem {
+  option (api.v1.generate_native) = true;
+  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  int64 approval_profile_id = 2;
+  Resource resource_type = 3;
+  int64 resource_id = 4;
+  string description = 5;
+  WorkItemStatus status = 6;
+  repeated WorkItemApproval approvals = 7 [(gnostic.openapi.v3.property).read_only = true];
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (gnostic.openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+message WorkItemApproval {
+  int64 user_id = 1;
+  string username = 2;
+  google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,
     (api.v1.go_native_type) = "time.Time",
     (api.v1.go_native_import_path) = "time"
