@@ -3,6 +3,7 @@ package otpki.common.issuance.plugin.key_driver.softdbkms.v1;
 
 message ImportKeyPluginRequest {
   bytes key_data_bytes = 1;
+  string password = 2;
 }
 
 // Persisted in Key.key_storage_key_config for SoftDBKMS keys.
