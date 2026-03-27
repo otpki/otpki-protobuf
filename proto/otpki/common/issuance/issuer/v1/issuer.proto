@@ -42,6 +42,9 @@ message IssuanceRequest {
   optional int64 signing_key_id = 5;
   optional int64 alternative_signing_key_id = 6;
 
+  // only used for CA certificate issuance - points to the CA entity that will receive the issued cert
+  optional int64 target_certificate_authority_id = 7;
+
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,
