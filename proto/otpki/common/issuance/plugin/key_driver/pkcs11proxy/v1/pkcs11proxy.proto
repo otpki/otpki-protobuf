@@ -11,6 +11,10 @@ message HSMProfile {
   string config_id = 2; // Server-side HSM config ID
 }
 
+message HSMPluginData {
+  map<string, uint32> imported_key_counts = 1;
+}
+
 // this is the key data stored in the database
 message HSMKeyData {
   string key_label = 1;

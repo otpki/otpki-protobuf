@@ -9,6 +9,11 @@ message KeyModel {
   bytes public_key = 2;
 }
 
+message CreateKeyResponse {
+  KeyModel key = 1;
+  google.protobuf.Any plugin_data = 2;
+}
+
 message KeyDriverMessage {
   int64 key_storage_config_id = 1;
   google.protobuf.Any message = 2;
@@ -32,6 +37,10 @@ message DecryptRequest {
 
 message DecryptResponse {
   bytes plaintext = 1;
+}
+
+message DeleteKeyResponse {
+  google.protobuf.Any plugin_data = 1;
 }
 
 // Stored in KeyStorageConfig.key_storage_config.

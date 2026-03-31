@@ -40,6 +40,7 @@ message KeyStorageConfig {
   // this is primarily used to protect keystores that do not have an external pin requirement (i.e. soft db)
   bool verify_activation = 10;
   string activation_code_to_verify = 11;
+  google.protobuf.Any plugin_data = 12 [(gnostic.openapi.v3.property).read_only = true];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
