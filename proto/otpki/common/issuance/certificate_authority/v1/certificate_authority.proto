@@ -43,6 +43,8 @@ message CertificateAuthority {
   repeated string ocsp_uris = 12;
   repeated string issuer_uris = 13;
 
+  int64 approval_profile_id = 14;
+
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,
