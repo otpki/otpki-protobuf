@@ -170,18 +170,22 @@ message OIDCProvider {
   string client_id = 4;
   string client_secret = 5;
   string issuer_url = 6 [(buf.validate.field).string.uri = true];
-  string redirect_url = 7 [(buf.validate.field).string.uri = true];
-  string post_logout_url = 8;
-  repeated string scopes = 9 [
+  string backchannel_url = 7 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.uri = true
+  ];
+  string redirect_url = 8 [(buf.validate.field).string.uri = true];
+  string post_logout_url = 9;
+  repeated string scopes = 10 [
     (buf.validate.field).repeated.unique = true,
     (buf.validate.field).repeated.items.string.min_len = 1
   ];
 
-  google.protobuf.Duration max_skew = 10 [(buf.validate.field).duration.gte = {seconds: 0}];
-  google.protobuf.Duration session_max_inactive = 11 [(buf.validate.field).duration.gte = {seconds: 0}];
-  google.protobuf.Duration session_max_length = 12 [(buf.validate.field).duration.gte = {seconds: 0}];
-  bool create_unknown_users = 13;
-  bool create_unknown_roles = 14;
+  google.protobuf.Duration max_skew = 11 [(buf.validate.field).duration.gte = {seconds: 0}];
+  google.protobuf.Duration session_max_inactive = 12 [(buf.validate.field).duration.gte = {seconds: 0}];
+  google.protobuf.Duration session_max_length = 13 [(buf.validate.field).duration.gte = {seconds: 0}];
+  bool create_unknown_users = 14;
+  bool create_unknown_roles = 15;
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
