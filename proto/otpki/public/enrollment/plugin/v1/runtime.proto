@@ -196,7 +196,45 @@ message AuthenticateResponse {
   bytes principal = 1;
 }
 
+message PluginManifestSidebarItem {
+  string title = 1;
+  string path = 2;
+}
+
+message PluginManifestSidebar {
+  string title = 1;
+  string parent_group = 2;
+  repeated PluginManifestSidebarItem items = 3;
+}
+
+message PluginManifestRoute {
+  string path = 1;
+  string title = 2;
+}
+
+message PluginManifest {
+  string id = 1 [(buf.validate.field).required = true];
+  string name = 2 [(buf.validate.field).required = true];
+  string app_url = 3 [(buf.validate.field).required = true];
+  PluginManifestSidebar sidebar = 4;
+  repeated PluginManifestRoute routes = 5;
+}
+
+message RegisterPluginRequest {
+  PluginManifest manifest = 1 [(buf.validate.field).required = true];
+}
+
+message RegisterPluginResponse {}
+
+message ListRegisteredPluginsRequest {}
+
+message ListRegisteredPluginsResponse {
+  repeated PluginManifest plugins = 1;
+}
+
 service EnrollmentPluginRuntimeService {
+  rpc RegisterPlugin(RegisterPluginRequest) returns (RegisterPluginResponse);
+  rpc ListRegisteredPlugins(ListRegisteredPluginsRequest) returns (ListRegisteredPluginsResponse);
   rpc CreateNonce(CreateNonceRequest) returns (CreateNonceResponse);
   rpc AddNonce(AddNonceRequest) returns (AddNonceResponse);
   rpc CheckNonce(CheckNonceRequest) returns (CheckNonceResponse);
