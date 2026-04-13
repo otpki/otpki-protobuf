@@ -1,0 +1,287 @@
+openapi: 3.1.0
+info:
+  title: otpki.public.issuance.v1
+paths: {}
+components:
+  schemas:
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - "2023-01-15T01:30:15.01Z"
+        - "2024-12-25T12:00:00Z"
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    otpki.public.issuance.v1.CAHierarchyOverview:
+      type: object
+      properties:
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.issuance.v1.CANode'
+          title: nodes
+        totalCas:
+          type:
+            - integer
+            - string
+          title: total_cas
+          format: int64
+        activeCas:
+          type:
+            - integer
+            - string
+          title: active_cas
+          format: int64
+      title: CAHierarchyOverview
+      additionalProperties: false
+      description: 'Chart 3: CA Hierarchy for visualization'
+    otpki.public.issuance.v1.CANode:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+        name:
+          type: string
+          title: name
+        parentId:
+          type:
+            - integer
+            - string
+          title: parent_id
+          format: int64
+          description: 0 for root CAs
+        certificatesIssued:
+          type:
+            - integer
+            - string
+          title: certificates_issued
+          format: int64
+        depth:
+          type: integer
+          title: depth
+        isActive:
+          type: boolean
+          title: is_active
+      title: CANode
+      additionalProperties: false
+    otpki.public.issuance.v1.CertificateStatusDistribution:
+      type: object
+      properties:
+        active:
+          type:
+            - integer
+            - string
+          title: active
+          format: int64
+        expired:
+          type:
+            - integer
+            - string
+          title: expired
+          format: int64
+        revoked:
+          type:
+            - integer
+            - string
+          title: revoked
+          format: int64
+        expiringSoon:
+          type:
+            - integer
+            - string
+          title: expiring_soon
+          format: int64
+          description: Next 30 days
+      title: CertificateStatusDistribution
+      additionalProperties: false
+      description: 'Chart 1: Certificate Status Distribution'
+    otpki.public.issuance.v1.DashboardMetrics:
+      type: object
+      properties:
+        timestamp:
+          title: timestamp
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        certificateStatus:
+          title: certificate_status
+          description: 'Chart 1: Certificate Status Distribution (Donut/Pie Chart)'
+          $ref: '#/components/schemas/otpki.public.issuance.v1.CertificateStatusDistribution'
+        issuanceTrend:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.issuance.v1.TimeSeriesDataPoint'
+          title: issuance_trend
+          description: 'Chart 2: Certificate Issuance Trend (Area/Line Chart)'
+        caHierarchy:
+          title: ca_hierarchy
+          description: 'Chart 3: CA Hierarchy Overview (Radial/Tree Chart)'
+          $ref: '#/components/schemas/otpki.public.issuance.v1.CAHierarchyOverview'
+        protocolUsage:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.issuance.v1.ProtocolUsageMetric'
+          title: protocol_usage
+          description: 'Chart 4: Protocol Usage Distribution (Bar Chart)'
+      title: DashboardMetrics
+      additionalProperties: false
+      description: Dashboard metrics
+    otpki.public.issuance.v1.GetDashboardMetricsRequest:
+      type: object
+      properties:
+        startTime:
+          title: start_time
+          description: Time range for trend data (defaults to last 30 days)
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        endTime:
+          title: end_time
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        trendDataPoints:
+          type: integer
+          title: trend_data_points
+          description: Number of data points for trend chart (defaults to 7)
+      title: GetDashboardMetricsRequest
+      additionalProperties: false
+    otpki.public.issuance.v1.GetDashboardMetricsResponse:
+      type: object
+      properties:
+        metrics:
+          title: metrics
+          $ref: '#/components/schemas/otpki.public.issuance.v1.DashboardMetrics'
+      title: GetDashboardMetricsResponse
+      additionalProperties: false
+    otpki.public.issuance.v1.ProtocolUsageMetric:
+      type: object
+      properties:
+        protocolName:
+          type: string
+          title: protocol_name
+        certificateCount:
+          type:
+            - integer
+            - string
+          title: certificate_count
+          format: int64
+        configCount:
+          type:
+            - integer
+            - string
+          title: config_count
+          format: int64
+        percentage:
+          type: number
+          title: percentage
+          format: double
+      title: ProtocolUsageMetric
+      additionalProperties: false
+      description: 'Chart 4: Protocol usage metrics'
+    otpki.public.issuance.v1.TimeSeriesDataPoint:
+      type: object
+      properties:
+        timestamp:
+          title: timestamp
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        count:
+          type:
+            - integer
+            - string
+          title: count
+          format: int64
+        label:
+          type: string
+          title: label
+          description: e.g., "Jan 2025"
+      title: TimeSeriesDataPoint
+      additionalProperties: false
+      description: 'Chart 2: Time series data point for trend charts'
+security: []

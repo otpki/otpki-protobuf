@@ -1,0 +1,423 @@
+openapi: 3.1.0
+info:
+  title: otpki.public.issuance.v1
+paths: {}
+components:
+  schemas:
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - "2023-01-15T01:30:15.01Z"
+        - "2024-12-25T12:00:00Z"
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    otpki.common.x509.v1.Extension:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+          description: OID as string
+        critical:
+          type: boolean
+          title: critical
+        value:
+          type: string
+          title: value
+          format: byte
+      title: Extension
+      additionalProperties: false
+    otpki.common.x509.v1.Name:
+      type: object
+      properties:
+        country:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: country
+          uniqueItems: true
+        organization:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: organization
+          uniqueItems: true
+        organizationalUnit:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: organizational_unit
+          uniqueItems: true
+        locality:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: locality
+          uniqueItems: true
+        province:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: province
+          uniqueItems: true
+        streetAddress:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: street_address
+          uniqueItems: true
+        postalCode:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: postal_code
+          uniqueItems: true
+        serialNumber:
+          type: string
+          title: serial_number
+        commonName:
+          type: string
+          title: common_name
+          minLength: 1
+        names:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.NameAttribute'
+          title: names
+          description: For additional name attributes
+        extraNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.NameAttribute'
+          title: extra_names
+      title: Name
+      additionalProperties: false
+      description: |-
+        TODO: replace this with SubjectDNAttribute
+         Name represents a distinguished name (DN)
+    otpki.common.x509.v1.NameAttribute:
+      type: object
+      properties:
+        type:
+          type: string
+          title: type
+          description: OID as string
+        value:
+          title: value
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: NameAttribute
+      additionalProperties: false
+      description: NameAttribute represents a name attribute that may not be covered by the standard fields
+    otpki.common.x509.v1.RevocationList:
+      type: object
+      properties:
+        raw:
+          type: string
+          title: raw
+          format: byte
+          description: Raw contains the complete ASN.1 DER content of the CRL
+        rawTbsRevocationList:
+          type: string
+          title: raw_tbs_revocation_list
+          format: byte
+          description: RawTBSRevocationList contains just the tbsCertList portion of the ASN.1 DER
+        rawIssuer:
+          type: string
+          title: raw_issuer
+          format: byte
+          description: RawIssuer contains the DER encoded Issuer
+        issuer:
+          title: issuer
+          description: Issuer contains the DN of the issuing certificate
+          $ref: '#/components/schemas/otpki.common.x509.v1.Name'
+        authorityKeyId:
+          type: string
+          title: authority_key_id
+          format: byte
+          description: AuthorityKeyId is used to identify the public key associated with the issuing certificate
+        signature:
+          type: string
+          title: signature
+          format: byte
+          description: Signature data
+        signatureAlgorithm:
+          title: signature_algorithm
+          description: SignatureAlgorithm is used to determine the signature algorithm for signing
+          $ref: '#/components/schemas/otpki.common.x509.v1.SignatureAlgorithm'
+        revokedCertificateEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.RevocationListEntry'
+          title: revoked_certificate_entries
+          description: RevokedCertificateEntries represents the revoked certificates sequence in the CRL
+        revokedCertificates:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.RevokedCertificate'
+          title: revoked_certificates
+          description: |-
+            Deprecated in favor of revoked_certificate_entries
+             Included for backward compatibility
+        number:
+          type: string
+          title: number
+          description: Number is a monotonically increasing sequence number for a given CRL scope and issuer Using string to represent big.Int
+        thisUpdate:
+          title: this_update
+          description: Update timestamps
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        nextUpdate:
+          title: next_update
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        extensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
+          title: extensions
+          description: Extensions
+        extraExtensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
+          title: extra_extensions
+      title: RevocationList
+      additionalProperties: false
+      description: |-
+        TODO: no more proto revocation lists
+         RevocationList represents a Certificate Revocation List (CRL) as specified by RFC 5280
+    otpki.common.x509.v1.RevocationListEntry:
+      type: object
+      properties:
+        raw:
+          type: string
+          title: raw
+          format: byte
+          description: Raw contains the raw bytes of the revokedCertificates entry
+        serialNumber:
+          type: string
+          title: serial_number
+          description: SerialNumber represents the serial number of a revoked certificate Using string to represent big.Int
+        revocationTime:
+          title: revocation_time
+          description: RevocationTime represents the time at which the certificate was revoked
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        reasonCode:
+          type: integer
+          title: reason_code
+          format: int32
+          description: ReasonCode represents the reason for revocation (RFC 5280 Section 5.3.1)
+        extensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
+          title: extensions
+          description: Extensions
+        extraExtensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
+          title: extra_extensions
+      title: RevocationListEntry
+      additionalProperties: false
+      description: RevocationListEntry represents an entry in a CRL for a revoked certificate
+    otpki.common.x509.v1.RevokedCertificate:
+      type: object
+      properties:
+        serialNumber:
+          type: string
+          title: serial_number
+          description: SerialNumber represents the serial number of a revoked certificate Using string to represent big.Int
+        revocationTime:
+          title: revocation_time
+          description: RevocationTime represents the time at which the certificate was revoked
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        extensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
+          title: extensions
+          description: Extensions
+      title: RevokedCertificate
+      additionalProperties: false
+      description: |-
+        RevokedCertificate is included for backward compatibility
+         This represents the older PKIX variant used in the deprecated field
+    otpki.common.x509.v1.SignatureAlgorithm:
+      type: string
+      title: SignatureAlgorithm
+      enum:
+        - SIGNATURE_ALGORITHM_UNSPECIFIED
+        - SIGNATURE_ALGORITHM_SHA1_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA1
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA384
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA512
+        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_PURE_ED25519
+        - SIGNATURE_ALGORITHM_PURE_ED448
+        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM2
+        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM3
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_2
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_3
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_5
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_44
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_65
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_87
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256F
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE128
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_384
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_512
+        - SIGNATURE_ALGORITHM_SHAKE128_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHAKE256_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA3_256_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA3_384_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA3_512_WITH_RSA
+    otpki.public.issuance.v1.CreateRevocationListRequest:
+      type: object
+      properties:
+        caId:
+          type:
+            - integer
+            - string
+          title: ca_id
+          format: int64
+        isDelta:
+          type: boolean
+          title: is_delta
+      title: CreateRevocationListRequest
+      required:
+        - caId
+      additionalProperties: false
+    otpki.public.issuance.v1.CreateRevocationListResponse:
+      type: object
+      properties:
+        revocationList:
+          title: revocation_list
+          $ref: '#/components/schemas/otpki.common.x509.v1.RevocationList'
+      title: CreateRevocationListResponse
+      additionalProperties: false
+security: []

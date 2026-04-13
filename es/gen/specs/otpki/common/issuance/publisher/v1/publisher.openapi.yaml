@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.issuance.publisher.v1
+paths: {}
+components:
+  schemas:
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - "2023-01-15T01:30:15.01Z"
+        - "2024-12-25T12:00:00Z"
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    otpki.common.issuance.publisher.v1.CertEventType:
+      type: string
+      title: CertEventType
+      enum:
+        - CERT_EVENT_TYPE_UNSPECIFIED
+        - CERT_EVENT_TYPE_CERT_ISSUE
+        - CERT_EVENT_TYPE_CERT_REVOKE
+    otpki.common.issuance.publisher.v1.CertificatePublisher:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          description: not settable on creation
+          readOnly: true
+        publisherConfigId:
+          type:
+            - integer
+            - string
+          title: publisher_config_id
+          minimum: 1
+          format: int64
+        caId:
+          type:
+            - integer
+            - string
+          title: ca_id
+          minimum: 0
+          format: int64
+          description: 'CHECK: at least one of these two must be set'
+        certificateProfileId:
+          type:
+            - integer
+            - string
+          title: certificate_profile_id
+          minimum: 0
+          format: int64
+          description: 'CHECK: at least one of these two must be set'
+        subscribedEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.issuance.publisher.v1.CertEventType'
+          title: subscribed_events
+      title: CertificatePublisher
+      additionalProperties: false
+      description: Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
+    otpki.common.issuance.publisher.v1.CrlPublisher:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          description: not settable on creation
+          readOnly: true
+        caId:
+          type:
+            - integer
+            - string
+          title: ca_id
+          minimum: 1
+          format: int64
+        publisherConfigId:
+          type:
+            - integer
+            - string
+          title: publisher_config_id
+          minimum: 1
+          format: int64
+      title: CrlPublisher
+      additionalProperties: false
+      description: CRL Publisher can only subscribe to CAs on CRL generation events
+    otpki.common.issuance.publisher.v1.PkiArtifact:
+      type: string
+      title: PkiArtifact
+      enum:
+        - PKI_ARTIFACT_UNSPECIFIED
+        - PKI_ARTIFACT_CRL
+        - PKI_ARTIFACT_CERTIFICATE
+    otpki.common.issuance.publisher.v1.PublisherConfig:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          description: not settable on creation
+          readOnly: true
+        name:
+          type: string
+          title: name
+          minLength: 3
+        description:
+          type: string
+          title: description
+        publisherType:
+          title: publisher_type
+          $ref: '#/components/schemas/otpki.common.issuance.publisher.v1.PublisherType'
+        configData:
+          title: config_data
+          $ref: '#/components/schemas/google.protobuf.Any'
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: PublisherConfig
+      additionalProperties: false
+    otpki.common.issuance.publisher.v1.PublisherType:
+      type: string
+      title: PublisherType
+      enum:
+        - PUBLISHER_TYPE_UNSPECIFIED
+        - PUBLISHER_TYPE_VS
+        - PUBLISHER_TYPE_HTTP
+        - PUBLISHER_TYPE_SCP
+security: []

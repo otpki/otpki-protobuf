@@ -1,0 +1,599 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.auth.v1
+paths: {}
+components:
+  schemas:
+    google.protobuf.Duration:
+      type: string
+      format: duration
+      description: |-
+        A Duration represents a signed, fixed-length span of time represented
+         as a count of seconds and fractions of seconds at nanosecond
+         resolution. It is independent of any calendar and concepts like "day"
+         or "month". It is related to Timestamp in that the difference between
+         two Timestamp values is a Duration and it can be added or subtracted
+         from a Timestamp. Range is approximately +-10,000 years.
+
+         # Examples
+
+         Example 1: Compute Duration from two Timestamps in pseudo code.
+
+             Timestamp start = ...;
+             Timestamp end = ...;
+             Duration duration = ...;
+
+             duration.seconds = end.seconds - start.seconds;
+             duration.nanos = end.nanos - start.nanos;
+
+             if (duration.seconds < 0 && duration.nanos > 0) {
+               duration.seconds += 1;
+               duration.nanos -= 1000000000;
+             } else if (duration.seconds > 0 && duration.nanos < 0) {
+               duration.seconds -= 1;
+               duration.nanos += 1000000000;
+             }
+
+         Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+
+             Timestamp start = ...;
+             Duration duration = ...;
+             Timestamp end = ...;
+
+             end.seconds = start.seconds + duration.seconds;
+             end.nanos = start.nanos + duration.nanos;
+
+             if (end.nanos < 0) {
+               end.seconds -= 1;
+               end.nanos += 1000000000;
+             } else if (end.nanos >= 1000000000) {
+               end.seconds += 1;
+               end.nanos -= 1000000000;
+             }
+
+         Example 3: Compute Duration from datetime.timedelta in Python.
+
+             td = datetime.timedelta(days=3, minutes=10)
+             duration = Duration()
+             duration.FromTimedelta(td)
+
+         # JSON Mapping
+
+         In JSON format, the Duration type is encoded as a string rather than an
+         object, where the string ends in the suffix "s" (indicating seconds) and
+         is preceded by the number of seconds, with nanoseconds expressed as
+         fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+         encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+         be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+         microsecond should be expressed in JSON format as "3.000001s".
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - "2023-01-15T01:30:15.01Z"
+        - "2024-12-25T12:00:00Z"
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    otpki.common.auth.v1.Action:
+      type: string
+      title: Action
+      enum:
+        - ACTION_UNSPECIFIED
+        - ACTION_CREATE
+        - ACTION_READ
+        - ACTION_UPDATE
+        - ACTION_DELETE
+        - ACTION_ISSUE
+        - ACTION_REVOKE
+    otpki.common.auth.v1.ApprovalProfile:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          readOnly: true
+        name:
+          type: string
+          title: name
+          minLength: 3
+        description:
+          type: string
+          title: description
+        numApprovalsRequired:
+          type: integer
+          title: num_approvals_required
+          minimum: 1
+          format: int32
+        approverRoleIds:
+          type: array
+          items:
+            type:
+              - integer
+              - string
+            format: int64
+          title: approver_role_ids
+        approverGroupIds:
+          type: array
+          items:
+            type:
+              - integer
+              - string
+            format: int64
+          title: approver_group_ids
+        approverUserIds:
+          type: array
+          items:
+            type:
+              - integer
+              - string
+            format: int64
+          title: approver_user_ids
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: ApprovalProfile
+      additionalProperties: false
+    otpki.common.auth.v1.Group:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          readOnly: true
+        name:
+          type: string
+          title: name
+          minLength: 3
+        description:
+          type: string
+          title: description
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: Group
+      additionalProperties: false
+    otpki.common.auth.v1.OIDCProvider:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          readOnly: true
+        name:
+          type: string
+          title: name
+          minLength: 3
+        clientId:
+          type: string
+          title: client_id
+        clientSecret:
+          type: string
+          title: client_secret
+        issuerUrl:
+          type: string
+          title: issuer_url
+          format: uri
+        backchannelUrl:
+          type: string
+          title: backchannel_url
+          format: uri
+        redirectUrl:
+          type: string
+          title: redirect_url
+          format: uri
+        postLogoutUrl:
+          type: string
+          title: post_logout_url
+        scopes:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: scopes
+          uniqueItems: true
+        maxSkew:
+          title: max_skew
+          description: |
+            duration.gte = 0s
+            duration.gte_lt = 0s
+            duration.gte_lt_exclusive = 0s
+            duration.gte_lte = 0s
+            duration.gte_lte_exclusive = 0s
+          $ref: '#/components/schemas/google.protobuf.Duration'
+        sessionMaxInactive:
+          title: session_max_inactive
+          description: |
+            duration.gte = 0s
+            duration.gte_lt = 0s
+            duration.gte_lt_exclusive = 0s
+            duration.gte_lte = 0s
+            duration.gte_lte_exclusive = 0s
+          $ref: '#/components/schemas/google.protobuf.Duration'
+        sessionMaxLength:
+          title: session_max_length
+          description: |
+            duration.gte = 0s
+            duration.gte_lt = 0s
+            duration.gte_lt_exclusive = 0s
+            duration.gte_lte = 0s
+            duration.gte_lte_exclusive = 0s
+          $ref: '#/components/schemas/google.protobuf.Duration'
+        createUnknownUsers:
+          type: boolean
+          title: create_unknown_users
+        createUnknownRoles:
+          type: boolean
+          title: create_unknown_roles
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: OIDCProvider
+      additionalProperties: false
+    otpki.common.auth.v1.Permission:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          readOnly: true
+        isAllowed:
+          type: boolean
+          title: is_allowed
+        resourceType:
+          title: resource_type
+          description: when unspecified, is_allowed controls all resources
+          $ref: '#/components/schemas/otpki.common.auth.v1.Resource'
+        actionType:
+          title: action_type
+          description: when unspecified, is_allowed grants all actions on a particular resource
+          $ref: '#/components/schemas/otpki.common.auth.v1.Action'
+        objectId:
+          type:
+            - integer
+            - string
+          title: object_id
+          format: int64
+          description: 'when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object'
+      title: Permission
+      additionalProperties: false
+    otpki.common.auth.v1.Resource:
+      type: string
+      title: Resource
+      enum:
+        - RESOURCE_UNSPECIFIED
+        - RESOURCE_CERTIFICATE_AUTHORITY
+        - RESOURCE_CERTIFICATE
+        - RESOURCE_END_ENTITY
+        - RESOURCE_KEY
+        - RESOURCE_CERTIFICATE_EXTENSION
+        - RESOURCE_EXTENDED_KEY_USAGE
+        - RESOURCE_CERTIFICATE_PROFILE
+        - RESOURCE_END_ENTITY_PROFILE
+        - RESOURCE_KEY_STORAGE_CONFIG
+        - RESOURCE_PUBLISHER_CONFIG
+        - RESOURCE_PUBLISHER
+        - RESOURCE_ACME_PROTOCOL_CONFIG
+        - RESOURCE_EST_PROTOCOL_CONFIG
+        - RESOURCE_MSAE_PROTOCOL_CONFIG
+        - RESOURCE_SCEP_PROTOCOL_CONFIG
+        - RESOURCE_MSAE_CERTIFICATE_TEMPLATE
+        - RESOURCE_CMP_PROTOCOL_CONFIG
+        - RESOURCE_GROUP
+        - RESOURCE_ROLE
+        - RESOURCE_USER
+        - RESOURCE_OIDC_PROVIDER
+        - RESOURCE_APPROVAL_PROFILE
+        - RESOURCE_WORK_ITEM
+        - RESOURCE_ISSUANCE_REQUEST
+        - RESOURCE_ENROLLMENT_REQUEST
+    otpki.common.auth.v1.ResourceActions:
+      type: object
+      properties:
+        resource:
+          title: resource
+          $ref: '#/components/schemas/otpki.common.auth.v1.Resource'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.auth.v1.Action'
+          title: actions
+      title: ResourceActions
+      additionalProperties: false
+    otpki.common.auth.v1.Role:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          readOnly: true
+        name:
+          type: string
+          title: name
+          minLength: 3
+        description:
+          type: string
+          title: description
+        systemRole:
+          type: boolean
+          title: system_role
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: Role
+      additionalProperties: false
+    otpki.common.auth.v1.User:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          readOnly: true
+        username:
+          type: string
+          title: username
+          maxLength: 64
+          minLength: 3
+        firstName:
+          type: string
+          title: first_name
+        lastName:
+          type: string
+          title: last_name
+        email:
+          type: string
+          title: email
+          format: email
+        description:
+          type: string
+          title: description
+        disabled:
+          type: boolean
+          title: disabled
+        isSystemUser:
+          type: boolean
+          title: is_system_user
+          readOnly: true
+        certificate:
+          type: string
+          title: certificate
+          format: byte
+        oidcIssuer:
+          type: string
+          title: oidc_issuer
+          readOnly: true
+        oidcSubject:
+          type: string
+          title: oidc_subject
+          readOnly: true
+        groups:
+          type: array
+          items:
+            type:
+              - integer
+              - string
+            format: int64
+          title: groups
+        roles:
+          type: array
+          items:
+            type:
+              - integer
+              - string
+            format: int64
+          title: roles
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: User
+      additionalProperties: false
+    otpki.common.auth.v1.WorkItem:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          readOnly: true
+        approvalProfileId:
+          type:
+            - integer
+            - string
+          title: approval_profile_id
+          format: int64
+        resourceType:
+          title: resource_type
+          $ref: '#/components/schemas/otpki.common.auth.v1.Resource'
+        resourceId:
+          type:
+            - integer
+            - string
+          title: resource_id
+          format: int64
+        description:
+          type: string
+          title: description
+        status:
+          title: status
+          $ref: '#/components/schemas/otpki.common.auth.v1.WorkItemStatus'
+        approvals:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.auth.v1.WorkItemApproval'
+          title: approvals
+          readOnly: true
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: WorkItem
+      additionalProperties: false
+    otpki.common.auth.v1.WorkItemApproval:
+      type: object
+      properties:
+        userId:
+          type:
+            - integer
+            - string
+          title: user_id
+          format: int64
+        username:
+          type: string
+          title: username
+        createdAt:
+          title: created_at
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: WorkItemApproval
+      additionalProperties: false
+    otpki.common.auth.v1.WorkItemStatus:
+      type: string
+      title: WorkItemStatus
+      enum:
+        - WORK_ITEM_STATUS_UNSPECIFIED
+        - WORK_ITEM_STATUS_PENDING
+        - WORK_ITEM_STATUS_APPROVED
+        - WORK_ITEM_STATUS_REJECTED
+security: []

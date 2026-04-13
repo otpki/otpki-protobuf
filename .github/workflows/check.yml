@@ -1,22 +1,56 @@
 name: Check
 
+permissions:
+  id-token: write
+  contents: read
+
 on:
   pull_request:
     branches: [ master ]
-  workflow_dispatch:
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      AWS_ARTIFACT_BUCKET_NAME: ${{ vars.AWS_ARTIFACT_BUCKET_NAME }}
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
 
     steps:
-    - name: Checkout code
+    - name: Checkout PR head
       uses: actions/checkout@v6
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+        fetch-depth: 1
+
+    - name: Fetch latest master commit only
+      run: |
+        git fetch --no-tags --depth=1 origin \
+          +refs/heads/master:refs/remotes/origin/master
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        role-to-assume: ${{ env.AWS_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Setup IOGO
+      uses: otpki/setup-iogo@v1
+      with:
+        go-version: 1.26.1
+        bucket-name: ${{ env.AWS_ARTIFACT_BUCKET_NAME }}
+        aws-region: ${{ env.AWS_REGION }}
         
     - name: Setup Buf
       uses: bufbuild/buf-setup-action@v1.50.0
       with:
         version: latest
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: '25.6.1'
+        cache: 'npm'
 
     - name: Setup Just
       uses: extractions/setup-just@v3
@@ -24,12 +58,12 @@ jobs:
     - name: Run just check
       run: just check
       
-    - name: Check for formatting changes
+    - name: Check for file changes
       run: |
         if [ -n "$(git status --porcelain)" ]; then
-          echo "Formatting changes required. Run 'just format' locally and commit the changes."
-          git diff --name-only
+          echo "File has changed! Either .gitignore or formatting changes required."
+          git status --porcelain
           exit 1
         else
-          echo "No formatting changes needed."
+          echo "No changes needed."
         fi

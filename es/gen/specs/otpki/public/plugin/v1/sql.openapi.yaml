@@ -1,0 +1,205 @@
+openapi: 3.1.0
+info:
+  title: otpki.public.plugin.v1
+paths: {}
+components:
+  schemas:
+    otpki.public.plugin.v1.BeginTxRequest:
+      type: object
+      properties:
+        plugin:
+          type: string
+          title: plugin
+        parentTxId:
+          type:
+            - integer
+            - string
+          title: parent_tx_id
+          format: int64
+      title: BeginTxRequest
+      additionalProperties: false
+    otpki.public.plugin.v1.BeginTxResponse:
+      type: object
+      properties:
+        txId:
+          type:
+            - integer
+            - string
+          title: tx_id
+          format: int64
+      title: BeginTxResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.CommitTxRequest:
+      type: object
+      properties:
+        plugin:
+          type: string
+          title: plugin
+        txId:
+          type:
+            - integer
+            - string
+          title: tx_id
+          format: int64
+      title: CommitTxRequest
+      additionalProperties: false
+    otpki.public.plugin.v1.CommitTxResponse:
+      type: object
+      title: CommitTxResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.ExecRequest:
+      type: object
+      properties:
+        plugin:
+          type: string
+          title: plugin
+        sql:
+          type: string
+          title: sql
+        args:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.SQLParam'
+          title: args
+        txId:
+          type:
+            - integer
+            - string
+          title: tx_id
+          format: int64
+      title: ExecRequest
+      additionalProperties: false
+    otpki.public.plugin.v1.ExecResponse:
+      type: object
+      properties:
+        rowsAffected:
+          type:
+            - integer
+            - string
+          title: rows_affected
+          format: int64
+      title: ExecResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.QueryRequest:
+      type: object
+      properties:
+        plugin:
+          type: string
+          title: plugin
+        sql:
+          type: string
+          title: sql
+        args:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.SQLParam'
+          title: args
+        txId:
+          type:
+            - integer
+            - string
+          title: tx_id
+          format: int64
+      title: QueryRequest
+      additionalProperties: false
+    otpki.public.plugin.v1.QueryResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.SQLColumn'
+          title: columns
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.Row'
+          title: rows
+      title: QueryResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.RollbackTxRequest:
+      type: object
+      properties:
+        plugin:
+          type: string
+          title: plugin
+        txId:
+          type:
+            - integer
+            - string
+          title: tx_id
+          format: int64
+      title: RollbackTxRequest
+      additionalProperties: false
+    otpki.public.plugin.v1.RollbackTxResponse:
+      type: object
+      title: RollbackTxResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.Row:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.SQLCell'
+          title: values
+      title: Row
+      additionalProperties: false
+    otpki.public.plugin.v1.SQLCell:
+      type: object
+      properties:
+        isNull:
+          type: boolean
+          title: is_null
+        value:
+          type: string
+          title: value
+          format: byte
+      title: SQLCell
+      additionalProperties: false
+    otpki.public.plugin.v1.SQLColumn:
+      type: object
+      properties:
+        name:
+          type: string
+          title: name
+        oid:
+          type: integer
+          title: oid
+        typeModifier:
+          type: integer
+          title: type_modifier
+          format: int32
+        format:
+          type: integer
+          title: format
+      title: SQLColumn
+      additionalProperties: false
+    otpki.public.plugin.v1.SQLFormat:
+      type: string
+      title: SQLFormat
+      enum:
+        - SQL_FORMAT_UNSPECIFIED
+        - SQL_FORMAT_TEXT
+        - SQL_FORMAT_BINARY
+    otpki.public.plugin.v1.SQLParam:
+      type: object
+      properties:
+        isNull:
+          type: boolean
+          title: is_null
+        oid:
+          type: integer
+          title: oid
+          description: postgres type OID.
+        format:
+          title: format
+          $ref: '#/components/schemas/otpki.public.plugin.v1.SQLFormat'
+        value:
+          type: string
+          title: value
+          format: byte
+          description: raw postgres parameter payload.
+      title: SQLParam
+      additionalProperties: false
+security: []

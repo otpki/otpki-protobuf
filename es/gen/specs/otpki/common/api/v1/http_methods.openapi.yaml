@@ -1,0 +1,17 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.api.v1
+paths: {}
+components:
+  schemas:
+    otpki.common.api.v1.HttpMethod:
+      type: string
+      title: HttpMethod
+      enum:
+        - HTTP_METHOD_UNSPECIFIED
+        - HTTP_METHOD_GET
+        - HTTP_METHOD_POST
+        - HTTP_METHOD_PUT
+        - HTTP_METHOD_PATCH
+        - HTTP_METHOD_DELETE
+security: []

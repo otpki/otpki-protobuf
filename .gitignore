@@ -1,12 +1,3 @@
-erts/
-# User-specific files
-exports/
-config/
-!internal/common/config/
-!pkg/config/
-ca-root/
-sandbox/
-build/
 *.rsuser
 *.suo
 *.user
@@ -395,10 +386,11 @@ FodyWeavers.xsd
 *.repo*
 *repo*.config.json
 
+.tool
+
 # Added by goreleaser init:
 dist/
 .DS_Store
 
 tools/protoc-gen-native/protoc-gen-native
-tools/protoc-gen-pulsar-connect/protoc-gen-pulsar-connect
 tools/protoc-gen-authrequired/protoc-gen-authrequired

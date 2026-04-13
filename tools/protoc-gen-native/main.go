@@ -9,6 +9,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"slices"
 	"strings"
 	"text/template"
 
@@ -234,8 +235,14 @@ func importConverterFunctions(g *protogen.GeneratedFile, neededConverters map[st
 	g.P("// Converter functions for native types")
 	g.P()
 
-	// import and write each needed function
+	funcNames := make([]string, 0, len(allNeededFunctions))
 	for funcName := range allNeededFunctions {
+		funcNames = append(funcNames, funcName)
+	}
+	slices.Sort(funcNames)
+
+	// import and write each needed function
+	for _, funcName := range funcNames {
 		// check if this function has already been registered for this package
 		// if it has, skip generating it to avoid duplicate declarations
 		if GlobalRegistry.IsFunctionRegistered(packageName, funcName) {

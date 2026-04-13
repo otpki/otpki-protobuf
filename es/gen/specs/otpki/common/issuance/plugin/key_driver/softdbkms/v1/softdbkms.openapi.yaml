@@ -1,0 +1,29 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.issuance.plugin.key_driver.softdbkms.v1
+paths: {}
+components:
+  schemas:
+    otpki.common.issuance.plugin.key_driver.softdbkms.v1.ImportKeyPluginRequest:
+      type: object
+      properties:
+        keyDataBytes:
+          type: string
+          title: key_data_bytes
+          format: byte
+        password:
+          type: string
+          title: password
+      title: ImportKeyPluginRequest
+      additionalProperties: false
+    otpki.common.issuance.plugin.key_driver.softdbkms.v1.SoftDBKMSKeyInfo:
+      type: object
+      properties:
+        keyDataBytes:
+          type: string
+          title: key_data_bytes
+          format: byte
+      title: SoftDBKMSKeyInfo
+      additionalProperties: false
+      description: Persisted in Key.key_storage_key_config for SoftDBKMS keys.
+security: []

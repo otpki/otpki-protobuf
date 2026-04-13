@@ -1,0 +1,28 @@
+version: v2
+managed:
+  enabled: true
+
+plugins:
+  - local: protoc-gen-es
+    out: es/gen/public
+    opt:
+      - target=ts+dts+js
+      - json_types=true
+      - valid_types=protovalidate_required
+    include_imports: true
+
+  - local: protoc-gen-connect-openapi
+    out: es/gen/specs
+    include_imports: true
+
+  - local: protoc-gen-connect-query
+    out: es/gen/public
+    opt: target=ts+dts+js
+    include_imports: true
+
+inputs:
+  - directory: proto
+    paths:
+      - proto/otpki/public
+      - proto/otpki/common
+

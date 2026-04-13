@@ -1,26 +1,65 @@
+set dotenv-load := true
+
+# ------------------------------------------------------------------
+# Paths / Config
+# ------------------------------------------------------------------
+
+root            := justfile_directory()
+bin_path        := root / "bin"
+tool_path       := root / ".tool"
+
+export PATH := tool_path + ":" + bin_path + ":" + env_var("PATH")
+
 default: check
 
-lint:
-  buf lint
+# -----------------------------
+# binny bootstrap + installs
+# -----------------------------
+
+# install binny into the tools directory
+binny:
+    mkdir -p {{tool_path}}
+    test -x {{tool_path}}/binny || curl -sSfL https://get.anchore.io/binny | sh -s -- -b {{tool_path}}
+
+# install tools necessary to build the application
+tools: build-tools
+    {{tool_path}}/binny install
+
+build-tools:
+    cd tools/protoc-gen-authrequired && go build -o protoc-gen-authrequired
+    cd tools/protoc-gen-native && go build -o protoc-gen-native
+
+clean:
+    rm -rf gen es
+
+lint: breaking
+    buf lint
 
 format:
-  buf format -w
+    buf format -w
 
 build:
-  buf build
+    buf build
 
 breaking:
-  buf breaking --against '.git#branch=master'
+    buf breaking --against '.git#ref=refs/remotes/origin/master' || true
+
+gen:
+    buf generate
+    buf generate --template buf.gen.common.yaml
+    npm install && npm run generate
 
 update:
-  cd tools/protoc-gen-authrequired && go get -u all && go mod tidy
-  cd tools/protoc-gen-native && go get -u all && go mod tidy
-  buf dep update
+    cd tools/protoc-gen-authrequired && go get -u all && go mod tidy
+    cd tools/protoc-gen-native && go get -u all && go mod tidy
+    buf dep update
 
 native-type:
-  protoc \
+    protoc \
     --go_out=. \
     --go_opt=Mproto/otpki/common/api/v1/native_type.proto=tools/protoc-gen-native/api \
     ./proto/otpki/common/api/v1/native_type.proto
 
-check: format lint build
+check: binny update tools clean format lint build gen
+    go mod tidy
+    go test ./... # run a test to ensure all files compile

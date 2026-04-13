@@ -1,0 +1,235 @@
+syntax = "proto3";
+package otpki.public.plugin.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "otpki/common/auth/v1/auth.proto";
+import "otpki/common/enrollment/end_entity/v1/end_entity.proto";
+import "otpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto";
+import "otpki/common/enrollment/enroller/v1/enroller.proto";
+import "otpki/common/issuance/certificate_authority/v1/certificate_authority.proto";
+import "otpki/common/issuance/certificate_profile/v1/certificate_profile.proto";
+import "otpki/common/issuance/key/v1/key.proto";
+import "otpki/common/x509/v1/x509.proto";
+import "otpki/public/plugin/v1/sql.proto";
+
+message GetBaseConfigRequest {}
+
+message GetBaseConfigResponse {
+  bytes config_json = 1;
+}
+
+message CreateNonceRequest {}
+
+message CreateNonceResponse {
+  string nonce = 1;
+}
+
+message AddNonceRequest {
+  string nonce = 1 [(buf.validate.field).required = true];
+}
+
+message AddNonceResponse {
+  string nonce = 1;
+}
+
+message CheckNonceRequest {
+  string nonce = 1 [(buf.validate.field).required = true];
+}
+
+message CheckNonceResponse {
+  bool is_valid = 1;
+}
+
+message AddUniqueNonceRequest {
+  string nonce = 1 [(buf.validate.field).required = true];
+}
+
+message AddUniqueNonceResponse {
+  bool is_unique = 1;
+}
+
+message GetEndEntityByLoginIDRequest {
+  string login_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetEndEntityByLoginIDResponse {
+  common.enrollment.end_entity.v1.EndEntity end_entity = 1;
+}
+
+message GetEndEntityRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message GetEndEntityResponse {
+  common.enrollment.end_entity.v1.EndEntity end_entity = 1;
+}
+
+message GetKeyRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message GetKeyResponse {
+  common.issuance.key.v1.Key key = 1;
+  bytes public_key_der = 2;
+}
+
+message GetAllRootCertificateAuthorityCertificatesRequest {}
+
+message GetAllRootCertificateAuthorityCertificatesResponse {
+  repeated bytes certificates_der = 1;
+}
+
+message GetLatestCertificateAuthorityCertificateRequest {
+  int64 ca_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetLatestCertificateAuthorityCertificateResponse {
+  common.issuance.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificate = 1;
+}
+
+message GetCertificateAuthorityRequest {
+  int64 ca_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetCertificateAuthorityResponse {
+  common.issuance.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+}
+
+message GetCertificateProfileRequest {
+  int64 id = 1 [(buf.validate.field).required = true];
+}
+
+message GetCertificateProfileResponse {
+  common.issuance.certificate_profile.v1.CertificateProfile certificate_profile = 1;
+}
+
+message CreateEnrollmentRequestRequest {
+  common.enrollment.enroller.v1.EnrollmentRequest enrollment_request = 1 [(buf.validate.field).required = true];
+  bool skip_verification = 2;
+  bool allow_existing = 3;
+  bool require_existing = 4;
+  bool check_password = 5;
+}
+
+message CreateEnrollmentRequestResponse {
+  common.enrollment.enroller.v1.EnrollmentResponse enrollment_response = 1;
+}
+
+message GetEnrollmentByRequestIDRequest {
+  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
+  string password = 2;
+  bool check_password = 3;
+}
+
+message GetEnrollmentByRequestIDResponse {
+  common.enrollment.enroller.v1.EnrollmentRequest enrollment_request = 1;
+  common.enrollment.enroller.v1.EnrollmentResponse enrollment_response = 2;
+}
+
+message RevokeEndEntityCertificateRequest {
+  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+  int64 issued_certificate_id = 2 [(buf.validate.field).required = true];
+  common.x509.v1.RevocationReasonCode revocation_reason_code = 3 [(buf.validate.field).required = true];
+}
+
+message RevokeEndEntityCertificateResponse {}
+
+message GetEndEntityCertificateBySerialNumberRequest {
+  bytes serial_number = 1 [(buf.validate.field).required = true];
+}
+
+message GetEndEntityCertificateBySerialNumberResponse {
+  common.enrollment.end_entity_certificate.v1.EndEntityCertificate end_entity_certificate = 1;
+}
+
+message GetEndEntityCertificatesRequest {
+  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetEndEntityCertificatesResponse {
+  repeated common.enrollment.end_entity_certificate.v1.EndEntityCertificate end_entity_certificates = 1;
+}
+
+// The optional Any payload should contain one of the public key option messages from
+// otpki.common.issuance.key.v1 when the underlying key type requires it.
+message SignKeyRequest {
+  int64 key_id = 1 [(buf.validate.field).required = true];
+  bytes digest = 2 [(buf.validate.field).required = true];
+  google.protobuf.Any opts = 3;
+}
+
+message SignKeyResponse {
+  bytes signature = 1;
+}
+
+// The optional Any payload should contain one of the public key option messages from
+// otpki.common.issuance.key.v1 when the underlying key type requires it.
+message DecryptKeyRequest {
+  int64 key_id = 1 [(buf.validate.field).required = true];
+  bytes ciphertext = 2 [(buf.validate.field).required = true];
+  google.protobuf.Any opts = 3;
+}
+
+message DecryptKeyResponse {
+  bytes plaintext = 1;
+}
+
+message EncryptWithEnvironmentTokenRequest {
+  bytes data = 1 [(buf.validate.field).required = true];
+}
+
+message EncryptWithEnvironmentTokenResponse {
+  bytes encrypted_data = 1;
+}
+
+message DecryptWithEnvironmentTokenRequest {
+  bytes encrypted_data = 1 [(buf.validate.field).required = true];
+}
+
+message DecryptWithEnvironmentTokenResponse {
+  bytes plaintext = 1;
+}
+
+message HeaderValues {
+  repeated string values = 1;
+}
+
+message AuthenticateRequest {
+  map<string, HeaderValues> headers = 1;
+}
+
+message AuthenticateResponse {
+  bytes principal = 1;
+}
+
+service PluginRuntimeService {
+  rpc GetBaseConfig(GetBaseConfigRequest) returns (GetBaseConfigResponse);
+  rpc CreateNonce(CreateNonceRequest) returns (CreateNonceResponse);
+  rpc AddNonce(AddNonceRequest) returns (AddNonceResponse);
+  rpc CheckNonce(CheckNonceRequest) returns (CheckNonceResponse);
+  rpc AddUniqueNonce(AddUniqueNonceRequest) returns (AddUniqueNonceResponse);
+  rpc GetEndEntityByLoginID(GetEndEntityByLoginIDRequest) returns (GetEndEntityByLoginIDResponse);
+  rpc GetEndEntity(GetEndEntityRequest) returns (GetEndEntityResponse);
+  rpc GetKey(GetKeyRequest) returns (GetKeyResponse);
+  rpc GetAllRootCertificateAuthorityCertificates(GetAllRootCertificateAuthorityCertificatesRequest) returns (GetAllRootCertificateAuthorityCertificatesResponse);
+  rpc GetLatestCertificateAuthorityCertificate(GetLatestCertificateAuthorityCertificateRequest) returns (GetLatestCertificateAuthorityCertificateResponse);
+  rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse);
+  rpc GetCertificateProfile(GetCertificateProfileRequest) returns (GetCertificateProfileResponse);
+  rpc CreateEnrollmentRequest(CreateEnrollmentRequestRequest) returns (CreateEnrollmentRequestResponse);
+  rpc GetEnrollmentByRequestID(GetEnrollmentByRequestIDRequest) returns (GetEnrollmentByRequestIDResponse);
+  rpc RevokeEndEntityCertificate(RevokeEndEntityCertificateRequest) returns (RevokeEndEntityCertificateResponse);
+  rpc GetEndEntityCertificateBySerialNumber(GetEndEntityCertificateBySerialNumberRequest) returns (GetEndEntityCertificateBySerialNumberResponse);
+  rpc GetEndEntityCertificates(GetEndEntityCertificatesRequest) returns (GetEndEntityCertificatesResponse);
+  rpc SignKey(SignKeyRequest) returns (SignKeyResponse);
+  rpc DecryptKey(DecryptKeyRequest) returns (DecryptKeyResponse);
+  rpc EncryptWithEnvironmentToken(EncryptWithEnvironmentTokenRequest) returns (EncryptWithEnvironmentTokenResponse);
+  rpc DecryptWithEnvironmentToken(DecryptWithEnvironmentTokenRequest) returns (DecryptWithEnvironmentTokenResponse);
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+
+  rpc BeginTx(BeginTxRequest) returns (BeginTxResponse);
+  rpc Query(QueryRequest) returns (QueryResponse);
+  rpc Exec(ExecRequest) returns (ExecResponse);
+  rpc CommitTx(CommitTxRequest) returns (CommitTxResponse);
+  rpc RollbackTx(RollbackTxRequest) returns (RollbackTxResponse);
+}

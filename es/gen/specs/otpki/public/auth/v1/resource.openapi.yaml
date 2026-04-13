@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: otpki.public.auth.v1
+paths: {}
+components:
+  schemas:
+    otpki.common.auth.v1.Action:
+      type: string
+      title: Action
+      enum:
+        - ACTION_UNSPECIFIED
+        - ACTION_CREATE
+        - ACTION_READ
+        - ACTION_UPDATE
+        - ACTION_DELETE
+        - ACTION_ISSUE
+        - ACTION_REVOKE
+    otpki.common.auth.v1.Resource:
+      type: string
+      title: Resource
+      enum:
+        - RESOURCE_UNSPECIFIED
+        - RESOURCE_CERTIFICATE_AUTHORITY
+        - RESOURCE_CERTIFICATE
+        - RESOURCE_END_ENTITY
+        - RESOURCE_KEY
+        - RESOURCE_CERTIFICATE_EXTENSION
+        - RESOURCE_EXTENDED_KEY_USAGE
+        - RESOURCE_CERTIFICATE_PROFILE
+        - RESOURCE_END_ENTITY_PROFILE
+        - RESOURCE_KEY_STORAGE_CONFIG
+        - RESOURCE_PUBLISHER_CONFIG
+        - RESOURCE_PUBLISHER
+        - RESOURCE_ACME_PROTOCOL_CONFIG
+        - RESOURCE_EST_PROTOCOL_CONFIG
+        - RESOURCE_MSAE_PROTOCOL_CONFIG
+        - RESOURCE_SCEP_PROTOCOL_CONFIG
+        - RESOURCE_MSAE_CERTIFICATE_TEMPLATE
+        - RESOURCE_CMP_PROTOCOL_CONFIG
+        - RESOURCE_GROUP
+        - RESOURCE_ROLE
+        - RESOURCE_USER
+        - RESOURCE_OIDC_PROVIDER
+        - RESOURCE_APPROVAL_PROFILE
+        - RESOURCE_WORK_ITEM
+        - RESOURCE_ISSUANCE_REQUEST
+        - RESOURCE_ENROLLMENT_REQUEST
+    otpki.common.auth.v1.ResourceActions:
+      type: object
+      properties:
+        resource:
+          title: resource
+          $ref: '#/components/schemas/otpki.common.auth.v1.Resource'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.auth.v1.Action'
+          title: actions
+      title: ResourceActions
+      additionalProperties: false
+    otpki.public.auth.v1.GetAllResourcesRequest:
+      type: object
+      title: GetAllResourcesRequest
+      additionalProperties: false
+    otpki.public.auth.v1.GetAllResourcesResponse:
+      type: object
+      properties:
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.auth.v1.ResourceActions'
+          title: resources
+      title: GetAllResourcesResponse
+      additionalProperties: false
+security: []

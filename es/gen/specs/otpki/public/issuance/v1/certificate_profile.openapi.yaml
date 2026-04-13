@@ -1,0 +1,1236 @@
+openapi: 3.1.0
+info:
+  title: otpki.public.issuance.v1
+paths: {}
+components:
+  schemas:
+    google.protobuf.Duration:
+      type: string
+      format: duration
+      description: |-
+        A Duration represents a signed, fixed-length span of time represented
+         as a count of seconds and fractions of seconds at nanosecond
+         resolution. It is independent of any calendar and concepts like "day"
+         or "month". It is related to Timestamp in that the difference between
+         two Timestamp values is a Duration and it can be added or subtracted
+         from a Timestamp. Range is approximately +-10,000 years.
+
+         # Examples
+
+         Example 1: Compute Duration from two Timestamps in pseudo code.
+
+             Timestamp start = ...;
+             Timestamp end = ...;
+             Duration duration = ...;
+
+             duration.seconds = end.seconds - start.seconds;
+             duration.nanos = end.nanos - start.nanos;
+
+             if (duration.seconds < 0 && duration.nanos > 0) {
+               duration.seconds += 1;
+               duration.nanos -= 1000000000;
+             } else if (duration.seconds > 0 && duration.nanos < 0) {
+               duration.seconds -= 1;
+               duration.nanos += 1000000000;
+             }
+
+         Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+
+             Timestamp start = ...;
+             Duration duration = ...;
+             Timestamp end = ...;
+
+             end.seconds = start.seconds + duration.seconds;
+             end.nanos = start.nanos + duration.nanos;
+
+             if (end.nanos < 0) {
+               end.seconds -= 1;
+               end.nanos += 1000000000;
+             } else if (end.nanos >= 1000000000) {
+               end.seconds += 1;
+               end.nanos -= 1000000000;
+             }
+
+         Example 3: Compute Duration from datetime.timedelta in Python.
+
+             td = datetime.timedelta(days=3, minutes=10)
+             duration = Duration()
+             duration.FromTimedelta(td)
+
+         # JSON Mapping
+
+         In JSON format, the Duration type is encoded as a string rather than an
+         object, where the string ends in the suffix "s" (indicating seconds) and
+         is preceded by the number of seconds, with nanoseconds expressed as
+         fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+         encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+         be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+         microsecond should be expressed in JSON format as "3.000001s".
+    google.protobuf.FieldMask:
+      type: string
+      description: |-
+        `FieldMask` represents a set of symbolic field paths, for example:
+
+             paths: "f.a"
+             paths: "f.b.d"
+
+         Here `f` represents a field in some root message, `a` and `b`
+         fields in the message found in `f`, and `d` a field found in the
+         message in `f.b`.
+
+         Field masks are used to specify a subset of fields that should be
+         returned by a get operation or modified by an update operation.
+         Field masks also have a custom JSON encoding (see below).
+
+         # Field Masks in Projections
+
+         When used in the context of a projection, a response message or
+         sub-message is filtered by the API to only contain those fields as
+         specified in the mask. For example, if the mask in the previous
+         example is applied to a response message as follows:
+
+             f {
+               a : 22
+               b {
+                 d : 1
+                 x : 2
+               }
+               y : 13
+             }
+             z: 8
+
+         The result will not contain specific values for fields x,y and z
+         (their value will be set to the default, and omitted in proto text
+         output):
+
+
+             f {
+               a : 22
+               b {
+                 d : 1
+               }
+             }
+
+         A repeated field is not allowed except at the last position of a
+         paths string.
+
+         If a FieldMask object is not present in a get operation, the
+         operation applies to all fields (as if a FieldMask of all fields
+         had been specified).
+
+         Note that a field mask does not necessarily apply to the
+         top-level response message. In case of a REST get operation, the
+         field mask applies directly to the response, but in case of a REST
+         list operation, the mask instead applies to each individual message
+         in the returned resource list. In case of a REST custom method,
+         other definitions may be used. Where the mask applies will be
+         clearly documented together with its declaration in the API.  In
+         any case, the effect on the returned resource/resources is required
+         behavior for APIs.
+
+         # Field Masks in Update Operations
+
+         A field mask in update operations specifies which fields of the
+         targeted resource are going to be updated. The API is required
+         to only change the values of the fields as specified in the mask
+         and leave the others untouched. If a resource is passed in to
+         describe the updated values, the API ignores the values of all
+         fields not covered by the mask.
+
+         If a repeated field is specified for an update operation, new values will
+         be appended to the existing repeated field in the target resource. Note that
+         a repeated field is only allowed in the last position of a `paths` string.
+
+         If a sub-message is specified in the last position of the field mask for an
+         update operation, then new value will be merged into the existing sub-message
+         in the target resource.
+
+         For example, given the target message:
+
+             f {
+               b {
+                 d: 1
+                 x: 2
+               }
+               c: [1]
+             }
+
+         And an update message:
+
+             f {
+               b {
+                 d: 10
+               }
+               c: [2]
+             }
+
+         then if the field mask is:
+
+          paths: ["f.b", "f.c"]
+
+         then the result will be:
+
+             f {
+               b {
+                 d: 10
+                 x: 2
+               }
+               c: [1, 2]
+             }
+
+         An implementation may provide options to override this default behavior for
+         repeated and message fields.
+
+         In order to reset a field's value to the default, the field must
+         be in the mask and set to the default value in the provided resource.
+         Hence, in order to reset all fields of a resource, provide a default
+         instance of the resource and set all fields in the mask, or do
+         not provide a mask as described below.
+
+         If a field mask is not present on update, the operation applies to
+         all fields (as if a field mask of all fields has been specified).
+         Note that in the presence of schema evolution, this may mean that
+         fields the client does not know and has therefore not filled into
+         the request will be reset to their default. If this is unwanted
+         behavior, a specific service may require a client to always specify
+         a field mask, producing an error if not.
+
+         As with get operations, the location of the resource which
+         describes the updated values in the request message depends on the
+         operation kind. In any case, the effect of the field mask is
+         required to be honored by the API.
+
+         ## Considerations for HTTP REST
+
+         The HTTP kind of an update operation which uses a field mask must
+         be set to PATCH instead of PUT in order to satisfy HTTP semantics
+         (PUT must only be used for full updates).
+
+         # JSON Encoding of Field Masks
+
+         In JSON, a field mask is encoded as a single string where paths are
+         separated by a comma. Fields name in each path are converted
+         to/from lower-camel naming conventions.
+
+         As an example, consider the following message declarations:
+
+             message Profile {
+               User user = 1;
+               Photo photo = 2;
+             }
+             message User {
+               string display_name = 1;
+               string address = 2;
+             }
+
+         In proto a field mask for `Profile` may look as such:
+
+             mask {
+               paths: "user.display_name"
+               paths: "photo"
+             }
+
+         In JSON, the same mask is represented as below:
+
+             {
+               mask: "user.displayName,photo"
+             }
+
+         # Field Masks and Oneof Fields
+
+         Field masks treat fields in oneofs just as regular fields. Consider the
+         following message:
+
+             message SampleMessage {
+               oneof test_oneof {
+                 string name = 4;
+                 SubMessage sub_message = 9;
+               }
+             }
+
+         The field mask can be:
+
+             mask {
+               paths: "name"
+             }
+
+         Or:
+
+             mask {
+               paths: "sub_message"
+             }
+
+         Note that oneof type names ("test_oneof" in this case) cannot be used in
+         paths.
+
+         ## Field Mask Verification
+
+         The implementation of any API method which has a FieldMask type field in the
+         request should verify the included field paths, and return an
+         `INVALID_ARGUMENT` error if any path is unmappable.
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - "2023-01-15T01:30:15.01Z"
+        - "2024-12-25T12:00:00Z"
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    otpki.common.api.query.v1.FieldType:
+      type: string
+      title: FieldType
+      enum:
+        - FIELD_TYPE_UNSPECIFIED
+        - FIELD_TYPE_STRING
+        - FIELD_TYPE_INT
+        - FIELD_TYPE_DOUBLE
+        - FIELD_TYPE_BOOL
+        - FIELD_TYPE_TIMESTAMP
+        - FIELD_TYPE_DURATION
+        - FIELD_TYPE_BYTES
+    otpki.common.api.query.v1.Filter:
+      type: object
+      properties:
+        column:
+          type: string
+          title: column
+        operator:
+          title: operator
+          $ref: '#/components/schemas/otpki.common.api.query.v1.FilterOperator'
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.FilterValue'
+          title: values
+      title: Filter
+      additionalProperties: false
+    otpki.common.api.query.v1.FilterOperator:
+      type: string
+      title: FilterOperator
+      enum:
+        - FILTER_OPERATOR_UNSPECIFIED
+        - FILTER_OPERATOR_EQUALS
+        - FILTER_OPERATOR_NOT_EQUALS
+        - FILTER_OPERATOR_GREATER_THAN
+        - FILTER_OPERATOR_GREATER_THAN_OR_EQUAL
+        - FILTER_OPERATOR_LESS_THAN
+        - FILTER_OPERATOR_LESS_THAN_OR_EQUAL
+        - FILTER_OPERATOR_BETWEEN
+        - FILTER_OPERATOR_IN
+        - FILTER_OPERATOR_NOT_IN
+        - FILTER_OPERATOR_LIKE
+        - FILTER_OPERATOR_ILIKE
+        - FILTER_OPERATOR_IS_NULL
+        - FILTER_OPERATOR_IS_NOT_NULL
+        - FILTER_OPERATOR_JSON_CONTAINS
+        - FILTER_OPERATOR_JSON_EXISTS
+        - FILTER_OPERATOR_JSON_ANY_EXISTS
+        - FILTER_OPERATOR_JSON_ALL_EXISTS
+        - FILTER_OPERATOR_JSON_PATH
+        - FILTER_OPERATOR_ARRAY_CONTAINS
+        - FILTER_OPERATOR_ARRAY_CONTAINED_BY
+        - FILTER_OPERATOR_ARRAY_OVERLAP
+        - FILTER_OPERATOR_IS_EMPTY
+        - FILTER_OPERATOR_IS_NOT_EMPTY
+    otpki.common.api.query.v1.FilterValue:
+      type: object
+      properties:
+        stringValue:
+          type: string
+          title: string_value
+        intValue:
+          type:
+            - integer
+            - string
+          title: int_value
+          format: int64
+        doubleValue:
+          type: number
+          title: double_value
+          format: double
+        boolValue:
+          type: boolean
+          title: bool_value
+        timestampValue:
+          title: timestamp_value
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        durationValue:
+          title: duration_value
+          $ref: '#/components/schemas/google.protobuf.Duration'
+        bytesValue:
+          type: string
+          title: bytes_value
+          format: byte
+      title: FilterValue
+      additionalProperties: false
+    otpki.common.api.query.v1.PaginationInfoEntry:
+      type: object
+      properties:
+        column:
+          type: string
+          title: column
+        filterable:
+          type: boolean
+          title: filterable
+        sortable:
+          type: boolean
+          title: sortable
+        allowedFilterOperators:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.FilterOperator'
+          title: allowed_filter_operators
+        allowedSortOperators:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.SortOperator'
+          title: allowed_sort_operators
+        fieldType:
+          title: field_type
+          $ref: '#/components/schemas/otpki.common.api.query.v1.FieldType'
+        repeated:
+          type: boolean
+          title: repeated
+      title: PaginationInfoEntry
+      additionalProperties: false
+    otpki.common.api.query.v1.PaginationInfoResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationInfoEntry'
+          title: columns
+      title: PaginationInfoResponse
+      additionalProperties: false
+    otpki.common.api.query.v1.PaginationRequest:
+      type: object
+      properties:
+        pageToken:
+          type: string
+          title: page_token
+        pageSize:
+          type:
+            - integer
+            - string
+          title: page_size
+          format: int64
+        skip:
+          type:
+            - integer
+            - string
+          title: skip
+          format: int64
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.SortEntry'
+          title: sort
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.Filter'
+          title: filters
+        withoutCount:
+          type: boolean
+          title: without_count
+        withCountEstimate:
+          type: boolean
+          title: with_count_estimate
+        withSoftDeleted:
+          type: boolean
+          title: with_soft_deleted
+        withPaginationInfoOnly:
+          type: boolean
+          title: with_pagination_info_only
+      title: PaginationRequest
+      additionalProperties: false
+    otpki.common.api.query.v1.PaginationResponse:
+      type: object
+      properties:
+        pageSize:
+          type:
+            - integer
+            - string
+          title: page_size
+          format: int64
+        skip:
+          type:
+            - integer
+            - string
+          title: skip
+          format: int64
+        nextPageToken:
+          type: string
+          title: next_page_token
+        hasMore:
+          type: boolean
+          title: has_more
+        totalCount:
+          type:
+            - integer
+            - string
+          title: total_count
+          format: int64
+        isEstimate:
+          type: boolean
+          title: is_estimate
+        paginationInfo:
+          title: pagination_info
+          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationInfoResponse'
+      title: PaginationResponse
+      additionalProperties: false
+    otpki.common.api.query.v1.SortEntry:
+      type: object
+      properties:
+        column:
+          type: string
+          title: column
+        order:
+          title: order
+          $ref: '#/components/schemas/otpki.common.api.query.v1.SortOrder'
+        jsonPath:
+          type: string
+          title: json_path
+          description: advanced sorting options (use only one)
+        jsonText:
+          type: string
+          title: json_text
+        jsonNumeric:
+          type: string
+          title: json_numeric
+        arrayIndex:
+          type:
+            - integer
+            - string
+          title: array_index
+          format: int64
+        arrayLength:
+          type: boolean
+          title: array_length
+        arrayContains:
+          type: string
+          title: array_contains
+      title: SortEntry
+      additionalProperties: false
+    otpki.common.api.query.v1.SortOperator:
+      type: string
+      title: SortOperator
+      enum:
+        - SORT_OPERATOR_UNSPECIFIED
+        - SORT_OPERATOR_STANDARD
+        - SORT_OPERATOR_JSON_PATH
+        - SORT_OPERATOR_JSON_TEXT
+        - SORT_OPERATOR_JSON_NUMERIC
+        - SORT_OPERATOR_ARRAY_INDEX
+        - SORT_OPERATOR_ARRAY_LENGTH
+        - SORT_OPERATOR_ARRAY_CONTAINS
+    otpki.common.api.query.v1.SortOrder:
+      type: string
+      title: SortOrder
+      enum:
+        - SORT_ORDER_UNSPECIFIED
+        - SORT_ORDER_DESC
+        - SORT_ORDER_ASC
+    otpki.common.issuance.certificate_profile.v1.CertificateProfile:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+          description: not settable on creation
+          readOnly: true
+        name:
+          type: string
+          title: name
+          maxLength: 64
+          minLength: 3
+        description:
+          type: string
+          title: description
+        kind:
+          not:
+            enum:
+              - CERTIFICATE_PROFILE_KIND_UNSPECIFIED
+          title: kind
+          $ref: '#/components/schemas/otpki.common.issuance.certificate_profile.v1.CertificateProfileKind'
+        createdAt:
+          title: created_at
+          description: |-
+            db details
+             not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        availableKeyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.issuance.key.v1.KeyType'
+          title: available_key_types
+          uniqueItems: true
+          description: signature algo/keys
+        signatureAlgorithm:
+          title: signature_algorithm
+          description: UNSPECIFIED == inherit from CA
+          $ref: '#/components/schemas/otpki.common.x509.v1.SignatureAlgorithm'
+        availableAlternativeKeyTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.issuance.key.v1.KeyType'
+          title: available_alternative_key_types
+          uniqueItems: true
+        alternativeSignatureAlgorithm:
+          title: alternative_signature_algorithm
+          description: 'TODO: alt sig algo not enforced (dependent on go fork) when len(alt key types) == 0, alt sig algo is ignored, no alt sig, UNSPECIFIED == inherit from CA'
+          $ref: '#/components/schemas/otpki.common.x509.v1.SignatureAlgorithm'
+        validityDuration:
+          title: validity_duration
+          description: validity
+          $ref: '#/components/schemas/google.protobuf.Duration'
+        validityEndDate:
+          title: validity_end_date
+          description: if both end date and duration are specified, shortest is what is issued
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        validityOffset:
+          title: validity_offset
+          description: default should be 10 min if unset, during fixed date, only notBefore is offset
+          $ref: '#/components/schemas/google.protobuf.Duration'
+        forbiddenExpirationDays:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.DayOfWeek'
+          title: forbidden_expiration_days
+          uniqueItems: true
+          description: Days on which certificates should not expire
+        expirationAdjustmentDirection:
+          title: expiration_adjustment_direction
+          description: Direction of adjustment for forbidden expiry
+          $ref: '#/components/schemas/otpki.common.x509.v1.ExpirationAdjustmentDirection'
+        allowValidityOverride:
+          type: boolean
+          title: allow_validity_override
+          description: permissions use validity from EE profile (profile takes precedence)
+        allowCsrSubjectDnOverride:
+          type: boolean
+          title: allow_csr_subject_dn_override
+          description: use DN from CSR
+        allowCsrKeyUsageOverride:
+          type: boolean
+          title: allow_csr_key_usage_override
+          description: use key usage from CSR
+        allowCsrExtensionOverride:
+          type: boolean
+          title: allow_csr_extension_override
+        oidListIsWhitelist:
+          type: boolean
+          title: oid_list_is_whitelist
+          description: when true, only OIDs in the list are overrideable, otherwise all extensions are overrideable EXCEPT those in the list
+        oidList:
+          type: array
+          items:
+            type: string
+            pattern: ^([0-2])((\.0)|(\.[1-9][0-9]*))*$
+          title: oid_list
+          uniqueItems: true
+        basicConstraintsValid:
+          type: boolean
+          title: basic_constraints_valid
+          description: X.509v3 constraints
+        maxPathLength:
+          type:
+            - integer
+            - string
+          title: max_path_length
+          format: int64
+          description: |-
+            bool is_ca = 1; // will be set by certificate profile kind
+             max path length settings will be ignore in EndEntity certificate profile 0 == no max length, unless following bool is set
+        maxPathLengthZero:
+          type: boolean
+          title: max_path_length_zero
+          description: flag (from go crypto/x509) that indicates that 0 (uninitialized) path length is actually intended
+        includeAuthorityKeyIdentifier:
+          type: boolean
+          title: include_authority_key_identifier
+        akiHashAlgorithm:
+          title: aki_hash_algorithm
+          description: takes first 20 bytes of hash for AKI
+          $ref: '#/components/schemas/otpki.common.issuance.certificate_profile.v1.KeyIdentifierHashAlgorithm'
+        includeSubjectKeyIdentifier:
+          type: boolean
+          title: include_subject_key_identifier
+          description: kind != EE causes this to get locked to true
+        skiHashAlgorithm:
+          title: ski_hash_algorithm
+          description: takes first 20 bytes of hash for SKI
+          $ref: '#/components/schemas/otpki.common.issuance.certificate_profile.v1.KeyIdentifierHashAlgorithm'
+        useKeyUsage:
+          type: boolean
+          title: use_key_usage
+          description: X.509v3 usages
+        keyUsageCritical:
+          type: boolean
+          title: key_usage_critical
+        removeEncryptionUsageOnEccKeys:
+          type: boolean
+          title: remove_encryption_usage_on_ecc_keys
+          description: remove key encipherment and data encipherment if using an ECC signing algo
+        keyUsages:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.KeyUsage'
+          title: key_usages
+          uniqueItems: true
+        useExtendedKeyUsage:
+          type: boolean
+          title: use_extended_key_usage
+        extendedKeyUsageCritical:
+          type: boolean
+          title: extended_key_usage_critical
+        extendedKeyUsages:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.ExtKeyUsage'
+          title: extended_key_usages
+          uniqueItems: true
+        useSubjectAlternativeName:
+          type: boolean
+          title: use_subject_alternative_name
+          description: X.509v3 names san is set during EE or CA creation
+        subjectAlternativeNameCritical:
+          type: boolean
+          title: subject_alternative_name_critical
+        useIssuerAlternativeName:
+          type: boolean
+          title: use_issuer_alternative_name
+        issuerAlternativeNameCritical:
+          type: boolean
+          title: issuer_alternative_name_critical
+        useNameConstraints:
+          type: boolean
+          title: use_name_constraints
+          description: name constraints are set during EE or CA creation
+        nameConstraintsCritical:
+          type: boolean
+          title: name_constraints_critical
+        useCrlDistributionPoints:
+          type: boolean
+          title: use_crl_distribution_points
+          description: X.509v3 validation
+        crlDistributionPointsCritical:
+          type: boolean
+          title: crl_distribution_points_critical
+        useCaDefinedCdp:
+          type: boolean
+          title: use_ca_defined_cdp
+        crlDistributionPointUris:
+          type: array
+          items:
+            type: string
+            format: uri
+          title: crl_distribution_point_uris
+          uniqueItems: true
+        useAuthorityInformationAccess:
+          type: boolean
+          title: use_authority_information_access
+        useCaDefinedOcspUri:
+          type: boolean
+          title: use_ca_defined_ocsp_uri
+        ocspUris:
+          type: array
+          items:
+            type: string
+            format: uri
+          title: ocsp_uris
+          uniqueItems: true
+        useCaDefinedIssuerUri:
+          type: boolean
+          title: use_ca_defined_issuer_uri
+        issuerUris:
+          type: array
+          items:
+            type: string
+            format: uri
+          title: issuer_uris
+          uniqueItems: true
+        ocspNoCheck:
+          type: boolean
+          title: ocsp_no_check
+        cnPrefix:
+          type: string
+          title: cn_prefix
+          maxLength: 64
+          description: other
+        cnSuffix:
+          type: string
+          title: cn_suffix
+          maxLength: 64
+        customExtKeyUsages:
+          type: array
+          items:
+            exclusiveMinimum: 0
+            type:
+              - integer
+              - string
+            format: int64
+          title: custom_ext_key_usages
+          uniqueItems: true
+        customCertificateExts:
+          type: array
+          items:
+            exclusiveMinimum: 0
+            type:
+              - integer
+              - string
+            format: int64
+          title: custom_certificate_exts
+          uniqueItems: true
+        availableCertificateAuthorities:
+          type: array
+          items:
+            exclusiveMinimum: 0
+            type:
+              - integer
+              - string
+            format: int64
+          title: available_certificate_authorities
+          uniqueItems: true
+        approvalProfileId:
+          type:
+            - integer
+            - string
+          title: approval_profile_id
+          format: int64
+      title: CertificateProfile
+      additionalProperties: false
+    otpki.common.issuance.certificate_profile.v1.CertificateProfileKind:
+      type: string
+      title: CertificateProfileKind
+      enum:
+        - CERTIFICATE_PROFILE_KIND_UNSPECIFIED
+        - CERTIFICATE_PROFILE_KIND_ROOT_CA
+        - CERTIFICATE_PROFILE_KIND_SUB_CA
+        - CERTIFICATE_PROFILE_KIND_END_ENTITY
+    otpki.common.issuance.certificate_profile.v1.KeyIdentifierHashAlgorithm:
+      type: string
+      title: KeyIdentifierHashAlgorithm
+      enum:
+        - KEY_IDENTIFIER_HASH_ALGORITHM_UNSPECIFIED
+        - KEY_IDENTIFIER_HASH_ALGORITHM_SHA_1
+        - KEY_IDENTIFIER_HASH_ALGORITHM_SHA_256
+        - KEY_IDENTIFIER_HASH_ALGORITHM_SHA_384
+        - KEY_IDENTIFIER_HASH_ALGORITHM_SHA_512
+    otpki.common.issuance.key.v1.KeyType:
+      type: string
+      title: KeyType
+      enum:
+        - KEY_TYPE_UNSPECIFIED
+        - KEY_TYPE_RSA_1024
+        - KEY_TYPE_RSA_1536
+        - KEY_TYPE_RSA_2048
+        - KEY_TYPE_RSA_3072
+        - KEY_TYPE_RSA_4096
+        - KEY_TYPE_RSA_6144
+        - KEY_TYPE_RSA_8192
+        - KEY_TYPE_ECDSA_P192
+        - KEY_TYPE_ECDSA_P224
+        - KEY_TYPE_ECDSA_P256
+        - KEY_TYPE_ECDSA_P384
+        - KEY_TYPE_ECDSA_P521
+        - KEY_TYPE_ECDSA_B163
+        - KEY_TYPE_ECDSA_K163
+        - KEY_TYPE_ECDSA_B233
+        - KEY_TYPE_ECDSA_K233
+        - KEY_TYPE_ECDSA_B283
+        - KEY_TYPE_ECDSA_K283
+        - KEY_TYPE_ECDSA_B409
+        - KEY_TYPE_ECDSA_K409
+        - KEY_TYPE_ECDSA_B571
+        - KEY_TYPE_ECDSA_K571
+        - KEY_TYPE_ECDSA_BP_P160T1
+        - KEY_TYPE_ECDSA_BP_P192T1
+        - KEY_TYPE_ECDSA_BP_P224T1
+        - KEY_TYPE_ECDSA_BP_P256T1
+        - KEY_TYPE_ECDSA_BP_P320T1
+        - KEY_TYPE_ECDSA_BP_P384T1
+        - KEY_TYPE_ECDSA_BP_P512T1
+        - KEY_TYPE_ECDSA_BP_P160R1
+        - KEY_TYPE_ECDSA_BP_P192R1
+        - KEY_TYPE_ECDSA_BP_P224R1
+        - KEY_TYPE_ECDSA_BP_P256R1
+        - KEY_TYPE_ECDSA_BP_P320R1
+        - KEY_TYPE_ECDSA_BP_P384R1
+        - KEY_TYPE_ECDSA_BP_P512R1
+        - KEY_TYPE_ECDSA_SECP192R1
+        - KEY_TYPE_ECDSA_SECP224R1
+        - KEY_TYPE_ECDSA_SECP256R1
+        - KEY_TYPE_ECDSA_SECP384R1
+        - KEY_TYPE_ECDSA_SECP521R1
+        - KEY_TYPE_ECDSA_SECT113R1
+        - KEY_TYPE_ECDSA_SECT113R2
+        - KEY_TYPE_ECDSA_SECT131R1
+        - KEY_TYPE_ECDSA_SECT131R2
+        - KEY_TYPE_ECDSA_SECT163K1
+        - KEY_TYPE_ECDSA_SECT163R1
+        - KEY_TYPE_ECDSA_SECT163R2
+        - KEY_TYPE_ECDSA_SECT193R1
+        - KEY_TYPE_ECDSA_SECT193R2
+        - KEY_TYPE_ECDSA_SECT233K1
+        - KEY_TYPE_ECDSA_SECT233R1
+        - KEY_TYPE_ECDSA_SECT239K1
+        - KEY_TYPE_ECDSA_SECT283K1
+        - KEY_TYPE_ECDSA_SECT283R1
+        - KEY_TYPE_ECDSA_SECT409K1
+        - KEY_TYPE_ECDSA_SECT409R1
+        - KEY_TYPE_ECDSA_SECT571K1
+        - KEY_TYPE_ECDSA_SECT571R1
+        - KEY_TYPE_ECDSA_PRIME192V1
+        - KEY_TYPE_ECDSA_PRIME192V2
+        - KEY_TYPE_ECDSA_PRIME192V3
+        - KEY_TYPE_ECDSA_PRIME239V1
+        - KEY_TYPE_ECDSA_PRIME239V2
+        - KEY_TYPE_ECDSA_PRIME239V3
+        - KEY_TYPE_ECDSA_PRIME256V1
+        - KEY_TYPE_ECDSA_C2PNG176W1
+        - KEY_TYPE_ECDSA_C2PNG163V1
+        - KEY_TYPE_ECDSA_C2PNG163V2
+        - KEY_TYPE_ECDSA_C2PNG163V3
+        - KEY_TYPE_ECDSA_C2PNG208W1
+        - KEY_TYPE_ECDSA_C2TNB191V3
+        - KEY_TYPE_ECDSA_C2TNB191V2
+        - KEY_TYPE_ECDSA_C2TNB191V1
+        - KEY_TYPE_ECDSA_C2TNB239V3
+        - KEY_TYPE_ECDSA_C2TNB239V2
+        - KEY_TYPE_ECDSA_C2TNB239V1
+        - KEY_TYPE_ECDSA_C2PNB272W1
+        - KEY_TYPE_ECDSA_C2PNB304W1
+        - KEY_TYPE_ECDSA_C2PNB368W1
+        - KEY_TYPE_ECDSA_C2TNB359V1
+        - KEY_TYPE_ECDSA_C2TNB431R1
+        - KEY_TYPE_ECDSA_ANSIP224R1
+        - KEY_TYPE_ECDSA_ANSIP384R1
+        - KEY_TYPE_ECDSA_ANSIP521R1
+        - KEY_TYPE_ECDSA_ANSIT163K1
+        - KEY_TYPE_ECDSA_ANSIT163R1
+        - KEY_TYPE_ECDSA_ANSIT163R2
+        - KEY_TYPE_ECDSA_ANSIT193R1
+        - KEY_TYPE_ECDSA_ANSIT193R2
+        - KEY_TYPE_ECDSA_ANSIT233K1
+        - KEY_TYPE_ECDSA_ANSIT233R1
+        - KEY_TYPE_ECDSA_ANSIT239K1
+        - KEY_TYPE_ECDSA_ANSIT283K1
+        - KEY_TYPE_ECDSA_ANSIT283R1
+        - KEY_TYPE_ECDSA_ANSIT409K1
+        - KEY_TYPE_ECDSA_ANSIT409R1
+        - KEY_TYPE_ECDSA_ANSIT571K1
+        - KEY_TYPE_ECDSA_ANSIT571R1
+        - KEY_TYPE_ED25519
+        - KEY_TYPE_ED448
+        - KEY_TYPE_EDDILITHIUM_2
+        - KEY_TYPE_EDDILITHIUM_3
+        - KEY_TYPE_DILITHIUM_2
+        - KEY_TYPE_DILITHIUM_3
+        - KEY_TYPE_DILITHIUM_5
+        - KEY_TYPE_MLDSA_44
+        - KEY_TYPE_MLDSA_65
+        - KEY_TYPE_MLDSA_87
+        - KEY_TYPE_SLHDSA_SHA128S
+        - KEY_TYPE_SLHDSA_SHAKE128S
+        - KEY_TYPE_SLHDSA_SHA128F
+        - KEY_TYPE_SLHDSA_SHAKE128F
+        - KEY_TYPE_SLHDSA_SHA192S
+        - KEY_TYPE_SLHDSA_SHAKE192S
+        - KEY_TYPE_SLHDSA_SHA192F
+        - KEY_TYPE_SLHDSA_SHAKE192F
+        - KEY_TYPE_SLHDSA_SHA256S
+        - KEY_TYPE_SLHDSA_SHAKE256S
+        - KEY_TYPE_SLHDSA_SHA256F
+        - KEY_TYPE_SLHDSA_SHAKE256F
+    otpki.common.x509.v1.DayOfWeek:
+      type: string
+      title: DayOfWeek
+      enum:
+        - DAY_OF_WEEK_UNSPECIFIED
+        - DAY_OF_WEEK_SUNDAY
+        - DAY_OF_WEEK_MONDAY
+        - DAY_OF_WEEK_TUESDAY
+        - DAY_OF_WEEK_WEDNESDAY
+        - DAY_OF_WEEK_THURSDAY
+        - DAY_OF_WEEK_FRIDAY
+        - DAY_OF_WEEK_SATURDAY
+    otpki.common.x509.v1.ExpirationAdjustmentDirection:
+      type: string
+      title: ExpirationAdjustmentDirection
+      enum:
+        - EXPIRATION_ADJUSTMENT_DIRECTION_UNSPECIFIED
+        - EXPIRATION_ADJUSTMENT_DIRECTION_EARLIER
+        - EXPIRATION_ADJUSTMENT_DIRECTION_LATER
+    otpki.common.x509.v1.ExtKeyUsage:
+      type: string
+      title: ExtKeyUsage
+      enum:
+        - EXT_KEY_USAGE_ANY_UNSPECIFIED
+        - EXT_KEY_USAGE_SERVER_AUTH
+        - EXT_KEY_USAGE_CLIENT_AUTH
+        - EXT_KEY_USAGE_CODE_SIGNING
+        - EXT_KEY_USAGE_EMAIL_PROTECTION
+        - EXT_KEY_USAGE_IPSEC_END_SYSTEM
+        - EXT_KEY_USAGE_IPSEC_TUNNEL
+        - EXT_KEY_USAGE_IPSEC_USER
+        - EXT_KEY_USAGE_TIME_STAMPING
+        - EXT_KEY_USAGE_OCSP_SIGNING
+        - EXT_KEY_USAGE_MICROSOFT_SERVER_GATED_CRYPTO
+        - EXT_KEY_USAGE_NETSCAPE_SERVER_GATED_CRYPTO
+        - EXT_KEY_USAGE_MICROSOFT_COMMERCIAL_CODE_SIGNING
+        - EXT_KEY_USAGE_MICROSOFT_KERNEL_CODE_SIGNING
+    otpki.common.x509.v1.KeyUsage:
+      type: string
+      title: KeyUsage
+      enum:
+        - KEY_USAGE_UNSPECIFIED
+        - KEY_USAGE_DIGITAL_SIGNATURE
+        - KEY_USAGE_CONTENT_COMMITMENT
+        - KEY_USAGE_KEY_ENCIPHERMENT
+        - KEY_USAGE_DATA_ENCIPHERMENT
+        - KEY_USAGE_KEY_AGREEMENT
+        - KEY_USAGE_CERT_SIGN
+        - KEY_USAGE_CRL_SIGN
+        - KEY_USAGE_ENCIPHER_ONLY
+        - KEY_USAGE_DECIPHER_ONLY
+    otpki.common.x509.v1.SignatureAlgorithm:
+      type: string
+      title: SignatureAlgorithm
+      enum:
+        - SIGNATURE_ALGORITHM_UNSPECIFIED
+        - SIGNATURE_ALGORITHM_SHA1_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA1
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA384
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA512
+        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_PURE_ED25519
+        - SIGNATURE_ALGORITHM_PURE_ED448
+        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM2
+        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM3
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_2
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_3
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_5
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_44
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_65
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_87
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256F
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE128
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_384
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_512
+        - SIGNATURE_ALGORITHM_SHAKE128_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHAKE256_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA3_256_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA3_384_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA3_512_WITH_RSA
+    otpki.public.issuance.v1.CreateCertificateProfileRequest:
+      type: object
+      properties:
+        profile:
+          title: profile
+          $ref: '#/components/schemas/otpki.common.issuance.certificate_profile.v1.CertificateProfile'
+      title: CreateCertificateProfileRequest
+      required:
+        - profile
+      additionalProperties: false
+    otpki.public.issuance.v1.CreateCertificateProfileResponse:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+      title: CreateCertificateProfileResponse
+      additionalProperties: false
+    otpki.public.issuance.v1.DeleteCertificateProfileRequest:
+      type: object
+      properties:
+        id:
+          exclusiveMinimum: 0
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+      title: DeleteCertificateProfileRequest
+      additionalProperties: false
+    otpki.public.issuance.v1.DeleteCertificateProfileResponse:
+      type: object
+      title: DeleteCertificateProfileResponse
+      additionalProperties: false
+    otpki.public.issuance.v1.GetCertificateProfileListRequest:
+      type: object
+      properties:
+        pagination:
+          title: pagination
+          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
+      title: GetCertificateProfileListRequest
+      additionalProperties: false
+    otpki.public.issuance.v1.GetCertificateProfileListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.issuance.certificate_profile.v1.CertificateProfile'
+          title: data
+        pagination:
+          title: pagination
+          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationResponse'
+      title: GetCertificateProfileListResponse
+      additionalProperties: false
+    otpki.public.issuance.v1.GetCertificateProfileRequest:
+      type: object
+      properties:
+        id:
+          exclusiveMinimum: 0
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+      title: GetCertificateProfileRequest
+      additionalProperties: false
+    otpki.public.issuance.v1.GetCertificateProfileResponse:
+      type: object
+      properties:
+        profile:
+          title: profile
+          $ref: '#/components/schemas/otpki.common.issuance.certificate_profile.v1.CertificateProfile'
+      title: GetCertificateProfileResponse
+      additionalProperties: false
+    otpki.public.issuance.v1.UpdateCertificateProfileRequest:
+      type: object
+      properties:
+        profile:
+          title: profile
+          $ref: '#/components/schemas/otpki.common.issuance.certificate_profile.v1.CertificateProfile'
+        updateMask:
+          title: update_mask
+          $ref: '#/components/schemas/google.protobuf.FieldMask'
+      title: UpdateCertificateProfileRequest
+      additionalProperties: false
+    otpki.public.issuance.v1.UpdateCertificateProfileResponse:
+      type: object
+      title: UpdateCertificateProfileResponse
+      additionalProperties: false
+security: []

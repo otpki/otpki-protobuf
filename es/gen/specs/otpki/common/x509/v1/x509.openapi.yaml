@@ -1,0 +1,299 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.x509.v1
+paths: {}
+components:
+  schemas:
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+    otpki.common.x509.v1.DayOfWeek:
+      type: string
+      title: DayOfWeek
+      enum:
+        - DAY_OF_WEEK_UNSPECIFIED
+        - DAY_OF_WEEK_SUNDAY
+        - DAY_OF_WEEK_MONDAY
+        - DAY_OF_WEEK_TUESDAY
+        - DAY_OF_WEEK_WEDNESDAY
+        - DAY_OF_WEEK_THURSDAY
+        - DAY_OF_WEEK_FRIDAY
+        - DAY_OF_WEEK_SATURDAY
+    otpki.common.x509.v1.ExpirationAdjustmentDirection:
+      type: string
+      title: ExpirationAdjustmentDirection
+      enum:
+        - EXPIRATION_ADJUSTMENT_DIRECTION_UNSPECIFIED
+        - EXPIRATION_ADJUSTMENT_DIRECTION_EARLIER
+        - EXPIRATION_ADJUSTMENT_DIRECTION_LATER
+    otpki.common.x509.v1.ExtKeyUsage:
+      type: string
+      title: ExtKeyUsage
+      enum:
+        - EXT_KEY_USAGE_ANY_UNSPECIFIED
+        - EXT_KEY_USAGE_SERVER_AUTH
+        - EXT_KEY_USAGE_CLIENT_AUTH
+        - EXT_KEY_USAGE_CODE_SIGNING
+        - EXT_KEY_USAGE_EMAIL_PROTECTION
+        - EXT_KEY_USAGE_IPSEC_END_SYSTEM
+        - EXT_KEY_USAGE_IPSEC_TUNNEL
+        - EXT_KEY_USAGE_IPSEC_USER
+        - EXT_KEY_USAGE_TIME_STAMPING
+        - EXT_KEY_USAGE_OCSP_SIGNING
+        - EXT_KEY_USAGE_MICROSOFT_SERVER_GATED_CRYPTO
+        - EXT_KEY_USAGE_NETSCAPE_SERVER_GATED_CRYPTO
+        - EXT_KEY_USAGE_MICROSOFT_COMMERCIAL_CODE_SIGNING
+        - EXT_KEY_USAGE_MICROSOFT_KERNEL_CODE_SIGNING
+    otpki.common.x509.v1.Extension:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+          description: OID as string
+        critical:
+          type: boolean
+          title: critical
+        value:
+          type: string
+          title: value
+          format: byte
+      title: Extension
+      additionalProperties: false
+    otpki.common.x509.v1.KeyUsage:
+      type: string
+      title: KeyUsage
+      enum:
+        - KEY_USAGE_UNSPECIFIED
+        - KEY_USAGE_DIGITAL_SIGNATURE
+        - KEY_USAGE_CONTENT_COMMITMENT
+        - KEY_USAGE_KEY_ENCIPHERMENT
+        - KEY_USAGE_DATA_ENCIPHERMENT
+        - KEY_USAGE_KEY_AGREEMENT
+        - KEY_USAGE_CERT_SIGN
+        - KEY_USAGE_CRL_SIGN
+        - KEY_USAGE_ENCIPHER_ONLY
+        - KEY_USAGE_DECIPHER_ONLY
+    otpki.common.x509.v1.Name:
+      type: object
+      properties:
+        country:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: country
+          uniqueItems: true
+        organization:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: organization
+          uniqueItems: true
+        organizationalUnit:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: organizational_unit
+          uniqueItems: true
+        locality:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: locality
+          uniqueItems: true
+        province:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: province
+          uniqueItems: true
+        streetAddress:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: street_address
+          uniqueItems: true
+        postalCode:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          title: postal_code
+          uniqueItems: true
+        serialNumber:
+          type: string
+          title: serial_number
+        commonName:
+          type: string
+          title: common_name
+          minLength: 1
+        names:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.NameAttribute'
+          title: names
+          description: For additional name attributes
+        extraNames:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.NameAttribute'
+          title: extra_names
+      title: Name
+      additionalProperties: false
+      description: |-
+        TODO: replace this with SubjectDNAttribute
+         Name represents a distinguished name (DN)
+    otpki.common.x509.v1.NameAttribute:
+      type: object
+      properties:
+        type:
+          type: string
+          title: type
+          description: OID as string
+        value:
+          title: value
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: NameAttribute
+      additionalProperties: false
+      description: NameAttribute represents a name attribute that may not be covered by the standard fields
+    otpki.common.x509.v1.RevocationReasonCode:
+      type: string
+      title: RevocationReasonCode
+      enum:
+        - REVOCATION_REASON_CODE_UNSPECIFIED
+        - REVOCATION_REASON_CODE_KEY_COMPROMISE
+        - REVOCATION_REASON_CODE_CA_COMPROMISE
+        - REVOCATION_REASON_CODE_AFFILIATION_CHANGE
+        - REVOCATION_REASON_CODE_SUPERSEDED
+        - REVOCATION_REASON_CODE_CESSATION_OF_OPERATION
+        - REVOCATION_REASON_CODE_CERTIFICATE_HOLD
+        - REVOCATION_REASON_CODE_REMOVE_FROM_CRL
+        - REVOCATION_REASON_CODE_PRIVILEGE_WITHDRAWN
+        - REVOCATION_REASON_CODE_AA_COMPROMISE
+    otpki.common.x509.v1.SANAttrType:
+      type: string
+      title: SANAttrType
+      enum:
+        - SAN_ATTR_TYPE_UNSPECIFIED
+        - SAN_ATTR_TYPE_DNS_NAME
+        - SAN_ATTR_TYPE_EMAIL_ADDRESS
+        - SAN_ATTR_TYPE_IP_ADDRESS
+        - SAN_ATTR_TYPE_URI
+        - SAN_ATTR_TYPE_MS_UPN
+        - SAN_ATTR_TYPE_KRB5_KPN
+        - SAN_ATTR_TYPE_OID
+    otpki.common.x509.v1.SANAttribute:
+      type: object
+      properties:
+        attributeType:
+          not:
+            enum:
+              - SAN_ATTR_TYPE_UNSPECIFIED
+          title: attribute_type
+          $ref: '#/components/schemas/otpki.common.x509.v1.SANAttrType'
+        attributeValue:
+          type: string
+          title: attribute_value
+        oid:
+          type: string
+          title: oid
+          description: oid only needed for SAN_ATTR_TYPE_OID
+      title: SANAttribute
+      additionalProperties: false
+    otpki.common.x509.v1.SignatureAlgorithm:
+      type: string
+      title: SignatureAlgorithm
+      enum:
+        - SIGNATURE_ALGORITHM_UNSPECIFIED
+        - SIGNATURE_ALGORITHM_SHA1_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA1
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA384
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA512
+        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_PURE_ED25519
+        - SIGNATURE_ALGORITHM_PURE_ED448
+        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM2
+        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM3
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_2
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_3
+        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_5
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_44
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_65
+        - SIGNATURE_ALGORITHM_PURE_MLDSA_87
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256S
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256F
+        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256F
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE128
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_256
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_384
+        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_512
+        - SIGNATURE_ALGORITHM_SHAKE128_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHAKE256_WITH_RSA_PSS
+        - SIGNATURE_ALGORITHM_SHA3_256_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA3_384_WITH_RSA
+        - SIGNATURE_ALGORITHM_SHA3_512_WITH_RSA
+    otpki.common.x509.v1.SubjectDNAttrType:
+      type: string
+      title: SubjectDNAttrType
+      enum:
+        - SUBJECT_DN_ATTR_TYPE_UNSPECIFIED
+        - SUBJECT_DN_ATTR_TYPE_COMMON_NAME
+        - SUBJECT_DN_ATTR_TYPE_COUNTRY
+        - SUBJECT_DN_ATTR_TYPE_ORGANIZATION
+        - SUBJECT_DN_ATTR_TYPE_ORGANIZATIONAL_UNIT
+        - SUBJECT_DN_ATTR_TYPE_LOCALITY
+        - SUBJECT_DN_ATTR_TYPE_PROVINCE
+        - SUBJECT_DN_ATTR_TYPE_STREET_ADDRESS
+        - SUBJECT_DN_ATTR_TYPE_POSTAL_CODE
+        - SUBJECT_DN_ATTR_TYPE_SERIAL_NUMBER
+        - SUBJECT_DN_ATTR_TYPE_EMAIL
+        - SUBJECT_DN_ATTR_TYPE_DOMAIN_COMPONENT
+        - SUBJECT_DN_ATTR_TYPE_OID
+    otpki.common.x509.v1.SubjectDNAttribute:
+      type: object
+      properties:
+        attributeType:
+          not:
+            enum:
+              - SUBJECT_DN_ATTR_TYPE_UNSPECIFIED
+          title: attribute_type
+          $ref: '#/components/schemas/otpki.common.x509.v1.SubjectDNAttrType'
+        attributeValue:
+          type: string
+          title: attribute_value
+        oid:
+          type: string
+          title: oid
+          description: oid only needed for SUBJECT_DN_ATTR_TYPE_OID
+      title: SubjectDNAttribute
+      additionalProperties: false
+security: []

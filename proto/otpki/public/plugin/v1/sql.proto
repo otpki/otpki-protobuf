@@ -1,0 +1,79 @@
+syntax = "proto3";
+package otpki.public.plugin.v1;
+
+enum SQLFormat {
+  SQL_FORMAT_UNSPECIFIED = 0;
+  SQL_FORMAT_TEXT = 1;
+  SQL_FORMAT_BINARY = 2;
+}
+
+message SQLParam {
+  bool is_null = 1;
+  // postgres type OID.
+  uint32 oid = 2;
+  SQLFormat format = 3;
+  // raw postgres parameter payload.
+  bytes value = 4;
+}
+
+message SQLColumn {
+  string name = 1;
+  uint32 oid = 2;
+  int32 type_modifier = 3;
+  uint32 format = 4;
+}
+
+message SQLCell {
+  bool is_null = 1;
+  bytes value = 2;
+}
+
+message Row {
+  repeated SQLCell values = 1;
+}
+
+message QueryRequest {
+  string plugin = 1;
+  string sql = 2;
+  repeated SQLParam args = 3;
+  uint64 tx_id = 4;
+}
+
+message QueryResponse {
+  repeated SQLColumn columns = 1;
+  repeated Row rows = 2;
+}
+
+message ExecRequest {
+  string plugin = 1;
+  string sql = 2;
+  repeated SQLParam args = 3;
+  uint64 tx_id = 4;
+}
+
+message ExecResponse {
+  int64 rows_affected = 1;
+}
+
+message BeginTxRequest {
+  string plugin = 1;
+  uint64 parent_tx_id = 2;
+}
+
+message BeginTxResponse {
+  uint64 tx_id = 1;
+}
+
+message CommitTxRequest {
+  string plugin = 1;
+  uint64 tx_id = 2;
+}
+
+message CommitTxResponse {}
+
+message RollbackTxRequest {
+  string plugin = 1;
+  uint64 tx_id = 2;
+}
+
+message RollbackTxResponse {}

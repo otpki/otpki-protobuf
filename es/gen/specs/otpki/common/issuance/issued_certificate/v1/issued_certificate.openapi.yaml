@@ -1,0 +1,253 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.issuance.issued_certificate.v1
+paths: {}
+components:
+  schemas:
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - "2023-01-15T01:30:15.01Z"
+        - "2024-12-25T12:00:00Z"
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    otpki.common.issuance.issued_certificate.v1.IssuedCertificate:
+      type: object
+      properties:
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+        certificate:
+          type: string
+          title: certificate
+          format: byte
+        certificateChain:
+          type: array
+          items:
+            type: string
+            format: byte
+          title: certificate_chain
+        serialNumber:
+          type: string
+          title: serial_number
+          format: byte
+        displayName:
+          type: string
+          title: display_name
+        subjectDn:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.SubjectDNAttribute'
+          title: subject_dn
+        issuerDn:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.x509.v1.SubjectDNAttribute'
+          title: issuer_dn
+        notBefore:
+          title: not_before
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        notAfter:
+          title: not_after
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        revokedAt:
+          oneOf:
+            - $ref: '#/components/schemas/google.protobuf.Timestamp'
+            - type: "null"
+          title: revoked_at
+        revocationReasonCode:
+          oneOf:
+            - $ref: '#/components/schemas/otpki.common.x509.v1.RevocationReasonCode'
+            - type: "null"
+          title: revocation_reason_code
+        inCrl:
+          type: boolean
+          title: in_crl
+        issuedByCaCertificateId:
+          type:
+            - integer
+            - string
+            - "null"
+          title: issued_by_ca_certificate_id
+          format: int64
+        issuedFromCertificateProfileId:
+          type:
+            - integer
+            - string
+          title: issued_from_certificate_profile_id
+          format: int64
+        issuedFromIssuanceRequestId:
+          type:
+            - integer
+            - string
+          title: issued_from_issuance_request_id
+          format: int64
+        protocolUsed:
+          title: protocol_used
+          $ref: '#/components/schemas/otpki.common.issuance.issuer.v1.IssuingProtocol'
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: IssuedCertificate
+      additionalProperties: false
+    otpki.common.issuance.issuer.v1.IssuingProtocol:
+      type: string
+      title: IssuingProtocol
+      enum:
+        - ISSUING_PROTOCOL_UNSPECIFIED
+        - ISSUING_PROTOCOL_API
+        - ISSUING_PROTOCOL_SCEP
+        - ISSUING_PROTOCOL_ACME
+        - ISSUING_PROTOCOL_EST
+        - ISSUING_PROTOCOL_MSAE
+        - ISSUING_PROTOCOL_CMP
+        - ISSUING_PROTOCOL_IMPORT
+    otpki.common.x509.v1.RevocationReasonCode:
+      type: string
+      title: RevocationReasonCode
+      enum:
+        - REVOCATION_REASON_CODE_UNSPECIFIED
+        - REVOCATION_REASON_CODE_KEY_COMPROMISE
+        - REVOCATION_REASON_CODE_CA_COMPROMISE
+        - REVOCATION_REASON_CODE_AFFILIATION_CHANGE
+        - REVOCATION_REASON_CODE_SUPERSEDED
+        - REVOCATION_REASON_CODE_CESSATION_OF_OPERATION
+        - REVOCATION_REASON_CODE_CERTIFICATE_HOLD
+        - REVOCATION_REASON_CODE_REMOVE_FROM_CRL
+        - REVOCATION_REASON_CODE_PRIVILEGE_WITHDRAWN
+        - REVOCATION_REASON_CODE_AA_COMPROMISE
+    otpki.common.x509.v1.SubjectDNAttrType:
+      type: string
+      title: SubjectDNAttrType
+      enum:
+        - SUBJECT_DN_ATTR_TYPE_UNSPECIFIED
+        - SUBJECT_DN_ATTR_TYPE_COMMON_NAME
+        - SUBJECT_DN_ATTR_TYPE_COUNTRY
+        - SUBJECT_DN_ATTR_TYPE_ORGANIZATION
+        - SUBJECT_DN_ATTR_TYPE_ORGANIZATIONAL_UNIT
+        - SUBJECT_DN_ATTR_TYPE_LOCALITY
+        - SUBJECT_DN_ATTR_TYPE_PROVINCE
+        - SUBJECT_DN_ATTR_TYPE_STREET_ADDRESS
+        - SUBJECT_DN_ATTR_TYPE_POSTAL_CODE
+        - SUBJECT_DN_ATTR_TYPE_SERIAL_NUMBER
+        - SUBJECT_DN_ATTR_TYPE_EMAIL
+        - SUBJECT_DN_ATTR_TYPE_DOMAIN_COMPONENT
+        - SUBJECT_DN_ATTR_TYPE_OID
+    otpki.common.x509.v1.SubjectDNAttribute:
+      type: object
+      properties:
+        attributeType:
+          not:
+            enum:
+              - SUBJECT_DN_ATTR_TYPE_UNSPECIFIED
+          title: attribute_type
+          $ref: '#/components/schemas/otpki.common.x509.v1.SubjectDNAttrType'
+        attributeValue:
+          type: string
+          title: attribute_value
+        oid:
+          type: string
+          title: oid
+          description: oid only needed for SUBJECT_DN_ATTR_TYPE_OID
+      title: SubjectDNAttribute
+      additionalProperties: false
+security: []

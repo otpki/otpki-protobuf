@@ -1,0 +1,31 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.api.v1
+paths: {}
+components:
+  schemas:
+    otpki.common.api.v1.HttpRequestBody:
+      type: object
+      properties:
+        data:
+          type: string
+          title: data
+          format: byte
+      title: HttpRequestBody
+      additionalProperties: false
+    otpki.common.api.v1.HttpRequestBodyAndId:
+      type: object
+      properties:
+        data:
+          type: string
+          title: data
+          format: byte
+        id:
+          type:
+            - integer
+            - string
+          title: id
+          format: int64
+      title: HttpRequestBodyAndId
+      additionalProperties: false
+security: []
