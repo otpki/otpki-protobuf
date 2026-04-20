@@ -114,6 +114,9 @@ const (
 	// PluginRuntimeServiceRollbackTxProcedure is the fully-qualified name of the PluginRuntimeService's
 	// RollbackTx RPC.
 	PluginRuntimeServiceRollbackTxProcedure = "/otpki.public.plugin.v1.PluginRuntimeService/RollbackTx"
+	// PluginRuntimeServiceCopyFromProcedure is the fully-qualified name of the PluginRuntimeService's
+	// CopyFrom RPC.
+	PluginRuntimeServiceCopyFromProcedure = "/otpki.public.plugin.v1.PluginRuntimeService/CopyFrom"
 )
 
 // PluginRuntimeServiceClient is a client for the otpki.public.plugin.v1.PluginRuntimeService
@@ -146,6 +149,7 @@ type PluginRuntimeServiceClient interface {
 	Exec(context.Context, *connect.Request[v1.ExecRequest]) (*connect.Response[v1.ExecResponse], error)
 	CommitTx(context.Context, *connect.Request[v1.CommitTxRequest]) (*connect.Response[v1.CommitTxResponse], error)
 	RollbackTx(context.Context, *connect.Request[v1.RollbackTxRequest]) (*connect.Response[v1.RollbackTxResponse], error)
+	CopyFrom(context.Context, *connect.Request[v1.CopyFromRequest]) (*connect.Response[v1.CopyFromResponse], error)
 }
 
 // NewPluginRuntimeServiceClient constructs a client for the
@@ -322,6 +326,12 @@ func NewPluginRuntimeServiceClient(httpClient connect.HTTPClient, baseURL string
 			connect.WithSchema(pluginRuntimeServiceMethods.ByName("RollbackTx")),
 			connect.WithClientOptions(opts...),
 		),
+		copyFrom: connect.NewClient[v1.CopyFromRequest, v1.CopyFromResponse](
+			httpClient,
+			baseURL+PluginRuntimeServiceCopyFromProcedure,
+			connect.WithSchema(pluginRuntimeServiceMethods.ByName("CopyFrom")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -354,6 +364,7 @@ type pluginRuntimeServiceClient struct {
 	exec                                       *connect.Client[v1.ExecRequest, v1.ExecResponse]
 	commitTx                                   *connect.Client[v1.CommitTxRequest, v1.CommitTxResponse]
 	rollbackTx                                 *connect.Client[v1.RollbackTxRequest, v1.RollbackTxResponse]
+	copyFrom                                   *connect.Client[v1.CopyFromRequest, v1.CopyFromResponse]
 }
 
 // GetBaseConfig calls otpki.public.plugin.v1.PluginRuntimeService.GetBaseConfig.
@@ -501,6 +512,11 @@ func (c *pluginRuntimeServiceClient) RollbackTx(ctx context.Context, req *connec
 	return c.rollbackTx.CallUnary(ctx, req)
 }
 
+// CopyFrom calls otpki.public.plugin.v1.PluginRuntimeService.CopyFrom.
+func (c *pluginRuntimeServiceClient) CopyFrom(ctx context.Context, req *connect.Request[v1.CopyFromRequest]) (*connect.Response[v1.CopyFromResponse], error) {
+	return c.copyFrom.CallUnary(ctx, req)
+}
+
 // PluginRuntimeServiceHandler is an implementation of the
 // otpki.public.plugin.v1.PluginRuntimeService service.
 type PluginRuntimeServiceHandler interface {
@@ -531,6 +547,7 @@ type PluginRuntimeServiceHandler interface {
 	Exec(context.Context, *connect.Request[v1.ExecRequest]) (*connect.Response[v1.ExecResponse], error)
 	CommitTx(context.Context, *connect.Request[v1.CommitTxRequest]) (*connect.Response[v1.CommitTxResponse], error)
 	RollbackTx(context.Context, *connect.Request[v1.RollbackTxRequest]) (*connect.Response[v1.RollbackTxResponse], error)
+	CopyFrom(context.Context, *connect.Request[v1.CopyFromRequest]) (*connect.Response[v1.CopyFromResponse], error)
 }
 
 // NewPluginRuntimeServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -702,6 +719,12 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 		connect.WithSchema(pluginRuntimeServiceMethods.ByName("RollbackTx")),
 		connect.WithHandlerOptions(opts...),
 	)
+	pluginRuntimeServiceCopyFromHandler := connect.NewUnaryHandler(
+		PluginRuntimeServiceCopyFromProcedure,
+		svc.CopyFrom,
+		connect.WithSchema(pluginRuntimeServiceMethods.ByName("CopyFrom")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/otpki.public.plugin.v1.PluginRuntimeService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case PluginRuntimeServiceGetBaseConfigProcedure:
@@ -758,6 +781,8 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 			pluginRuntimeServiceCommitTxHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceRollbackTxProcedure:
 			pluginRuntimeServiceRollbackTxHandler.ServeHTTP(w, r)
+		case PluginRuntimeServiceCopyFromProcedure:
+			pluginRuntimeServiceCopyFromHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -873,4 +898,8 @@ func (UnimplementedPluginRuntimeServiceHandler) CommitTx(context.Context, *conne
 
 func (UnimplementedPluginRuntimeServiceHandler) RollbackTx(context.Context, *connect.Request[v1.RollbackTxRequest]) (*connect.Response[v1.RollbackTxResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.v1.PluginRuntimeService.RollbackTx is not implemented"))
+}
+
+func (UnimplementedPluginRuntimeServiceHandler) CopyFrom(context.Context, *connect.Request[v1.CopyFromRequest]) (*connect.Response[v1.CopyFromResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.v1.PluginRuntimeService.CopyFrom is not implemented"))
 }

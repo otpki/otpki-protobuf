@@ -2207,7 +2207,7 @@ const file_otpki_public_plugin_v1_runtime_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12:\n" +
 	"\x05value\x18\x02 \x01(\v2$.otpki.public.plugin.v1.HeaderValuesR\x05value:\x028\x01\"4\n" +
 	"\x14AuthenticateResponse\x12\x1c\n" +
-	"\tprincipal\x18\x01 \x01(\fR\tprincipal2\xa7\x1a\n" +
+	"\tprincipal\x18\x01 \x01(\fR\tprincipal2\x86\x1b\n" +
 	"\x14PluginRuntimeService\x12l\n" +
 	"\rGetBaseConfig\x12,.otpki.public.plugin.v1.GetBaseConfigRequest\x1a-.otpki.public.plugin.v1.GetBaseConfigResponse\x12f\n" +
 	"\vCreateNonce\x12*.otpki.public.plugin.v1.CreateNonceRequest\x1a+.otpki.public.plugin.v1.CreateNonceResponse\x12]\n" +
@@ -2238,7 +2238,8 @@ const file_otpki_public_plugin_v1_runtime_proto_rawDesc = "" +
 	"\x04Exec\x12#.otpki.public.plugin.v1.ExecRequest\x1a$.otpki.public.plugin.v1.ExecResponse\x12]\n" +
 	"\bCommitTx\x12'.otpki.public.plugin.v1.CommitTxRequest\x1a(.otpki.public.plugin.v1.CommitTxResponse\x12c\n" +
 	"\n" +
-	"RollbackTx\x12).otpki.public.plugin.v1.RollbackTxRequest\x1a*.otpki.public.plugin.v1.RollbackTxResponseB\xec\x01\n" +
+	"RollbackTx\x12).otpki.public.plugin.v1.RollbackTxRequest\x1a*.otpki.public.plugin.v1.RollbackTxResponse\x12]\n" +
+	"\bCopyFrom\x12'.otpki.public.plugin.v1.CopyFromRequest\x1a(.otpki.public.plugin.v1.CopyFromResponseB\xec\x01\n" +
 	"\x1acom.otpki.public.plugin.v1B\fRuntimeProtoP\x01ZCgithub.com/otpki/otpki-protobuf/gen/otpki/public/plugin/v1;pluginv1\xa2\x02\x03OPP\xaa\x02\x16Otpki.Public.Plugin.V1\xca\x02\x17Otpki\\Public_\\Plugin\\V1\xe2\x02#Otpki\\Public_\\Plugin\\V1\\GPBMetadata\xea\x02\x19Otpki::Public::Plugin::V1b\x06proto3"
 
 var (
@@ -2316,11 +2317,13 @@ var file_otpki_public_plugin_v1_runtime_proto_goTypes = []any{
 	(*ExecRequest)(nil),                                        // 58: otpki.public.plugin.v1.ExecRequest
 	(*CommitTxRequest)(nil),                                    // 59: otpki.public.plugin.v1.CommitTxRequest
 	(*RollbackTxRequest)(nil),                                  // 60: otpki.public.plugin.v1.RollbackTxRequest
-	(*BeginTxResponse)(nil),                                    // 61: otpki.public.plugin.v1.BeginTxResponse
-	(*QueryResponse)(nil),                                      // 62: otpki.public.plugin.v1.QueryResponse
-	(*ExecResponse)(nil),                                       // 63: otpki.public.plugin.v1.ExecResponse
-	(*CommitTxResponse)(nil),                                   // 64: otpki.public.plugin.v1.CommitTxResponse
-	(*RollbackTxResponse)(nil),                                 // 65: otpki.public.plugin.v1.RollbackTxResponse
+	(*CopyFromRequest)(nil),                                    // 61: otpki.public.plugin.v1.CopyFromRequest
+	(*BeginTxResponse)(nil),                                    // 62: otpki.public.plugin.v1.BeginTxResponse
+	(*QueryResponse)(nil),                                      // 63: otpki.public.plugin.v1.QueryResponse
+	(*ExecResponse)(nil),                                       // 64: otpki.public.plugin.v1.ExecResponse
+	(*CommitTxResponse)(nil),                                   // 65: otpki.public.plugin.v1.CommitTxResponse
+	(*RollbackTxResponse)(nil),                                 // 66: otpki.public.plugin.v1.RollbackTxResponse
+	(*CopyFromResponse)(nil),                                   // 67: otpki.public.plugin.v1.CopyFromResponse
 }
 var file_otpki_public_plugin_v1_runtime_proto_depIdxs = []int32{
 	46, // 0: otpki.public.plugin.v1.GetEndEntityByLoginIDResponse.end_entity:type_name -> otpki.common.enrollment.end_entity.v1.EndEntity
@@ -2367,35 +2370,37 @@ var file_otpki_public_plugin_v1_runtime_proto_depIdxs = []int32{
 	58, // 41: otpki.public.plugin.v1.PluginRuntimeService.Exec:input_type -> otpki.public.plugin.v1.ExecRequest
 	59, // 42: otpki.public.plugin.v1.PluginRuntimeService.CommitTx:input_type -> otpki.public.plugin.v1.CommitTxRequest
 	60, // 43: otpki.public.plugin.v1.PluginRuntimeService.RollbackTx:input_type -> otpki.public.plugin.v1.RollbackTxRequest
-	1,  // 44: otpki.public.plugin.v1.PluginRuntimeService.GetBaseConfig:output_type -> otpki.public.plugin.v1.GetBaseConfigResponse
-	3,  // 45: otpki.public.plugin.v1.PluginRuntimeService.CreateNonce:output_type -> otpki.public.plugin.v1.CreateNonceResponse
-	5,  // 46: otpki.public.plugin.v1.PluginRuntimeService.AddNonce:output_type -> otpki.public.plugin.v1.AddNonceResponse
-	7,  // 47: otpki.public.plugin.v1.PluginRuntimeService.CheckNonce:output_type -> otpki.public.plugin.v1.CheckNonceResponse
-	9,  // 48: otpki.public.plugin.v1.PluginRuntimeService.AddUniqueNonce:output_type -> otpki.public.plugin.v1.AddUniqueNonceResponse
-	11, // 49: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntityByLoginID:output_type -> otpki.public.plugin.v1.GetEndEntityByLoginIDResponse
-	13, // 50: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntity:output_type -> otpki.public.plugin.v1.GetEndEntityResponse
-	15, // 51: otpki.public.plugin.v1.PluginRuntimeService.GetKey:output_type -> otpki.public.plugin.v1.GetKeyResponse
-	17, // 52: otpki.public.plugin.v1.PluginRuntimeService.GetAllRootCertificateAuthorityCertificates:output_type -> otpki.public.plugin.v1.GetAllRootCertificateAuthorityCertificatesResponse
-	19, // 53: otpki.public.plugin.v1.PluginRuntimeService.GetLatestCertificateAuthorityCertificate:output_type -> otpki.public.plugin.v1.GetLatestCertificateAuthorityCertificateResponse
-	21, // 54: otpki.public.plugin.v1.PluginRuntimeService.GetCertificateAuthority:output_type -> otpki.public.plugin.v1.GetCertificateAuthorityResponse
-	23, // 55: otpki.public.plugin.v1.PluginRuntimeService.GetCertificateProfile:output_type -> otpki.public.plugin.v1.GetCertificateProfileResponse
-	25, // 56: otpki.public.plugin.v1.PluginRuntimeService.CreateEnrollmentRequest:output_type -> otpki.public.plugin.v1.CreateEnrollmentRequestResponse
-	27, // 57: otpki.public.plugin.v1.PluginRuntimeService.GetEnrollmentByRequestID:output_type -> otpki.public.plugin.v1.GetEnrollmentByRequestIDResponse
-	29, // 58: otpki.public.plugin.v1.PluginRuntimeService.RevokeEndEntityCertificate:output_type -> otpki.public.plugin.v1.RevokeEndEntityCertificateResponse
-	31, // 59: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntityCertificateBySerialNumber:output_type -> otpki.public.plugin.v1.GetEndEntityCertificateBySerialNumberResponse
-	33, // 60: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntityCertificates:output_type -> otpki.public.plugin.v1.GetEndEntityCertificatesResponse
-	35, // 61: otpki.public.plugin.v1.PluginRuntimeService.SignKey:output_type -> otpki.public.plugin.v1.SignKeyResponse
-	37, // 62: otpki.public.plugin.v1.PluginRuntimeService.DecryptKey:output_type -> otpki.public.plugin.v1.DecryptKeyResponse
-	39, // 63: otpki.public.plugin.v1.PluginRuntimeService.EncryptWithEnvironmentToken:output_type -> otpki.public.plugin.v1.EncryptWithEnvironmentTokenResponse
-	41, // 64: otpki.public.plugin.v1.PluginRuntimeService.DecryptWithEnvironmentToken:output_type -> otpki.public.plugin.v1.DecryptWithEnvironmentTokenResponse
-	44, // 65: otpki.public.plugin.v1.PluginRuntimeService.Authenticate:output_type -> otpki.public.plugin.v1.AuthenticateResponse
-	61, // 66: otpki.public.plugin.v1.PluginRuntimeService.BeginTx:output_type -> otpki.public.plugin.v1.BeginTxResponse
-	62, // 67: otpki.public.plugin.v1.PluginRuntimeService.Query:output_type -> otpki.public.plugin.v1.QueryResponse
-	63, // 68: otpki.public.plugin.v1.PluginRuntimeService.Exec:output_type -> otpki.public.plugin.v1.ExecResponse
-	64, // 69: otpki.public.plugin.v1.PluginRuntimeService.CommitTx:output_type -> otpki.public.plugin.v1.CommitTxResponse
-	65, // 70: otpki.public.plugin.v1.PluginRuntimeService.RollbackTx:output_type -> otpki.public.plugin.v1.RollbackTxResponse
-	44, // [44:71] is the sub-list for method output_type
-	17, // [17:44] is the sub-list for method input_type
+	61, // 44: otpki.public.plugin.v1.PluginRuntimeService.CopyFrom:input_type -> otpki.public.plugin.v1.CopyFromRequest
+	1,  // 45: otpki.public.plugin.v1.PluginRuntimeService.GetBaseConfig:output_type -> otpki.public.plugin.v1.GetBaseConfigResponse
+	3,  // 46: otpki.public.plugin.v1.PluginRuntimeService.CreateNonce:output_type -> otpki.public.plugin.v1.CreateNonceResponse
+	5,  // 47: otpki.public.plugin.v1.PluginRuntimeService.AddNonce:output_type -> otpki.public.plugin.v1.AddNonceResponse
+	7,  // 48: otpki.public.plugin.v1.PluginRuntimeService.CheckNonce:output_type -> otpki.public.plugin.v1.CheckNonceResponse
+	9,  // 49: otpki.public.plugin.v1.PluginRuntimeService.AddUniqueNonce:output_type -> otpki.public.plugin.v1.AddUniqueNonceResponse
+	11, // 50: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntityByLoginID:output_type -> otpki.public.plugin.v1.GetEndEntityByLoginIDResponse
+	13, // 51: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntity:output_type -> otpki.public.plugin.v1.GetEndEntityResponse
+	15, // 52: otpki.public.plugin.v1.PluginRuntimeService.GetKey:output_type -> otpki.public.plugin.v1.GetKeyResponse
+	17, // 53: otpki.public.plugin.v1.PluginRuntimeService.GetAllRootCertificateAuthorityCertificates:output_type -> otpki.public.plugin.v1.GetAllRootCertificateAuthorityCertificatesResponse
+	19, // 54: otpki.public.plugin.v1.PluginRuntimeService.GetLatestCertificateAuthorityCertificate:output_type -> otpki.public.plugin.v1.GetLatestCertificateAuthorityCertificateResponse
+	21, // 55: otpki.public.plugin.v1.PluginRuntimeService.GetCertificateAuthority:output_type -> otpki.public.plugin.v1.GetCertificateAuthorityResponse
+	23, // 56: otpki.public.plugin.v1.PluginRuntimeService.GetCertificateProfile:output_type -> otpki.public.plugin.v1.GetCertificateProfileResponse
+	25, // 57: otpki.public.plugin.v1.PluginRuntimeService.CreateEnrollmentRequest:output_type -> otpki.public.plugin.v1.CreateEnrollmentRequestResponse
+	27, // 58: otpki.public.plugin.v1.PluginRuntimeService.GetEnrollmentByRequestID:output_type -> otpki.public.plugin.v1.GetEnrollmentByRequestIDResponse
+	29, // 59: otpki.public.plugin.v1.PluginRuntimeService.RevokeEndEntityCertificate:output_type -> otpki.public.plugin.v1.RevokeEndEntityCertificateResponse
+	31, // 60: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntityCertificateBySerialNumber:output_type -> otpki.public.plugin.v1.GetEndEntityCertificateBySerialNumberResponse
+	33, // 61: otpki.public.plugin.v1.PluginRuntimeService.GetEndEntityCertificates:output_type -> otpki.public.plugin.v1.GetEndEntityCertificatesResponse
+	35, // 62: otpki.public.plugin.v1.PluginRuntimeService.SignKey:output_type -> otpki.public.plugin.v1.SignKeyResponse
+	37, // 63: otpki.public.plugin.v1.PluginRuntimeService.DecryptKey:output_type -> otpki.public.plugin.v1.DecryptKeyResponse
+	39, // 64: otpki.public.plugin.v1.PluginRuntimeService.EncryptWithEnvironmentToken:output_type -> otpki.public.plugin.v1.EncryptWithEnvironmentTokenResponse
+	41, // 65: otpki.public.plugin.v1.PluginRuntimeService.DecryptWithEnvironmentToken:output_type -> otpki.public.plugin.v1.DecryptWithEnvironmentTokenResponse
+	44, // 66: otpki.public.plugin.v1.PluginRuntimeService.Authenticate:output_type -> otpki.public.plugin.v1.AuthenticateResponse
+	62, // 67: otpki.public.plugin.v1.PluginRuntimeService.BeginTx:output_type -> otpki.public.plugin.v1.BeginTxResponse
+	63, // 68: otpki.public.plugin.v1.PluginRuntimeService.Query:output_type -> otpki.public.plugin.v1.QueryResponse
+	64, // 69: otpki.public.plugin.v1.PluginRuntimeService.Exec:output_type -> otpki.public.plugin.v1.ExecResponse
+	65, // 70: otpki.public.plugin.v1.PluginRuntimeService.CommitTx:output_type -> otpki.public.plugin.v1.CommitTxResponse
+	66, // 71: otpki.public.plugin.v1.PluginRuntimeService.RollbackTx:output_type -> otpki.public.plugin.v1.RollbackTxResponse
+	67, // 72: otpki.public.plugin.v1.PluginRuntimeService.CopyFrom:output_type -> otpki.public.plugin.v1.CopyFromResponse
+	45, // [45:73] is the sub-list for method output_type
+	17, // [17:45] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name
 	17, // [17:17] is the sub-list for extension extendee
 	0,  // [0:17] is the sub-list for field type_name

@@ -19,7 +19,7 @@ import (
 	"google.golang.org/protobuf/types/descriptorpb"
 	"google.golang.org/protobuf/types/pluginpb"
 
-	options "protoc-gen-native/api"
+	options "github.com/otpki/otpki-protobuf/tools/protoc-gen-native/api"
 )
 
 type ConverterInfo struct {
@@ -89,7 +89,7 @@ func (p *{{.StructName}}) ToNative() (*{{.StructName}}Native, error) {
 
 func main() {
 	var flags flag.FlagSet
-	converterPkgFlag := flags.String("converters_pkg", "", "Path to the converters pkg")
+	converterPkgFlag := flags.String("converters_pkg", "", "Local path or Go import path to the converters pkg")
 	protogen.Options{
 		ParamFunc: flags.Set,
 	}.Run(func(gen *protogen.Plugin) error {

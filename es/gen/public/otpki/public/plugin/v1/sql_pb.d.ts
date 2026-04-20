@@ -565,6 +565,130 @@ export declare type RollbackTxResponseValid = RollbackTxResponse;
 export declare const RollbackTxResponseSchema: GenMessage<RollbackTxResponse, {jsonType: RollbackTxResponseJson, validType: RollbackTxResponseValid}>;
 
 /**
+ * @generated from message otpki.public.plugin.v1.CopyFromRow
+ */
+export declare type CopyFromRow = Message<"otpki.public.plugin.v1.CopyFromRow"> & {
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.SQLParam values = 1;
+   */
+  values: SQLParam[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromRow
+ */
+export declare type CopyFromRowJson = {
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.SQLParam values = 1;
+   */
+  values?: SQLParamJson[];
+};
+
+export declare type CopyFromRowValid = CopyFromRow;
+
+/**
+ * Describes the message otpki.public.plugin.v1.CopyFromRow.
+ * Use `create(CopyFromRowSchema)` to create a new message.
+ */
+export declare const CopyFromRowSchema: GenMessage<CopyFromRow, {jsonType: CopyFromRowJson, validType: CopyFromRowValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromRequest
+ */
+export declare type CopyFromRequest = Message<"otpki.public.plugin.v1.CopyFromRequest"> & {
+  /**
+   * @generated from field: string plugin = 1;
+   */
+  plugin: string;
+
+  /**
+   * @generated from field: uint64 tx_id = 2;
+   */
+  txId: bigint;
+
+  /**
+   * @generated from field: repeated string table_name = 3;
+   */
+  tableName: string[];
+
+  /**
+   * @generated from field: repeated string column_names = 4;
+   */
+  columnNames: string[];
+
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.CopyFromRow rows = 5;
+   */
+  rows: CopyFromRow[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromRequest
+ */
+export declare type CopyFromRequestJson = {
+  /**
+   * @generated from field: string plugin = 1;
+   */
+  plugin?: string;
+
+  /**
+   * @generated from field: uint64 tx_id = 2;
+   */
+  txId?: string;
+
+  /**
+   * @generated from field: repeated string table_name = 3;
+   */
+  tableName?: string[];
+
+  /**
+   * @generated from field: repeated string column_names = 4;
+   */
+  columnNames?: string[];
+
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.CopyFromRow rows = 5;
+   */
+  rows?: CopyFromRowJson[];
+};
+
+export declare type CopyFromRequestValid = CopyFromRequest;
+
+/**
+ * Describes the message otpki.public.plugin.v1.CopyFromRequest.
+ * Use `create(CopyFromRequestSchema)` to create a new message.
+ */
+export declare const CopyFromRequestSchema: GenMessage<CopyFromRequest, {jsonType: CopyFromRequestJson, validType: CopyFromRequestValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromResponse
+ */
+export declare type CopyFromResponse = Message<"otpki.public.plugin.v1.CopyFromResponse"> & {
+  /**
+   * @generated from field: int64 rows_affected = 1;
+   */
+  rowsAffected: bigint;
+};
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromResponse
+ */
+export declare type CopyFromResponseJson = {
+  /**
+   * @generated from field: int64 rows_affected = 1;
+   */
+  rowsAffected?: string;
+};
+
+export declare type CopyFromResponseValid = CopyFromResponse;
+
+/**
+ * Describes the message otpki.public.plugin.v1.CopyFromResponse.
+ * Use `create(CopyFromResponseSchema)` to create a new message.
+ */
+export declare const CopyFromResponseSchema: GenMessage<CopyFromResponse, {jsonType: CopyFromResponseJson, validType: CopyFromResponseValid}>;
+
+/**
  * @generated from enum otpki.public.plugin.v1.SQLFormat
  */
 export enum SQLFormat {

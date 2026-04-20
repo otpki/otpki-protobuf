@@ -77,3 +77,19 @@ message RollbackTxRequest {
 }
 
 message RollbackTxResponse {}
+
+message CopyFromRow {
+  repeated SQLParam values = 1;
+}
+
+message CopyFromRequest {
+  string plugin = 1;
+  uint64 tx_id = 2;
+  repeated string table_name = 3;
+  repeated string column_names = 4;
+  repeated CopyFromRow rows = 5;
+}
+
+message CopyFromResponse {
+  int64 rows_affected = 1;
+}

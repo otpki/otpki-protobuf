@@ -232,4 +232,5 @@ service PluginRuntimeService {
   rpc Exec(ExecRequest) returns (ExecResponse);
   rpc CommitTx(CommitTxRequest) returns (CommitTxResponse);
   rpc RollbackTx(RollbackTxRequest) returns (RollbackTxResponse);
+  rpc CopyFrom(CopyFromRequest) returns (CopyFromResponse);
 }

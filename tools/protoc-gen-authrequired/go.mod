@@ -1,4 +1,4 @@
-module protoc-gen-authrequired
+module github.com/otpki/otpki-protobuf/tools/protoc-gen-authrequired
 
 go 1.25.4
 

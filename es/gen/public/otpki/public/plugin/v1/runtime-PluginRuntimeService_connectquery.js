@@ -138,3 +138,8 @@ export const commitTx = PluginRuntimeService.method.commitTx;
  * @generated from rpc otpki.public.plugin.v1.PluginRuntimeService.RollbackTx
  */
 export const rollbackTx = PluginRuntimeService.method.rollbackTx;
+
+/**
+ * @generated from rpc otpki.public.plugin.v1.PluginRuntimeService.CopyFrom
+ */
+export const copyFrom = PluginRuntimeService.method.copyFrom;

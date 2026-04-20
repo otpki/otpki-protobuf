@@ -212,6 +212,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.plugin.v1.CommitTxResponse'
+  /otpki.public.plugin.v1.PluginRuntimeService/CopyFrom:
+    post:
+      tags:
+        - otpki.public.plugin.v1.PluginRuntimeService
+      summary: CopyFrom
+      operationId: otpki.public.plugin.v1.PluginRuntimeService.CopyFrom
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/otpki.public.plugin.v1.CopyFromRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.plugin.v1.CopyFromResponse'
   /otpki.public.plugin.v1.PluginRuntimeService/CreateEnrollmentRequest:
     post:
       tags:
@@ -2611,6 +2646,56 @@ components:
     otpki.public.plugin.v1.CommitTxResponse:
       type: object
       title: CommitTxResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.CopyFromRequest:
+      type: object
+      properties:
+        plugin:
+          type: string
+          title: plugin
+        txId:
+          type:
+            - integer
+            - string
+          title: tx_id
+          format: int64
+        tableName:
+          type: array
+          items:
+            type: string
+          title: table_name
+        columnNames:
+          type: array
+          items:
+            type: string
+          title: column_names
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.CopyFromRow'
+          title: rows
+      title: CopyFromRequest
+      additionalProperties: false
+    otpki.public.plugin.v1.CopyFromResponse:
+      type: object
+      properties:
+        rowsAffected:
+          type:
+            - integer
+            - string
+          title: rows_affected
+          format: int64
+      title: CopyFromResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.CopyFromRow:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.SQLParam'
+          title: values
+      title: CopyFromRow
       additionalProperties: false
     otpki.public.plugin.v1.CreateEnrollmentRequestRequest:
       type: object

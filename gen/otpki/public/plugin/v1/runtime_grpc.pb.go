@@ -46,6 +46,7 @@ const (
 	PluginRuntimeService_Exec_FullMethodName                                       = "/otpki.public.plugin.v1.PluginRuntimeService/Exec"
 	PluginRuntimeService_CommitTx_FullMethodName                                   = "/otpki.public.plugin.v1.PluginRuntimeService/CommitTx"
 	PluginRuntimeService_RollbackTx_FullMethodName                                 = "/otpki.public.plugin.v1.PluginRuntimeService/RollbackTx"
+	PluginRuntimeService_CopyFrom_FullMethodName                                   = "/otpki.public.plugin.v1.PluginRuntimeService/CopyFrom"
 )
 
 // PluginRuntimeServiceClient is the client API for PluginRuntimeService service.
@@ -79,6 +80,7 @@ type PluginRuntimeServiceClient interface {
 	Exec(ctx context.Context, in *ExecRequest, opts ...grpc.CallOption) (*ExecResponse, error)
 	CommitTx(ctx context.Context, in *CommitTxRequest, opts ...grpc.CallOption) (*CommitTxResponse, error)
 	RollbackTx(ctx context.Context, in *RollbackTxRequest, opts ...grpc.CallOption) (*RollbackTxResponse, error)
+	CopyFrom(ctx context.Context, in *CopyFromRequest, opts ...grpc.CallOption) (*CopyFromResponse, error)
 }
 
 type pluginRuntimeServiceClient struct {
@@ -359,6 +361,16 @@ func (c *pluginRuntimeServiceClient) RollbackTx(ctx context.Context, in *Rollbac
 	return out, nil
 }
 
+func (c *pluginRuntimeServiceClient) CopyFrom(ctx context.Context, in *CopyFromRequest, opts ...grpc.CallOption) (*CopyFromResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CopyFromResponse)
+	err := c.cc.Invoke(ctx, PluginRuntimeService_CopyFrom_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PluginRuntimeServiceServer is the server API for PluginRuntimeService service.
 // All implementations must embed UnimplementedPluginRuntimeServiceServer
 // for forward compatibility.
@@ -390,6 +402,7 @@ type PluginRuntimeServiceServer interface {
 	Exec(context.Context, *ExecRequest) (*ExecResponse, error)
 	CommitTx(context.Context, *CommitTxRequest) (*CommitTxResponse, error)
 	RollbackTx(context.Context, *RollbackTxRequest) (*RollbackTxResponse, error)
+	CopyFrom(context.Context, *CopyFromRequest) (*CopyFromResponse, error)
 	mustEmbedUnimplementedPluginRuntimeServiceServer()
 }
 
@@ -480,6 +493,9 @@ func (UnimplementedPluginRuntimeServiceServer) CommitTx(context.Context, *Commit
 }
 func (UnimplementedPluginRuntimeServiceServer) RollbackTx(context.Context, *RollbackTxRequest) (*RollbackTxResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method RollbackTx not implemented")
+}
+func (UnimplementedPluginRuntimeServiceServer) CopyFrom(context.Context, *CopyFromRequest) (*CopyFromResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CopyFrom not implemented")
 }
 func (UnimplementedPluginRuntimeServiceServer) mustEmbedUnimplementedPluginRuntimeServiceServer() {}
 func (UnimplementedPluginRuntimeServiceServer) testEmbeddedByValue()                              {}
@@ -988,6 +1004,24 @@ func _PluginRuntimeService_RollbackTx_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PluginRuntimeService_CopyFrom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CopyFromRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginRuntimeServiceServer).CopyFrom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginRuntimeService_CopyFrom_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginRuntimeServiceServer).CopyFrom(ctx, req.(*CopyFromRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PluginRuntimeService_ServiceDesc is the grpc.ServiceDesc for PluginRuntimeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1102,6 +1136,10 @@ var PluginRuntimeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RollbackTx",
 			Handler:    _PluginRuntimeService_RollbackTx_Handler,
+		},
+		{
+			MethodName: "CopyFrom",
+			Handler:    _PluginRuntimeService_CopyFrom_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

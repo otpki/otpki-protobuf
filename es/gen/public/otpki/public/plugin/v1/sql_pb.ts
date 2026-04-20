@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/plugin/v1/sql.proto.
  */
 export const file_otpki_public_plugin_v1_sql: GenFile = /*@__PURE__*/
-  fileDesc("CiBvdHBraS9wdWJsaWMvcGx1Z2luL3YxL3NxbC5wcm90bxIWb3Rwa2kucHVibGljLnBsdWdpbi52MSJqCghTUUxQYXJhbRIPCgdpc19udWxsGAEgASgIEgsKA29pZBgCIAEoDRIxCgZmb3JtYXQYAyABKA4yIS5vdHBraS5wdWJsaWMucGx1Z2luLnYxLlNRTEZvcm1hdBINCgV2YWx1ZRgEIAEoDCJNCglTUUxDb2x1bW4SDAoEbmFtZRgBIAEoCRILCgNvaWQYAiABKA0SFQoNdHlwZV9tb2RpZmllchgDIAEoBRIOCgZmb3JtYXQYBCABKA0iKQoHU1FMQ2VsbBIPCgdpc19udWxsGAEgASgIEg0KBXZhbHVlGAIgASgMIjYKA1JvdxIvCgZ2YWx1ZXMYASADKAsyHy5vdHBraS5wdWJsaWMucGx1Z2luLnYxLlNRTENlbGwiagoMUXVlcnlSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRILCgNzcWwYAiABKAkSLgoEYXJncxgDIAMoCzIgLm90cGtpLnB1YmxpYy5wbHVnaW4udjEuU1FMUGFyYW0SDQoFdHhfaWQYBCABKAQibgoNUXVlcnlSZXNwb25zZRIyCgdjb2x1bW5zGAEgAygLMiEub3Rwa2kucHVibGljLnBsdWdpbi52MS5TUUxDb2x1bW4SKQoEcm93cxgCIAMoCzIbLm90cGtpLnB1YmxpYy5wbHVnaW4udjEuUm93ImkKC0V4ZWNSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRILCgNzcWwYAiABKAkSLgoEYXJncxgDIAMoCzIgLm90cGtpLnB1YmxpYy5wbHVnaW4udjEuU1FMUGFyYW0SDQoFdHhfaWQYBCABKAQiJQoMRXhlY1Jlc3BvbnNlEhUKDXJvd3NfYWZmZWN0ZWQYASABKAMiNgoOQmVnaW5UeFJlcXVlc3QSDgoGcGx1Z2luGAEgASgJEhQKDHBhcmVudF90eF9pZBgCIAEoBCIgCg9CZWdpblR4UmVzcG9uc2USDQoFdHhfaWQYASABKAQiMAoPQ29tbWl0VHhSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRINCgV0eF9pZBgCIAEoBCISChBDb21taXRUeFJlc3BvbnNlIjIKEVJvbGxiYWNrVHhSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRINCgV0eF9pZBgCIAEoBCIUChJSb2xsYmFja1R4UmVzcG9uc2UqUwoJU1FMRm9ybWF0EhoKFlNRTF9GT1JNQVRfVU5TUEVDSUZJRUQQABITCg9TUUxfRk9STUFUX1RFWFQQARIVChFTUUxfRk9STUFUX0JJTkFSWRACQqMBChpjb20ub3Rwa2kucHVibGljLnBsdWdpbi52MUIIU3FsUHJvdG9QAaICA09QUKoCFk90cGtpLlB1YmxpYy5QbHVnaW4uVjHKAhdPdHBraVxQdWJsaWNfXFBsdWdpblxWMeICI090cGtpXFB1YmxpY19cUGx1Z2luXFYxXEdQQk1ldGFkYXRh6gIZT3Rwa2k6OlB1YmxpYzo6UGx1Z2luOjpWMWIGcHJvdG8z");
+  fileDesc("CiBvdHBraS9wdWJsaWMvcGx1Z2luL3YxL3NxbC5wcm90bxIWb3Rwa2kucHVibGljLnBsdWdpbi52MSJqCghTUUxQYXJhbRIPCgdpc19udWxsGAEgASgIEgsKA29pZBgCIAEoDRIxCgZmb3JtYXQYAyABKA4yIS5vdHBraS5wdWJsaWMucGx1Z2luLnYxLlNRTEZvcm1hdBINCgV2YWx1ZRgEIAEoDCJNCglTUUxDb2x1bW4SDAoEbmFtZRgBIAEoCRILCgNvaWQYAiABKA0SFQoNdHlwZV9tb2RpZmllchgDIAEoBRIOCgZmb3JtYXQYBCABKA0iKQoHU1FMQ2VsbBIPCgdpc19udWxsGAEgASgIEg0KBXZhbHVlGAIgASgMIjYKA1JvdxIvCgZ2YWx1ZXMYASADKAsyHy5vdHBraS5wdWJsaWMucGx1Z2luLnYxLlNRTENlbGwiagoMUXVlcnlSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRILCgNzcWwYAiABKAkSLgoEYXJncxgDIAMoCzIgLm90cGtpLnB1YmxpYy5wbHVnaW4udjEuU1FMUGFyYW0SDQoFdHhfaWQYBCABKAQibgoNUXVlcnlSZXNwb25zZRIyCgdjb2x1bW5zGAEgAygLMiEub3Rwa2kucHVibGljLnBsdWdpbi52MS5TUUxDb2x1bW4SKQoEcm93cxgCIAMoCzIbLm90cGtpLnB1YmxpYy5wbHVnaW4udjEuUm93ImkKC0V4ZWNSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRILCgNzcWwYAiABKAkSLgoEYXJncxgDIAMoCzIgLm90cGtpLnB1YmxpYy5wbHVnaW4udjEuU1FMUGFyYW0SDQoFdHhfaWQYBCABKAQiJQoMRXhlY1Jlc3BvbnNlEhUKDXJvd3NfYWZmZWN0ZWQYASABKAMiNgoOQmVnaW5UeFJlcXVlc3QSDgoGcGx1Z2luGAEgASgJEhQKDHBhcmVudF90eF9pZBgCIAEoBCIgCg9CZWdpblR4UmVzcG9uc2USDQoFdHhfaWQYASABKAQiMAoPQ29tbWl0VHhSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRINCgV0eF9pZBgCIAEoBCISChBDb21taXRUeFJlc3BvbnNlIjIKEVJvbGxiYWNrVHhSZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRINCgV0eF9pZBgCIAEoBCIUChJSb2xsYmFja1R4UmVzcG9uc2UiPwoLQ29weUZyb21Sb3cSMAoGdmFsdWVzGAEgAygLMiAub3Rwa2kucHVibGljLnBsdWdpbi52MS5TUUxQYXJhbSKNAQoPQ29weUZyb21SZXF1ZXN0Eg4KBnBsdWdpbhgBIAEoCRINCgV0eF9pZBgCIAEoBBISCgp0YWJsZV9uYW1lGAMgAygJEhQKDGNvbHVtbl9uYW1lcxgEIAMoCRIxCgRyb3dzGAUgAygLMiMub3Rwa2kucHVibGljLnBsdWdpbi52MS5Db3B5RnJvbVJvdyIpChBDb3B5RnJvbVJlc3BvbnNlEhUKDXJvd3NfYWZmZWN0ZWQYASABKAMqUwoJU1FMRm9ybWF0EhoKFlNRTF9GT1JNQVRfVU5TUEVDSUZJRUQQABITCg9TUUxfRk9STUFUX1RFWFQQARIVChFTUUxfRk9STUFUX0JJTkFSWRACQqMBChpjb20ub3Rwa2kucHVibGljLnBsdWdpbi52MUIIU3FsUHJvdG9QAaICA09QUKoCFk90cGtpLlB1YmxpYy5QbHVnaW4uVjHKAhdPdHBraVxQdWJsaWNfXFBsdWdpblxWMeICI090cGtpXFB1YmxpY19cUGx1Z2luXFYxXEdQQk1ldGFkYXRh6gIZT3Rwa2k6OlB1YmxpYzo6UGx1Z2luOjpWMWIGcHJvdG8z");
 
 /**
  * @generated from message otpki.public.plugin.v1.SQLParam
@@ -579,6 +579,133 @@ export type RollbackTxResponseValid = RollbackTxResponse;
  */
 export const RollbackTxResponseSchema: GenMessage<RollbackTxResponse, {jsonType: RollbackTxResponseJson, validType: RollbackTxResponseValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_plugin_v1_sql, 13);
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromRow
+ */
+export type CopyFromRow = Message<"otpki.public.plugin.v1.CopyFromRow"> & {
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.SQLParam values = 1;
+   */
+  values: SQLParam[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromRow
+ */
+export type CopyFromRowJson = {
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.SQLParam values = 1;
+   */
+  values?: SQLParamJson[];
+};
+
+export type CopyFromRowValid = CopyFromRow;
+
+/**
+ * Describes the message otpki.public.plugin.v1.CopyFromRow.
+ * Use `create(CopyFromRowSchema)` to create a new message.
+ */
+export const CopyFromRowSchema: GenMessage<CopyFromRow, {jsonType: CopyFromRowJson, validType: CopyFromRowValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_v1_sql, 14);
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromRequest
+ */
+export type CopyFromRequest = Message<"otpki.public.plugin.v1.CopyFromRequest"> & {
+  /**
+   * @generated from field: string plugin = 1;
+   */
+  plugin: string;
+
+  /**
+   * @generated from field: uint64 tx_id = 2;
+   */
+  txId: bigint;
+
+  /**
+   * @generated from field: repeated string table_name = 3;
+   */
+  tableName: string[];
+
+  /**
+   * @generated from field: repeated string column_names = 4;
+   */
+  columnNames: string[];
+
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.CopyFromRow rows = 5;
+   */
+  rows: CopyFromRow[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromRequest
+ */
+export type CopyFromRequestJson = {
+  /**
+   * @generated from field: string plugin = 1;
+   */
+  plugin?: string;
+
+  /**
+   * @generated from field: uint64 tx_id = 2;
+   */
+  txId?: string;
+
+  /**
+   * @generated from field: repeated string table_name = 3;
+   */
+  tableName?: string[];
+
+  /**
+   * @generated from field: repeated string column_names = 4;
+   */
+  columnNames?: string[];
+
+  /**
+   * @generated from field: repeated otpki.public.plugin.v1.CopyFromRow rows = 5;
+   */
+  rows?: CopyFromRowJson[];
+};
+
+export type CopyFromRequestValid = CopyFromRequest;
+
+/**
+ * Describes the message otpki.public.plugin.v1.CopyFromRequest.
+ * Use `create(CopyFromRequestSchema)` to create a new message.
+ */
+export const CopyFromRequestSchema: GenMessage<CopyFromRequest, {jsonType: CopyFromRequestJson, validType: CopyFromRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_v1_sql, 15);
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromResponse
+ */
+export type CopyFromResponse = Message<"otpki.public.plugin.v1.CopyFromResponse"> & {
+  /**
+   * @generated from field: int64 rows_affected = 1;
+   */
+  rowsAffected: bigint;
+};
+
+/**
+ * @generated from message otpki.public.plugin.v1.CopyFromResponse
+ */
+export type CopyFromResponseJson = {
+  /**
+   * @generated from field: int64 rows_affected = 1;
+   */
+  rowsAffected?: string;
+};
+
+export type CopyFromResponseValid = CopyFromResponse;
+
+/**
+ * Describes the message otpki.public.plugin.v1.CopyFromResponse.
+ * Use `create(CopyFromResponseSchema)` to create a new message.
+ */
+export const CopyFromResponseSchema: GenMessage<CopyFromResponse, {jsonType: CopyFromResponseJson, validType: CopyFromResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_v1_sql, 16);
 
 /**
  * @generated from enum otpki.public.plugin.v1.SQLFormat

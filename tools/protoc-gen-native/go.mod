@@ -1,4 +1,4 @@
-module protoc-gen-native
+module github.com/otpki/otpki-protobuf/tools/protoc-gen-native
 
 go 1.25.4
 

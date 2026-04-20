@@ -808,6 +808,170 @@ func (*RollbackTxResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_sql_proto_rawDescGZIP(), []int{13}
 }
 
+type CopyFromRow struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Values        []*SQLParam            `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CopyFromRow) Reset() {
+	*x = CopyFromRow{}
+	mi := &file_otpki_public_plugin_v1_sql_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CopyFromRow) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CopyFromRow) ProtoMessage() {}
+
+func (x *CopyFromRow) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_v1_sql_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CopyFromRow.ProtoReflect.Descriptor instead.
+func (*CopyFromRow) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_v1_sql_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *CopyFromRow) GetValues() []*SQLParam {
+	if x != nil {
+		return x.Values
+	}
+	return nil
+}
+
+type CopyFromRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Plugin        string                 `protobuf:"bytes,1,opt,name=plugin,proto3" json:"plugin,omitempty"`
+	TxId          uint64                 `protobuf:"varint,2,opt,name=tx_id,json=txId,proto3" json:"tx_id,omitempty"`
+	TableName     []string               `protobuf:"bytes,3,rep,name=table_name,json=tableName,proto3" json:"table_name,omitempty"`
+	ColumnNames   []string               `protobuf:"bytes,4,rep,name=column_names,json=columnNames,proto3" json:"column_names,omitempty"`
+	Rows          []*CopyFromRow         `protobuf:"bytes,5,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CopyFromRequest) Reset() {
+	*x = CopyFromRequest{}
+	mi := &file_otpki_public_plugin_v1_sql_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CopyFromRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CopyFromRequest) ProtoMessage() {}
+
+func (x *CopyFromRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_v1_sql_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CopyFromRequest.ProtoReflect.Descriptor instead.
+func (*CopyFromRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_v1_sql_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *CopyFromRequest) GetPlugin() string {
+	if x != nil {
+		return x.Plugin
+	}
+	return ""
+}
+
+func (x *CopyFromRequest) GetTxId() uint64 {
+	if x != nil {
+		return x.TxId
+	}
+	return 0
+}
+
+func (x *CopyFromRequest) GetTableName() []string {
+	if x != nil {
+		return x.TableName
+	}
+	return nil
+}
+
+func (x *CopyFromRequest) GetColumnNames() []string {
+	if x != nil {
+		return x.ColumnNames
+	}
+	return nil
+}
+
+func (x *CopyFromRequest) GetRows() []*CopyFromRow {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type CopyFromResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RowsAffected  int64                  `protobuf:"varint,1,opt,name=rows_affected,json=rowsAffected,proto3" json:"rows_affected,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CopyFromResponse) Reset() {
+	*x = CopyFromResponse{}
+	mi := &file_otpki_public_plugin_v1_sql_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CopyFromResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CopyFromResponse) ProtoMessage() {}
+
+func (x *CopyFromResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_v1_sql_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CopyFromResponse.ProtoReflect.Descriptor instead.
+func (*CopyFromResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_v1_sql_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *CopyFromResponse) GetRowsAffected() int64 {
+	if x != nil {
+		return x.RowsAffected
+	}
+	return 0
+}
+
 var File_otpki_public_plugin_v1_sql_proto protoreflect.FileDescriptor
 
 const file_otpki_public_plugin_v1_sql_proto_rawDesc = "" +
@@ -856,7 +1020,18 @@ const file_otpki_public_plugin_v1_sql_proto_rawDesc = "" +
 	"\x11RollbackTxRequest\x12\x16\n" +
 	"\x06plugin\x18\x01 \x01(\tR\x06plugin\x12\x13\n" +
 	"\x05tx_id\x18\x02 \x01(\x04R\x04txId\"\x14\n" +
-	"\x12RollbackTxResponse*S\n" +
+	"\x12RollbackTxResponse\"G\n" +
+	"\vCopyFromRow\x128\n" +
+	"\x06values\x18\x01 \x03(\v2 .otpki.public.plugin.v1.SQLParamR\x06values\"\xb9\x01\n" +
+	"\x0fCopyFromRequest\x12\x16\n" +
+	"\x06plugin\x18\x01 \x01(\tR\x06plugin\x12\x13\n" +
+	"\x05tx_id\x18\x02 \x01(\x04R\x04txId\x12\x1d\n" +
+	"\n" +
+	"table_name\x18\x03 \x03(\tR\ttableName\x12!\n" +
+	"\fcolumn_names\x18\x04 \x03(\tR\vcolumnNames\x127\n" +
+	"\x04rows\x18\x05 \x03(\v2#.otpki.public.plugin.v1.CopyFromRowR\x04rows\"7\n" +
+	"\x10CopyFromResponse\x12#\n" +
+	"\rrows_affected\x18\x01 \x01(\x03R\frowsAffected*S\n" +
 	"\tSQLFormat\x12\x1a\n" +
 	"\x16SQL_FORMAT_UNSPECIFIED\x10\x00\x12\x13\n" +
 	"\x0fSQL_FORMAT_TEXT\x10\x01\x12\x15\n" +
@@ -876,7 +1051,7 @@ func file_otpki_public_plugin_v1_sql_proto_rawDescGZIP() []byte {
 }
 
 var file_otpki_public_plugin_v1_sql_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_otpki_public_plugin_v1_sql_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_otpki_public_plugin_v1_sql_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_otpki_public_plugin_v1_sql_proto_goTypes = []any{
 	(SQLFormat)(0),             // 0: otpki.public.plugin.v1.SQLFormat
 	(*SQLParam)(nil),           // 1: otpki.public.plugin.v1.SQLParam
@@ -893,19 +1068,24 @@ var file_otpki_public_plugin_v1_sql_proto_goTypes = []any{
 	(*CommitTxResponse)(nil),   // 12: otpki.public.plugin.v1.CommitTxResponse
 	(*RollbackTxRequest)(nil),  // 13: otpki.public.plugin.v1.RollbackTxRequest
 	(*RollbackTxResponse)(nil), // 14: otpki.public.plugin.v1.RollbackTxResponse
+	(*CopyFromRow)(nil),        // 15: otpki.public.plugin.v1.CopyFromRow
+	(*CopyFromRequest)(nil),    // 16: otpki.public.plugin.v1.CopyFromRequest
+	(*CopyFromResponse)(nil),   // 17: otpki.public.plugin.v1.CopyFromResponse
 }
 var file_otpki_public_plugin_v1_sql_proto_depIdxs = []int32{
-	0, // 0: otpki.public.plugin.v1.SQLParam.format:type_name -> otpki.public.plugin.v1.SQLFormat
-	3, // 1: otpki.public.plugin.v1.Row.values:type_name -> otpki.public.plugin.v1.SQLCell
-	1, // 2: otpki.public.plugin.v1.QueryRequest.args:type_name -> otpki.public.plugin.v1.SQLParam
-	2, // 3: otpki.public.plugin.v1.QueryResponse.columns:type_name -> otpki.public.plugin.v1.SQLColumn
-	4, // 4: otpki.public.plugin.v1.QueryResponse.rows:type_name -> otpki.public.plugin.v1.Row
-	1, // 5: otpki.public.plugin.v1.ExecRequest.args:type_name -> otpki.public.plugin.v1.SQLParam
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	0,  // 0: otpki.public.plugin.v1.SQLParam.format:type_name -> otpki.public.plugin.v1.SQLFormat
+	3,  // 1: otpki.public.plugin.v1.Row.values:type_name -> otpki.public.plugin.v1.SQLCell
+	1,  // 2: otpki.public.plugin.v1.QueryRequest.args:type_name -> otpki.public.plugin.v1.SQLParam
+	2,  // 3: otpki.public.plugin.v1.QueryResponse.columns:type_name -> otpki.public.plugin.v1.SQLColumn
+	4,  // 4: otpki.public.plugin.v1.QueryResponse.rows:type_name -> otpki.public.plugin.v1.Row
+	1,  // 5: otpki.public.plugin.v1.ExecRequest.args:type_name -> otpki.public.plugin.v1.SQLParam
+	1,  // 6: otpki.public.plugin.v1.CopyFromRow.values:type_name -> otpki.public.plugin.v1.SQLParam
+	15, // 7: otpki.public.plugin.v1.CopyFromRequest.rows:type_name -> otpki.public.plugin.v1.CopyFromRow
+	8,  // [8:8] is the sub-list for method output_type
+	8,  // [8:8] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_plugin_v1_sql_proto_init() }
@@ -919,7 +1099,7 @@ func file_otpki_public_plugin_v1_sql_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_public_plugin_v1_sql_proto_rawDesc), len(file_otpki_public_plugin_v1_sql_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   14,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

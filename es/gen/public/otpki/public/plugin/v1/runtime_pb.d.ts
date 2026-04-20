@@ -12,7 +12,7 @@ import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid, 
 import type { RevocationReasonCode, RevocationReasonCodeJson } from "../../../common/x509/v1/x509_pb";
 import type { EndEntityCertificate, EndEntityCertificateJson } from "../../../common/enrollment/end_entity_certificate/v1/end_entity_certificate_pb";
 import type { Any, AnyJson } from "@bufbuild/protobuf/wkt";
-import type { BeginTxRequestSchema, BeginTxResponseSchema, CommitTxRequestSchema, CommitTxResponseSchema, ExecRequestSchema, ExecResponseSchema, QueryRequestSchema, QueryResponseSchema, RollbackTxRequestSchema, RollbackTxResponseSchema } from "./sql_pb";
+import type { BeginTxRequestSchema, BeginTxResponseSchema, CommitTxRequestSchema, CommitTxResponseSchema, CopyFromRequestSchema, CopyFromResponseSchema, ExecRequestSchema, ExecResponseSchema, QueryRequestSchema, QueryResponseSchema, RollbackTxRequestSchema, RollbackTxResponseSchema } from "./sql_pb";
 
 /**
  * Describes the file otpki/public/plugin/v1/runtime.proto.
@@ -1849,6 +1849,14 @@ export declare const PluginRuntimeService: GenService<{
     methodKind: "unary";
     input: typeof RollbackTxRequestSchema;
     output: typeof RollbackTxResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.plugin.v1.PluginRuntimeService.CopyFrom
+   */
+  copyFrom: {
+    methodKind: "unary";
+    input: typeof CopyFromRequestSchema;
+    output: typeof CopyFromResponseSchema;
   },
 }>;
 

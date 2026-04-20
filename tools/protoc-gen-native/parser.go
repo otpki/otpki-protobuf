@@ -7,6 +7,7 @@ import (
 	"go/format"
 	"go/token"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/samber/oops"
@@ -16,7 +17,7 @@ import (
 
 const converterPackageName = "converters"
 
-// converterPackagePath will be set from the file path provided as a parameter
+// converterPackagePath will be set from the local directory path or Go import path provided as a parameter
 // cachedPackage stores the loaded package for reuse
 var (
 	converterPackagePath string            // will be set from a protoc parameter
@@ -50,20 +51,47 @@ func loadPackage() error {
 	cfg := &packages.Config{
 		Mode: packages.NeedSyntax | packages.NeedFiles | packages.NeedName | packages.NeedImports,
 		Fset: cachedFset,
-		Dir:  converterPackagePath,
+	}
+
+	loadPattern := converterPackagePath
+	if isExistingDirectory(converterPackagePath) {
+		cfg.Dir = converterPackagePath
+		loadPattern = "."
 	}
 
 	// load package
-	pkgs, err := packages.Load(cfg)
+	pkgs, err := packages.Load(cfg, loadPattern)
 	if err != nil {
 		return oops.Errorf("error loading package: %w", err)
 	}
 	if len(pkgs) == 0 {
 		return oops.Errorf("no packages found at %s", converterPackagePath)
 	}
+	//if packages.PrintErrors(pkgs) > 0 {
+	//	return oops.Errorf("encountered errors loading package %s", converterPackagePath)
+	//}
 
 	cachedPkg = pkgs[0] // use the first package name
 	return nil
+}
+
+func isExistingDirectory(path string) bool {
+	info, err := os.Stat(path)
+	if err == nil {
+		return info.IsDir()
+	}
+
+	if filepath.IsAbs(path) {
+		return false
+	}
+
+	wd, wdErr := os.Getwd()
+	if wdErr != nil {
+		return false
+	}
+
+	info, err = os.Stat(filepath.Join(wd, path))
+	return err == nil && info.IsDir()
 }
 
 // searchPackageForFunctions searches all files in the cached package for functions matching a search term

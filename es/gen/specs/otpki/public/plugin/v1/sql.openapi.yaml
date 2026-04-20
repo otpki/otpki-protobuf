@@ -47,6 +47,56 @@ components:
       type: object
       title: CommitTxResponse
       additionalProperties: false
+    otpki.public.plugin.v1.CopyFromRequest:
+      type: object
+      properties:
+        plugin:
+          type: string
+          title: plugin
+        txId:
+          type:
+            - integer
+            - string
+          title: tx_id
+          format: int64
+        tableName:
+          type: array
+          items:
+            type: string
+          title: table_name
+        columnNames:
+          type: array
+          items:
+            type: string
+          title: column_names
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.CopyFromRow'
+          title: rows
+      title: CopyFromRequest
+      additionalProperties: false
+    otpki.public.plugin.v1.CopyFromResponse:
+      type: object
+      properties:
+        rowsAffected:
+          type:
+            - integer
+            - string
+          title: rows_affected
+          format: int64
+      title: CopyFromResponse
+      additionalProperties: false
+    otpki.public.plugin.v1.CopyFromRow:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.v1.SQLParam'
+          title: values
+      title: CopyFromRow
+      additionalProperties: false
     otpki.public.plugin.v1.ExecRequest:
       type: object
       properties:
