@@ -43,6 +43,11 @@ message DeleteKeyResponse {
   google.protobuf.Any plugin_data = 1;
 }
 
+// Key driver message for pre-validation of an activation code against a backing store (or its own config)
+message ValidateActivationRequest {}
+
+message ValidateActivationResponse {}
+
 // Stored in KeyStorageConfig.key_storage_config.
 // Holds shared crypto material used to protect key_storage_key_config data.
 message KeyStorageCryptoConfig {

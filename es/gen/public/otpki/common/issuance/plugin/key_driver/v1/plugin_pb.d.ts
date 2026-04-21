@@ -341,6 +341,50 @@ export declare type DeleteKeyResponseValid = DeleteKeyResponse;
 export declare const DeleteKeyResponseSchema: GenMessage<DeleteKeyResponse, {jsonType: DeleteKeyResponseJson, validType: DeleteKeyResponseValid}>;
 
 /**
+ * Key driver message for pre-validation of an activation code against a backing store (or its own config)
+ *
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest
+ */
+export declare type ValidateActivationRequest = Message<"otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest"> & {
+};
+
+/**
+ * Key driver message for pre-validation of an activation code against a backing store (or its own config)
+ *
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest
+ */
+export declare type ValidateActivationRequestJson = {
+};
+
+export declare type ValidateActivationRequestValid = ValidateActivationRequest;
+
+/**
+ * Describes the message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest.
+ * Use `create(ValidateActivationRequestSchema)` to create a new message.
+ */
+export declare const ValidateActivationRequestSchema: GenMessage<ValidateActivationRequest, {jsonType: ValidateActivationRequestJson, validType: ValidateActivationRequestValid}>;
+
+/**
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse
+ */
+export declare type ValidateActivationResponse = Message<"otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse"> & {
+};
+
+/**
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse
+ */
+export declare type ValidateActivationResponseJson = {
+};
+
+export declare type ValidateActivationResponseValid = ValidateActivationResponse;
+
+/**
+ * Describes the message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse.
+ * Use `create(ValidateActivationResponseSchema)` to create a new message.
+ */
+export declare const ValidateActivationResponseSchema: GenMessage<ValidateActivationResponse, {jsonType: ValidateActivationResponseJson, validType: ValidateActivationResponseValid}>;
+
+/**
  * Stored in KeyStorageConfig.key_storage_config.
  * Holds shared crypto material used to protect key_storage_key_config data.
  *

@@ -431,6 +431,79 @@ func (x *DeleteKeyResponse) GetPluginData() *anypb.Any {
 	return nil
 }
 
+// Key driver message for pre-validation of an activation code against a backing store (or its own config)
+type ValidateActivationRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateActivationRequest) Reset() {
+	*x = ValidateActivationRequest{}
+	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateActivationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateActivationRequest) ProtoMessage() {}
+
+func (x *ValidateActivationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateActivationRequest.ProtoReflect.Descriptor instead.
+func (*ValidateActivationRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP(), []int{8}
+}
+
+type ValidateActivationResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateActivationResponse) Reset() {
+	*x = ValidateActivationResponse{}
+	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateActivationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateActivationResponse) ProtoMessage() {}
+
+func (x *ValidateActivationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateActivationResponse.ProtoReflect.Descriptor instead.
+func (*ValidateActivationResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP(), []int{9}
+}
+
 // Stored in KeyStorageConfig.key_storage_config.
 // Holds shared crypto material used to protect key_storage_key_config data.
 type KeyStorageCryptoConfig struct {
@@ -445,7 +518,7 @@ type KeyStorageCryptoConfig struct {
 
 func (x *KeyStorageCryptoConfig) Reset() {
 	*x = KeyStorageCryptoConfig{}
-	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[8]
+	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -457,7 +530,7 @@ func (x *KeyStorageCryptoConfig) String() string {
 func (*KeyStorageCryptoConfig) ProtoMessage() {}
 
 func (x *KeyStorageCryptoConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[8]
+	mi := &file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -470,7 +543,7 @@ func (x *KeyStorageCryptoConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KeyStorageCryptoConfig.ProtoReflect.Descriptor instead.
 func (*KeyStorageCryptoConfig) Descriptor() ([]byte, []int) {
-	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP(), []int{8}
+	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *KeyStorageCryptoConfig) GetWrappedDek() []byte {
@@ -521,7 +594,9 @@ const file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDesc = "" 
 	"\tplaintext\x18\x01 \x01(\fR\tplaintext\"J\n" +
 	"\x11DeleteKeyResponse\x125\n" +
 	"\vplugin_data\x18\x01 \x01(\v2\x14.google.protobuf.AnyR\n" +
-	"pluginData\"_\n" +
+	"pluginData\"\x1b\n" +
+	"\x19ValidateActivationRequest\"\x1c\n" +
+	"\x1aValidateActivationResponse\"_\n" +
 	"\x16KeyStorageCryptoConfig\x12\x1f\n" +
 	"\vwrapped_dek\x18\x01 \x01(\fR\n" +
 	"wrappedDek\x12$\n" +
@@ -540,28 +615,30 @@ func file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP() 
 	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescData
 }
 
-var file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_goTypes = []any{
-	(*KeyModel)(nil),               // 0: otpki.common.issuance.plugin.key_driver.v1.KeyModel
-	(*CreateKeyResponse)(nil),      // 1: otpki.common.issuance.plugin.key_driver.v1.CreateKeyResponse
-	(*KeyDriverMessage)(nil),       // 2: otpki.common.issuance.plugin.key_driver.v1.KeyDriverMessage
-	(*SignRequest)(nil),            // 3: otpki.common.issuance.plugin.key_driver.v1.SignRequest
-	(*SignResponse)(nil),           // 4: otpki.common.issuance.plugin.key_driver.v1.SignResponse
-	(*DecryptRequest)(nil),         // 5: otpki.common.issuance.plugin.key_driver.v1.DecryptRequest
-	(*DecryptResponse)(nil),        // 6: otpki.common.issuance.plugin.key_driver.v1.DecryptResponse
-	(*DeleteKeyResponse)(nil),      // 7: otpki.common.issuance.plugin.key_driver.v1.DeleteKeyResponse
-	(*KeyStorageCryptoConfig)(nil), // 8: otpki.common.issuance.plugin.key_driver.v1.KeyStorageCryptoConfig
-	(*v1.Key)(nil),                 // 9: otpki.common.issuance.key.v1.Key
-	(*anypb.Any)(nil),              // 10: google.protobuf.Any
+	(*KeyModel)(nil),                   // 0: otpki.common.issuance.plugin.key_driver.v1.KeyModel
+	(*CreateKeyResponse)(nil),          // 1: otpki.common.issuance.plugin.key_driver.v1.CreateKeyResponse
+	(*KeyDriverMessage)(nil),           // 2: otpki.common.issuance.plugin.key_driver.v1.KeyDriverMessage
+	(*SignRequest)(nil),                // 3: otpki.common.issuance.plugin.key_driver.v1.SignRequest
+	(*SignResponse)(nil),               // 4: otpki.common.issuance.plugin.key_driver.v1.SignResponse
+	(*DecryptRequest)(nil),             // 5: otpki.common.issuance.plugin.key_driver.v1.DecryptRequest
+	(*DecryptResponse)(nil),            // 6: otpki.common.issuance.plugin.key_driver.v1.DecryptResponse
+	(*DeleteKeyResponse)(nil),          // 7: otpki.common.issuance.plugin.key_driver.v1.DeleteKeyResponse
+	(*ValidateActivationRequest)(nil),  // 8: otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest
+	(*ValidateActivationResponse)(nil), // 9: otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse
+	(*KeyStorageCryptoConfig)(nil),     // 10: otpki.common.issuance.plugin.key_driver.v1.KeyStorageCryptoConfig
+	(*v1.Key)(nil),                     // 11: otpki.common.issuance.key.v1.Key
+	(*anypb.Any)(nil),                  // 12: google.protobuf.Any
 }
 var file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_depIdxs = []int32{
-	9,  // 0: otpki.common.issuance.plugin.key_driver.v1.KeyModel.key_info:type_name -> otpki.common.issuance.key.v1.Key
+	11, // 0: otpki.common.issuance.plugin.key_driver.v1.KeyModel.key_info:type_name -> otpki.common.issuance.key.v1.Key
 	0,  // 1: otpki.common.issuance.plugin.key_driver.v1.CreateKeyResponse.key:type_name -> otpki.common.issuance.plugin.key_driver.v1.KeyModel
-	10, // 2: otpki.common.issuance.plugin.key_driver.v1.CreateKeyResponse.plugin_data:type_name -> google.protobuf.Any
-	10, // 3: otpki.common.issuance.plugin.key_driver.v1.KeyDriverMessage.message:type_name -> google.protobuf.Any
-	10, // 4: otpki.common.issuance.plugin.key_driver.v1.SignRequest.opts:type_name -> google.protobuf.Any
-	10, // 5: otpki.common.issuance.plugin.key_driver.v1.DecryptRequest.opts:type_name -> google.protobuf.Any
-	10, // 6: otpki.common.issuance.plugin.key_driver.v1.DeleteKeyResponse.plugin_data:type_name -> google.protobuf.Any
+	12, // 2: otpki.common.issuance.plugin.key_driver.v1.CreateKeyResponse.plugin_data:type_name -> google.protobuf.Any
+	12, // 3: otpki.common.issuance.plugin.key_driver.v1.KeyDriverMessage.message:type_name -> google.protobuf.Any
+	12, // 4: otpki.common.issuance.plugin.key_driver.v1.SignRequest.opts:type_name -> google.protobuf.Any
+	12, // 5: otpki.common.issuance.plugin.key_driver.v1.DecryptRequest.opts:type_name -> google.protobuf.Any
+	12, // 6: otpki.common.issuance.plugin.key_driver.v1.DeleteKeyResponse.plugin_data:type_name -> google.protobuf.Any
 	7,  // [7:7] is the sub-list for method output_type
 	7,  // [7:7] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
@@ -582,7 +659,7 @@ func file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDesc), len(file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

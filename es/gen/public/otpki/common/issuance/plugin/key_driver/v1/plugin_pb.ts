@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/issuance/plugin/key_driver/v1/plugin.proto.
  */
 export const file_otpki_common_issuance_plugin_key_driver_v1_plugin: GenFile = /*@__PURE__*/
-  fileDesc("CjdvdHBraS9jb21tb24vaXNzdWFuY2UvcGx1Z2luL2tleV9kcml2ZXIvdjEvcGx1Z2luLnByb3RvEipvdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLmtleV9kcml2ZXIudjEiUwoIS2V5TW9kZWwSMwoIa2V5X2luZm8YASABKAsyIS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5LnYxLktleRISCgpwdWJsaWNfa2V5GAIgASgMIoEBChFDcmVhdGVLZXlSZXNwb25zZRJBCgNrZXkYASABKAsyNC5vdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLmtleV9kcml2ZXIudjEuS2V5TW9kZWwSKQoLcGx1Z2luX2RhdGEYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55IlgKEEtleURyaXZlck1lc3NhZ2USHQoVa2V5X3N0b3JhZ2VfY29uZmlnX2lkGAEgASgDEiUKB21lc3NhZ2UYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55Il8KC1NpZ25SZXF1ZXN0Eg4KBmtleV9pZBgBIAEoAxIOCgZkaWdlc3QYAiABKAwSJwoEb3B0cxgDIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnlIAIgBAUIHCgVfb3B0cyIhCgxTaWduUmVzcG9uc2USEQoJc2lnbmF0dXJlGAEgASgMImYKDkRlY3J5cHRSZXF1ZXN0Eg4KBmtleV9pZBgBIAEoAxISCgpjaXBoZXJ0ZXh0GAIgASgMEicKBG9wdHMYAyABKAsyFC5nb29nbGUucHJvdG9idWYuQW55SACIAQFCBwoFX29wdHMiJAoPRGVjcnlwdFJlc3BvbnNlEhEKCXBsYWludGV4dBgBIAEoDCI+ChFEZWxldGVLZXlSZXNwb25zZRIpCgtwbHVnaW5fZGF0YRgBIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkiRQoWS2V5U3RvcmFnZUNyeXB0b0NvbmZpZxITCgt3cmFwcGVkX2RlaxgBIAEoDBIWCg5rZXlfZGF0YV9ub25jZRgCIAEoDEKIAgouY29tLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wbHVnaW4ua2V5X2RyaXZlci52MUILUGx1Z2luUHJvdG9QAaICBU9DSVBLqgIpT3Rwa2kuQ29tbW9uLklzc3VhbmNlLlBsdWdpbi5LZXlEcml2ZXIuVjHKAilPdHBraVxDb21tb25cSXNzdWFuY2VcUGx1Z2luXEtleURyaXZlclxWMeICNU90cGtpXENvbW1vblxJc3N1YW5jZVxQbHVnaW5cS2V5RHJpdmVyXFYxXEdQQk1ldGFkYXRh6gIuT3Rwa2k6OkNvbW1vbjo6SXNzdWFuY2U6OlBsdWdpbjo6S2V5RHJpdmVyOjpWMWIGcHJvdG8z", [file_google_protobuf_any, file_otpki_common_issuance_key_v1_key]);
+  fileDesc("CjdvdHBraS9jb21tb24vaXNzdWFuY2UvcGx1Z2luL2tleV9kcml2ZXIvdjEvcGx1Z2luLnByb3RvEipvdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLmtleV9kcml2ZXIudjEiUwoIS2V5TW9kZWwSMwoIa2V5X2luZm8YASABKAsyIS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5LnYxLktleRISCgpwdWJsaWNfa2V5GAIgASgMIoEBChFDcmVhdGVLZXlSZXNwb25zZRJBCgNrZXkYASABKAsyNC5vdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLmtleV9kcml2ZXIudjEuS2V5TW9kZWwSKQoLcGx1Z2luX2RhdGEYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55IlgKEEtleURyaXZlck1lc3NhZ2USHQoVa2V5X3N0b3JhZ2VfY29uZmlnX2lkGAEgASgDEiUKB21lc3NhZ2UYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55Il8KC1NpZ25SZXF1ZXN0Eg4KBmtleV9pZBgBIAEoAxIOCgZkaWdlc3QYAiABKAwSJwoEb3B0cxgDIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnlIAIgBAUIHCgVfb3B0cyIhCgxTaWduUmVzcG9uc2USEQoJc2lnbmF0dXJlGAEgASgMImYKDkRlY3J5cHRSZXF1ZXN0Eg4KBmtleV9pZBgBIAEoAxISCgpjaXBoZXJ0ZXh0GAIgASgMEicKBG9wdHMYAyABKAsyFC5nb29nbGUucHJvdG9idWYuQW55SACIAQFCBwoFX29wdHMiJAoPRGVjcnlwdFJlc3BvbnNlEhEKCXBsYWludGV4dBgBIAEoDCI+ChFEZWxldGVLZXlSZXNwb25zZRIpCgtwbHVnaW5fZGF0YRgBIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkiGwoZVmFsaWRhdGVBY3RpdmF0aW9uUmVxdWVzdCIcChpWYWxpZGF0ZUFjdGl2YXRpb25SZXNwb25zZSJFChZLZXlTdG9yYWdlQ3J5cHRvQ29uZmlnEhMKC3dyYXBwZWRfZGVrGAEgASgMEhYKDmtleV9kYXRhX25vbmNlGAIgASgMQogCCi5jb20ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnBsdWdpbi5rZXlfZHJpdmVyLnYxQgtQbHVnaW5Qcm90b1ABogIFT0NJUEuqAilPdHBraS5Db21tb24uSXNzdWFuY2UuUGx1Z2luLktleURyaXZlci5WMcoCKU90cGtpXENvbW1vblxJc3N1YW5jZVxQbHVnaW5cS2V5RHJpdmVyXFYx4gI1T3Rwa2lcQ29tbW9uXElzc3VhbmNlXFBsdWdpblxLZXlEcml2ZXJcVjFcR1BCTWV0YWRhdGHqAi5PdHBraTo6Q29tbW9uOjpJc3N1YW5jZTo6UGx1Z2luOjpLZXlEcml2ZXI6OlYxYgZwcm90bzM", [file_google_protobuf_any, file_otpki_common_issuance_key_v1_key]);
 
 /**
  * @generated from message otpki.common.issuance.plugin.key_driver.v1.KeyModel
@@ -353,6 +353,52 @@ export const DeleteKeyResponseSchema: GenMessage<DeleteKeyResponse, {jsonType: D
   messageDesc(file_otpki_common_issuance_plugin_key_driver_v1_plugin, 7);
 
 /**
+ * Key driver message for pre-validation of an activation code against a backing store (or its own config)
+ *
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest
+ */
+export type ValidateActivationRequest = Message<"otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest"> & {
+};
+
+/**
+ * Key driver message for pre-validation of an activation code against a backing store (or its own config)
+ *
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest
+ */
+export type ValidateActivationRequestJson = {
+};
+
+export type ValidateActivationRequestValid = ValidateActivationRequest;
+
+/**
+ * Describes the message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest.
+ * Use `create(ValidateActivationRequestSchema)` to create a new message.
+ */
+export const ValidateActivationRequestSchema: GenMessage<ValidateActivationRequest, {jsonType: ValidateActivationRequestJson, validType: ValidateActivationRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_issuance_plugin_key_driver_v1_plugin, 8);
+
+/**
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse
+ */
+export type ValidateActivationResponse = Message<"otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse"> & {
+};
+
+/**
+ * @generated from message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse
+ */
+export type ValidateActivationResponseJson = {
+};
+
+export type ValidateActivationResponseValid = ValidateActivationResponse;
+
+/**
+ * Describes the message otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse.
+ * Use `create(ValidateActivationResponseSchema)` to create a new message.
+ */
+export const ValidateActivationResponseSchema: GenMessage<ValidateActivationResponse, {jsonType: ValidateActivationResponseJson, validType: ValidateActivationResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_issuance_plugin_key_driver_v1_plugin, 9);
+
+/**
  * Stored in KeyStorageConfig.key_storage_config.
  * Holds shared crypto material used to protect key_storage_key_config data.
  *
@@ -403,5 +449,5 @@ export type KeyStorageCryptoConfigValid = KeyStorageCryptoConfig;
  * Use `create(KeyStorageCryptoConfigSchema)` to create a new message.
  */
 export const KeyStorageCryptoConfigSchema: GenMessage<KeyStorageCryptoConfig, {jsonType: KeyStorageCryptoConfigJson, validType: KeyStorageCryptoConfigValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_common_issuance_plugin_key_driver_v1_plugin, 8);
+  messageDesc(file_otpki_common_issuance_plugin_key_driver_v1_plugin, 10);
 

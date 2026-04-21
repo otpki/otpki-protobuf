@@ -430,4 +430,13 @@ components:
           format: byte
       title: SignResponse
       additionalProperties: false
+    otpki.common.issuance.plugin.key_driver.v1.ValidateActivationRequest:
+      type: object
+      title: ValidateActivationRequest
+      additionalProperties: false
+      description: Key driver message for pre-validation of an activation code against a backing store (or its own config)
+    otpki.common.issuance.plugin.key_driver.v1.ValidateActivationResponse:
+      type: object
+      title: ValidateActivationResponse
+      additionalProperties: false
 security: []
