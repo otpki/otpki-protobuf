@@ -332,3 +332,20 @@ export const deletePublisherConfig = IssuanceService.method.deletePublisherConfi
  * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetPublisherConfigList
  */
 export const getPublisherConfigList = IssuanceService.method.getPublisherConfigList;
+
+/**
+ * Tasklog
+ *
+ * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskLogList
+ */
+export const getTaskLogList = IssuanceService.method.getTaskLogList;
+
+/**
+ * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskQueues
+ */
+export const getTaskQueues = IssuanceService.method.getTaskQueues;
+
+/**
+ * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo
+ */
+export const getTaskQueueInfo = IssuanceService.method.getTaskQueueInfo;

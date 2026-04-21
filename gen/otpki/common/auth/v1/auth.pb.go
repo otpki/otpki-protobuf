@@ -104,6 +104,7 @@ const (
 	Resource_RESOURCE_KEY_STORAGE_CONFIG    Resource = 109
 	Resource_RESOURCE_PUBLISHER_CONFIG      Resource = 110
 	Resource_RESOURCE_PUBLISHER             Resource = 111
+	Resource_RESOURCE_TASKLOG               Resource = 112
 	// enrollment protocol resources
 	Resource_RESOURCE_ACME_PROTOCOL_CONFIG      Resource = 201
 	Resource_RESOURCE_EST_PROTOCOL_CONFIG       Resource = 202
@@ -138,6 +139,7 @@ var (
 		109: "RESOURCE_KEY_STORAGE_CONFIG",
 		110: "RESOURCE_PUBLISHER_CONFIG",
 		111: "RESOURCE_PUBLISHER",
+		112: "RESOURCE_TASKLOG",
 		201: "RESOURCE_ACME_PROTOCOL_CONFIG",
 		202: "RESOURCE_EST_PROTOCOL_CONFIG",
 		203: "RESOURCE_MSAE_PROTOCOL_CONFIG",
@@ -166,6 +168,7 @@ var (
 		"RESOURCE_KEY_STORAGE_CONFIG":        109,
 		"RESOURCE_PUBLISHER_CONFIG":          110,
 		"RESOURCE_PUBLISHER":                 111,
+		"RESOURCE_TASKLOG":                   112,
 		"RESOURCE_ACME_PROTOCOL_CONFIG":      201,
 		"RESOURCE_EST_PROTOCOL_CONFIG":       202,
 		"RESOURCE_MSAE_PROTOCOL_CONFIG":      203,
@@ -1266,7 +1269,7 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\rACTION_UPDATE\x10\x03\x12\x11\n" +
 	"\rACTION_DELETE\x10\x04\x12\x11\n" +
 	"\fACTION_ISSUE\x10\xc9\x01\x12\x12\n" +
-	"\rACTION_REVOKE\x10\xca\x01*\x9d\x06\n" +
+	"\rACTION_REVOKE\x10\xca\x01*\xb3\x06\n" +
 	"\bResource\x12\x18\n" +
 	"\x14RESOURCE_UNSPECIFIED\x10\x00\x12\"\n" +
 	"\x1eRESOURCE_CERTIFICATE_AUTHORITY\x10e\x12\x18\n" +
@@ -1279,7 +1282,8 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\x1bRESOURCE_END_ENTITY_PROFILE\x10l\x12\x1f\n" +
 	"\x1bRESOURCE_KEY_STORAGE_CONFIG\x10m\x12\x1d\n" +
 	"\x19RESOURCE_PUBLISHER_CONFIG\x10n\x12\x16\n" +
-	"\x12RESOURCE_PUBLISHER\x10o\x12\"\n" +
+	"\x12RESOURCE_PUBLISHER\x10o\x12\x14\n" +
+	"\x10RESOURCE_TASKLOG\x10p\x12\"\n" +
 	"\x1dRESOURCE_ACME_PROTOCOL_CONFIG\x10\xc9\x01\x12!\n" +
 	"\x1cRESOURCE_EST_PROTOCOL_CONFIG\x10\xca\x01\x12\"\n" +
 	"\x1dRESOURCE_MSAE_PROTOCOL_CONFIG\x10\xcb\x01\x12\"\n" +

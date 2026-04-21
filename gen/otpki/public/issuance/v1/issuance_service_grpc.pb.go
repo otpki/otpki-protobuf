@@ -80,6 +80,9 @@ const (
 	IssuanceService_UpdatePublisherConfig_FullMethodName                 = "/otpki.public.issuance.v1.IssuanceService/UpdatePublisherConfig"
 	IssuanceService_DeletePublisherConfig_FullMethodName                 = "/otpki.public.issuance.v1.IssuanceService/DeletePublisherConfig"
 	IssuanceService_GetPublisherConfigList_FullMethodName                = "/otpki.public.issuance.v1.IssuanceService/GetPublisherConfigList"
+	IssuanceService_GetTaskLogList_FullMethodName                        = "/otpki.public.issuance.v1.IssuanceService/GetTaskLogList"
+	IssuanceService_GetTaskQueues_FullMethodName                         = "/otpki.public.issuance.v1.IssuanceService/GetTaskQueues"
+	IssuanceService_GetTaskQueueInfo_FullMethodName                      = "/otpki.public.issuance.v1.IssuanceService/GetTaskQueueInfo"
 )
 
 // IssuanceServiceClient is the client API for IssuanceService service.
@@ -159,6 +162,10 @@ type IssuanceServiceClient interface {
 	UpdatePublisherConfig(ctx context.Context, in *UpdatePublisherConfigRequest, opts ...grpc.CallOption) (*UpdatePublisherConfigResponse, error)
 	DeletePublisherConfig(ctx context.Context, in *DeletePublisherConfigRequest, opts ...grpc.CallOption) (*DeletePublisherConfigResponse, error)
 	GetPublisherConfigList(ctx context.Context, in *GetPublisherConfigListRequest, opts ...grpc.CallOption) (*GetPublisherConfigListResponse, error)
+	// Tasklog
+	GetTaskLogList(ctx context.Context, in *GetTaskLogListRequest, opts ...grpc.CallOption) (*GetTaskLogListResponse, error)
+	GetTaskQueues(ctx context.Context, in *GetTaskQueuesRequest, opts ...grpc.CallOption) (*GetTaskQueuesResponse, error)
+	GetTaskQueueInfo(ctx context.Context, in *GetTaskQueueInfoRequest, opts ...grpc.CallOption) (*GetTaskQueueInfoResponse, error)
 }
 
 type issuanceServiceClient struct {
@@ -779,6 +786,36 @@ func (c *issuanceServiceClient) GetPublisherConfigList(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *issuanceServiceClient) GetTaskLogList(ctx context.Context, in *GetTaskLogListRequest, opts ...grpc.CallOption) (*GetTaskLogListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTaskLogListResponse)
+	err := c.cc.Invoke(ctx, IssuanceService_GetTaskLogList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *issuanceServiceClient) GetTaskQueues(ctx context.Context, in *GetTaskQueuesRequest, opts ...grpc.CallOption) (*GetTaskQueuesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTaskQueuesResponse)
+	err := c.cc.Invoke(ctx, IssuanceService_GetTaskQueues_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *issuanceServiceClient) GetTaskQueueInfo(ctx context.Context, in *GetTaskQueueInfoRequest, opts ...grpc.CallOption) (*GetTaskQueueInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTaskQueueInfoResponse)
+	err := c.cc.Invoke(ctx, IssuanceService_GetTaskQueueInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IssuanceServiceServer is the server API for IssuanceService service.
 // All implementations must embed UnimplementedIssuanceServiceServer
 // for forward compatibility.
@@ -856,6 +893,10 @@ type IssuanceServiceServer interface {
 	UpdatePublisherConfig(context.Context, *UpdatePublisherConfigRequest) (*UpdatePublisherConfigResponse, error)
 	DeletePublisherConfig(context.Context, *DeletePublisherConfigRequest) (*DeletePublisherConfigResponse, error)
 	GetPublisherConfigList(context.Context, *GetPublisherConfigListRequest) (*GetPublisherConfigListResponse, error)
+	// Tasklog
+	GetTaskLogList(context.Context, *GetTaskLogListRequest) (*GetTaskLogListResponse, error)
+	GetTaskQueues(context.Context, *GetTaskQueuesRequest) (*GetTaskQueuesResponse, error)
+	GetTaskQueueInfo(context.Context, *GetTaskQueueInfoRequest) (*GetTaskQueueInfoResponse, error)
 	mustEmbedUnimplementedIssuanceServiceServer()
 }
 
@@ -1048,6 +1089,15 @@ func (UnimplementedIssuanceServiceServer) DeletePublisherConfig(context.Context,
 }
 func (UnimplementedIssuanceServiceServer) GetPublisherConfigList(context.Context, *GetPublisherConfigListRequest) (*GetPublisherConfigListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPublisherConfigList not implemented")
+}
+func (UnimplementedIssuanceServiceServer) GetTaskLogList(context.Context, *GetTaskLogListRequest) (*GetTaskLogListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTaskLogList not implemented")
+}
+func (UnimplementedIssuanceServiceServer) GetTaskQueues(context.Context, *GetTaskQueuesRequest) (*GetTaskQueuesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTaskQueues not implemented")
+}
+func (UnimplementedIssuanceServiceServer) GetTaskQueueInfo(context.Context, *GetTaskQueueInfoRequest) (*GetTaskQueueInfoResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTaskQueueInfo not implemented")
 }
 func (UnimplementedIssuanceServiceServer) mustEmbedUnimplementedIssuanceServiceServer() {}
 func (UnimplementedIssuanceServiceServer) testEmbeddedByValue()                         {}
@@ -2168,6 +2218,60 @@ func _IssuanceService_GetPublisherConfigList_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IssuanceService_GetTaskLogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTaskLogListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IssuanceServiceServer).GetTaskLogList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IssuanceService_GetTaskLogList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IssuanceServiceServer).GetTaskLogList(ctx, req.(*GetTaskLogListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IssuanceService_GetTaskQueues_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTaskQueuesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IssuanceServiceServer).GetTaskQueues(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IssuanceService_GetTaskQueues_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IssuanceServiceServer).GetTaskQueues(ctx, req.(*GetTaskQueuesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IssuanceService_GetTaskQueueInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTaskQueueInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IssuanceServiceServer).GetTaskQueueInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IssuanceService_GetTaskQueueInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IssuanceServiceServer).GetTaskQueueInfo(ctx, req.(*GetTaskQueueInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IssuanceService_ServiceDesc is the grpc.ServiceDesc for IssuanceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -2418,6 +2522,18 @@ var IssuanceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPublisherConfigList",
 			Handler:    _IssuanceService_GetPublisherConfigList_Handler,
+		},
+		{
+			MethodName: "GetTaskLogList",
+			Handler:    _IssuanceService_GetTaskLogList_Handler,
+		},
+		{
+			MethodName: "GetTaskQueues",
+			Handler:    _IssuanceService_GetTaskQueues_Handler,
+		},
+		{
+			MethodName: "GetTaskQueueInfo",
+			Handler:    _IssuanceService_GetTaskQueueInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

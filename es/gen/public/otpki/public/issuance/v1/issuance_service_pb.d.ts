@@ -15,6 +15,7 @@ import type { CreateIssuanceRequestRequestSchema, CreateIssuanceRequestResponseS
 import type { GetIssuedCertificateBySerialNumberRequestSchema, GetIssuedCertificateBySerialNumberResponseSchema, GetIssuedCertificateListRequestSchema, GetIssuedCertificateListResponseSchema, GetIssuedCertificateRequestSchema, GetIssuedCertificateResponseSchema } from "./issued_certificate_pb";
 import type { CreateCertificateAuthorityCSRRequestSchema, CreateCertificateAuthorityCSRResponseSchema, CreateCertificateAuthorityRequestSchema, CreateCertificateAuthorityResponseSchema, DeleteCertificateAuthorityRequestSchema, DeleteCertificateAuthorityResponseSchema, GetCertificateAuthorityCertificatesRequestSchema, GetCertificateAuthorityCertificatesResponseSchema, GetCertificateAuthorityListRequestSchema, GetCertificateAuthorityListResponseSchema, GetCertificateAuthorityRequestSchema, GetCertificateAuthorityResponseSchema, ImportCertificateAuthorityCertificateRequestSchema, ImportCertificateAuthorityCertificateResponseSchema, ImportCertificateAuthorityPKCS12RequestSchema, ImportCertificateAuthorityPKCS12ResponseSchema, ImportCertificateAuthorityRequestSchema, ImportCertificateAuthorityResponseSchema, RenewCertificateAuthorityRequestSchema, RenewCertificateAuthorityResponseSchema, UpdateCertificateAuthorityRequestSchema, UpdateCertificateAuthorityResponseSchema } from "./certificate_authority_pb";
 import type { CreateCertificatePublisherRequestSchema, CreateCertificatePublisherResponseSchema, CreateCrlPublisherRequestSchema, CreateCrlPublisherResponseSchema, CreatePublisherConfigRequestSchema, CreatePublisherConfigResponseSchema, DeleteCertificatePublisherRequestSchema, DeleteCertificatePublisherResponseSchema, DeleteCrlPublisherRequestSchema, DeleteCrlPublisherResponseSchema, DeletePublisherConfigRequestSchema, DeletePublisherConfigResponseSchema, GetCertificatePublisherListRequestSchema, GetCertificatePublisherListResponseSchema, GetCrlPublisherListRequestSchema, GetCrlPublisherListResponseSchema, GetPublisherConfigListRequestSchema, GetPublisherConfigListResponseSchema, GetPublisherConfigRequestSchema, GetPublisherConfigResponseSchema, UpdatePublisherConfigRequestSchema, UpdatePublisherConfigResponseSchema } from "./publisher_pb";
+import type { GetTaskLogListRequestSchema, GetTaskLogListResponseSchema, GetTaskQueueInfoRequestSchema, GetTaskQueueInfoResponseSchema, GetTaskQueuesRequestSchema, GetTaskQueuesResponseSchema } from "./tasklog_pb";
 
 /**
  * Describes the file otpki/public/issuance/v1/issuance_service.proto.
@@ -536,6 +537,32 @@ export declare const IssuanceService: GenService<{
     methodKind: "unary";
     input: typeof GetPublisherConfigListRequestSchema;
     output: typeof GetPublisherConfigListResponseSchema;
+  },
+  /**
+   * Tasklog
+   *
+   * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskLogList
+   */
+  getTaskLogList: {
+    methodKind: "unary";
+    input: typeof GetTaskLogListRequestSchema;
+    output: typeof GetTaskLogListResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskQueues
+   */
+  getTaskQueues: {
+    methodKind: "unary";
+    input: typeof GetTaskQueuesRequestSchema;
+    output: typeof GetTaskQueuesResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo
+   */
+  getTaskQueueInfo: {
+    methodKind: "unary";
+    input: typeof GetTaskQueueInfoRequestSchema;
+    output: typeof GetTaskQueueInfoResponseSchema;
   },
 }>;
 

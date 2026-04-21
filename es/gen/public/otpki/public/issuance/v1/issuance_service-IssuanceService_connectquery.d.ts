@@ -272,3 +272,17 @@ export const deletePublisherConfig: typeof IssuanceService["method"]["deletePubl
  * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetPublisherConfigList
  */
 export const getPublisherConfigList: typeof IssuanceService["method"]["getPublisherConfigList"];
+/**
+ * Tasklog
+ *
+ * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskLogList
+ */
+export const getTaskLogList: typeof IssuanceService["method"]["getTaskLogList"];
+/**
+ * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskQueues
+ */
+export const getTaskQueues: typeof IssuanceService["method"]["getTaskQueues"];
+/**
+ * @generated from rpc otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo
+ */
+export const getTaskQueueInfo: typeof IssuanceService["method"]["getTaskQueueInfo"];

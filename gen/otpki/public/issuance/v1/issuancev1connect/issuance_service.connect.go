@@ -215,6 +215,15 @@ const (
 	// IssuanceServiceGetPublisherConfigListProcedure is the fully-qualified name of the
 	// IssuanceService's GetPublisherConfigList RPC.
 	IssuanceServiceGetPublisherConfigListProcedure = "/otpki.public.issuance.v1.IssuanceService/GetPublisherConfigList"
+	// IssuanceServiceGetTaskLogListProcedure is the fully-qualified name of the IssuanceService's
+	// GetTaskLogList RPC.
+	IssuanceServiceGetTaskLogListProcedure = "/otpki.public.issuance.v1.IssuanceService/GetTaskLogList"
+	// IssuanceServiceGetTaskQueuesProcedure is the fully-qualified name of the IssuanceService's
+	// GetTaskQueues RPC.
+	IssuanceServiceGetTaskQueuesProcedure = "/otpki.public.issuance.v1.IssuanceService/GetTaskQueues"
+	// IssuanceServiceGetTaskQueueInfoProcedure is the fully-qualified name of the IssuanceService's
+	// GetTaskQueueInfo RPC.
+	IssuanceServiceGetTaskQueueInfoProcedure = "/otpki.public.issuance.v1.IssuanceService/GetTaskQueueInfo"
 )
 
 // IssuanceServiceClient is a client for the otpki.public.issuance.v1.IssuanceService service.
@@ -292,6 +301,10 @@ type IssuanceServiceClient interface {
 	UpdatePublisherConfig(context.Context, *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error)
 	DeletePublisherConfig(context.Context, *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error)
 	GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error)
+	// Tasklog
+	GetTaskLogList(context.Context, *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error)
+	GetTaskQueues(context.Context, *connect.Request[v1.GetTaskQueuesRequest]) (*connect.Response[v1.GetTaskQueuesResponse], error)
+	GetTaskQueueInfo(context.Context, *connect.Request[v1.GetTaskQueueInfoRequest]) (*connect.Response[v1.GetTaskQueueInfoResponse], error)
 }
 
 // NewIssuanceServiceClient constructs a client for the otpki.public.issuance.v1.IssuanceService
@@ -696,6 +709,27 @@ func NewIssuanceServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
+		getTaskLogList: connect.NewClient[v1.GetTaskLogListRequest, v1.GetTaskLogListResponse](
+			httpClient,
+			baseURL+IssuanceServiceGetTaskLogListProcedure,
+			connect.WithSchema(issuanceServiceMethods.ByName("GetTaskLogList")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
+		getTaskQueues: connect.NewClient[v1.GetTaskQueuesRequest, v1.GetTaskQueuesResponse](
+			httpClient,
+			baseURL+IssuanceServiceGetTaskQueuesProcedure,
+			connect.WithSchema(issuanceServiceMethods.ByName("GetTaskQueues")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
+		getTaskQueueInfo: connect.NewClient[v1.GetTaskQueueInfoRequest, v1.GetTaskQueueInfoResponse](
+			httpClient,
+			baseURL+IssuanceServiceGetTaskQueueInfoProcedure,
+			connect.WithSchema(issuanceServiceMethods.ByName("GetTaskQueueInfo")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -762,6 +796,9 @@ type issuanceServiceClient struct {
 	updatePublisherConfig                 *connect.Client[v1.UpdatePublisherConfigRequest, v1.UpdatePublisherConfigResponse]
 	deletePublisherConfig                 *connect.Client[v1.DeletePublisherConfigRequest, v1.DeletePublisherConfigResponse]
 	getPublisherConfigList                *connect.Client[v1.GetPublisherConfigListRequest, v1.GetPublisherConfigListResponse]
+	getTaskLogList                        *connect.Client[v1.GetTaskLogListRequest, v1.GetTaskLogListResponse]
+	getTaskQueues                         *connect.Client[v1.GetTaskQueuesRequest, v1.GetTaskQueuesResponse]
+	getTaskQueueInfo                      *connect.Client[v1.GetTaskQueueInfoRequest, v1.GetTaskQueueInfoResponse]
 }
 
 // CreateRevocationList calls otpki.public.issuance.v1.IssuanceService.CreateRevocationList.
@@ -1090,6 +1127,21 @@ func (c *issuanceServiceClient) GetPublisherConfigList(ctx context.Context, req 
 	return c.getPublisherConfigList.CallUnary(ctx, req)
 }
 
+// GetTaskLogList calls otpki.public.issuance.v1.IssuanceService.GetTaskLogList.
+func (c *issuanceServiceClient) GetTaskLogList(ctx context.Context, req *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error) {
+	return c.getTaskLogList.CallUnary(ctx, req)
+}
+
+// GetTaskQueues calls otpki.public.issuance.v1.IssuanceService.GetTaskQueues.
+func (c *issuanceServiceClient) GetTaskQueues(ctx context.Context, req *connect.Request[v1.GetTaskQueuesRequest]) (*connect.Response[v1.GetTaskQueuesResponse], error) {
+	return c.getTaskQueues.CallUnary(ctx, req)
+}
+
+// GetTaskQueueInfo calls otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo.
+func (c *issuanceServiceClient) GetTaskQueueInfo(ctx context.Context, req *connect.Request[v1.GetTaskQueueInfoRequest]) (*connect.Response[v1.GetTaskQueueInfoResponse], error) {
+	return c.getTaskQueueInfo.CallUnary(ctx, req)
+}
+
 // IssuanceServiceHandler is an implementation of the otpki.public.issuance.v1.IssuanceService
 // service.
 type IssuanceServiceHandler interface {
@@ -1166,6 +1218,10 @@ type IssuanceServiceHandler interface {
 	UpdatePublisherConfig(context.Context, *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error)
 	DeletePublisherConfig(context.Context, *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error)
 	GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error)
+	// Tasklog
+	GetTaskLogList(context.Context, *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error)
+	GetTaskQueues(context.Context, *connect.Request[v1.GetTaskQueuesRequest]) (*connect.Response[v1.GetTaskQueuesResponse], error)
+	GetTaskQueueInfo(context.Context, *connect.Request[v1.GetTaskQueueInfoRequest]) (*connect.Response[v1.GetTaskQueueInfoResponse], error)
 }
 
 // NewIssuanceServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -1566,6 +1622,27 @@ func NewIssuanceServiceHandler(svc IssuanceServiceHandler, opts ...connect.Handl
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
+	issuanceServiceGetTaskLogListHandler := connect.NewUnaryHandler(
+		IssuanceServiceGetTaskLogListProcedure,
+		svc.GetTaskLogList,
+		connect.WithSchema(issuanceServiceMethods.ByName("GetTaskLogList")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
+	issuanceServiceGetTaskQueuesHandler := connect.NewUnaryHandler(
+		IssuanceServiceGetTaskQueuesProcedure,
+		svc.GetTaskQueues,
+		connect.WithSchema(issuanceServiceMethods.ByName("GetTaskQueues")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
+	issuanceServiceGetTaskQueueInfoHandler := connect.NewUnaryHandler(
+		IssuanceServiceGetTaskQueueInfoProcedure,
+		svc.GetTaskQueueInfo,
+		connect.WithSchema(issuanceServiceMethods.ByName("GetTaskQueueInfo")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/otpki.public.issuance.v1.IssuanceService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case IssuanceServiceCreateRevocationListProcedure:
@@ -1690,6 +1767,12 @@ func NewIssuanceServiceHandler(svc IssuanceServiceHandler, opts ...connect.Handl
 			issuanceServiceDeletePublisherConfigHandler.ServeHTTP(w, r)
 		case IssuanceServiceGetPublisherConfigListProcedure:
 			issuanceServiceGetPublisherConfigListHandler.ServeHTTP(w, r)
+		case IssuanceServiceGetTaskLogListProcedure:
+			issuanceServiceGetTaskLogListHandler.ServeHTTP(w, r)
+		case IssuanceServiceGetTaskQueuesProcedure:
+			issuanceServiceGetTaskQueuesHandler.ServeHTTP(w, r)
+		case IssuanceServiceGetTaskQueueInfoProcedure:
+			issuanceServiceGetTaskQueueInfoHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -1941,4 +2024,16 @@ func (UnimplementedIssuanceServiceHandler) DeletePublisherConfig(context.Context
 
 func (UnimplementedIssuanceServiceHandler) GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.v1.IssuanceService.GetPublisherConfigList is not implemented"))
+}
+
+func (UnimplementedIssuanceServiceHandler) GetTaskLogList(context.Context, *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.v1.IssuanceService.GetTaskLogList is not implemented"))
+}
+
+func (UnimplementedIssuanceServiceHandler) GetTaskQueues(context.Context, *connect.Request[v1.GetTaskQueuesRequest]) (*connect.Response[v1.GetTaskQueuesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.v1.IssuanceService.GetTaskQueues is not implemented"))
+}
+
+func (UnimplementedIssuanceServiceHandler) GetTaskQueueInfo(context.Context, *connect.Request[v1.GetTaskQueueInfoRequest]) (*connect.Response[v1.GetTaskQueueInfoResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo is not implemented"))
 }
