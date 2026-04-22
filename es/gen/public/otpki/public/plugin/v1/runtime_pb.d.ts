@@ -376,9 +376,9 @@ export declare const GetEndEntityByLoginIDResponseSchema: GenMessage<GetEndEntit
  */
 export declare type GetEndEntityRequest = Message<"otpki.public.plugin.v1.GetEndEntityRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -386,7 +386,7 @@ export declare type GetEndEntityRequest = Message<"otpki.public.plugin.v1.GetEnd
  */
 export declare type GetEndEntityRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -396,9 +396,9 @@ export declare type GetEndEntityRequestJson = {
  */
 export declare type GetEndEntityRequestValid = Message<"otpki.public.plugin.v1.GetEndEntityRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -440,9 +440,9 @@ export declare const GetEndEntityResponseSchema: GenMessage<GetEndEntityResponse
  */
 export declare type GetKeyRequest = Message<"otpki.public.plugin.v1.GetKeyRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -450,7 +450,7 @@ export declare type GetKeyRequest = Message<"otpki.public.plugin.v1.GetKeyReques
  */
 export declare type GetKeyRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -460,9 +460,9 @@ export declare type GetKeyRequestJson = {
  */
 export declare type GetKeyRequestValid = Message<"otpki.public.plugin.v1.GetKeyRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -575,9 +575,9 @@ export declare const GetAllRootCertificateAuthorityCertificatesResponseSchema: G
  */
 export declare type GetLatestCertificateAuthorityCertificateRequest = Message<"otpki.public.plugin.v1.GetLatestCertificateAuthorityCertificateRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -585,7 +585,7 @@ export declare type GetLatestCertificateAuthorityCertificateRequest = Message<"o
  */
 export declare type GetLatestCertificateAuthorityCertificateRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -595,9 +595,9 @@ export declare type GetLatestCertificateAuthorityCertificateRequestJson = {
  */
 export declare type GetLatestCertificateAuthorityCertificateRequestValid = Message<"otpki.public.plugin.v1.GetLatestCertificateAuthorityCertificateRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -639,9 +639,9 @@ export declare const GetLatestCertificateAuthorityCertificateResponseSchema: Gen
  */
 export declare type GetCertificateAuthorityRequest = Message<"otpki.public.plugin.v1.GetCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -649,7 +649,7 @@ export declare type GetCertificateAuthorityRequest = Message<"otpki.public.plugi
  */
 export declare type GetCertificateAuthorityRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -659,9 +659,9 @@ export declare type GetCertificateAuthorityRequestJson = {
  */
 export declare type GetCertificateAuthorityRequestValid = Message<"otpki.public.plugin.v1.GetCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -711,9 +711,9 @@ export declare const GetCertificateAuthorityResponseSchema: GenMessage<GetCertif
  */
 export declare type GetCertificateProfileRequest = Message<"otpki.public.plugin.v1.GetCertificateProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -721,7 +721,7 @@ export declare type GetCertificateProfileRequest = Message<"otpki.public.plugin.
  */
 export declare type GetCertificateProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -731,9 +731,9 @@ export declare type GetCertificateProfileRequestJson = {
  */
 export declare type GetCertificateProfileRequestValid = Message<"otpki.public.plugin.v1.GetCertificateProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -899,9 +899,9 @@ export declare const CreateEnrollmentRequestResponseSchema: GenMessage<CreateEnr
  */
 export declare type GetEnrollmentByRequestIDRequest = Message<"otpki.public.plugin.v1.GetEnrollmentByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -919,7 +919,7 @@ export declare type GetEnrollmentByRequestIDRequest = Message<"otpki.public.plug
  */
 export declare type GetEnrollmentByRequestIDRequestJson = {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
   enrollmentRequestId?: string;
 
@@ -939,9 +939,9 @@ export declare type GetEnrollmentByRequestIDRequestJson = {
  */
 export declare type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.plugin.v1.GetEnrollmentByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -1003,14 +1003,14 @@ export declare const GetEnrollmentByRequestIDResponseSchema: GenMessage<GetEnrol
  */
 export declare type RevokeEndEntityCertificateRequest = Message<"otpki.public.plugin.v1.RevokeEndEntityCertificateRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 3;
@@ -1023,12 +1023,12 @@ export declare type RevokeEndEntityCertificateRequest = Message<"otpki.public.pl
  */
 export declare type RevokeEndEntityCertificateRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
   issuedCertificateId?: string;
 
@@ -1043,14 +1043,14 @@ export declare type RevokeEndEntityCertificateRequestJson = {
  */
 export declare type RevokeEndEntityCertificateRequestValid = Message<"otpki.public.plugin.v1.RevokeEndEntityCertificateRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 3;
@@ -1153,9 +1153,9 @@ export declare const GetEndEntityCertificateBySerialNumberResponseSchema: GenMes
  */
 export declare type GetEndEntityCertificatesRequest = Message<"otpki.public.plugin.v1.GetEndEntityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -1163,7 +1163,7 @@ export declare type GetEndEntityCertificatesRequest = Message<"otpki.public.plug
  */
 export declare type GetEndEntityCertificatesRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 };
@@ -1173,9 +1173,9 @@ export declare type GetEndEntityCertificatesRequestJson = {
  */
 export declare type GetEndEntityCertificatesRequestValid = Message<"otpki.public.plugin.v1.GetEndEntityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -1220,9 +1220,9 @@ export declare const GetEndEntityCertificatesResponseSchema: GenMessage<GetEndEn
  */
 export declare type SignKeyRequest = Message<"otpki.public.plugin.v1.SignKeyRequest"> & {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: bytes digest = 2;
@@ -1243,7 +1243,7 @@ export declare type SignKeyRequest = Message<"otpki.public.plugin.v1.SignKeyRequ
  */
 export declare type SignKeyRequestJson = {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
   keyId?: string;
 
@@ -1266,9 +1266,9 @@ export declare type SignKeyRequestJson = {
  */
 export declare type SignKeyRequestValid = Message<"otpki.public.plugin.v1.SignKeyRequest"> & {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: bytes digest = 2;
@@ -1323,9 +1323,9 @@ export declare const SignKeyResponseSchema: GenMessage<SignKeyResponse, {jsonTyp
  */
 export declare type DecryptKeyRequest = Message<"otpki.public.plugin.v1.DecryptKeyRequest"> & {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: bytes ciphertext = 2;
@@ -1346,7 +1346,7 @@ export declare type DecryptKeyRequest = Message<"otpki.public.plugin.v1.DecryptK
  */
 export declare type DecryptKeyRequestJson = {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
   keyId?: string;
 
@@ -1369,9 +1369,9 @@ export declare type DecryptKeyRequestJson = {
  */
 export declare type DecryptKeyRequestValid = Message<"otpki.public.plugin.v1.DecryptKeyRequest"> & {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: bytes ciphertext = 2;

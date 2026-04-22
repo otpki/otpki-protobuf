@@ -624,11 +624,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -645,27 +643,24 @@ components:
         approverRoleIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_role_ids
+          uniqueItems: true
         approverGroupIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_group_ids
+          uniqueItems: true
         approverUserIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_user_ids
+          uniqueItems: true
         createdAt:
           title: created_at
           description: not settable on creation
@@ -691,22 +686,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateApprovalProfileResponse
       additionalProperties: false
     otpki.public.auth.v1.DeleteApprovalProfileRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteApprovalProfileRequest
       required:
         - id
@@ -740,11 +731,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetApprovalProfileRequest
       required:
         - id

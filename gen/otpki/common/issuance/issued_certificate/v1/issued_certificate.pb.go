@@ -7,6 +7,7 @@
 package issued_certificatev1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "github.com/google/gnostic/openapiv3"
 	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/api/v1"
 	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/issuance/issuer/v1"
@@ -28,7 +29,7 @@ const (
 
 type IssuedCertificate struct {
 	state                          protoimpl.MessageState   `protogen:"open.v1"`
-	Id                             int64                    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id                             string                   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Certificate                    []byte                   `protobuf:"bytes,2,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain               [][]byte                 `protobuf:"bytes,3,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"`
 	SerialNumber                   []byte                   `protobuf:"bytes,4,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
@@ -40,9 +41,9 @@ type IssuedCertificate struct {
 	RevokedAt                      *timestamppb.Timestamp   `protobuf:"bytes,10,opt,name=revoked_at,json=revokedAt,proto3,oneof" json:"revoked_at,omitempty"`
 	RevocationReasonCode           *v1.RevocationReasonCode `protobuf:"varint,11,opt,name=revocation_reason_code,json=revocationReasonCode,proto3,enum=otpki.common.x509.v1.RevocationReasonCode,oneof" json:"revocation_reason_code,omitempty"`
 	InCrl                          bool                     `protobuf:"varint,12,opt,name=in_crl,json=inCrl,proto3" json:"in_crl,omitempty"`
-	IssuedByCaCertificateId        *int64                   `protobuf:"varint,13,opt,name=issued_by_ca_certificate_id,json=issuedByCaCertificateId,proto3,oneof" json:"issued_by_ca_certificate_id,omitempty"`
-	IssuedFromCertificateProfileId int64                    `protobuf:"varint,14,opt,name=issued_from_certificate_profile_id,json=issuedFromCertificateProfileId,proto3" json:"issued_from_certificate_profile_id,omitempty"`
-	IssuedFromIssuanceRequestId    int64                    `protobuf:"varint,15,opt,name=issued_from_issuance_request_id,json=issuedFromIssuanceRequestId,proto3" json:"issued_from_issuance_request_id,omitempty"`
+	IssuedByCaCertificateId        *string                  `protobuf:"bytes,13,opt,name=issued_by_ca_certificate_id,json=issuedByCaCertificateId,proto3,oneof" json:"issued_by_ca_certificate_id,omitempty"`
+	IssuedFromCertificateProfileId string                   `protobuf:"bytes,14,opt,name=issued_from_certificate_profile_id,json=issuedFromCertificateProfileId,proto3" json:"issued_from_certificate_profile_id,omitempty"`
+	IssuedFromIssuanceRequestId    string                   `protobuf:"bytes,15,opt,name=issued_from_issuance_request_id,json=issuedFromIssuanceRequestId,proto3" json:"issued_from_issuance_request_id,omitempty"`
 	ProtocolUsed                   v11.IssuingProtocol      `protobuf:"varint,16,opt,name=protocol_used,json=protocolUsed,proto3,enum=otpki.common.issuance.issuer.v1.IssuingProtocol" json:"protocol_used,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
@@ -82,11 +83,11 @@ func (*IssuedCertificate) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_issued_certificate_v1_issued_certificate_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *IssuedCertificate) GetId() int64 {
+func (x *IssuedCertificate) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *IssuedCertificate) GetCertificate() []byte {
@@ -166,25 +167,25 @@ func (x *IssuedCertificate) GetInCrl() bool {
 	return false
 }
 
-func (x *IssuedCertificate) GetIssuedByCaCertificateId() int64 {
+func (x *IssuedCertificate) GetIssuedByCaCertificateId() string {
 	if x != nil && x.IssuedByCaCertificateId != nil {
 		return *x.IssuedByCaCertificateId
 	}
-	return 0
+	return ""
 }
 
-func (x *IssuedCertificate) GetIssuedFromCertificateProfileId() int64 {
+func (x *IssuedCertificate) GetIssuedFromCertificateProfileId() string {
 	if x != nil {
 		return x.IssuedFromCertificateProfileId
 	}
-	return 0
+	return ""
 }
 
-func (x *IssuedCertificate) GetIssuedFromIssuanceRequestId() int64 {
+func (x *IssuedCertificate) GetIssuedFromIssuanceRequestId() string {
 	if x != nil {
 		return x.IssuedFromIssuanceRequestId
 	}
-	return 0
+	return ""
 }
 
 func (x *IssuedCertificate) GetProtocolUsed() v11.IssuingProtocol {
@@ -212,9 +213,10 @@ var File_otpki_common_issuance_issued_certificate_v1_issued_certificate_proto pr
 
 const file_otpki_common_issuance_issued_certificate_v1_issued_certificate_proto_rawDesc = "" +
 	"\n" +
-	"Dotpki/common/issuance/issued_certificate/v1/issued_certificate.proto\x12+otpki.common.issuance.issued_certificate.v1\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a,otpki/common/issuance/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xee\t\n" +
-	"\x11IssuedCertificate\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12 \n" +
+	"Dotpki/common/issuance/issued_certificate/v1/issued_certificate.proto\x12+otpki.common.issuance.issued_certificate.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a,otpki/common/issuance/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x96\n" +
+	"\n" +
+	"\x11IssuedCertificate\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
 	"\vcertificate\x18\x02 \x01(\fR\vcertificate\x12+\n" +
 	"\x11certificate_chain\x18\x03 \x03(\fR\x10certificateChain\x12#\n" +
 	"\rserial_number\x18\x04 \x01(\fR\fserialNumber\x12!\n" +
@@ -230,10 +232,10 @@ const file_otpki_common_issuance_issued_certificate_v1_issued_certificate_proto_
 	" \x01(\v2\x1a.google.protobuf.TimestampB\x16\x8a\xb5\x18\n" +
 	"*time.Time\x92\xb5\x18\x04timeH\x00R\trevokedAt\x88\x01\x01\x12e\n" +
 	"\x16revocation_reason_code\x18\v \x01(\x0e2*.otpki.common.x509.v1.RevocationReasonCodeH\x01R\x14revocationReasonCode\x88\x01\x01\x12\x15\n" +
-	"\x06in_crl\x18\f \x01(\bR\x05inCrl\x12A\n" +
-	"\x1bissued_by_ca_certificate_id\x18\r \x01(\x03H\x02R\x17issuedByCaCertificateId\x88\x01\x01\x12J\n" +
-	"\"issued_from_certificate_profile_id\x18\x0e \x01(\x03R\x1eissuedFromCertificateProfileId\x12D\n" +
-	"\x1fissued_from_issuance_request_id\x18\x0f \x01(\x03R\x1bissuedFromIssuanceRequestId\x12U\n" +
+	"\x06in_crl\x18\f \x01(\bR\x05inCrl\x12K\n" +
+	"\x1bissued_by_ca_certificate_id\x18\r \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x02R\x17issuedByCaCertificateId\x88\x01\x01\x12T\n" +
+	"\"issued_from_certificate_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x1eissuedFromCertificateProfileId\x12N\n" +
+	"\x1fissued_from_issuance_request_id\x18\x0f \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x1bissuedFromIssuanceRequestId\x12U\n" +
 	"\rprotocol_used\x18\x10 \x01(\x0e20.otpki.common.issuance.issuer.v1.IssuingProtocolR\fprotocolUsed\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +

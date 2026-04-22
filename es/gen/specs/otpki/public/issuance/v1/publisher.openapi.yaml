@@ -641,35 +641,24 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         publisherConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_config_id
-          minimum: 1
-          format: int64
+          format: uuid
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          minimum: 0
-          format: int64
+          format: uuid
           description: 'CHECK: at least one of these two must be set'
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          minimum: 0
-          format: int64
+          format: uuid
           description: 'CHECK: at least one of these two must be set'
         subscribedEvents:
           type: array
@@ -683,27 +672,19 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          minimum: 1
-          format: int64
+          format: uuid
         publisherConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_config_id
-          minimum: 1
-          format: int64
+          format: uuid
       title: CrlPublisher
       additionalProperties: false
       description: CRL Publisher can only subscribe to CAs on CRL generation events
@@ -711,11 +692,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -764,11 +743,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCertificatePublisherResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateCrlPublisherRequest:
@@ -783,11 +760,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCrlPublisherResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreatePublisherConfigRequest:
@@ -804,24 +779,21 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreatePublisherConfigResponse
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCertificatePublisherRequest:
       type: object
       properties:
         publisherId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_id
-          format: int64
+          format: uuid
       title: DeleteCertificatePublisherRequest
+      required:
+        - publisherId
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCertificatePublisherResponse:
       type: object
@@ -831,13 +803,12 @@ components:
       type: object
       properties:
         publisherId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_id
-          format: int64
+          format: uuid
       title: DeleteCrlPublisherRequest
+      required:
+        - publisherId
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCrlPublisherResponse:
       type: object
@@ -847,13 +818,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeletePublisherConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.DeletePublisherConfigResponse:
       type: object
@@ -926,13 +896,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetPublisherConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.GetPublisherConfigResponse:
       type: object

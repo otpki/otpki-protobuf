@@ -408,11 +408,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
       title: GetLatestRevocationListRequest
       additionalProperties: false
     otpki.public.validation.v1.GetLatestRevocationListResponse:
@@ -427,11 +425,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetRevocationListRequest
       additionalProperties: false
     otpki.public.validation.v1.GetRevocationListResponse:

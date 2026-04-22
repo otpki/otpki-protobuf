@@ -125,11 +125,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -147,11 +145,10 @@ components:
           $ref: '#/components/schemas/google.protobuf.Any'
         cryptoKeyId:
           type:
-            - integer
             - string
             - "null"
           title: crypto_key_id
-          format: int64
+          format: uuid
         enableActivation:
           type: boolean
           title: enable_activation

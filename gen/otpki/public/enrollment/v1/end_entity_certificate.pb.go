@@ -27,7 +27,7 @@ const (
 type GetEndEntityCertificateBySerialNumberRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SerialNumber  []byte                 `protobuf:"bytes,1,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
-	EndEntityId   int64                  `protobuf:"varint,2,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"` // this param does not do anything, it's for the path to satisfy a pattern
+	EndEntityId   string                 `protobuf:"bytes,2,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"` // this param does not do anything, it's for the path to satisfy a pattern
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -69,11 +69,11 @@ func (x *GetEndEntityCertificateBySerialNumberRequest) GetSerialNumber() []byte 
 	return nil
 }
 
-func (x *GetEndEntityCertificateBySerialNumberRequest) GetEndEntityId() int64 {
+func (x *GetEndEntityCertificateBySerialNumberRequest) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityCertificateBySerialNumberResponse struct {
@@ -122,7 +122,7 @@ func (x *GetEndEntityCertificateBySerialNumberResponse) GetEndEntityCertificate(
 
 type GetEndEntityCertificatesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	EndEntityId   int64                  `protobuf:"varint,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
+	EndEntityId   string                 `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -157,11 +157,11 @@ func (*GetEndEntityCertificatesRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_end_entity_certificate_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetEndEntityCertificatesRequest) GetEndEntityId() int64 {
+func (x *GetEndEntityCertificatesRequest) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityCertificatesResponse struct {
@@ -308,14 +308,14 @@ var File_otpki_public_enrollment_v1_end_entity_certificate_proto protoreflect.Fi
 
 const file_otpki_public_enrollment_v1_end_entity_certificate_proto_rawDesc = "" +
 	"\n" +
-	"7otpki/public/enrollment/v1/end_entity_certificate.proto\x12\x1aotpki.public.enrollment.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1aNotpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto\"\x7f\n" +
+	"7otpki/public/enrollment/v1/end_entity_certificate.proto\x12\x1aotpki.public.enrollment.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1aNotpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto\"\x89\x01\n" +
 	",GetEndEntityCertificateBySerialNumberRequest\x12+\n" +
-	"\rserial_number\x18\x01 \x01(\fB\x06\xbaH\x03\xc8\x01\x01R\fserialNumber\x12\"\n" +
-	"\rend_entity_id\x18\x02 \x01(\x03R\vendEntityId\"\xae\x01\n" +
+	"\rserial_number\x18\x01 \x01(\fB\x06\xbaH\x03\xc8\x01\x01R\fserialNumber\x12,\n" +
+	"\rend_entity_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vendEntityId\"\xae\x01\n" +
 	"-GetEndEntityCertificateBySerialNumberResponse\x12}\n" +
-	"\x16end_entity_certificate\x18\x01 \x01(\v2G.otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificateR\x14endEntityCertificate\"M\n" +
-	"\x1fGetEndEntityCertificatesRequest\x12*\n" +
-	"\rend_entity_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\vendEntityId\"\xa3\x01\n" +
+	"\x16end_entity_certificate\x18\x01 \x01(\v2G.otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificateR\x14endEntityCertificate\"R\n" +
+	"\x1fGetEndEntityCertificatesRequest\x12/\n" +
+	"\rend_entity_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vendEntityId\"\xa3\x01\n" +
 	" GetEndEntityCertificatesResponse\x12\x7f\n" +
 	"\x17end_entity_certificates\x18\x01 \x03(\v2G.otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificateR\x15endEntityCertificates\"r\n" +
 	"\"GetEndEntityCertificateListRequest\x12L\n" +

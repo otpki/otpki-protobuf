@@ -7,6 +7,7 @@
 package end_entity_certificatev1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/api/v1"
 	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/issuance/issuer/v1"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1"
@@ -27,9 +28,9 @@ const (
 
 type EndEntityCertificate struct {
 	state               protoimpl.MessageState   `protogen:"open.v1"`
-	EndEntityId         int64                    `protobuf:"varint,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
-	EnrollmentRequestId int64                    `protobuf:"varint,2,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
-	IssuedCertificateId int64                    `protobuf:"varint,3,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
+	EndEntityId         string                   `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
+	EnrollmentRequestId string                   `protobuf:"bytes,2,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
+	IssuedCertificateId string                   `protobuf:"bytes,3,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
 	Certificate         []byte                   `protobuf:"bytes,4,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain    [][]byte                 `protobuf:"bytes,5,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"`
 	SerialNumber        []byte                   `protobuf:"bytes,6,opt,name=serial_number,json=serialNumber,proto3" json:"serial_number,omitempty"`
@@ -73,25 +74,25 @@ func (*EndEntityCertificate) Descriptor() ([]byte, []int) {
 	return file_otpki_common_enrollment_end_entity_certificate_v1_end_entity_certificate_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *EndEntityCertificate) GetEndEntityId() int64 {
+func (x *EndEntityCertificate) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
 	}
-	return 0
+	return ""
 }
 
-func (x *EndEntityCertificate) GetEnrollmentRequestId() int64 {
+func (x *EndEntityCertificate) GetEnrollmentRequestId() string {
 	if x != nil {
 		return x.EnrollmentRequestId
 	}
-	return 0
+	return ""
 }
 
-func (x *EndEntityCertificate) GetIssuedCertificateId() int64 {
+func (x *EndEntityCertificate) GetIssuedCertificateId() string {
 	if x != nil {
 		return x.IssuedCertificateId
 	}
-	return 0
+	return ""
 }
 
 func (x *EndEntityCertificate) GetCertificate() []byte {
@@ -161,11 +162,11 @@ var File_otpki_common_enrollment_end_entity_certificate_v1_end_entity_certificat
 
 const file_otpki_common_enrollment_end_entity_certificate_v1_end_entity_certificate_proto_rawDesc = "" +
 	"\n" +
-	"Notpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto\x121otpki.common.enrollment.end_entity_certificate.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a,otpki/common/issuance/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xc8\x05\n" +
-	"\x14EndEntityCertificate\x12\"\n" +
-	"\rend_entity_id\x18\x01 \x01(\x03R\vendEntityId\x122\n" +
-	"\x15enrollment_request_id\x18\x02 \x01(\x03R\x13enrollmentRequestId\x122\n" +
-	"\x15issued_certificate_id\x18\x03 \x01(\x03R\x13issuedCertificateId\x12 \n" +
+	"Notpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto\x121otpki.common.enrollment.end_entity_certificate.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a,otpki/common/issuance/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xe6\x05\n" +
+	"\x14EndEntityCertificate\x12,\n" +
+	"\rend_entity_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vendEntityId\x12<\n" +
+	"\x15enrollment_request_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12<\n" +
+	"\x15issued_certificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13issuedCertificateId\x12 \n" +
 	"\vcertificate\x18\x04 \x01(\fR\vcertificate\x12+\n" +
 	"\x11certificate_chain\x18\x05 \x03(\fR\x10certificateChain\x12#\n" +
 	"\rserial_number\x18\x06 \x01(\fR\fserialNumber\x12!\n" +

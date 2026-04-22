@@ -28,10 +28,13 @@ enum LoginIDScheme {
 
 message EndEntity {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ]; // not settable on creation
   // string name = 2; // using "login id" now
   string description = 3;
-  optional int64 end_entity_profile_id = 4;
+  optional string end_entity_profile_id = 4 [(buf.validate.field).string.uuid = true];
   EndEntityStatus status = 5 [(gnostic.openapi.v3.property).read_only = true]; // this should only be set by backend
 
   // db details
@@ -72,8 +75,8 @@ message EndEntity {
   repeated x509.v1.SANAttribute subject_alternative_name_attributes = 501;
 
   // issuance information
-  int64 certificate_profile_id = 601;
-  int64 certificate_authority_id = 602;
+  string certificate_profile_id = 601 [(buf.validate.field).string.uuid = true];
+  string certificate_authority_id = 602 [(buf.validate.field).string.uuid = true];
 
   // validity override
   google.protobuf.Duration validity_start_time_offset = 701 [
@@ -152,10 +155,10 @@ message EndEntity {
       string: {uri: true}
     }
   }];
-  repeated int64 custom_certificate_extension_ids = 809 [(buf.validate.field).repeated = {
+  repeated string custom_certificate_extension_ids = 809 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      int64: {gt: 0}
+      string: {uuid: true}
     }
   }];
 }

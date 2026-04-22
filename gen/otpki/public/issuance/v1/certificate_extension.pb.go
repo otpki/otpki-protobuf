@@ -71,7 +71,7 @@ func (x *CreateCustomCertificateExtensionRequest) GetExtension() *v1.CustomCerti
 
 type CreateCustomCertificateExtensionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateCustomCertificateExtensionResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_extension_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateCustomCertificateExtensionResponse) GetId() int64 {
+func (x *CreateCustomCertificateExtensionResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetCustomCertificateExtensionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetCustomCertificateExtensionRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_extension_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetCustomCertificateExtensionRequest) GetId() int64 {
+func (x *GetCustomCertificateExtensionRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetCustomCertificateExtensionResponse struct {
@@ -291,7 +291,7 @@ func (*UpdateCustomCertificateExtensionResponse) Descriptor() ([]byte, []int) {
 
 type DeleteCustomCertificateExtensionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,11 +326,11 @@ func (*DeleteCustomCertificateExtensionRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_extension_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteCustomCertificateExtensionRequest) GetId() int64 {
+func (x *DeleteCustomCertificateExtensionRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteCustomCertificateExtensionResponse struct {
@@ -471,20 +471,20 @@ const file_otpki_public_issuance_v1_certificate_extension_proto_rawDesc = "" +
 	"\n" +
 	"4otpki/public/issuance/v1/certificate_extension.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aJotpki/common/issuance/certificate_extension/v1/certificate_extension.proto\"\x9b\x01\n" +
 	"'CreateCustomCertificateExtensionRequest\x12p\n" +
-	"\textension\x18\x01 \x01(\v2J.otpki.common.issuance.certificate_extension.v1.CustomCertificateExtensionB\x06\xbaH\x03\xc8\x01\x01R\textension\":\n" +
-	"(CreateCustomCertificateExtensionResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\">\n" +
-	"$GetCustomCertificateExtensionRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x91\x01\n" +
+	"\textension\x18\x01 \x01(\v2J.otpki.common.issuance.certificate_extension.v1.CustomCertificateExtensionB\x06\xbaH\x03\xc8\x01\x01R\textension\"D\n" +
+	"(CreateCustomCertificateExtensionResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"C\n" +
+	"$GetCustomCertificateExtensionRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x91\x01\n" +
 	"%GetCustomCertificateExtensionResponse\x12h\n" +
 	"\textension\x18\x01 \x01(\v2J.otpki.common.issuance.certificate_extension.v1.CustomCertificateExtensionR\textension\"\xd8\x01\n" +
 	"'UpdateCustomCertificateExtensionRequest\x12p\n" +
 	"\textension\x18\x01 \x01(\v2J.otpki.common.issuance.certificate_extension.v1.CustomCertificateExtensionB\x06\xbaH\x03\xc8\x01\x01R\textension\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"*\n" +
-	"(UpdateCustomCertificateExtensionResponse\"A\n" +
-	"'DeleteCustomCertificateExtensionRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"*\n" +
+	"(UpdateCustomCertificateExtensionResponse\"F\n" +
+	"'DeleteCustomCertificateExtensionRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"*\n" +
 	"(DeleteCustomCertificateExtensionResponse\"x\n" +
 	"(GetCustomCertificateExtensionListRequest\x12L\n" +
 	"\n" +

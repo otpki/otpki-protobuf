@@ -18,9 +18,9 @@ export declare type CustomCertificateExtension = Message<"otpki.common.issuance.
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string oid = 2;
@@ -93,7 +93,7 @@ export declare type CustomCertificateExtensionJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -168,9 +168,9 @@ export declare type CustomCertificateExtensionValid = Message<"otpki.common.issu
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string oid = 2;

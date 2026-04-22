@@ -82,9 +82,9 @@ export declare const CreateIssuanceRequestResponseSchema: GenMessage<CreateIssua
  */
 export declare type GetIssuanceByRequestIDRequest = Message<"otpki.public.issuance.v1.GetIssuanceByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetIssuanceByRequestIDRequest = Message<"otpki.public.issuan
  */
 export declare type GetIssuanceByRequestIDRequestJson = {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
   issuanceRequestId?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetIssuanceByRequestIDRequestJson = {
  */
 export declare type GetIssuanceByRequestIDRequestValid = Message<"otpki.public.issuance.v1.GetIssuanceByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 };
 
 /**
@@ -169,9 +169,9 @@ export declare const GetIssuanceByRequestIDResponseSchema: GenMessage<GetIssuanc
  */
 export declare type RevokeIssuedCertificatesRequest = Message<"otpki.public.issuance.v1.RevokeIssuedCertificatesRequest"> & {
   /**
-   * @generated from field: repeated int64 certificate_ids = 1;
+   * @generated from field: repeated string certificate_ids = 1;
    */
-  certificateIds: bigint[];
+  certificateIds: string[];
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
@@ -184,7 +184,7 @@ export declare type RevokeIssuedCertificatesRequest = Message<"otpki.public.issu
  */
 export declare type RevokeIssuedCertificatesRequestJson = {
   /**
-   * @generated from field: repeated int64 certificate_ids = 1;
+   * @generated from field: repeated string certificate_ids = 1;
    */
   certificateIds?: string[];
 
@@ -194,20 +194,7 @@ export declare type RevokeIssuedCertificatesRequestJson = {
   revocationReasonCode?: RevocationReasonCodeJson;
 };
 
-/**
- * @generated from message otpki.public.issuance.v1.RevokeIssuedCertificatesRequest
- */
-export declare type RevokeIssuedCertificatesRequestValid = Message<"otpki.public.issuance.v1.RevokeIssuedCertificatesRequest"> & {
-  /**
-   * @generated from field: repeated int64 certificate_ids = 1;
-   */
-  certificateIds: bigint[];
-
-  /**
-   * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
-   */
-  revocationReasonCode: RevocationReasonCode;
-};
+export declare type RevokeIssuedCertificatesRequestValid = RevokeIssuedCertificatesRequest;
 
 /**
  * Describes the message otpki.public.issuance.v1.RevokeIssuedCertificatesRequest.

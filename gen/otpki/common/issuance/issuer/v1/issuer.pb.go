@@ -151,15 +151,15 @@ func (IssuingProtocol) EnumDescriptor() ([]byte, []int) {
 
 type IssuanceRequest struct {
 	state               protoimpl.MessageState  `protogen:"open.v1"`
-	Id                  int64                   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id                  string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Status              IssuanceStatus          `protobuf:"varint,2,opt,name=status,proto3,enum=otpki.common.issuance.issuer.v1.IssuanceStatus" json:"status,omitempty"`
 	ProtocolUsed        IssuingProtocol         `protobuf:"varint,3,opt,name=protocol_used,json=protocolUsed,proto3,enum=otpki.common.issuance.issuer.v1.IssuingProtocol" json:"protocol_used,omitempty"`
 	CertificateTemplate *v1.CertificateTemplate `protobuf:"bytes,4,opt,name=certificate_template,json=certificateTemplate,proto3" json:"certificate_template,omitempty"`
 	// only used for self-signed root ca issuance
-	SigningKeyId            *int64 `protobuf:"varint,5,opt,name=signing_key_id,json=signingKeyId,proto3,oneof" json:"signing_key_id,omitempty"`
-	AlternativeSigningKeyId *int64 `protobuf:"varint,6,opt,name=alternative_signing_key_id,json=alternativeSigningKeyId,proto3,oneof" json:"alternative_signing_key_id,omitempty"`
+	SigningKeyId            *string `protobuf:"bytes,5,opt,name=signing_key_id,json=signingKeyId,proto3,oneof" json:"signing_key_id,omitempty"`
+	AlternativeSigningKeyId *string `protobuf:"bytes,6,opt,name=alternative_signing_key_id,json=alternativeSigningKeyId,proto3,oneof" json:"alternative_signing_key_id,omitempty"`
 	// only used for CA certificate issuance - points to the CA entity that will receive the issued cert
-	TargetCertificateAuthorityId *int64 `protobuf:"varint,7,opt,name=target_certificate_authority_id,json=targetCertificateAuthorityId,proto3,oneof" json:"target_certificate_authority_id,omitempty"`
+	TargetCertificateAuthorityId *string `protobuf:"bytes,7,opt,name=target_certificate_authority_id,json=targetCertificateAuthorityId,proto3,oneof" json:"target_certificate_authority_id,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -198,11 +198,11 @@ func (*IssuanceRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_issuer_v1_issuer_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *IssuanceRequest) GetId() int64 {
+func (x *IssuanceRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *IssuanceRequest) GetStatus() IssuanceStatus {
@@ -226,25 +226,25 @@ func (x *IssuanceRequest) GetCertificateTemplate() *v1.CertificateTemplate {
 	return nil
 }
 
-func (x *IssuanceRequest) GetSigningKeyId() int64 {
+func (x *IssuanceRequest) GetSigningKeyId() string {
 	if x != nil && x.SigningKeyId != nil {
 		return *x.SigningKeyId
 	}
-	return 0
+	return ""
 }
 
-func (x *IssuanceRequest) GetAlternativeSigningKeyId() int64 {
+func (x *IssuanceRequest) GetAlternativeSigningKeyId() string {
 	if x != nil && x.AlternativeSigningKeyId != nil {
 		return *x.AlternativeSigningKeyId
 	}
-	return 0
+	return ""
 }
 
-func (x *IssuanceRequest) GetTargetCertificateAuthorityId() int64 {
+func (x *IssuanceRequest) GetTargetCertificateAuthorityId() string {
 	if x != nil && x.TargetCertificateAuthorityId != nil {
 		return *x.TargetCertificateAuthorityId
 	}
-	return 0
+	return ""
 }
 
 func (x *IssuanceRequest) GetCreatedAt() *timestamppb.Timestamp {
@@ -263,9 +263,9 @@ func (x *IssuanceRequest) GetUpdatedAt() *timestamppb.Timestamp {
 
 type IssuanceResponse struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	IssuanceRequestId int64                  `protobuf:"varint,1,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
+	IssuanceRequestId string                 `protobuf:"bytes,1,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
 	Status            IssuanceStatus         `protobuf:"varint,2,opt,name=status,proto3,enum=otpki.common.issuance.issuer.v1.IssuanceStatus" json:"status,omitempty"`
-	CertificateId     int64                  `protobuf:"varint,3,opt,name=certificate_id,json=certificateId,proto3" json:"certificate_id,omitempty"`
+	CertificateId     string                 `protobuf:"bytes,3,opt,name=certificate_id,json=certificateId,proto3" json:"certificate_id,omitempty"`
 	Certificate       []byte                 `protobuf:"bytes,4,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain  [][]byte               `protobuf:"bytes,5,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"` // does not contain end entity certificate
 	unknownFields     protoimpl.UnknownFields
@@ -302,11 +302,11 @@ func (*IssuanceResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_issuer_v1_issuer_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *IssuanceResponse) GetIssuanceRequestId() int64 {
+func (x *IssuanceResponse) GetIssuanceRequestId() string {
 	if x != nil {
 		return x.IssuanceRequestId
 	}
-	return 0
+	return ""
 }
 
 func (x *IssuanceResponse) GetStatus() IssuanceStatus {
@@ -316,11 +316,11 @@ func (x *IssuanceResponse) GetStatus() IssuanceStatus {
 	return IssuanceStatus_ISSUANCE_STATUS_UNSPECIFIED
 }
 
-func (x *IssuanceResponse) GetCertificateId() int64 {
+func (x *IssuanceResponse) GetCertificateId() string {
 	if x != nil {
 		return x.CertificateId
 	}
-	return 0
+	return ""
 }
 
 func (x *IssuanceResponse) GetCertificate() []byte {
@@ -341,26 +341,26 @@ var File_otpki_common_issuance_issuer_v1_issuer_proto protoreflect.FileDescripto
 
 const file_otpki_common_issuance_issuer_v1_issuer_proto_rawDesc = "" +
 	"\n" +
-	",otpki/common/issuance/issuer/v1/issuer.proto\x12\x1fotpki.common.issuance.issuer.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\"\x87\x06\n" +
-	"\x0fIssuanceRequest\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12N\n" +
+	",otpki/common/issuance/issuer/v1/issuer.proto\x12\x1fotpki.common.issuance.issuer.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\"\xad\x06\n" +
+	"\x0fIssuanceRequest\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12N\n" +
 	"\x06status\x18\x02 \x01(\x0e2/.otpki.common.issuance.issuer.v1.IssuanceStatusB\x05\xbaG\x02\x18\x01R\x06status\x12b\n" +
 	"\rprotocol_used\x18\x03 \x01(\x0e20.otpki.common.issuance.issuer.v1.IssuingProtocolB\v\xbaH\b\xc8\x01\x01\x82\x01\x02\x10\x01R\fprotocolUsed\x12d\n" +
-	"\x14certificate_template\x18\x04 \x01(\v2).otpki.common.x509.v1.CertificateTemplateB\x06\xbaH\x03\xc8\x01\x01R\x13certificateTemplate\x12)\n" +
-	"\x0esigning_key_id\x18\x05 \x01(\x03H\x00R\fsigningKeyId\x88\x01\x01\x12@\n" +
-	"\x1aalternative_signing_key_id\x18\x06 \x01(\x03H\x01R\x17alternativeSigningKeyId\x88\x01\x01\x12J\n" +
-	"\x1ftarget_certificate_authority_id\x18\a \x01(\x03H\x02R\x1ctargetCertificateAuthorityId\x88\x01\x01\x12V\n" +
+	"\x14certificate_template\x18\x04 \x01(\v2).otpki.common.x509.v1.CertificateTemplateB\x06\xbaH\x03\xc8\x01\x01R\x13certificateTemplate\x123\n" +
+	"\x0esigning_key_id\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\fsigningKeyId\x88\x01\x01\x12J\n" +
+	"\x1aalternative_signing_key_id\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x17alternativeSigningKeyId\x88\x01\x01\x12T\n" +
+	"\x1ftarget_certificate_authority_id\x18\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x02R\x1ctargetCertificateAuthorityId\x88\x01\x01\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
 	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01B\x11\n" +
 	"\x0f_signing_key_idB\x1d\n" +
 	"\x1b_alternative_signing_key_idB\"\n" +
-	" _target_certificate_authority_id\"\x81\x02\n" +
-	"\x10IssuanceResponse\x12.\n" +
-	"\x13issuance_request_id\x18\x01 \x01(\x03R\x11issuanceRequestId\x12G\n" +
-	"\x06status\x18\x02 \x01(\x0e2/.otpki.common.issuance.issuer.v1.IssuanceStatusR\x06status\x12%\n" +
-	"\x0ecertificate_id\x18\x03 \x01(\x03R\rcertificateId\x12 \n" +
+	" _target_certificate_authority_id\"\x95\x02\n" +
+	"\x10IssuanceResponse\x128\n" +
+	"\x13issuance_request_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11issuanceRequestId\x12G\n" +
+	"\x06status\x18\x02 \x01(\x0e2/.otpki.common.issuance.issuer.v1.IssuanceStatusR\x06status\x12/\n" +
+	"\x0ecertificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rcertificateId\x12 \n" +
 	"\vcertificate\x18\x04 \x01(\fR\vcertificate\x12+\n" +
 	"\x11certificate_chain\x18\x05 \x03(\fR\x10certificateChain*\xcd\x01\n" +
 	"\x0eIssuanceStatus\x12\x1f\n" +

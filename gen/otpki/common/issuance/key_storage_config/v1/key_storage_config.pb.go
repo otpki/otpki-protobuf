@@ -28,12 +28,12 @@ const (
 
 type KeyStorageConfig struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	KeyDriverType KeyDriverType          `protobuf:"varint,4,opt,name=key_driver_type,json=keyDriverType,proto3,enum=otpki.common.issuance.key_storage_config.v1.KeyDriverType" json:"key_driver_type,omitempty"`
 	ConfigData    *anypb.Any             `protobuf:"bytes,5,opt,name=config_data,json=configData,proto3" json:"config_data,omitempty"`
-	CryptoKeyId   *int64                 `protobuf:"varint,6,opt,name=crypto_key_id,json=cryptoKeyId,proto3,oneof" json:"crypto_key_id,omitempty"`
+	CryptoKeyId   *string                `protobuf:"bytes,6,opt,name=crypto_key_id,json=cryptoKeyId,proto3,oneof" json:"crypto_key_id,omitempty"`
 	// activation
 	// if this is false, this config cannot be activated and is always "active"
 	// if it is true, activation is always required.
@@ -92,11 +92,11 @@ func (*KeyStorageConfig) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_key_storage_config_v1_key_storage_config_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *KeyStorageConfig) GetId() int64 {
+func (x *KeyStorageConfig) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *KeyStorageConfig) GetName() string {
@@ -127,11 +127,11 @@ func (x *KeyStorageConfig) GetConfigData() *anypb.Any {
 	return nil
 }
 
-func (x *KeyStorageConfig) GetCryptoKeyId() int64 {
+func (x *KeyStorageConfig) GetCryptoKeyId() string {
 	if x != nil && x.CryptoKeyId != nil {
 		return *x.CryptoKeyId
 	}
-	return 0
+	return ""
 }
 
 func (x *KeyStorageConfig) GetEnableActivation() bool {
@@ -194,16 +194,16 @@ var File_otpki_common_issuance_key_storage_config_v1_key_storage_config_proto pr
 
 const file_otpki_common_issuance_key_storage_config_v1_key_storage_config_proto_rawDesc = "" +
 	"\n" +
-	"Dotpki/common/issuance/key_storage_config/v1/key_storage_config.proto\x12+otpki.common.issuance.key_storage_config.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a6otpki/common/issuance/key_storage_config/v1/enum.proto\"\xa7\x06\n" +
-	"\x10KeyStorageConfig\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1e\n" +
+	"Dotpki/common/issuance/key_storage_config/v1/key_storage_config.proto\x12+otpki.common.issuance.key_storage_config.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a6otpki/common/issuance/key_storage_config/v1/enum.proto\"\xb9\x06\n" +
+	"\x10KeyStorageConfig\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1e\n" +
 	"\x04name\x18\x02 \x01(\tB\n" +
 	"\xbaH\a\xd8\x01\x01r\x02\x10\x03R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12l\n" +
 	"\x0fkey_driver_type\x18\x04 \x01(\x0e2:.otpki.common.issuance.key_storage_config.v1.KeyDriverTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\rkeyDriverType\x125\n" +
 	"\vconfig_data\x18\x05 \x01(\v2\x14.google.protobuf.AnyR\n" +
-	"configData\x12'\n" +
-	"\rcrypto_key_id\x18\x06 \x01(\x03H\x00R\vcryptoKeyId\x88\x01\x01\x12+\n" +
+	"configData\x121\n" +
+	"\rcrypto_key_id\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\vcryptoKeyId\x88\x01\x01\x12+\n" +
 	"\x11enable_activation\x18\a \x01(\bR\x10enableActivation\x12'\n" +
 	"\x0fauto_activation\x18\b \x01(\bR\x0eautoActivation\x12(\n" +
 	"\fis_activated\x18\t \x01(\bB\x05\xbaG\x02\x18\x01R\visActivated\x12+\n" +

@@ -20,9 +20,9 @@ export declare type CertificateAuthority = Message<"otpki.common.issuance.certif
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -35,14 +35,14 @@ export declare type CertificateAuthority = Message<"otpki.common.issuance.certif
   description: string;
 
   /**
-   * @generated from field: int64 key_id = 4;
+   * @generated from field: string key_id = 4;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
-   * @generated from field: optional int64 alternative_key_id = 5;
+   * @generated from field: optional string alternative_key_id = 5;
    */
-  alternativeKeyId?: bigint;
+  alternativeKeyId?: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.SignatureAlgorithm signature_algorithm = 6;
@@ -93,9 +93,9 @@ export declare type CertificateAuthority = Message<"otpki.common.issuance.certif
   issuerUris: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 14;
+   * @generated from field: string approval_profile_id = 14;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 
   /**
    * not settable on creation
@@ -119,7 +119,7 @@ export declare type CertificateAuthorityJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -134,12 +134,12 @@ export declare type CertificateAuthorityJson = {
   description?: string;
 
   /**
-   * @generated from field: int64 key_id = 4;
+   * @generated from field: string key_id = 4;
    */
   keyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_key_id = 5;
+   * @generated from field: optional string alternative_key_id = 5;
    */
   alternativeKeyId?: string;
 
@@ -192,7 +192,7 @@ export declare type CertificateAuthorityJson = {
   issuerUris?: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 14;
+   * @generated from field: string approval_profile_id = 14;
    */
   approvalProfileId?: string;
 
@@ -218,9 +218,9 @@ export declare type CertificateAuthorityValid = Message<"otpki.common.issuance.c
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -233,14 +233,14 @@ export declare type CertificateAuthorityValid = Message<"otpki.common.issuance.c
   description: string;
 
   /**
-   * @generated from field: int64 key_id = 4;
+   * @generated from field: string key_id = 4;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
-   * @generated from field: optional int64 alternative_key_id = 5;
+   * @generated from field: optional string alternative_key_id = 5;
    */
-  alternativeKeyId?: bigint;
+  alternativeKeyId?: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.SignatureAlgorithm signature_algorithm = 6;
@@ -291,9 +291,9 @@ export declare type CertificateAuthorityValid = Message<"otpki.common.issuance.c
   issuerUris: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 14;
+   * @generated from field: string approval_profile_id = 14;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 
   /**
    * not settable on creation
@@ -321,14 +321,14 @@ export declare const CertificateAuthoritySchema: GenMessage<CertificateAuthority
  */
 export declare type CertificateAuthorityCertificate = Message<"otpki.common.issuance.certificate_authority.v1.CertificateAuthorityCertificate"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 certificate_authority_id = 2;
+   * @generated from field: string certificate_authority_id = 2;
    */
-  certificateAuthorityId: bigint;
+  certificateAuthorityId: string;
 
   /**
    * @generated from field: bytes certificate = 3;
@@ -341,9 +341,9 @@ export declare type CertificateAuthorityCertificate = Message<"otpki.common.issu
   certificateChain: Uint8Array[];
 
   /**
-   * @generated from field: optional int64 issued_certificate_id = 5;
+   * @generated from field: optional string issued_certificate_id = 5;
    */
-  issuedCertificateId?: bigint;
+  issuedCertificateId?: string;
 
   /**
    * @generated from field: string display_name = 6;
@@ -356,12 +356,12 @@ export declare type CertificateAuthorityCertificate = Message<"otpki.common.issu
  */
 export declare type CertificateAuthorityCertificateJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 certificate_authority_id = 2;
+   * @generated from field: string certificate_authority_id = 2;
    */
   certificateAuthorityId?: string;
 
@@ -376,7 +376,7 @@ export declare type CertificateAuthorityCertificateJson = {
   certificateChain?: string[];
 
   /**
-   * @generated from field: optional int64 issued_certificate_id = 5;
+   * @generated from field: optional string issued_certificate_id = 5;
    */
   issuedCertificateId?: string;
 

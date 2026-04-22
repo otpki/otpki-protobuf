@@ -71,7 +71,7 @@ func (x *CreateGroupRequest) GetGroup() *v1.Group {
 
 type CreateGroupResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateGroupResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_group_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateGroupResponse) GetId() int64 {
+func (x *CreateGroupResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetGroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetGroupRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_group_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetGroupRequest) GetId() int64 {
+func (x *GetGroupRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetGroupResponse struct {
@@ -203,7 +203,7 @@ func (x *GetGroupResponse) GetGroup() *v1.Group {
 
 type GetManyGroupsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ids           []int64                `protobuf:"varint,1,rep,packed,name=ids,proto3" json:"ids,omitempty"`
+	Ids           []string               `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -238,7 +238,7 @@ func (*GetManyGroupsRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_group_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetManyGroupsRequest) GetIds() []int64 {
+func (x *GetManyGroupsRequest) GetIds() []string {
 	if x != nil {
 		return x.Ids
 	}
@@ -379,7 +379,7 @@ func (*UpdateGroupResponse) Descriptor() ([]byte, []int) {
 
 type DeleteGroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -414,11 +414,11 @@ func (*DeleteGroupRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_group_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *DeleteGroupRequest) GetId() int64 {
+func (x *DeleteGroupRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteGroupResponse struct {
@@ -559,24 +559,24 @@ const file_otpki_public_auth_v1_group_proto_rawDesc = "" +
 	"\n" +
 	" otpki/public/auth/v1/group.proto\x12\x14otpki.public.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\"O\n" +
 	"\x12CreateGroupRequest\x129\n" +
-	"\x05group\x18\x01 \x01(\v2\x1b.otpki.common.auth.v1.GroupB\x06\xbaH\x03\xc8\x01\x01R\x05group\"%\n" +
-	"\x13CreateGroupResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
-	"\x0fGetGroupRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"E\n" +
+	"\x05group\x18\x01 \x01(\v2\x1b.otpki.common.auth.v1.GroupB\x06\xbaH\x03\xc8\x01\x01R\x05group\"/\n" +
+	"\x13CreateGroupResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\".\n" +
+	"\x0fGetGroupRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"E\n" +
 	"\x10GetGroupResponse\x121\n" +
-	"\x05group\x18\x01 \x01(\v2\x1b.otpki.common.auth.v1.GroupR\x05group\"0\n" +
-	"\x14GetManyGroupsRequest\x12\x18\n" +
-	"\x03ids\x18\x01 \x03(\x03B\x06\xbaH\x03\xc8\x01\x01R\x03ids\"L\n" +
+	"\x05group\x18\x01 \x01(\v2\x1b.otpki.common.auth.v1.GroupR\x05group\"9\n" +
+	"\x14GetManyGroupsRequest\x12!\n" +
+	"\x03ids\x18\x01 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x03ids\"L\n" +
 	"\x15GetManyGroupsResponse\x123\n" +
 	"\x06groups\x18\x01 \x03(\v2\x1b.otpki.common.auth.v1.GroupR\x06groups\"\x84\x01\n" +
 	"\x12UpdateGroupRequest\x121\n" +
 	"\x05group\x18\x01 \x01(\v2\x1b.otpki.common.auth.v1.GroupR\x05group\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"\x15\n" +
-	"\x13UpdateGroupResponse\",\n" +
-	"\x12DeleteGroupRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x15\n" +
+	"\x13UpdateGroupResponse\"1\n" +
+	"\x12DeleteGroupRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x15\n" +
 	"\x13DeleteGroupResponse\"c\n" +
 	"\x13GetGroupListRequest\x12L\n" +
 	"\n" +

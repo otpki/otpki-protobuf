@@ -18,9 +18,9 @@ export declare const file_otpki_common_enrollment_enroller_v1_enroller: GenFile;
  */
 export declare type EnrollmentRequest = Message<"otpki.common.enrollment.enroller.v1.EnrollmentRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: otpki.common.enrollment.end_entity.v1.EndEntityStatus status = 2;
@@ -69,7 +69,7 @@ export declare type EnrollmentRequest = Message<"otpki.common.enrollment.enrolle
  */
 export declare type EnrollmentRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -128,19 +128,19 @@ export declare const EnrollmentRequestSchema: GenMessage<EnrollmentRequest, {jso
  */
 export declare type EnrollmentResponse = Message<"otpki.common.enrollment.enroller.v1.EnrollmentResponse"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
-   * @generated from field: int64 issuance_request_id = 2;
+   * @generated from field: string issuance_request_id = 2;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
-  certificateId: bigint;
+  certificateId: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -169,17 +169,17 @@ export declare type EnrollmentResponse = Message<"otpki.common.enrollment.enroll
  */
 export declare type EnrollmentResponseJson = {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
   enrollmentRequestId?: string;
 
   /**
-   * @generated from field: int64 issuance_request_id = 2;
+   * @generated from field: string issuance_request_id = 2;
    */
   issuanceRequestId?: string;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
   certificateId?: string;
 

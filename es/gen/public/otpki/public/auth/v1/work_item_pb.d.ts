@@ -17,9 +17,9 @@ export declare const file_otpki_public_auth_v1_work_item: GenFile;
  */
 export declare type GetWorkItemRequest = Message<"otpki.public.auth.v1.GetWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -27,7 +27,7 @@ export declare type GetWorkItemRequest = Message<"otpki.public.auth.v1.GetWorkIt
  */
 export declare type GetWorkItemRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -37,9 +37,9 @@ export declare type GetWorkItemRequestJson = {
  */
 export declare type GetWorkItemRequestValid = Message<"otpki.public.auth.v1.GetWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -147,9 +147,9 @@ export declare const GetWorkItemListResponseSchema: GenMessage<GetWorkItemListRe
  */
 export declare type ApproveWorkItemRequest = Message<"otpki.public.auth.v1.ApproveWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -157,7 +157,7 @@ export declare type ApproveWorkItemRequest = Message<"otpki.public.auth.v1.Appro
  */
 export declare type ApproveWorkItemRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -167,9 +167,9 @@ export declare type ApproveWorkItemRequestJson = {
  */
 export declare type ApproveWorkItemRequestValid = Message<"otpki.public.auth.v1.ApproveWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -203,9 +203,9 @@ export declare const ApproveWorkItemResponseSchema: GenMessage<ApproveWorkItemRe
  */
 export declare type RejectWorkItemRequest = Message<"otpki.public.auth.v1.RejectWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -213,7 +213,7 @@ export declare type RejectWorkItemRequest = Message<"otpki.public.auth.v1.Reject
  */
 export declare type RejectWorkItemRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -223,9 +223,9 @@ export declare type RejectWorkItemRequestJson = {
  */
 export declare type RejectWorkItemRequestValid = Message<"otpki.public.auth.v1.RejectWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -259,9 +259,9 @@ export declare const RejectWorkItemResponseSchema: GenMessage<RejectWorkItemResp
  */
 export declare type IsCurrentUserValidApproverRequest = Message<"otpki.public.auth.v1.IsCurrentUserValidApproverRequest"> & {
   /**
-   * @generated from field: int64 approval_profile_id = 1;
+   * @generated from field: string approval_profile_id = 1;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 };
 
 /**
@@ -269,7 +269,7 @@ export declare type IsCurrentUserValidApproverRequest = Message<"otpki.public.au
  */
 export declare type IsCurrentUserValidApproverRequestJson = {
   /**
-   * @generated from field: int64 approval_profile_id = 1;
+   * @generated from field: string approval_profile_id = 1;
    */
   approvalProfileId?: string;
 };
@@ -279,9 +279,9 @@ export declare type IsCurrentUserValidApproverRequestJson = {
  */
 export declare type IsCurrentUserValidApproverRequestValid = Message<"otpki.public.auth.v1.IsCurrentUserValidApproverRequest"> & {
   /**
-   * @generated from field: int64 approval_profile_id = 1;
+   * @generated from field: string approval_profile_id = 1;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 };
 
 /**

@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/samber/oops"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
@@ -78,6 +79,66 @@ func ConvertProtoToTimePointer(t *timestamppb.Timestamp) (*time.Time, error) {
 	}
 	timePtr, err := ConvertProtoToTime(t)
 	return &timePtr, err
+}
+
+func ConvertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
+}
+
+func ConvertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
+func ConvertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
+	if !id.Valid {
+		return nil, nil
+	}
+	uuidVal, err := ConvertUUIDToProto(id.UUID)
+	if err != nil {
+		return nil, err
+	}
+	return &uuidVal, nil
+}
+
+func ConvertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil || len(*id) == 0 {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := ConvertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
+}
+
+func ConvertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
+	result := make([]string, len(ids))
+	for i, id := range ids {
+		encoded, err := ConvertUUIDToProto(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = encoded
+	}
+	return result, nil
+}
+
+func ConvertProtoToUUIDSlice(ids []string) ([]uuid.UUID, error) {
+	result := make([]uuid.UUID, len(ids))
+	for i, id := range ids {
+		parsed, err := ConvertProtoToUUID(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = parsed
+	}
+	return result, nil
 }
 
 func ConvertKeyUsageToProto(ku x509.KeyUsage) ([]x509pb.KeyUsage, error) {

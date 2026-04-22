@@ -4,13 +4,14 @@ package extended_key_usagev1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
 )
 
 // CustomExtKeyUsageNative is the native typing representation of CustomExtKeyUsage
 type CustomExtKeyUsageNative struct {
-	Id          int64
+	Id          uuid.UUID
 	Oid         string
 	Name        string
 	Description string
@@ -25,7 +26,10 @@ func (n *CustomExtKeyUsageNative) ToProto() (*CustomExtKeyUsage, error) {
 	}
 	var err error
 	protoStruct := &CustomExtKeyUsage{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Oid = n.Oid
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
@@ -47,7 +51,10 @@ func (p *CustomExtKeyUsage) ToNative() (*CustomExtKeyUsageNative, error) {
 	}
 	var err error
 	nativeStruct := &CustomExtKeyUsageNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Oid = p.Oid
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
@@ -62,6 +69,17 @@ func (p *CustomExtKeyUsage) ToNative() (*CustomExtKeyUsageNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *CustomExtKeyUsage) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
 
 // convertProtoToTime comes from the converter package
@@ -72,7 +90,20 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

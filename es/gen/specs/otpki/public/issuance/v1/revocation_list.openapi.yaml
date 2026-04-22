@@ -400,11 +400,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
         isDelta:
           type: boolean
           title: is_delta

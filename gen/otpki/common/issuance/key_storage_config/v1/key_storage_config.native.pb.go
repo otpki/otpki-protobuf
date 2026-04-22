@@ -4,6 +4,7 @@ package key_storage_configv1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	anypb "google.golang.org/protobuf/types/known/anypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
@@ -11,12 +12,12 @@ import (
 
 // KeyStorageConfigNative is the native typing representation of KeyStorageConfig
 type KeyStorageConfigNative struct {
-	Id                     int64
+	Id                     uuid.UUID
 	Name                   string
 	Description            string
 	KeyDriverType          KeyDriverType
 	ConfigData             *anypb.Any
-	CryptoKeyId            *int64
+	CryptoKeyId            uuid.NullUUID
 	EnableActivation       bool
 	AutoActivation         bool
 	IsActivated            bool
@@ -34,12 +35,18 @@ func (n *KeyStorageConfigNative) ToProto() (*KeyStorageConfig, error) {
 	}
 	var err error
 	protoStruct := &KeyStorageConfig{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
 	protoStruct.KeyDriverType = n.KeyDriverType
 	protoStruct.ConfigData = n.ConfigData
-	protoStruct.CryptoKeyId = n.CryptoKeyId
+	protoStruct.CryptoKeyId, err = convertNullUUIDToProto(n.CryptoKeyId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CryptoKeyId: %w", err)
+	}
 	protoStruct.EnableActivation = n.EnableActivation
 	protoStruct.AutoActivation = n.AutoActivation
 	protoStruct.IsActivated = n.IsActivated
@@ -64,12 +71,18 @@ func (p *KeyStorageConfig) ToNative() (*KeyStorageConfigNative, error) {
 	}
 	var err error
 	nativeStruct := &KeyStorageConfigNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
 	nativeStruct.KeyDriverType = p.KeyDriverType
 	nativeStruct.ConfigData = p.ConfigData
-	nativeStruct.CryptoKeyId = p.CryptoKeyId
+	nativeStruct.CryptoKeyId, err = convertProtoToNullUUID(p.CryptoKeyId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CryptoKeyIdNative: %w", err)
+	}
 	nativeStruct.EnableActivation = p.EnableActivation
 	nativeStruct.AutoActivation = p.AutoActivation
 	nativeStruct.IsActivated = p.IsActivated
@@ -87,7 +100,56 @@ func (p *KeyStorageConfig) ToNative() (*KeyStorageConfigNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *KeyStorageConfig) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetCryptoKeyIdUUID returns CryptoKeyId as a UUID when possible.
+func (x *KeyStorageConfig) GetCryptoKeyIdUUID() uuid.NullUUID {
+	if x != nil {
+		value, err := convertProtoToNullUUID(x.CryptoKeyId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.NullUUID{}
+}
+
 // Converter functions for native types
+
+// convertNullUUIDToProto comes from the converter package
+func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
+	if !id.Valid {
+		return nil, nil
+	}
+	uuidVal, err := convertUUIDToProto(id.UUID)
+	if err != nil {
+		return nil, err
+	}
+	return &uuidVal, nil
+}
+
+// convertProtoToNullUUID comes from the converter package
+func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil || len(*id) == 0 {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := convertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
+}
 
 // convertProtoToTime comes from the converter package
 func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
@@ -100,4 +162,9 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

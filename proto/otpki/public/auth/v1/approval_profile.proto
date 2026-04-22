@@ -11,11 +11,14 @@ message CreateApprovalProfileRequest {
 }
 
 message CreateApprovalProfileResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetApprovalProfileRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetApprovalProfileResponse {
@@ -30,7 +33,10 @@ message UpdateApprovalProfileRequest {
 message UpdateApprovalProfileResponse {}
 
 message DeleteApprovalProfileRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteApprovalProfileResponse {}

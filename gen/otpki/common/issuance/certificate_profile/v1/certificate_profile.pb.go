@@ -137,7 +137,7 @@ func (KeyIdentifierHashAlgorithm) EnumDescriptor() ([]byte, []int) {
 
 type CertificateProfile struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	Id          int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Kind        CertificateProfileKind `protobuf:"varint,4,opt,name=kind,proto3,enum=otpki.common.issuance.certificate_profile.v1.CertificateProfileKind" json:"kind,omitempty"`
@@ -202,12 +202,12 @@ type CertificateProfile struct {
 	IssuerUris                    []string `protobuf:"bytes,809,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
 	OcspNoCheck                   bool     `protobuf:"varint,810,opt,name=ocsp_no_check,json=ocspNoCheck,proto3" json:"ocsp_no_check,omitempty"`
 	// other
-	CnPrefix                        string  `protobuf:"bytes,901,opt,name=cn_prefix,json=cnPrefix,proto3" json:"cn_prefix,omitempty"`
-	CnSuffix                        string  `protobuf:"bytes,902,opt,name=cn_suffix,json=cnSuffix,proto3" json:"cn_suffix,omitempty"`
-	CustomExtKeyUsages              []int64 `protobuf:"varint,903,rep,packed,name=custom_ext_key_usages,json=customExtKeyUsages,proto3" json:"custom_ext_key_usages,omitempty"`
-	CustomCertificateExts           []int64 `protobuf:"varint,904,rep,packed,name=custom_certificate_exts,json=customCertificateExts,proto3" json:"custom_certificate_exts,omitempty"`
-	AvailableCertificateAuthorities []int64 `protobuf:"varint,905,rep,packed,name=available_certificate_authorities,json=availableCertificateAuthorities,proto3" json:"available_certificate_authorities,omitempty"`
-	ApprovalProfileId               int64   `protobuf:"varint,906,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	CnPrefix                        string   `protobuf:"bytes,901,opt,name=cn_prefix,json=cnPrefix,proto3" json:"cn_prefix,omitempty"`
+	CnSuffix                        string   `protobuf:"bytes,902,opt,name=cn_suffix,json=cnSuffix,proto3" json:"cn_suffix,omitempty"`
+	CustomExtKeyUsages              []string `protobuf:"bytes,903,rep,name=custom_ext_key_usages,json=customExtKeyUsages,proto3" json:"custom_ext_key_usages,omitempty"`
+	CustomCertificateExts           []string `protobuf:"bytes,904,rep,name=custom_certificate_exts,json=customCertificateExts,proto3" json:"custom_certificate_exts,omitempty"`
+	AvailableCertificateAuthorities []string `protobuf:"bytes,905,rep,name=available_certificate_authorities,json=availableCertificateAuthorities,proto3" json:"available_certificate_authorities,omitempty"`
+	ApprovalProfileId               string   `protobuf:"bytes,906,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
 	unknownFields                   protoimpl.UnknownFields
 	sizeCache                       protoimpl.SizeCache
 }
@@ -242,11 +242,11 @@ func (*CertificateProfile) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CertificateProfile) GetId() int64 {
+func (x *CertificateProfile) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificateProfile) GetName() string {
@@ -613,41 +613,41 @@ func (x *CertificateProfile) GetCnSuffix() string {
 	return ""
 }
 
-func (x *CertificateProfile) GetCustomExtKeyUsages() []int64 {
+func (x *CertificateProfile) GetCustomExtKeyUsages() []string {
 	if x != nil {
 		return x.CustomExtKeyUsages
 	}
 	return nil
 }
 
-func (x *CertificateProfile) GetCustomCertificateExts() []int64 {
+func (x *CertificateProfile) GetCustomCertificateExts() []string {
 	if x != nil {
 		return x.CustomCertificateExts
 	}
 	return nil
 }
 
-func (x *CertificateProfile) GetAvailableCertificateAuthorities() []int64 {
+func (x *CertificateProfile) GetAvailableCertificateAuthorities() []string {
 	if x != nil {
 		return x.AvailableCertificateAuthorities
 	}
 	return nil
 }
 
-func (x *CertificateProfile) GetApprovalProfileId() int64 {
+func (x *CertificateProfile) GetApprovalProfileId() string {
 	if x != nil {
 		return x.ApprovalProfileId
 	}
-	return 0
+	return ""
 }
 
 var File_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto protoreflect.FileDescriptor
 
 const file_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto_rawDesc = "" +
 	"\n" +
-	"Fotpki/common/issuance/certificate_profile/v1/certificate_profile.proto\x12,otpki.common.issuance.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a&otpki/common/issuance/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xba!\n" +
-	"\x12CertificateProfile\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1d\n" +
+	"Fotpki/common/issuance/certificate_profile/v1/certificate_profile.proto\x12,otpki.common.issuance.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a&otpki/common/issuance/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xcf!\n" +
+	"\x12CertificateProfile\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12d\n" +
 	"\x04kind\x18\x04 \x01(\x0e2D.otpki.common.issuance.certificate_profile.v1.CertificateProfileKindB\n" +
@@ -704,11 +704,11 @@ const file_otpki_common_issuance_certificate_profile_v1_certificate_profile_prot
 	"issuerUris\x12#\n" +
 	"\rocsp_no_check\x18\xaa\x06 \x01(\bR\vocspNoCheck\x12%\n" +
 	"\tcn_prefix\x18\x85\a \x01(\tB\a\xbaH\x04r\x02\x18@R\bcnPrefix\x12%\n" +
-	"\tcn_suffix\x18\x86\a \x01(\tB\a\xbaH\x04r\x02\x18@R\bcnSuffix\x12B\n" +
-	"\x15custom_ext_key_usages\x18\x87\a \x03(\x03B\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04\"\x02 \x00R\x12customExtKeyUsages\x12G\n" +
-	"\x17custom_certificate_exts\x18\x88\a \x03(\x03B\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04\"\x02 \x00R\x15customCertificateExts\x12[\n" +
-	"!available_certificate_authorities\x18\x89\a \x03(\x03B\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04\"\x02 \x00R\x1favailableCertificateAuthorities\x12/\n" +
-	"\x13approval_profile_id\x18\x8a\a \x01(\x03R\x11approvalProfileId:\x04\x98\xb5\x18\x01*\xb6\x01\n" +
+	"\tcn_suffix\x18\x86\a \x01(\tB\a\xbaH\x04r\x02\x18@R\bcnSuffix\x12C\n" +
+	"\x15custom_ext_key_usages\x18\x87\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x12customExtKeyUsages\x12H\n" +
+	"\x17custom_certificate_exts\x18\x88\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x15customCertificateExts\x12\\\n" +
+	"!available_certificate_authorities\x18\x89\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1favailableCertificateAuthorities\x129\n" +
+	"\x13approval_profile_id\x18\x8a\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId:\x04\x98\xb5\x18\x01*\xb6\x01\n" +
 	"\x16CertificateProfileKind\x12(\n" +
 	"$CERTIFICATE_PROFILE_KIND_UNSPECIFIED\x10\x00\x12$\n" +
 	" CERTIFICATE_PROFILE_KIND_ROOT_CA\x10\x01\x12#\n" +

@@ -23,7 +23,10 @@ message CreateEnrollmentRequestForExistingEndEntityResponse {
 }
 
 message GetEnrollmentByRequestIDRequest {
-  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
+  string enrollment_request_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   string password = 2;
 }
 
@@ -33,15 +36,24 @@ message GetEnrollmentByRequestIDResponse {
 }
 
 message RevokeEndEntityRequest {
-  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
 }
 
 message RevokeEndEntityResponse {}
 
 message RevokeEndEntityCertificateRequest {
-  int64 end_entity_id = 1 [(buf.validate.field).required = true];
-  int64 issued_certificate_id = 2 [(buf.validate.field).required = true];
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  string issued_certificate_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   common.x509.v1.RevocationReasonCode revocation_reason_code = 3;
 }
 

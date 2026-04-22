@@ -11,11 +11,14 @@ message CreateCertificateProfileRequest {
 }
 
 message CreateCertificateProfileResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetCertificateProfileRequest {
-  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetCertificateProfileResponse {
@@ -30,7 +33,10 @@ message UpdateCertificateProfileRequest {
 message UpdateCertificateProfileResponse {}
 
 message DeleteCertificateProfileRequest {
-  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteCertificateProfileResponse {}

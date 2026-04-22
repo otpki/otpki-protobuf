@@ -17,9 +17,9 @@ export declare const file_otpki_public_issuance_v1_issued_certificate: GenFile;
  */
 export declare type GetIssuedCertificateRequest = Message<"otpki.public.issuance.v1.GetIssuedCertificateRequest"> & {
   /**
-   * @generated from field: int64 issued_certificate_id = 1;
+   * @generated from field: string issued_certificate_id = 1;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 };
 
 /**
@@ -27,7 +27,7 @@ export declare type GetIssuedCertificateRequest = Message<"otpki.public.issuance
  */
 export declare type GetIssuedCertificateRequestJson = {
   /**
-   * @generated from field: int64 issued_certificate_id = 1;
+   * @generated from field: string issued_certificate_id = 1;
    */
   issuedCertificateId?: string;
 };
@@ -37,9 +37,9 @@ export declare type GetIssuedCertificateRequestJson = {
  */
 export declare type GetIssuedCertificateRequestValid = Message<"otpki.public.issuance.v1.GetIssuedCertificateRequest"> & {
   /**
-   * @generated from field: int64 issued_certificate_id = 1;
+   * @generated from field: string issued_certificate_id = 1;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 };
 
 /**

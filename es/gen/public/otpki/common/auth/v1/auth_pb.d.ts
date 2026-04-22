@@ -54,9 +54,9 @@ export declare const ResourceActionsSchema: GenMessage<ResourceActions, {jsonTyp
  */
 export declare type Group = Message<"otpki.common.auth.v1.Group"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -86,7 +86,7 @@ export declare type Group = Message<"otpki.common.auth.v1.Group"> & {
  */
 export declare type GroupJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -126,9 +126,9 @@ export declare const GroupSchema: GenMessage<Group, {jsonType: GroupJson, validT
  */
 export declare type Role = Message<"otpki.common.auth.v1.Role"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -163,7 +163,7 @@ export declare type Role = Message<"otpki.common.auth.v1.Role"> & {
  */
 export declare type RoleJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -208,9 +208,9 @@ export declare const RoleSchema: GenMessage<Role, {jsonType: RoleJson, validType
  */
 export declare type Permission = Message<"otpki.common.auth.v1.Permission"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: bool is_allowed = 2;
@@ -234,9 +234,9 @@ export declare type Permission = Message<"otpki.common.auth.v1.Permission"> & {
   /**
    * when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
    *
-   * @generated from field: int64 object_id = 5;
+   * @generated from field: string object_id = 5;
    */
-  objectId: bigint;
+  objectId: string;
 };
 
 /**
@@ -244,7 +244,7 @@ export declare type Permission = Message<"otpki.common.auth.v1.Permission"> & {
  */
 export declare type PermissionJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -270,7 +270,7 @@ export declare type PermissionJson = {
   /**
    * when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
    *
-   * @generated from field: int64 object_id = 5;
+   * @generated from field: string object_id = 5;
    */
   objectId?: string;
 };
@@ -288,9 +288,9 @@ export declare const PermissionSchema: GenMessage<Permission, {jsonType: Permiss
  */
 export declare type User = Message<"otpki.common.auth.v1.User"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string username = 2;
@@ -343,14 +343,14 @@ export declare type User = Message<"otpki.common.auth.v1.User"> & {
   oidcSubject: string;
 
   /**
-   * @generated from field: repeated int64 groups = 12;
+   * @generated from field: repeated string groups = 12;
    */
-  groups: bigint[];
+  groups: string[];
 
   /**
-   * @generated from field: repeated int64 roles = 13;
+   * @generated from field: repeated string roles = 13;
    */
-  roles: bigint[];
+  roles: string[];
 
   /**
    * not settable on creation
@@ -370,7 +370,7 @@ export declare type User = Message<"otpki.common.auth.v1.User"> & {
  */
 export declare type UserJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -425,12 +425,12 @@ export declare type UserJson = {
   oidcSubject?: string;
 
   /**
-   * @generated from field: repeated int64 groups = 12;
+   * @generated from field: repeated string groups = 12;
    */
   groups?: string[];
 
   /**
-   * @generated from field: repeated int64 roles = 13;
+   * @generated from field: repeated string roles = 13;
    */
   roles?: string[];
 
@@ -460,9 +460,9 @@ export declare const UserSchema: GenMessage<User, {jsonType: UserJson, validType
  */
 export declare type ApprovalProfile = Message<"otpki.common.auth.v1.ApprovalProfile"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -480,19 +480,19 @@ export declare type ApprovalProfile = Message<"otpki.common.auth.v1.ApprovalProf
   numApprovalsRequired: number;
 
   /**
-   * @generated from field: repeated int64 approver_role_ids = 5;
+   * @generated from field: repeated string approver_role_ids = 5;
    */
-  approverRoleIds: bigint[];
+  approverRoleIds: string[];
 
   /**
-   * @generated from field: repeated int64 approver_group_ids = 6;
+   * @generated from field: repeated string approver_group_ids = 6;
    */
-  approverGroupIds: bigint[];
+  approverGroupIds: string[];
 
   /**
-   * @generated from field: repeated int64 approver_user_ids = 7;
+   * @generated from field: repeated string approver_user_ids = 7;
    */
-  approverUserIds: bigint[];
+  approverUserIds: string[];
 
   /**
    * not settable on creation
@@ -512,7 +512,7 @@ export declare type ApprovalProfile = Message<"otpki.common.auth.v1.ApprovalProf
  */
 export declare type ApprovalProfileJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -532,17 +532,17 @@ export declare type ApprovalProfileJson = {
   numApprovalsRequired?: number;
 
   /**
-   * @generated from field: repeated int64 approver_role_ids = 5;
+   * @generated from field: repeated string approver_role_ids = 5;
    */
   approverRoleIds?: string[];
 
   /**
-   * @generated from field: repeated int64 approver_group_ids = 6;
+   * @generated from field: repeated string approver_group_ids = 6;
    */
   approverGroupIds?: string[];
 
   /**
-   * @generated from field: repeated int64 approver_user_ids = 7;
+   * @generated from field: repeated string approver_user_ids = 7;
    */
   approverUserIds?: string[];
 
@@ -572,9 +572,9 @@ export declare const ApprovalProfileSchema: GenMessage<ApprovalProfile, {jsonTyp
  */
 export declare type OIDCProvider = Message<"otpki.common.auth.v1.OIDCProvider"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -659,7 +659,7 @@ export declare type OIDCProvider = Message<"otpki.common.auth.v1.OIDCProvider"> 
  */
 export declare type OIDCProviderJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -754,14 +754,14 @@ export declare const OIDCProviderSchema: GenMessage<OIDCProvider, {jsonType: OID
  */
 export declare type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 approval_profile_id = 2;
+   * @generated from field: string approval_profile_id = 2;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 
   /**
    * @generated from field: otpki.common.auth.v1.Resource resource_type = 3;
@@ -769,9 +769,9 @@ export declare type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
   resourceType: Resource;
 
   /**
-   * @generated from field: int64 resource_id = 4;
+   * @generated from field: string resource_id = 4;
    */
-  resourceId: bigint;
+  resourceId: string;
 
   /**
    * @generated from field: string description = 5;
@@ -806,12 +806,12 @@ export declare type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
  */
 export declare type WorkItemJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 approval_profile_id = 2;
+   * @generated from field: string approval_profile_id = 2;
    */
   approvalProfileId?: string;
 
@@ -821,7 +821,7 @@ export declare type WorkItemJson = {
   resourceType?: ResourceJson;
 
   /**
-   * @generated from field: int64 resource_id = 4;
+   * @generated from field: string resource_id = 4;
    */
   resourceId?: string;
 
@@ -866,9 +866,9 @@ export declare const WorkItemSchema: GenMessage<WorkItem, {jsonType: WorkItemJso
  */
 export declare type WorkItemApproval = Message<"otpki.common.auth.v1.WorkItemApproval"> & {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
-  userId: bigint;
+  userId: string;
 
   /**
    * @generated from field: string username = 2;
@@ -886,7 +886,7 @@ export declare type WorkItemApproval = Message<"otpki.common.auth.v1.WorkItemApp
  */
 export declare type WorkItemApprovalJson = {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
   userId?: string;
 

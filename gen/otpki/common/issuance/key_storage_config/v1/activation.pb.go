@@ -28,7 +28,7 @@ type Activation struct {
 	// the key storage config for which to apply this
 	// activation. the key storage config will control
 	// whether or not this is persisted via auto-activation
-	KeyStorageConfigId int64 `protobuf:"varint,1,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
+	KeyStorageConfigId string `protobuf:"bytes,1,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
 	// when this is checked, it will ignore all the other fields
 	// and just use the stored auto activation code if it exists
 	UseAutoActivation bool `protobuf:"varint,2,opt,name=use_auto_activation,json=useAutoActivation,proto3" json:"use_auto_activation,omitempty"`
@@ -77,11 +77,11 @@ func (*Activation) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_key_storage_config_v1_activation_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Activation) GetKeyStorageConfigId() int64 {
+func (x *Activation) GetKeyStorageConfigId() string {
 	if x != nil {
 		return x.KeyStorageConfigId
 	}
-	return 0
+	return ""
 }
 
 func (x *Activation) GetUseAutoActivation() bool {
@@ -116,10 +116,10 @@ var File_otpki_common_issuance_key_storage_config_v1_activation_proto protorefle
 
 const file_otpki_common_issuance_key_storage_config_v1_activation_proto_rawDesc = "" +
 	"\n" +
-	"<otpki/common/issuance/key_storage_config/v1/activation.proto\x12+otpki.common.issuance.key_storage_config.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\"\x99\x02\n" +
+	"<otpki/common/issuance/key_storage_config/v1/activation.proto\x12+otpki.common.issuance.key_storage_config.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\"\xa3\x02\n" +
 	"\n" +
-	"Activation\x121\n" +
-	"\x15key_storage_config_id\x18\x01 \x01(\x03R\x12keyStorageConfigId\x12.\n" +
+	"Activation\x12;\n" +
+	"\x15key_storage_config_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x12keyStorageConfigId\x12.\n" +
 	"\x13use_auto_activation\x18\x02 \x01(\bR\x11useAutoActivation\x12'\n" +
 	"\x0factivation_code\x18\x03 \x01(\tR\x0eactivationCode\x123\n" +
 	"\rsecret_shares\x18\x04 \x03(\tB\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04r\x02\x10\x02R\fsecretShares\x12J\n" +

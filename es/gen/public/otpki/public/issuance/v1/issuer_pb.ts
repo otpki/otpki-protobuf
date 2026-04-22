@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/issuance/v1/issuer.proto.
  */
 export const file_otpki_public_issuance_v1_issuer: GenFile = /*@__PURE__*/
-  fileDesc("CiVvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvaXNzdWVyLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEicgocQ3JlYXRlSXNzdWFuY2VSZXF1ZXN0UmVxdWVzdBJSChBpc3N1YW5jZV9yZXF1ZXN0GAEgASgLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1YW5jZVJlcXVlc3RCBrpIA8gBASJtCh1DcmVhdGVJc3N1YW5jZVJlcXVlc3RSZXNwb25zZRJMChFpc3N1YW5jZV9yZXNwb25zZRgBIAEoCzIxLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5pc3N1ZXIudjEuSXNzdWFuY2VSZXNwb25zZSJECh1HZXRJc3N1YW5jZUJ5UmVxdWVzdElEUmVxdWVzdBIjChNpc3N1YW5jZV9yZXF1ZXN0X2lkGAEgASgDQga6SAPIAQEiugEKHkdldElzc3VhbmNlQnlSZXF1ZXN0SURSZXNwb25zZRJKChBpc3N1YW5jZV9yZXF1ZXN0GAEgASgLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1YW5jZVJlcXVlc3QSTAoRaXNzdWFuY2VfcmVzcG9uc2UYAiABKAsyMS5vdHBraS5jb21tb24uaXNzdWFuY2UuaXNzdWVyLnYxLklzc3VhbmNlUmVzcG9uc2UikwEKH1Jldm9rZUlzc3VlZENlcnRpZmljYXRlc1JlcXVlc3QSJAoPY2VydGlmaWNhdGVfaWRzGAEgAygDQgu6SAjIAQGSAQIYARJKChZyZXZvY2F0aW9uX3JlYXNvbl9jb2RlGAIgASgOMioub3Rwa2kuY29tbW9uLng1MDkudjEuUmV2b2NhdGlvblJlYXNvbkNvZGUiIgogUmV2b2tlSXNzdWVkQ2VydGlmaWNhdGVzUmVzcG9uc2UiYQodR2V0SXNzdWFuY2VSZXF1ZXN0TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QiowEKHkdldElzc3VhbmNlUmVxdWVzdExpc3RSZXNwb25zZRI+CgRkYXRhGAEgAygLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1YW5jZVJlcXVlc3QSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQrABChxjb20ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxQgtJc3N1ZXJQcm90b1ABogIDT1BJqgIYT3Rwa2kuUHVibGljLklzc3VhbmNlLlYxygIZT3Rwa2lcUHVibGljX1xJc3N1YW5jZVxWMeICJU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjFcR1BCTWV0YWRhdGHqAhtPdHBraTo6UHVibGljOjpJc3N1YW5jZTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_issuer_v1_issuer, file_otpki_common_x509_v1_x509]);
+  fileDesc("CiVvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvaXNzdWVyLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEicgocQ3JlYXRlSXNzdWFuY2VSZXF1ZXN0UmVxdWVzdBJSChBpc3N1YW5jZV9yZXF1ZXN0GAEgASgLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1YW5jZVJlcXVlc3RCBrpIA8gBASJtCh1DcmVhdGVJc3N1YW5jZVJlcXVlc3RSZXNwb25zZRJMChFpc3N1YW5jZV9yZXNwb25zZRgBIAEoCzIxLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5pc3N1ZXIudjEuSXNzdWFuY2VSZXNwb25zZSJJCh1HZXRJc3N1YW5jZUJ5UmVxdWVzdElEUmVxdWVzdBIoChNpc3N1YW5jZV9yZXF1ZXN0X2lkGAEgASgJQgu6SAjIAQFyA7ABASK6AQoeR2V0SXNzdWFuY2VCeVJlcXVlc3RJRFJlc3BvbnNlEkoKEGlzc3VhbmNlX3JlcXVlc3QYASABKAsyMC5vdHBraS5jb21tb24uaXNzdWFuY2UuaXNzdWVyLnYxLklzc3VhbmNlUmVxdWVzdBJMChFpc3N1YW5jZV9yZXNwb25zZRgCIAEoCzIxLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5pc3N1ZXIudjEuSXNzdWFuY2VSZXNwb25zZSKXAQofUmV2b2tlSXNzdWVkQ2VydGlmaWNhdGVzUmVxdWVzdBIoCg9jZXJ0aWZpY2F0ZV9pZHMYASADKAlCD7pIDJIBCRgBIgVyA7ABARJKChZyZXZvY2F0aW9uX3JlYXNvbl9jb2RlGAIgASgOMioub3Rwa2kuY29tbW9uLng1MDkudjEuUmV2b2NhdGlvblJlYXNvbkNvZGUiIgogUmV2b2tlSXNzdWVkQ2VydGlmaWNhdGVzUmVzcG9uc2UiYQodR2V0SXNzdWFuY2VSZXF1ZXN0TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QiowEKHkdldElzc3VhbmNlUmVxdWVzdExpc3RSZXNwb25zZRI+CgRkYXRhGAEgAygLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1YW5jZVJlcXVlc3QSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQrABChxjb20ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxQgtJc3N1ZXJQcm90b1ABogIDT1BJqgIYT3Rwa2kuUHVibGljLklzc3VhbmNlLlYxygIZT3Rwa2lcUHVibGljX1xJc3N1YW5jZVxWMeICJU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjFcR1BCTWV0YWRhdGHqAhtPdHBraTo6UHVibGljOjpJc3N1YW5jZTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_issuer_v1_issuer, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.public.issuance.v1.CreateIssuanceRequestRequest
@@ -90,9 +90,9 @@ export const CreateIssuanceRequestResponseSchema: GenMessage<CreateIssuanceReque
  */
 export type GetIssuanceByRequestIDRequest = Message<"otpki.public.issuance.v1.GetIssuanceByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 };
 
 /**
@@ -100,7 +100,7 @@ export type GetIssuanceByRequestIDRequest = Message<"otpki.public.issuance.v1.Ge
  */
 export type GetIssuanceByRequestIDRequestJson = {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
   issuanceRequestId?: string;
 };
@@ -110,9 +110,9 @@ export type GetIssuanceByRequestIDRequestJson = {
  */
 export type GetIssuanceByRequestIDRequestValid = Message<"otpki.public.issuance.v1.GetIssuanceByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 };
 
 /**
@@ -179,9 +179,9 @@ export const GetIssuanceByRequestIDResponseSchema: GenMessage<GetIssuanceByReque
  */
 export type RevokeIssuedCertificatesRequest = Message<"otpki.public.issuance.v1.RevokeIssuedCertificatesRequest"> & {
   /**
-   * @generated from field: repeated int64 certificate_ids = 1;
+   * @generated from field: repeated string certificate_ids = 1;
    */
-  certificateIds: bigint[];
+  certificateIds: string[];
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
@@ -194,7 +194,7 @@ export type RevokeIssuedCertificatesRequest = Message<"otpki.public.issuance.v1.
  */
 export type RevokeIssuedCertificatesRequestJson = {
   /**
-   * @generated from field: repeated int64 certificate_ids = 1;
+   * @generated from field: repeated string certificate_ids = 1;
    */
   certificateIds?: string[];
 
@@ -204,20 +204,7 @@ export type RevokeIssuedCertificatesRequestJson = {
   revocationReasonCode?: RevocationReasonCodeJson;
 };
 
-/**
- * @generated from message otpki.public.issuance.v1.RevokeIssuedCertificatesRequest
- */
-export type RevokeIssuedCertificatesRequestValid = Message<"otpki.public.issuance.v1.RevokeIssuedCertificatesRequest"> & {
-  /**
-   * @generated from field: repeated int64 certificate_ids = 1;
-   */
-  certificateIds: bigint[];
-
-  /**
-   * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
-   */
-  revocationReasonCode: RevocationReasonCode;
-};
+export type RevokeIssuedCertificatesRequestValid = RevokeIssuedCertificatesRequest;
 
 /**
  * Describes the message otpki.public.issuance.v1.RevokeIssuedCertificatesRequest.

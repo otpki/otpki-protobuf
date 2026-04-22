@@ -203,7 +203,7 @@ func (x *CreateEnrollmentRequestForExistingEndEntityResponse) GetEnrollmentRespo
 
 type GetEnrollmentByRequestIDRequest struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequestId int64                  `protobuf:"varint,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
+	EnrollmentRequestId string                 `protobuf:"bytes,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
 	Password            string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
@@ -239,11 +239,11 @@ func (*GetEnrollmentByRequestIDRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_enroller_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestId() int64 {
+func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestId() string {
 	if x != nil {
 		return x.EnrollmentRequestId
 	}
-	return 0
+	return ""
 }
 
 func (x *GetEnrollmentByRequestIDRequest) GetPassword() string {
@@ -307,7 +307,7 @@ func (x *GetEnrollmentByRequestIDResponse) GetEnrollmentResponse() *v1.Enrollmen
 
 type RevokeEndEntityRequest struct {
 	state                protoimpl.MessageState   `protogen:"open.v1"`
-	EndEntityId          int64                    `protobuf:"varint,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
+	EndEntityId          string                   `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
 	RevocationReasonCode v11.RevocationReasonCode `protobuf:"varint,2,opt,name=revocation_reason_code,json=revocationReasonCode,proto3,enum=otpki.common.x509.v1.RevocationReasonCode" json:"revocation_reason_code,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -343,11 +343,11 @@ func (*RevokeEndEntityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_enroller_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *RevokeEndEntityRequest) GetEndEntityId() int64 {
+func (x *RevokeEndEntityRequest) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
 	}
-	return 0
+	return ""
 }
 
 func (x *RevokeEndEntityRequest) GetRevocationReasonCode() v11.RevocationReasonCode {
@@ -395,8 +395,8 @@ func (*RevokeEndEntityResponse) Descriptor() ([]byte, []int) {
 
 type RevokeEndEntityCertificateRequest struct {
 	state                protoimpl.MessageState   `protogen:"open.v1"`
-	EndEntityId          int64                    `protobuf:"varint,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
-	IssuedCertificateId  int64                    `protobuf:"varint,2,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
+	EndEntityId          string                   `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
+	IssuedCertificateId  string                   `protobuf:"bytes,2,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
 	RevocationReasonCode v11.RevocationReasonCode `protobuf:"varint,3,opt,name=revocation_reason_code,json=revocationReasonCode,proto3,enum=otpki.common.x509.v1.RevocationReasonCode" json:"revocation_reason_code,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -432,18 +432,18 @@ func (*RevokeEndEntityCertificateRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_enroller_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *RevokeEndEntityCertificateRequest) GetEndEntityId() int64 {
+func (x *RevokeEndEntityCertificateRequest) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
 	}
-	return 0
+	return ""
 }
 
-func (x *RevokeEndEntityCertificateRequest) GetIssuedCertificateId() int64 {
+func (x *RevokeEndEntityCertificateRequest) GetIssuedCertificateId() string {
 	if x != nil {
 		return x.IssuedCertificateId
 	}
-	return 0
+	return ""
 }
 
 func (x *RevokeEndEntityCertificateRequest) GetRevocationReasonCode() v11.RevocationReasonCode {
@@ -597,20 +597,20 @@ const file_otpki_public_enrollment_v1_enroller_proto_rawDesc = "" +
 	"2CreateEnrollmentRequestForExistingEndEntityRequest\x12e\n" +
 	"\x12enrollment_request\x18\x01 \x01(\v26.otpki.common.enrollment.enroller.v1.EnrollmentRequestR\x11enrollmentRequest\"\x9f\x01\n" +
 	"3CreateEnrollmentRequestForExistingEndEntityResponse\x12h\n" +
-	"\x13enrollment_response\x18\x01 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"y\n" +
-	"\x1fGetEnrollmentByRequestIDRequest\x12:\n" +
-	"\x15enrollment_request_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x13enrollmentRequestId\x12\x1a\n" +
+	"\x13enrollment_response\x18\x01 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"~\n" +
+	"\x1fGetEnrollmentByRequestIDRequest\x12?\n" +
+	"\x15enrollment_request_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xf3\x01\n" +
 	" GetEnrollmentByRequestIDResponse\x12e\n" +
 	"\x12enrollment_request\x18\x01 \x01(\v26.otpki.common.enrollment.enroller.v1.EnrollmentRequestR\x11enrollmentRequest\x12h\n" +
-	"\x13enrollment_response\x18\x02 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xa6\x01\n" +
-	"\x16RevokeEndEntityRequest\x12*\n" +
-	"\rend_entity_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\vendEntityId\x12`\n" +
+	"\x13enrollment_response\x18\x02 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xab\x01\n" +
+	"\x16RevokeEndEntityRequest\x12/\n" +
+	"\rend_entity_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vendEntityId\x12`\n" +
 	"\x16revocation_reason_code\x18\x02 \x01(\x0e2*.otpki.common.x509.v1.RevocationReasonCodeR\x14revocationReasonCode\"\x19\n" +
-	"\x17RevokeEndEntityResponse\"\xed\x01\n" +
-	"!RevokeEndEntityCertificateRequest\x12*\n" +
-	"\rend_entity_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\vendEntityId\x12:\n" +
-	"\x15issued_certificate_id\x18\x02 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x13issuedCertificateId\x12`\n" +
+	"\x17RevokeEndEntityResponse\"\xf7\x01\n" +
+	"!RevokeEndEntityCertificateRequest\x12/\n" +
+	"\rend_entity_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vendEntityId\x12?\n" +
+	"\x15issued_certificate_id\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13issuedCertificateId\x12`\n" +
 	"\x16revocation_reason_code\x18\x03 \x01(\x0e2*.otpki.common.x509.v1.RevocationReasonCodeR\x14revocationReasonCode\"$\n" +
 	"\"RevokeEndEntityCertificateResponse\"o\n" +
 	"\x1fGetEnrollmentRequestListRequest\x12L\n" +

@@ -1,10 +1,11 @@
 syntax = "proto3";
 package otpki.public.validation.v1;
 
+import "buf/validate/validate.proto";
 import "otpki/common/x509/v1/revocation_list.proto";
 
 message GetLatestRevocationListRequest {
-  int64 ca_id = 1;
+  string ca_id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetLatestRevocationListResponse {
@@ -12,7 +13,7 @@ message GetLatestRevocationListResponse {
 }
 
 message GetRevocationListRequest {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetRevocationListResponse {

@@ -71,7 +71,7 @@ func (x *CreateCertificateProfileRequest) GetProfile() *v1.CertificateProfile {
 
 type CreateCertificateProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateCertificateProfileResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_profile_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateCertificateProfileResponse) GetId() int64 {
+func (x *CreateCertificateProfileResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetCertificateProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetCertificateProfileRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_profile_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetCertificateProfileRequest) GetId() int64 {
+func (x *GetCertificateProfileRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetCertificateProfileResponse struct {
@@ -291,7 +291,7 @@ func (*UpdateCertificateProfileResponse) Descriptor() ([]byte, []int) {
 
 type DeleteCertificateProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,11 +326,11 @@ func (*DeleteCertificateProfileRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_profile_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteCertificateProfileRequest) GetId() int64 {
+func (x *DeleteCertificateProfileRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteCertificateProfileResponse struct {
@@ -471,20 +471,20 @@ const file_otpki_public_issuance_v1_certificate_profile_proto_rawDesc = "" +
 	"\n" +
 	"2otpki/public/issuance/v1/certificate_profile.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aFotpki/common/issuance/certificate_profile/v1/certificate_profile.proto\"\x85\x01\n" +
 	"\x1fCreateCertificateProfileRequest\x12b\n" +
-	"\aprofile\x18\x01 \x01(\v2@.otpki.common.issuance.certificate_profile.v1.CertificateProfileB\x06\xbaH\x03\xc8\x01\x01R\aprofile\"2\n" +
-	" CreateCertificateProfileResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"7\n" +
-	"\x1cGetCertificateProfileRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"{\n" +
+	"\aprofile\x18\x01 \x01(\v2@.otpki.common.issuance.certificate_profile.v1.CertificateProfileB\x06\xbaH\x03\xc8\x01\x01R\aprofile\"<\n" +
+	" CreateCertificateProfileResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\";\n" +
+	"\x1cGetCertificateProfileRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"{\n" +
 	"\x1dGetCertificateProfileResponse\x12Z\n" +
 	"\aprofile\x18\x01 \x01(\v2@.otpki.common.issuance.certificate_profile.v1.CertificateProfileR\aprofile\"\xba\x01\n" +
 	"\x1fUpdateCertificateProfileRequest\x12Z\n" +
 	"\aprofile\x18\x01 \x01(\v2@.otpki.common.issuance.certificate_profile.v1.CertificateProfileR\aprofile\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"\"\n" +
-	" UpdateCertificateProfileResponse\":\n" +
-	"\x1fDeleteCertificateProfileRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"\"\n" +
+	" UpdateCertificateProfileResponse\">\n" +
+	"\x1fDeleteCertificateProfileRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\"\n" +
 	" DeleteCertificateProfileResponse\"p\n" +
 	" GetCertificateProfileListRequest\x12L\n" +
 	"\n" +

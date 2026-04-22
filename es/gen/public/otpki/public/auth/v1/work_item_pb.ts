@@ -15,16 +15,16 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/auth/v1/work_item.proto.
  */
 export const file_otpki_public_auth_v1_work_item: GenFile = /*@__PURE__*/
-  fileDesc("CiRvdHBraS9wdWJsaWMvYXV0aC92MS93b3JrX2l0ZW0ucHJvdG8SFG90cGtpLnB1YmxpYy5hdXRoLnYxIigKEkdldFdvcmtJdGVtUmVxdWVzdBISCgJpZBgBIAEoA0IGukgDyAEBIkgKE0dldFdvcmtJdGVtUmVzcG9uc2USMQoJd29ya19pdGVtGAEgASgLMh4ub3Rwa2kuY29tbW9uLmF1dGgudjEuV29ya0l0ZW0iWgoWR2V0V29ya0l0ZW1MaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKKAQoXR2V0V29ya0l0ZW1MaXN0UmVzcG9uc2USLAoEZGF0YRgBIAMoCzIeLm90cGtpLmNvbW1vbi5hdXRoLnYxLldvcmtJdGVtEkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZSIsChZBcHByb3ZlV29ya0l0ZW1SZXF1ZXN0EhIKAmlkGAEgASgDQga6SAPIAQEiGQoXQXBwcm92ZVdvcmtJdGVtUmVzcG9uc2UiKwoVUmVqZWN0V29ya0l0ZW1SZXF1ZXN0EhIKAmlkGAEgASgDQga6SAPIAQEiGAoWUmVqZWN0V29ya0l0ZW1SZXNwb25zZSJICiFJc0N1cnJlbnRVc2VyVmFsaWRBcHByb3ZlclJlcXVlc3QSIwoTYXBwcm92YWxfcHJvZmlsZV9pZBgBIAEoA0IGukgDyAEBIjYKIklzQ3VycmVudFVzZXJWYWxpZEFwcHJvdmVyUmVzcG9uc2USEAoIaXNfdmFsaWQYASABKAhCngEKGGNvbS5vdHBraS5wdWJsaWMuYXV0aC52MUINV29ya0l0ZW1Qcm90b1ABogIDT1BBqgIUT3Rwa2kuUHVibGljLkF1dGguVjHKAhVPdHBraVxQdWJsaWNfXEF1dGhcVjHiAiFPdHBraVxQdWJsaWNfXEF1dGhcVjFcR1BCTWV0YWRhdGHqAhdPdHBraTo6UHVibGljOjpBdXRoOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
+  fileDesc("CiRvdHBraS9wdWJsaWMvYXV0aC92MS93b3JrX2l0ZW0ucHJvdG8SFG90cGtpLnB1YmxpYy5hdXRoLnYxIi0KEkdldFdvcmtJdGVtUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiSAoTR2V0V29ya0l0ZW1SZXNwb25zZRIxCgl3b3JrX2l0ZW0YASABKAsyHi5vdHBraS5jb21tb24uYXV0aC52MS5Xb3JrSXRlbSJaChZHZXRXb3JrSXRlbUxpc3RSZXF1ZXN0EkAKCnBhZ2luYXRpb24YASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0IooBChdHZXRXb3JrSXRlbUxpc3RSZXNwb25zZRIsCgRkYXRhGAEgAygLMh4ub3Rwa2kuY29tbW9uLmF1dGgudjEuV29ya0l0ZW0SQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlIjEKFkFwcHJvdmVXb3JrSXRlbVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIhkKF0FwcHJvdmVXb3JrSXRlbVJlc3BvbnNlIjAKFVJlamVjdFdvcmtJdGVtUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiGAoWUmVqZWN0V29ya0l0ZW1SZXNwb25zZSJNCiFJc0N1cnJlbnRVc2VyVmFsaWRBcHByb3ZlclJlcXVlc3QSKAoTYXBwcm92YWxfcHJvZmlsZV9pZBgBIAEoCUILukgIyAEBcgOwAQEiNgoiSXNDdXJyZW50VXNlclZhbGlkQXBwcm92ZXJSZXNwb25zZRIQCghpc192YWxpZBgBIAEoCEKeAQoYY29tLm90cGtpLnB1YmxpYy5hdXRoLnYxQg1Xb3JrSXRlbVByb3RvUAGiAgNPUEGqAhRPdHBraS5QdWJsaWMuQXV0aC5WMcoCFU90cGtpXFB1YmxpY19cQXV0aFxWMeICIU90cGtpXFB1YmxpY19cQXV0aFxWMVxHUEJNZXRhZGF0YeoCF090cGtpOjpQdWJsaWM6OkF1dGg6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
 
 /**
  * @generated from message otpki.public.auth.v1.GetWorkItemRequest
  */
 export type GetWorkItemRequest = Message<"otpki.public.auth.v1.GetWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -32,7 +32,7 @@ export type GetWorkItemRequest = Message<"otpki.public.auth.v1.GetWorkItemReques
  */
 export type GetWorkItemRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -42,9 +42,9 @@ export type GetWorkItemRequestJson = {
  */
 export type GetWorkItemRequestValid = Message<"otpki.public.auth.v1.GetWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -156,9 +156,9 @@ export const GetWorkItemListResponseSchema: GenMessage<GetWorkItemListResponse, 
  */
 export type ApproveWorkItemRequest = Message<"otpki.public.auth.v1.ApproveWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -166,7 +166,7 @@ export type ApproveWorkItemRequest = Message<"otpki.public.auth.v1.ApproveWorkIt
  */
 export type ApproveWorkItemRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -176,9 +176,9 @@ export type ApproveWorkItemRequestJson = {
  */
 export type ApproveWorkItemRequestValid = Message<"otpki.public.auth.v1.ApproveWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -214,9 +214,9 @@ export const ApproveWorkItemResponseSchema: GenMessage<ApproveWorkItemResponse, 
  */
 export type RejectWorkItemRequest = Message<"otpki.public.auth.v1.RejectWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -224,7 +224,7 @@ export type RejectWorkItemRequest = Message<"otpki.public.auth.v1.RejectWorkItem
  */
 export type RejectWorkItemRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -234,9 +234,9 @@ export type RejectWorkItemRequestJson = {
  */
 export type RejectWorkItemRequestValid = Message<"otpki.public.auth.v1.RejectWorkItemRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -272,9 +272,9 @@ export const RejectWorkItemResponseSchema: GenMessage<RejectWorkItemResponse, {j
  */
 export type IsCurrentUserValidApproverRequest = Message<"otpki.public.auth.v1.IsCurrentUserValidApproverRequest"> & {
   /**
-   * @generated from field: int64 approval_profile_id = 1;
+   * @generated from field: string approval_profile_id = 1;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 };
 
 /**
@@ -282,7 +282,7 @@ export type IsCurrentUserValidApproverRequest = Message<"otpki.public.auth.v1.Is
  */
 export type IsCurrentUserValidApproverRequestJson = {
   /**
-   * @generated from field: int64 approval_profile_id = 1;
+   * @generated from field: string approval_profile_id = 1;
    */
   approvalProfileId?: string;
 };
@@ -292,9 +292,9 @@ export type IsCurrentUserValidApproverRequestJson = {
  */
 export type IsCurrentUserValidApproverRequestValid = Message<"otpki.public.auth.v1.IsCurrentUserValidApproverRequest"> & {
   /**
-   * @generated from field: int64 approval_profile_id = 1;
+   * @generated from field: string approval_profile_id = 1;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 };
 
 /**

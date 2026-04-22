@@ -4,6 +4,7 @@ package issued_certificatev1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/issuance/issuer/v1"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -12,7 +13,7 @@ import (
 
 // IssuedCertificateNative is the native typing representation of IssuedCertificate
 type IssuedCertificateNative struct {
-	Id                             int64
+	Id                             uuid.UUID
 	Certificate                    []byte
 	CertificateChain               [][]byte
 	SerialNumber                   []byte
@@ -24,9 +25,9 @@ type IssuedCertificateNative struct {
 	RevokedAt                      *time.Time
 	RevocationReasonCode           *v1.RevocationReasonCode
 	InCrl                          bool
-	IssuedByCaCertificateId        *int64
-	IssuedFromCertificateProfileId int64
-	IssuedFromIssuanceRequestId    int64
+	IssuedByCaCertificateId        uuid.NullUUID
+	IssuedFromCertificateProfileId uuid.UUID
+	IssuedFromIssuanceRequestId    uuid.UUID
 	ProtocolUsed                   v11.IssuingProtocol
 	CreatedAt                      time.Time
 	UpdatedAt                      time.Time
@@ -39,7 +40,10 @@ func (n *IssuedCertificateNative) ToProto() (*IssuedCertificate, error) {
 	}
 	var err error
 	protoStruct := &IssuedCertificate{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Certificate = n.Certificate
 	protoStruct.CertificateChain = n.CertificateChain
 	protoStruct.SerialNumber = n.SerialNumber
@@ -60,9 +64,18 @@ func (n *IssuedCertificateNative) ToProto() (*IssuedCertificate, error) {
 	}
 	protoStruct.RevocationReasonCode = n.RevocationReasonCode
 	protoStruct.InCrl = n.InCrl
-	protoStruct.IssuedByCaCertificateId = n.IssuedByCaCertificateId
-	protoStruct.IssuedFromCertificateProfileId = n.IssuedFromCertificateProfileId
-	protoStruct.IssuedFromIssuanceRequestId = n.IssuedFromIssuanceRequestId
+	protoStruct.IssuedByCaCertificateId, err = convertNullUUIDToProto(n.IssuedByCaCertificateId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuedByCaCertificateId: %w", err)
+	}
+	protoStruct.IssuedFromCertificateProfileId, err = convertUUIDToProto(n.IssuedFromCertificateProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuedFromCertificateProfileId: %w", err)
+	}
+	protoStruct.IssuedFromIssuanceRequestId, err = convertUUIDToProto(n.IssuedFromIssuanceRequestId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuedFromIssuanceRequestId: %w", err)
+	}
 	protoStruct.ProtocolUsed = n.ProtocolUsed
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
@@ -82,7 +95,10 @@ func (p *IssuedCertificate) ToNative() (*IssuedCertificateNative, error) {
 	}
 	var err error
 	nativeStruct := &IssuedCertificateNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Certificate = p.Certificate
 	nativeStruct.CertificateChain = p.CertificateChain
 	nativeStruct.SerialNumber = p.SerialNumber
@@ -103,9 +119,18 @@ func (p *IssuedCertificate) ToNative() (*IssuedCertificateNative, error) {
 	}
 	nativeStruct.RevocationReasonCode = p.RevocationReasonCode
 	nativeStruct.InCrl = p.InCrl
-	nativeStruct.IssuedByCaCertificateId = p.IssuedByCaCertificateId
-	nativeStruct.IssuedFromCertificateProfileId = p.IssuedFromCertificateProfileId
-	nativeStruct.IssuedFromIssuanceRequestId = p.IssuedFromIssuanceRequestId
+	nativeStruct.IssuedByCaCertificateId, err = convertProtoToNullUUID(p.IssuedByCaCertificateId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuedByCaCertificateIdNative: %w", err)
+	}
+	nativeStruct.IssuedFromCertificateProfileId, err = convertProtoToUUID(p.IssuedFromCertificateProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuedFromCertificateProfileIdNative: %w", err)
+	}
+	nativeStruct.IssuedFromIssuanceRequestId, err = convertProtoToUUID(p.IssuedFromIssuanceRequestId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuedFromIssuanceRequestIdNative: %w", err)
+	}
 	nativeStruct.ProtocolUsed = p.ProtocolUsed
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
@@ -118,7 +143,78 @@ func (p *IssuedCertificate) ToNative() (*IssuedCertificateNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *IssuedCertificate) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetIssuedByCaCertificateIdUUID returns IssuedByCaCertificateId as a UUID when possible.
+func (x *IssuedCertificate) GetIssuedByCaCertificateIdUUID() uuid.NullUUID {
+	if x != nil {
+		value, err := convertProtoToNullUUID(x.IssuedByCaCertificateId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.NullUUID{}
+}
+
+// GetIssuedFromCertificateProfileIdUUID returns IssuedFromCertificateProfileId as a UUID when possible.
+func (x *IssuedCertificate) GetIssuedFromCertificateProfileIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.IssuedFromCertificateProfileId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetIssuedFromIssuanceRequestIdUUID returns IssuedFromIssuanceRequestId as a UUID when possible.
+func (x *IssuedCertificate) GetIssuedFromIssuanceRequestIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.IssuedFromIssuanceRequestId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
+
+// convertNullUUIDToProto comes from the converter package
+func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
+	if !id.Valid {
+		return nil, nil
+	}
+	uuidVal, err := convertUUIDToProto(id.UUID)
+	if err != nil {
+		return nil, err
+	}
+	return &uuidVal, nil
+}
+
+// convertProtoToNullUUID comes from the converter package
+func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil || len(*id) == 0 {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := convertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
+}
 
 // convertProtoToTime comes from the converter package
 func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
@@ -137,6 +233,14 @@ func convertProtoToTimePointer(t *timestamppb.Timestamp) (*time.Time, error) {
 	return &timePtr, err
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
 // convertTimePointerToProto comes from the converter package
 func convertTimePointerToProto(t *time.Time) (*timestamppb.Timestamp, error) {
 	if t == nil {
@@ -148,4 +252,9 @@ func convertTimePointerToProto(t *time.Time) (*timestamppb.Timestamp, error) {
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

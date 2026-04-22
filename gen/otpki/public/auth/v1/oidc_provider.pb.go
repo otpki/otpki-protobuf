@@ -71,7 +71,7 @@ func (x *CreateOIDCProviderRequest) GetOidcProvider() *v1.OIDCProvider {
 
 type CreateOIDCProviderResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateOIDCProviderResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_oidc_provider_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateOIDCProviderResponse) GetId() int64 {
+func (x *CreateOIDCProviderResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetOIDCProviderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetOIDCProviderRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_oidc_provider_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetOIDCProviderRequest) GetId() int64 {
+func (x *GetOIDCProviderRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetOIDCProviderResponse struct {
@@ -467,7 +467,7 @@ func (*UpdateOIDCProviderResponse) Descriptor() ([]byte, []int) {
 
 type DeleteOIDCProviderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -502,11 +502,11 @@ func (*DeleteOIDCProviderRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_oidc_provider_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *DeleteOIDCProviderRequest) GetId() int64 {
+func (x *DeleteOIDCProviderRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteOIDCProviderResponse struct {
@@ -729,11 +729,11 @@ const file_otpki_public_auth_v1_oidc_provider_proto_rawDesc = "" +
 	"\n" +
 	"(otpki/public/auth/v1/oidc_provider.proto\x12\x14otpki.public.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\"l\n" +
 	"\x19CreateOIDCProviderRequest\x12O\n" +
-	"\roidc_provider\x18\x01 \x01(\v2\".otpki.common.auth.v1.OIDCProviderB\x06\xbaH\x03\xc8\x01\x01R\foidcProvider\",\n" +
-	"\x1aCreateOIDCProviderResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"0\n" +
-	"\x16GetOIDCProviderRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"b\n" +
+	"\roidc_provider\x18\x01 \x01(\v2\".otpki.common.auth.v1.OIDCProviderB\x06\xbaH\x03\xc8\x01\x01R\foidcProvider\"6\n" +
+	"\x1aCreateOIDCProviderResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"5\n" +
+	"\x16GetOIDCProviderRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"b\n" +
 	"\x17GetOIDCProviderResponse\x12G\n" +
 	"\roidc_provider\x18\x01 \x01(\v2\".otpki.common.auth.v1.OIDCProviderR\foidcProvider\"@\n" +
 	"\x1eGetOIDCProviderByIssuerRequest\x12\x1e\n" +
@@ -748,9 +748,9 @@ const file_otpki_public_auth_v1_oidc_provider_proto_rawDesc = "" +
 	"\roidc_provider\x18\x01 \x01(\v2\".otpki.common.auth.v1.OIDCProviderR\foidcProvider\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"\x1c\n" +
-	"\x1aUpdateOIDCProviderResponse\"3\n" +
-	"\x19DeleteOIDCProviderRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x1c\n" +
+	"\x1aUpdateOIDCProviderResponse\"8\n" +
+	"\x19DeleteOIDCProviderRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x1c\n" +
 	"\x1aDeleteOIDCProviderResponse\"j\n" +
 	"\x1aGetOIDCProviderListRequest\x12L\n" +
 	"\n" +

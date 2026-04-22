@@ -6,7 +6,10 @@ import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/auth/v1/auth.proto";
 
 message GetWorkItemRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetWorkItemResponse {
@@ -23,19 +26,28 @@ message GetWorkItemListResponse {
 }
 
 message ApproveWorkItemRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message ApproveWorkItemResponse {}
 
 message RejectWorkItemRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message RejectWorkItemResponse {}
 
 message IsCurrentUserValidApproverRequest {
-  int64 approval_profile_id = 1 [(buf.validate.field).required = true];
+  string approval_profile_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message IsCurrentUserValidApproverResponse {

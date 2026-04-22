@@ -54,9 +54,9 @@ export declare const CreateCustomExtKeyUsageRequestSchema: GenMessage<CreateCust
  */
 export declare type CreateCustomExtKeyUsageResponse = Message<"otpki.public.issuance.v1.CreateCustomExtKeyUsageResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateCustomExtKeyUsageResponse = Message<"otpki.public.issu
  */
 export declare type CreateCustomExtKeyUsageResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateCustomExtKeyUsageResponseSchema: GenMessage<CreateCus
  */
 export declare type GetCustomExtKeyUsageRequest = Message<"otpki.public.issuance.v1.GetCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetCustomExtKeyUsageRequest = Message<"otpki.public.issuance
  */
 export declare type GetCustomExtKeyUsageRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetCustomExtKeyUsageRequestJson = {
  */
 export declare type GetCustomExtKeyUsageRequestValid = Message<"otpki.public.issuance.v1.GetCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -225,9 +225,9 @@ export declare const UpdateCustomExtKeyUsageResponseSchema: GenMessage<UpdateCus
  */
 export declare type DeleteCustomExtKeyUsageRequest = Message<"otpki.public.issuance.v1.DeleteCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -235,7 +235,7 @@ export declare type DeleteCustomExtKeyUsageRequest = Message<"otpki.public.issua
  */
 export declare type DeleteCustomExtKeyUsageRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -245,9 +245,9 @@ export declare type DeleteCustomExtKeyUsageRequestJson = {
  */
 export declare type DeleteCustomExtKeyUsageRequestValid = Message<"otpki.public.issuance.v1.DeleteCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

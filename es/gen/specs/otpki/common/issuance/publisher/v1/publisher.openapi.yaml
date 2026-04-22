@@ -121,35 +121,24 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         publisherConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_config_id
-          minimum: 1
-          format: int64
+          format: uuid
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          minimum: 0
-          format: int64
+          format: uuid
           description: 'CHECK: at least one of these two must be set'
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          minimum: 0
-          format: int64
+          format: uuid
           description: 'CHECK: at least one of these two must be set'
         subscribedEvents:
           type: array
@@ -163,27 +152,19 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          minimum: 1
-          format: int64
+          format: uuid
         publisherConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_config_id
-          minimum: 1
-          format: int64
+          format: uuid
       title: CrlPublisher
       additionalProperties: false
       description: CRL Publisher can only subscribe to CAs on CRL generation events
@@ -198,11 +179,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:

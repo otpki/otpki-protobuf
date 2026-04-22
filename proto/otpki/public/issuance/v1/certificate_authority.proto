@@ -12,7 +12,7 @@ message CreateCertificateAuthorityRequest {
 }
 
 message CreateCertificateAuthorityResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message ImportCertificateAuthorityRequest {
@@ -25,7 +25,7 @@ message ImportCertificateAuthorityRequest {
 }
 
 message ImportCertificateAuthorityResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message ImportCertificateAuthorityPKCS12Request {
@@ -36,12 +36,15 @@ message ImportCertificateAuthorityPKCS12Request {
 }
 
 message ImportCertificateAuthorityPKCS12Response {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message CreateCertificateAuthorityCSRRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
-  int64 key_id = 2;
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  string key_id = 2 [(buf.validate.field).string.uuid = true];
 }
 
 message CreateCertificateAuthorityCSRResponse {
@@ -49,19 +52,25 @@ message CreateCertificateAuthorityCSRResponse {
 }
 
 message ImportCertificateAuthorityCertificateRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   bytes certificate_pem = 2;
   bytes p7b_certificate_chain = 3;
 }
 
 message ImportCertificateAuthorityCertificateResponse {
-  int64 ca_certificate_id = 1;
+  string ca_certificate_id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message RenewCertificateAuthorityRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
-  optional int64 next_key_id = 2;
-  optional int64 next_alt_key_id = 3;
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  optional string next_key_id = 2 [(buf.validate.field).string.uuid = true];
+  optional string next_alt_key_id = 3 [(buf.validate.field).string.uuid = true];
 }
 
 message RenewCertificateAuthorityResponse {}
@@ -69,7 +78,10 @@ message RenewCertificateAuthorityResponse {}
 // ---- STORE ----
 
 message GetCertificateAuthorityRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetCertificateAuthorityResponse {
@@ -93,13 +105,19 @@ message UpdateCertificateAuthorityRequest {
 message UpdateCertificateAuthorityResponse {}
 
 message DeleteCertificateAuthorityRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteCertificateAuthorityResponse {}
 
 message GetCertificateAuthorityCertificatesRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetCertificateAuthorityCertificatesResponse {

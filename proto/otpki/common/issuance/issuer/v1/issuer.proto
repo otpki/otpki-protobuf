@@ -30,7 +30,10 @@ enum IssuingProtocol {
 
 message IssuanceRequest {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
   IssuanceStatus status = 2 [(gnostic.openapi.v3.property).read_only = true];
   IssuingProtocol protocol_used = 3 [
     (buf.validate.field).required = true,
@@ -39,11 +42,11 @@ message IssuanceRequest {
   x509.v1.CertificateTemplate certificate_template = 4 [(buf.validate.field).required = true];
 
   // only used for self-signed root ca issuance
-  optional int64 signing_key_id = 5;
-  optional int64 alternative_signing_key_id = 6;
+  optional string signing_key_id = 5 [(buf.validate.field).string.uuid = true];
+  optional string alternative_signing_key_id = 6 [(buf.validate.field).string.uuid = true];
 
   // only used for CA certificate issuance - points to the CA entity that will receive the issued cert
-  optional int64 target_certificate_authority_id = 7;
+  optional string target_certificate_authority_id = 7 [(buf.validate.field).string.uuid = true];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
@@ -60,9 +63,9 @@ message IssuanceRequest {
 }
 
 message IssuanceResponse {
-  int64 issuance_request_id = 1;
+  string issuance_request_id = 1 [(buf.validate.field).string.uuid = true];
   IssuanceStatus status = 2;
-  int64 certificate_id = 3;
+  string certificate_id = 3 [(buf.validate.field).string.uuid = true];
   bytes certificate = 4;
   repeated bytes certificate_chain = 5; // does not contain end entity certificate
 }

@@ -71,7 +71,7 @@ func (x *CreateEndEntityProfileRequest) GetProfile() *v1.EndEntityProfile {
 
 type CreateEndEntityProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateEndEntityProfileResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_end_entity_profile_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateEndEntityProfileResponse) GetId() int64 {
+func (x *CreateEndEntityProfileResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetEndEntityProfileRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_end_entity_profile_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetEndEntityProfileRequest) GetId() int64 {
+func (x *GetEndEntityProfileRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityProfileResponse struct {
@@ -291,7 +291,7 @@ func (*UpdateEndEntityProfileResponse) Descriptor() ([]byte, []int) {
 
 type DeleteEndEntityProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,11 +326,11 @@ func (*DeleteEndEntityProfileRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_end_entity_profile_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteEndEntityProfileRequest) GetId() int64 {
+func (x *DeleteEndEntityProfileRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteEndEntityProfileResponse struct {
@@ -471,20 +471,20 @@ const file_otpki_public_enrollment_v1_end_entity_profile_proto_rawDesc = "" +
 	"\n" +
 	"3otpki/public/enrollment/v1/end_entity_profile.proto\x12\x1aotpki.public.enrollment.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aFotpki/common/enrollment/end_entity_profile/v1/end_entity_profile.proto\"\x82\x01\n" +
 	"\x1dCreateEndEntityProfileRequest\x12a\n" +
-	"\aprofile\x18\x01 \x01(\v2?.otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileB\x06\xbaH\x03\xc8\x01\x01R\aprofile\"0\n" +
-	"\x1eCreateEndEntityProfileResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"5\n" +
-	"\x1aGetEndEntityProfileRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"x\n" +
+	"\aprofile\x18\x01 \x01(\v2?.otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileB\x06\xbaH\x03\xc8\x01\x01R\aprofile\":\n" +
+	"\x1eCreateEndEntityProfileResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"9\n" +
+	"\x1aGetEndEntityProfileRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"x\n" +
 	"\x1bGetEndEntityProfileResponse\x12Y\n" +
 	"\aprofile\x18\x01 \x01(\v2?.otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileR\aprofile\"\xb7\x01\n" +
 	"\x1dUpdateEndEntityProfileRequest\x12Y\n" +
 	"\aprofile\x18\x01 \x01(\v2?.otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileR\aprofile\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\" \n" +
-	"\x1eUpdateEndEntityProfileResponse\"8\n" +
-	"\x1dDeleteEndEntityProfileRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\" \n" +
+	"\x1eUpdateEndEntityProfileResponse\"<\n" +
+	"\x1dDeleteEndEntityProfileRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\" \n" +
 	"\x1eDeleteEndEntityProfileResponse\"n\n" +
 	"\x1eGetEndEntityProfileListRequest\x12L\n" +
 	"\n" +

@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/auth/v1/auth.proto.
  */
 export const file_otpki_common_auth_v1_auth: GenFile = /*@__PURE__*/
-  fileDesc("Ch9vdHBraS9jb21tb24vYXV0aC92MS9hdXRoLnByb3RvEhRvdHBraS5jb21tb24uYXV0aC52MSJyCg9SZXNvdXJjZUFjdGlvbnMSMAoIcmVzb3VyY2UYASABKA4yHi5vdHBraS5jb21tb24uYXV0aC52MS5SZXNvdXJjZRItCgdhY3Rpb25zGAIgAygOMhwub3Rwa2kuY29tbW9uLmF1dGgudjEuQWN0aW9uIuYBCgVHcm91cBIRCgJpZBgBIAEoA0IFukcCGAESFQoEbmFtZRgCIAEoCUIHukgEcgIQAxITCgtkZXNjcmlwdGlvbhgDIAEoCRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEi+gEKBFJvbGUSEQoCaWQYASABKANCBbpHAhgBEhUKBG5hbWUYAiABKAlCB7pIBHICEAMSEwoLZGVzY3JpcHRpb24YAyABKAkSEwoLc3lzdGVtX3JvbGUYBCABKAgSSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lOgSYtRgBIrABCgpQZXJtaXNzaW9uEhEKAmlkGAEgASgDQgW6RwIYARISCgppc19hbGxvd2VkGAIgASgIEjUKDXJlc291cmNlX3R5cGUYAyABKA4yHi5vdHBraS5jb21tb24uYXV0aC52MS5SZXNvdXJjZRIxCgthY3Rpb25fdHlwZRgEIAEoDjIcLm90cGtpLmNvbW1vbi5hdXRoLnYxLkFjdGlvbhIRCglvYmplY3RfaWQYBSABKAMiyAMKBFVzZXISEQoCaWQYASABKANCBbpHAhgBEhsKCHVzZXJuYW1lGAIgASgJQgm6SAZyBBADGEASEgoKZmlyc3RfbmFtZRgDIAEoCRIRCglsYXN0X25hbWUYBCABKAkSFgoFZW1haWwYBSABKAlCB7pIBHICYAESEwoLZGVzY3JpcHRpb24YBiABKAkSEAoIZGlzYWJsZWQYByABKAgSHQoOaXNfc3lzdGVtX3VzZXIYCCABKAhCBbpHAhgBEhMKC2NlcnRpZmljYXRlGAkgASgMEhoKC29pZGNfaXNzdWVyGAogASgJQgW6RwIYARIbCgxvaWRjX3N1YmplY3QYCyABKAlCBbpHAhgBEg4KBmdyb3VwcxgMIAMoAxINCgVyb2xlcxgNIAMoAxJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEi6wIKD0FwcHJvdmFsUHJvZmlsZRIRCgJpZBgBIAEoA0IFukcCGAESFQoEbmFtZRgCIAEoCUIHukgEcgIQAxITCgtkZXNjcmlwdGlvbhgDIAEoCRInChZudW1fYXBwcm92YWxzX3JlcXVpcmVkGAQgASgFQge6SAQaAigBEhkKEWFwcHJvdmVyX3JvbGVfaWRzGAUgAygDEhoKEmFwcHJvdmVyX2dyb3VwX2lkcxgGIAMoAxIZChFhcHByb3Zlcl91c2VyX2lkcxgHIAMoAxJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEilgUKDE9JRENQcm92aWRlchIRCgJpZBgBIAEoA0IFukcCGAESFQoEbmFtZRgCIAEoCUIHukgEcgIQAxIRCgljbGllbnRfaWQYBCABKAkSFQoNY2xpZW50X3NlY3JldBgFIAEoCRIcCgppc3N1ZXJfdXJsGAYgASgJQgi6SAVyA4gBARIkCg9iYWNrY2hhbm5lbF91cmwYByABKAlCC7pICNgBAXIDiAEBEh4KDHJlZGlyZWN0X3VybBgIIAEoCUIIukgFcgOIAQESFwoPcG9zdF9sb2dvdXRfdXJsGAkgASgJEh4KBnNjb3BlcxgKIAMoCUIOukgLkgEIGAEiBHICEAESNQoIbWF4X3NrZXcYCyABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CCLpIBaoBAjIAEkEKFHNlc3Npb25fbWF4X2luYWN0aXZlGAwgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQgi6SAWqAQIyABI/ChJzZXNzaW9uX21heF9sZW5ndGgYDSABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CCLpIBaoBAjIAEhwKFGNyZWF0ZV91bmtub3duX3VzZXJzGA4gASgIEhwKFGNyZWF0ZV91bmtub3duX3JvbGVzGA8gASgIEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYASKzAwoIV29ya0l0ZW0SEQoCaWQYASABKANCBbpHAhgBEhsKE2FwcHJvdmFsX3Byb2ZpbGVfaWQYAiABKAMSNQoNcmVzb3VyY2VfdHlwZRgDIAEoDjIeLm90cGtpLmNvbW1vbi5hdXRoLnYxLlJlc291cmNlEhMKC3Jlc291cmNlX2lkGAQgASgDEhMKC2Rlc2NyaXB0aW9uGAUgASgJEjQKBnN0YXR1cxgGIAEoDjIkLm90cGtpLmNvbW1vbi5hdXRoLnYxLldvcmtJdGVtU3RhdHVzEkAKCWFwcHJvdmFscxgHIAMoCzImLm90cGtpLmNvbW1vbi5hdXRoLnYxLldvcmtJdGVtQXBwcm92YWxCBbpHAhgBEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYASKCAQoQV29ya0l0ZW1BcHByb3ZhbBIPCgd1c2VyX2lkGAEgASgDEhAKCHVzZXJuYW1lGAIgASgJEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUqkQEKBkFjdGlvbhIWChJBQ1RJT05fVU5TUEVDSUZJRUQQABIRCg1BQ1RJT05fQ1JFQVRFEAESDwoLQUNUSU9OX1JFQUQQAhIRCg1BQ1RJT05fVVBEQVRFEAMSEQoNQUNUSU9OX0RFTEVURRAEEhEKDEFDVElPTl9JU1NVRRDJARISCg1BQ1RJT05fUkVWT0tFEMoBKrMGCghSZXNvdXJjZRIYChRSRVNPVVJDRV9VTlNQRUNJRklFRBAAEiIKHlJFU09VUkNFX0NFUlRJRklDQVRFX0FVVEhPUklUWRBlEhgKFFJFU09VUkNFX0NFUlRJRklDQVRFEGYSFwoTUkVTT1VSQ0VfRU5EX0VOVElUWRBnEhAKDFJFU09VUkNFX0tFWRBoEiIKHlJFU09VUkNFX0NFUlRJRklDQVRFX0VYVEVOU0lPThBpEh8KG1JFU09VUkNFX0VYVEVOREVEX0tFWV9VU0FHRRBqEiAKHFJFU09VUkNFX0NFUlRJRklDQVRFX1BST0ZJTEUQaxIfChtSRVNPVVJDRV9FTkRfRU5USVRZX1BST0ZJTEUQbBIfChtSRVNPVVJDRV9LRVlfU1RPUkFHRV9DT05GSUcQbRIdChlSRVNPVVJDRV9QVUJMSVNIRVJfQ09ORklHEG4SFgoSUkVTT1VSQ0VfUFVCTElTSEVSEG8SFAoQUkVTT1VSQ0VfVEFTS0xPRxBwEiIKHVJFU09VUkNFX0FDTUVfUFJPVE9DT0xfQ09ORklHEMkBEiEKHFJFU09VUkNFX0VTVF9QUk9UT0NPTF9DT05GSUcQygESIgodUkVTT1VSQ0VfTVNBRV9QUk9UT0NPTF9DT05GSUcQywESIgodUkVTT1VSQ0VfU0NFUF9QUk9UT0NPTF9DT05GSUcQzAESJwoiUkVTT1VSQ0VfTVNBRV9DRVJUSUZJQ0FURV9URU1QTEFURRDNARIhChxSRVNPVVJDRV9DTVBfUFJPVE9DT0xfQ09ORklHEM4BEhMKDlJFU09VUkNFX0dST1VQEK0CEhIKDVJFU09VUkNFX1JPTEUQrgISEgoNUkVTT1VSQ0VfVVNFUhCvAhIbChZSRVNPVVJDRV9PSURDX1BST1ZJREVSELACEh4KGVJFU09VUkNFX0FQUFJPVkFMX1BST0ZJTEUQsQISFwoSUkVTT1VSQ0VfV09SS19JVEVNELICEh4KGVJFU09VUkNFX0lTU1VBTkNFX1JFUVVFU1QQkQMSIAobUkVTT1VSQ0VfRU5ST0xMTUVOVF9SRVFVRVNUEJIDKo4BCg5Xb3JrSXRlbVN0YXR1cxIgChxXT1JLX0lURU1fU1RBVFVTX1VOU1BFQ0lGSUVEEAASHAoYV09SS19JVEVNX1NUQVRVU19QRU5ESU5HEAESHQoZV09SS19JVEVNX1NUQVRVU19BUFBST1ZFRBACEh0KGVdPUktfSVRFTV9TVEFUVVNfUkVKRUNURUQQA0KYAQoYY29tLm90cGtpLmNvbW1vbi5hdXRoLnYxQglBdXRoUHJvdG9QAaICA09DQaoCFE90cGtpLkNvbW1vbi5BdXRoLlYxygIUT3Rwa2lcQ29tbW9uXEF1dGhcVjHiAiBPdHBraVxDb21tb25cQXV0aFxWMVxHUEJNZXRhZGF0YeoCF090cGtpOjpDb21tb246OkF1dGg6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_duration, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type]);
+  fileDesc("Ch9vdHBraS9jb21tb24vYXV0aC92MS9hdXRoLnByb3RvEhRvdHBraS5jb21tb24uYXV0aC52MSJyCg9SZXNvdXJjZUFjdGlvbnMSMAoIcmVzb3VyY2UYASABKA4yHi5vdHBraS5jb21tb24uYXV0aC52MS5SZXNvdXJjZRItCgdhY3Rpb25zGAIgAygOMhwub3Rwa2kuY29tbW9uLmF1dGgudjEuQWN0aW9uIu4BCgVHcm91cBIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIVCgRuYW1lGAIgASgJQge6SARyAhADEhMKC2Rlc2NyaXB0aW9uGAMgASgJEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYASKCAgoEUm9sZRIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIVCgRuYW1lGAIgASgJQge6SARyAhADEhMKC2Rlc2NyaXB0aW9uGAMgASgJEhMKC3N5c3RlbV9yb2xlGAQgASgIEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYASLCAQoKUGVybWlzc2lvbhIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARISCgppc19hbGxvd2VkGAIgASgIEjUKDXJlc291cmNlX3R5cGUYAyABKA4yHi5vdHBraS5jb21tb24uYXV0aC52MS5SZXNvdXJjZRIxCgthY3Rpb25fdHlwZRgEIAEoDjIcLm90cGtpLmNvbW1vbi5hdXRoLnYxLkFjdGlvbhIbCglvYmplY3RfaWQYBSABKAlCCLpIBXIDsAEBIvIDCgRVc2VyEhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEhsKCHVzZXJuYW1lGAIgASgJQgm6SAZyBBADGEASEgoKZmlyc3RfbmFtZRgDIAEoCRIRCglsYXN0X25hbWUYBCABKAkSFgoFZW1haWwYBSABKAlCB7pIBHICYAESEwoLZGVzY3JpcHRpb24YBiABKAkSEAoIZGlzYWJsZWQYByABKAgSHQoOaXNfc3lzdGVtX3VzZXIYCCABKAhCBbpHAhgBEhMKC2NlcnRpZmljYXRlGAkgASgMEhoKC29pZGNfaXNzdWVyGAogASgJQgW6RwIYARIbCgxvaWRjX3N1YmplY3QYCyABKAlCBbpHAhgBEh8KBmdyb3VwcxgMIAMoCUIPukgMkgEJGAEiBXIDsAEBEh4KBXJvbGVzGA0gAygJQg+6SAySAQkYASIFcgOwAQESSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lOgSYtRgBIqYDCg9BcHByb3ZhbFByb2ZpbGUSGQoCaWQYASABKAlCDbpHAhgBukgFcgOwAQESFQoEbmFtZRgCIAEoCUIHukgEcgIQAxITCgtkZXNjcmlwdGlvbhgDIAEoCRInChZudW1fYXBwcm92YWxzX3JlcXVpcmVkGAQgASgFQge6SAQaAigBEioKEWFwcHJvdmVyX3JvbGVfaWRzGAUgAygJQg+6SAySAQkYASIFcgOwAQESKwoSYXBwcm92ZXJfZ3JvdXBfaWRzGAYgAygJQg+6SAySAQkYASIFcgOwAQESKgoRYXBwcm92ZXJfdXNlcl9pZHMYByADKAlCD7pIDJIBCRgBIgVyA7ABARJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEingUKDE9JRENQcm92aWRlchIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIVCgRuYW1lGAIgASgJQge6SARyAhADEhEKCWNsaWVudF9pZBgEIAEoCRIVCg1jbGllbnRfc2VjcmV0GAUgASgJEhwKCmlzc3Vlcl91cmwYBiABKAlCCLpIBXIDiAEBEiQKD2JhY2tjaGFubmVsX3VybBgHIAEoCUILukgI2AEBcgOIAQESHgoMcmVkaXJlY3RfdXJsGAggASgJQgi6SAVyA4gBARIXCg9wb3N0X2xvZ291dF91cmwYCSABKAkSHgoGc2NvcGVzGAogAygJQg66SAuSAQgYASIEcgIQARI1CghtYXhfc2tldxgLIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkIIukgFqgECMgASQQoUc2Vzc2lvbl9tYXhfaW5hY3RpdmUYDCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CCLpIBaoBAjIAEj8KEnNlc3Npb25fbWF4X2xlbmd0aBgNIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkIIukgFqgECMgASHAoUY3JlYXRlX3Vua25vd25fdXNlcnMYDiABKAgSHAoUY3JlYXRlX3Vua25vd25fcm9sZXMYDyABKAgSSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lOgSYtRgBIs8DCghXb3JrSXRlbRIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIlChNhcHByb3ZhbF9wcm9maWxlX2lkGAIgASgJQgi6SAVyA7ABARI1Cg1yZXNvdXJjZV90eXBlGAMgASgOMh4ub3Rwa2kuY29tbW9uLmF1dGgudjEuUmVzb3VyY2USHQoLcmVzb3VyY2VfaWQYBCABKAlCCLpIBXIDsAEBEhMKC2Rlc2NyaXB0aW9uGAUgASgJEjQKBnN0YXR1cxgGIAEoDjIkLm90cGtpLmNvbW1vbi5hdXRoLnYxLldvcmtJdGVtU3RhdHVzEkAKCWFwcHJvdmFscxgHIAMoCzImLm90cGtpLmNvbW1vbi5hdXRoLnYxLldvcmtJdGVtQXBwcm92YWxCBbpHAhgBEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYASKMAQoQV29ya0l0ZW1BcHByb3ZhbBIZCgd1c2VyX2lkGAEgASgJQgi6SAVyA7ABARIQCgh1c2VybmFtZRgCIAEoCRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lKpEBCgZBY3Rpb24SFgoSQUNUSU9OX1VOU1BFQ0lGSUVEEAASEQoNQUNUSU9OX0NSRUFURRABEg8KC0FDVElPTl9SRUFEEAISEQoNQUNUSU9OX1VQREFURRADEhEKDUFDVElPTl9ERUxFVEUQBBIRCgxBQ1RJT05fSVNTVUUQyQESEgoNQUNUSU9OX1JFVk9LRRDKASqzBgoIUmVzb3VyY2USGAoUUkVTT1VSQ0VfVU5TUEVDSUZJRUQQABIiCh5SRVNPVVJDRV9DRVJUSUZJQ0FURV9BVVRIT1JJVFkQZRIYChRSRVNPVVJDRV9DRVJUSUZJQ0FURRBmEhcKE1JFU09VUkNFX0VORF9FTlRJVFkQZxIQCgxSRVNPVVJDRV9LRVkQaBIiCh5SRVNPVVJDRV9DRVJUSUZJQ0FURV9FWFRFTlNJT04QaRIfChtSRVNPVVJDRV9FWFRFTkRFRF9LRVlfVVNBR0UQahIgChxSRVNPVVJDRV9DRVJUSUZJQ0FURV9QUk9GSUxFEGsSHwobUkVTT1VSQ0VfRU5EX0VOVElUWV9QUk9GSUxFEGwSHwobUkVTT1VSQ0VfS0VZX1NUT1JBR0VfQ09ORklHEG0SHQoZUkVTT1VSQ0VfUFVCTElTSEVSX0NPTkZJRxBuEhYKElJFU09VUkNFX1BVQkxJU0hFUhBvEhQKEFJFU09VUkNFX1RBU0tMT0cQcBIiCh1SRVNPVVJDRV9BQ01FX1BST1RPQ09MX0NPTkZJRxDJARIhChxSRVNPVVJDRV9FU1RfUFJPVE9DT0xfQ09ORklHEMoBEiIKHVJFU09VUkNFX01TQUVfUFJPVE9DT0xfQ09ORklHEMsBEiIKHVJFU09VUkNFX1NDRVBfUFJPVE9DT0xfQ09ORklHEMwBEicKIlJFU09VUkNFX01TQUVfQ0VSVElGSUNBVEVfVEVNUExBVEUQzQESIQocUkVTT1VSQ0VfQ01QX1BST1RPQ09MX0NPTkZJRxDOARITCg5SRVNPVVJDRV9HUk9VUBCtAhISCg1SRVNPVVJDRV9ST0xFEK4CEhIKDVJFU09VUkNFX1VTRVIQrwISGwoWUkVTT1VSQ0VfT0lEQ19QUk9WSURFUhCwAhIeChlSRVNPVVJDRV9BUFBST1ZBTF9QUk9GSUxFELECEhcKElJFU09VUkNFX1dPUktfSVRFTRCyAhIeChlSRVNPVVJDRV9JU1NVQU5DRV9SRVFVRVNUEJEDEiAKG1JFU09VUkNFX0VOUk9MTE1FTlRfUkVRVUVTVBCSAyqOAQoOV29ya0l0ZW1TdGF0dXMSIAocV09SS19JVEVNX1NUQVRVU19VTlNQRUNJRklFRBAAEhwKGFdPUktfSVRFTV9TVEFUVVNfUEVORElORxABEh0KGVdPUktfSVRFTV9TVEFUVVNfQVBQUk9WRUQQAhIdChlXT1JLX0lURU1fU1RBVFVTX1JFSkVDVEVEEANCmAEKGGNvbS5vdHBraS5jb21tb24uYXV0aC52MUIJQXV0aFByb3RvUAGiAgNPQ0GqAhRPdHBraS5Db21tb24uQXV0aC5WMcoCFE90cGtpXENvbW1vblxBdXRoXFYx4gIgT3Rwa2lcQ29tbW9uXEF1dGhcVjFcR1BCTWV0YWRhdGHqAhdPdHBraTo6Q29tbW9uOjpBdXRoOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_duration, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type]);
 
 /**
  * @generated from message otpki.common.auth.v1.ResourceActions
@@ -61,9 +61,9 @@ export const ResourceActionsSchema: GenMessage<ResourceActions, {jsonType: Resou
  */
 export type Group = Message<"otpki.common.auth.v1.Group"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -93,7 +93,7 @@ export type Group = Message<"otpki.common.auth.v1.Group"> & {
  */
 export type GroupJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -134,9 +134,9 @@ export const GroupSchema: GenMessage<Group, {jsonType: GroupJson, validType: Gro
  */
 export type Role = Message<"otpki.common.auth.v1.Role"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -171,7 +171,7 @@ export type Role = Message<"otpki.common.auth.v1.Role"> & {
  */
 export type RoleJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -217,9 +217,9 @@ export const RoleSchema: GenMessage<Role, {jsonType: RoleJson, validType: RoleVa
  */
 export type Permission = Message<"otpki.common.auth.v1.Permission"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: bool is_allowed = 2;
@@ -243,9 +243,9 @@ export type Permission = Message<"otpki.common.auth.v1.Permission"> & {
   /**
    * when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
    *
-   * @generated from field: int64 object_id = 5;
+   * @generated from field: string object_id = 5;
    */
-  objectId: bigint;
+  objectId: string;
 };
 
 /**
@@ -253,7 +253,7 @@ export type Permission = Message<"otpki.common.auth.v1.Permission"> & {
  */
 export type PermissionJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -279,7 +279,7 @@ export type PermissionJson = {
   /**
    * when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
    *
-   * @generated from field: int64 object_id = 5;
+   * @generated from field: string object_id = 5;
    */
   objectId?: string;
 };
@@ -298,9 +298,9 @@ export const PermissionSchema: GenMessage<Permission, {jsonType: PermissionJson,
  */
 export type User = Message<"otpki.common.auth.v1.User"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string username = 2;
@@ -353,14 +353,14 @@ export type User = Message<"otpki.common.auth.v1.User"> & {
   oidcSubject: string;
 
   /**
-   * @generated from field: repeated int64 groups = 12;
+   * @generated from field: repeated string groups = 12;
    */
-  groups: bigint[];
+  groups: string[];
 
   /**
-   * @generated from field: repeated int64 roles = 13;
+   * @generated from field: repeated string roles = 13;
    */
-  roles: bigint[];
+  roles: string[];
 
   /**
    * not settable on creation
@@ -380,7 +380,7 @@ export type User = Message<"otpki.common.auth.v1.User"> & {
  */
 export type UserJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -435,12 +435,12 @@ export type UserJson = {
   oidcSubject?: string;
 
   /**
-   * @generated from field: repeated int64 groups = 12;
+   * @generated from field: repeated string groups = 12;
    */
   groups?: string[];
 
   /**
-   * @generated from field: repeated int64 roles = 13;
+   * @generated from field: repeated string roles = 13;
    */
   roles?: string[];
 
@@ -471,9 +471,9 @@ export const UserSchema: GenMessage<User, {jsonType: UserJson, validType: UserVa
  */
 export type ApprovalProfile = Message<"otpki.common.auth.v1.ApprovalProfile"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -491,19 +491,19 @@ export type ApprovalProfile = Message<"otpki.common.auth.v1.ApprovalProfile"> & 
   numApprovalsRequired: number;
 
   /**
-   * @generated from field: repeated int64 approver_role_ids = 5;
+   * @generated from field: repeated string approver_role_ids = 5;
    */
-  approverRoleIds: bigint[];
+  approverRoleIds: string[];
 
   /**
-   * @generated from field: repeated int64 approver_group_ids = 6;
+   * @generated from field: repeated string approver_group_ids = 6;
    */
-  approverGroupIds: bigint[];
+  approverGroupIds: string[];
 
   /**
-   * @generated from field: repeated int64 approver_user_ids = 7;
+   * @generated from field: repeated string approver_user_ids = 7;
    */
-  approverUserIds: bigint[];
+  approverUserIds: string[];
 
   /**
    * not settable on creation
@@ -523,7 +523,7 @@ export type ApprovalProfile = Message<"otpki.common.auth.v1.ApprovalProfile"> & 
  */
 export type ApprovalProfileJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -543,17 +543,17 @@ export type ApprovalProfileJson = {
   numApprovalsRequired?: number;
 
   /**
-   * @generated from field: repeated int64 approver_role_ids = 5;
+   * @generated from field: repeated string approver_role_ids = 5;
    */
   approverRoleIds?: string[];
 
   /**
-   * @generated from field: repeated int64 approver_group_ids = 6;
+   * @generated from field: repeated string approver_group_ids = 6;
    */
   approverGroupIds?: string[];
 
   /**
-   * @generated from field: repeated int64 approver_user_ids = 7;
+   * @generated from field: repeated string approver_user_ids = 7;
    */
   approverUserIds?: string[];
 
@@ -584,9 +584,9 @@ export const ApprovalProfileSchema: GenMessage<ApprovalProfile, {jsonType: Appro
  */
 export type OIDCProvider = Message<"otpki.common.auth.v1.OIDCProvider"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -671,7 +671,7 @@ export type OIDCProvider = Message<"otpki.common.auth.v1.OIDCProvider"> & {
  */
 export type OIDCProviderJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -767,14 +767,14 @@ export const OIDCProviderSchema: GenMessage<OIDCProvider, {jsonType: OIDCProvide
  */
 export type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 approval_profile_id = 2;
+   * @generated from field: string approval_profile_id = 2;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 
   /**
    * @generated from field: otpki.common.auth.v1.Resource resource_type = 3;
@@ -782,9 +782,9 @@ export type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
   resourceType: Resource;
 
   /**
-   * @generated from field: int64 resource_id = 4;
+   * @generated from field: string resource_id = 4;
    */
-  resourceId: bigint;
+  resourceId: string;
 
   /**
    * @generated from field: string description = 5;
@@ -819,12 +819,12 @@ export type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
  */
 export type WorkItemJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 approval_profile_id = 2;
+   * @generated from field: string approval_profile_id = 2;
    */
   approvalProfileId?: string;
 
@@ -834,7 +834,7 @@ export type WorkItemJson = {
   resourceType?: ResourceJson;
 
   /**
-   * @generated from field: int64 resource_id = 4;
+   * @generated from field: string resource_id = 4;
    */
   resourceId?: string;
 
@@ -880,9 +880,9 @@ export const WorkItemSchema: GenMessage<WorkItem, {jsonType: WorkItemJson, valid
  */
 export type WorkItemApproval = Message<"otpki.common.auth.v1.WorkItemApproval"> & {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
-  userId: bigint;
+  userId: string;
 
   /**
    * @generated from field: string username = 2;
@@ -900,7 +900,7 @@ export type WorkItemApproval = Message<"otpki.common.auth.v1.WorkItemApproval"> 
  */
 export type WorkItemApprovalJson = {
   /**
-   * @generated from field: int64 user_id = 1;
+   * @generated from field: string user_id = 1;
    */
   userId?: string;
 

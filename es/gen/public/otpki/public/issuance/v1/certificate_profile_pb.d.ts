@@ -54,9 +54,9 @@ export declare const CreateCertificateProfileRequestSchema: GenMessage<CreateCer
  */
 export declare type CreateCertificateProfileResponse = Message<"otpki.public.issuance.v1.CreateCertificateProfileResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateCertificateProfileResponse = Message<"otpki.public.iss
  */
 export declare type CreateCertificateProfileResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateCertificateProfileResponseSchema: GenMessage<CreateCe
  */
 export declare type GetCertificateProfileRequest = Message<"otpki.public.issuance.v1.GetCertificateProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,12 +92,20 @@ export declare type GetCertificateProfileRequest = Message<"otpki.public.issuanc
  */
 export declare type GetCertificateProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type GetCertificateProfileRequestValid = GetCertificateProfileRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.GetCertificateProfileRequest
+ */
+export declare type GetCertificateProfileRequestValid = Message<"otpki.public.issuance.v1.GetCertificateProfileRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.GetCertificateProfileRequest.
@@ -196,9 +204,9 @@ export declare const UpdateCertificateProfileResponseSchema: GenMessage<UpdateCe
  */
 export declare type DeleteCertificateProfileRequest = Message<"otpki.public.issuance.v1.DeleteCertificateProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -206,12 +214,20 @@ export declare type DeleteCertificateProfileRequest = Message<"otpki.public.issu
  */
 export declare type DeleteCertificateProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type DeleteCertificateProfileRequestValid = DeleteCertificateProfileRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeleteCertificateProfileRequest
+ */
+export declare type DeleteCertificateProfileRequestValid = Message<"otpki.public.issuance.v1.DeleteCertificateProfileRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeleteCertificateProfileRequest.

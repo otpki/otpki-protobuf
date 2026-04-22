@@ -4,6 +4,7 @@ package issuerv1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
@@ -11,13 +12,13 @@ import (
 
 // IssuanceRequestNative is the native typing representation of IssuanceRequest
 type IssuanceRequestNative struct {
-	Id                           int64
+	Id                           uuid.UUID
 	Status                       IssuanceStatus
 	ProtocolUsed                 IssuingProtocol
 	CertificateTemplate          *v1.CertificateTemplate
-	SigningKeyId                 *int64
-	AlternativeSigningKeyId      *int64
-	TargetCertificateAuthorityId *int64
+	SigningKeyId                 uuid.NullUUID
+	AlternativeSigningKeyId      uuid.NullUUID
+	TargetCertificateAuthorityId uuid.NullUUID
 	CreatedAt                    time.Time
 	UpdatedAt                    time.Time
 }
@@ -29,13 +30,25 @@ func (n *IssuanceRequestNative) ToProto() (*IssuanceRequest, error) {
 	}
 	var err error
 	protoStruct := &IssuanceRequest{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Status = n.Status
 	protoStruct.ProtocolUsed = n.ProtocolUsed
 	protoStruct.CertificateTemplate = n.CertificateTemplate
-	protoStruct.SigningKeyId = n.SigningKeyId
-	protoStruct.AlternativeSigningKeyId = n.AlternativeSigningKeyId
-	protoStruct.TargetCertificateAuthorityId = n.TargetCertificateAuthorityId
+	protoStruct.SigningKeyId, err = convertNullUUIDToProto(n.SigningKeyId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting SigningKeyId: %w", err)
+	}
+	protoStruct.AlternativeSigningKeyId, err = convertNullUUIDToProto(n.AlternativeSigningKeyId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AlternativeSigningKeyId: %w", err)
+	}
+	protoStruct.TargetCertificateAuthorityId, err = convertNullUUIDToProto(n.TargetCertificateAuthorityId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting TargetCertificateAuthorityId: %w", err)
+	}
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -54,13 +67,25 @@ func (p *IssuanceRequest) ToNative() (*IssuanceRequestNative, error) {
 	}
 	var err error
 	nativeStruct := &IssuanceRequestNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Status = p.Status
 	nativeStruct.ProtocolUsed = p.ProtocolUsed
 	nativeStruct.CertificateTemplate = p.CertificateTemplate
-	nativeStruct.SigningKeyId = p.SigningKeyId
-	nativeStruct.AlternativeSigningKeyId = p.AlternativeSigningKeyId
-	nativeStruct.TargetCertificateAuthorityId = p.TargetCertificateAuthorityId
+	nativeStruct.SigningKeyId, err = convertProtoToNullUUID(p.SigningKeyId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting SigningKeyIdNative: %w", err)
+	}
+	nativeStruct.AlternativeSigningKeyId, err = convertProtoToNullUUID(p.AlternativeSigningKeyId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AlternativeSigningKeyIdNative: %w", err)
+	}
+	nativeStruct.TargetCertificateAuthorityId, err = convertProtoToNullUUID(p.TargetCertificateAuthorityId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting TargetCertificateAuthorityIdNative: %w", err)
+	}
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)
@@ -72,7 +97,100 @@ func (p *IssuanceRequest) ToNative() (*IssuanceRequestNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *IssuanceRequest) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetSigningKeyIdUUID returns SigningKeyId as a UUID when possible.
+func (x *IssuanceRequest) GetSigningKeyIdUUID() uuid.NullUUID {
+	if x != nil {
+		value, err := convertProtoToNullUUID(x.SigningKeyId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.NullUUID{}
+}
+
+// GetAlternativeSigningKeyIdUUID returns AlternativeSigningKeyId as a UUID when possible.
+func (x *IssuanceRequest) GetAlternativeSigningKeyIdUUID() uuid.NullUUID {
+	if x != nil {
+		value, err := convertProtoToNullUUID(x.AlternativeSigningKeyId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.NullUUID{}
+}
+
+// GetTargetCertificateAuthorityIdUUID returns TargetCertificateAuthorityId as a UUID when possible.
+func (x *IssuanceRequest) GetTargetCertificateAuthorityIdUUID() uuid.NullUUID {
+	if x != nil {
+		value, err := convertProtoToNullUUID(x.TargetCertificateAuthorityId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.NullUUID{}
+}
+
+// GetIssuanceRequestIdUUID returns IssuanceRequestId as a UUID when possible.
+func (x *IssuanceResponse) GetIssuanceRequestIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.IssuanceRequestId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetCertificateIdUUID returns CertificateId as a UUID when possible.
+func (x *IssuanceResponse) GetCertificateIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CertificateId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
+
+// convertNullUUIDToProto comes from the converter package
+func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
+	if !id.Valid {
+		return nil, nil
+	}
+	uuidVal, err := convertUUIDToProto(id.UUID)
+	if err != nil {
+		return nil, err
+	}
+	return &uuidVal, nil
+}
+
+// convertProtoToNullUUID comes from the converter package
+func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil || len(*id) == 0 {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := convertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
+}
 
 // convertProtoToTime comes from the converter package
 func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
@@ -82,7 +200,20 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

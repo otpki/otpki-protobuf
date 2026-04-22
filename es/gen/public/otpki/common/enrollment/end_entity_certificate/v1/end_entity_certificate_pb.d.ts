@@ -18,19 +18,19 @@ export declare const file_otpki_common_enrollment_end_entity_certificate_v1_end_
  */
 export declare type EndEntityCertificate = Message<"otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificate"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 enrollment_request_id = 2;
+   * @generated from field: string enrollment_request_id = 2;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 3;
+   * @generated from field: string issued_certificate_id = 3;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -83,17 +83,17 @@ export declare type EndEntityCertificate = Message<"otpki.common.enrollment.end_
  */
 export declare type EndEntityCertificateJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 
   /**
-   * @generated from field: int64 enrollment_request_id = 2;
+   * @generated from field: string enrollment_request_id = 2;
    */
   enrollmentRequestId?: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 3;
+   * @generated from field: string issued_certificate_id = 3;
    */
   issuedCertificateId?: string;
 

@@ -54,9 +54,9 @@ export declare const CreateGroupRequestSchema: GenMessage<CreateGroupRequest, {j
  */
 export declare type CreateGroupResponse = Message<"otpki.public.auth.v1.CreateGroupResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateGroupResponse = Message<"otpki.public.auth.v1.CreateGr
  */
 export declare type CreateGroupResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateGroupResponseSchema: GenMessage<CreateGroupResponse, 
  */
 export declare type GetGroupRequest = Message<"otpki.public.auth.v1.GetGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetGroupRequest = Message<"otpki.public.auth.v1.GetGroupRequ
  */
 export declare type GetGroupRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetGroupRequestJson = {
  */
 export declare type GetGroupRequestValid = Message<"otpki.public.auth.v1.GetGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -146,9 +146,9 @@ export declare const GetGroupResponseSchema: GenMessage<GetGroupResponse, {jsonT
  */
 export declare type GetManyGroupsRequest = Message<"otpki.public.auth.v1.GetManyGroupsRequest"> & {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
-  ids: bigint[];
+  ids: string[];
 };
 
 /**
@@ -156,20 +156,12 @@ export declare type GetManyGroupsRequest = Message<"otpki.public.auth.v1.GetMany
  */
 export declare type GetManyGroupsRequestJson = {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
   ids?: string[];
 };
 
-/**
- * @generated from message otpki.public.auth.v1.GetManyGroupsRequest
- */
-export declare type GetManyGroupsRequestValid = Message<"otpki.public.auth.v1.GetManyGroupsRequest"> & {
-  /**
-   * @generated from field: repeated int64 ids = 1;
-   */
-  ids: bigint[];
-};
+export declare type GetManyGroupsRequestValid = GetManyGroupsRequest;
 
 /**
  * Describes the message otpki.public.auth.v1.GetManyGroupsRequest.
@@ -268,9 +260,9 @@ export declare const UpdateGroupResponseSchema: GenMessage<UpdateGroupResponse, 
  */
 export declare type DeleteGroupRequest = Message<"otpki.public.auth.v1.DeleteGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -278,7 +270,7 @@ export declare type DeleteGroupRequest = Message<"otpki.public.auth.v1.DeleteGro
  */
 export declare type DeleteGroupRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -288,9 +280,9 @@ export declare type DeleteGroupRequestJson = {
  */
 export declare type DeleteGroupRequestValid = Message<"otpki.public.auth.v1.DeleteGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

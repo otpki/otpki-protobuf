@@ -56,9 +56,9 @@ export declare const CreateKeyStorageConfigRequestSchema: GenMessage<CreateKeySt
  */
 export declare type CreateKeyStorageConfigResponse = Message<"otpki.public.issuance.v1.CreateKeyStorageConfigResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -66,7 +66,7 @@ export declare type CreateKeyStorageConfigResponse = Message<"otpki.public.issua
  */
 export declare type CreateKeyStorageConfigResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -84,9 +84,9 @@ export declare const CreateKeyStorageConfigResponseSchema: GenMessage<CreateKeyS
  */
 export declare type GetKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.GetKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -94,12 +94,20 @@ export declare type GetKeyStorageConfigRequest = Message<"otpki.public.issuance.
  */
 export declare type GetKeyStorageConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type GetKeyStorageConfigRequestValid = GetKeyStorageConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.GetKeyStorageConfigRequest
+ */
+export declare type GetKeyStorageConfigRequestValid = Message<"otpki.public.issuance.v1.GetKeyStorageConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.GetKeyStorageConfigRequest.
@@ -198,9 +206,9 @@ export declare const UpdateKeyStorageConfigResponseSchema: GenMessage<UpdateKeyS
  */
 export declare type DeleteKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.DeleteKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -208,12 +216,20 @@ export declare type DeleteKeyStorageConfigRequest = Message<"otpki.public.issuan
  */
 export declare type DeleteKeyStorageConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type DeleteKeyStorageConfigRequestValid = DeleteKeyStorageConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeleteKeyStorageConfigRequest
+ */
+export declare type DeleteKeyStorageConfigRequestValid = Message<"otpki.public.issuance.v1.DeleteKeyStorageConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeleteKeyStorageConfigRequest.
@@ -424,9 +440,9 @@ export declare const ActivateKeyStorageConfigResponseSchema: GenMessage<Activate
  */
 export declare type DeactivateKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.DeactivateKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 };
 
 /**
@@ -434,7 +450,7 @@ export declare type DeactivateKeyStorageConfigRequest = Message<"otpki.public.is
  */
 export declare type DeactivateKeyStorageConfigRequestJson = {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
   keyStorageConfigId?: string;
 };
@@ -444,9 +460,9 @@ export declare type DeactivateKeyStorageConfigRequestJson = {
  */
 export declare type DeactivateKeyStorageConfigRequestValid = Message<"otpki.public.issuance.v1.DeactivateKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 };
 
 /**

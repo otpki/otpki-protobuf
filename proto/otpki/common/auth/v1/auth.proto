@@ -64,7 +64,10 @@ message ResourceActions {
 
 message Group {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
   string name = 2 [(buf.validate.field).string.min_len = 3];
   string description = 3;
   // not settable on creation
@@ -82,7 +85,10 @@ message Group {
 
 message Role {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
   string name = 2 [(buf.validate.field).string.min_len = 3];
   string description = 3;
   bool system_role = 4;
@@ -100,18 +106,24 @@ message Role {
 }
 
 message Permission {
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
   bool is_allowed = 2;
   Resource resource_type = 3; // when unspecified, is_allowed controls all resources
   Action action_type = 4; // when unspecified, is_allowed grants all actions on a particular resource
-  int64 object_id = 5; // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
+  string object_id = 5 [(buf.validate.field).string.uuid = true]; // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
   // when object_id is specified, is_allowed controls this specific action on this specific object
   // when object_id is specified but action_type is unspecified, is_allowed grants all actions on this specific object
 }
 
 message User {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
   string username = 2 [
     (buf.validate.field).string.min_len = 3,
     (buf.validate.field).string.max_len = 64
@@ -125,8 +137,18 @@ message User {
   bytes certificate = 9;
   string oidc_issuer = 10 [(gnostic.openapi.v3.property).read_only = true];
   string oidc_subject = 11 [(gnostic.openapi.v3.property).read_only = true];
-  repeated int64 groups = 12;
-  repeated int64 roles = 13;
+  repeated string groups = 12 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+  repeated string roles = 13 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
@@ -143,13 +165,31 @@ message User {
 
 message ApprovalProfile {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
   string name = 2 [(buf.validate.field).string.min_len = 3];
   string description = 3;
   int32 num_approvals_required = 4 [(buf.validate.field).int32.gte = 1];
-  repeated int64 approver_role_ids = 5;
-  repeated int64 approver_group_ids = 6;
-  repeated int64 approver_user_ids = 7;
+  repeated string approver_role_ids = 5 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+  repeated string approver_group_ids = 6 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+  repeated string approver_user_ids = 7 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,
@@ -165,7 +205,10 @@ message ApprovalProfile {
 
 message OIDCProvider {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
 
   string name = 2 [(buf.validate.field).string.min_len = 3];
   string client_id = 4;
@@ -210,10 +253,13 @@ enum WorkItemStatus {
 
 message WorkItem {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true];
-  int64 approval_profile_id = 2;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ];
+  string approval_profile_id = 2 [(buf.validate.field).string.uuid = true];
   Resource resource_type = 3;
-  int64 resource_id = 4;
+  string resource_id = 4 [(buf.validate.field).string.uuid = true];
   string description = 5;
   WorkItemStatus status = 6;
   repeated WorkItemApproval approvals = 7 [(gnostic.openapi.v3.property).read_only = true];
@@ -231,7 +277,7 @@ message WorkItem {
 }
 
 message WorkItemApproval {
-  int64 user_id = 1;
+  string user_id = 1 [(buf.validate.field).string.uuid = true];
   string username = 2;
   google.protobuf.Timestamp created_at = 201 [
     (gnostic.openapi.v3.property).read_only = true,

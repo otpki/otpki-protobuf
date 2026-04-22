@@ -4,6 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_buf_validate_validate } from "../../../../buf/validate/validate_pb";
 import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
@@ -12,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/issuance/v1/metrics.proto.
  */
 export const file_otpki_public_issuance_v1_metrics: GenFile = /*@__PURE__*/
-  fileDesc("CiZvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvbWV0cmljcy5wcm90bxIYb3Rwa2kucHVibGljLmlzc3VhbmNlLnYxIukCChBEYXNoYm9hcmRNZXRyaWNzEi0KCXRpbWVzdGFtcBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASUwoSY2VydGlmaWNhdGVfc3RhdHVzGAIgASgLMjcub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxLkNlcnRpZmljYXRlU3RhdHVzRGlzdHJpYnV0aW9uEkUKDmlzc3VhbmNlX3RyZW5kGAMgAygLMi0ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxLlRpbWVTZXJpZXNEYXRhUG9pbnQSQwoMY2FfaGllcmFyY2h5GAQgASgLMi0ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxLkNBSGllcmFyY2h5T3ZlcnZpZXcSRQoOcHJvdG9jb2xfdXNhZ2UYBSADKAsyLS5vdHBraS5wdWJsaWMuaXNzdWFuY2UudjEuUHJvdG9jb2xVc2FnZU1ldHJpYyJoCh1DZXJ0aWZpY2F0ZVN0YXR1c0Rpc3RyaWJ1dGlvbhIOCgZhY3RpdmUYASABKAMSDwoHZXhwaXJlZBgCIAEoAxIPCgdyZXZva2VkGAMgASgDEhUKDWV4cGlyaW5nX3Nvb24YBCABKAMiYgoTVGltZVNlcmllc0RhdGFQb2ludBItCgl0aW1lc3RhbXAYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg0KBWNvdW50GAIgASgDEg0KBWxhYmVsGAMgASgJIm0KE0NBSGllcmFyY2h5T3ZlcnZpZXcSLwoFbm9kZXMYASADKAsyIC5vdHBraS5wdWJsaWMuaXNzdWFuY2UudjEuQ0FOb2RlEhEKCXRvdGFsX2NhcxgCIAEoAxISCgphY3RpdmVfY2FzGAMgASgDInQKBkNBTm9kZRIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJEhEKCXBhcmVudF9pZBgDIAEoAxIbChNjZXJ0aWZpY2F0ZXNfaXNzdWVkGAQgASgDEg0KBWRlcHRoGAUgASgNEhEKCWlzX2FjdGl2ZRgGIAEoCCJxChNQcm90b2NvbFVzYWdlTWV0cmljEhUKDXByb3RvY29sX25hbWUYASABKAkSGQoRY2VydGlmaWNhdGVfY291bnQYAiABKAMSFAoMY29uZmlnX2NvdW50GAMgASgDEhIKCnBlcmNlbnRhZ2UYBCABKAEilQEKGkdldERhc2hib2FyZE1ldHJpY3NSZXF1ZXN0Ei4KCnN0YXJ0X3RpbWUYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIZChF0cmVuZF9kYXRhX3BvaW50cxgDIAEoDSJaChtHZXREYXNoYm9hcmRNZXRyaWNzUmVzcG9uc2USOwoHbWV0cmljcxgBIAEoCzIqLm90cGtpLnB1YmxpYy5pc3N1YW5jZS52MS5EYXNoYm9hcmRNZXRyaWNzQrEBChxjb20ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxQgxNZXRyaWNzUHJvdG9QAaICA09QSaoCGE90cGtpLlB1YmxpYy5Jc3N1YW5jZS5WMcoCGU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjHiAiVPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYxXEdQQk1ldGFkYXRh6gIbT3Rwa2k6OlB1YmxpYzo6SXNzdWFuY2U6OlYxYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("CiZvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvbWV0cmljcy5wcm90bxIYb3Rwa2kucHVibGljLmlzc3VhbmNlLnYxIukCChBEYXNoYm9hcmRNZXRyaWNzEi0KCXRpbWVzdGFtcBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASUwoSY2VydGlmaWNhdGVfc3RhdHVzGAIgASgLMjcub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxLkNlcnRpZmljYXRlU3RhdHVzRGlzdHJpYnV0aW9uEkUKDmlzc3VhbmNlX3RyZW5kGAMgAygLMi0ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxLlRpbWVTZXJpZXNEYXRhUG9pbnQSQwoMY2FfaGllcmFyY2h5GAQgASgLMi0ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxLkNBSGllcmFyY2h5T3ZlcnZpZXcSRQoOcHJvdG9jb2xfdXNhZ2UYBSADKAsyLS5vdHBraS5wdWJsaWMuaXNzdWFuY2UudjEuUHJvdG9jb2xVc2FnZU1ldHJpYyJoCh1DZXJ0aWZpY2F0ZVN0YXR1c0Rpc3RyaWJ1dGlvbhIOCgZhY3RpdmUYASABKAMSDwoHZXhwaXJlZBgCIAEoAxIPCgdyZXZva2VkGAMgASgDEhUKDWV4cGlyaW5nX3Nvb24YBCABKAMiYgoTVGltZVNlcmllc0RhdGFQb2ludBItCgl0aW1lc3RhbXAYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg0KBWNvdW50GAIgASgDEg0KBWxhYmVsGAMgASgJIm0KE0NBSGllcmFyY2h5T3ZlcnZpZXcSLwoFbm9kZXMYASADKAsyIC5vdHBraS5wdWJsaWMuaXNzdWFuY2UudjEuQ0FOb2RlEhEKCXRvdGFsX2NhcxgCIAEoAxISCgphY3RpdmVfY2FzGAMgASgDIogBCgZDQU5vZGUSFAoCaWQYASABKAlCCLpIBXIDsAEBEgwKBG5hbWUYAiABKAkSGwoJcGFyZW50X2lkGAMgASgJQgi6SAVyA7ABARIbChNjZXJ0aWZpY2F0ZXNfaXNzdWVkGAQgASgDEg0KBWRlcHRoGAUgASgNEhEKCWlzX2FjdGl2ZRgGIAEoCCJxChNQcm90b2NvbFVzYWdlTWV0cmljEhUKDXByb3RvY29sX25hbWUYASABKAkSGQoRY2VydGlmaWNhdGVfY291bnQYAiABKAMSFAoMY29uZmlnX2NvdW50GAMgASgDEhIKCnBlcmNlbnRhZ2UYBCABKAEilQEKGkdldERhc2hib2FyZE1ldHJpY3NSZXF1ZXN0Ei4KCnN0YXJ0X3RpbWUYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIZChF0cmVuZF9kYXRhX3BvaW50cxgDIAEoDSJaChtHZXREYXNoYm9hcmRNZXRyaWNzUmVzcG9uc2USOwoHbWV0cmljcxgBIAEoCzIqLm90cGtpLnB1YmxpYy5pc3N1YW5jZS52MS5EYXNoYm9hcmRNZXRyaWNzQrEBChxjb20ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxQgxNZXRyaWNzUHJvdG9QAaICA09QSaoCGE90cGtpLlB1YmxpYy5Jc3N1YW5jZS5WMcoCGU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjHiAiVPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYxXEdQQk1ldGFkYXRh6gIbT3Rwa2k6OlB1YmxpYzo6SXNzdWFuY2U6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_timestamp]);
 
 /**
  * Dashboard metrics
@@ -285,9 +286,9 @@ export const CAHierarchyOverviewSchema: GenMessage<CAHierarchyOverview, {jsonTyp
  */
 export type CANode = Message<"otpki.public.issuance.v1.CANode"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -297,9 +298,9 @@ export type CANode = Message<"otpki.public.issuance.v1.CANode"> & {
   /**
    * 0 for root CAs
    *
-   * @generated from field: int64 parent_id = 3;
+   * @generated from field: string parent_id = 3;
    */
-  parentId: bigint;
+  parentId: string;
 
   /**
    * @generated from field: int64 certificates_issued = 4;
@@ -322,7 +323,7 @@ export type CANode = Message<"otpki.public.issuance.v1.CANode"> & {
  */
 export type CANodeJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -334,7 +335,7 @@ export type CANodeJson = {
   /**
    * 0 for root CAs
    *
-   * @generated from field: int64 parent_id = 3;
+   * @generated from field: string parent_id = 3;
    */
   parentId?: string;
 

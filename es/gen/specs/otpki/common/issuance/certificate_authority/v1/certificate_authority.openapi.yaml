@@ -166,11 +166,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -180,18 +178,15 @@ components:
           type: string
           title: description
         keyId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_id
-          format: int64
+          format: uuid
         alternativeKeyId:
           type:
-            - integer
             - string
             - "null"
           title: alternative_key_id
-          format: int64
+          format: uuid
         signatureAlgorithm:
           title: signature_algorithm
           $ref: '#/components/schemas/otpki.common.x509.v1.SignatureAlgorithm'
@@ -226,11 +221,9 @@ components:
             type: string
           title: issuer_uris
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
         createdAt:
           title: created_at
           description: not settable on creation
@@ -247,17 +240,13 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
         certificateAuthorityId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_authority_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -270,11 +259,10 @@ components:
           title: certificate_chain
         issuedCertificateId:
           type:
-            - integer
             - string
             - "null"
           title: issued_certificate_id
-          format: int64
+          format: uuid
         displayName:
           type: string
           title: display_name
@@ -316,19 +304,16 @@ components:
           title: subject_alternative_name_attributes
           description: san
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          format: int64
+          format: uuid
           description: issuance information
         certificateAuthorityId:
           type:
-            - integer
             - string
             - "null"
           title: certificate_authority_id
-          format: int64
+          format: uuid
           description: empty means self signed
         validityStartTimeOffset:
           title: validity_start_time_offset
@@ -413,11 +398,8 @@ components:
         customCertificateExtensionIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
       title: CertificateTemplate

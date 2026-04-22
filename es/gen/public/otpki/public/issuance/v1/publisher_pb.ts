@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/issuance/v1/publisher.proto.
  */
 export const file_otpki_public_issuance_v1_publisher: GenFile = /*@__PURE__*/
-  fileDesc("CihvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvcHVibGlzaGVyLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEiawocQ3JlYXRlUHVibGlzaGVyQ29uZmlnUmVxdWVzdBJLCgZjb25maWcYASABKAsyMy5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZ0IGukgDyAEBIisKHUNyZWF0ZVB1Ymxpc2hlckNvbmZpZ1Jlc3BvbnNlEgoKAmlkGAEgASgDIjAKGUdldFB1Ymxpc2hlckNvbmZpZ1JlcXVlc3QSEwoCaWQYASABKANCB7pIBCICIAAiYQoaR2V0UHVibGlzaGVyQ29uZmlnUmVzcG9uc2USQwoGY29uZmlnGAEgASgLMjMub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJDb25maWcilAEKHFVwZGF0ZVB1Ymxpc2hlckNvbmZpZ1JlcXVlc3QSQwoGY29uZmlnGAEgASgLMjMub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJDb25maWcSLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIh8KHVVwZGF0ZVB1Ymxpc2hlckNvbmZpZ1Jlc3BvbnNlIjMKHERlbGV0ZVB1Ymxpc2hlckNvbmZpZ1JlcXVlc3QSEwoCaWQYASABKANCB7pIBCICIAAiHwodRGVsZXRlUHVibGlzaGVyQ29uZmlnUmVzcG9uc2UiYQodR2V0UHVibGlzaGVyQ29uZmlnTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QipgEKHkdldFB1Ymxpc2hlckNvbmZpZ0xpc3RSZXNwb25zZRJBCgRkYXRhGAEgAygLMjMub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJDb25maWcSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlImAKGUNyZWF0ZUNybFB1Ymxpc2hlclJlcXVlc3QSQwoJcHVibGlzaGVyGAEgASgLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DcmxQdWJsaXNoZXIiKAoaQ3JlYXRlQ3JsUHVibGlzaGVyUmVzcG9uc2USCgoCaWQYASABKAMiOgoZRGVsZXRlQ3JsUHVibGlzaGVyUmVxdWVzdBIdCgxwdWJsaXNoZXJfaWQYASABKANCB7pIBCICIAAiHAoaRGVsZXRlQ3JsUHVibGlzaGVyUmVzcG9uc2UiXgoaR2V0Q3JsUHVibGlzaGVyTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QioAEKG0dldENybFB1Ymxpc2hlckxpc3RSZXNwb25zZRI+CgRkYXRhGAEgAygLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DcmxQdWJsaXNoZXISQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlInAKIUNyZWF0ZUNlcnRpZmljYXRlUHVibGlzaGVyUmVxdWVzdBJLCglwdWJsaXNoZXIYASABKAsyOC5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLkNlcnRpZmljYXRlUHVibGlzaGVyIjAKIkNyZWF0ZUNlcnRpZmljYXRlUHVibGlzaGVyUmVzcG9uc2USCgoCaWQYASABKAMiQgohRGVsZXRlQ2VydGlmaWNhdGVQdWJsaXNoZXJSZXF1ZXN0Eh0KDHB1Ymxpc2hlcl9pZBgBIAEoA0IHukgEIgIgACIkCiJEZWxldGVDZXJ0aWZpY2F0ZVB1Ymxpc2hlclJlc3BvbnNlImYKIkdldENlcnRpZmljYXRlUHVibGlzaGVyTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QisAEKI0dldENlcnRpZmljYXRlUHVibGlzaGVyTGlzdFJlc3BvbnNlEkYKBGRhdGEYASADKAsyOC5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLkNlcnRpZmljYXRlUHVibGlzaGVyEkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZUKzAQocY29tLm90cGtpLnB1YmxpYy5pc3N1YW5jZS52MUIOUHVibGlzaGVyUHJvdG9QAaICA09QSaoCGE90cGtpLlB1YmxpYy5Jc3N1YW5jZS5WMcoCGU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjHiAiVPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYxXEdQQk1ldGFkYXRh6gIbT3Rwa2k6OlB1YmxpYzo6SXNzdWFuY2U6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_publisher_v1_publisher]);
+  fileDesc("CihvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvcHVibGlzaGVyLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEiawocQ3JlYXRlUHVibGlzaGVyQ29uZmlnUmVxdWVzdBJLCgZjb25maWcYASABKAsyMy5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZ0IGukgDyAEBIjUKHUNyZWF0ZVB1Ymxpc2hlckNvbmZpZ1Jlc3BvbnNlEhQKAmlkGAEgASgJQgi6SAVyA7ABASI0ChlHZXRQdWJsaXNoZXJDb25maWdSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJhChpHZXRQdWJsaXNoZXJDb25maWdSZXNwb25zZRJDCgZjb25maWcYASABKAsyMy5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZyKUAQocVXBkYXRlUHVibGlzaGVyQ29uZmlnUmVxdWVzdBJDCgZjb25maWcYASABKAsyMy5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZxIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siHwodVXBkYXRlUHVibGlzaGVyQ29uZmlnUmVzcG9uc2UiNwocRGVsZXRlUHVibGlzaGVyQ29uZmlnUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiHwodRGVsZXRlUHVibGlzaGVyQ29uZmlnUmVzcG9uc2UiYQodR2V0UHVibGlzaGVyQ29uZmlnTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QipgEKHkdldFB1Ymxpc2hlckNvbmZpZ0xpc3RSZXNwb25zZRJBCgRkYXRhGAEgAygLMjMub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJDb25maWcSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlImAKGUNyZWF0ZUNybFB1Ymxpc2hlclJlcXVlc3QSQwoJcHVibGlzaGVyGAEgASgLMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DcmxQdWJsaXNoZXIiMgoaQ3JlYXRlQ3JsUHVibGlzaGVyUmVzcG9uc2USFAoCaWQYASABKAlCCLpIBXIDsAEBIj4KGURlbGV0ZUNybFB1Ymxpc2hlclJlcXVlc3QSIQoMcHVibGlzaGVyX2lkGAEgASgJQgu6SAjIAQFyA7ABASIcChpEZWxldGVDcmxQdWJsaXNoZXJSZXNwb25zZSJeChpHZXRDcmxQdWJsaXNoZXJMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKgAQobR2V0Q3JsUHVibGlzaGVyTGlzdFJlc3BvbnNlEj4KBGRhdGEYASADKAsyMC5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLkNybFB1Ymxpc2hlchJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UicAohQ3JlYXRlQ2VydGlmaWNhdGVQdWJsaXNoZXJSZXF1ZXN0EksKCXB1Ymxpc2hlchgBIAEoCzI4Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wdWJsaXNoZXIudjEuQ2VydGlmaWNhdGVQdWJsaXNoZXIiOgoiQ3JlYXRlQ2VydGlmaWNhdGVQdWJsaXNoZXJSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiRgohRGVsZXRlQ2VydGlmaWNhdGVQdWJsaXNoZXJSZXF1ZXN0EiEKDHB1Ymxpc2hlcl9pZBgBIAEoCUILukgIyAEBcgOwAQEiJAoiRGVsZXRlQ2VydGlmaWNhdGVQdWJsaXNoZXJSZXNwb25zZSJmCiJHZXRDZXJ0aWZpY2F0ZVB1Ymxpc2hlckxpc3RSZXF1ZXN0EkAKCnBhZ2luYXRpb24YASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0IrABCiNHZXRDZXJ0aWZpY2F0ZVB1Ymxpc2hlckxpc3RSZXNwb25zZRJGCgRkYXRhGAEgAygLMjgub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DZXJ0aWZpY2F0ZVB1Ymxpc2hlchJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2VCswEKHGNvbS5vdHBraS5wdWJsaWMuaXNzdWFuY2UudjFCDlB1Ymxpc2hlclByb3RvUAGiAgNPUEmqAhhPdHBraS5QdWJsaWMuSXNzdWFuY2UuVjHKAhlPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYx4gIlT3Rwa2lcUHVibGljX1xJc3N1YW5jZVxWMVxHUEJNZXRhZGF0YeoCG090cGtpOjpQdWJsaWM6Oklzc3VhbmNlOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_publisher_v1_publisher]);
 
 /**
  * @generated from message otpki.public.issuance.v1.CreatePublisherConfigRequest
@@ -61,9 +61,9 @@ export const CreatePublisherConfigRequestSchema: GenMessage<CreatePublisherConfi
  */
 export type CreatePublisherConfigResponse = Message<"otpki.public.issuance.v1.CreatePublisherConfigResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreatePublisherConfigResponse = Message<"otpki.public.issuance.v1.Cr
  */
 export type CreatePublisherConfigResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreatePublisherConfigResponseSchema: GenMessage<CreatePublisherConf
  */
 export type GetPublisherConfigRequest = Message<"otpki.public.issuance.v1.GetPublisherConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,12 +100,20 @@ export type GetPublisherConfigRequest = Message<"otpki.public.issuance.v1.GetPub
  */
 export type GetPublisherConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export type GetPublisherConfigRequestValid = GetPublisherConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.GetPublisherConfigRequest
+ */
+export type GetPublisherConfigRequestValid = Message<"otpki.public.issuance.v1.GetPublisherConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.GetPublisherConfigRequest.
@@ -208,9 +216,9 @@ export const UpdatePublisherConfigResponseSchema: GenMessage<UpdatePublisherConf
  */
 export type DeletePublisherConfigRequest = Message<"otpki.public.issuance.v1.DeletePublisherConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -218,12 +226,20 @@ export type DeletePublisherConfigRequest = Message<"otpki.public.issuance.v1.Del
  */
 export type DeletePublisherConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export type DeletePublisherConfigRequestValid = DeletePublisherConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeletePublisherConfigRequest
+ */
+export type DeletePublisherConfigRequestValid = Message<"otpki.public.issuance.v1.DeletePublisherConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeletePublisherConfigRequest.
@@ -355,9 +371,9 @@ export const CreateCrlPublisherRequestSchema: GenMessage<CreateCrlPublisherReque
  */
 export type CreateCrlPublisherResponse = Message<"otpki.public.issuance.v1.CreateCrlPublisherResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -365,7 +381,7 @@ export type CreateCrlPublisherResponse = Message<"otpki.public.issuance.v1.Creat
  */
 export type CreateCrlPublisherResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -384,9 +400,9 @@ export const CreateCrlPublisherResponseSchema: GenMessage<CreateCrlPublisherResp
  */
 export type DeleteCrlPublisherRequest = Message<"otpki.public.issuance.v1.DeleteCrlPublisherRequest"> & {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
-  publisherId: bigint;
+  publisherId: string;
 };
 
 /**
@@ -394,12 +410,20 @@ export type DeleteCrlPublisherRequest = Message<"otpki.public.issuance.v1.Delete
  */
 export type DeleteCrlPublisherRequestJson = {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
   publisherId?: string;
 };
 
-export type DeleteCrlPublisherRequestValid = DeleteCrlPublisherRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeleteCrlPublisherRequest
+ */
+export type DeleteCrlPublisherRequestValid = Message<"otpki.public.issuance.v1.DeleteCrlPublisherRequest"> & {
+  /**
+   * @generated from field: string publisher_id = 1;
+   */
+  publisherId: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeleteCrlPublisherRequest.
@@ -535,9 +559,9 @@ export const CreateCertificatePublisherRequestSchema: GenMessage<CreateCertifica
  */
 export type CreateCertificatePublisherResponse = Message<"otpki.public.issuance.v1.CreateCertificatePublisherResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -545,7 +569,7 @@ export type CreateCertificatePublisherResponse = Message<"otpki.public.issuance.
  */
 export type CreateCertificatePublisherResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -564,9 +588,9 @@ export const CreateCertificatePublisherResponseSchema: GenMessage<CreateCertific
  */
 export type DeleteCertificatePublisherRequest = Message<"otpki.public.issuance.v1.DeleteCertificatePublisherRequest"> & {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
-  publisherId: bigint;
+  publisherId: string;
 };
 
 /**
@@ -574,12 +598,20 @@ export type DeleteCertificatePublisherRequest = Message<"otpki.public.issuance.v
  */
 export type DeleteCertificatePublisherRequestJson = {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
   publisherId?: string;
 };
 
-export type DeleteCertificatePublisherRequestValid = DeleteCertificatePublisherRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeleteCertificatePublisherRequest
+ */
+export type DeleteCertificatePublisherRequestValid = Message<"otpki.public.issuance.v1.DeleteCertificatePublisherRequest"> & {
+  /**
+   * @generated from field: string publisher_id = 1;
+   */
+  publisherId: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeleteCertificatePublisherRequest.

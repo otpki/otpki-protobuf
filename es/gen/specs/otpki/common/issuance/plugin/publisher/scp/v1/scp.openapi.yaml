@@ -8,11 +8,9 @@ components:
       type: object
       properties:
         keyId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_id
-          format: int64
+          format: uuid
           description: ssh key in keystore
         username:
           type: string

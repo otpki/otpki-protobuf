@@ -634,11 +634,9 @@ components:
       type: object
       properties:
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
           description: |-
             the key storage config for which to apply this
              activation. the key storage config will control
@@ -689,11 +687,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -711,11 +707,10 @@ components:
           $ref: '#/components/schemas/google.protobuf.Any'
         cryptoKeyId:
           type:
-            - integer
             - string
             - "null"
           title: crypto_key_id
-          format: int64
+          format: uuid
         enableActivation:
           type: boolean
           title: enable_activation
@@ -770,11 +765,9 @@ components:
       type: object
       properties:
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
         message:
           title: message
           $ref: '#/components/schemas/google.protobuf.Any'
@@ -808,22 +801,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateKeyStorageConfigResponse
       additionalProperties: false
     otpki.public.issuance.v1.DeactivateKeyStorageConfigRequest:
       type: object
       properties:
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
       title: DeactivateKeyStorageConfigRequest
       required:
         - keyStorageConfigId
@@ -836,13 +825,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteKeyStorageConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.DeleteKeyStorageConfigResponse:
       type: object
@@ -873,13 +861,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetKeyStorageConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.GetKeyStorageConfigResponse:
       type: object

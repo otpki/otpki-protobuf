@@ -9,7 +9,10 @@ import "otpki/common/api/v1/string_enum.proto";
 
 message CustomCertificateExtension {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ]; // not settable on creation
   string oid = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.min_len = 3,

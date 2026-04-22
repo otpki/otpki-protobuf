@@ -70,11 +70,9 @@ components:
       type: object
       properties:
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
           description: |-
             the key storage config for which to apply this
              activation. the key storage config will control

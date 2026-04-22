@@ -372,11 +372,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: ca_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -394,11 +392,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: ca_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -417,11 +413,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: ca_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -441,11 +435,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: ca_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -476,11 +468,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: ca_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -516,20 +506,16 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: ca_id
-            format: int64
+            format: uuid
         - name: key_id
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: key_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -548,11 +534,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: ca_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -561,18 +545,16 @@ paths:
               properties:
                 nextKeyId:
                   type:
-                    - integer
                     - string
                     - "null"
                   title: next_key_id
-                  format: int64
+                  format: uuid
                 nextAltKeyId:
                   type:
-                    - integer
                     - string
                     - "null"
                   title: next_alt_key_id
-                  format: int64
+                  format: uuid
               title: RenewCertificateAuthorityRequest
               additionalProperties: false
         required: true
@@ -594,11 +576,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -1172,11 +1152,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: issued_certificate_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1516,11 +1494,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1538,11 +1514,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1561,11 +1535,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -2117,11 +2089,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -2352,11 +2322,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -2374,11 +2342,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -2718,11 +2684,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: issuance_request_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3061,11 +3025,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: key_storage_config_id
-            format: int64
+            format: uuid
             description: |-
               the key storage config for which to apply this
                activation. the key storage config will control
@@ -3094,11 +3056,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -3329,12 +3289,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3352,12 +3309,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3376,11 +3330,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: key_storage_config_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3399,11 +3351,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: key_storage_config_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -3762,11 +3712,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3784,11 +3732,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -4347,12 +4293,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -4370,12 +4313,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -4394,11 +4334,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -4950,12 +4888,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: publisher_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -5295,11 +5230,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -5530,12 +5463,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -5553,12 +5483,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -5898,12 +5825,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: publisher_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -7205,11 +7129,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -7219,18 +7141,15 @@ components:
           type: string
           title: description
         keyId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_id
-          format: int64
+          format: uuid
         alternativeKeyId:
           type:
-            - integer
             - string
             - "null"
           title: alternative_key_id
-          format: int64
+          format: uuid
         signatureAlgorithm:
           title: signature_algorithm
           $ref: '#/components/schemas/otpki.common.x509.v1.SignatureAlgorithm'
@@ -7265,11 +7184,9 @@ components:
             type: string
           title: issuer_uris
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
         createdAt:
           title: created_at
           description: not settable on creation
@@ -7286,17 +7203,13 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
         certificateAuthorityId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_authority_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -7309,11 +7222,10 @@ components:
           title: certificate_chain
         issuedCertificateId:
           type:
-            - integer
             - string
             - "null"
           title: issued_certificate_id
-          format: int64
+          format: uuid
         displayName:
           type: string
           title: display_name
@@ -7337,11 +7249,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         oid:
@@ -7399,11 +7309,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -7638,39 +7546,28 @@ components:
         customExtKeyUsages:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_ext_key_usages
           uniqueItems: true
         customCertificateExts:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_exts
           uniqueItems: true
         availableCertificateAuthorities:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: available_certificate_authorities
           uniqueItems: true
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
       title: CertificateProfile
       additionalProperties: false
     otpki.common.issuance.certificate_profile.v1.CertificateProfileKind:
@@ -7694,11 +7591,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         oid:
@@ -7734,11 +7629,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -7787,23 +7680,18 @@ components:
           title: in_crl
         issuedByCaCertificateId:
           type:
-            - integer
             - string
             - "null"
           title: issued_by_ca_certificate_id
-          format: int64
+          format: uuid
         issuedFromCertificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_from_certificate_profile_id
-          format: int64
+          format: uuid
         issuedFromIssuanceRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_from_issuance_request_id
-          format: int64
+          format: uuid
         protocolUsed:
           title: protocol_used
           $ref: '#/components/schemas/otpki.common.issuance.issuer.v1.IssuingProtocol'
@@ -7823,11 +7711,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         status:
           title: status
@@ -7841,26 +7727,23 @@ components:
           $ref: '#/components/schemas/otpki.common.x509.v1.CertificateTemplate'
         signingKeyId:
           type:
-            - integer
             - string
             - "null"
           title: signing_key_id
-          format: int64
+          format: uuid
           description: only used for self-signed root ca issuance
         alternativeSigningKeyId:
           type:
-            - integer
             - string
             - "null"
           title: alternative_signing_key_id
-          format: int64
+          format: uuid
         targetCertificateAuthorityId:
           type:
-            - integer
             - string
             - "null"
           title: target_certificate_authority_id
-          format: int64
+          format: uuid
           description: only used for CA certificate issuance - points to the CA entity that will receive the issued cert
         createdAt:
           title: created_at
@@ -7881,20 +7764,16 @@ components:
       type: object
       properties:
         issuanceRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: issuance_request_id
-          format: int64
+          format: uuid
         status:
           title: status
           $ref: '#/components/schemas/otpki.common.issuance.issuer.v1.IssuanceStatus'
         certificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -7935,11 +7814,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -7961,11 +7838,9 @@ components:
           title: key_config_data
           $ref: '#/components/schemas/google.protobuf.Any'
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
         keyDriverType:
           title: key_driver_type
           $ref: '#/components/schemas/otpki.common.issuance.key_storage_config.v1.KeyDriverType'
@@ -8128,11 +8003,9 @@ components:
       type: object
       properties:
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
           description: |-
             the key storage config for which to apply this
              activation. the key storage config will control
@@ -8183,11 +8056,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -8205,11 +8076,10 @@ components:
           $ref: '#/components/schemas/google.protobuf.Any'
         cryptoKeyId:
           type:
-            - integer
             - string
             - "null"
           title: crypto_key_id
-          format: int64
+          format: uuid
         enableActivation:
           type: boolean
           title: enable_activation
@@ -8264,11 +8134,9 @@ components:
       type: object
       properties:
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
         message:
           title: message
           $ref: '#/components/schemas/google.protobuf.Any'
@@ -8285,35 +8153,24 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         publisherConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_config_id
-          minimum: 1
-          format: int64
+          format: uuid
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          minimum: 0
-          format: int64
+          format: uuid
           description: 'CHECK: at least one of these two must be set'
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          minimum: 0
-          format: int64
+          format: uuid
           description: 'CHECK: at least one of these two must be set'
         subscribedEvents:
           type: array
@@ -8327,27 +8184,19 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          minimum: 1
-          format: int64
+          format: uuid
         publisherConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_config_id
-          minimum: 1
-          format: int64
+          format: uuid
       title: CrlPublisher
       additionalProperties: false
       description: CRL Publisher can only subscribe to CAs on CRL generation events
@@ -8355,11 +8204,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -8547,19 +8394,16 @@ components:
           title: subject_alternative_name_attributes
           description: san
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          format: int64
+          format: uuid
           description: issuance information
         certificateAuthorityId:
           type:
-            - integer
             - string
             - "null"
           title: certificate_authority_id
-          format: int64
+          format: uuid
           description: empty means self signed
         validityStartTimeOffset:
           title: validity_start_time_offset
@@ -8644,11 +8488,8 @@ components:
         customCertificateExtensionIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
       title: CertificateTemplate
@@ -9112,20 +8953,16 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
         name:
           type: string
           title: name
         parentId:
-          type:
-            - integer
-            - string
+          type: string
           title: parent_id
-          format: int64
+          format: uuid
           description: 0 for root CAs
         certificatesIssued:
           type:
@@ -9195,17 +9032,13 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
         keyId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_id
-          format: int64
+          format: uuid
       title: CreateCertificateAuthorityCSRRequest
       required:
         - caId
@@ -9233,11 +9066,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCertificateAuthorityResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateCertificateProfileRequest:
@@ -9254,11 +9085,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCertificateProfileResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateCertificatePublisherRequest:
@@ -9274,11 +9103,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCertificatePublisherResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateCrlPublisherRequest:
@@ -9293,11 +9120,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCrlPublisherResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateCustomCertificateExtensionRequest:
@@ -9314,11 +9139,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCustomCertificateExtensionResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateCustomExtKeyUsageRequest:
@@ -9335,11 +9158,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCustomExtKeyUsageResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateIssuanceRequestRequest:
@@ -9374,11 +9195,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateKeyResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateKeyStorageConfigRequest:
@@ -9395,11 +9214,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateKeyStorageConfigResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreatePublisherConfigRequest:
@@ -9416,22 +9233,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreatePublisherConfigResponse
       additionalProperties: false
     otpki.public.issuance.v1.CreateRevocationListRequest:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
         isDelta:
           type: boolean
           title: is_delta
@@ -9480,11 +9293,9 @@ components:
       type: object
       properties:
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
       title: DeactivateKeyStorageConfigRequest
       required:
         - keyStorageConfigId
@@ -9497,11 +9308,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
       title: DeleteCertificateAuthorityRequest
       required:
         - caId
@@ -9514,13 +9323,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteCertificateProfileRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCertificateProfileResponse:
       type: object
@@ -9530,13 +9338,12 @@ components:
       type: object
       properties:
         publisherId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_id
-          format: int64
+          format: uuid
       title: DeleteCertificatePublisherRequest
+      required:
+        - publisherId
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCertificatePublisherResponse:
       type: object
@@ -9546,13 +9353,12 @@ components:
       type: object
       properties:
         publisherId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: publisher_id
-          format: int64
+          format: uuid
       title: DeleteCrlPublisherRequest
+      required:
+        - publisherId
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCrlPublisherResponse:
       type: object
@@ -9562,11 +9368,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteCustomCertificateExtensionRequest
       required:
         - id
@@ -9579,11 +9383,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteCustomExtKeyUsageRequest
       required:
         - id
@@ -9596,11 +9398,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteKeyRequest
       required:
         - id
@@ -9613,13 +9413,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteKeyStorageConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.DeleteKeyStorageConfigResponse:
       type: object
@@ -9629,13 +9428,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeletePublisherConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.DeletePublisherConfigResponse:
       type: object
@@ -9645,11 +9443,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
       title: GetCertificateAuthorityCertificatesRequest
       required:
         - caId
@@ -9689,11 +9485,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
       title: GetCertificateAuthorityRequest
       required:
         - caId
@@ -9731,13 +9525,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetCertificateProfileRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.GetCertificateProfileResponse:
       type: object
@@ -9814,11 +9607,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetCustomCertificateExtensionRequest
       required:
         - id
@@ -9856,11 +9647,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetCustomExtKeyUsageRequest
       required:
         - id
@@ -9901,11 +9690,9 @@ components:
       type: object
       properties:
         issuanceRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: issuance_request_id
-          format: int64
+          format: uuid
       title: GetIssuanceByRequestIDRequest
       required:
         - issuanceRequestId
@@ -9986,11 +9773,9 @@ components:
       type: object
       properties:
         issuedCertificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_certificate_id
-          format: int64
+          format: uuid
       title: GetIssuedCertificateRequest
       required:
         - issuedCertificateId
@@ -10028,11 +9813,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetKeyRequest
       required:
         - id
@@ -10078,13 +9861,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetKeyStorageConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.GetKeyStorageConfigResponse:
       type: object
@@ -10133,13 +9915,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetPublisherConfigRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.GetPublisherConfigResponse:
       type: object
@@ -10211,11 +9992,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
         certificatePem:
           type: string
           title: certificate_pem
@@ -10232,11 +10011,9 @@ components:
       type: object
       properties:
         caCertificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_certificate_id
-          format: int64
+          format: uuid
       title: ImportCertificateAuthorityCertificateResponse
       additionalProperties: false
     otpki.public.issuance.v1.ImportCertificateAuthorityPKCS12Request:
@@ -10265,11 +10042,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: ImportCertificateAuthorityPKCS12Response
       additionalProperties: false
     otpki.public.issuance.v1.ImportCertificateAuthorityRequest:
@@ -10306,11 +10081,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: ImportCertificateAuthorityResponse
       additionalProperties: false
     otpki.public.issuance.v1.ProtocolUsageMetric:
@@ -10342,25 +10115,21 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
         nextKeyId:
           type:
-            - integer
             - string
             - "null"
           title: next_key_id
-          format: int64
+          format: uuid
         nextAltKeyId:
           type:
-            - integer
             - string
             - "null"
           title: next_alt_key_id
-          format: int64
+          format: uuid
       title: RenewCertificateAuthorityRequest
       required:
         - caId
@@ -10375,18 +10144,14 @@ components:
         certificateIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: certificate_ids
           uniqueItems: true
         revocationReasonCode:
           title: revocation_reason_code
           $ref: '#/components/schemas/otpki.common.x509.v1.RevocationReasonCode'
       title: RevokeIssuedCertificatesRequest
-      required:
-        - certificateIds
       additionalProperties: false
     otpki.public.issuance.v1.RevokeIssuedCertificatesResponse:
       type: object

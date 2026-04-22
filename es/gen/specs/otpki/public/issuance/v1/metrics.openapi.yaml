@@ -127,20 +127,16 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
         name:
           type: string
           title: name
         parentId:
-          type:
-            - integer
-            - string
+          type: string
           title: parent_id
-          format: int64
+          format: uuid
           description: 0 for root CAs
         certificatesIssued:
           type:

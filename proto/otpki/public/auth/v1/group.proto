@@ -11,11 +11,14 @@ message CreateGroupRequest {
 }
 
 message CreateGroupResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetGroupRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetGroupResponse {
@@ -23,7 +26,12 @@ message GetGroupResponse {
 }
 
 message GetManyGroupsRequest {
-  repeated int64 ids = 1 [(buf.validate.field).required = true];
+  repeated string ids = 1 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
 }
 
 message GetManyGroupsResponse {
@@ -38,7 +46,10 @@ message UpdateGroupRequest {
 message UpdateGroupResponse {}
 
 message DeleteGroupRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteGroupResponse {}

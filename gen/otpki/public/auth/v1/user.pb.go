@@ -71,7 +71,7 @@ func (x *CreateUserRequest) GetUser() *v1.User {
 
 type CreateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateUserResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_user_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateUserResponse) GetId() int64 {
+func (x *CreateUserResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetUserRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_user_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetUserRequest) GetId() int64 {
+func (x *GetUserRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetUserResponse struct {
@@ -563,7 +563,7 @@ func (*UpdateUserResponse) Descriptor() ([]byte, []int) {
 
 type DeleteUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -598,11 +598,11 @@ func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_user_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *DeleteUserRequest) GetId() int64 {
+func (x *DeleteUserRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteUserResponse struct {
@@ -919,11 +919,11 @@ const file_otpki_public_auth_v1_user_proto_rawDesc = "" +
 	"\n" +
 	"\x1fotpki/public/auth/v1/user.proto\x12\x14otpki.public.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\"K\n" +
 	"\x11CreateUserRequest\x126\n" +
-	"\x04user\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
-	"\x12CreateUserResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"(\n" +
-	"\x0eGetUserRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"A\n" +
+	"\x04user\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user\".\n" +
+	"\x12CreateUserResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"-\n" +
+	"\x0eGetUserRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"A\n" +
 	"\x0fGetUserResponse\x12.\n" +
 	"\x04user\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.UserR\x04user\">\n" +
 	"\x18GetUserByUsernameRequest\x12\"\n" +
@@ -943,9 +943,9 @@ const file_otpki_public_auth_v1_user_proto_rawDesc = "" +
 	"\x04user\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.UserR\x04user\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"\x14\n" +
-	"\x12UpdateUserResponse\"+\n" +
-	"\x11DeleteUserRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x14\n" +
+	"\x12UpdateUserResponse\"0\n" +
+	"\x11DeleteUserRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x14\n" +
 	"\x12DeleteUserResponse\"b\n" +
 	"\x12GetUserListRequest\x12L\n" +
 	"\n" +

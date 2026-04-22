@@ -5,6 +5,7 @@ package certificate_profilev1
 import (
 	x509 "crypto/x509"
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/issuance/key/v1"
 	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
@@ -14,7 +15,7 @@ import (
 
 // CertificateProfileNative is the native typing representation of CertificateProfile
 type CertificateProfileNative struct {
-	Id                              int64
+	Id                              uuid.UUID
 	Name                            string
 	Description                     string
 	Kind                            CertificateProfileKind
@@ -67,10 +68,10 @@ type CertificateProfileNative struct {
 	OcspNoCheck                     bool
 	CnPrefix                        string
 	CnSuffix                        string
-	CustomExtKeyUsages              []int64
-	CustomCertificateExts           []int64
-	AvailableCertificateAuthorities []int64
-	ApprovalProfileId               int64
+	CustomExtKeyUsages              []uuid.UUID
+	CustomCertificateExts           []uuid.UUID
+	AvailableCertificateAuthorities []uuid.UUID
+	ApprovalProfileId               uuid.UUID
 }
 
 // ToProto converts a CertificateProfileNative to a CertificateProfile
@@ -80,7 +81,10 @@ func (n *CertificateProfileNative) ToProto() (*CertificateProfile, error) {
 	}
 	var err error
 	protoStruct := &CertificateProfile{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
 	protoStruct.Kind = n.Kind
@@ -160,10 +164,22 @@ func (n *CertificateProfileNative) ToProto() (*CertificateProfile, error) {
 	protoStruct.OcspNoCheck = n.OcspNoCheck
 	protoStruct.CnPrefix = n.CnPrefix
 	protoStruct.CnSuffix = n.CnSuffix
-	protoStruct.CustomExtKeyUsages = n.CustomExtKeyUsages
-	protoStruct.CustomCertificateExts = n.CustomCertificateExts
-	protoStruct.AvailableCertificateAuthorities = n.AvailableCertificateAuthorities
-	protoStruct.ApprovalProfileId = n.ApprovalProfileId
+	protoStruct.CustomExtKeyUsages, err = convertUUIDSliceToProto(n.CustomExtKeyUsages)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CustomExtKeyUsages: %w", err)
+	}
+	protoStruct.CustomCertificateExts, err = convertUUIDSliceToProto(n.CustomCertificateExts)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CustomCertificateExts: %w", err)
+	}
+	protoStruct.AvailableCertificateAuthorities, err = convertUUIDSliceToProto(n.AvailableCertificateAuthorities)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AvailableCertificateAuthorities: %w", err)
+	}
+	protoStruct.ApprovalProfileId, err = convertUUIDToProto(n.ApprovalProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
+	}
 	return protoStruct, nil
 }
 
@@ -174,7 +190,10 @@ func (p *CertificateProfile) ToNative() (*CertificateProfileNative, error) {
 	}
 	var err error
 	nativeStruct := &CertificateProfileNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
 	nativeStruct.Kind = p.Kind
@@ -254,11 +273,78 @@ func (p *CertificateProfile) ToNative() (*CertificateProfileNative, error) {
 	nativeStruct.OcspNoCheck = p.OcspNoCheck
 	nativeStruct.CnPrefix = p.CnPrefix
 	nativeStruct.CnSuffix = p.CnSuffix
-	nativeStruct.CustomExtKeyUsages = p.CustomExtKeyUsages
-	nativeStruct.CustomCertificateExts = p.CustomCertificateExts
-	nativeStruct.AvailableCertificateAuthorities = p.AvailableCertificateAuthorities
-	nativeStruct.ApprovalProfileId = p.ApprovalProfileId
+	nativeStruct.CustomExtKeyUsages, err = convertProtoToUUIDSlice(p.CustomExtKeyUsages)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CustomExtKeyUsagesNative: %w", err)
+	}
+	nativeStruct.CustomCertificateExts, err = convertProtoToUUIDSlice(p.CustomCertificateExts)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CustomCertificateExtsNative: %w", err)
+	}
+	nativeStruct.AvailableCertificateAuthorities, err = convertProtoToUUIDSlice(p.AvailableCertificateAuthorities)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AvailableCertificateAuthoritiesNative: %w", err)
+	}
+	nativeStruct.ApprovalProfileId, err = convertProtoToUUID(p.ApprovalProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
+	}
 	return nativeStruct, nil
+}
+
+// GetIdUUID returns Id as a UUID when possible.
+func (x *CertificateProfile) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetCustomExtKeyUsagesUUID returns CustomExtKeyUsages as a UUID when possible.
+func (x *CertificateProfile) GetCustomExtKeyUsagesUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.CustomExtKeyUsages)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetCustomCertificateExtsUUID returns CustomCertificateExts as a UUID when possible.
+func (x *CertificateProfile) GetCustomCertificateExtsUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.CustomCertificateExts)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetAvailableCertificateAuthoritiesUUID returns AvailableCertificateAuthorities as a UUID when possible.
+func (x *CertificateProfile) GetAvailableCertificateAuthoritiesUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.AvailableCertificateAuthorities)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetApprovalProfileIdUUID returns ApprovalProfileId as a UUID when possible.
+func (x *CertificateProfile) GetApprovalProfileIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.ApprovalProfileId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
 }
 
 // Converter functions for native types
@@ -554,6 +640,27 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
+// convertProtoToUUIDSlice comes from the converter package
+func convertProtoToUUIDSlice(ids []string) ([]uuid.UUID, error) {
+	result := make([]uuid.UUID, len(ids))
+	for i, id := range ids {
+		parsed, err := convertProtoToUUID(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = parsed
+	}
+	return result, nil
+}
+
 // convertSignatureAlgorithmToProto comes from the converter package
 func convertSignatureAlgorithmToProto(sigAlg x509.SignatureAlgorithm) (v11.SignatureAlgorithm, error) {
 	switch sigAlg {
@@ -656,4 +763,22 @@ func convertSignatureAlgorithmToProto(sigAlg x509.SignatureAlgorithm) (v11.Signa
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDSliceToProto comes from the converter package
+func convertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
+	result := make([]string, len(ids))
+	for i, id := range ids {
+		encoded, err := convertUUIDToProto(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = encoded
+	}
+	return result, nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

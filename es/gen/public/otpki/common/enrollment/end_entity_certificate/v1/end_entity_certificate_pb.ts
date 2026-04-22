@@ -4,6 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb";
 import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import { file_otpki_common_api_v1_native_type } from "../../../api/v1/native_type_pb";
@@ -17,26 +18,26 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto.
  */
 export const file_otpki_common_enrollment_end_entity_certificate_v1_end_entity_certificate: GenFile = /*@__PURE__*/
-  fileDesc("Ck5vdHBraS9jb21tb24vZW5yb2xsbWVudC9lbmRfZW50aXR5X2NlcnRpZmljYXRlL3YxL2VuZF9lbnRpdHlfY2VydGlmaWNhdGUucHJvdG8SMW90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEinwQKFEVuZEVudGl0eUNlcnRpZmljYXRlEhUKDWVuZF9lbnRpdHlfaWQYASABKAMSHQoVZW5yb2xsbWVudF9yZXF1ZXN0X2lkGAIgASgDEh0KFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgDIAEoAxITCgtjZXJ0aWZpY2F0ZRgEIAEoDBIZChFjZXJ0aWZpY2F0ZV9jaGFpbhgFIAMoDBIVCg1zZXJpYWxfbnVtYmVyGAYgASgMEhQKDGRpc3BsYXlfbmFtZRgHIAEoCRI8CgpzdWJqZWN0X2RuGAggAygLMigub3Rwa2kuY29tbW9uLng1MDkudjEuU3ViamVjdEROQXR0cmlidXRlEjsKCWlzc3Vlcl9kbhgJIAMoCzIoLm90cGtpLmNvbW1vbi54NTA5LnYxLlN1YmplY3RETkF0dHJpYnV0ZRJFCgpub3RfYmVmb3JlGAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIVirUYCXRpbWUuVGltZZK1GAR0aW1lEkQKCW5vdF9hZnRlchgLIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCFYq1GAl0aW1lLlRpbWWStRgEdGltZRJHCg1wcm90b2NvbF91c2VkGAwgASgOMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1aW5nUHJvdG9jb2w6BJi1GAFCswIKNWNvbS5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X2NlcnRpZmljYXRlLnYxQhlFbmRFbnRpdHlDZXJ0aWZpY2F0ZVByb3RvUAGiAgRPQ0VFqgIvT3Rwa2kuQ29tbW9uLkVucm9sbG1lbnQuRW5kRW50aXR5Q2VydGlmaWNhdGUuVjHKAi9PdHBraVxDb21tb25cRW5yb2xsbWVudFxFbmRFbnRpdHlDZXJ0aWZpY2F0ZVxWMeICO090cGtpXENvbW1vblxFbnJvbGxtZW50XEVuZEVudGl0eUNlcnRpZmljYXRlXFYxXEdQQk1ldGFkYXRh6gIzT3Rwa2k6OkNvbW1vbjo6RW5yb2xsbWVudDo6RW5kRW50aXR5Q2VydGlmaWNhdGU6OlYxYgZwcm90bzM", [file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_issuance_issuer_v1_issuer, file_otpki_common_x509_v1_x509]);
+  fileDesc("Ck5vdHBraS9jb21tb24vZW5yb2xsbWVudC9lbmRfZW50aXR5X2NlcnRpZmljYXRlL3YxL2VuZF9lbnRpdHlfY2VydGlmaWNhdGUucHJvdG8SMW90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEivQQKFEVuZEVudGl0eUNlcnRpZmljYXRlEh8KDWVuZF9lbnRpdHlfaWQYASABKAlCCLpIBXIDsAEBEicKFWVucm9sbG1lbnRfcmVxdWVzdF9pZBgCIAEoCUIIukgFcgOwAQESJwoVaXNzdWVkX2NlcnRpZmljYXRlX2lkGAMgASgJQgi6SAVyA7ABARITCgtjZXJ0aWZpY2F0ZRgEIAEoDBIZChFjZXJ0aWZpY2F0ZV9jaGFpbhgFIAMoDBIVCg1zZXJpYWxfbnVtYmVyGAYgASgMEhQKDGRpc3BsYXlfbmFtZRgHIAEoCRI8CgpzdWJqZWN0X2RuGAggAygLMigub3Rwa2kuY29tbW9uLng1MDkudjEuU3ViamVjdEROQXR0cmlidXRlEjsKCWlzc3Vlcl9kbhgJIAMoCzIoLm90cGtpLmNvbW1vbi54NTA5LnYxLlN1YmplY3RETkF0dHJpYnV0ZRJFCgpub3RfYmVmb3JlGAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIVirUYCXRpbWUuVGltZZK1GAR0aW1lEkQKCW5vdF9hZnRlchgLIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCFYq1GAl0aW1lLlRpbWWStRgEdGltZRJHCg1wcm90b2NvbF91c2VkGAwgASgOMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1aW5nUHJvdG9jb2w6BJi1GAFCswIKNWNvbS5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X2NlcnRpZmljYXRlLnYxQhlFbmRFbnRpdHlDZXJ0aWZpY2F0ZVByb3RvUAGiAgRPQ0VFqgIvT3Rwa2kuQ29tbW9uLkVucm9sbG1lbnQuRW5kRW50aXR5Q2VydGlmaWNhdGUuVjHKAi9PdHBraVxDb21tb25cRW5yb2xsbWVudFxFbmRFbnRpdHlDZXJ0aWZpY2F0ZVxWMeICO090cGtpXENvbW1vblxFbnJvbGxtZW50XEVuZEVudGl0eUNlcnRpZmljYXRlXFYxXEdQQk1ldGFkYXRh6gIzT3Rwa2k6OkNvbW1vbjo6RW5yb2xsbWVudDo6RW5kRW50aXR5Q2VydGlmaWNhdGU6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_issuance_issuer_v1_issuer, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificate
  */
 export type EndEntityCertificate = Message<"otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificate"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 enrollment_request_id = 2;
+   * @generated from field: string enrollment_request_id = 2;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 3;
+   * @generated from field: string issued_certificate_id = 3;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -89,17 +90,17 @@ export type EndEntityCertificate = Message<"otpki.common.enrollment.end_entity_c
  */
 export type EndEntityCertificateJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 
   /**
-   * @generated from field: int64 enrollment_request_id = 2;
+   * @generated from field: string enrollment_request_id = 2;
    */
   enrollmentRequestId?: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 3;
+   * @generated from field: string issued_certificate_id = 3;
    */
   issuedCertificateId?: string;
 

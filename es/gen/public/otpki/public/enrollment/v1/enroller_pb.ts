@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/enrollment/v1/enroller.proto.
  */
 export const file_otpki_public_enrollment_v1_enroller: GenFile = /*@__PURE__*/
-  fileDesc("CilvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbnJvbGxlci5wcm90bxIab3Rwa2kucHVibGljLmVucm9sbG1lbnQudjEifAoeQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXF1ZXN0EloKEmVucm9sbG1lbnRfcmVxdWVzdBgBIAEoCzI2Lm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXF1ZXN0Qga6SAPIAQEidwofQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXNwb25zZRJUChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjcub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIogBCjJDcmVhdGVFbnJvbGxtZW50UmVxdWVzdEZvckV4aXN0aW5nRW5kRW50aXR5UmVxdWVzdBJSChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyNi5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdCKLAQozQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RGb3JFeGlzdGluZ0VuZEVudGl0eVJlc3BvbnNlElQKE2Vucm9sbG1lbnRfcmVzcG9uc2UYASABKAsyNy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVzcG9uc2UiWgofR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVxdWVzdBIlChVlbnJvbGxtZW50X3JlcXVlc3RfaWQYASABKANCBrpIA8gBARIQCghwYXNzd29yZBgCIAEoCSLMAQogR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVzcG9uc2USUgoSZW5yb2xsbWVudF9yZXF1ZXN0GAEgASgLMjYub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlcXVlc3QSVAoTZW5yb2xsbWVudF9yZXNwb25zZRgCIAEoCzI3Lm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXNwb25zZSKDAQoWUmV2b2tlRW5kRW50aXR5UmVxdWVzdBIdCg1lbmRfZW50aXR5X2lkGAEgASgDQga6SAPIAQESSgoWcmV2b2NhdGlvbl9yZWFzb25fY29kZRgCIAEoDjIqLm90cGtpLmNvbW1vbi54NTA5LnYxLlJldm9jYXRpb25SZWFzb25Db2RlIhkKF1Jldm9rZUVuZEVudGl0eVJlc3BvbnNlIrUBCiFSZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZVJlcXVlc3QSHQoNZW5kX2VudGl0eV9pZBgBIAEoA0IGukgDyAEBEiUKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgCIAEoA0IGukgDyAEBEkoKFnJldm9jYXRpb25fcmVhc29uX2NvZGUYAyABKA4yKi5vdHBraS5jb21tb24ueDUwOS52MS5SZXZvY2F0aW9uUmVhc29uQ29kZSIkCiJSZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZVJlc3BvbnNlImMKH0dldEVucm9sbG1lbnRSZXF1ZXN0TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QiqwEKIEdldEVucm9sbG1lbnRSZXF1ZXN0TGlzdFJlc3BvbnNlEkQKBGRhdGEYASADKAsyNi5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdBJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2VCvAEKHmNvbS5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MUINRW5yb2xsZXJQcm90b1ABogIDT1BFqgIaT3Rwa2kuUHVibGljLkVucm9sbG1lbnQuVjHKAhtPdHBraVxQdWJsaWNfXEVucm9sbG1lbnRcVjHiAidPdHBraVxQdWJsaWNfXEVucm9sbG1lbnRcVjFcR1BCTWV0YWRhdGHqAh1PdHBraTo6UHVibGljOjpFbnJvbGxtZW50OjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_enroller_v1_enroller, file_otpki_common_x509_v1_x509]);
+  fileDesc("CilvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbnJvbGxlci5wcm90bxIab3Rwa2kucHVibGljLmVucm9sbG1lbnQudjEifAoeQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXF1ZXN0EloKEmVucm9sbG1lbnRfcmVxdWVzdBgBIAEoCzI2Lm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXF1ZXN0Qga6SAPIAQEidwofQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXNwb25zZRJUChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjcub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIogBCjJDcmVhdGVFbnJvbGxtZW50UmVxdWVzdEZvckV4aXN0aW5nRW5kRW50aXR5UmVxdWVzdBJSChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyNi5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdCKLAQozQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RGb3JFeGlzdGluZ0VuZEVudGl0eVJlc3BvbnNlElQKE2Vucm9sbG1lbnRfcmVzcG9uc2UYASABKAsyNy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVzcG9uc2UiXwofR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVxdWVzdBIqChVlbnJvbGxtZW50X3JlcXVlc3RfaWQYASABKAlCC7pICMgBAXIDsAEBEhAKCHBhc3N3b3JkGAIgASgJIswBCiBHZXRFbnJvbGxtZW50QnlSZXF1ZXN0SURSZXNwb25zZRJSChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyNi5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdBJUChNlbnJvbGxtZW50X3Jlc3BvbnNlGAIgASgLMjcub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIogBChZSZXZva2VFbmRFbnRpdHlSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBEkoKFnJldm9jYXRpb25fcmVhc29uX2NvZGUYAiABKA4yKi5vdHBraS5jb21tb24ueDUwOS52MS5SZXZvY2F0aW9uUmVhc29uQ29kZSIZChdSZXZva2VFbmRFbnRpdHlSZXNwb25zZSK/AQohUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBEioKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgCIAEoCUILukgIyAEBcgOwAQESSgoWcmV2b2NhdGlvbl9yZWFzb25fY29kZRgDIAEoDjIqLm90cGtpLmNvbW1vbi54NTA5LnYxLlJldm9jYXRpb25SZWFzb25Db2RlIiQKIlJldm9rZUVuZEVudGl0eUNlcnRpZmljYXRlUmVzcG9uc2UiYwofR2V0RW5yb2xsbWVudFJlcXVlc3RMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKrAQogR2V0RW5yb2xsbWVudFJlcXVlc3RMaXN0UmVzcG9uc2USRAoEZGF0YRgBIAMoCzI2Lm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXF1ZXN0EkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZUK8AQoeY29tLm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LnYxQg1FbnJvbGxlclByb3RvUAGiAgNPUEWqAhpPdHBraS5QdWJsaWMuRW5yb2xsbWVudC5WMcoCG090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMeICJ090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMVxHUEJNZXRhZGF0YeoCHU90cGtpOjpQdWJsaWM6OkVucm9sbG1lbnQ6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_enroller_v1_enroller, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.public.enrollment.v1.CreateEnrollmentRequestRequest
@@ -148,9 +148,9 @@ export const CreateEnrollmentRequestForExistingEndEntityResponseSchema: GenMessa
  */
 export type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enrollment.v1.GetEnrollmentByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -163,7 +163,7 @@ export type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enrollment.v
  */
 export type GetEnrollmentByRequestIDRequestJson = {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
   enrollmentRequestId?: string;
 
@@ -178,9 +178,9 @@ export type GetEnrollmentByRequestIDRequestJson = {
  */
 export type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.enrollment.v1.GetEnrollmentByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -239,9 +239,9 @@ export const GetEnrollmentByRequestIDResponseSchema: GenMessage<GetEnrollmentByR
  */
 export type RevokeEndEntityRequest = Message<"otpki.public.enrollment.v1.RevokeEndEntityRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
@@ -254,7 +254,7 @@ export type RevokeEndEntityRequest = Message<"otpki.public.enrollment.v1.RevokeE
  */
 export type RevokeEndEntityRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 
@@ -269,9 +269,9 @@ export type RevokeEndEntityRequestJson = {
  */
 export type RevokeEndEntityRequestValid = Message<"otpki.public.enrollment.v1.RevokeEndEntityRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
@@ -312,14 +312,14 @@ export const RevokeEndEntityResponseSchema: GenMessage<RevokeEndEntityResponse, 
  */
 export type RevokeEndEntityCertificateRequest = Message<"otpki.public.enrollment.v1.RevokeEndEntityCertificateRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 3;
@@ -332,12 +332,12 @@ export type RevokeEndEntityCertificateRequest = Message<"otpki.public.enrollment
  */
 export type RevokeEndEntityCertificateRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
   issuedCertificateId?: string;
 
@@ -352,14 +352,14 @@ export type RevokeEndEntityCertificateRequestJson = {
  */
 export type RevokeEndEntityCertificateRequestValid = Message<"otpki.public.enrollment.v1.RevokeEndEntityCertificateRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 3;

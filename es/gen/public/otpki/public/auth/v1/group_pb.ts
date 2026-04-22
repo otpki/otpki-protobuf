@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/auth/v1/group.proto.
  */
 export const file_otpki_public_auth_v1_group: GenFile = /*@__PURE__*/
-  fileDesc("CiBvdHBraS9wdWJsaWMvYXV0aC92MS9ncm91cC5wcm90bxIUb3Rwa2kucHVibGljLmF1dGgudjEiSAoSQ3JlYXRlR3JvdXBSZXF1ZXN0EjIKBWdyb3VwGAEgASgLMhsub3Rwa2kuY29tbW9uLmF1dGgudjEuR3JvdXBCBrpIA8gBASIhChNDcmVhdGVHcm91cFJlc3BvbnNlEgoKAmlkGAEgASgDIiUKD0dldEdyb3VwUmVxdWVzdBISCgJpZBgBIAEoA0IGukgDyAEBIj4KEEdldEdyb3VwUmVzcG9uc2USKgoFZ3JvdXAYASABKAsyGy5vdHBraS5jb21tb24uYXV0aC52MS5Hcm91cCIrChRHZXRNYW55R3JvdXBzUmVxdWVzdBITCgNpZHMYASADKANCBrpIA8gBASJEChVHZXRNYW55R3JvdXBzUmVzcG9uc2USKwoGZ3JvdXBzGAEgAygLMhsub3Rwa2kuY29tbW9uLmF1dGgudjEuR3JvdXAicQoSVXBkYXRlR3JvdXBSZXF1ZXN0EioKBWdyb3VwGAEgASgLMhsub3Rwa2kuY29tbW9uLmF1dGgudjEuR3JvdXASLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIhUKE1VwZGF0ZUdyb3VwUmVzcG9uc2UiKAoSRGVsZXRlR3JvdXBSZXF1ZXN0EhIKAmlkGAEgASgDQga6SAPIAQEiFQoTRGVsZXRlR3JvdXBSZXNwb25zZSJXChNHZXRHcm91cExpc3RSZXF1ZXN0EkAKCnBhZ2luYXRpb24YASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0IoQBChRHZXRHcm91cExpc3RSZXNwb25zZRIpCgRkYXRhGAEgAygLMhsub3Rwa2kuY29tbW9uLmF1dGgudjEuR3JvdXASQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQpsBChhjb20ub3Rwa2kucHVibGljLmF1dGgudjFCCkdyb3VwUHJvdG9QAaICA09QQaoCFE90cGtpLlB1YmxpYy5BdXRoLlYxygIVT3Rwa2lcUHVibGljX1xBdXRoXFYx4gIhT3Rwa2lcUHVibGljX1xBdXRoXFYxXEdQQk1ldGFkYXRh6gIXT3Rwa2k6OlB1YmxpYzo6QXV0aDo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
+  fileDesc("CiBvdHBraS9wdWJsaWMvYXV0aC92MS9ncm91cC5wcm90bxIUb3Rwa2kucHVibGljLmF1dGgudjEiSAoSQ3JlYXRlR3JvdXBSZXF1ZXN0EjIKBWdyb3VwGAEgASgLMhsub3Rwa2kuY29tbW9uLmF1dGgudjEuR3JvdXBCBrpIA8gBASIrChNDcmVhdGVHcm91cFJlc3BvbnNlEhQKAmlkGAEgASgJQgi6SAVyA7ABASIqCg9HZXRHcm91cFJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIj4KEEdldEdyb3VwUmVzcG9uc2USKgoFZ3JvdXAYASABKAsyGy5vdHBraS5jb21tb24uYXV0aC52MS5Hcm91cCI0ChRHZXRNYW55R3JvdXBzUmVxdWVzdBIcCgNpZHMYASADKAlCD7pIDJIBCRgBIgVyA7ABASJEChVHZXRNYW55R3JvdXBzUmVzcG9uc2USKwoGZ3JvdXBzGAEgAygLMhsub3Rwa2kuY29tbW9uLmF1dGgudjEuR3JvdXAicQoSVXBkYXRlR3JvdXBSZXF1ZXN0EioKBWdyb3VwGAEgASgLMhsub3Rwa2kuY29tbW9uLmF1dGgudjEuR3JvdXASLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIhUKE1VwZGF0ZUdyb3VwUmVzcG9uc2UiLQoSRGVsZXRlR3JvdXBSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASIVChNEZWxldGVHcm91cFJlc3BvbnNlIlcKE0dldEdyb3VwTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QihAEKFEdldEdyb3VwTGlzdFJlc3BvbnNlEikKBGRhdGEYASADKAsyGy5vdHBraS5jb21tb24uYXV0aC52MS5Hcm91cBJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2VCmwEKGGNvbS5vdHBraS5wdWJsaWMuYXV0aC52MUIKR3JvdXBQcm90b1ABogIDT1BBqgIUT3Rwa2kuUHVibGljLkF1dGguVjHKAhVPdHBraVxQdWJsaWNfXEF1dGhcVjHiAiFPdHBraVxQdWJsaWNfXEF1dGhcVjFcR1BCTWV0YWRhdGHqAhdPdHBraTo6UHVibGljOjpBdXRoOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
 
 /**
  * @generated from message otpki.public.auth.v1.CreateGroupRequest
@@ -61,9 +61,9 @@ export const CreateGroupRequestSchema: GenMessage<CreateGroupRequest, {jsonType:
  */
 export type CreateGroupResponse = Message<"otpki.public.auth.v1.CreateGroupResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreateGroupResponse = Message<"otpki.public.auth.v1.CreateGroupRespo
  */
 export type CreateGroupResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreateGroupResponseSchema: GenMessage<CreateGroupResponse, {jsonTyp
  */
 export type GetGroupRequest = Message<"otpki.public.auth.v1.GetGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,7 +100,7 @@ export type GetGroupRequest = Message<"otpki.public.auth.v1.GetGroupRequest"> & 
  */
 export type GetGroupRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -110,9 +110,9 @@ export type GetGroupRequestJson = {
  */
 export type GetGroupRequestValid = Message<"otpki.public.auth.v1.GetGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -156,9 +156,9 @@ export const GetGroupResponseSchema: GenMessage<GetGroupResponse, {jsonType: Get
  */
 export type GetManyGroupsRequest = Message<"otpki.public.auth.v1.GetManyGroupsRequest"> & {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
-  ids: bigint[];
+  ids: string[];
 };
 
 /**
@@ -166,20 +166,12 @@ export type GetManyGroupsRequest = Message<"otpki.public.auth.v1.GetManyGroupsRe
  */
 export type GetManyGroupsRequestJson = {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
   ids?: string[];
 };
 
-/**
- * @generated from message otpki.public.auth.v1.GetManyGroupsRequest
- */
-export type GetManyGroupsRequestValid = Message<"otpki.public.auth.v1.GetManyGroupsRequest"> & {
-  /**
-   * @generated from field: repeated int64 ids = 1;
-   */
-  ids: bigint[];
-};
+export type GetManyGroupsRequestValid = GetManyGroupsRequest;
 
 /**
  * Describes the message otpki.public.auth.v1.GetManyGroupsRequest.
@@ -282,9 +274,9 @@ export const UpdateGroupResponseSchema: GenMessage<UpdateGroupResponse, {jsonTyp
  */
 export type DeleteGroupRequest = Message<"otpki.public.auth.v1.DeleteGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -292,7 +284,7 @@ export type DeleteGroupRequest = Message<"otpki.public.auth.v1.DeleteGroupReques
  */
 export type DeleteGroupRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -302,9 +294,9 @@ export type DeleteGroupRequestJson = {
  */
 export type DeleteGroupRequestValid = Message<"otpki.public.auth.v1.DeleteGroupRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

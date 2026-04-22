@@ -4,6 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_buf_validate_validate } from "../../../../../../../buf/validate/validate_pb";
 import type { PkiArtifact, PkiArtifactJson } from "../../../../publisher/v1/publisher_pb";
 import { file_otpki_common_issuance_publisher_v1_publisher } from "../../../../publisher/v1/publisher_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -12,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/issuance/plugin/publisher/scp/v1/scp.proto.
  */
 export const file_otpki_common_issuance_plugin_publisher_scp_v1_scp: GenFile = /*@__PURE__*/
-  fileDesc("CjdvdHBraS9jb21tb24vaXNzdWFuY2UvcGx1Z2luL3B1Ymxpc2hlci9zY3AvdjEvc2NwLnByb3RvEi1vdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLnB1Ymxpc2hlci5zY3AudjEi3wEKCVNjcENvbmZpZxIOCgZrZXlfaWQYASABKAMSEAoIdXNlcm5hbWUYAiABKAkSDAoEaG9zdBgDIAEoCRIMCgRwb3J0GAQgASgDEkQKC2FsbG93ZWRfZm9yGAUgAygOMi8ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5Qa2lBcnRpZmFjdBIqCiJjZXJ0aWZpY2F0ZV9wdWJsaXNoZXJfdGVtcGxhdGVfdXJsGAYgASgJEiIKGmNybF9wdWJsaXNoZXJfdGVtcGxhdGVfdXJsGAcgASgJQpoCCjFjb20ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnBsdWdpbi5wdWJsaXNoZXIuc2NwLnYxQghTY3BQcm90b1ABogIGT0NJUFBTqgItT3Rwa2kuQ29tbW9uLklzc3VhbmNlLlBsdWdpbi5QdWJsaXNoZXIuU2NwLlYxygItT3Rwa2lcQ29tbW9uXElzc3VhbmNlXFBsdWdpblxQdWJsaXNoZXJcU2NwXFYx4gI5T3Rwa2lcQ29tbW9uXElzc3VhbmNlXFBsdWdpblxQdWJsaXNoZXJcU2NwXFYxXEdQQk1ldGFkYXRh6gIzT3Rwa2k6OkNvbW1vbjo6SXNzdWFuY2U6OlBsdWdpbjo6UHVibGlzaGVyOjpTY3A6OlYxYgZwcm90bzM", [file_otpki_common_issuance_publisher_v1_publisher]);
+  fileDesc("CjdvdHBraS9jb21tb24vaXNzdWFuY2UvcGx1Z2luL3B1Ymxpc2hlci9zY3AvdjEvc2NwLnByb3RvEi1vdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLnB1Ymxpc2hlci5zY3AudjEi6QEKCVNjcENvbmZpZxIYCgZrZXlfaWQYASABKAlCCLpIBXIDsAEBEhAKCHVzZXJuYW1lGAIgASgJEgwKBGhvc3QYAyABKAkSDAoEcG9ydBgEIAEoAxJECgthbGxvd2VkX2ZvchgFIAMoDjIvLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wdWJsaXNoZXIudjEuUGtpQXJ0aWZhY3QSKgoiY2VydGlmaWNhdGVfcHVibGlzaGVyX3RlbXBsYXRlX3VybBgGIAEoCRIiChpjcmxfcHVibGlzaGVyX3RlbXBsYXRlX3VybBgHIAEoCUKaAgoxY29tLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wbHVnaW4ucHVibGlzaGVyLnNjcC52MUIIU2NwUHJvdG9QAaICBk9DSVBQU6oCLU90cGtpLkNvbW1vbi5Jc3N1YW5jZS5QbHVnaW4uUHVibGlzaGVyLlNjcC5WMcoCLU90cGtpXENvbW1vblxJc3N1YW5jZVxQbHVnaW5cUHVibGlzaGVyXFNjcFxWMeICOU90cGtpXENvbW1vblxJc3N1YW5jZVxQbHVnaW5cUHVibGlzaGVyXFNjcFxWMVxHUEJNZXRhZGF0YeoCM090cGtpOjpDb21tb246Oklzc3VhbmNlOjpQbHVnaW46OlB1Ymxpc2hlcjo6U2NwOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_otpki_common_issuance_publisher_v1_publisher]);
 
 /**
  * @generated from message otpki.common.issuance.plugin.publisher.scp.v1.ScpConfig
@@ -21,9 +22,9 @@ export type ScpConfig = Message<"otpki.common.issuance.plugin.publisher.scp.v1.S
   /**
    * ssh key in keystore
    *
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: string username = 2;
@@ -63,7 +64,7 @@ export type ScpConfigJson = {
   /**
    * ssh key in keystore
    *
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
   keyId?: string;
 

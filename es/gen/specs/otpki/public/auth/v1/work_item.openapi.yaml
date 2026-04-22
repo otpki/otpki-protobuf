@@ -453,27 +453,21 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
         resourceType:
           title: resource_type
           $ref: '#/components/schemas/otpki.common.auth.v1.Resource'
         resourceId:
-          type:
-            - integer
-            - string
+          type: string
           title: resource_id
-          format: int64
+          format: uuid
         description:
           type: string
           title: description
@@ -501,11 +495,9 @@ components:
       type: object
       properties:
         userId:
-          type:
-            - integer
-            - string
+          type: string
           title: user_id
-          format: int64
+          format: uuid
         username:
           type: string
           title: username
@@ -527,11 +519,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: ApproveWorkItemRequest
       required:
         - id
@@ -565,11 +555,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetWorkItemRequest
       required:
         - id
@@ -586,11 +574,9 @@ components:
       type: object
       properties:
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
       title: IsCurrentUserValidApproverRequest
       required:
         - approvalProfileId
@@ -607,11 +593,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: RejectWorkItemRequest
       required:
         - id

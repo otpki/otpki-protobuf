@@ -177,11 +177,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -198,27 +196,24 @@ components:
         approverRoleIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_role_ids
+          uniqueItems: true
         approverGroupIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_group_ids
+          uniqueItems: true
         approverUserIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_user_ids
+          uniqueItems: true
         createdAt:
           title: created_at
           description: not settable on creation
@@ -234,11 +229,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -262,11 +255,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -348,11 +339,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         isAllowed:
           type: boolean
@@ -366,11 +355,9 @@ components:
           description: when unspecified, is_allowed grants all actions on a particular resource
           $ref: '#/components/schemas/otpki.common.auth.v1.Action'
         objectId:
-          type:
-            - integer
-            - string
+          type: string
           title: object_id
-          format: int64
+          format: uuid
           description: 'when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object'
       title: Permission
       additionalProperties: false
@@ -422,11 +409,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -453,11 +438,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         username:
           type: string
@@ -499,19 +482,17 @@ components:
         groups:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: groups
+          uniqueItems: true
         roles:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: roles
+          uniqueItems: true
         createdAt:
           title: created_at
           description: not settable on creation
@@ -527,27 +508,21 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
         resourceType:
           title: resource_type
           $ref: '#/components/schemas/otpki.common.auth.v1.Resource'
         resourceId:
-          type:
-            - integer
-            - string
+          type: string
           title: resource_id
-          format: int64
+          format: uuid
         description:
           type: string
           title: description
@@ -575,11 +550,9 @@ components:
       type: object
       properties:
         userId:
-          type:
-            - integer
-            - string
+          type: string
           title: user_id
-          format: int64
+          format: uuid
         username:
           type: string
           title: username

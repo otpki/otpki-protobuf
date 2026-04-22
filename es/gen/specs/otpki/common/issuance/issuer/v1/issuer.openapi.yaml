@@ -166,11 +166,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         status:
           title: status
@@ -184,26 +182,23 @@ components:
           $ref: '#/components/schemas/otpki.common.x509.v1.CertificateTemplate'
         signingKeyId:
           type:
-            - integer
             - string
             - "null"
           title: signing_key_id
-          format: int64
+          format: uuid
           description: only used for self-signed root ca issuance
         alternativeSigningKeyId:
           type:
-            - integer
             - string
             - "null"
           title: alternative_signing_key_id
-          format: int64
+          format: uuid
         targetCertificateAuthorityId:
           type:
-            - integer
             - string
             - "null"
           title: target_certificate_authority_id
-          format: int64
+          format: uuid
           description: only used for CA certificate issuance - points to the CA entity that will receive the issued cert
         createdAt:
           title: created_at
@@ -224,20 +219,16 @@ components:
       type: object
       properties:
         issuanceRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: issuance_request_id
-          format: int64
+          format: uuid
         status:
           title: status
           $ref: '#/components/schemas/otpki.common.issuance.issuer.v1.IssuanceStatus'
         certificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -310,19 +301,16 @@ components:
           title: subject_alternative_name_attributes
           description: san
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          format: int64
+          format: uuid
           description: issuance information
         certificateAuthorityId:
           type:
-            - integer
             - string
             - "null"
           title: certificate_authority_id
-          format: int64
+          format: uuid
           description: empty means self signed
         validityStartTimeOffset:
           title: validity_start_time_offset
@@ -407,11 +395,8 @@ components:
         customCertificateExtensionIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
       title: CertificateTemplate

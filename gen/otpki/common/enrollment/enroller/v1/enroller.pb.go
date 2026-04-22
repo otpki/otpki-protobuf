@@ -7,6 +7,7 @@
 package enrollerv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "github.com/google/gnostic/openapiv3"
 	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/api/v1"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/enrollment/end_entity/v1"
@@ -77,7 +78,7 @@ func (EnrollmentDataType) EnumDescriptor() ([]byte, []int) {
 
 type EnrollmentRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	Id                int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Status            v1.EndEntityStatus     `protobuf:"varint,2,opt,name=status,proto3,enum=otpki.common.enrollment.end_entity.v1.EndEntityStatus" json:"status,omitempty"`
 	Data              []byte                 `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	DataType          EnrollmentDataType     `protobuf:"varint,4,opt,name=data_type,json=dataType,proto3,enum=otpki.common.enrollment.enroller.v1.EnrollmentDataType" json:"data_type,omitempty"`
@@ -121,11 +122,11 @@ func (*EnrollmentRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_common_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *EnrollmentRequest) GetId() int64 {
+func (x *EnrollmentRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *EnrollmentRequest) GetStatus() v1.EndEntityStatus {
@@ -179,9 +180,9 @@ func (x *EnrollmentRequest) GetUpdatedAt() *timestamppb.Timestamp {
 
 type EnrollmentResponse struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequestId int64                  `protobuf:"varint,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
-	IssuanceRequestId   int64                  `protobuf:"varint,2,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
-	CertificateId       int64                  `protobuf:"varint,3,opt,name=certificate_id,json=certificateId,proto3" json:"certificate_id,omitempty"`
+	EnrollmentRequestId string                 `protobuf:"bytes,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
+	IssuanceRequestId   string                 `protobuf:"bytes,2,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
+	CertificateId       string                 `protobuf:"bytes,3,opt,name=certificate_id,json=certificateId,proto3" json:"certificate_id,omitempty"`
 	Certificate         []byte                 `protobuf:"bytes,4,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain    [][]byte               `protobuf:"bytes,5,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"` // does not contain end entity certificate
 	// the status of the end entity is the status of the request
@@ -222,25 +223,25 @@ func (*EnrollmentResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_common_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *EnrollmentResponse) GetEnrollmentRequestId() int64 {
+func (x *EnrollmentResponse) GetEnrollmentRequestId() string {
 	if x != nil {
 		return x.EnrollmentRequestId
 	}
-	return 0
+	return ""
 }
 
-func (x *EnrollmentResponse) GetIssuanceRequestId() int64 {
+func (x *EnrollmentResponse) GetIssuanceRequestId() string {
 	if x != nil {
 		return x.IssuanceRequestId
 	}
-	return 0
+	return ""
 }
 
-func (x *EnrollmentResponse) GetCertificateId() int64 {
+func (x *EnrollmentResponse) GetCertificateId() string {
 	if x != nil {
 		return x.CertificateId
 	}
-	return 0
+	return ""
 }
 
 func (x *EnrollmentResponse) GetCertificate() []byte {
@@ -268,9 +269,9 @@ var File_otpki_common_enrollment_enroller_v1_enroller_proto protoreflect.FileDes
 
 const file_otpki_common_enrollment_enroller_v1_enroller_proto_rawDesc = "" +
 	"\n" +
-	"2otpki/common/enrollment/enroller/v1/enroller.proto\x12#otpki.common.enrollment.enroller.v1\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a6otpki/common/enrollment/end_entity/v1/end_entity.proto\x1a,otpki/common/issuance/issuer/v1/issuer.proto\"\xda\x04\n" +
-	"\x11EnrollmentRequest\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12U\n" +
+	"2otpki/common/enrollment/enroller/v1/enroller.proto\x12#otpki.common.enrollment.enroller.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a6otpki/common/enrollment/end_entity/v1/end_entity.proto\x1a,otpki/common/issuance/issuer/v1/issuer.proto\"\xe2\x04\n" +
+	"\x11EnrollmentRequest\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12U\n" +
 	"\x06status\x18\x02 \x01(\x0e26.otpki.common.enrollment.end_entity.v1.EndEntityStatusB\x05\xbaG\x02\x18\x01R\x06status\x12\x12\n" +
 	"\x04data\x18\x03 \x01(\fR\x04data\x12T\n" +
 	"\tdata_type\x18\x04 \x01(\x0e27.otpki.common.enrollment.enroller.v1.EnrollmentDataTypeR\bdataType\x12U\n" +
@@ -279,11 +280,11 @@ const file_otpki_common_enrollment_enroller_v1_enroller_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xbf\x02\n" +
-	"\x12EnrollmentResponse\x122\n" +
-	"\x15enrollment_request_id\x18\x01 \x01(\x03R\x13enrollmentRequestId\x12.\n" +
-	"\x13issuance_request_id\x18\x02 \x01(\x03R\x11issuanceRequestId\x12%\n" +
-	"\x0ecertificate_id\x18\x03 \x01(\x03R\rcertificateId\x12 \n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xdd\x02\n" +
+	"\x12EnrollmentResponse\x12<\n" +
+	"\x15enrollment_request_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13enrollmentRequestId\x128\n" +
+	"\x13issuance_request_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11issuanceRequestId\x12/\n" +
+	"\x0ecertificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rcertificateId\x12 \n" +
 	"\vcertificate\x18\x04 \x01(\fR\vcertificate\x12+\n" +
 	"\x11certificate_chain\x18\x05 \x03(\fR\x10certificateChain\x12O\n" +
 	"\n" +

@@ -1,10 +1,11 @@
 syntax = "proto3";
 package otpki.common.issuance.plugin.publisher.scp.v1;
 
+import "buf/validate/validate.proto";
 import "otpki/common/issuance/publisher/v1/publisher.proto";
 
 message ScpConfig {
-  int64 key_id = 1; // ssh key in keystore
+  string key_id = 1 [(buf.validate.field).string.uuid = true]; // ssh key in keystore
   string username = 2;
   string host = 3;
   int64 port = 4;

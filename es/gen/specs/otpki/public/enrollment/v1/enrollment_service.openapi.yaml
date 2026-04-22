@@ -636,11 +636,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -871,11 +869,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: end_entity_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -895,11 +891,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: end_entity_id
-            format: int64
+            format: uuid
             description: this param does not do anything, it's for the path to satisfy a pattern
         - name: serial_number
           in: path
@@ -926,20 +920,16 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: end_entity_id
-            format: int64
+            format: uuid
         - name: issued_certificate_id
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: issued_certificate_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -970,11 +960,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: end_entity_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -1005,11 +993,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1027,11 +1013,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1390,11 +1374,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: enrollment_request_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -1746,12 +1728,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1769,12 +1748,9 @@ paths:
           in: path
           required: true
           schema:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1793,11 +1769,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             description: not settable on creation
             readOnly: true
         - name: updateMask
@@ -2639,11 +2613,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         description:
@@ -2652,11 +2624,10 @@ components:
           description: string name = 2; // using "login id" now
         endEntityProfileId:
           type:
-            - integer
             - string
             - "null"
           title: end_entity_profile_id
-          format: int64
+          format: uuid
         status:
           title: status
           description: this should only be set by backend
@@ -2712,18 +2683,14 @@ components:
             san
              note: certificate email can differ from EE email
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          format: int64
+          format: uuid
           description: issuance information
         certificateAuthorityId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_authority_id
-          format: int64
+          format: uuid
         validityStartTimeOffset:
           title: validity_start_time_offset
           description: validity override offset from 'now' when to issue certificate
@@ -2807,11 +2774,8 @@ components:
         customCertificateExtensionIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
       title: EndEntity
@@ -2830,23 +2794,17 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
         enrollmentRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: enrollment_request_id
-          format: int64
+          format: uuid
         issuedCertificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_certificate_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -2897,11 +2855,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -3013,38 +2969,26 @@ components:
         availableCertificateProfileIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: available_certificate_profile_ids
           uniqueItems: true
           description: issuance information
         defaultCertificateProfileId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: default_certificate_profile_id
-          format: int64
+          format: uuid
         availableCertificateAuthorityIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: available_certificate_authority_ids
           uniqueItems: true
         defaultCertificateAuthorityId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: default_certificate_authority_id
-          format: int64
+          format: uuid
         useValidityStartTime:
           type: boolean
           title: use_validity_start_time
@@ -3098,11 +3042,9 @@ components:
           title: use_custom_certificate_exts
           description: explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity allow EE to add to custom exts (will be concatenated with cert profile)
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
       title: EndEntityProfile
       additionalProperties: false
     otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileSANAttribute:
@@ -3174,11 +3116,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         status:
           title: status
@@ -3214,23 +3154,17 @@ components:
       type: object
       properties:
         enrollmentRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: enrollment_request_id
-          format: int64
+          format: uuid
         issuanceRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: issuance_request_id
-          format: int64
+          format: uuid
         certificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -3356,11 +3290,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateEndEntityProfileResponse
       additionalProperties: false
     otpki.public.enrollment.v1.CreateEndEntityRequest:
@@ -3377,11 +3309,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateEndEntityResponse
       additionalProperties: false
     otpki.public.enrollment.v1.CreateEnrollmentRequestForExistingEndEntityRequest:
@@ -3422,13 +3352,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteEndEntityProfileRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.enrollment.v1.DeleteEndEntityProfileResponse:
       type: object
@@ -3438,11 +3367,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteEndEntityRequest
       required:
         - id
@@ -3459,11 +3386,9 @@ components:
           title: serial_number
           format: byte
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
           description: this param does not do anything, it's for the path to satisfy a pattern
       title: GetEndEntityCertificateBySerialNumberRequest
       required:
@@ -3502,11 +3427,9 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
       title: GetEndEntityCertificatesRequest
       required:
         - endEntityId
@@ -3567,13 +3490,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetEndEntityProfileRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.enrollment.v1.GetEndEntityProfileResponse:
       type: object
@@ -3587,11 +3509,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetEndEntityRequest
       required:
         - id
@@ -3608,11 +3528,9 @@ components:
       type: object
       properties:
         enrollmentRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: enrollment_request_id
-          format: int64
+          format: uuid
         password:
           type: string
           title: password
@@ -3656,17 +3574,13 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
         issuedCertificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_certificate_id
-          format: int64
+          format: uuid
         revocationReasonCode:
           title: revocation_reason_code
           $ref: '#/components/schemas/otpki.common.x509.v1.RevocationReasonCode'
@@ -3683,11 +3597,9 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
         revocationReasonCode:
           title: revocation_reason_code
           $ref: '#/components/schemas/otpki.common.x509.v1.RevocationReasonCode'

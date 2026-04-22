@@ -13,9 +13,11 @@ import (
 	"strings"
 	"text/template"
 
+	validate "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	"github.com/samber/oops"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/descriptorpb"
 	"google.golang.org/protobuf/types/pluginpb"
 
@@ -33,9 +35,18 @@ type FieldInfo struct {
 	Type          string
 	ConverterInfo ConverterInfo
 }
+
+type UUIDGetterInfo struct {
+	MethodName    string
+	ReturnType    string
+	ConverterCall string
+	ZeroReturn    string
+}
+
 type MessageInfo struct {
-	StructName string
-	Fields     []FieldInfo
+	StructName  string
+	Fields      []FieldInfo
+	UUIDGetters []UUIDGetterInfo
 }
 
 var structTmpl = template.Must(template.New("").Parse(`
@@ -87,6 +98,21 @@ func (p *{{.StructName}}) ToNative() (*{{.StructName}}Native, error) {
 }
 `))
 
+var uuidGetterTmpl = template.Must(template.New("").Parse(`
+{{- range .UUIDGetters}}
+// Get{{.MethodName}}UUID returns {{.MethodName}} as a UUID when possible.
+func (x *{{$.StructName}}) Get{{.MethodName}}UUID() {{.ReturnType}} {
+	if x != nil {
+		value, err := {{.ConverterCall}}
+		if err == nil {
+			return value
+		}
+	}
+	return {{.ZeroReturn}}
+}
+{{end}}
+`))
+
 func main() {
 	var flags flag.FlagSet
 	converterPkgFlag := flags.String("converters_pkg", "", "Local path or Go import path to the converters pkg")
@@ -123,8 +149,8 @@ func main() {
 
 // generateFile generates a native struct for each message in the given file
 func generateFile(gen *protogen.Plugin, file *protogen.File) *protogen.GeneratedFile {
-	// only parse if it has the generate_native option
-	if !fileHasGenerateNative(file) {
+	// only parse if it has native content or uuid helper methods to generate
+	if !fileNeedsGeneration(file) {
 		return nil
 	}
 
@@ -137,16 +163,18 @@ func generateFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generated
 	g.P()
 
 	// import format for errors
-	g.QualifiedGoIdent(protogen.GoIdent{GoImportPath: "fmt"})
+	if fileHasGenerateNative(file) {
+		g.QualifiedGoIdent(protogen.GoIdent{GoImportPath: "fmt"})
+	}
 
 	// use a map to act as hash set
 	neededConverters := map[string]bool{}
 
 	// process all messages in this proto file
 	for _, message := range file.Messages {
-		if !message.Desc.IsMapEntry() && messageHasGenerateNative(message) {
+		if !message.Desc.IsMapEntry() && (messageHasGenerateNative(message) || messageHasUUIDFields(message)) {
 			// generate the struct and converter methods
-			converters, err := generateNativeStructAndReceivers(g, message)
+			converters, err := generateMessageCode(g, message)
 			if err != nil {
 				gen.Error(err)
 				return nil
@@ -166,42 +194,64 @@ func generateFile(gen *protogen.Plugin, file *protogen.File) *protogen.Generated
 	return g
 }
 
-// generateNativeStructAndReceivers generates the native struct and receiver methods for a given message
+// generateMessageCode generates helper methods and optional native types for a given message.
 // returns a list of converter function names needed by this message
-func generateNativeStructAndReceivers(g *protogen.GeneratedFile, message *protogen.Message) ([]string, error) {
+func generateMessageCode(g *protogen.GeneratedFile, message *protogen.Message) ([]string, error) {
 	msgInfo := MessageInfo{
 		StructName: message.GoIdent.GoName,
 	}
+	generateNative := messageHasGenerateNative(message)
 
 	// track converter functions needed by this message
 	var neededConverters []string
 
-	// for each field in the given message
 	for _, field := range message.Fields {
-		// validate
-		if err := validateFieldOptions(field); err != nil {
-			return nil, err
+		if fieldIsUUID(field) {
+			getterInfo, converterFuncName, err := getUUIDGetterInfo(g, field)
+			if err != nil {
+				return nil, err
+			}
+			msgInfo.UUIDGetters = append(msgInfo.UUIDGetters, getterInfo)
+			neededConverters = append(neededConverters, converterFuncName)
 		}
-
-		// get converter info
-		convInfo, toProtoFuncName, toNativeFuncName := getFieldConverterInfo(g, field)
-		if convInfo.NeedsConverter {
-			neededConverters = append(neededConverters, toProtoFuncName)
-			neededConverters = append(neededConverters, toNativeFuncName)
-		}
-
-		// append each field to the template
-		msgInfo.Fields = append(msgInfo.Fields, FieldInfo{
-			Name:          field.GoName,
-			Type:          getQualifiedGoTypeString(g, field),
-			ConverterInfo: convInfo,
-		})
 	}
 
-	// write "Native" struct to the generated file (including converter functions)
-	err := structTmpl.Execute(g, msgInfo)
-	if err != nil {
-		return nil, err
+	if generateNative {
+		// for each field in the given message
+		for _, field := range message.Fields {
+			// validate
+			if err := validateFieldOptions(field); err != nil {
+				return nil, err
+			}
+
+			// get converter info
+			convInfo, toProtoFuncName, toNativeFuncName := getFieldConverterInfo(g, field)
+			if convInfo.NeedsConverter {
+				neededConverters = append(neededConverters, toProtoFuncName)
+				neededConverters = append(neededConverters, toNativeFuncName)
+			}
+
+			// append each field to the template
+			msgInfo.Fields = append(msgInfo.Fields, FieldInfo{
+				Name:          field.GoName,
+				Type:          getQualifiedGoTypeString(g, field),
+				ConverterInfo: convInfo,
+			})
+		}
+
+		// write "Native" struct to the generated file (including converter functions)
+		err := structTmpl.Execute(g, msgInfo)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	if len(msgInfo.UUIDGetters) > 0 {
+		err := uuidGetterTmpl.Execute(g, msgInfo)
+		if err != nil {
+			return nil, err
+		}
+		g.P()
 	}
 
 	return neededConverters, nil
@@ -276,6 +326,33 @@ func importConverterFunctions(g *protogen.GeneratedFile, neededConverters map[st
 	}
 }
 
+func getUUIDGetterInfo(g *protogen.GeneratedFile, field *protogen.Field) (UUIDGetterInfo, string, error) {
+	if err := validateUUIDField(field); err != nil {
+		return UUIDGetterInfo{}, "", err
+	}
+
+	goNativeType, _ := getFieldOptions(field)
+	baseTypeName, isSlice, isPointer := extractBaseTypeName(goNativeType)
+	_, toNativeFuncName := getConverterFunctionName(baseTypeName, isSlice, isPointer)
+
+	return UUIDGetterInfo{
+		MethodName:    field.GoName,
+		ReturnType:    getQualifiedGoTypeString(g, field),
+		ConverterCall: fmt.Sprintf("%s(x.%s)", strings.Replace(toNativeFuncName, "Convert", "convert", 1), field.GoName),
+		ZeroReturn:    getZeroReturnValue(g, field),
+	}, toNativeFuncName, nil
+}
+
+func getZeroReturnValue(g *protogen.GeneratedFile, field *protogen.Field) string {
+	fieldType := getQualifiedGoTypeString(g, field)
+	switch {
+	case strings.HasPrefix(fieldType, "*"), strings.HasPrefix(fieldType, "[]"):
+		return "nil"
+	default:
+		return fieldType + "{}"
+	}
+}
+
 // getFieldOptions pulls the metadata from a particular field
 func getFieldOptions(field *protogen.Field) (goNativeType string, goNativeImportPath string) {
 	if field.Desc.Options().ProtoReflect().Has(options.E_GoNativeType.TypeDescriptor()) {
@@ -284,13 +361,61 @@ func getFieldOptions(field *protogen.Field) (goNativeType string, goNativeImport
 	if field.Desc.Options().ProtoReflect().Has(options.E_GoNativeImportPath.TypeDescriptor()) {
 		goNativeImportPath = proto.GetExtension(field.Desc.Options(), options.E_GoNativeImportPath).(string)
 	}
+	if goNativeType == "" && goNativeImportPath == "" && fieldIsUUID(field) {
+		return getImplicitUUIDGoType(field), "github.com/google/uuid"
+	}
 	return
+}
+
+func getImplicitUUIDGoType(field *protogen.Field) string {
+	baseType := "uuid.UUID"
+	if field.Desc.IsList() {
+		return "[]" + baseType
+	}
+	if field.Desc.HasPresence() {
+		return "uuid.NullUUID"
+	}
+	return baseType
+}
+
+func fieldIsUUID(field *protogen.Field) bool {
+	rules := getValidateFieldRules(field)
+	if rules == nil {
+		return false
+	}
+	if field.Desc.IsList() {
+		return fieldRulesHasStringUUID(rules.GetRepeated().GetItems())
+	}
+	return fieldRulesHasStringUUID(rules)
+}
+
+func getValidateFieldRules(field *protogen.Field) *validate.FieldRules {
+	if field.Desc.Options() == nil {
+		return nil
+	}
+	if !field.Desc.Options().ProtoReflect().Has(validate.E_Field.TypeDescriptor()) {
+		return nil
+	}
+	rules, ok := proto.GetExtension(field.Desc.Options(), validate.E_Field).(*validate.FieldRules)
+	if !ok {
+		return nil
+	}
+	return rules
+}
+
+func fieldRulesHasStringUUID(rules *validate.FieldRules) bool {
+	return rules.GetString_().GetUuid()
 }
 
 // validateFieldOptions ensures that the given proto field is suitable for
 // "native" struct validation
 func validateFieldOptions(field *protogen.Field) error {
 	goNativeType, goNativeImportPath := getFieldOptions(field)
+
+	if err := validateUUIDField(field); err != nil {
+		return err
+	}
+
 	// if neither are specified, we are good
 	if goNativeType == "" && goNativeImportPath == "" {
 		return nil
@@ -313,6 +438,16 @@ func validateFieldOptions(field *protogen.Field) error {
 	return nil
 }
 
+func validateUUIDField(field *protogen.Field) error {
+	if !fieldIsUUID(field) {
+		return nil
+	}
+	if field.Desc.Kind() != protoreflect.StringKind {
+		return oops.Errorf("field %s.%s has string.uuid=true but is %s; only string is supported", field.Parent.Desc.Name(), field.Desc.Name(), field.Desc.Kind())
+	}
+	return nil
+}
+
 // messageHasGenerateNative checks to see if the message has been tagged to
 // allow "native" generation for this struct
 func messageHasGenerateNative(msg *protogen.Message) bool {
@@ -329,6 +464,24 @@ func messageHasGenerateNative(msg *protogen.Message) bool {
 func fileHasGenerateNative(file *protogen.File) bool {
 	for _, message := range file.Messages {
 		if messageHasGenerateNative(message) {
+			return true
+		}
+	}
+	return false
+}
+
+func messageHasUUIDFields(msg *protogen.Message) bool {
+	for _, field := range msg.Fields {
+		if fieldIsUUID(field) {
+			return true
+		}
+	}
+	return false
+}
+
+func fileNeedsGeneration(file *protogen.File) bool {
+	for _, message := range file.Messages {
+		if messageHasGenerateNative(message) || messageHasUUIDFields(message) {
 			return true
 		}
 	}
@@ -402,7 +555,8 @@ func getFieldConverterInfo(g *protogen.GeneratedFile, field *protogen.Field) (fi
 	}
 
 	// get the names of the converter functions from the base type
-	toProtoFuncName, toNativeFuncName = getConverterFunctionName(extractBaseTypeName(goNativeType))
+	baseTypeName, isSlice, isPointer := extractBaseTypeName(goNativeType)
+	toProtoFuncName, toNativeFuncName = getConverterFunctionName(baseTypeName, isSlice, isPointer)
 
 	// check to see if these functions exist
 	toProtoExists := functionExists(toProtoFuncName)

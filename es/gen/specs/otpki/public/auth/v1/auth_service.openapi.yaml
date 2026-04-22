@@ -346,11 +346,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             readOnly: true
         - name: updateMask
           in: query
@@ -580,11 +578,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -602,11 +598,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -983,11 +977,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             readOnly: true
         - name: updateMask
           in: query
@@ -1217,11 +1209,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1239,11 +1229,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1635,11 +1623,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1657,11 +1643,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -1680,11 +1664,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             readOnly: true
         - name: updateMask
           in: query
@@ -2303,11 +2285,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -2325,11 +2305,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -2348,11 +2326,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             readOnly: true
         - name: updateMask
           in: query
@@ -2582,11 +2558,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: role_id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -2604,11 +2578,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: role_id
-            format: int64
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -3036,11 +3008,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3058,11 +3028,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3081,11 +3049,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
             readOnly: true
         - name: updateMask
           in: query
@@ -3637,11 +3603,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3660,11 +3624,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -3683,11 +3645,9 @@ paths:
           in: path
           required: true
           schema:
-            type:
-              - integer
-              - string
+            type: string
             title: id
-            format: int64
+            format: uuid
       responses:
         "200":
           description: Success
@@ -4328,11 +4288,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -4349,27 +4307,24 @@ components:
         approverRoleIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_role_ids
+          uniqueItems: true
         approverGroupIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_group_ids
+          uniqueItems: true
         approverUserIds:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: approver_user_ids
+          uniqueItems: true
         createdAt:
           title: created_at
           description: not settable on creation
@@ -4385,11 +4340,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -4413,11 +4366,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -4499,11 +4450,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         isAllowed:
           type: boolean
@@ -4517,11 +4466,9 @@ components:
           description: when unspecified, is_allowed grants all actions on a particular resource
           $ref: '#/components/schemas/otpki.common.auth.v1.Action'
         objectId:
-          type:
-            - integer
-            - string
+          type: string
           title: object_id
-          format: int64
+          format: uuid
           description: 'when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object'
       title: Permission
       additionalProperties: false
@@ -4573,11 +4520,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -4604,11 +4549,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         username:
           type: string
@@ -4650,19 +4593,17 @@ components:
         groups:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: groups
+          uniqueItems: true
         roles:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: roles
+          uniqueItems: true
         createdAt:
           title: created_at
           description: not settable on creation
@@ -4678,27 +4619,21 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
         resourceType:
           title: resource_type
           $ref: '#/components/schemas/otpki.common.auth.v1.Resource'
         resourceId:
-          type:
-            - integer
-            - string
+          type: string
           title: resource_id
-          format: int64
+          format: uuid
         description:
           type: string
           title: description
@@ -4726,11 +4661,9 @@ components:
       type: object
       properties:
         userId:
-          type:
-            - integer
-            - string
+          type: string
           title: user_id
-          format: int64
+          format: uuid
         username:
           type: string
           title: username
@@ -4752,11 +4685,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: ApproveWorkItemRequest
       required:
         - id
@@ -4798,11 +4729,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateApprovalProfileResponse
       additionalProperties: false
     otpki.public.auth.v1.CreateGroupRequest:
@@ -4819,11 +4748,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateGroupResponse
       additionalProperties: false
     otpki.public.auth.v1.CreateOIDCProviderRequest:
@@ -4840,11 +4767,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateOIDCProviderResponse
       additionalProperties: false
     otpki.public.auth.v1.CreateOrGetManyRolesByNamesRequest:
@@ -4883,11 +4808,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateRoleResponse
       additionalProperties: false
     otpki.public.auth.v1.CreateUserRequest:
@@ -4904,22 +4827,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateUserResponse
       additionalProperties: false
     otpki.public.auth.v1.DeleteApprovalProfileRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteApprovalProfileRequest
       required:
         - id
@@ -4932,11 +4851,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteGroupRequest
       required:
         - id
@@ -4949,11 +4866,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteOIDCProviderRequest
       required:
         - id
@@ -4966,11 +4881,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteRoleRequest
       required:
         - id
@@ -4983,11 +4896,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteUserRequest
       required:
         - id
@@ -5035,11 +4946,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetApprovalProfileRequest
       required:
         - id
@@ -5089,11 +4998,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetGroupRequest
       required:
         - id
@@ -5112,14 +5019,11 @@ components:
         ids:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: ids
+          uniqueItems: true
       title: GetManyGroupsRequest
-      required:
-        - ids
       additionalProperties: false
     otpki.public.auth.v1.GetManyGroupsResponse:
       type: object
@@ -5159,10 +5063,8 @@ components:
         ids:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: ids
           uniqueItems: true
       title: GetManyRolesRequest
@@ -5255,11 +5157,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetOIDCProviderRequest
       required:
         - id
@@ -5297,11 +5197,9 @@ components:
       type: object
       properties:
         roleId:
-          type:
-            - integer
-            - string
+          type: string
           title: role_id
-          format: int64
+          format: uuid
       title: GetRolePermissionsRequest
       required:
         - roleId
@@ -5320,11 +5218,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetRoleRequest
       required:
         - id
@@ -5422,11 +5318,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetUserRequest
       required:
         - id
@@ -5464,11 +5358,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetWorkItemRequest
       required:
         - id
@@ -5485,11 +5377,9 @@ components:
       type: object
       properties:
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
       title: IsCurrentUserValidApproverRequest
       required:
         - approvalProfileId
@@ -5506,11 +5396,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: RejectWorkItemRequest
       required:
         - id
@@ -5528,11 +5416,9 @@ components:
             $ref: '#/components/schemas/otpki.common.auth.v1.Permission'
           title: permissions
         roleId:
-          type:
-            - integer
-            - string
+          type: string
           title: role_id
-          format: int64
+          format: uuid
       title: SetRolePermissionsRequest
       required:
         - roleId

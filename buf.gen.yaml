@@ -36,13 +36,13 @@ plugins:
     out: gen
     opt: paths=source_relative
 
-  - local: tools/protoc-gen-native/protoc-gen-native
+  - local: ["go", "run", "./tools/protoc-gen-native"]
     out: gen
     opt:
       - paths=source_relative
       - converters_pkg=converters
 
-  - local: tools/protoc-gen-authrequired/protoc-gen-authrequired
+  - local: ["go", "run", "./tools/protoc-gen-authrequired"]
     out: .
     opt:
       - paths=source_relative

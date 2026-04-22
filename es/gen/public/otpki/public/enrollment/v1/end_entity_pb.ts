@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/enrollment/v1/end_entity.proto.
  */
 export const file_otpki_public_enrollment_v1_end_entity: GenFile = /*@__PURE__*/
-  fileDesc("CitvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbmRfZW50aXR5LnByb3RvEhpvdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MSJmChZDcmVhdGVFbmRFbnRpdHlSZXF1ZXN0EkwKCmVuZF9lbnRpdHkYASABKAsyMC5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5LnYxLkVuZEVudGl0eUIGukgDyAEBIiUKF0NyZWF0ZUVuZEVudGl0eVJlc3BvbnNlEgoKAmlkGAEgASgDIikKE0dldEVuZEVudGl0eVJlcXVlc3QSEgoCaWQYASABKANCBrpIA8gBASJcChRHZXRFbmRFbnRpdHlSZXNwb25zZRJECgplbmRfZW50aXR5GAEgASgLMjAub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkiWwoXR2V0RW5kRW50aXR5TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QinQEKGEdldEVuZEVudGl0eUxpc3RSZXNwb25zZRI+CgRkYXRhGAEgAygLMjAub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlIiwKFkRlbGV0ZUVuZEVudGl0eVJlcXVlc3QSEgoCaWQYASABKANCBrpIA8gBASIZChdEZWxldGVFbmRFbnRpdHlSZXNwb25zZSKPAQoWVXBkYXRlRW5kRW50aXR5UmVxdWVzdBJECgplbmRfZW50aXR5GAEgASgLMjAub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkSLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIhkKF1VwZGF0ZUVuZEVudGl0eVJlc3BvbnNlQr0BCh5jb20ub3Rwa2kucHVibGljLmVucm9sbG1lbnQudjFCDkVuZEVudGl0eVByb3RvUAGiAgNPUEWqAhpPdHBraS5QdWJsaWMuRW5yb2xsbWVudC5WMcoCG090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMeICJ090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMVxHUEJNZXRhZGF0YeoCHU90cGtpOjpQdWJsaWM6OkVucm9sbG1lbnQ6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_end_entity_v1_end_entity]);
+  fileDesc("CitvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbmRfZW50aXR5LnByb3RvEhpvdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MSJmChZDcmVhdGVFbmRFbnRpdHlSZXF1ZXN0EkwKCmVuZF9lbnRpdHkYASABKAsyMC5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5LnYxLkVuZEVudGl0eUIGukgDyAEBIi8KF0NyZWF0ZUVuZEVudGl0eVJlc3BvbnNlEhQKAmlkGAEgASgJQgi6SAVyA7ABASIuChNHZXRFbmRFbnRpdHlSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJcChRHZXRFbmRFbnRpdHlSZXNwb25zZRJECgplbmRfZW50aXR5GAEgASgLMjAub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkiWwoXR2V0RW5kRW50aXR5TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QinQEKGEdldEVuZEVudGl0eUxpc3RSZXNwb25zZRI+CgRkYXRhGAEgAygLMjAub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlIjEKFkRlbGV0ZUVuZEVudGl0eVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIhkKF0RlbGV0ZUVuZEVudGl0eVJlc3BvbnNlIo8BChZVcGRhdGVFbmRFbnRpdHlSZXF1ZXN0EkQKCmVuZF9lbnRpdHkYASABKAsyMC5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5LnYxLkVuZEVudGl0eRIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siGQoXVXBkYXRlRW5kRW50aXR5UmVzcG9uc2VCvQEKHmNvbS5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MUIORW5kRW50aXR5UHJvdG9QAaICA09QRaoCGk90cGtpLlB1YmxpYy5FbnJvbGxtZW50LlYxygIbT3Rwa2lcUHVibGljX1xFbnJvbGxtZW50XFYx4gInT3Rwa2lcUHVibGljX1xFbnJvbGxtZW50XFYxXEdQQk1ldGFkYXRh6gIdT3Rwa2k6OlB1YmxpYzo6RW5yb2xsbWVudDo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_end_entity_v1_end_entity]);
 
 /**
  * @generated from message otpki.public.enrollment.v1.CreateEndEntityRequest
@@ -61,9 +61,9 @@ export const CreateEndEntityRequestSchema: GenMessage<CreateEndEntityRequest, {j
  */
 export type CreateEndEntityResponse = Message<"otpki.public.enrollment.v1.CreateEndEntityResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreateEndEntityResponse = Message<"otpki.public.enrollment.v1.Create
  */
 export type CreateEndEntityResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreateEndEntityResponseSchema: GenMessage<CreateEndEntityResponse, 
  */
 export type GetEndEntityRequest = Message<"otpki.public.enrollment.v1.GetEndEntityRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,7 +100,7 @@ export type GetEndEntityRequest = Message<"otpki.public.enrollment.v1.GetEndEnti
  */
 export type GetEndEntityRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -110,9 +110,9 @@ export type GetEndEntityRequestJson = {
  */
 export type GetEndEntityRequestValid = Message<"otpki.public.enrollment.v1.GetEndEntityRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -224,9 +224,9 @@ export const GetEndEntityListResponseSchema: GenMessage<GetEndEntityListResponse
  */
 export type DeleteEndEntityRequest = Message<"otpki.public.enrollment.v1.DeleteEndEntityRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -234,7 +234,7 @@ export type DeleteEndEntityRequest = Message<"otpki.public.enrollment.v1.DeleteE
  */
 export type DeleteEndEntityRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -244,9 +244,9 @@ export type DeleteEndEntityRequestJson = {
  */
 export type DeleteEndEntityRequestValid = Message<"otpki.public.enrollment.v1.DeleteEndEntityRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

@@ -624,11 +624,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -720,22 +718,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateOIDCProviderResponse
       additionalProperties: false
     otpki.public.auth.v1.DeleteOIDCProviderRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteOIDCProviderRequest
       required:
         - id
@@ -822,11 +816,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetOIDCProviderRequest
       required:
         - id

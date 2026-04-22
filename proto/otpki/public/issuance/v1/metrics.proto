@@ -1,6 +1,7 @@
 syntax = "proto3";
 package otpki.public.issuance.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 
 // Dashboard metrics
@@ -43,9 +44,9 @@ message CAHierarchyOverview {
 }
 
 message CANode {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
   string name = 2;
-  int64 parent_id = 3; // 0 for root CAs
+  string parent_id = 3 [(buf.validate.field).string.uuid = true]; // 0 for root CAs
   int64 certificates_issued = 4;
   uint32 depth = 5;
   bool is_active = 6;

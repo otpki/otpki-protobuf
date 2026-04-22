@@ -7,6 +7,7 @@
 package key_driverv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/issuance/key/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -129,7 +130,7 @@ func (x *CreateKeyResponse) GetPluginData() *anypb.Any {
 
 type KeyDriverMessage struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	KeyStorageConfigId int64                  `protobuf:"varint,1,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
+	KeyStorageConfigId string                 `protobuf:"bytes,1,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
 	Message            *anypb.Any             `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
@@ -165,11 +166,11 @@ func (*KeyDriverMessage) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *KeyDriverMessage) GetKeyStorageConfigId() int64 {
+func (x *KeyDriverMessage) GetKeyStorageConfigId() string {
 	if x != nil {
 		return x.KeyStorageConfigId
 	}
-	return 0
+	return ""
 }
 
 func (x *KeyDriverMessage) GetMessage() *anypb.Any {
@@ -181,7 +182,7 @@ func (x *KeyDriverMessage) GetMessage() *anypb.Any {
 
 type SignRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KeyId         int64                  `protobuf:"varint,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	KeyId         string                 `protobuf:"bytes,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	Digest        []byte                 `protobuf:"bytes,2,opt,name=digest,proto3" json:"digest,omitempty"`
 	Opts          *anypb.Any             `protobuf:"bytes,3,opt,name=opts,proto3,oneof" json:"opts,omitempty"` // custom serialized format to build crypto.SignerOpts
 	unknownFields protoimpl.UnknownFields
@@ -218,11 +219,11 @@ func (*SignRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *SignRequest) GetKeyId() int64 {
+func (x *SignRequest) GetKeyId() string {
 	if x != nil {
 		return x.KeyId
 	}
-	return 0
+	return ""
 }
 
 func (x *SignRequest) GetDigest() []byte {
@@ -285,7 +286,7 @@ func (x *SignResponse) GetSignature() []byte {
 
 type DecryptRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KeyId         int64                  `protobuf:"varint,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	KeyId         string                 `protobuf:"bytes,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	Ciphertext    []byte                 `protobuf:"bytes,2,opt,name=ciphertext,proto3" json:"ciphertext,omitempty"`
 	Opts          *anypb.Any             `protobuf:"bytes,3,opt,name=opts,proto3,oneof" json:"opts,omitempty"` // custom serialized format to build crypto.DecrypterOpts
 	unknownFields protoimpl.UnknownFields
@@ -322,11 +323,11 @@ func (*DecryptRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DecryptRequest) GetKeyId() int64 {
+func (x *DecryptRequest) GetKeyId() string {
 	if x != nil {
 		return x.KeyId
 	}
-	return 0
+	return ""
 }
 
 func (x *DecryptRequest) GetCiphertext() []byte {
@@ -564,7 +565,7 @@ var File_otpki_common_issuance_plugin_key_driver_v1_plugin_proto protoreflect.Fi
 
 const file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDesc = "" +
 	"\n" +
-	"7otpki/common/issuance/plugin/key_driver/v1/plugin.proto\x12*otpki.common.issuance.plugin.key_driver.v1\x1a\x19google/protobuf/any.proto\x1a&otpki/common/issuance/key/v1/key.proto\"g\n" +
+	"7otpki/common/issuance/plugin/key_driver/v1/plugin.proto\x12*otpki.common.issuance.plugin.key_driver.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a&otpki/common/issuance/key/v1/key.proto\"g\n" +
 	"\bKeyModel\x12<\n" +
 	"\bkey_info\x18\x01 \x01(\v2!.otpki.common.issuance.key.v1.KeyR\akeyInfo\x12\x1d\n" +
 	"\n" +
@@ -572,19 +573,19 @@ const file_otpki_common_issuance_plugin_key_driver_v1_plugin_proto_rawDesc = "" 
 	"\x11CreateKeyResponse\x12F\n" +
 	"\x03key\x18\x01 \x01(\v24.otpki.common.issuance.plugin.key_driver.v1.KeyModelR\x03key\x125\n" +
 	"\vplugin_data\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\n" +
-	"pluginData\"u\n" +
-	"\x10KeyDriverMessage\x121\n" +
-	"\x15key_storage_config_id\x18\x01 \x01(\x03R\x12keyStorageConfigId\x12.\n" +
-	"\amessage\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\amessage\"t\n" +
-	"\vSignRequest\x12\x15\n" +
-	"\x06key_id\x18\x01 \x01(\x03R\x05keyId\x12\x16\n" +
+	"pluginData\"\x7f\n" +
+	"\x10KeyDriverMessage\x12;\n" +
+	"\x15key_storage_config_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x12keyStorageConfigId\x12.\n" +
+	"\amessage\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\amessage\"~\n" +
+	"\vSignRequest\x12\x1f\n" +
+	"\x06key_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\x12\x16\n" +
 	"\x06digest\x18\x02 \x01(\fR\x06digest\x12-\n" +
 	"\x04opts\x18\x03 \x01(\v2\x14.google.protobuf.AnyH\x00R\x04opts\x88\x01\x01B\a\n" +
 	"\x05_opts\",\n" +
 	"\fSignResponse\x12\x1c\n" +
-	"\tsignature\x18\x01 \x01(\fR\tsignature\"\x7f\n" +
-	"\x0eDecryptRequest\x12\x15\n" +
-	"\x06key_id\x18\x01 \x01(\x03R\x05keyId\x12\x1e\n" +
+	"\tsignature\x18\x01 \x01(\fR\tsignature\"\x89\x01\n" +
+	"\x0eDecryptRequest\x12\x1f\n" +
+	"\x06key_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\x12\x1e\n" +
 	"\n" +
 	"ciphertext\x18\x02 \x01(\fR\n" +
 	"ciphertext\x12-\n" +

@@ -278,9 +278,9 @@ export declare const CAHierarchyOverviewSchema: GenMessage<CAHierarchyOverview, 
  */
 export declare type CANode = Message<"otpki.public.issuance.v1.CANode"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -290,9 +290,9 @@ export declare type CANode = Message<"otpki.public.issuance.v1.CANode"> & {
   /**
    * 0 for root CAs
    *
-   * @generated from field: int64 parent_id = 3;
+   * @generated from field: string parent_id = 3;
    */
-  parentId: bigint;
+  parentId: string;
 
   /**
    * @generated from field: int64 certificates_issued = 4;
@@ -315,7 +315,7 @@ export declare type CANode = Message<"otpki.public.issuance.v1.CANode"> & {
  */
 export declare type CANodeJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -327,7 +327,7 @@ export declare type CANodeJson = {
   /**
    * 0 for root CAs
    *
-   * @generated from field: int64 parent_id = 3;
+   * @generated from field: string parent_id = 3;
    */
   parentId?: string;
 

@@ -7,6 +7,7 @@
 package issuancev1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -296,9 +297,9 @@ func (x *CAHierarchyOverview) GetActiveCas() int64 {
 
 type CANode struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Id                 int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name               string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	ParentId           int64                  `protobuf:"varint,3,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"` // 0 for root CAs
+	ParentId           string                 `protobuf:"bytes,3,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"` // 0 for root CAs
 	CertificatesIssued int64                  `protobuf:"varint,4,opt,name=certificates_issued,json=certificatesIssued,proto3" json:"certificates_issued,omitempty"`
 	Depth              uint32                 `protobuf:"varint,5,opt,name=depth,proto3" json:"depth,omitempty"`
 	IsActive           bool                   `protobuf:"varint,6,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
@@ -336,11 +337,11 @@ func (*CANode) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_metrics_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *CANode) GetId() int64 {
+func (x *CANode) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *CANode) GetName() string {
@@ -350,11 +351,11 @@ func (x *CANode) GetName() string {
 	return ""
 }
 
-func (x *CANode) GetParentId() int64 {
+func (x *CANode) GetParentId() string {
 	if x != nil {
 		return x.ParentId
 	}
-	return 0
+	return ""
 }
 
 func (x *CANode) GetCertificatesIssued() int64 {
@@ -557,7 +558,7 @@ var File_otpki_public_issuance_v1_metrics_proto protoreflect.FileDescriptor
 
 const file_otpki_public_issuance_v1_metrics_proto_rawDesc = "" +
 	"\n" +
-	"&otpki/public/issuance/v1/metrics.proto\x12\x18otpki.public.issuance.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb2\x03\n" +
+	"&otpki/public/issuance/v1/metrics.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb2\x03\n" +
 	"\x10DashboardMetrics\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12f\n" +
 	"\x12certificate_status\x18\x02 \x01(\v27.otpki.public.issuance.v1.CertificateStatusDistributionR\x11certificateStatus\x12T\n" +
@@ -577,11 +578,11 @@ const file_otpki_public_issuance_v1_metrics_proto_rawDesc = "" +
 	"\x05nodes\x18\x01 \x03(\v2 .otpki.public.issuance.v1.CANodeR\x05nodes\x12\x1b\n" +
 	"\ttotal_cas\x18\x02 \x01(\x03R\btotalCas\x12\x1d\n" +
 	"\n" +
-	"active_cas\x18\x03 \x01(\x03R\tactiveCas\"\xad\x01\n" +
-	"\x06CANode\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1b\n" +
-	"\tparent_id\x18\x03 \x01(\x03R\bparentId\x12/\n" +
+	"active_cas\x18\x03 \x01(\x03R\tactiveCas\"\xc1\x01\n" +
+	"\x06CANode\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12%\n" +
+	"\tparent_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bparentId\x12/\n" +
 	"\x13certificates_issued\x18\x04 \x01(\x03R\x12certificatesIssued\x12\x14\n" +
 	"\x05depth\x18\x05 \x01(\rR\x05depth\x12\x1b\n" +
 	"\tis_active\x18\x06 \x01(\bR\bisActive\"\xaa\x01\n" +

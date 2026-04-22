@@ -624,11 +624,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -863,39 +861,28 @@ components:
         customExtKeyUsages:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_ext_key_usages
           uniqueItems: true
         customCertificateExts:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_exts
           uniqueItems: true
         availableCertificateAuthorities:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: available_certificate_authorities
           uniqueItems: true
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
       title: CertificateProfile
       additionalProperties: false
     otpki.common.issuance.certificate_profile.v1.CertificateProfileKind:
@@ -1160,24 +1147,21 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCertificateProfileResponse
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCertificateProfileRequest:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteCertificateProfileRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCertificateProfileResponse:
       type: object
@@ -1208,13 +1192,12 @@ components:
       type: object
       properties:
         id:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetCertificateProfileRequest
+      required:
+        - id
       additionalProperties: false
     otpki.public.issuance.v1.GetCertificateProfileResponse:
       type: object

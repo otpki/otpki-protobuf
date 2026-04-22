@@ -11,11 +11,14 @@ message CreateEndEntityRequest {
 }
 
 message CreateEndEntityResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetEndEntityRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetEndEntityResponse {
@@ -32,7 +35,10 @@ message GetEndEntityListResponse {
 }
 
 message DeleteEndEntityRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteEndEntityResponse {}

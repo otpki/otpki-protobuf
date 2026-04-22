@@ -18,9 +18,9 @@ export declare type ScpConfig = Message<"otpki.common.issuance.plugin.publisher.
   /**
    * ssh key in keystore
    *
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: string username = 2;
@@ -60,7 +60,7 @@ export declare type ScpConfigJson = {
   /**
    * ssh key in keystore
    *
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
   keyId?: string;
 

@@ -54,9 +54,9 @@ export declare const CreateEndEntityProfileRequestSchema: GenMessage<CreateEndEn
  */
 export declare type CreateEndEntityProfileResponse = Message<"otpki.public.enrollment.v1.CreateEndEntityProfileResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateEndEntityProfileResponse = Message<"otpki.public.enrol
  */
 export declare type CreateEndEntityProfileResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateEndEntityProfileResponseSchema: GenMessage<CreateEndE
  */
 export declare type GetEndEntityProfileRequest = Message<"otpki.public.enrollment.v1.GetEndEntityProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,12 +92,20 @@ export declare type GetEndEntityProfileRequest = Message<"otpki.public.enrollmen
  */
 export declare type GetEndEntityProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type GetEndEntityProfileRequestValid = GetEndEntityProfileRequest;
+/**
+ * @generated from message otpki.public.enrollment.v1.GetEndEntityProfileRequest
+ */
+export declare type GetEndEntityProfileRequestValid = Message<"otpki.public.enrollment.v1.GetEndEntityProfileRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.enrollment.v1.GetEndEntityProfileRequest.
@@ -196,9 +204,9 @@ export declare const UpdateEndEntityProfileResponseSchema: GenMessage<UpdateEndE
  */
 export declare type DeleteEndEntityProfileRequest = Message<"otpki.public.enrollment.v1.DeleteEndEntityProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -206,12 +214,20 @@ export declare type DeleteEndEntityProfileRequest = Message<"otpki.public.enroll
  */
 export declare type DeleteEndEntityProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type DeleteEndEntityProfileRequestValid = DeleteEndEntityProfileRequest;
+/**
+ * @generated from message otpki.public.enrollment.v1.DeleteEndEntityProfileRequest
+ */
+export declare type DeleteEndEntityProfileRequestValid = Message<"otpki.public.enrollment.v1.DeleteEndEntityProfileRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.enrollment.v1.DeleteEndEntityProfileRequest.

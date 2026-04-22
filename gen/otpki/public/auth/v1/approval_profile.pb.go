@@ -71,7 +71,7 @@ func (x *CreateApprovalProfileRequest) GetApprovalProfile() *v1.ApprovalProfile 
 
 type CreateApprovalProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateApprovalProfileResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_approval_profile_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateApprovalProfileResponse) GetId() int64 {
+func (x *CreateApprovalProfileResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetApprovalProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetApprovalProfileRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_approval_profile_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetApprovalProfileRequest) GetId() int64 {
+func (x *GetApprovalProfileRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetApprovalProfileResponse struct {
@@ -291,7 +291,7 @@ func (*UpdateApprovalProfileResponse) Descriptor() ([]byte, []int) {
 
 type DeleteApprovalProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,11 +326,11 @@ func (*DeleteApprovalProfileRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_approval_profile_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteApprovalProfileRequest) GetId() int64 {
+func (x *DeleteApprovalProfileRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteApprovalProfileResponse struct {
@@ -471,20 +471,20 @@ const file_otpki_public_auth_v1_approval_profile_proto_rawDesc = "" +
 	"\n" +
 	"+otpki/public/auth/v1/approval_profile.proto\x12\x14otpki.public.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\"x\n" +
 	"\x1cCreateApprovalProfileRequest\x12X\n" +
-	"\x10approval_profile\x18\x01 \x01(\v2%.otpki.common.auth.v1.ApprovalProfileB\x06\xbaH\x03\xc8\x01\x01R\x0fapprovalProfile\"/\n" +
-	"\x1dCreateApprovalProfileResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"3\n" +
-	"\x19GetApprovalProfileRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"n\n" +
+	"\x10approval_profile\x18\x01 \x01(\v2%.otpki.common.auth.v1.ApprovalProfileB\x06\xbaH\x03\xc8\x01\x01R\x0fapprovalProfile\"9\n" +
+	"\x1dCreateApprovalProfileResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"8\n" +
+	"\x19GetApprovalProfileRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"n\n" +
 	"\x1aGetApprovalProfileResponse\x12P\n" +
 	"\x10approval_profile\x18\x01 \x01(\v2%.otpki.common.auth.v1.ApprovalProfileR\x0fapprovalProfile\"\xad\x01\n" +
 	"\x1cUpdateApprovalProfileRequest\x12P\n" +
 	"\x10approval_profile\x18\x01 \x01(\v2%.otpki.common.auth.v1.ApprovalProfileR\x0fapprovalProfile\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"\x1f\n" +
-	"\x1dUpdateApprovalProfileResponse\"6\n" +
-	"\x1cDeleteApprovalProfileRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x1f\n" +
+	"\x1dUpdateApprovalProfileResponse\";\n" +
+	"\x1cDeleteApprovalProfileRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x1f\n" +
 	"\x1dDeleteApprovalProfileResponse\"m\n" +
 	"\x1dGetApprovalProfileListRequest\x12L\n" +
 	"\n" +

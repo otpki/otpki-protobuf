@@ -21,7 +21,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/issuance/v1/key_storage_config.proto.
  */
 export const file_otpki_public_issuance_v1_key_storage_config: GenFile = /*@__PURE__*/
-  fileDesc("CjFvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEva2V5X3N0b3JhZ2VfY29uZmlnLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEidgodQ3JlYXRlS2V5U3RvcmFnZUNvbmZpZ1JlcXVlc3QSVQoGY29uZmlnGAEgASgLMj0ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleV9zdG9yYWdlX2NvbmZpZy52MS5LZXlTdG9yYWdlQ29uZmlnQga6SAPIAQEiLAoeQ3JlYXRlS2V5U3RvcmFnZUNvbmZpZ1Jlc3BvbnNlEgoKAmlkGAEgASgDIjEKGkdldEtleVN0b3JhZ2VDb25maWdSZXF1ZXN0EhMKAmlkGAEgASgDQge6SAQiAiAAImwKG0dldEtleVN0b3JhZ2VDb25maWdSZXNwb25zZRJNCgZjb25maWcYASABKAsyPS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5X3N0b3JhZ2VfY29uZmlnLnYxLktleVN0b3JhZ2VDb25maWcinwEKHVVwZGF0ZUtleVN0b3JhZ2VDb25maWdSZXF1ZXN0Ek0KBmNvbmZpZxgBIAEoCzI9Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5rZXlfc3RvcmFnZV9jb25maWcudjEuS2V5U3RvcmFnZUNvbmZpZxIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siIAoeVXBkYXRlS2V5U3RvcmFnZUNvbmZpZ1Jlc3BvbnNlIjQKHURlbGV0ZUtleVN0b3JhZ2VDb25maWdSZXF1ZXN0EhMKAmlkGAEgASgDQge6SAQiAiAAIiAKHkRlbGV0ZUtleVN0b3JhZ2VDb25maWdSZXNwb25zZSJiCh5HZXRLZXlTdG9yYWdlQ29uZmlnTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QisQEKH0dldEtleVN0b3JhZ2VDb25maWdMaXN0UmVzcG9uc2USSwoEZGF0YRgBIAMoCzI9Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5rZXlfc3RvcmFnZV9jb25maWcudjEuS2V5U3RvcmFnZUNvbmZpZxJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UibAobU2VuZEtleURyaXZlck1lc3NhZ2VSZXF1ZXN0Ek0KB21lc3NhZ2UYASABKAsyPC5vdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLmtleV9kcml2ZXIudjEuS2V5RHJpdmVyTWVzc2FnZSJGChxTZW5kS2V5RHJpdmVyTWVzc2FnZVJlc3BvbnNlEiYKCHJlc3BvbnNlGAEgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueSJ2Ch9BY3RpdmF0ZUtleVN0b3JhZ2VDb25maWdSZXF1ZXN0ElMKCmFjdGl2YXRpb24YASABKAsyNy5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5X3N0b3JhZ2VfY29uZmlnLnYxLkFjdGl2YXRpb25CBrpIA8gBASIiCiBBY3RpdmF0ZUtleVN0b3JhZ2VDb25maWdSZXNwb25zZSJKCiFEZWFjdGl2YXRlS2V5U3RvcmFnZUNvbmZpZ1JlcXVlc3QSJQoVa2V5X3N0b3JhZ2VfY29uZmlnX2lkGAEgASgDQga6SAPIAQEiJAoiRGVhY3RpdmF0ZUtleVN0b3JhZ2VDb25maWdSZXNwb25zZUK6AQocY29tLm90cGtpLnB1YmxpYy5pc3N1YW5jZS52MUIVS2V5U3RvcmFnZUNvbmZpZ1Byb3RvUAGiAgNPUEmqAhhPdHBraS5QdWJsaWMuSXNzdWFuY2UuVjHKAhlPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYx4gIlT3Rwa2lcUHVibGljX1xJc3N1YW5jZVxWMVxHUEJNZXRhZGF0YeoCG090cGtpOjpQdWJsaWM6Oklzc3VhbmNlOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_key_storage_config_v1_activation, file_otpki_common_issuance_key_storage_config_v1_key_storage_config, file_otpki_common_issuance_plugin_key_driver_v1_plugin]);
+  fileDesc("CjFvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEva2V5X3N0b3JhZ2VfY29uZmlnLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEidgodQ3JlYXRlS2V5U3RvcmFnZUNvbmZpZ1JlcXVlc3QSVQoGY29uZmlnGAEgASgLMj0ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleV9zdG9yYWdlX2NvbmZpZy52MS5LZXlTdG9yYWdlQ29uZmlnQga6SAPIAQEiNgoeQ3JlYXRlS2V5U3RvcmFnZUNvbmZpZ1Jlc3BvbnNlEhQKAmlkGAEgASgJQgi6SAVyA7ABASI1ChpHZXRLZXlTdG9yYWdlQ29uZmlnUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEibAobR2V0S2V5U3RvcmFnZUNvbmZpZ1Jlc3BvbnNlEk0KBmNvbmZpZxgBIAEoCzI9Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5rZXlfc3RvcmFnZV9jb25maWcudjEuS2V5U3RvcmFnZUNvbmZpZyKfAQodVXBkYXRlS2V5U3RvcmFnZUNvbmZpZ1JlcXVlc3QSTQoGY29uZmlnGAEgASgLMj0ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleV9zdG9yYWdlX2NvbmZpZy52MS5LZXlTdG9yYWdlQ29uZmlnEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzayIgCh5VcGRhdGVLZXlTdG9yYWdlQ29uZmlnUmVzcG9uc2UiOAodRGVsZXRlS2V5U3RvcmFnZUNvbmZpZ1JlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIiAKHkRlbGV0ZUtleVN0b3JhZ2VDb25maWdSZXNwb25zZSJiCh5HZXRLZXlTdG9yYWdlQ29uZmlnTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QisQEKH0dldEtleVN0b3JhZ2VDb25maWdMaXN0UmVzcG9uc2USSwoEZGF0YRgBIAMoCzI9Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5rZXlfc3RvcmFnZV9jb25maWcudjEuS2V5U3RvcmFnZUNvbmZpZxJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UibAobU2VuZEtleURyaXZlck1lc3NhZ2VSZXF1ZXN0Ek0KB21lc3NhZ2UYASABKAsyPC5vdHBraS5jb21tb24uaXNzdWFuY2UucGx1Z2luLmtleV9kcml2ZXIudjEuS2V5RHJpdmVyTWVzc2FnZSJGChxTZW5kS2V5RHJpdmVyTWVzc2FnZVJlc3BvbnNlEiYKCHJlc3BvbnNlGAEgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueSJ2Ch9BY3RpdmF0ZUtleVN0b3JhZ2VDb25maWdSZXF1ZXN0ElMKCmFjdGl2YXRpb24YASABKAsyNy5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5X3N0b3JhZ2VfY29uZmlnLnYxLkFjdGl2YXRpb25CBrpIA8gBASIiCiBBY3RpdmF0ZUtleVN0b3JhZ2VDb25maWdSZXNwb25zZSJPCiFEZWFjdGl2YXRlS2V5U3RvcmFnZUNvbmZpZ1JlcXVlc3QSKgoVa2V5X3N0b3JhZ2VfY29uZmlnX2lkGAEgASgJQgu6SAjIAQFyA7ABASIkCiJEZWFjdGl2YXRlS2V5U3RvcmFnZUNvbmZpZ1Jlc3BvbnNlQroBChxjb20ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxQhVLZXlTdG9yYWdlQ29uZmlnUHJvdG9QAaICA09QSaoCGE90cGtpLlB1YmxpYy5Jc3N1YW5jZS5WMcoCGU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjHiAiVPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYxXEdQQk1ldGFkYXRh6gIbT3Rwa2k6OlB1YmxpYzo6SXNzdWFuY2U6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_key_storage_config_v1_activation, file_otpki_common_issuance_key_storage_config_v1_key_storage_config, file_otpki_common_issuance_plugin_key_driver_v1_plugin]);
 
 /**
  * @generated from message otpki.public.issuance.v1.CreateKeyStorageConfigRequest
@@ -65,9 +65,9 @@ export const CreateKeyStorageConfigRequestSchema: GenMessage<CreateKeyStorageCon
  */
 export type CreateKeyStorageConfigResponse = Message<"otpki.public.issuance.v1.CreateKeyStorageConfigResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -75,7 +75,7 @@ export type CreateKeyStorageConfigResponse = Message<"otpki.public.issuance.v1.C
  */
 export type CreateKeyStorageConfigResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -94,9 +94,9 @@ export const CreateKeyStorageConfigResponseSchema: GenMessage<CreateKeyStorageCo
  */
 export type GetKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.GetKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -104,12 +104,20 @@ export type GetKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.GetKe
  */
 export type GetKeyStorageConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export type GetKeyStorageConfigRequestValid = GetKeyStorageConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.GetKeyStorageConfigRequest
+ */
+export type GetKeyStorageConfigRequestValid = Message<"otpki.public.issuance.v1.GetKeyStorageConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.GetKeyStorageConfigRequest.
@@ -212,9 +220,9 @@ export const UpdateKeyStorageConfigResponseSchema: GenMessage<UpdateKeyStorageCo
  */
 export type DeleteKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.DeleteKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -222,12 +230,20 @@ export type DeleteKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.De
  */
 export type DeleteKeyStorageConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export type DeleteKeyStorageConfigRequestValid = DeleteKeyStorageConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeleteKeyStorageConfigRequest
+ */
+export type DeleteKeyStorageConfigRequestValid = Message<"otpki.public.issuance.v1.DeleteKeyStorageConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeleteKeyStorageConfigRequest.
@@ -446,9 +462,9 @@ export const ActivateKeyStorageConfigResponseSchema: GenMessage<ActivateKeyStora
  */
 export type DeactivateKeyStorageConfigRequest = Message<"otpki.public.issuance.v1.DeactivateKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 };
 
 /**
@@ -456,7 +472,7 @@ export type DeactivateKeyStorageConfigRequest = Message<"otpki.public.issuance.v
  */
 export type DeactivateKeyStorageConfigRequestJson = {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
   keyStorageConfigId?: string;
 };
@@ -466,9 +482,9 @@ export type DeactivateKeyStorageConfigRequestJson = {
  */
 export type DeactivateKeyStorageConfigRequestValid = Message<"otpki.public.issuance.v1.DeactivateKeyStorageConfigRequest"> & {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 };
 
 /**

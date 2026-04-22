@@ -11,11 +11,14 @@ message CreateUserRequest {
 }
 
 message CreateUserResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetUserRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetUserResponse {
@@ -55,7 +58,10 @@ message UpdateUserRequest {
 message UpdateUserResponse {}
 
 message DeleteUserRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteUserResponse {}

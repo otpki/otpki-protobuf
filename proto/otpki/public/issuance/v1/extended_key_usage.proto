@@ -11,11 +11,14 @@ message CreateCustomExtKeyUsageRequest {
 }
 
 message CreateCustomExtKeyUsageResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetCustomExtKeyUsageRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetCustomExtKeyUsageResponse {
@@ -30,7 +33,10 @@ message UpdateCustomExtKeyUsageRequest {
 message UpdateCustomExtKeyUsageResponse {}
 
 message DeleteCustomExtKeyUsageRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteCustomExtKeyUsageResponse {}

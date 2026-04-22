@@ -174,11 +174,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -290,38 +288,26 @@ components:
         availableCertificateProfileIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: available_certificate_profile_ids
           uniqueItems: true
           description: issuance information
         defaultCertificateProfileId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: default_certificate_profile_id
-          format: int64
+          format: uuid
         availableCertificateAuthorityIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: available_certificate_authority_ids
           uniqueItems: true
         defaultCertificateAuthorityId:
-          exclusiveMinimum: 0
-          type:
-            - integer
-            - string
+          type: string
           title: default_certificate_authority_id
-          format: int64
+          format: uuid
         useValidityStartTime:
           type: boolean
           title: use_validity_start_time
@@ -375,11 +361,9 @@ components:
           title: use_custom_certificate_exts
           description: explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity allow EE to add to custom exts (will be concatenated with cert profile)
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
       title: EndEntityProfile
       additionalProperties: false
     otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileSANAttribute:

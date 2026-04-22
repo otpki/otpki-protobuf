@@ -638,11 +638,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         oid:
@@ -710,22 +708,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateCustomCertificateExtensionResponse
       additionalProperties: false
     otpki.public.issuance.v1.DeleteCustomCertificateExtensionRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteCustomCertificateExtensionRequest
       required:
         - id
@@ -759,11 +753,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetCustomCertificateExtensionRequest
       required:
         - id

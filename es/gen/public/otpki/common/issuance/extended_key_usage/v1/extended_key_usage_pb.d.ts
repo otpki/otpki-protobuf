@@ -18,9 +18,9 @@ export declare type CustomExtKeyUsage = Message<"otpki.common.issuance.extended_
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string oid = 2;
@@ -59,7 +59,7 @@ export declare type CustomExtKeyUsageJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -100,9 +100,9 @@ export declare type CustomExtKeyUsageValid = Message<"otpki.common.issuance.exte
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string oid = 2;

@@ -24,9 +24,9 @@ export declare type GetEndEntityCertificateBySerialNumberRequest = Message<"otpk
   /**
    * this param does not do anything, it's for the path to satisfy a pattern
    *
-   * @generated from field: int64 end_entity_id = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -41,7 +41,7 @@ export declare type GetEndEntityCertificateBySerialNumberRequestJson = {
   /**
    * this param does not do anything, it's for the path to satisfy a pattern
    *
-   * @generated from field: int64 end_entity_id = 2;
+   * @generated from field: string end_entity_id = 2;
    */
   endEntityId?: string;
 };
@@ -58,9 +58,9 @@ export declare type GetEndEntityCertificateBySerialNumberRequestValid = Message<
   /**
    * this param does not do anything, it's for the path to satisfy a pattern
    *
-   * @generated from field: int64 end_entity_id = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -102,9 +102,9 @@ export declare const GetEndEntityCertificateBySerialNumberResponseSchema: GenMes
  */
 export declare type GetEndEntityCertificatesRequest = Message<"otpki.public.enrollment.v1.GetEndEntityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -112,7 +112,7 @@ export declare type GetEndEntityCertificatesRequest = Message<"otpki.public.enro
  */
 export declare type GetEndEntityCertificatesRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 };
@@ -122,9 +122,9 @@ export declare type GetEndEntityCertificatesRequestJson = {
  */
 export declare type GetEndEntityCertificatesRequestValid = Message<"otpki.public.enrollment.v1.GetEndEntityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
