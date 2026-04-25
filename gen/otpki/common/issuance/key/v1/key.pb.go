@@ -170,6 +170,14 @@ const (
 	KeyType_KEY_TYPE_SLHDSA_SHAKE256S KeyType = 4018
 	KeyType_KEY_TYPE_SLHDSA_SHA256F   KeyType = 4019
 	KeyType_KEY_TYPE_SLHDSA_SHAKE256F KeyType = 4020
+	// ML-KEM (FIPS 203)
+	KeyType_KEY_TYPE_MLKEM_512  KeyType = 4100
+	KeyType_KEY_TYPE_MLKEM_768  KeyType = 4101
+	KeyType_KEY_TYPE_MLKEM_1024 KeyType = 4102
+	// Hash-Based Signatures (NIST SP 800-208)
+	KeyType_KEY_TYPE_LMS  KeyType = 4200
+	KeyType_KEY_TYPE_HSS  KeyType = 4201
+	KeyType_KEY_TYPE_XMSS KeyType = 4202
 )
 
 // Enum value maps for KeyType.
@@ -297,6 +305,12 @@ var (
 		4018: "KEY_TYPE_SLHDSA_SHAKE256S",
 		4019: "KEY_TYPE_SLHDSA_SHA256F",
 		4020: "KEY_TYPE_SLHDSA_SHAKE256F",
+		4100: "KEY_TYPE_MLKEM_512",
+		4101: "KEY_TYPE_MLKEM_768",
+		4102: "KEY_TYPE_MLKEM_1024",
+		4200: "KEY_TYPE_LMS",
+		4201: "KEY_TYPE_HSS",
+		4202: "KEY_TYPE_XMSS",
 	}
 	KeyType_value = map[string]int32{
 		"KEY_TYPE_UNSPECIFIED":      0,
@@ -421,6 +435,12 @@ var (
 		"KEY_TYPE_SLHDSA_SHAKE256S": 4018,
 		"KEY_TYPE_SLHDSA_SHA256F":   4019,
 		"KEY_TYPE_SLHDSA_SHAKE256F": 4020,
+		"KEY_TYPE_MLKEM_512":        4100,
+		"KEY_TYPE_MLKEM_768":        4101,
+		"KEY_TYPE_MLKEM_1024":       4102,
+		"KEY_TYPE_LMS":              4200,
+		"KEY_TYPE_HSS":              4201,
+		"KEY_TYPE_XMSS":             4202,
 	}
 )
 
@@ -457,6 +477,7 @@ const (
 	KeyUsage_KEY_USAGE_UNSPECIFIED     KeyUsage = 0
 	KeyUsage_KEY_USAGE_SIGN_VERIFY     KeyUsage = 1
 	KeyUsage_KEY_USAGE_ENCRYPT_DECRYPT KeyUsage = 2
+	KeyUsage_KEY_USAGE_KEY_AGREEMENT   KeyUsage = 3
 )
 
 // Enum value maps for KeyUsage.
@@ -465,11 +486,13 @@ var (
 		0: "KEY_USAGE_UNSPECIFIED",
 		1: "KEY_USAGE_SIGN_VERIFY",
 		2: "KEY_USAGE_ENCRYPT_DECRYPT",
+		3: "KEY_USAGE_KEY_AGREEMENT",
 	}
 	KeyUsage_value = map[string]int32{
 		"KEY_USAGE_UNSPECIFIED":     0,
 		"KEY_USAGE_SIGN_VERIFY":     1,
 		"KEY_USAGE_ENCRYPT_DECRYPT": 2,
+		"KEY_USAGE_KEY_AGREEMENT":   3,
 	}
 )
 
@@ -635,7 +658,7 @@ const file_otpki_common_issuance_key_v1_key_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt*\xbf\x1c\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt*\xc5\x1d\n" +
 	"\aKeyType\x12\x18\n" +
 	"\x14KEY_TYPE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x11KEY_TYPE_RSA_1024\x10\xe8\a\x12\x16\n" +
@@ -758,11 +781,18 @@ const file_otpki_common_issuance_key_v1_key_proto_rawDesc = "" +
 	"\x17KEY_TYPE_SLHDSA_SHA256S\x10\xb1\x1f\x12\x1e\n" +
 	"\x19KEY_TYPE_SLHDSA_SHAKE256S\x10\xb2\x1f\x12\x1c\n" +
 	"\x17KEY_TYPE_SLHDSA_SHA256F\x10\xb3\x1f\x12\x1e\n" +
-	"\x19KEY_TYPE_SLHDSA_SHAKE256F\x10\xb4\x1f*_\n" +
+	"\x19KEY_TYPE_SLHDSA_SHAKE256F\x10\xb4\x1f\x12\x17\n" +
+	"\x12KEY_TYPE_MLKEM_512\x10\x84 \x12\x17\n" +
+	"\x12KEY_TYPE_MLKEM_768\x10\x85 \x12\x18\n" +
+	"\x13KEY_TYPE_MLKEM_1024\x10\x86 \x12\x11\n" +
+	"\fKEY_TYPE_LMS\x10\xe8 \x12\x11\n" +
+	"\fKEY_TYPE_HSS\x10\xe9 \x12\x12\n" +
+	"\rKEY_TYPE_XMSS\x10\xea *|\n" +
 	"\bKeyUsage\x12\x19\n" +
 	"\x15KEY_USAGE_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15KEY_USAGE_SIGN_VERIFY\x10\x01\x12\x1d\n" +
-	"\x19KEY_USAGE_ENCRYPT_DECRYPT\x10\x02B\x89\x02\n" +
+	"\x19KEY_USAGE_ENCRYPT_DECRYPT\x10\x02\x12\x1b\n" +
+	"\x17KEY_USAGE_KEY_AGREEMENT\x10\x03B\x89\x02\n" +
 	" com.otpki.common.issuance.key.v1B\bKeyProtoP\x01ZFgithub.com/otpki/otpki-protobuf/gen/otpki/common/issuance/key/v1;keyv1\xa2\x02\x04OCIK\xaa\x02\x1cOtpki.Common.Issuance.Key.V1\xca\x02\x1cOtpki\\Common\\Issuance\\Key\\V1\xe2\x02(Otpki\\Common\\Issuance\\Key\\V1\\GPBMetadata\xea\x02 Otpki::Common::Issuance::Key::V1b\x06proto3"
 
 var (

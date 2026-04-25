@@ -21,6 +21,58 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type MLDSAPHType int32
+
+const (
+	MLDSAPHType_MLDSAPH_TYPE_UNSPECIFIED MLDSAPHType = 0 // default (pure)
+	MLDSAPHType_MLDSAPH_TYPE_PURE        MLDSAPHType = 1 // direct
+	MLDSAPHType_MLDSAPH_TYPE_PREHASH     MLDSAPHType = 2 // HashML-DSA
+	MLDSAPHType_MLDSAPH_TYPE_EXTERNAL_MU MLDSAPHType = 3 // computed mu
+)
+
+// Enum value maps for MLDSAPHType.
+var (
+	MLDSAPHType_name = map[int32]string{
+		0: "MLDSAPH_TYPE_UNSPECIFIED",
+		1: "MLDSAPH_TYPE_PURE",
+		2: "MLDSAPH_TYPE_PREHASH",
+		3: "MLDSAPH_TYPE_EXTERNAL_MU",
+	}
+	MLDSAPHType_value = map[string]int32{
+		"MLDSAPH_TYPE_UNSPECIFIED": 0,
+		"MLDSAPH_TYPE_PURE":        1,
+		"MLDSAPH_TYPE_PREHASH":     2,
+		"MLDSAPH_TYPE_EXTERNAL_MU": 3,
+	}
+)
+
+func (x MLDSAPHType) Enum() *MLDSAPHType {
+	p := new(MLDSAPHType)
+	*p = x
+	return p
+}
+
+func (x MLDSAPHType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (MLDSAPHType) Descriptor() protoreflect.EnumDescriptor {
+	return file_otpki_common_issuance_key_v1_crypto_proto_enumTypes[0].Descriptor()
+}
+
+func (MLDSAPHType) Type() protoreflect.EnumType {
+	return &file_otpki_common_issuance_key_v1_crypto_proto_enumTypes[0]
+}
+
+func (x MLDSAPHType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use MLDSAPHType.Descriptor instead.
+func (MLDSAPHType) EnumDescriptor() ([]byte, []int) {
+	return file_otpki_common_issuance_key_v1_crypto_proto_rawDescGZIP(), []int{0}
+}
+
 type RSAPSSOptions struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SaltLength    int32                  `protobuf:"varint,1,opt,name=salt_length,json=saltLength,proto3" json:"salt_length,omitempty"`
@@ -221,6 +273,66 @@ func (x *Ed25519Options) GetContext() string {
 	return ""
 }
 
+type MLDSASigningOptions struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Variant       MLDSAPHType            `protobuf:"varint,1,opt,name=variant,proto3,enum=otpki.common.issuance.key.v1.MLDSAPHType" json:"variant,omitempty"`
+	Context       []byte                 `protobuf:"bytes,2,opt,name=context,proto3" json:"context,omitempty"`
+	Prehash       uint32                 `protobuf:"varint,3,opt,name=prehash,proto3" json:"prehash,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MLDSASigningOptions) Reset() {
+	*x = MLDSASigningOptions{}
+	mi := &file_otpki_common_issuance_key_v1_crypto_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MLDSASigningOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MLDSASigningOptions) ProtoMessage() {}
+
+func (x *MLDSASigningOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_issuance_key_v1_crypto_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MLDSASigningOptions.ProtoReflect.Descriptor instead.
+func (*MLDSASigningOptions) Descriptor() ([]byte, []int) {
+	return file_otpki_common_issuance_key_v1_crypto_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MLDSASigningOptions) GetVariant() MLDSAPHType {
+	if x != nil {
+		return x.Variant
+	}
+	return MLDSAPHType_MLDSAPH_TYPE_UNSPECIFIED
+}
+
+func (x *MLDSASigningOptions) GetContext() []byte {
+	if x != nil {
+		return x.Context
+	}
+	return nil
+}
+
+func (x *MLDSASigningOptions) GetPrehash() uint32 {
+	if x != nil {
+		return x.Prehash
+	}
+	return 0
+}
+
 var File_otpki_common_issuance_key_v1_crypto_proto protoreflect.FileDescriptor
 
 const file_otpki_common_issuance_key_v1_crypto_proto_rawDesc = "" +
@@ -237,7 +349,16 @@ const file_otpki_common_issuance_key_v1_crypto_proto_rawDesc = "" +
 	"\x0fsession_key_len\x18\x01 \x01(\x05R\rsessionKeyLen\">\n" +
 	"\x0eEd25519Options\x12\x12\n" +
 	"\x04hash\x18\x01 \x01(\rR\x04hash\x12\x18\n" +
-	"\acontext\x18\x02 \x01(\tR\acontextB\x8c\x02\n" +
+	"\acontext\x18\x02 \x01(\tR\acontext\"\x8e\x01\n" +
+	"\x13MLDSASigningOptions\x12C\n" +
+	"\avariant\x18\x01 \x01(\x0e2).otpki.common.issuance.key.v1.MLDSAPHTypeR\avariant\x12\x18\n" +
+	"\acontext\x18\x02 \x01(\fR\acontext\x12\x18\n" +
+	"\aprehash\x18\x03 \x01(\rR\aprehash*z\n" +
+	"\vMLDSAPHType\x12\x1c\n" +
+	"\x18MLDSAPH_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
+	"\x11MLDSAPH_TYPE_PURE\x10\x01\x12\x18\n" +
+	"\x14MLDSAPH_TYPE_PREHASH\x10\x02\x12\x1c\n" +
+	"\x18MLDSAPH_TYPE_EXTERNAL_MU\x10\x03B\x8c\x02\n" +
 	" com.otpki.common.issuance.key.v1B\vCryptoProtoP\x01ZFgithub.com/otpki/otpki-protobuf/gen/otpki/common/issuance/key/v1;keyv1\xa2\x02\x04OCIK\xaa\x02\x1cOtpki.Common.Issuance.Key.V1\xca\x02\x1cOtpki\\Common\\Issuance\\Key\\V1\xe2\x02(Otpki\\Common\\Issuance\\Key\\V1\\GPBMetadata\xea\x02 Otpki::Common::Issuance::Key::V1b\x06proto3"
 
 var (
@@ -252,19 +373,23 @@ func file_otpki_common_issuance_key_v1_crypto_proto_rawDescGZIP() []byte {
 	return file_otpki_common_issuance_key_v1_crypto_proto_rawDescData
 }
 
-var file_otpki_common_issuance_key_v1_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_otpki_common_issuance_key_v1_crypto_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_otpki_common_issuance_key_v1_crypto_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_otpki_common_issuance_key_v1_crypto_proto_goTypes = []any{
-	(*RSAPSSOptions)(nil),             // 0: otpki.common.issuance.key.v1.RSAPSSOptions
-	(*RSAOAEPOptions)(nil),            // 1: otpki.common.issuance.key.v1.RSAOAEPOptions
-	(*RSAPKCS1V15DecryptOptions)(nil), // 2: otpki.common.issuance.key.v1.RSAPKCS1V15DecryptOptions
-	(*Ed25519Options)(nil),            // 3: otpki.common.issuance.key.v1.Ed25519Options
+	(MLDSAPHType)(0),                  // 0: otpki.common.issuance.key.v1.MLDSAPHType
+	(*RSAPSSOptions)(nil),             // 1: otpki.common.issuance.key.v1.RSAPSSOptions
+	(*RSAOAEPOptions)(nil),            // 2: otpki.common.issuance.key.v1.RSAOAEPOptions
+	(*RSAPKCS1V15DecryptOptions)(nil), // 3: otpki.common.issuance.key.v1.RSAPKCS1V15DecryptOptions
+	(*Ed25519Options)(nil),            // 4: otpki.common.issuance.key.v1.Ed25519Options
+	(*MLDSASigningOptions)(nil),       // 5: otpki.common.issuance.key.v1.MLDSASigningOptions
 }
 var file_otpki_common_issuance_key_v1_crypto_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: otpki.common.issuance.key.v1.MLDSASigningOptions.variant:type_name -> otpki.common.issuance.key.v1.MLDSAPHType
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_issuance_key_v1_crypto_proto_init() }
@@ -277,13 +402,14 @@ func file_otpki_common_issuance_key_v1_crypto_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_issuance_key_v1_crypto_proto_rawDesc), len(file_otpki_common_issuance_key_v1_crypto_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   4,
+			NumEnums:      1,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_otpki_common_issuance_key_v1_crypto_proto_goTypes,
 		DependencyIndexes: file_otpki_common_issuance_key_v1_crypto_proto_depIdxs,
+		EnumInfos:         file_otpki_common_issuance_key_v1_crypto_proto_enumTypes,
 		MessageInfos:      file_otpki_common_issuance_key_v1_crypto_proto_msgTypes,
 	}.Build()
 	File_otpki_common_issuance_key_v1_crypto_proto = out.File

@@ -1041,6 +1041,12 @@ components:
         - KEY_TYPE_SLHDSA_SHAKE256S
         - KEY_TYPE_SLHDSA_SHA256F
         - KEY_TYPE_SLHDSA_SHAKE256F
+        - KEY_TYPE_MLKEM_512
+        - KEY_TYPE_MLKEM_768
+        - KEY_TYPE_MLKEM_1024
+        - KEY_TYPE_LMS
+        - KEY_TYPE_HSS
+        - KEY_TYPE_XMSS
     otpki.common.x509.v1.DayOfWeek:
       type: string
       title: DayOfWeek

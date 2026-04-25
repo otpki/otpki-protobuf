@@ -15,6 +15,29 @@ components:
           title: context
       title: Ed25519Options
       additionalProperties: false
+    otpki.common.issuance.key.v1.MLDSAPHType:
+      type: string
+      title: MLDSAPHType
+      enum:
+        - MLDSAPH_TYPE_UNSPECIFIED
+        - MLDSAPH_TYPE_PURE
+        - MLDSAPH_TYPE_PREHASH
+        - MLDSAPH_TYPE_EXTERNAL_MU
+    otpki.common.issuance.key.v1.MLDSASigningOptions:
+      type: object
+      properties:
+        variant:
+          title: variant
+          $ref: '#/components/schemas/otpki.common.issuance.key.v1.MLDSAPHType'
+        context:
+          type: string
+          title: context
+          format: byte
+        prehash:
+          type: integer
+          title: prehash
+      title: MLDSASigningOptions
+      additionalProperties: false
     otpki.common.issuance.key.v1.RSAOAEPOptions:
       type: object
       properties:

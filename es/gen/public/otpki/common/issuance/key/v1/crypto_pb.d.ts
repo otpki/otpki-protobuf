@@ -2,7 +2,7 @@
 // @generated from file otpki/common/issuance/key/v1/crypto.proto (package otpki.common.issuance.key.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
@@ -151,4 +151,95 @@ export declare type Ed25519OptionsValid = Ed25519Options;
  * Use `create(Ed25519OptionsSchema)` to create a new message.
  */
 export declare const Ed25519OptionsSchema: GenMessage<Ed25519Options, {jsonType: Ed25519OptionsJson, validType: Ed25519OptionsValid}>;
+
+/**
+ * @generated from message otpki.common.issuance.key.v1.MLDSASigningOptions
+ */
+export declare type MLDSASigningOptions = Message<"otpki.common.issuance.key.v1.MLDSASigningOptions"> & {
+  /**
+   * @generated from field: otpki.common.issuance.key.v1.MLDSAPHType variant = 1;
+   */
+  variant: MLDSAPHType;
+
+  /**
+   * @generated from field: bytes context = 2;
+   */
+  context: Uint8Array;
+
+  /**
+   * @generated from field: uint32 prehash = 3;
+   */
+  prehash: number;
+};
+
+/**
+ * @generated from message otpki.common.issuance.key.v1.MLDSASigningOptions
+ */
+export declare type MLDSASigningOptionsJson = {
+  /**
+   * @generated from field: otpki.common.issuance.key.v1.MLDSAPHType variant = 1;
+   */
+  variant?: MLDSAPHTypeJson;
+
+  /**
+   * @generated from field: bytes context = 2;
+   */
+  context?: string;
+
+  /**
+   * @generated from field: uint32 prehash = 3;
+   */
+  prehash?: number;
+};
+
+export declare type MLDSASigningOptionsValid = MLDSASigningOptions;
+
+/**
+ * Describes the message otpki.common.issuance.key.v1.MLDSASigningOptions.
+ * Use `create(MLDSASigningOptionsSchema)` to create a new message.
+ */
+export declare const MLDSASigningOptionsSchema: GenMessage<MLDSASigningOptions, {jsonType: MLDSASigningOptionsJson, validType: MLDSASigningOptionsValid}>;
+
+/**
+ * @generated from enum otpki.common.issuance.key.v1.MLDSAPHType
+ */
+export enum MLDSAPHType {
+  /**
+   * default (pure)
+   *
+   * @generated from enum value: MLDSAPH_TYPE_UNSPECIFIED = 0;
+   */
+  MLDSAPH_TYPE_UNSPECIFIED = 0,
+
+  /**
+   * direct
+   *
+   * @generated from enum value: MLDSAPH_TYPE_PURE = 1;
+   */
+  MLDSAPH_TYPE_PURE = 1,
+
+  /**
+   * HashML-DSA
+   *
+   * @generated from enum value: MLDSAPH_TYPE_PREHASH = 2;
+   */
+  MLDSAPH_TYPE_PREHASH = 2,
+
+  /**
+   * computed mu
+   *
+   * @generated from enum value: MLDSAPH_TYPE_EXTERNAL_MU = 3;
+   */
+  MLDSAPH_TYPE_EXTERNAL_MU = 3,
+}
+
+/**
+ * @generated from enum otpki.common.issuance.key.v1.MLDSAPHType
+ */
+export declare type MLDSAPHTypeJson = "MLDSAPH_TYPE_UNSPECIFIED" | "MLDSAPH_TYPE_PURE" | "MLDSAPH_TYPE_PREHASH" | "MLDSAPH_TYPE_EXTERNAL_MU";
+
+/**
+ * Describes the enum otpki.common.issuance.key.v1.MLDSAPHType.
+ */
+export declare const MLDSAPHTypeSchema: GenEnum<MLDSAPHType, MLDSAPHTypeJson>;
 

@@ -607,6 +607,12 @@ components:
         - KEY_TYPE_SLHDSA_SHAKE256S
         - KEY_TYPE_SLHDSA_SHA256F
         - KEY_TYPE_SLHDSA_SHAKE256F
+        - KEY_TYPE_MLKEM_512
+        - KEY_TYPE_MLKEM_768
+        - KEY_TYPE_MLKEM_1024
+        - KEY_TYPE_LMS
+        - KEY_TYPE_HSS
+        - KEY_TYPE_XMSS
     otpki.common.issuance.key.v1.KeyUsage:
       type: string
       title: KeyUsage
@@ -614,6 +620,7 @@ components:
         - KEY_USAGE_UNSPECIFIED
         - KEY_USAGE_SIGN_VERIFY
         - KEY_USAGE_ENCRYPT_DECRYPT
+        - KEY_USAGE_KEY_AGREEMENT
     otpki.common.issuance.key_storage_config.v1.KeyDriverType:
       type: string
       title: KeyDriverType

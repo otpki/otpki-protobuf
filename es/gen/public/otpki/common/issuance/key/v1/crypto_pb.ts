@@ -2,15 +2,15 @@
 // @generated from file otpki/common/issuance/key/v1/crypto.proto (package otpki.common.issuance.key.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file otpki/common/issuance/key/v1/crypto.proto.
  */
 export const file_otpki_common_issuance_key_v1_crypto: GenFile = /*@__PURE__*/
-  fileDesc("CilvdHBraS9jb21tb24vaXNzdWFuY2Uva2V5L3YxL2NyeXB0by5wcm90bxIcb3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleS52MSIyCg1SU0FQU1NPcHRpb25zEhMKC3NhbHRfbGVuZ3RoGAEgASgFEgwKBGhhc2gYAiABKA0iLQoOUlNBT0FFUE9wdGlvbnMSDAoEaGFzaBgBIAEoDRINCgVsYWJlbBgCIAEoDCI0ChlSU0FQS0NTMVYxNURlY3J5cHRPcHRpb25zEhcKD3Nlc3Npb25fa2V5X2xlbhgBIAEoBSIvCg5FZDI1NTE5T3B0aW9ucxIMCgRoYXNoGAEgASgNEg8KB2NvbnRleHQYAiABKAlCxAEKIGNvbS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5LnYxQgtDcnlwdG9Qcm90b1ABogIET0NJS6oCHE90cGtpLkNvbW1vbi5Jc3N1YW5jZS5LZXkuVjHKAhxPdHBraVxDb21tb25cSXNzdWFuY2VcS2V5XFYx4gIoT3Rwa2lcQ29tbW9uXElzc3VhbmNlXEtleVxWMVxHUEJNZXRhZGF0YeoCIE90cGtpOjpDb21tb246Oklzc3VhbmNlOjpLZXk6OlYxYgZwcm90bzM");
+  fileDesc("CilvdHBraS9jb21tb24vaXNzdWFuY2Uva2V5L3YxL2NyeXB0by5wcm90bxIcb3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleS52MSIyCg1SU0FQU1NPcHRpb25zEhMKC3NhbHRfbGVuZ3RoGAEgASgFEgwKBGhhc2gYAiABKA0iLQoOUlNBT0FFUE9wdGlvbnMSDAoEaGFzaBgBIAEoDRINCgVsYWJlbBgCIAEoDCI0ChlSU0FQS0NTMVYxNURlY3J5cHRPcHRpb25zEhcKD3Nlc3Npb25fa2V5X2xlbhgBIAEoBSIvCg5FZDI1NTE5T3B0aW9ucxIMCgRoYXNoGAEgASgNEg8KB2NvbnRleHQYAiABKAkicwoTTUxEU0FTaWduaW5nT3B0aW9ucxI6Cgd2YXJpYW50GAEgASgOMikub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleS52MS5NTERTQVBIVHlwZRIPCgdjb250ZXh0GAIgASgMEg8KB3ByZWhhc2gYAyABKA0qegoLTUxEU0FQSFR5cGUSHAoYTUxEU0FQSF9UWVBFX1VOU1BFQ0lGSUVEEAASFQoRTUxEU0FQSF9UWVBFX1BVUkUQARIYChRNTERTQVBIX1RZUEVfUFJFSEFTSBACEhwKGE1MRFNBUEhfVFlQRV9FWFRFUk5BTF9NVRADQsQBCiBjb20ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleS52MUILQ3J5cHRvUHJvdG9QAaICBE9DSUuqAhxPdHBraS5Db21tb24uSXNzdWFuY2UuS2V5LlYxygIcT3Rwa2lcQ29tbW9uXElzc3VhbmNlXEtleVxWMeICKE90cGtpXENvbW1vblxJc3N1YW5jZVxLZXlcVjFcR1BCTWV0YWRhdGHqAiBPdHBraTo6Q29tbW9uOjpJc3N1YW5jZTo6S2V5OjpWMWIGcHJvdG8z");
 
 /**
  * @generated from message otpki.common.issuance.key.v1.RSAPSSOptions
@@ -157,4 +157,97 @@ export type Ed25519OptionsValid = Ed25519Options;
  */
 export const Ed25519OptionsSchema: GenMessage<Ed25519Options, {jsonType: Ed25519OptionsJson, validType: Ed25519OptionsValid}> = /*@__PURE__*/
   messageDesc(file_otpki_common_issuance_key_v1_crypto, 3);
+
+/**
+ * @generated from message otpki.common.issuance.key.v1.MLDSASigningOptions
+ */
+export type MLDSASigningOptions = Message<"otpki.common.issuance.key.v1.MLDSASigningOptions"> & {
+  /**
+   * @generated from field: otpki.common.issuance.key.v1.MLDSAPHType variant = 1;
+   */
+  variant: MLDSAPHType;
+
+  /**
+   * @generated from field: bytes context = 2;
+   */
+  context: Uint8Array;
+
+  /**
+   * @generated from field: uint32 prehash = 3;
+   */
+  prehash: number;
+};
+
+/**
+ * @generated from message otpki.common.issuance.key.v1.MLDSASigningOptions
+ */
+export type MLDSASigningOptionsJson = {
+  /**
+   * @generated from field: otpki.common.issuance.key.v1.MLDSAPHType variant = 1;
+   */
+  variant?: MLDSAPHTypeJson;
+
+  /**
+   * @generated from field: bytes context = 2;
+   */
+  context?: string;
+
+  /**
+   * @generated from field: uint32 prehash = 3;
+   */
+  prehash?: number;
+};
+
+export type MLDSASigningOptionsValid = MLDSASigningOptions;
+
+/**
+ * Describes the message otpki.common.issuance.key.v1.MLDSASigningOptions.
+ * Use `create(MLDSASigningOptionsSchema)` to create a new message.
+ */
+export const MLDSASigningOptionsSchema: GenMessage<MLDSASigningOptions, {jsonType: MLDSASigningOptionsJson, validType: MLDSASigningOptionsValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_issuance_key_v1_crypto, 4);
+
+/**
+ * @generated from enum otpki.common.issuance.key.v1.MLDSAPHType
+ */
+export enum MLDSAPHType {
+  /**
+   * default (pure)
+   *
+   * @generated from enum value: MLDSAPH_TYPE_UNSPECIFIED = 0;
+   */
+  MLDSAPH_TYPE_UNSPECIFIED = 0,
+
+  /**
+   * direct
+   *
+   * @generated from enum value: MLDSAPH_TYPE_PURE = 1;
+   */
+  MLDSAPH_TYPE_PURE = 1,
+
+  /**
+   * HashML-DSA
+   *
+   * @generated from enum value: MLDSAPH_TYPE_PREHASH = 2;
+   */
+  MLDSAPH_TYPE_PREHASH = 2,
+
+  /**
+   * computed mu
+   *
+   * @generated from enum value: MLDSAPH_TYPE_EXTERNAL_MU = 3;
+   */
+  MLDSAPH_TYPE_EXTERNAL_MU = 3,
+}
+
+/**
+ * @generated from enum otpki.common.issuance.key.v1.MLDSAPHType
+ */
+export type MLDSAPHTypeJson = "MLDSAPH_TYPE_UNSPECIFIED" | "MLDSAPH_TYPE_PURE" | "MLDSAPH_TYPE_PREHASH" | "MLDSAPH_TYPE_EXTERNAL_MU";
+
+/**
+ * Describes the enum otpki.common.issuance.key.v1.MLDSAPHType.
+ */
+export const MLDSAPHTypeSchema: GenEnum<MLDSAPHType, MLDSAPHTypeJson> = /*@__PURE__*/
+  enumDesc(file_otpki_common_issuance_key_v1_crypto, 0);
 
