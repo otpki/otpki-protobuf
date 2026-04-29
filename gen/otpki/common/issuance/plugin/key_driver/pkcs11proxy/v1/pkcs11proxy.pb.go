@@ -124,7 +124,7 @@ func (x *HSMPluginData) GetImportedKeyCounts() map[string]uint32 {
 // this is the key data stored in the database
 type HSMKeyData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KeyLabel      string                 `protobuf:"bytes,1,opt,name=key_label,json=keyLabel,proto3" json:"key_label,omitempty"`
+	KeyUri        string                 `protobuf:"bytes,1,opt,name=key_uri,json=keyUri,proto3" json:"key_uri,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -159,9 +159,9 @@ func (*HSMKeyData) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_plugin_key_driver_pkcs11proxy_v1_pkcs11proxy_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *HSMKeyData) GetKeyLabel() string {
+func (x *HSMKeyData) GetKeyUri() string {
 	if x != nil {
-		return x.KeyLabel
+		return x.KeyUri
 	}
 	return ""
 }
@@ -169,11 +169,10 @@ func (x *HSMKeyData) GetKeyLabel() string {
 // this is a list entry used for GetHSMKeyList
 type HSMKeyInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KeyLabel      string                 `protobuf:"bytes,1,opt,name=key_label,json=keyLabel,proto3" json:"key_label,omitempty"`
-	KeyId         []byte                 `protobuf:"bytes,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
-	KeyType       v1.KeyType             `protobuf:"varint,3,opt,name=key_type,json=keyType,proto3,enum=otpki.common.issuance.key.v1.KeyType" json:"key_type,omitempty"`
-	KeyBits       uint32                 `protobuf:"varint,4,opt,name=key_bits,json=keyBits,proto3" json:"key_bits,omitempty"`
-	Imported      bool                   `protobuf:"varint,5,opt,name=imported,proto3" json:"imported,omitempty"`
+	KeyUri        string                 `protobuf:"bytes,1,opt,name=key_uri,json=keyUri,proto3" json:"key_uri,omitempty"`
+	KeyType       v1.KeyType             `protobuf:"varint,2,opt,name=key_type,json=keyType,proto3,enum=otpki.common.issuance.key.v1.KeyType" json:"key_type,omitempty"`
+	KeyBits       uint32                 `protobuf:"varint,3,opt,name=key_bits,json=keyBits,proto3" json:"key_bits,omitempty"`
+	Imported      bool                   `protobuf:"varint,4,opt,name=imported,proto3" json:"imported,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -208,18 +207,11 @@ func (*HSMKeyInfo) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_plugin_key_driver_pkcs11proxy_v1_pkcs11proxy_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *HSMKeyInfo) GetKeyLabel() string {
+func (x *HSMKeyInfo) GetKeyUri() string {
 	if x != nil {
-		return x.KeyLabel
+		return x.KeyUri
 	}
 	return ""
-}
-
-func (x *HSMKeyInfo) GetKeyId() []byte {
-	if x != nil {
-		return x.KeyId
-	}
-	return nil
 }
 
 func (x *HSMKeyInfo) GetKeyType() v1.KeyType {
@@ -352,17 +344,16 @@ const file_otpki_common_issuance_plugin_key_driver_pkcs11proxy_v1_pkcs11proxy_pr
 	"\x13imported_key_counts\x18\x01 \x03(\v2\\.otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1.HSMPluginData.ImportedKeyCountsEntryR\x11importedKeyCounts\x1aD\n" +
 	"\x16ImportedKeyCountsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\rR\x05value:\x028\x01\")\n" +
+	"\x05value\x18\x02 \x01(\rR\x05value:\x028\x01\"%\n" +
 	"\n" +
-	"HSMKeyData\x12\x1b\n" +
-	"\tkey_label\x18\x01 \x01(\tR\bkeyLabel\"\xb9\x01\n" +
+	"HSMKeyData\x12\x17\n" +
+	"\akey_uri\x18\x01 \x01(\tR\x06keyUri\"\x9e\x01\n" +
 	"\n" +
-	"HSMKeyInfo\x12\x1b\n" +
-	"\tkey_label\x18\x01 \x01(\tR\bkeyLabel\x12\x15\n" +
-	"\x06key_id\x18\x02 \x01(\fR\x05keyId\x12@\n" +
-	"\bkey_type\x18\x03 \x01(\x0e2%.otpki.common.issuance.key.v1.KeyTypeR\akeyType\x12\x19\n" +
-	"\bkey_bits\x18\x04 \x01(\rR\akeyBits\x12\x1a\n" +
-	"\bimported\x18\x05 \x01(\bR\bimported\"d\n" +
+	"HSMKeyInfo\x12\x17\n" +
+	"\akey_uri\x18\x01 \x01(\tR\x06keyUri\x12@\n" +
+	"\bkey_type\x18\x02 \x01(\x0e2%.otpki.common.issuance.key.v1.KeyTypeR\akeyType\x12\x19\n" +
+	"\bkey_bits\x18\x03 \x01(\rR\akeyBits\x12\x1a\n" +
+	"\bimported\x18\x04 \x01(\bR\bimported\"d\n" +
 	"\x14GetHSMKeyListRequest\x12L\n" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\n" +

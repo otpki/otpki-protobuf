@@ -574,22 +574,18 @@ components:
     otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1.HSMKeyData:
       type: object
       properties:
-        keyLabel:
+        keyUri:
           type: string
-          title: key_label
+          title: key_uri
       title: HSMKeyData
       additionalProperties: false
       description: this is the key data stored in the database
     otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1.HSMKeyInfo:
       type: object
       properties:
-        keyLabel:
+        keyUri:
           type: string
-          title: key_label
-        keyId:
-          type: string
-          title: key_id
-          format: byte
+          title: key_uri
         keyType:
           title: key_type
           $ref: '#/components/schemas/otpki.common.issuance.key.v1.KeyType'

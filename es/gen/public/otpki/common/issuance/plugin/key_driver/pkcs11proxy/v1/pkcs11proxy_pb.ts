@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/issuance/plugin/key_driver/pkcs11proxy/v1/pkcs11proxy.proto.
  */
 export const file_otpki_common_issuance_plugin_key_driver_pkcs11proxy_v1_pkcs11proxy: GenFile = /*@__PURE__*/
-  fileDesc("CkhvdHBraS9jb21tb24vaXNzdWFuY2UvcGx1Z2luL2tleV9kcml2ZXIvcGtjczExcHJveHkvdjEvcGtjczExcHJveHkucHJvdG8SNm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wbHVnaW4ua2V5X2RyaXZlci5wa2NzMTFwcm94eS52MSJBCgpIU01Qcm9maWxlEiAKDnNlcnZlcl9hZGRyZXNzGAEgASgJQgi6SAVyA4ACARIRCgljb25maWdfaWQYAiABKAkixAEKDUhTTVBsdWdpbkRhdGESeQoTaW1wb3J0ZWRfa2V5X2NvdW50cxgBIAMoCzJcLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wbHVnaW4ua2V5X2RyaXZlci5wa2NzMTFwcm94eS52MS5IU01QbHVnaW5EYXRhLkltcG9ydGVkS2V5Q291bnRzRW50cnkaOAoWSW1wb3J0ZWRLZXlDb3VudHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKA06AjgBIh8KCkhTTUtleURhdGESEQoJa2V5X2xhYmVsGAEgASgJIowBCgpIU01LZXlJbmZvEhEKCWtleV9sYWJlbBgBIAEoCRIOCgZrZXlfaWQYAiABKAwSNwoIa2V5X3R5cGUYAyABKA4yJS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5LnYxLktleVR5cGUSEAoIa2V5X2JpdHMYBCABKA0SEAoIaW1wb3J0ZWQYBSABKAgiWAoUR2V0SFNNS2V5TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QirAEKFUdldEhTTUtleUxpc3RSZXNwb25zZRJQCgRkYXRhGAEgAygLMkIub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnBsdWdpbi5rZXlfZHJpdmVyLnBrY3MxMXByb3h5LnYxLkhTTUtleUluZm8SQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQssCCjpjb20ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnBsdWdpbi5rZXlfZHJpdmVyLnBrY3MxMXByb3h5LnYxQhBQa2NzMTFwcm94eVByb3RvUAGiAgZPQ0lQS1CqAjVPdHBraS5Db21tb24uSXNzdWFuY2UuUGx1Z2luLktleURyaXZlci5Qa2NzMTFwcm94eS5WMcoCNU90cGtpXENvbW1vblxJc3N1YW5jZVxQbHVnaW5cS2V5RHJpdmVyXFBrY3MxMXByb3h5XFYx4gJBT3Rwa2lcQ29tbW9uXElzc3VhbmNlXFBsdWdpblxLZXlEcml2ZXJcUGtjczExcHJveHlcVjFcR1BCTWV0YWRhdGHqAjtPdHBraTo6Q29tbW9uOjpJc3N1YW5jZTo6UGx1Z2luOjpLZXlEcml2ZXI6OlBrY3MxMXByb3h5OjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_key_v1_key]);
+  fileDesc("CkhvdHBraS9jb21tb24vaXNzdWFuY2UvcGx1Z2luL2tleV9kcml2ZXIvcGtjczExcHJveHkvdjEvcGtjczExcHJveHkucHJvdG8SNm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wbHVnaW4ua2V5X2RyaXZlci5wa2NzMTFwcm94eS52MSJBCgpIU01Qcm9maWxlEiAKDnNlcnZlcl9hZGRyZXNzGAEgASgJQgi6SAVyA4ACARIRCgljb25maWdfaWQYAiABKAkixAEKDUhTTVBsdWdpbkRhdGESeQoTaW1wb3J0ZWRfa2V5X2NvdW50cxgBIAMoCzJcLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wbHVnaW4ua2V5X2RyaXZlci5wa2NzMTFwcm94eS52MS5IU01QbHVnaW5EYXRhLkltcG9ydGVkS2V5Q291bnRzRW50cnkaOAoWSW1wb3J0ZWRLZXlDb3VudHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKA06AjgBIh0KCkhTTUtleURhdGESDwoHa2V5X3VyaRgBIAEoCSJ6CgpIU01LZXlJbmZvEg8KB2tleV91cmkYASABKAkSNwoIa2V5X3R5cGUYAiABKA4yJS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5LnYxLktleVR5cGUSEAoIa2V5X2JpdHMYAyABKA0SEAoIaW1wb3J0ZWQYBCABKAgiWAoUR2V0SFNNS2V5TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QirAEKFUdldEhTTUtleUxpc3RSZXNwb25zZRJQCgRkYXRhGAEgAygLMkIub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnBsdWdpbi5rZXlfZHJpdmVyLnBrY3MxMXByb3h5LnYxLkhTTUtleUluZm8SQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQssCCjpjb20ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnBsdWdpbi5rZXlfZHJpdmVyLnBrY3MxMXByb3h5LnYxQhBQa2NzMTFwcm94eVByb3RvUAGiAgZPQ0lQS1CqAjVPdHBraS5Db21tb24uSXNzdWFuY2UuUGx1Z2luLktleURyaXZlci5Qa2NzMTFwcm94eS5WMcoCNU90cGtpXENvbW1vblxJc3N1YW5jZVxQbHVnaW5cS2V5RHJpdmVyXFBrY3MxMXByb3h5XFYx4gJBT3Rwa2lcQ29tbW9uXElzc3VhbmNlXFBsdWdpblxLZXlEcml2ZXJcUGtjczExcHJveHlcVjFcR1BCTWV0YWRhdGHqAjtPdHBraTo6Q29tbW9uOjpJc3N1YW5jZTo6UGx1Z2luOjpLZXlEcml2ZXI6OlBrY3MxMXByb3h5OjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_key_v1_key]);
 
 /**
  * this is the key storage config stored in the database
@@ -100,9 +100,9 @@ export const HSMPluginDataSchema: GenMessage<HSMPluginData, {jsonType: HSMPlugin
  */
 export type HSMKeyData = Message<"otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1.HSMKeyData"> & {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel: string;
+  keyUri: string;
 };
 
 /**
@@ -112,9 +112,9 @@ export type HSMKeyData = Message<"otpki.common.issuance.plugin.key_driver.pkcs11
  */
 export type HSMKeyDataJson = {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel?: string;
+  keyUri?: string;
 };
 
 export type HSMKeyDataValid = HSMKeyData;
@@ -133,27 +133,22 @@ export const HSMKeyDataSchema: GenMessage<HSMKeyData, {jsonType: HSMKeyDataJson,
  */
 export type HSMKeyInfo = Message<"otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1.HSMKeyInfo"> & {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel: string;
+  keyUri: string;
 
   /**
-   * @generated from field: bytes key_id = 2;
-   */
-  keyId: Uint8Array;
-
-  /**
-   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 3;
+   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 2;
    */
   keyType: KeyType;
 
   /**
-   * @generated from field: uint32 key_bits = 4;
+   * @generated from field: uint32 key_bits = 3;
    */
   keyBits: number;
 
   /**
-   * @generated from field: bool imported = 5;
+   * @generated from field: bool imported = 4;
    */
   imported: boolean;
 };
@@ -165,27 +160,22 @@ export type HSMKeyInfo = Message<"otpki.common.issuance.plugin.key_driver.pkcs11
  */
 export type HSMKeyInfoJson = {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel?: string;
+  keyUri?: string;
 
   /**
-   * @generated from field: bytes key_id = 2;
-   */
-  keyId?: string;
-
-  /**
-   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 3;
+   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 2;
    */
   keyType?: KeyTypeJson;
 
   /**
-   * @generated from field: uint32 key_bits = 4;
+   * @generated from field: uint32 key_bits = 3;
    */
   keyBits?: number;
 
   /**
-   * @generated from field: bool imported = 5;
+   * @generated from field: bool imported = 4;
    */
   imported?: boolean;
 };

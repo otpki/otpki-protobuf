@@ -93,9 +93,9 @@ export declare const HSMPluginDataSchema: GenMessage<HSMPluginData, {jsonType: H
  */
 export declare type HSMKeyData = Message<"otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1.HSMKeyData"> & {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel: string;
+  keyUri: string;
 };
 
 /**
@@ -105,9 +105,9 @@ export declare type HSMKeyData = Message<"otpki.common.issuance.plugin.key_drive
  */
 export declare type HSMKeyDataJson = {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel?: string;
+  keyUri?: string;
 };
 
 export declare type HSMKeyDataValid = HSMKeyData;
@@ -125,27 +125,22 @@ export declare const HSMKeyDataSchema: GenMessage<HSMKeyData, {jsonType: HSMKeyD
  */
 export declare type HSMKeyInfo = Message<"otpki.common.issuance.plugin.key_driver.pkcs11proxy.v1.HSMKeyInfo"> & {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel: string;
+  keyUri: string;
 
   /**
-   * @generated from field: bytes key_id = 2;
-   */
-  keyId: Uint8Array;
-
-  /**
-   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 3;
+   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 2;
    */
   keyType: KeyType;
 
   /**
-   * @generated from field: uint32 key_bits = 4;
+   * @generated from field: uint32 key_bits = 3;
    */
   keyBits: number;
 
   /**
-   * @generated from field: bool imported = 5;
+   * @generated from field: bool imported = 4;
    */
   imported: boolean;
 };
@@ -157,27 +152,22 @@ export declare type HSMKeyInfo = Message<"otpki.common.issuance.plugin.key_drive
  */
 export declare type HSMKeyInfoJson = {
   /**
-   * @generated from field: string key_label = 1;
+   * @generated from field: string key_uri = 1;
    */
-  keyLabel?: string;
+  keyUri?: string;
 
   /**
-   * @generated from field: bytes key_id = 2;
-   */
-  keyId?: string;
-
-  /**
-   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 3;
+   * @generated from field: otpki.common.issuance.key.v1.KeyType key_type = 2;
    */
   keyType?: KeyTypeJson;
 
   /**
-   * @generated from field: uint32 key_bits = 4;
+   * @generated from field: uint32 key_bits = 3;
    */
   keyBits?: number;
 
   /**
-   * @generated from field: bool imported = 5;
+   * @generated from field: bool imported = 4;
    */
   imported?: boolean;
 };
