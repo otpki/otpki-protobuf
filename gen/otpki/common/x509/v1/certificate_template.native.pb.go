@@ -345,7 +345,7 @@ func convertProtoToIPNetPointerSlice(netStrs []string) ([]*net.IPNet, error) {
 
 // convertProtoToNullUUID comes from the converter package
 func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
-	if id == nil || len(*id) == 0 {
+	if id == nil {
 		return uuid.NullUUID{}, nil
 	}
 	parsed, err := convertProtoToUUID(*id)
@@ -423,6 +423,9 @@ func convertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }
 

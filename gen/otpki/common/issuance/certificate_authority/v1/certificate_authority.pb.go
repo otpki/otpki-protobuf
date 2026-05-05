@@ -44,7 +44,7 @@ type CertificateAuthority struct {
 	CrlDistributionPointUris []string `protobuf:"bytes,11,rep,name=crl_distribution_point_uris,json=crlDistributionPointUris,proto3" json:"crl_distribution_point_uris,omitempty"`
 	OcspUris                 []string `protobuf:"bytes,12,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
 	IssuerUris               []string `protobuf:"bytes,13,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
-	ApprovalProfileId        string   `protobuf:"bytes,14,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	ApprovalProfileId        *string  `protobuf:"bytes,14,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -175,8 +175,8 @@ func (x *CertificateAuthority) GetIssuerUris() []string {
 }
 
 func (x *CertificateAuthority) GetApprovalProfileId() string {
-	if x != nil {
-		return x.ApprovalProfileId
+	if x != nil && x.ApprovalProfileId != nil {
+		return *x.ApprovalProfileId
 	}
 	return ""
 }
@@ -283,7 +283,7 @@ var File_otpki_common_issuance_certificate_authority_v1_certificate_authority_pr
 
 const file_otpki_common_issuance_certificate_authority_v1_certificate_authority_proto_rawDesc = "" +
 	"\n" +
-	"Jotpki/common/issuance/certificate_authority/v1/certificate_authority.proto\x12.otpki.common.issuance.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xb9\t\n" +
+	"Jotpki/common/issuance/certificate_authority/v1/certificate_authority.proto\x12.otpki.common.issuance.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xd6\t\n" +
 	"\x14CertificateAuthority\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -299,13 +299,14 @@ const file_otpki_common_issuance_certificate_authority_v1_certificate_authority_
 	"\x1bcrl_distribution_point_uris\x18\v \x03(\tR\x18crlDistributionPointUris\x12\x1b\n" +
 	"\tocsp_uris\x18\f \x03(\tR\bocspUris\x12\x1f\n" +
 	"\vissuer_uris\x18\r \x03(\tR\n" +
-	"issuerUris\x128\n" +
-	"\x13approval_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId\x12V\n" +
+	"issuerUris\x12=\n" +
+	"\x13approval_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
 	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01B\x15\n" +
-	"\x13_alternative_key_id\"\xce\x02\n" +
+	"\x13_alternative_key_idB\x16\n" +
+	"\x14_approval_profile_id\"\xce\x02\n" +
 	"\x1fCertificateAuthorityCertificate\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12B\n" +
 	"\x18certificate_authority_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x16certificateAuthorityId\x12 \n" +

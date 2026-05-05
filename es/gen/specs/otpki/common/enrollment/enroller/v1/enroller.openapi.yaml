@@ -396,11 +396,15 @@ components:
           title: enrollment_request_id
           format: uuid
         issuanceRequestId:
-          type: string
+          type:
+            - string
+            - "null"
           title: issuance_request_id
           format: uuid
         certificateId:
-          type: string
+          type:
+            - string
+            - "null"
           title: certificate_id
           format: uuid
         certificate:

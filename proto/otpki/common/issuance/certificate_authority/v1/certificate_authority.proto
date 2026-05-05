@@ -46,7 +46,7 @@ message CertificateAuthority {
   repeated string ocsp_uris = 12;
   repeated string issuer_uris = 13;
 
-  string approval_profile_id = 14 [(buf.validate.field).string.uuid = true];
+  optional string approval_profile_id = 14 [(buf.validate.field).string.uuid = true];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [

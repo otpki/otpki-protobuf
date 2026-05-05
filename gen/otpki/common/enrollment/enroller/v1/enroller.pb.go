@@ -181,8 +181,8 @@ func (x *EnrollmentRequest) GetUpdatedAt() *timestamppb.Timestamp {
 type EnrollmentResponse struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	EnrollmentRequestId string                 `protobuf:"bytes,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
-	IssuanceRequestId   string                 `protobuf:"bytes,2,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
-	CertificateId       string                 `protobuf:"bytes,3,opt,name=certificate_id,json=certificateId,proto3" json:"certificate_id,omitempty"`
+	IssuanceRequestId   *string                `protobuf:"bytes,2,opt,name=issuance_request_id,json=issuanceRequestId,proto3,oneof" json:"issuance_request_id,omitempty"`
+	CertificateId       *string                `protobuf:"bytes,3,opt,name=certificate_id,json=certificateId,proto3,oneof" json:"certificate_id,omitempty"`
 	Certificate         []byte                 `protobuf:"bytes,4,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain    [][]byte               `protobuf:"bytes,5,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"` // does not contain end entity certificate
 	// the status of the end entity is the status of the request
@@ -231,15 +231,15 @@ func (x *EnrollmentResponse) GetEnrollmentRequestId() string {
 }
 
 func (x *EnrollmentResponse) GetIssuanceRequestId() string {
-	if x != nil {
-		return x.IssuanceRequestId
+	if x != nil && x.IssuanceRequestId != nil {
+		return *x.IssuanceRequestId
 	}
 	return ""
 }
 
 func (x *EnrollmentResponse) GetCertificateId() string {
-	if x != nil {
-		return x.CertificateId
+	if x != nil && x.CertificateId != nil {
+		return *x.CertificateId
 	}
 	return ""
 }
@@ -280,15 +280,17 @@ const file_otpki_common_enrollment_enroller_v1_enroller_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xdd\x02\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x92\x03\n" +
 	"\x12EnrollmentResponse\x12<\n" +
-	"\x15enrollment_request_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13enrollmentRequestId\x128\n" +
-	"\x13issuance_request_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11issuanceRequestId\x12/\n" +
-	"\x0ecertificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rcertificateId\x12 \n" +
+	"\x15enrollment_request_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12=\n" +
+	"\x13issuance_request_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11issuanceRequestId\x88\x01\x01\x124\n" +
+	"\x0ecertificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\rcertificateId\x88\x01\x01\x12 \n" +
 	"\vcertificate\x18\x04 \x01(\fR\vcertificate\x12+\n" +
 	"\x11certificate_chain\x18\x05 \x03(\fR\x10certificateChain\x12O\n" +
 	"\n" +
-	"end_entity\x18\x06 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\tendEntity*z\n" +
+	"end_entity\x18\x06 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\tendEntityB\x16\n" +
+	"\x14_issuance_request_idB\x11\n" +
+	"\x0f_certificate_id*z\n" +
 	"\x12EnrollmentDataType\x12$\n" +
 	" ENROLLMENT_DATA_TYPE_UNSPECIFIED\x10\x00\x12\x1f\n" +
 	"\x1bENROLLMENT_DATA_TYPE_PKCS10\x10\x01\x12\x1d\n" +
@@ -338,6 +340,7 @@ func file_otpki_common_enrollment_enroller_v1_enroller_proto_init() {
 	if File_otpki_common_enrollment_enroller_v1_enroller_proto != nil {
 		return
 	}
+	file_otpki_common_enrollment_enroller_v1_enroller_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

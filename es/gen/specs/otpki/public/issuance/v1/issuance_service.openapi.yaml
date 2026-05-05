@@ -7184,7 +7184,9 @@ components:
             type: string
           title: issuer_uris
         approvalProfileId:
-          type: string
+          type:
+            - string
+            - "null"
           title: approval_profile_id
           format: uuid
         createdAt:
@@ -7565,7 +7567,9 @@ components:
           title: available_certificate_authorities
           uniqueItems: true
         approvalProfileId:
-          type: string
+          type:
+            - string
+            - "null"
           title: approval_profile_id
           format: uuid
       title: CertificateProfile
@@ -7771,7 +7775,9 @@ components:
           title: status
           $ref: '#/components/schemas/otpki.common.issuance.issuer.v1.IssuanceStatus'
         certificateId:
-          type: string
+          type:
+            - string
+            - "null"
           title: certificate_id
           format: uuid
         certificate:

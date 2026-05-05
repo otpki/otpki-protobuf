@@ -221,7 +221,9 @@ components:
             type: string
           title: issuer_uris
         approvalProfileId:
-          type: string
+          type:
+            - string
+            - "null"
           title: approval_profile_id
           format: uuid
         createdAt:

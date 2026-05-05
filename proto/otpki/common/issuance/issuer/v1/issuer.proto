@@ -65,7 +65,7 @@ message IssuanceRequest {
 message IssuanceResponse {
   string issuance_request_id = 1 [(buf.validate.field).string.uuid = true];
   IssuanceStatus status = 2;
-  string certificate_id = 3 [(buf.validate.field).string.uuid = true];
+  optional string certificate_id = 3 [(buf.validate.field).string.uuid = true];
   bytes certificate = 4;
   repeated bytes certificate_chain = 5; // does not contain end entity certificate
 }

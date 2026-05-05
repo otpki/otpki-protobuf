@@ -317,8 +317,8 @@ type EndEntityProfile struct {
 	UseNameConstraintsExcluded       bool `protobuf:"varint,803,opt,name=use_name_constraints_excluded,json=useNameConstraintsExcluded,proto3" json:"use_name_constraints_excluded,omitempty"`
 	NameConstraintsExcludedRequired  bool `protobuf:"varint,804,opt,name=name_constraints_excluded_required,json=nameConstraintsExcludedRequired,proto3" json:"name_constraints_excluded_required,omitempty"`
 	// explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity
-	UseCustomCertificateExts bool   `protobuf:"varint,805,opt,name=use_custom_certificate_exts,json=useCustomCertificateExts,proto3" json:"use_custom_certificate_exts,omitempty"` // allow EE to add to custom exts (will be concatenated with cert profile)
-	ApprovalProfileId        string `protobuf:"bytes,806,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	UseCustomCertificateExts bool    `protobuf:"varint,805,opt,name=use_custom_certificate_exts,json=useCustomCertificateExts,proto3" json:"use_custom_certificate_exts,omitempty"` // allow EE to add to custom exts (will be concatenated with cert profile)
+	ApprovalProfileId        *string `protobuf:"bytes,806,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -634,8 +634,8 @@ func (x *EndEntityProfile) GetUseCustomCertificateExts() bool {
 }
 
 func (x *EndEntityProfile) GetApprovalProfileId() string {
-	if x != nil {
-		return x.ApprovalProfileId
+	if x != nil && x.ApprovalProfileId != nil {
+		return *x.ApprovalProfileId
 	}
 	return ""
 }
@@ -670,7 +670,7 @@ const file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_prot
 	"\n" +
 	"validation\x18\x06 \x01(\bR\n" +
 	"validation\x12\x14\n" +
-	"\x05regex\x18\a \x01(\tR\x05regex\"\xd4\x17\n" +
+	"\x05regex\x18\a \x01(\tR\x05regex\"\xf1\x17\n" +
 	"\x10EndEntityProfile\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
@@ -714,8 +714,9 @@ const file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_prot
 	"#name_constraints_permitted_required\x18\xa2\x06 \x01(\bR nameConstraintsPermittedRequired\x12B\n" +
 	"\x1duse_name_constraints_excluded\x18\xa3\x06 \x01(\bR\x1auseNameConstraintsExcluded\x12L\n" +
 	"\"name_constraints_excluded_required\x18\xa4\x06 \x01(\bR\x1fnameConstraintsExcludedRequired\x12>\n" +
-	"\x1buse_custom_certificate_exts\x18\xa5\x06 \x01(\bR\x18useCustomCertificateExts\x129\n" +
-	"\x13approval_profile_id\x18\xa6\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId:\x04\x98\xb5\x18\x01*\xa8\x02\n" +
+	"\x1buse_custom_certificate_exts\x18\xa5\x06 \x01(\bR\x18useCustomCertificateExts\x12>\n" +
+	"\x13approval_profile_id\x18\xa6\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11approvalProfileId\x88\x01\x01:\x04\x98\xb5\x18\x01B\x16\n" +
+	"\x14_approval_profile_id*\xa8\x02\n" +
 	"\"EndEntityPasswordGenerationCharset\x126\n" +
 	"2END_ENTITY_PASSWORD_GENERATION_CHARSET_UNSPECIFIED\x10\x00\x126\n" +
 	"2END_ENTITY_PASSWORD_GENERATION_CHARSET_DIGITS_ONLY\x10\x01\x12E\n" +
@@ -771,6 +772,7 @@ func file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_proto
 	if File_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_proto != nil {
 		return
 	}
+	file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

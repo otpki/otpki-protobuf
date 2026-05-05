@@ -113,7 +113,7 @@ message Permission {
   bool is_allowed = 2;
   Resource resource_type = 3; // when unspecified, is_allowed controls all resources
   Action action_type = 4; // when unspecified, is_allowed grants all actions on a particular resource
-  string object_id = 5 [(buf.validate.field).string.uuid = true]; // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
+  optional string object_id = 5 [(buf.validate.field).string.uuid = true]; // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
   // when object_id is specified, is_allowed controls this specific action on this specific object
   // when object_id is specified but action_type is unspecified, is_allowed grants all actions on this specific object
 }

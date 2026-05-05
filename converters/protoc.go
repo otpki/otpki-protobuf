@@ -82,6 +82,9 @@ func ConvertProtoToTimePointer(t *timestamppb.Timestamp) (*time.Time, error) {
 }
 
 func ConvertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }
 
@@ -104,7 +107,7 @@ func ConvertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
 }
 
 func ConvertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
-	if id == nil || len(*id) == 0 {
+	if id == nil {
 		return uuid.NullUUID{}, nil
 	}
 	parsed, err := ConvertProtoToUUID(*id)

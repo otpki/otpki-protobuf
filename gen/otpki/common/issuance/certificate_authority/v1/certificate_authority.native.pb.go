@@ -27,7 +27,7 @@ type CertificateAuthorityNative struct {
 	CrlDistributionPointUris      []string
 	OcspUris                      []string
 	IssuerUris                    []string
-	ApprovalProfileId             uuid.UUID
+	ApprovalProfileId             uuid.NullUUID
 	CreatedAt                     time.Time
 	UpdatedAt                     time.Time
 }
@@ -73,7 +73,7 @@ func (n *CertificateAuthorityNative) ToProto() (*CertificateAuthority, error) {
 	protoStruct.CrlDistributionPointUris = n.CrlDistributionPointUris
 	protoStruct.OcspUris = n.OcspUris
 	protoStruct.IssuerUris = n.IssuerUris
-	protoStruct.ApprovalProfileId, err = convertUUIDToProto(n.ApprovalProfileId)
+	protoStruct.ApprovalProfileId, err = convertNullUUIDToProto(n.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
@@ -129,7 +129,7 @@ func (p *CertificateAuthority) ToNative() (*CertificateAuthorityNative, error) {
 	nativeStruct.CrlDistributionPointUris = p.CrlDistributionPointUris
 	nativeStruct.OcspUris = p.OcspUris
 	nativeStruct.IssuerUris = p.IssuerUris
-	nativeStruct.ApprovalProfileId, err = convertProtoToUUID(p.ApprovalProfileId)
+	nativeStruct.ApprovalProfileId, err = convertProtoToNullUUID(p.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
@@ -178,14 +178,14 @@ func (x *CertificateAuthority) GetAlternativeKeyIdUUID() uuid.NullUUID {
 }
 
 // GetApprovalProfileIdUUID returns ApprovalProfileId as a UUID when possible.
-func (x *CertificateAuthority) GetApprovalProfileIdUUID() uuid.UUID {
+func (x *CertificateAuthority) GetApprovalProfileIdUUID() uuid.NullUUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.ApprovalProfileId)
+		value, err := convertProtoToNullUUID(x.ApprovalProfileId)
 		if err == nil {
 			return value
 		}
 	}
-	return uuid.UUID{}
+	return uuid.NullUUID{}
 }
 
 // GetIdUUID returns Id as a UUID when possible.
@@ -250,7 +250,7 @@ func convertProtoToDuration(d *durationpb.Duration) (time.Duration, error) {
 
 // convertProtoToNullUUID comes from the converter package
 func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
-	if id == nil || len(*id) == 0 {
+	if id == nil {
 		return uuid.NullUUID{}, nil
 	}
 	parsed, err := convertProtoToUUID(*id)
@@ -484,5 +484,8 @@ func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }

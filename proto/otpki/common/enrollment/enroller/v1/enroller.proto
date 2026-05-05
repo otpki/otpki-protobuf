@@ -43,8 +43,8 @@ message EnrollmentRequest {
 
 message EnrollmentResponse {
   string enrollment_request_id = 1 [(buf.validate.field).string.uuid = true];
-  string issuance_request_id = 2 [(buf.validate.field).string.uuid = true];
-  string certificate_id = 3 [(buf.validate.field).string.uuid = true];
+  optional string issuance_request_id = 2 [(buf.validate.field).string.uuid = true];
+  optional string certificate_id = 3 [(buf.validate.field).string.uuid = true];
   bytes certificate = 4;
   repeated bytes certificate_chain = 5; // does not contain end entity certificate
   // repeated bytes key_data = 4; // for key recovery/ca generated token

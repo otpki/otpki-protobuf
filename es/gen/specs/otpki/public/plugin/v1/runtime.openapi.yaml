@@ -1508,11 +1508,15 @@ components:
           title: enrollment_request_id
           format: uuid
         issuanceRequestId:
-          type: string
+          type:
+            - string
+            - "null"
           title: issuance_request_id
           format: uuid
         certificateId:
-          type: string
+          type:
+            - string
+            - "null"
           title: certificate_id
           format: uuid
         certificate:
@@ -1594,7 +1598,9 @@ components:
             type: string
           title: issuer_uris
         approvalProfileId:
-          type: string
+          type:
+            - string
+            - "null"
           title: approval_profile_id
           format: uuid
         createdAt:
@@ -1901,7 +1907,9 @@ components:
           title: available_certificate_authorities
           uniqueItems: true
         approvalProfileId:
-          type: string
+          type:
+            - string
+            - "null"
           title: approval_profile_id
           format: uuid
       title: CertificateProfile

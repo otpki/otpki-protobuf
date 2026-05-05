@@ -457,9 +457,9 @@ export declare type EndEntityProfile = Message<"otpki.common.enrollment.end_enti
   useCustomCertificateExts: boolean;
 
   /**
-   * @generated from field: string approval_profile_id = 806;
+   * @generated from field: optional string approval_profile_id = 806;
    */
-  approvalProfileId: string;
+  approvalProfileId?: string;
 };
 
 /**
@@ -731,7 +731,7 @@ export declare type EndEntityProfileJson = {
   useCustomCertificateExts?: boolean;
 
   /**
-   * @generated from field: string approval_profile_id = 806;
+   * @generated from field: optional string approval_profile_id = 806;
    */
   approvalProfileId?: string;
 };

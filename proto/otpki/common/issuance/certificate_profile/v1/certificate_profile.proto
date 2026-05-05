@@ -214,5 +214,5 @@ message CertificateProfile {
       string: {uuid: true}
     }
   }];
-  string approval_profile_id = 906 [(buf.validate.field).string.uuid = true];
+  optional string approval_profile_id = 906 [(buf.validate.field).string.uuid = true];
 }

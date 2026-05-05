@@ -153,14 +153,14 @@ func (x *IssuanceResponse) GetIssuanceRequestIdUUID() uuid.UUID {
 }
 
 // GetCertificateIdUUID returns CertificateId as a UUID when possible.
-func (x *IssuanceResponse) GetCertificateIdUUID() uuid.UUID {
+func (x *IssuanceResponse) GetCertificateIdUUID() uuid.NullUUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.CertificateId)
+		value, err := convertProtoToNullUUID(x.CertificateId)
 		if err == nil {
 			return value
 		}
 	}
-	return uuid.UUID{}
+	return uuid.NullUUID{}
 }
 
 // Converter functions for native types
@@ -179,7 +179,7 @@ func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
 
 // convertProtoToNullUUID comes from the converter package
 func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
-	if id == nil || len(*id) == 0 {
+	if id == nil {
 		return uuid.NullUUID{}, nil
 	}
 	parsed, err := convertProtoToUUID(*id)
@@ -215,5 +215,8 @@ func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }

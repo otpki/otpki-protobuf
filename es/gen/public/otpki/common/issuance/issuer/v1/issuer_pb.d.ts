@@ -207,9 +207,9 @@ export declare type IssuanceResponse = Message<"otpki.common.issuance.issuer.v1.
   status: IssuanceStatus;
 
   /**
-   * @generated from field: string certificate_id = 3;
+   * @generated from field: optional string certificate_id = 3;
    */
-  certificateId: string;
+  certificateId?: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -239,7 +239,7 @@ export declare type IssuanceResponseJson = {
   status?: IssuanceStatusJson;
 
   /**
-   * @generated from field: string certificate_id = 3;
+   * @generated from field: optional string certificate_id = 3;
    */
   certificateId?: string;
 

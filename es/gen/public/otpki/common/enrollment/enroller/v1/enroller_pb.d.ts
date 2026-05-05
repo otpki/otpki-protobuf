@@ -133,14 +133,14 @@ export declare type EnrollmentResponse = Message<"otpki.common.enrollment.enroll
   enrollmentRequestId: string;
 
   /**
-   * @generated from field: string issuance_request_id = 2;
+   * @generated from field: optional string issuance_request_id = 2;
    */
-  issuanceRequestId: string;
+  issuanceRequestId?: string;
 
   /**
-   * @generated from field: string certificate_id = 3;
+   * @generated from field: optional string certificate_id = 3;
    */
-  certificateId: string;
+  certificateId?: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -174,12 +174,12 @@ export declare type EnrollmentResponseJson = {
   enrollmentRequestId?: string;
 
   /**
-   * @generated from field: string issuance_request_id = 2;
+   * @generated from field: optional string issuance_request_id = 2;
    */
   issuanceRequestId?: string;
 
   /**
-   * @generated from field: string certificate_id = 3;
+   * @generated from field: optional string certificate_id = 3;
    */
   certificateId?: string;
 

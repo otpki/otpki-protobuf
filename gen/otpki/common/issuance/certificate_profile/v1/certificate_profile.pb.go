@@ -207,7 +207,7 @@ type CertificateProfile struct {
 	CustomExtKeyUsages              []string `protobuf:"bytes,903,rep,name=custom_ext_key_usages,json=customExtKeyUsages,proto3" json:"custom_ext_key_usages,omitempty"`
 	CustomCertificateExts           []string `protobuf:"bytes,904,rep,name=custom_certificate_exts,json=customCertificateExts,proto3" json:"custom_certificate_exts,omitempty"`
 	AvailableCertificateAuthorities []string `protobuf:"bytes,905,rep,name=available_certificate_authorities,json=availableCertificateAuthorities,proto3" json:"available_certificate_authorities,omitempty"`
-	ApprovalProfileId               string   `protobuf:"bytes,906,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	ApprovalProfileId               *string  `protobuf:"bytes,906,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
 	unknownFields                   protoimpl.UnknownFields
 	sizeCache                       protoimpl.SizeCache
 }
@@ -635,8 +635,8 @@ func (x *CertificateProfile) GetAvailableCertificateAuthorities() []string {
 }
 
 func (x *CertificateProfile) GetApprovalProfileId() string {
-	if x != nil {
-		return x.ApprovalProfileId
+	if x != nil && x.ApprovalProfileId != nil {
+		return *x.ApprovalProfileId
 	}
 	return ""
 }
@@ -645,7 +645,7 @@ var File_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto 
 
 const file_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto_rawDesc = "" +
 	"\n" +
-	"Fotpki/common/issuance/certificate_profile/v1/certificate_profile.proto\x12,otpki.common.issuance.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a&otpki/common/issuance/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xcf!\n" +
+	"Fotpki/common/issuance/certificate_profile/v1/certificate_profile.proto\x12,otpki.common.issuance.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a&otpki/common/issuance/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xec!\n" +
 	"\x12CertificateProfile\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
@@ -707,8 +707,9 @@ const file_otpki_common_issuance_certificate_profile_v1_certificate_profile_prot
 	"\tcn_suffix\x18\x86\a \x01(\tB\a\xbaH\x04r\x02\x18@R\bcnSuffix\x12C\n" +
 	"\x15custom_ext_key_usages\x18\x87\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x12customExtKeyUsages\x12H\n" +
 	"\x17custom_certificate_exts\x18\x88\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x15customCertificateExts\x12\\\n" +
-	"!available_certificate_authorities\x18\x89\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1favailableCertificateAuthorities\x129\n" +
-	"\x13approval_profile_id\x18\x8a\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId:\x04\x98\xb5\x18\x01*\xb6\x01\n" +
+	"!available_certificate_authorities\x18\x89\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1favailableCertificateAuthorities\x12>\n" +
+	"\x13approval_profile_id\x18\x8a\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11approvalProfileId\x88\x01\x01:\x04\x98\xb5\x18\x01B\x16\n" +
+	"\x14_approval_profile_id*\xb6\x01\n" +
 	"\x16CertificateProfileKind\x12(\n" +
 	"$CERTIFICATE_PROFILE_KIND_UNSPECIFIED\x10\x00\x12$\n" +
 	" CERTIFICATE_PROFILE_KIND_ROOT_CA\x10\x01\x12#\n" +
@@ -778,6 +779,7 @@ func file_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto
 	if File_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto != nil {
 		return
 	}
+	file_otpki_common_issuance_certificate_profile_v1_certificate_profile_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

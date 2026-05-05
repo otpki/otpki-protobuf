@@ -265,7 +265,7 @@ type IssuanceResponse struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	IssuanceRequestId string                 `protobuf:"bytes,1,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
 	Status            IssuanceStatus         `protobuf:"varint,2,opt,name=status,proto3,enum=otpki.common.issuance.issuer.v1.IssuanceStatus" json:"status,omitempty"`
-	CertificateId     string                 `protobuf:"bytes,3,opt,name=certificate_id,json=certificateId,proto3" json:"certificate_id,omitempty"`
+	CertificateId     *string                `protobuf:"bytes,3,opt,name=certificate_id,json=certificateId,proto3,oneof" json:"certificate_id,omitempty"`
 	Certificate       []byte                 `protobuf:"bytes,4,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain  [][]byte               `protobuf:"bytes,5,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"` // does not contain end entity certificate
 	unknownFields     protoimpl.UnknownFields
@@ -317,8 +317,8 @@ func (x *IssuanceResponse) GetStatus() IssuanceStatus {
 }
 
 func (x *IssuanceResponse) GetCertificateId() string {
-	if x != nil {
-		return x.CertificateId
+	if x != nil && x.CertificateId != nil {
+		return *x.CertificateId
 	}
 	return ""
 }
@@ -356,13 +356,14 @@ const file_otpki_common_issuance_issuer_v1_issuer_proto_rawDesc = "" +
 	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01B\x11\n" +
 	"\x0f_signing_key_idB\x1d\n" +
 	"\x1b_alternative_signing_key_idB\"\n" +
-	" _target_certificate_authority_id\"\x95\x02\n" +
+	" _target_certificate_authority_id\"\xad\x02\n" +
 	"\x10IssuanceResponse\x128\n" +
 	"\x13issuance_request_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11issuanceRequestId\x12G\n" +
-	"\x06status\x18\x02 \x01(\x0e2/.otpki.common.issuance.issuer.v1.IssuanceStatusR\x06status\x12/\n" +
-	"\x0ecertificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rcertificateId\x12 \n" +
+	"\x06status\x18\x02 \x01(\x0e2/.otpki.common.issuance.issuer.v1.IssuanceStatusR\x06status\x124\n" +
+	"\x0ecertificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\rcertificateId\x88\x01\x01\x12 \n" +
 	"\vcertificate\x18\x04 \x01(\fR\vcertificate\x12+\n" +
-	"\x11certificate_chain\x18\x05 \x03(\fR\x10certificateChain*\xcd\x01\n" +
+	"\x11certificate_chain\x18\x05 \x03(\fR\x10certificateChainB\x11\n" +
+	"\x0f_certificate_id*\xcd\x01\n" +
 	"\x0eIssuanceStatus\x12\x1f\n" +
 	"\x1bISSUANCE_STATUS_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13ISSUANCE_STATUS_NEW\x10\x01\x12\x1a\n" +
@@ -423,6 +424,7 @@ func file_otpki_common_issuance_issuer_v1_issuer_proto_init() {
 		return
 	}
 	file_otpki_common_issuance_issuer_v1_issuer_proto_msgTypes[0].OneofWrappers = []any{}
+	file_otpki_common_issuance_issuer_v1_issuer_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

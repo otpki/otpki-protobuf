@@ -52,7 +52,7 @@ type EndEntityProfileNative struct {
 	UseNameConstraintsExcluded       bool
 	NameConstraintsExcludedRequired  bool
 	UseCustomCertificateExts         bool
-	ApprovalProfileId                uuid.UUID
+	ApprovalProfileId                uuid.NullUUID
 }
 
 // ToProto converts a EndEntityProfileNative to a EndEntityProfile
@@ -135,7 +135,7 @@ func (n *EndEntityProfileNative) ToProto() (*EndEntityProfile, error) {
 	protoStruct.UseNameConstraintsExcluded = n.UseNameConstraintsExcluded
 	protoStruct.NameConstraintsExcludedRequired = n.NameConstraintsExcludedRequired
 	protoStruct.UseCustomCertificateExts = n.UseCustomCertificateExts
-	protoStruct.ApprovalProfileId, err = convertUUIDToProto(n.ApprovalProfileId)
+	protoStruct.ApprovalProfileId, err = convertNullUUIDToProto(n.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
@@ -222,7 +222,7 @@ func (p *EndEntityProfile) ToNative() (*EndEntityProfileNative, error) {
 	nativeStruct.UseNameConstraintsExcluded = p.UseNameConstraintsExcluded
 	nativeStruct.NameConstraintsExcludedRequired = p.NameConstraintsExcludedRequired
 	nativeStruct.UseCustomCertificateExts = p.UseCustomCertificateExts
-	nativeStruct.ApprovalProfileId, err = convertProtoToUUID(p.ApprovalProfileId)
+	nativeStruct.ApprovalProfileId, err = convertProtoToNullUUID(p.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
@@ -285,14 +285,14 @@ func (x *EndEntityProfile) GetDefaultCertificateAuthorityIdUUID() uuid.UUID {
 }
 
 // GetApprovalProfileIdUUID returns ApprovalProfileId as a UUID when possible.
-func (x *EndEntityProfile) GetApprovalProfileIdUUID() uuid.UUID {
+func (x *EndEntityProfile) GetApprovalProfileIdUUID() uuid.NullUUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.ApprovalProfileId)
+		value, err := convertProtoToNullUUID(x.ApprovalProfileId)
 		if err == nil {
 			return value
 		}
 	}
-	return uuid.UUID{}
+	return uuid.NullUUID{}
 }
 
 // Converter functions for native types
@@ -302,12 +302,39 @@ func convertDurationToProto(d time.Duration) (*durationpb.Duration, error) {
 	return durationpb.New(d), nil
 }
 
+// convertNullUUIDToProto comes from the converter package
+func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
+	if !id.Valid {
+		return nil, nil
+	}
+	uuidVal, err := convertUUIDToProto(id.UUID)
+	if err != nil {
+		return nil, err
+	}
+	return &uuidVal, nil
+}
+
 // convertProtoToDuration comes from the converter package
 func convertProtoToDuration(d *durationpb.Duration) (time.Duration, error) {
 	if d == nil {
 		return 0, nil
 	}
 	return d.AsDuration(), nil
+}
+
+// convertProtoToNullUUID comes from the converter package
+func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := convertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
 }
 
 // convertProtoToTime comes from the converter package
@@ -359,5 +386,8 @@ func convertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }

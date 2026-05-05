@@ -71,7 +71,7 @@ type CertificateProfileNative struct {
 	CustomExtKeyUsages              []uuid.UUID
 	CustomCertificateExts           []uuid.UUID
 	AvailableCertificateAuthorities []uuid.UUID
-	ApprovalProfileId               uuid.UUID
+	ApprovalProfileId               uuid.NullUUID
 }
 
 // ToProto converts a CertificateProfileNative to a CertificateProfile
@@ -176,7 +176,7 @@ func (n *CertificateProfileNative) ToProto() (*CertificateProfile, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting AvailableCertificateAuthorities: %w", err)
 	}
-	protoStruct.ApprovalProfileId, err = convertUUIDToProto(n.ApprovalProfileId)
+	protoStruct.ApprovalProfileId, err = convertNullUUIDToProto(n.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
@@ -285,7 +285,7 @@ func (p *CertificateProfile) ToNative() (*CertificateProfileNative, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting AvailableCertificateAuthoritiesNative: %w", err)
 	}
-	nativeStruct.ApprovalProfileId, err = convertProtoToUUID(p.ApprovalProfileId)
+	nativeStruct.ApprovalProfileId, err = convertProtoToNullUUID(p.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
@@ -337,14 +337,14 @@ func (x *CertificateProfile) GetAvailableCertificateAuthoritiesUUID() []uuid.UUI
 }
 
 // GetApprovalProfileIdUUID returns ApprovalProfileId as a UUID when possible.
-func (x *CertificateProfile) GetApprovalProfileIdUUID() uuid.UUID {
+func (x *CertificateProfile) GetApprovalProfileIdUUID() uuid.NullUUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.ApprovalProfileId)
+		value, err := convertProtoToNullUUID(x.ApprovalProfileId)
 		if err == nil {
 			return value
 		}
 	}
-	return uuid.UUID{}
+	return uuid.NullUUID{}
 }
 
 // Converter functions for native types
@@ -440,6 +440,18 @@ func convertKeyUsageToProto(ku x509.KeyUsage) ([]v11.KeyUsage, error) {
 	return result, nil
 }
 
+// convertNullUUIDToProto comes from the converter package
+func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
+	if !id.Valid {
+		return nil, nil
+	}
+	uuidVal, err := convertUUIDToProto(id.UUID)
+	if err != nil {
+		return nil, err
+	}
+	return &uuidVal, nil
+}
+
 // convertProtoToDuration comes from the converter package
 func convertProtoToDuration(d *durationpb.Duration) (time.Duration, error) {
 	if d == nil {
@@ -531,6 +543,21 @@ func convertProtoToKeyUsage(keyUsages []v11.KeyUsage) (x509.KeyUsage, error) {
 	}
 
 	return result, nil
+}
+
+// convertProtoToNullUUID comes from the converter package
+func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := convertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
 }
 
 // convertProtoToSignatureAlgorithm comes from the converter package
@@ -780,5 +807,8 @@ func convertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }

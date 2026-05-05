@@ -362,9 +362,9 @@ export declare type CertificateProfile = Message<"otpki.common.issuance.certific
   availableCertificateAuthorities: string[];
 
   /**
-   * @generated from field: string approval_profile_id = 906;
+   * @generated from field: optional string approval_profile_id = 906;
    */
-  approvalProfileId: string;
+  approvalProfileId?: string;
 };
 
 /**
@@ -716,7 +716,7 @@ export declare type CertificateProfileJson = {
   availableCertificateAuthorities?: string[];
 
   /**
-   * @generated from field: string approval_profile_id = 906;
+   * @generated from field: optional string approval_profile_id = 906;
    */
   approvalProfileId?: string;
 };
