@@ -324,7 +324,7 @@ func convertProtoToDuration(d *durationpb.Duration) (time.Duration, error) {
 
 // convertProtoToNullUUID comes from the converter package
 func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
-	if id == nil || len(*id) == 0 {
+	if id == nil {
 		return uuid.NullUUID{}, nil
 	}
 	parsed, err := convertProtoToUUID(*id)

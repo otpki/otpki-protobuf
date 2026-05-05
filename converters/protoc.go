@@ -107,7 +107,7 @@ func ConvertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
 }
 
 func ConvertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
-	if id == nil || len(*id) == 0 {
+	if id == nil {
 		return uuid.NullUUID{}, nil
 	}
 	parsed, err := ConvertProtoToUUID(*id)
