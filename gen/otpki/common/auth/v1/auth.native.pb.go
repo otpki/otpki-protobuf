@@ -161,14 +161,14 @@ func (x *Permission) GetIdUUID() uuid.UUID {
 }
 
 // GetObjectIdUUID returns ObjectId as a UUID when possible.
-func (x *Permission) GetObjectIdUUID() uuid.UUID {
+func (x *Permission) GetObjectIdUUID() uuid.NullUUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.ObjectId)
+		value, err := convertProtoToNullUUID(x.ObjectId)
 		if err == nil {
 			return value
 		}
 	}
-	return uuid.UUID{}
+	return uuid.NullUUID{}
 }
 
 // UserNative is the native typing representation of User
@@ -662,6 +662,21 @@ func (x *WorkItemApproval) GetUserIdUUID() uuid.UUID {
 
 // Converter functions for native types
 
+// convertProtoToNullUUID comes from the converter package
+func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil || len(*id) == 0 {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := convertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
+}
+
 // convertProtoToTime comes from the converter package
 func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	if t == nil {
@@ -711,5 +726,8 @@ func convertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }

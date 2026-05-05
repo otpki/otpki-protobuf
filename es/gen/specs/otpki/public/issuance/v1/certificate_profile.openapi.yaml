@@ -880,7 +880,9 @@ components:
           title: available_certificate_authorities
           uniqueItems: true
         approvalProfileId:
-          type: string
+          type:
+            - string
+            - "null"
           title: approval_profile_id
           format: uuid
       title: CertificateProfile

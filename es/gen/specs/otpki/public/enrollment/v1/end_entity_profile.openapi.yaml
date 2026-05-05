@@ -819,7 +819,9 @@ components:
           title: use_custom_certificate_exts
           description: explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity allow EE to add to custom exts (will be concatenated with cert profile)
         approvalProfileId:
-          type: string
+          type:
+            - string
+            - "null"
           title: approval_profile_id
           format: uuid
       title: EndEntityProfile

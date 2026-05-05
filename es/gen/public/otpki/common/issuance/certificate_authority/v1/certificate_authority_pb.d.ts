@@ -93,9 +93,9 @@ export declare type CertificateAuthority = Message<"otpki.common.issuance.certif
   issuerUris: string[];
 
   /**
-   * @generated from field: string approval_profile_id = 14;
+   * @generated from field: optional string approval_profile_id = 14;
    */
-  approvalProfileId: string;
+  approvalProfileId?: string;
 
   /**
    * not settable on creation
@@ -192,7 +192,7 @@ export declare type CertificateAuthorityJson = {
   issuerUris?: string[];
 
   /**
-   * @generated from field: string approval_profile_id = 14;
+   * @generated from field: optional string approval_profile_id = 14;
    */
   approvalProfileId?: string;
 
@@ -291,9 +291,9 @@ export declare type CertificateAuthorityValid = Message<"otpki.common.issuance.c
   issuerUris: string[];
 
   /**
-   * @generated from field: string approval_profile_id = 14;
+   * @generated from field: optional string approval_profile_id = 14;
    */
-  approvalProfileId: string;
+  approvalProfileId?: string;
 
   /**
    * not settable on creation

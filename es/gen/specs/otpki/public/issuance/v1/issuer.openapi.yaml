@@ -482,7 +482,9 @@ components:
           title: status
           $ref: '#/components/schemas/otpki.common.issuance.issuer.v1.IssuanceStatus'
         certificateId:
-          type: string
+          type:
+            - string
+            - "null"
           title: certificate_id
           format: uuid
         certificate:

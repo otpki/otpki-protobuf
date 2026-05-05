@@ -485,7 +485,7 @@ type Permission struct {
 	IsAllowed     bool                   `protobuf:"varint,2,opt,name=is_allowed,json=isAllowed,proto3" json:"is_allowed,omitempty"`
 	ResourceType  Resource               `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=otpki.common.auth.v1.Resource" json:"resource_type,omitempty"` // when unspecified, is_allowed controls all resources
 	ActionType    Action                 `protobuf:"varint,4,opt,name=action_type,json=actionType,proto3,enum=otpki.common.auth.v1.Action" json:"action_type,omitempty"`         // when unspecified, is_allowed grants all actions on a particular resource
-	ObjectId      string                 `protobuf:"bytes,5,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`                                                 // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
+	ObjectId      *string                `protobuf:"bytes,5,opt,name=object_id,json=objectId,proto3,oneof" json:"object_id,omitempty"`                                           // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -549,8 +549,8 @@ func (x *Permission) GetActionType() Action {
 }
 
 func (x *Permission) GetObjectId() string {
-	if x != nil {
-		return x.ObjectId
+	if x != nil && x.ObjectId != nil {
+		return *x.ObjectId
 	}
 	return ""
 }
@@ -1180,7 +1180,7 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xf5\x01\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x88\x02\n" +
 	"\n" +
 	"Permission\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
@@ -1188,8 +1188,10 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"is_allowed\x18\x02 \x01(\bR\tisAllowed\x12C\n" +
 	"\rresource_type\x18\x03 \x01(\x0e2\x1e.otpki.common.auth.v1.ResourceR\fresourceType\x12=\n" +
 	"\vaction_type\x18\x04 \x01(\x0e2\x1c.otpki.common.auth.v1.ActionR\n" +
-	"actionType\x12%\n" +
-	"\tobject_id\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bobjectId\"\x8c\x05\n" +
+	"actionType\x12*\n" +
+	"\tobject_id\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\bobjectId\x88\x01\x01B\f\n" +
+	"\n" +
+	"_object_id\"\x8c\x05\n" +
 	"\x04User\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12%\n" +
 	"\busername\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\busername\x12\x1d\n" +
@@ -1371,6 +1373,7 @@ func file_otpki_common_auth_v1_auth_proto_init() {
 	if File_otpki_common_auth_v1_auth_proto != nil {
 		return
 	}
+	file_otpki_common_auth_v1_auth_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

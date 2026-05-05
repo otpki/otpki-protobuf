@@ -46,7 +46,7 @@ gen:
     npm install && npm run generate
 
 update:
-    go get -u all && go mod tidy
+    #go get -u all && go mod tidy
     buf dep update
 
 native-type:

@@ -159,5 +159,8 @@ func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }

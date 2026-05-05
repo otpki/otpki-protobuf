@@ -100,28 +100,43 @@ func (x *EnrollmentResponse) GetEnrollmentRequestIdUUID() uuid.UUID {
 }
 
 // GetIssuanceRequestIdUUID returns IssuanceRequestId as a UUID when possible.
-func (x *EnrollmentResponse) GetIssuanceRequestIdUUID() uuid.UUID {
+func (x *EnrollmentResponse) GetIssuanceRequestIdUUID() uuid.NullUUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.IssuanceRequestId)
+		value, err := convertProtoToNullUUID(x.IssuanceRequestId)
 		if err == nil {
 			return value
 		}
 	}
-	return uuid.UUID{}
+	return uuid.NullUUID{}
 }
 
 // GetCertificateIdUUID returns CertificateId as a UUID when possible.
-func (x *EnrollmentResponse) GetCertificateIdUUID() uuid.UUID {
+func (x *EnrollmentResponse) GetCertificateIdUUID() uuid.NullUUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.CertificateId)
+		value, err := convertProtoToNullUUID(x.CertificateId)
 		if err == nil {
 			return value
 		}
 	}
-	return uuid.UUID{}
+	return uuid.NullUUID{}
 }
 
 // Converter functions for native types
+
+// convertProtoToNullUUID comes from the converter package
+func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {
+	if id == nil || len(*id) == 0 {
+		return uuid.NullUUID{}, nil
+	}
+	parsed, err := convertProtoToUUID(*id)
+	if err != nil {
+		return uuid.NullUUID{}, err
+	}
+	return uuid.NullUUID{
+		UUID:  parsed,
+		Valid: true,
+	}, nil
+}
 
 // convertProtoToTime comes from the converter package
 func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
@@ -146,5 +161,8 @@ func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 
 // convertUUIDToProto comes from the converter package
 func convertUUIDToProto(id uuid.UUID) (string, error) {
+	if id == uuid.Nil {
+		return "", nil
+	}
 	return id.String(), nil
 }

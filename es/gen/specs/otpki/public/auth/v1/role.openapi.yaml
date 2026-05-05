@@ -651,7 +651,9 @@ components:
           description: when unspecified, is_allowed grants all actions on a particular resource
           $ref: '#/components/schemas/otpki.common.auth.v1.Action'
         objectId:
-          type: string
+          type:
+            - string
+            - "null"
           title: object_id
           format: uuid
           description: 'when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object'
