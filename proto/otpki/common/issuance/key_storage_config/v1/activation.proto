@@ -8,7 +8,7 @@ message Activation {
   // the key storage config for which to apply this
   // activation. the key storage config will control
   // whether or not this is persisted via auto-activation
-  int64 key_storage_config_id = 1;
+  string key_storage_config_id = 1 [(buf.validate.field).string.uuid = true];
 
   // when this is checked, it will ignore all the other fields
   // and just use the stored auto activation code if it exists

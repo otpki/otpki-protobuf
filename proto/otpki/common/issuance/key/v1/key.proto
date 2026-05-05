@@ -185,7 +185,10 @@ enum KeyUsage {
 }
 
 message Key {
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ]; // not settable on creation
   string name = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.pattern = "^[a-zA-Z0-9:/_-]+$"
@@ -194,7 +197,10 @@ message Key {
   KeyType key_type = 4;
   repeated KeyUsage key_usage = 5;
   google.protobuf.Any key_config_data = 6;
-  int64 key_storage_config_id = 7 [(buf.validate.field).required = true];
+  string key_storage_config_id = 7 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   key_storage_config.v1.KeyDriverType key_driver_type = 8;
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [

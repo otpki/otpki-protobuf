@@ -138,9 +138,9 @@ export declare const CreateEnrollmentRequestForExistingEndEntityResponseSchema: 
  */
 export declare type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enrollment.v1.GetEnrollmentByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -153,7 +153,7 @@ export declare type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enro
  */
 export declare type GetEnrollmentByRequestIDRequestJson = {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
   enrollmentRequestId?: string;
 
@@ -168,9 +168,9 @@ export declare type GetEnrollmentByRequestIDRequestJson = {
  */
 export declare type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.enrollment.v1.GetEnrollmentByRequestIDRequest"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -227,9 +227,9 @@ export declare const GetEnrollmentByRequestIDResponseSchema: GenMessage<GetEnrol
  */
 export declare type RevokeEndEntityRequest = Message<"otpki.public.enrollment.v1.RevokeEndEntityRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
@@ -242,7 +242,7 @@ export declare type RevokeEndEntityRequest = Message<"otpki.public.enrollment.v1
  */
 export declare type RevokeEndEntityRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 
@@ -257,9 +257,9 @@ export declare type RevokeEndEntityRequestJson = {
  */
 export declare type RevokeEndEntityRequestValid = Message<"otpki.public.enrollment.v1.RevokeEndEntityRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
@@ -298,14 +298,14 @@ export declare const RevokeEndEntityResponseSchema: GenMessage<RevokeEndEntityRe
  */
 export declare type RevokeEndEntityCertificateRequest = Message<"otpki.public.enrollment.v1.RevokeEndEntityCertificateRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 3;
@@ -318,12 +318,12 @@ export declare type RevokeEndEntityCertificateRequest = Message<"otpki.public.en
  */
 export declare type RevokeEndEntityCertificateRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
   issuedCertificateId?: string;
 
@@ -338,14 +338,14 @@ export declare type RevokeEndEntityCertificateRequestJson = {
  */
 export declare type RevokeEndEntityCertificateRequestValid = Message<"otpki.public.enrollment.v1.RevokeEndEntityCertificateRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 
   /**
-   * @generated from field: int64 issued_certificate_id = 2;
+   * @generated from field: string issued_certificate_id = 2;
    */
-  issuedCertificateId: bigint;
+  issuedCertificateId: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.RevocationReasonCode revocation_reason_code = 3;

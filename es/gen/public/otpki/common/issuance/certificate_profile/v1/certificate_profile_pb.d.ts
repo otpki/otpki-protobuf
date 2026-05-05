@@ -20,9 +20,9 @@ export declare type CertificateProfile = Message<"otpki.common.issuance.certific
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -347,24 +347,24 @@ export declare type CertificateProfile = Message<"otpki.common.issuance.certific
   cnSuffix: string;
 
   /**
-   * @generated from field: repeated int64 custom_ext_key_usages = 903;
+   * @generated from field: repeated string custom_ext_key_usages = 903;
    */
-  customExtKeyUsages: bigint[];
+  customExtKeyUsages: string[];
 
   /**
-   * @generated from field: repeated int64 custom_certificate_exts = 904;
+   * @generated from field: repeated string custom_certificate_exts = 904;
    */
-  customCertificateExts: bigint[];
+  customCertificateExts: string[];
 
   /**
-   * @generated from field: repeated int64 available_certificate_authorities = 905;
+   * @generated from field: repeated string available_certificate_authorities = 905;
    */
-  availableCertificateAuthorities: bigint[];
+  availableCertificateAuthorities: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 906;
+   * @generated from field: string approval_profile_id = 906;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 };
 
 /**
@@ -374,7 +374,7 @@ export declare type CertificateProfileJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -701,22 +701,22 @@ export declare type CertificateProfileJson = {
   cnSuffix?: string;
 
   /**
-   * @generated from field: repeated int64 custom_ext_key_usages = 903;
+   * @generated from field: repeated string custom_ext_key_usages = 903;
    */
   customExtKeyUsages?: string[];
 
   /**
-   * @generated from field: repeated int64 custom_certificate_exts = 904;
+   * @generated from field: repeated string custom_certificate_exts = 904;
    */
   customCertificateExts?: string[];
 
   /**
-   * @generated from field: repeated int64 available_certificate_authorities = 905;
+   * @generated from field: repeated string available_certificate_authorities = 905;
    */
   availableCertificateAuthorities?: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 906;
+   * @generated from field: string approval_profile_id = 906;
    */
   approvalProfileId?: string;
 };

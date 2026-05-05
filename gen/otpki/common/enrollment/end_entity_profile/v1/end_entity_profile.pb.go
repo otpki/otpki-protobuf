@@ -265,7 +265,7 @@ func (x *EndEntityProfileSANAttribute) GetRegex() string {
 
 type EndEntityProfile struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	Id          int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	// db details
@@ -297,10 +297,10 @@ type EndEntityProfile struct {
 	// note: certificate email can differ from EE email
 	SubjectAlternativeNameAttributes []*EndEntityProfileSANAttribute `protobuf:"bytes,501,rep,name=subject_alternative_name_attributes,json=subjectAlternativeNameAttributes,proto3" json:"subject_alternative_name_attributes,omitempty"`
 	// issuance information
-	AvailableCertificateProfileIds   []int64 `protobuf:"varint,601,rep,packed,name=available_certificate_profile_ids,json=availableCertificateProfileIds,proto3" json:"available_certificate_profile_ids,omitempty"`
-	DefaultCertificateProfileId      int64   `protobuf:"varint,602,opt,name=default_certificate_profile_id,json=defaultCertificateProfileId,proto3" json:"default_certificate_profile_id,omitempty"`
-	AvailableCertificateAuthorityIds []int64 `protobuf:"varint,603,rep,packed,name=available_certificate_authority_ids,json=availableCertificateAuthorityIds,proto3" json:"available_certificate_authority_ids,omitempty"`
-	DefaultCertificateAuthorityId    int64   `protobuf:"varint,604,opt,name=default_certificate_authority_id,json=defaultCertificateAuthorityId,proto3" json:"default_certificate_authority_id,omitempty"`
+	AvailableCertificateProfileIds   []string `protobuf:"bytes,601,rep,name=available_certificate_profile_ids,json=availableCertificateProfileIds,proto3" json:"available_certificate_profile_ids,omitempty"`
+	DefaultCertificateProfileId      string   `protobuf:"bytes,602,opt,name=default_certificate_profile_id,json=defaultCertificateProfileId,proto3" json:"default_certificate_profile_id,omitempty"`
+	AvailableCertificateAuthorityIds []string `protobuf:"bytes,603,rep,name=available_certificate_authority_ids,json=availableCertificateAuthorityIds,proto3" json:"available_certificate_authority_ids,omitempty"`
+	DefaultCertificateAuthorityId    string   `protobuf:"bytes,604,opt,name=default_certificate_authority_id,json=defaultCertificateAuthorityId,proto3" json:"default_certificate_authority_id,omitempty"`
 	// validity override, requires 'allow validity override' in certificate profile
 	UseValidityStartTime        bool                   `protobuf:"varint,701,opt,name=use_validity_start_time,json=useValidityStartTime,proto3" json:"use_validity_start_time,omitempty"`                      // if this is true, EE can set start time settings, the following values are defaults to set notBefore
 	ValidityStartTimeModifiable bool                   `protobuf:"varint,702,opt,name=validity_start_time_modifiable,json=validityStartTimeModifiable,proto3" json:"validity_start_time_modifiable,omitempty"` // whether the EE can set their own params
@@ -317,8 +317,8 @@ type EndEntityProfile struct {
 	UseNameConstraintsExcluded       bool `protobuf:"varint,803,opt,name=use_name_constraints_excluded,json=useNameConstraintsExcluded,proto3" json:"use_name_constraints_excluded,omitempty"`
 	NameConstraintsExcludedRequired  bool `protobuf:"varint,804,opt,name=name_constraints_excluded_required,json=nameConstraintsExcludedRequired,proto3" json:"name_constraints_excluded_required,omitempty"`
 	// explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity
-	UseCustomCertificateExts bool  `protobuf:"varint,805,opt,name=use_custom_certificate_exts,json=useCustomCertificateExts,proto3" json:"use_custom_certificate_exts,omitempty"` // allow EE to add to custom exts (will be concatenated with cert profile)
-	ApprovalProfileId        int64 `protobuf:"varint,806,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	UseCustomCertificateExts bool   `protobuf:"varint,805,opt,name=use_custom_certificate_exts,json=useCustomCertificateExts,proto3" json:"use_custom_certificate_exts,omitempty"` // allow EE to add to custom exts (will be concatenated with cert profile)
+	ApprovalProfileId        string `protobuf:"bytes,806,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -353,11 +353,11 @@ func (*EndEntityProfile) Descriptor() ([]byte, []int) {
 	return file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *EndEntityProfile) GetId() int64 {
+func (x *EndEntityProfile) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *EndEntityProfile) GetName() string {
@@ -514,32 +514,32 @@ func (x *EndEntityProfile) GetSubjectAlternativeNameAttributes() []*EndEntityPro
 	return nil
 }
 
-func (x *EndEntityProfile) GetAvailableCertificateProfileIds() []int64 {
+func (x *EndEntityProfile) GetAvailableCertificateProfileIds() []string {
 	if x != nil {
 		return x.AvailableCertificateProfileIds
 	}
 	return nil
 }
 
-func (x *EndEntityProfile) GetDefaultCertificateProfileId() int64 {
+func (x *EndEntityProfile) GetDefaultCertificateProfileId() string {
 	if x != nil {
 		return x.DefaultCertificateProfileId
 	}
-	return 0
+	return ""
 }
 
-func (x *EndEntityProfile) GetAvailableCertificateAuthorityIds() []int64 {
+func (x *EndEntityProfile) GetAvailableCertificateAuthorityIds() []string {
 	if x != nil {
 		return x.AvailableCertificateAuthorityIds
 	}
 	return nil
 }
 
-func (x *EndEntityProfile) GetDefaultCertificateAuthorityId() int64 {
+func (x *EndEntityProfile) GetDefaultCertificateAuthorityId() string {
 	if x != nil {
 		return x.DefaultCertificateAuthorityId
 	}
-	return 0
+	return ""
 }
 
 func (x *EndEntityProfile) GetUseValidityStartTime() bool {
@@ -633,11 +633,11 @@ func (x *EndEntityProfile) GetUseCustomCertificateExts() bool {
 	return false
 }
 
-func (x *EndEntityProfile) GetApprovalProfileId() int64 {
+func (x *EndEntityProfile) GetApprovalProfileId() string {
 	if x != nil {
 		return x.ApprovalProfileId
 	}
-	return 0
+	return ""
 }
 
 var File_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_proto protoreflect.FileDescriptor
@@ -670,9 +670,9 @@ const file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_prot
 	"\n" +
 	"validation\x18\x06 \x01(\bR\n" +
 	"validation\x12\x14\n" +
-	"\x05regex\x18\a \x01(\tR\x05regex\"\xbe\x17\n" +
-	"\x10EndEntityProfile\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1d\n" +
+	"\x05regex\x18\a \x01(\tR\x05regex\"\xd4\x17\n" +
+	"\x10EndEntityProfile\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12V\n" +
 	"\n" +
@@ -697,11 +697,11 @@ const file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_prot
 	"\femail_domain\x18\xbb\x02 \x01(\tB`\xbaH]\xba\x01Z\n" +
 	"\x17email_domain.isHostname\x12\x1evalue must be a valid hostname\x1a\x1fthis == '' || this.isHostname()R\vemailDomain\x12\x86\x01\n" +
 	"\x15subject_dn_attributes\x18\x91\x03 \x03(\v2Q.otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileSubjectDNAttributeR\x13subjectDnAttributes\x12\x9b\x01\n" +
-	"#subject_alternative_name_attributes\x18\xf5\x03 \x03(\v2K.otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileSANAttributeR subjectAlternativeNameAttributes\x12Z\n" +
-	"!available_certificate_profile_ids\x18\xd9\x04 \x03(\x03B\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04\"\x02 \x00R\x1eavailableCertificateProfileIds\x12M\n" +
-	"\x1edefault_certificate_profile_id\x18\xda\x04 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x1bdefaultCertificateProfileId\x12^\n" +
-	"#available_certificate_authority_ids\x18\xdb\x04 \x03(\x03B\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04\"\x02 \x00R availableCertificateAuthorityIds\x12Q\n" +
-	" default_certificate_authority_id\x18\xdc\x04 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x1ddefaultCertificateAuthorityId\x126\n" +
+	"#subject_alternative_name_attributes\x18\xf5\x03 \x03(\v2K.otpki.common.enrollment.end_entity_profile.v1.EndEntityProfileSANAttributeR subjectAlternativeNameAttributes\x12[\n" +
+	"!available_certificate_profile_ids\x18\xd9\x04 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1eavailableCertificateProfileIds\x12N\n" +
+	"\x1edefault_certificate_profile_id\x18\xda\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x1bdefaultCertificateProfileId\x12_\n" +
+	"#available_certificate_authority_ids\x18\xdb\x04 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R availableCertificateAuthorityIds\x12R\n" +
+	" default_certificate_authority_id\x18\xdc\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x1ddefaultCertificateAuthorityId\x126\n" +
 	"\x17use_validity_start_time\x18\xbd\x05 \x01(\bR\x14useValidityStartTime\x12D\n" +
 	"\x1evalidity_start_time_modifiable\x18\xbe\x05 \x01(\bR\x1bvalidityStartTimeModifiable\x12r\n" +
 	"\x1avalidity_start_time_offset\x18\xbf\x05 \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x17validityStartTimeOffset\x12b\n" +
@@ -714,8 +714,8 @@ const file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile_prot
 	"#name_constraints_permitted_required\x18\xa2\x06 \x01(\bR nameConstraintsPermittedRequired\x12B\n" +
 	"\x1duse_name_constraints_excluded\x18\xa3\x06 \x01(\bR\x1auseNameConstraintsExcluded\x12L\n" +
 	"\"name_constraints_excluded_required\x18\xa4\x06 \x01(\bR\x1fnameConstraintsExcludedRequired\x12>\n" +
-	"\x1buse_custom_certificate_exts\x18\xa5\x06 \x01(\bR\x18useCustomCertificateExts\x12/\n" +
-	"\x13approval_profile_id\x18\xa6\x06 \x01(\x03R\x11approvalProfileId:\x04\x98\xb5\x18\x01*\xa8\x02\n" +
+	"\x1buse_custom_certificate_exts\x18\xa5\x06 \x01(\bR\x18useCustomCertificateExts\x129\n" +
+	"\x13approval_profile_id\x18\xa6\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId:\x04\x98\xb5\x18\x01*\xa8\x02\n" +
 	"\"EndEntityPasswordGenerationCharset\x126\n" +
 	"2END_ENTITY_PASSWORD_GENERATION_CHARSET_UNSPECIFIED\x10\x00\x126\n" +
 	"2END_ENTITY_PASSWORD_GENERATION_CHARSET_DIGITS_ONLY\x10\x01\x12E\n" +

@@ -18,9 +18,9 @@ export declare const file_otpki_common_issuance_issued_certificate_v1_issued_cer
  */
 export declare type IssuedCertificate = Message<"otpki.common.issuance.issued_certificate.v1.IssuedCertificate"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: bytes certificate = 2;
@@ -78,19 +78,19 @@ export declare type IssuedCertificate = Message<"otpki.common.issuance.issued_ce
   inCrl: boolean;
 
   /**
-   * @generated from field: optional int64 issued_by_ca_certificate_id = 13;
+   * @generated from field: optional string issued_by_ca_certificate_id = 13;
    */
-  issuedByCaCertificateId?: bigint;
+  issuedByCaCertificateId?: string;
 
   /**
-   * @generated from field: int64 issued_from_certificate_profile_id = 14;
+   * @generated from field: string issued_from_certificate_profile_id = 14;
    */
-  issuedFromCertificateProfileId: bigint;
+  issuedFromCertificateProfileId: string;
 
   /**
-   * @generated from field: int64 issued_from_issuance_request_id = 15;
+   * @generated from field: string issued_from_issuance_request_id = 15;
    */
-  issuedFromIssuanceRequestId: bigint;
+  issuedFromIssuanceRequestId: string;
 
   /**
    * @generated from field: otpki.common.issuance.issuer.v1.IssuingProtocol protocol_used = 16;
@@ -117,7 +117,7 @@ export declare type IssuedCertificate = Message<"otpki.common.issuance.issued_ce
  */
 export declare type IssuedCertificateJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -177,17 +177,17 @@ export declare type IssuedCertificateJson = {
   inCrl?: boolean;
 
   /**
-   * @generated from field: optional int64 issued_by_ca_certificate_id = 13;
+   * @generated from field: optional string issued_by_ca_certificate_id = 13;
    */
   issuedByCaCertificateId?: string;
 
   /**
-   * @generated from field: int64 issued_from_certificate_profile_id = 14;
+   * @generated from field: string issued_from_certificate_profile_id = 14;
    */
   issuedFromCertificateProfileId?: string;
 
   /**
-   * @generated from field: int64 issued_from_issuance_request_id = 15;
+   * @generated from field: string issued_from_issuance_request_id = 15;
    */
   issuedFromIssuanceRequestId?: string;
 

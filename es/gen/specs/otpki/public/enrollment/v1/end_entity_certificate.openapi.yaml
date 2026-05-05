@@ -422,23 +422,17 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
         enrollmentRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: enrollment_request_id
-          format: int64
+          format: uuid
         issuedCertificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_certificate_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -532,11 +526,9 @@ components:
           title: serial_number
           format: byte
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
           description: this param does not do anything, it's for the path to satisfy a pattern
       title: GetEndEntityCertificateBySerialNumberRequest
       required:
@@ -575,11 +567,9 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
       title: GetEndEntityCertificatesRequest
       required:
         - endEntityId

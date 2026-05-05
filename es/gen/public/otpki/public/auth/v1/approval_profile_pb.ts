@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/auth/v1/approval_profile.proto.
  */
 export const file_otpki_public_auth_v1_approval_profile: GenFile = /*@__PURE__*/
-  fileDesc("CitvdHBraS9wdWJsaWMvYXV0aC92MS9hcHByb3ZhbF9wcm9maWxlLnByb3RvEhRvdHBraS5wdWJsaWMuYXV0aC52MSJnChxDcmVhdGVBcHByb3ZhbFByb2ZpbGVSZXF1ZXN0EkcKEGFwcHJvdmFsX3Byb2ZpbGUYASABKAsyJS5vdHBraS5jb21tb24uYXV0aC52MS5BcHByb3ZhbFByb2ZpbGVCBrpIA8gBASIrCh1DcmVhdGVBcHByb3ZhbFByb2ZpbGVSZXNwb25zZRIKCgJpZBgBIAEoAyIvChlHZXRBcHByb3ZhbFByb2ZpbGVSZXF1ZXN0EhIKAmlkGAEgASgDQga6SAPIAQEiXQoaR2V0QXBwcm92YWxQcm9maWxlUmVzcG9uc2USPwoQYXBwcm92YWxfcHJvZmlsZRgBIAEoCzIlLm90cGtpLmNvbW1vbi5hdXRoLnYxLkFwcHJvdmFsUHJvZmlsZSKQAQocVXBkYXRlQXBwcm92YWxQcm9maWxlUmVxdWVzdBI/ChBhcHByb3ZhbF9wcm9maWxlGAEgASgLMiUub3Rwa2kuY29tbW9uLmF1dGgudjEuQXBwcm92YWxQcm9maWxlEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzayIfCh1VcGRhdGVBcHByb3ZhbFByb2ZpbGVSZXNwb25zZSIyChxEZWxldGVBcHByb3ZhbFByb2ZpbGVSZXF1ZXN0EhIKAmlkGAEgASgDQga6SAPIAQEiHwodRGVsZXRlQXBwcm92YWxQcm9maWxlUmVzcG9uc2UiYQodR2V0QXBwcm92YWxQcm9maWxlTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QimAEKHkdldEFwcHJvdmFsUHJvZmlsZUxpc3RSZXNwb25zZRIzCgRkYXRhGAEgAygLMiUub3Rwa2kuY29tbW9uLmF1dGgudjEuQXBwcm92YWxQcm9maWxlEkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZUKlAQoYY29tLm90cGtpLnB1YmxpYy5hdXRoLnYxQhRBcHByb3ZhbFByb2ZpbGVQcm90b1ABogIDT1BBqgIUT3Rwa2kuUHVibGljLkF1dGguVjHKAhVPdHBraVxQdWJsaWNfXEF1dGhcVjHiAiFPdHBraVxQdWJsaWNfXEF1dGhcVjFcR1BCTWV0YWRhdGHqAhdPdHBraTo6UHVibGljOjpBdXRoOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
+  fileDesc("CitvdHBraS9wdWJsaWMvYXV0aC92MS9hcHByb3ZhbF9wcm9maWxlLnByb3RvEhRvdHBraS5wdWJsaWMuYXV0aC52MSJnChxDcmVhdGVBcHByb3ZhbFByb2ZpbGVSZXF1ZXN0EkcKEGFwcHJvdmFsX3Byb2ZpbGUYASABKAsyJS5vdHBraS5jb21tb24uYXV0aC52MS5BcHByb3ZhbFByb2ZpbGVCBrpIA8gBASI1Ch1DcmVhdGVBcHByb3ZhbFByb2ZpbGVSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiNAoZR2V0QXBwcm92YWxQcm9maWxlUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiXQoaR2V0QXBwcm92YWxQcm9maWxlUmVzcG9uc2USPwoQYXBwcm92YWxfcHJvZmlsZRgBIAEoCzIlLm90cGtpLmNvbW1vbi5hdXRoLnYxLkFwcHJvdmFsUHJvZmlsZSKQAQocVXBkYXRlQXBwcm92YWxQcm9maWxlUmVxdWVzdBI/ChBhcHByb3ZhbF9wcm9maWxlGAEgASgLMiUub3Rwa2kuY29tbW9uLmF1dGgudjEuQXBwcm92YWxQcm9maWxlEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzayIfCh1VcGRhdGVBcHByb3ZhbFByb2ZpbGVSZXNwb25zZSI3ChxEZWxldGVBcHByb3ZhbFByb2ZpbGVSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASIfCh1EZWxldGVBcHByb3ZhbFByb2ZpbGVSZXNwb25zZSJhCh1HZXRBcHByb3ZhbFByb2ZpbGVMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKYAQoeR2V0QXBwcm92YWxQcm9maWxlTGlzdFJlc3BvbnNlEjMKBGRhdGEYASADKAsyJS5vdHBraS5jb21tb24uYXV0aC52MS5BcHByb3ZhbFByb2ZpbGUSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQqUBChhjb20ub3Rwa2kucHVibGljLmF1dGgudjFCFEFwcHJvdmFsUHJvZmlsZVByb3RvUAGiAgNPUEGqAhRPdHBraS5QdWJsaWMuQXV0aC5WMcoCFU90cGtpXFB1YmxpY19cQXV0aFxWMeICIU90cGtpXFB1YmxpY19cQXV0aFxWMVxHUEJNZXRhZGF0YeoCF090cGtpOjpQdWJsaWM6OkF1dGg6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
 
 /**
  * @generated from message otpki.public.auth.v1.CreateApprovalProfileRequest
@@ -61,9 +61,9 @@ export const CreateApprovalProfileRequestSchema: GenMessage<CreateApprovalProfil
  */
 export type CreateApprovalProfileResponse = Message<"otpki.public.auth.v1.CreateApprovalProfileResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreateApprovalProfileResponse = Message<"otpki.public.auth.v1.Create
  */
 export type CreateApprovalProfileResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreateApprovalProfileResponseSchema: GenMessage<CreateApprovalProfi
  */
 export type GetApprovalProfileRequest = Message<"otpki.public.auth.v1.GetApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,7 +100,7 @@ export type GetApprovalProfileRequest = Message<"otpki.public.auth.v1.GetApprova
  */
 export type GetApprovalProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -110,9 +110,9 @@ export type GetApprovalProfileRequestJson = {
  */
 export type GetApprovalProfileRequestValid = Message<"otpki.public.auth.v1.GetApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -216,9 +216,9 @@ export const UpdateApprovalProfileResponseSchema: GenMessage<UpdateApprovalProfi
  */
 export type DeleteApprovalProfileRequest = Message<"otpki.public.auth.v1.DeleteApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -226,7 +226,7 @@ export type DeleteApprovalProfileRequest = Message<"otpki.public.auth.v1.DeleteA
  */
 export type DeleteApprovalProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -236,9 +236,9 @@ export type DeleteApprovalProfileRequestJson = {
  */
 export type DeleteApprovalProfileRequestValid = Message<"otpki.public.auth.v1.DeleteApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

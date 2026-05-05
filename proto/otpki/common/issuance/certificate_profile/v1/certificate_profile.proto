@@ -26,7 +26,10 @@ enum KeyIdentifierHashAlgorithm {
 
 message CertificateProfile {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ]; // not settable on creation
   string name = 2 [(buf.validate.field).string = {
     min_len: 3
     max_len: 64
@@ -193,23 +196,23 @@ message CertificateProfile {
   // other
   string cn_prefix = 901 [(buf.validate.field).string.max_len = 64];
   string cn_suffix = 902 [(buf.validate.field).string.max_len = 64];
-  repeated int64 custom_ext_key_usages = 903 [(buf.validate.field).repeated = {
+  repeated string custom_ext_key_usages = 903 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      int64: {gt: 0}
+      string: {uuid: true}
     }
   }];
-  repeated int64 custom_certificate_exts = 904 [(buf.validate.field).repeated = {
+  repeated string custom_certificate_exts = 904 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      int64: {gt: 0}
+      string: {uuid: true}
     }
   }];
-  repeated int64 available_certificate_authorities = 905 [(buf.validate.field).repeated = {
+  repeated string available_certificate_authorities = 905 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      int64: {gt: 0}
+      string: {uuid: true}
     }
   }];
-  int64 approval_profile_id = 906;
+  string approval_profile_id = 906 [(buf.validate.field).string.uuid = true];
 }

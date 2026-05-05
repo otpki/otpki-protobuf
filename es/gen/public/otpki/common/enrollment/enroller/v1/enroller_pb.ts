@@ -4,6 +4,7 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb";
 import { file_gnostic_openapi_v3_annotations } from "../../../../../gnostic/openapi/v3/annotations_pb";
 import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
@@ -18,16 +19,16 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/enrollment/enroller/v1/enroller.proto.
  */
 export const file_otpki_common_enrollment_enroller_v1_enroller: GenFile = /*@__PURE__*/
-  fileDesc("CjJvdHBraS9jb21tb24vZW5yb2xsbWVudC9lbnJvbGxlci92MS9lbnJvbGxlci5wcm90bxIjb3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5yb2xsZXIudjEihwQKEUVucm9sbG1lbnRSZXF1ZXN0EhEKAmlkGAEgASgDQgW6RwIYARJNCgZzdGF0dXMYAiABKA4yNi5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5LnYxLkVuZEVudGl0eVN0YXR1c0IFukcCGAESDAoEZGF0YRgDIAEoDBJKCglkYXRhX3R5cGUYBCABKA4yNy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MS5FbnJvbGxtZW50RGF0YVR5cGUSRwoNcHJvdG9jb2xfdXNlZBgFIAEoDjIwLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5pc3N1ZXIudjEuSXNzdWluZ1Byb3RvY29sEk0KE2VuZF9lbnRpdHlfdGVtcGxhdGUYBiABKAsyMC5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5LnYxLkVuZEVudGl0eRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEi3gEKEkVucm9sbG1lbnRSZXNwb25zZRIdChVlbnJvbGxtZW50X3JlcXVlc3RfaWQYASABKAMSGwoTaXNzdWFuY2VfcmVxdWVzdF9pZBgCIAEoAxIWCg5jZXJ0aWZpY2F0ZV9pZBgDIAEoAxITCgtjZXJ0aWZpY2F0ZRgEIAEoDBIZChFjZXJ0aWZpY2F0ZV9jaGFpbhgFIAMoDBJECgplbmRfZW50aXR5GAYgASgLMjAub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkqegoSRW5yb2xsbWVudERhdGFUeXBlEiQKIEVOUk9MTE1FTlRfREFUQV9UWVBFX1VOU1BFQ0lGSUVEEAASHwobRU5ST0xMTUVOVF9EQVRBX1RZUEVfUEtDUzEwEAESHQoZRU5ST0xMTUVOVF9EQVRBX1RZUEVfQ1JNRhACQukBCidjb20ub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5yb2xsZXIudjFCDUVucm9sbGVyUHJvdG9QAaICBE9DRUWqAiNPdHBraS5Db21tb24uRW5yb2xsbWVudC5FbnJvbGxlci5WMcoCI090cGtpXENvbW1vblxFbnJvbGxtZW50XEVucm9sbGVyXFYx4gIvT3Rwa2lcQ29tbW9uXEVucm9sbG1lbnRcRW5yb2xsZXJcVjFcR1BCTWV0YWRhdGHqAidPdHBraTo6Q29tbW9uOjpFbnJvbGxtZW50OjpFbnJvbGxlcjo6VjFiBnByb3RvMw", [file_gnostic_openapi_v3_annotations, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_enrollment_end_entity_v1_end_entity, file_otpki_common_issuance_issuer_v1_issuer]);
+  fileDesc("CjJvdHBraS9jb21tb24vZW5yb2xsbWVudC9lbnJvbGxlci92MS9lbnJvbGxlci5wcm90bxIjb3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5yb2xsZXIudjEijwQKEUVucm9sbG1lbnRSZXF1ZXN0EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEk0KBnN0YXR1cxgCIAEoDjI2Lm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHkudjEuRW5kRW50aXR5U3RhdHVzQgW6RwIYARIMCgRkYXRhGAMgASgMEkoKCWRhdGFfdHlwZRgEIAEoDjI3Lm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkVucm9sbG1lbnREYXRhVHlwZRJHCg1wcm90b2NvbF91c2VkGAUgASgOMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1aW5nUHJvdG9jb2wSTQoTZW5kX2VudGl0eV90ZW1wbGF0ZRgGIAEoCzIwLm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHkudjEuRW5kRW50aXR5EksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYASL8AQoSRW5yb2xsbWVudFJlc3BvbnNlEicKFWVucm9sbG1lbnRfcmVxdWVzdF9pZBgBIAEoCUIIukgFcgOwAQESJQoTaXNzdWFuY2VfcmVxdWVzdF9pZBgCIAEoCUIIukgFcgOwAQESIAoOY2VydGlmaWNhdGVfaWQYAyABKAlCCLpIBXIDsAEBEhMKC2NlcnRpZmljYXRlGAQgASgMEhkKEWNlcnRpZmljYXRlX2NoYWluGAUgAygMEkQKCmVuZF9lbnRpdHkYBiABKAsyMC5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5LnYxLkVuZEVudGl0eSp6ChJFbnJvbGxtZW50RGF0YVR5cGUSJAogRU5ST0xMTUVOVF9EQVRBX1RZUEVfVU5TUEVDSUZJRUQQABIfChtFTlJPTExNRU5UX0RBVEFfVFlQRV9QS0NTMTAQARIdChlFTlJPTExNRU5UX0RBVEFfVFlQRV9DUk1GEAJC6QEKJ2NvbS5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbnJvbGxlci52MUINRW5yb2xsZXJQcm90b1ABogIET0NFRaoCI090cGtpLkNvbW1vbi5FbnJvbGxtZW50LkVucm9sbGVyLlYxygIjT3Rwa2lcQ29tbW9uXEVucm9sbG1lbnRcRW5yb2xsZXJcVjHiAi9PdHBraVxDb21tb25cRW5yb2xsbWVudFxFbnJvbGxlclxWMVxHUEJNZXRhZGF0YeoCJ090cGtpOjpDb21tb246OkVucm9sbG1lbnQ6OkVucm9sbGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_enrollment_end_entity_v1_end_entity, file_otpki_common_issuance_issuer_v1_issuer]);
 
 /**
  * @generated from message otpki.common.enrollment.enroller.v1.EnrollmentRequest
  */
 export type EnrollmentRequest = Message<"otpki.common.enrollment.enroller.v1.EnrollmentRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: otpki.common.enrollment.end_entity.v1.EndEntityStatus status = 2;
@@ -76,7 +77,7 @@ export type EnrollmentRequest = Message<"otpki.common.enrollment.enroller.v1.Enr
  */
 export type EnrollmentRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -136,19 +137,19 @@ export const EnrollmentRequestSchema: GenMessage<EnrollmentRequest, {jsonType: E
  */
 export type EnrollmentResponse = Message<"otpki.common.enrollment.enroller.v1.EnrollmentResponse"> & {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
-  enrollmentRequestId: bigint;
+  enrollmentRequestId: string;
 
   /**
-   * @generated from field: int64 issuance_request_id = 2;
+   * @generated from field: string issuance_request_id = 2;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
-  certificateId: bigint;
+  certificateId: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -177,17 +178,17 @@ export type EnrollmentResponse = Message<"otpki.common.enrollment.enroller.v1.En
  */
 export type EnrollmentResponseJson = {
   /**
-   * @generated from field: int64 enrollment_request_id = 1;
+   * @generated from field: string enrollment_request_id = 1;
    */
   enrollmentRequestId?: string;
 
   /**
-   * @generated from field: int64 issuance_request_id = 2;
+   * @generated from field: string issuance_request_id = 2;
    */
   issuanceRequestId?: string;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
   certificateId?: string;
 

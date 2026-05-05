@@ -54,9 +54,9 @@ export declare const CreateCustomCertificateExtensionRequestSchema: GenMessage<C
  */
 export declare type CreateCustomCertificateExtensionResponse = Message<"otpki.public.issuance.v1.CreateCustomCertificateExtensionResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateCustomCertificateExtensionResponse = Message<"otpki.pu
  */
 export declare type CreateCustomCertificateExtensionResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateCustomCertificateExtensionResponseSchema: GenMessage<
  */
 export declare type GetCustomCertificateExtensionRequest = Message<"otpki.public.issuance.v1.GetCustomCertificateExtensionRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetCustomCertificateExtensionRequest = Message<"otpki.public
  */
 export declare type GetCustomCertificateExtensionRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetCustomCertificateExtensionRequestJson = {
  */
 export declare type GetCustomCertificateExtensionRequestValid = Message<"otpki.public.issuance.v1.GetCustomCertificateExtensionRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -225,9 +225,9 @@ export declare const UpdateCustomCertificateExtensionResponseSchema: GenMessage<
  */
 export declare type DeleteCustomCertificateExtensionRequest = Message<"otpki.public.issuance.v1.DeleteCustomCertificateExtensionRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -235,7 +235,7 @@ export declare type DeleteCustomCertificateExtensionRequest = Message<"otpki.pub
  */
 export declare type DeleteCustomCertificateExtensionRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -245,9 +245,9 @@ export declare type DeleteCustomCertificateExtensionRequestJson = {
  */
 export declare type DeleteCustomCertificateExtensionRequestValid = Message<"otpki.public.issuance.v1.DeleteCustomCertificateExtensionRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

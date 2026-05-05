@@ -51,7 +51,7 @@ func request_IssuanceService_CreateRevocationList_0(ctx context.Context, marshal
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -72,7 +72,7 @@ func local_request_IssuanceService_CreateRevocationList_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -120,7 +120,7 @@ func request_IssuanceService_GetCertificateProfile_0(ctx context.Context, marsha
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -138,7 +138,7 @@ func local_request_IssuanceService_GetCertificateProfile_0(ctx context.Context, 
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -299,7 +299,7 @@ func request_IssuanceService_DeleteCertificateProfile_0(ctx context.Context, mar
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -317,7 +317,7 @@ func local_request_IssuanceService_DeleteCertificateProfile_0(ctx context.Contex
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -400,7 +400,7 @@ func request_IssuanceService_GetKey_0(ctx context.Context, marshaler runtime.Mar
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -418,7 +418,7 @@ func local_request_IssuanceService_GetKey_0(ctx context.Context, marshaler runti
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -528,7 +528,7 @@ func request_IssuanceService_DeleteKey_0(ctx context.Context, marshaler runtime.
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -546,7 +546,7 @@ func local_request_IssuanceService_DeleteKey_0(ctx context.Context, marshaler ru
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -615,7 +615,7 @@ func request_IssuanceService_GetKeyStorageConfig_0(ctx context.Context, marshale
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -633,7 +633,7 @@ func local_request_IssuanceService_GetKeyStorageConfig_0(ctx context.Context, ma
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -713,7 +713,7 @@ func request_IssuanceService_DeleteKeyStorageConfig_0(ctx context.Context, marsh
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -731,7 +731,7 @@ func local_request_IssuanceService_DeleteKeyStorageConfig_0(ctx context.Context,
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -921,7 +921,7 @@ func request_IssuanceService_DeactivateKeyStorageConfig_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "key_storage_config_id")
 	}
-	protoReq.KeyStorageConfigId, err = runtime.Int64(val)
+	protoReq.KeyStorageConfigId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "key_storage_config_id", err)
 	}
@@ -942,7 +942,7 @@ func local_request_IssuanceService_DeactivateKeyStorageConfig_0(ctx context.Cont
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "key_storage_config_id")
 	}
-	protoReq.KeyStorageConfigId, err = runtime.Int64(val)
+	protoReq.KeyStorageConfigId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "key_storage_config_id", err)
 	}
@@ -1044,7 +1044,7 @@ func request_IssuanceService_GetCustomCertificateExtension_0(ctx context.Context
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1062,7 +1062,7 @@ func local_request_IssuanceService_GetCustomCertificateExtension_0(ctx context.C
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1223,7 +1223,7 @@ func request_IssuanceService_DeleteCustomCertificateExtension_0(ctx context.Cont
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1241,7 +1241,7 @@ func local_request_IssuanceService_DeleteCustomCertificateExtension_0(ctx contex
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1351,7 +1351,7 @@ func request_IssuanceService_GetCustomExtKeyUsage_0(ctx context.Context, marshal
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1369,7 +1369,7 @@ func local_request_IssuanceService_GetCustomExtKeyUsage_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1530,7 +1530,7 @@ func request_IssuanceService_DeleteCustomExtKeyUsage_0(ctx context.Context, mars
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1548,7 +1548,7 @@ func local_request_IssuanceService_DeleteCustomExtKeyUsage_0(ctx context.Context
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -1693,7 +1693,7 @@ func request_IssuanceService_GetIssuanceByRequestID_0(ctx context.Context, marsh
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "issuance_request_id")
 	}
-	protoReq.IssuanceRequestId, err = runtime.Int64(val)
+	protoReq.IssuanceRequestId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "issuance_request_id", err)
 	}
@@ -1711,7 +1711,7 @@ func local_request_IssuanceService_GetIssuanceByRequestID_0(ctx context.Context,
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "issuance_request_id")
 	}
-	protoReq.IssuanceRequestId, err = runtime.Int64(val)
+	protoReq.IssuanceRequestId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "issuance_request_id", err)
 	}
@@ -1821,7 +1821,7 @@ func request_IssuanceService_GetIssuedCertificate_0(ctx context.Context, marshal
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "issued_certificate_id")
 	}
-	protoReq.IssuedCertificateId, err = runtime.Int64(val)
+	protoReq.IssuedCertificateId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "issued_certificate_id", err)
 	}
@@ -1839,7 +1839,7 @@ func local_request_IssuanceService_GetIssuedCertificate_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "issued_certificate_id")
 	}
-	protoReq.IssuedCertificateId, err = runtime.Int64(val)
+	protoReq.IssuedCertificateId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "issued_certificate_id", err)
 	}
@@ -2042,7 +2042,7 @@ func request_IssuanceService_CreateCertificateAuthorityCSR_0(ctx context.Context
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2050,7 +2050,7 @@ func request_IssuanceService_CreateCertificateAuthorityCSR_0(ctx context.Context
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "key_id")
 	}
-	protoReq.KeyId, err = runtime.Int64(val)
+	protoReq.KeyId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "key_id", err)
 	}
@@ -2068,7 +2068,7 @@ func local_request_IssuanceService_CreateCertificateAuthorityCSR_0(ctx context.C
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2076,7 +2076,7 @@ func local_request_IssuanceService_CreateCertificateAuthorityCSR_0(ctx context.C
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "key_id")
 	}
-	protoReq.KeyId, err = runtime.Int64(val)
+	protoReq.KeyId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "key_id", err)
 	}
@@ -2100,7 +2100,7 @@ func request_IssuanceService_ImportCertificateAuthorityCertificate_0(ctx context
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2121,7 +2121,7 @@ func local_request_IssuanceService_ImportCertificateAuthorityCertificate_0(ctx c
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2145,7 +2145,7 @@ func request_IssuanceService_RenewCertificateAuthority_0(ctx context.Context, ma
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2166,7 +2166,7 @@ func local_request_IssuanceService_RenewCertificateAuthority_0(ctx context.Conte
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2187,7 +2187,7 @@ func request_IssuanceService_GetCertificateAuthority_0(ctx context.Context, mars
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2205,7 +2205,7 @@ func local_request_IssuanceService_GetCertificateAuthority_0(ctx context.Context
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2428,7 +2428,7 @@ func request_IssuanceService_DeleteCertificateAuthority_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2446,7 +2446,7 @@ func local_request_IssuanceService_DeleteCertificateAuthority_0(ctx context.Cont
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2467,7 +2467,7 @@ func request_IssuanceService_GetCertificateAuthorityCertificates_0(ctx context.C
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2485,7 +2485,7 @@ func local_request_IssuanceService_GetCertificateAuthorityCertificates_0(ctx con
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
 	}
-	protoReq.CaId, err = runtime.Int64(val)
+	protoReq.CaId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
 	}
@@ -2533,7 +2533,7 @@ func request_IssuanceService_DeleteCrlPublisher_0(ctx context.Context, marshaler
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
 	}
-	protoReq.PublisherId, err = runtime.Int64(val)
+	protoReq.PublisherId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
 	}
@@ -2551,7 +2551,7 @@ func local_request_IssuanceService_DeleteCrlPublisher_0(ctx context.Context, mar
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
 	}
-	protoReq.PublisherId, err = runtime.Int64(val)
+	protoReq.PublisherId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
 	}
@@ -2661,7 +2661,7 @@ func request_IssuanceService_DeleteCertificatePublisher_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
 	}
-	protoReq.PublisherId, err = runtime.Int64(val)
+	protoReq.PublisherId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
 	}
@@ -2679,7 +2679,7 @@ func local_request_IssuanceService_DeleteCertificatePublisher_0(ctx context.Cont
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
 	}
-	protoReq.PublisherId, err = runtime.Int64(val)
+	protoReq.PublisherId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
 	}
@@ -2789,7 +2789,7 @@ func request_IssuanceService_GetPublisherConfig_0(ctx context.Context, marshaler
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -2807,7 +2807,7 @@ func local_request_IssuanceService_GetPublisherConfig_0(ctx context.Context, mar
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -2968,7 +2968,7 @@ func request_IssuanceService_DeletePublisherConfig_0(ctx context.Context, marsha
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -2986,7 +2986,7 @@ func local_request_IssuanceService_DeletePublisherConfig_0(ctx context.Context, 
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}

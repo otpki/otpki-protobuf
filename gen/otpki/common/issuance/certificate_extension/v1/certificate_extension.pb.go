@@ -97,7 +97,7 @@ func (CertificateExtensionValueEncoding) EnumDescriptor() ([]byte, []int) {
 
 type CustomCertificateExtension struct {
 	state         protoimpl.MessageState            `protogen:"open.v1"`
-	Id            int64                             `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id            string                            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	Oid           string                            `protobuf:"bytes,2,opt,name=oid,proto3" json:"oid,omitempty"`
 	Name          string                            `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                            `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
@@ -146,11 +146,11 @@ func (*CustomCertificateExtension) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_certificate_extension_v1_certificate_extension_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CustomCertificateExtension) GetId() int64 {
+func (x *CustomCertificateExtension) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *CustomCertificateExtension) GetOid() string {
@@ -227,9 +227,9 @@ var File_otpki_common_issuance_certificate_extension_v1_certificate_extension_pr
 
 const file_otpki_common_issuance_certificate_extension_v1_certificate_extension_proto_rawDesc = "" +
 	"\n" +
-	"Jotpki/common/issuance/certificate_extension/v1/certificate_extension.proto\x12.otpki.common.issuance.certificate_extension.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a%otpki/common/api/v1/string_enum.proto\"\xc9\x04\n" +
-	"\x1aCustomCertificateExtension\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1f\n" +
+	"Jotpki/common/issuance/certificate_extension/v1/certificate_extension.proto\x12.otpki.common.issuance.certificate_extension.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a%otpki/common/api/v1/string_enum.proto\"\xd1\x04\n" +
+	"\x1aCustomCertificateExtension\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1f\n" +
 	"\x03oid\x18\x02 \x01(\tB\r\xbaH\n" +
 	"\xc8\x01\x01r\x05\x10\x03\x18\xff\x01R\x03oid\x12 \n" +
 	"\x04name\x18\x03 \x01(\tB\f\xbaH\t\xc8\x01\x01r\x04\x10\x01\x18\x7fR\x04name\x12*\n" +

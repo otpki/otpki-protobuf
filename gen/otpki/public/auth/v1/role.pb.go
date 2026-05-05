@@ -71,7 +71,7 @@ func (x *CreateRoleRequest) GetRole() *v1.Role {
 
 type CreateRoleResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateRoleResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_role_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateRoleResponse) GetId() int64 {
+func (x *CreateRoleResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetRoleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetRoleRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_role_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetRoleRequest) GetId() int64 {
+func (x *GetRoleRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetRoleResponse struct {
@@ -203,7 +203,7 @@ func (x *GetRoleResponse) GetRole() *v1.Role {
 
 type GetManyRolesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ids           []int64                `protobuf:"varint,1,rep,packed,name=ids,proto3" json:"ids,omitempty"`
+	Ids           []string               `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -238,7 +238,7 @@ func (*GetManyRolesRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_role_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetManyRolesRequest) GetIds() []int64 {
+func (x *GetManyRolesRequest) GetIds() []string {
 	if x != nil {
 		return x.Ids
 	}
@@ -555,7 +555,7 @@ func (*UpdateRoleResponse) Descriptor() ([]byte, []int) {
 
 type DeleteRoleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -590,11 +590,11 @@ func (*DeleteRoleRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_role_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *DeleteRoleRequest) GetId() int64 {
+func (x *DeleteRoleRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteRoleResponse struct {
@@ -732,7 +732,7 @@ func (x *GetRoleListResponse) GetPagination() *v11.PaginationResponse {
 type SetRolePermissionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Permissions   []*v1.Permission       `protobuf:"bytes,1,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	RoleId        int64                  `protobuf:"varint,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	RoleId        string                 `protobuf:"bytes,2,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -774,11 +774,11 @@ func (x *SetRolePermissionsRequest) GetPermissions() []*v1.Permission {
 	return nil
 }
 
-func (x *SetRolePermissionsRequest) GetRoleId() int64 {
+func (x *SetRolePermissionsRequest) GetRoleId() string {
 	if x != nil {
 		return x.RoleId
 	}
-	return 0
+	return ""
 }
 
 type SetRolePermissionsResponse struct {
@@ -819,7 +819,7 @@ func (*SetRolePermissionsResponse) Descriptor() ([]byte, []int) {
 
 type GetRolePermissionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoleId        int64                  `protobuf:"varint,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
+	RoleId        string                 `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -854,11 +854,11 @@ func (*GetRolePermissionsRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_role_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *GetRolePermissionsRequest) GetRoleId() int64 {
+func (x *GetRolePermissionsRequest) GetRoleId() string {
 	if x != nil {
 		return x.RoleId
 	}
-	return 0
+	return ""
 }
 
 type GetRolePermissionsResponse struct {
@@ -911,15 +911,15 @@ const file_otpki_public_auth_v1_role_proto_rawDesc = "" +
 	"\n" +
 	"\x1fotpki/public/auth/v1/role.proto\x12\x14otpki.public.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\"K\n" +
 	"\x11CreateRoleRequest\x126\n" +
-	"\x04role\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.RoleB\x06\xbaH\x03\xc8\x01\x01R\x04role\"$\n" +
-	"\x12CreateRoleResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"(\n" +
-	"\x0eGetRoleRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"A\n" +
+	"\x04role\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.RoleB\x06\xbaH\x03\xc8\x01\x01R\x04role\".\n" +
+	"\x12CreateRoleResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"-\n" +
+	"\x0eGetRoleRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"A\n" +
 	"\x0fGetRoleResponse\x12.\n" +
-	"\x04role\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.RoleR\x04role\"1\n" +
-	"\x13GetManyRolesRequest\x12\x1a\n" +
-	"\x03ids\x18\x01 \x03(\x03B\b\xbaH\x05\x92\x01\x02\x18\x01R\x03ids\"H\n" +
+	"\x04role\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.RoleR\x04role\"8\n" +
+	"\x13GetManyRolesRequest\x12!\n" +
+	"\x03ids\x18\x01 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x03ids\"H\n" +
 	"\x14GetManyRolesResponse\x120\n" +
 	"\x05roles\x18\x01 \x03(\v2\x1a.otpki.common.auth.v1.RoleR\x05roles\"B\n" +
 	"\x1aGetManyRolesByNamesRequest\x12$\n" +
@@ -934,9 +934,9 @@ const file_otpki_public_auth_v1_role_proto_rawDesc = "" +
 	"\x04role\x18\x01 \x01(\v2\x1a.otpki.common.auth.v1.RoleR\x04role\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"\x14\n" +
-	"\x12UpdateRoleResponse\"+\n" +
-	"\x11DeleteRoleRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x14\n" +
+	"\x12UpdateRoleResponse\"0\n" +
+	"\x11DeleteRoleRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x14\n" +
 	"\x12DeleteRoleResponse\"b\n" +
 	"\x12GetRoleListRequest\x12L\n" +
 	"\n" +
@@ -946,13 +946,13 @@ const file_otpki_public_auth_v1_role_proto_rawDesc = "" +
 	"\x04data\x18\x01 \x03(\v2\x1a.otpki.common.auth.v1.RoleR\x04data\x12M\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
-	"pagination\"\x80\x01\n" +
+	"pagination\"\x85\x01\n" +
 	"\x19SetRolePermissionsRequest\x12B\n" +
-	"\vpermissions\x18\x01 \x03(\v2 .otpki.common.auth.v1.PermissionR\vpermissions\x12\x1f\n" +
-	"\arole_id\x18\x02 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x06roleId\"\x1c\n" +
-	"\x1aSetRolePermissionsResponse\"<\n" +
-	"\x19GetRolePermissionsRequest\x12\x1f\n" +
-	"\arole_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x06roleId\"`\n" +
+	"\vpermissions\x18\x01 \x03(\v2 .otpki.common.auth.v1.PermissionR\vpermissions\x12$\n" +
+	"\arole_id\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x06roleId\"\x1c\n" +
+	"\x1aSetRolePermissionsResponse\"A\n" +
+	"\x19GetRolePermissionsRequest\x12$\n" +
+	"\arole_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x06roleId\"`\n" +
 	"\x1aGetRolePermissionsResponse\x12B\n" +
 	"\vpermissions\x18\x01 \x03(\v2 .otpki.common.auth.v1.PermissionR\vpermissionsB\xdb\x01\n" +
 	"\x18com.otpki.public.auth.v1B\tRoleProtoP\x01Z?github.com/otpki/otpki-protobuf/gen/otpki/public/auth/v1;authv1\xa2\x02\x03OPA\xaa\x02\x14Otpki.Public.Auth.V1\xca\x02\x15Otpki\\Public_\\Auth\\V1\xe2\x02!Otpki\\Public_\\Auth\\V1\\GPBMetadata\xea\x02\x17Otpki::Public::Auth::V1b\x06proto3"

@@ -10,7 +10,10 @@ import "otpki/common/issuance/key_storage_config/v1/enum.proto";
 
 message KeyStorageConfig {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ]; // not settable on creation
   string name = 2 [
     (buf.validate.field).string.min_len = 3,
     (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
@@ -18,7 +21,7 @@ message KeyStorageConfig {
   string description = 3;
   KeyDriverType key_driver_type = 4 [(buf.validate.field).enum.defined_only = true];
   google.protobuf.Any config_data = 5;
-  optional int64 crypto_key_id = 6;
+  optional string crypto_key_id = 6 [(buf.validate.field).string.uuid = true];
 
   // activation
   // if this is false, this config cannot be activated and is always "active"

@@ -4,6 +4,7 @@ package end_entity_profilev1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
@@ -11,7 +12,7 @@ import (
 
 // EndEntityProfileNative is the native typing representation of EndEntityProfile
 type EndEntityProfileNative struct {
-	Id                               int64
+	Id                               uuid.UUID
 	Name                             string
 	Description                      string
 	CreatedAt                        time.Time
@@ -34,10 +35,10 @@ type EndEntityProfileNative struct {
 	EmailDomain                      string
 	SubjectDnAttributes              []*EndEntityProfileSubjectDNAttribute
 	SubjectAlternativeNameAttributes []*EndEntityProfileSANAttribute
-	AvailableCertificateProfileIds   []int64
-	DefaultCertificateProfileId      int64
-	AvailableCertificateAuthorityIds []int64
-	DefaultCertificateAuthorityId    int64
+	AvailableCertificateProfileIds   []uuid.UUID
+	DefaultCertificateProfileId      uuid.UUID
+	AvailableCertificateAuthorityIds []uuid.UUID
+	DefaultCertificateAuthorityId    uuid.UUID
 	UseValidityStartTime             bool
 	ValidityStartTimeModifiable      bool
 	ValidityStartTimeOffset          time.Duration
@@ -51,7 +52,7 @@ type EndEntityProfileNative struct {
 	UseNameConstraintsExcluded       bool
 	NameConstraintsExcludedRequired  bool
 	UseCustomCertificateExts         bool
-	ApprovalProfileId                int64
+	ApprovalProfileId                uuid.UUID
 }
 
 // ToProto converts a EndEntityProfileNative to a EndEntityProfile
@@ -61,7 +62,10 @@ func (n *EndEntityProfileNative) ToProto() (*EndEntityProfile, error) {
 	}
 	var err error
 	protoStruct := &EndEntityProfile{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
@@ -90,10 +94,22 @@ func (n *EndEntityProfileNative) ToProto() (*EndEntityProfile, error) {
 	protoStruct.EmailDomain = n.EmailDomain
 	protoStruct.SubjectDnAttributes = n.SubjectDnAttributes
 	protoStruct.SubjectAlternativeNameAttributes = n.SubjectAlternativeNameAttributes
-	protoStruct.AvailableCertificateProfileIds = n.AvailableCertificateProfileIds
-	protoStruct.DefaultCertificateProfileId = n.DefaultCertificateProfileId
-	protoStruct.AvailableCertificateAuthorityIds = n.AvailableCertificateAuthorityIds
-	protoStruct.DefaultCertificateAuthorityId = n.DefaultCertificateAuthorityId
+	protoStruct.AvailableCertificateProfileIds, err = convertUUIDSliceToProto(n.AvailableCertificateProfileIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AvailableCertificateProfileIds: %w", err)
+	}
+	protoStruct.DefaultCertificateProfileId, err = convertUUIDToProto(n.DefaultCertificateProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting DefaultCertificateProfileId: %w", err)
+	}
+	protoStruct.AvailableCertificateAuthorityIds, err = convertUUIDSliceToProto(n.AvailableCertificateAuthorityIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AvailableCertificateAuthorityIds: %w", err)
+	}
+	protoStruct.DefaultCertificateAuthorityId, err = convertUUIDToProto(n.DefaultCertificateAuthorityId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting DefaultCertificateAuthorityId: %w", err)
+	}
 	protoStruct.UseValidityStartTime = n.UseValidityStartTime
 	protoStruct.ValidityStartTimeModifiable = n.ValidityStartTimeModifiable
 	protoStruct.ValidityStartTimeOffset, err = convertDurationToProto(n.ValidityStartTimeOffset)
@@ -119,7 +135,10 @@ func (n *EndEntityProfileNative) ToProto() (*EndEntityProfile, error) {
 	protoStruct.UseNameConstraintsExcluded = n.UseNameConstraintsExcluded
 	protoStruct.NameConstraintsExcludedRequired = n.NameConstraintsExcludedRequired
 	protoStruct.UseCustomCertificateExts = n.UseCustomCertificateExts
-	protoStruct.ApprovalProfileId = n.ApprovalProfileId
+	protoStruct.ApprovalProfileId, err = convertUUIDToProto(n.ApprovalProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
+	}
 	return protoStruct, nil
 }
 
@@ -130,7 +149,10 @@ func (p *EndEntityProfile) ToNative() (*EndEntityProfileNative, error) {
 	}
 	var err error
 	nativeStruct := &EndEntityProfileNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
@@ -159,10 +181,22 @@ func (p *EndEntityProfile) ToNative() (*EndEntityProfileNative, error) {
 	nativeStruct.EmailDomain = p.EmailDomain
 	nativeStruct.SubjectDnAttributes = p.SubjectDnAttributes
 	nativeStruct.SubjectAlternativeNameAttributes = p.SubjectAlternativeNameAttributes
-	nativeStruct.AvailableCertificateProfileIds = p.AvailableCertificateProfileIds
-	nativeStruct.DefaultCertificateProfileId = p.DefaultCertificateProfileId
-	nativeStruct.AvailableCertificateAuthorityIds = p.AvailableCertificateAuthorityIds
-	nativeStruct.DefaultCertificateAuthorityId = p.DefaultCertificateAuthorityId
+	nativeStruct.AvailableCertificateProfileIds, err = convertProtoToUUIDSlice(p.AvailableCertificateProfileIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AvailableCertificateProfileIdsNative: %w", err)
+	}
+	nativeStruct.DefaultCertificateProfileId, err = convertProtoToUUID(p.DefaultCertificateProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting DefaultCertificateProfileIdNative: %w", err)
+	}
+	nativeStruct.AvailableCertificateAuthorityIds, err = convertProtoToUUIDSlice(p.AvailableCertificateAuthorityIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting AvailableCertificateAuthorityIdsNative: %w", err)
+	}
+	nativeStruct.DefaultCertificateAuthorityId, err = convertProtoToUUID(p.DefaultCertificateAuthorityId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting DefaultCertificateAuthorityIdNative: %w", err)
+	}
 	nativeStruct.UseValidityStartTime = p.UseValidityStartTime
 	nativeStruct.ValidityStartTimeModifiable = p.ValidityStartTimeModifiable
 	nativeStruct.ValidityStartTimeOffset, err = convertProtoToDuration(p.ValidityStartTimeOffset)
@@ -188,8 +222,77 @@ func (p *EndEntityProfile) ToNative() (*EndEntityProfileNative, error) {
 	nativeStruct.UseNameConstraintsExcluded = p.UseNameConstraintsExcluded
 	nativeStruct.NameConstraintsExcludedRequired = p.NameConstraintsExcludedRequired
 	nativeStruct.UseCustomCertificateExts = p.UseCustomCertificateExts
-	nativeStruct.ApprovalProfileId = p.ApprovalProfileId
+	nativeStruct.ApprovalProfileId, err = convertProtoToUUID(p.ApprovalProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
+	}
 	return nativeStruct, nil
+}
+
+// GetIdUUID returns Id as a UUID when possible.
+func (x *EndEntityProfile) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetAvailableCertificateProfileIdsUUID returns AvailableCertificateProfileIds as a UUID when possible.
+func (x *EndEntityProfile) GetAvailableCertificateProfileIdsUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.AvailableCertificateProfileIds)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetDefaultCertificateProfileIdUUID returns DefaultCertificateProfileId as a UUID when possible.
+func (x *EndEntityProfile) GetDefaultCertificateProfileIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.DefaultCertificateProfileId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetAvailableCertificateAuthorityIdsUUID returns AvailableCertificateAuthorityIds as a UUID when possible.
+func (x *EndEntityProfile) GetAvailableCertificateAuthorityIdsUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.AvailableCertificateAuthorityIds)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetDefaultCertificateAuthorityIdUUID returns DefaultCertificateAuthorityId as a UUID when possible.
+func (x *EndEntityProfile) GetDefaultCertificateAuthorityIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.DefaultCertificateAuthorityId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetApprovalProfileIdUUID returns ApprovalProfileId as a UUID when possible.
+func (x *EndEntityProfile) GetApprovalProfileIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.ApprovalProfileId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
 }
 
 // Converter functions for native types
@@ -215,7 +318,46 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
+// convertProtoToUUIDSlice comes from the converter package
+func convertProtoToUUIDSlice(ids []string) ([]uuid.UUID, error) {
+	result := make([]uuid.UUID, len(ids))
+	for i, id := range ids {
+		parsed, err := convertProtoToUUID(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = parsed
+	}
+	return result, nil
+}
+
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDSliceToProto comes from the converter package
+func convertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
+	result := make([]string, len(ids))
+	for i, id := range ids {
+		encoded, err := convertUUIDToProto(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = encoded
+	}
+	return result, nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

@@ -38,8 +38,11 @@ message CertificateTemplate {
   repeated x509.v1.SANAttribute subject_alternative_name_attributes = 501;
 
   // issuance information
-  int64 certificate_profile_id = 601 [(buf.validate.field).required = true];
-  optional int64 certificate_authority_id = 602; // empty means self signed
+  string certificate_profile_id = 601 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  optional string certificate_authority_id = 602 [(buf.validate.field).string.uuid = true]; // empty means self signed
 
   // validity override
   google.protobuf.Duration validity_start_time_offset = 701 [
@@ -118,10 +121,10 @@ message CertificateTemplate {
       string: {uri: true}
     }
   }];
-  repeated int64 custom_certificate_extension_ids = 809 [(buf.validate.field).repeated = {
+  repeated string custom_certificate_extension_ids = 809 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      int64: {gt: 0}
+      string: {uuid: true}
     }
   }];
 }

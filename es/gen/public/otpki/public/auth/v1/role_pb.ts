@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/auth/v1/role.proto.
  */
 export const file_otpki_public_auth_v1_role: GenFile = /*@__PURE__*/
-  fileDesc("Ch9vdHBraS9wdWJsaWMvYXV0aC92MS9yb2xlLnByb3RvEhRvdHBraS5wdWJsaWMuYXV0aC52MSJFChFDcmVhdGVSb2xlUmVxdWVzdBIwCgRyb2xlGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZUIGukgDyAEBIiAKEkNyZWF0ZVJvbGVSZXNwb25zZRIKCgJpZBgBIAEoAyIkCg5HZXRSb2xlUmVxdWVzdBISCgJpZBgBIAEoA0IGukgDyAEBIjsKD0dldFJvbGVSZXNwb25zZRIoCgRyb2xlGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZSIsChNHZXRNYW55Um9sZXNSZXF1ZXN0EhUKA2lkcxgBIAMoA0IIukgFkgECGAEiQQoUR2V0TWFueVJvbGVzUmVzcG9uc2USKQoFcm9sZXMYASADKAsyGi5vdHBraS5jb21tb24uYXV0aC52MS5Sb2xlIjsKGkdldE1hbnlSb2xlc0J5TmFtZXNSZXF1ZXN0Eh0KBW5hbWVzGAEgAygJQg66SAuSAQgYASIEcgIQASJIChtHZXRNYW55Um9sZXNCeU5hbWVzUmVzcG9uc2USKQoFcm9sZXMYASADKAsyGi5vdHBraS5jb21tb24uYXV0aC52MS5Sb2xlIkMKIkNyZWF0ZU9yR2V0TWFueVJvbGVzQnlOYW1lc1JlcXVlc3QSHQoFbmFtZXMYASADKAlCDrpIC5IBCBgBIgRyAhABIlAKI0NyZWF0ZU9yR2V0TWFueVJvbGVzQnlOYW1lc1Jlc3BvbnNlEikKBXJvbGVzGAEgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZSJuChFVcGRhdGVSb2xlUmVxdWVzdBIoCgRyb2xlGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZRIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siFAoSVXBkYXRlUm9sZVJlc3BvbnNlIicKEURlbGV0ZVJvbGVSZXF1ZXN0EhIKAmlkGAEgASgDQga6SAPIAQEiFAoSRGVsZXRlUm9sZVJlc3BvbnNlIlYKEkdldFJvbGVMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKCAQoTR2V0Um9sZUxpc3RSZXNwb25zZRIoCgRkYXRhGAEgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZRJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UiawoZU2V0Um9sZVBlcm1pc3Npb25zUmVxdWVzdBI1CgtwZXJtaXNzaW9ucxgBIAMoCzIgLm90cGtpLmNvbW1vbi5hdXRoLnYxLlBlcm1pc3Npb24SFwoHcm9sZV9pZBgCIAEoA0IGukgDyAEBIhwKGlNldFJvbGVQZXJtaXNzaW9uc1Jlc3BvbnNlIjQKGUdldFJvbGVQZXJtaXNzaW9uc1JlcXVlc3QSFwoHcm9sZV9pZBgBIAEoA0IGukgDyAEBIlMKGkdldFJvbGVQZXJtaXNzaW9uc1Jlc3BvbnNlEjUKC3Blcm1pc3Npb25zGAEgAygLMiAub3Rwa2kuY29tbW9uLmF1dGgudjEuUGVybWlzc2lvbkKaAQoYY29tLm90cGtpLnB1YmxpYy5hdXRoLnYxQglSb2xlUHJvdG9QAaICA09QQaoCFE90cGtpLlB1YmxpYy5BdXRoLlYxygIVT3Rwa2lcUHVibGljX1xBdXRoXFYx4gIhT3Rwa2lcUHVibGljX1xBdXRoXFYxXEdQQk1ldGFkYXRh6gIXT3Rwa2k6OlB1YmxpYzo6QXV0aDo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
+  fileDesc("Ch9vdHBraS9wdWJsaWMvYXV0aC92MS9yb2xlLnByb3RvEhRvdHBraS5wdWJsaWMuYXV0aC52MSJFChFDcmVhdGVSb2xlUmVxdWVzdBIwCgRyb2xlGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZUIGukgDyAEBIioKEkNyZWF0ZVJvbGVSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiKQoOR2V0Um9sZVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIjsKD0dldFJvbGVSZXNwb25zZRIoCgRyb2xlGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZSIzChNHZXRNYW55Um9sZXNSZXF1ZXN0EhwKA2lkcxgBIAMoCUIPukgMkgEJGAEiBXIDsAEBIkEKFEdldE1hbnlSb2xlc1Jlc3BvbnNlEikKBXJvbGVzGAEgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZSI7ChpHZXRNYW55Um9sZXNCeU5hbWVzUmVxdWVzdBIdCgVuYW1lcxgBIAMoCUIOukgLkgEIGAEiBHICEAEiSAobR2V0TWFueVJvbGVzQnlOYW1lc1Jlc3BvbnNlEikKBXJvbGVzGAEgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZSJDCiJDcmVhdGVPckdldE1hbnlSb2xlc0J5TmFtZXNSZXF1ZXN0Eh0KBW5hbWVzGAEgAygJQg66SAuSAQgYASIEcgIQASJQCiNDcmVhdGVPckdldE1hbnlSb2xlc0J5TmFtZXNSZXNwb25zZRIpCgVyb2xlcxgBIAMoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlJvbGUibgoRVXBkYXRlUm9sZVJlcXVlc3QSKAoEcm9sZRgBIAEoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlJvbGUSLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIhQKElVwZGF0ZVJvbGVSZXNwb25zZSIsChFEZWxldGVSb2xlUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiFAoSRGVsZXRlUm9sZVJlc3BvbnNlIlYKEkdldFJvbGVMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKCAQoTR2V0Um9sZUxpc3RSZXNwb25zZRIoCgRkYXRhGAEgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZRJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UicAoZU2V0Um9sZVBlcm1pc3Npb25zUmVxdWVzdBI1CgtwZXJtaXNzaW9ucxgBIAMoCzIgLm90cGtpLmNvbW1vbi5hdXRoLnYxLlBlcm1pc3Npb24SHAoHcm9sZV9pZBgCIAEoCUILukgIyAEBcgOwAQEiHAoaU2V0Um9sZVBlcm1pc3Npb25zUmVzcG9uc2UiOQoZR2V0Um9sZVBlcm1pc3Npb25zUmVxdWVzdBIcCgdyb2xlX2lkGAEgASgJQgu6SAjIAQFyA7ABASJTChpHZXRSb2xlUGVybWlzc2lvbnNSZXNwb25zZRI1CgtwZXJtaXNzaW9ucxgBIAMoCzIgLm90cGtpLmNvbW1vbi5hdXRoLnYxLlBlcm1pc3Npb25CmgEKGGNvbS5vdHBraS5wdWJsaWMuYXV0aC52MUIJUm9sZVByb3RvUAGiAgNPUEGqAhRPdHBraS5QdWJsaWMuQXV0aC5WMcoCFU90cGtpXFB1YmxpY19cQXV0aFxWMeICIU90cGtpXFB1YmxpY19cQXV0aFxWMVxHUEJNZXRhZGF0YeoCF090cGtpOjpQdWJsaWM6OkF1dGg6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
 
 /**
  * @generated from message otpki.public.auth.v1.CreateRoleRequest
@@ -61,9 +61,9 @@ export const CreateRoleRequestSchema: GenMessage<CreateRoleRequest, {jsonType: C
  */
 export type CreateRoleResponse = Message<"otpki.public.auth.v1.CreateRoleResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreateRoleResponse = Message<"otpki.public.auth.v1.CreateRoleRespons
  */
 export type CreateRoleResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreateRoleResponseSchema: GenMessage<CreateRoleResponse, {jsonType:
  */
 export type GetRoleRequest = Message<"otpki.public.auth.v1.GetRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,7 +100,7 @@ export type GetRoleRequest = Message<"otpki.public.auth.v1.GetRoleRequest"> & {
  */
 export type GetRoleRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -110,9 +110,9 @@ export type GetRoleRequestJson = {
  */
 export type GetRoleRequestValid = Message<"otpki.public.auth.v1.GetRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -156,9 +156,9 @@ export const GetRoleResponseSchema: GenMessage<GetRoleResponse, {jsonType: GetRo
  */
 export type GetManyRolesRequest = Message<"otpki.public.auth.v1.GetManyRolesRequest"> & {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
-  ids: bigint[];
+  ids: string[];
 };
 
 /**
@@ -166,7 +166,7 @@ export type GetManyRolesRequest = Message<"otpki.public.auth.v1.GetManyRolesRequ
  */
 export type GetManyRolesRequestJson = {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
   ids?: string[];
 };
@@ -390,9 +390,9 @@ export const UpdateRoleResponseSchema: GenMessage<UpdateRoleResponse, {jsonType:
  */
 export type DeleteRoleRequest = Message<"otpki.public.auth.v1.DeleteRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -400,7 +400,7 @@ export type DeleteRoleRequest = Message<"otpki.public.auth.v1.DeleteRoleRequest"
  */
 export type DeleteRoleRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -410,9 +410,9 @@ export type DeleteRoleRequestJson = {
  */
 export type DeleteRoleRequestValid = Message<"otpki.public.auth.v1.DeleteRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -521,9 +521,9 @@ export type SetRolePermissionsRequest = Message<"otpki.public.auth.v1.SetRolePer
   permissions: Permission[];
 
   /**
-   * @generated from field: int64 role_id = 2;
+   * @generated from field: string role_id = 2;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**
@@ -536,7 +536,7 @@ export type SetRolePermissionsRequestJson = {
   permissions?: PermissionJson[];
 
   /**
-   * @generated from field: int64 role_id = 2;
+   * @generated from field: string role_id = 2;
    */
   roleId?: string;
 };
@@ -551,9 +551,9 @@ export type SetRolePermissionsRequestValid = Message<"otpki.public.auth.v1.SetRo
   permissions: PermissionValid[];
 
   /**
-   * @generated from field: int64 role_id = 2;
+   * @generated from field: string role_id = 2;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**
@@ -589,9 +589,9 @@ export const SetRolePermissionsResponseSchema: GenMessage<SetRolePermissionsResp
  */
 export type GetRolePermissionsRequest = Message<"otpki.public.auth.v1.GetRolePermissionsRequest"> & {
   /**
-   * @generated from field: int64 role_id = 1;
+   * @generated from field: string role_id = 1;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**
@@ -599,7 +599,7 @@ export type GetRolePermissionsRequest = Message<"otpki.public.auth.v1.GetRolePer
  */
 export type GetRolePermissionsRequestJson = {
   /**
-   * @generated from field: int64 role_id = 1;
+   * @generated from field: string role_id = 1;
    */
   roleId?: string;
 };
@@ -609,9 +609,9 @@ export type GetRolePermissionsRequestJson = {
  */
 export type GetRolePermissionsRequestValid = Message<"otpki.public.auth.v1.GetRolePermissionsRequest"> & {
   /**
-   * @generated from field: int64 role_id = 1;
+   * @generated from field: string role_id = 1;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**

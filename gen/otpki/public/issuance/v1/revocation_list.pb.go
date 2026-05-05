@@ -25,7 +25,7 @@ const (
 
 type CreateRevocationListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	IsDelta       bool                   `protobuf:"varint,2,opt,name=is_delta,json=isDelta,proto3" json:"is_delta,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -61,11 +61,11 @@ func (*CreateRevocationListRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_revocation_list_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateRevocationListRequest) GetCaId() int64 {
+func (x *CreateRevocationListRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 func (x *CreateRevocationListRequest) GetIsDelta() bool {
@@ -123,9 +123,9 @@ var File_otpki_public_issuance_v1_revocation_list_proto protoreflect.FileDescrip
 
 const file_otpki_public_issuance_v1_revocation_list_proto_rawDesc = "" +
 	"\n" +
-	".otpki/public/issuance/v1/revocation_list.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a*otpki/common/x509/v1/revocation_list.proto\"U\n" +
-	"\x1bCreateRevocationListRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\x12\x19\n" +
+	".otpki/public/issuance/v1/revocation_list.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a*otpki/common/x509/v1/revocation_list.proto\"Z\n" +
+	"\x1bCreateRevocationListRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12\x19\n" +
 	"\bis_delta\x18\x02 \x01(\bR\aisDelta\"m\n" +
 	"\x1cCreateRevocationListResponse\x12M\n" +
 	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationListB\x81\x02\n" +

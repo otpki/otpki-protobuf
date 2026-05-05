@@ -4,6 +4,7 @@ package authv1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
@@ -11,7 +12,7 @@ import (
 
 // GroupNative is the native typing representation of Group
 type GroupNative struct {
-	Id          int64
+	Id          uuid.UUID
 	Name        string
 	Description string
 	CreatedAt   time.Time
@@ -25,7 +26,10 @@ func (n *GroupNative) ToProto() (*Group, error) {
 	}
 	var err error
 	protoStruct := &Group{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
@@ -46,7 +50,10 @@ func (p *Group) ToNative() (*GroupNative, error) {
 	}
 	var err error
 	nativeStruct := &GroupNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
@@ -60,9 +67,20 @@ func (p *Group) ToNative() (*GroupNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *Group) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // RoleNative is the native typing representation of Role
 type RoleNative struct {
-	Id          int64
+	Id          uuid.UUID
 	Name        string
 	Description string
 	SystemRole  bool
@@ -77,7 +95,10 @@ func (n *RoleNative) ToProto() (*Role, error) {
 	}
 	var err error
 	protoStruct := &Role{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
 	protoStruct.SystemRole = n.SystemRole
@@ -99,7 +120,10 @@ func (p *Role) ToNative() (*RoleNative, error) {
 	}
 	var err error
 	nativeStruct := &RoleNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
 	nativeStruct.SystemRole = p.SystemRole
@@ -114,9 +138,42 @@ func (p *Role) ToNative() (*RoleNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *Role) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetIdUUID returns Id as a UUID when possible.
+func (x *Permission) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetObjectIdUUID returns ObjectId as a UUID when possible.
+func (x *Permission) GetObjectIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.ObjectId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // UserNative is the native typing representation of User
 type UserNative struct {
-	Id           int64
+	Id           uuid.UUID
 	Username     string
 	FirstName    string
 	LastName     string
@@ -127,8 +184,8 @@ type UserNative struct {
 	Certificate  []byte
 	OidcIssuer   string
 	OidcSubject  string
-	Groups       []int64
-	Roles        []int64
+	Groups       []uuid.UUID
+	Roles        []uuid.UUID
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
 }
@@ -140,7 +197,10 @@ func (n *UserNative) ToProto() (*User, error) {
 	}
 	var err error
 	protoStruct := &User{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Username = n.Username
 	protoStruct.FirstName = n.FirstName
 	protoStruct.LastName = n.LastName
@@ -151,8 +211,14 @@ func (n *UserNative) ToProto() (*User, error) {
 	protoStruct.Certificate = n.Certificate
 	protoStruct.OidcIssuer = n.OidcIssuer
 	protoStruct.OidcSubject = n.OidcSubject
-	protoStruct.Groups = n.Groups
-	protoStruct.Roles = n.Roles
+	protoStruct.Groups, err = convertUUIDSliceToProto(n.Groups)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Groups: %w", err)
+	}
+	protoStruct.Roles, err = convertUUIDSliceToProto(n.Roles)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Roles: %w", err)
+	}
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -171,7 +237,10 @@ func (p *User) ToNative() (*UserNative, error) {
 	}
 	var err error
 	nativeStruct := &UserNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Username = p.Username
 	nativeStruct.FirstName = p.FirstName
 	nativeStruct.LastName = p.LastName
@@ -182,8 +251,14 @@ func (p *User) ToNative() (*UserNative, error) {
 	nativeStruct.Certificate = p.Certificate
 	nativeStruct.OidcIssuer = p.OidcIssuer
 	nativeStruct.OidcSubject = p.OidcSubject
-	nativeStruct.Groups = p.Groups
-	nativeStruct.Roles = p.Roles
+	nativeStruct.Groups, err = convertProtoToUUIDSlice(p.Groups)
+	if err != nil {
+		return nil, fmt.Errorf("error converting GroupsNative: %w", err)
+	}
+	nativeStruct.Roles, err = convertProtoToUUIDSlice(p.Roles)
+	if err != nil {
+		return nil, fmt.Errorf("error converting RolesNative: %w", err)
+	}
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)
@@ -195,15 +270,48 @@ func (p *User) ToNative() (*UserNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *User) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetGroupsUUID returns Groups as a UUID when possible.
+func (x *User) GetGroupsUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.Groups)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetRolesUUID returns Roles as a UUID when possible.
+func (x *User) GetRolesUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.Roles)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
 // ApprovalProfileNative is the native typing representation of ApprovalProfile
 type ApprovalProfileNative struct {
-	Id                   int64
+	Id                   uuid.UUID
 	Name                 string
 	Description          string
 	NumApprovalsRequired int32
-	ApproverRoleIds      []int64
-	ApproverGroupIds     []int64
-	ApproverUserIds      []int64
+	ApproverRoleIds      []uuid.UUID
+	ApproverGroupIds     []uuid.UUID
+	ApproverUserIds      []uuid.UUID
 	CreatedAt            time.Time
 	UpdatedAt            time.Time
 }
@@ -215,13 +323,25 @@ func (n *ApprovalProfileNative) ToProto() (*ApprovalProfile, error) {
 	}
 	var err error
 	protoStruct := &ApprovalProfile{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
 	protoStruct.NumApprovalsRequired = n.NumApprovalsRequired
-	protoStruct.ApproverRoleIds = n.ApproverRoleIds
-	protoStruct.ApproverGroupIds = n.ApproverGroupIds
-	protoStruct.ApproverUserIds = n.ApproverUserIds
+	protoStruct.ApproverRoleIds, err = convertUUIDSliceToProto(n.ApproverRoleIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApproverRoleIds: %w", err)
+	}
+	protoStruct.ApproverGroupIds, err = convertUUIDSliceToProto(n.ApproverGroupIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApproverGroupIds: %w", err)
+	}
+	protoStruct.ApproverUserIds, err = convertUUIDSliceToProto(n.ApproverUserIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApproverUserIds: %w", err)
+	}
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -240,13 +360,25 @@ func (p *ApprovalProfile) ToNative() (*ApprovalProfileNative, error) {
 	}
 	var err error
 	nativeStruct := &ApprovalProfileNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
 	nativeStruct.NumApprovalsRequired = p.NumApprovalsRequired
-	nativeStruct.ApproverRoleIds = p.ApproverRoleIds
-	nativeStruct.ApproverGroupIds = p.ApproverGroupIds
-	nativeStruct.ApproverUserIds = p.ApproverUserIds
+	nativeStruct.ApproverRoleIds, err = convertProtoToUUIDSlice(p.ApproverRoleIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApproverRoleIdsNative: %w", err)
+	}
+	nativeStruct.ApproverGroupIds, err = convertProtoToUUIDSlice(p.ApproverGroupIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApproverGroupIdsNative: %w", err)
+	}
+	nativeStruct.ApproverUserIds, err = convertProtoToUUIDSlice(p.ApproverUserIds)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApproverUserIdsNative: %w", err)
+	}
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)
@@ -258,9 +390,53 @@ func (p *ApprovalProfile) ToNative() (*ApprovalProfileNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *ApprovalProfile) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetApproverRoleIdsUUID returns ApproverRoleIds as a UUID when possible.
+func (x *ApprovalProfile) GetApproverRoleIdsUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.ApproverRoleIds)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetApproverGroupIdsUUID returns ApproverGroupIds as a UUID when possible.
+func (x *ApprovalProfile) GetApproverGroupIdsUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.ApproverGroupIds)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
+// GetApproverUserIdsUUID returns ApproverUserIds as a UUID when possible.
+func (x *ApprovalProfile) GetApproverUserIdsUUID() []uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUIDSlice(x.ApproverUserIds)
+		if err == nil {
+			return value
+		}
+	}
+	return nil
+}
+
 // OIDCProviderNative is the native typing representation of OIDCProvider
 type OIDCProviderNative struct {
-	Id                 int64
+	Id                 uuid.UUID
 	Name               string
 	ClientId           string
 	ClientSecret       string
@@ -285,7 +461,10 @@ func (n *OIDCProviderNative) ToProto() (*OIDCProvider, error) {
 	}
 	var err error
 	protoStruct := &OIDCProvider{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.ClientId = n.ClientId
 	protoStruct.ClientSecret = n.ClientSecret
@@ -317,7 +496,10 @@ func (p *OIDCProvider) ToNative() (*OIDCProviderNative, error) {
 	}
 	var err error
 	nativeStruct := &OIDCProviderNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.ClientId = p.ClientId
 	nativeStruct.ClientSecret = p.ClientSecret
@@ -342,12 +524,23 @@ func (p *OIDCProvider) ToNative() (*OIDCProviderNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *OIDCProvider) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // WorkItemNative is the native typing representation of WorkItem
 type WorkItemNative struct {
-	Id                int64
-	ApprovalProfileId int64
+	Id                uuid.UUID
+	ApprovalProfileId uuid.UUID
 	ResourceType      Resource
-	ResourceId        int64
+	ResourceId        uuid.UUID
 	Description       string
 	Status            WorkItemStatus
 	Approvals         []*WorkItemApproval
@@ -362,10 +555,19 @@ func (n *WorkItemNative) ToProto() (*WorkItem, error) {
 	}
 	var err error
 	protoStruct := &WorkItem{}
-	protoStruct.Id = n.Id
-	protoStruct.ApprovalProfileId = n.ApprovalProfileId
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
+	protoStruct.ApprovalProfileId, err = convertUUIDToProto(n.ApprovalProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
+	}
 	protoStruct.ResourceType = n.ResourceType
-	protoStruct.ResourceId = n.ResourceId
+	protoStruct.ResourceId, err = convertUUIDToProto(n.ResourceId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ResourceId: %w", err)
+	}
 	protoStruct.Description = n.Description
 	protoStruct.Status = n.Status
 	protoStruct.Approvals = n.Approvals
@@ -387,10 +589,19 @@ func (p *WorkItem) ToNative() (*WorkItemNative, error) {
 	}
 	var err error
 	nativeStruct := &WorkItemNative{}
-	nativeStruct.Id = p.Id
-	nativeStruct.ApprovalProfileId = p.ApprovalProfileId
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
+	nativeStruct.ApprovalProfileId, err = convertProtoToUUID(p.ApprovalProfileId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
+	}
 	nativeStruct.ResourceType = p.ResourceType
-	nativeStruct.ResourceId = p.ResourceId
+	nativeStruct.ResourceId, err = convertProtoToUUID(p.ResourceId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting ResourceIdNative: %w", err)
+	}
 	nativeStruct.Description = p.Description
 	nativeStruct.Status = p.Status
 	nativeStruct.Approvals = p.Approvals
@@ -405,6 +616,50 @@ func (p *WorkItem) ToNative() (*WorkItemNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *WorkItem) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetApprovalProfileIdUUID returns ApprovalProfileId as a UUID when possible.
+func (x *WorkItem) GetApprovalProfileIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.ApprovalProfileId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetResourceIdUUID returns ResourceId as a UUID when possible.
+func (x *WorkItem) GetResourceIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.ResourceId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetUserIdUUID returns UserId as a UUID when possible.
+func (x *WorkItemApproval) GetUserIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.UserId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
 
 // convertProtoToTime comes from the converter package
@@ -415,7 +670,46 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
+// convertProtoToUUIDSlice comes from the converter package
+func convertProtoToUUIDSlice(ids []string) ([]uuid.UUID, error) {
+	result := make([]uuid.UUID, len(ids))
+	for i, id := range ids {
+		parsed, err := convertProtoToUUID(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = parsed
+	}
+	return result, nil
+}
+
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDSliceToProto comes from the converter package
+func convertUUIDSliceToProto(ids []uuid.UUID) ([]string, error) {
+	result := make([]string, len(ids))
+	for i, id := range ids {
+		encoded, err := convertUUIDToProto(id)
+		if err != nil {
+			return nil, err
+		}
+		result[i] = encoded
+	}
+	return result, nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

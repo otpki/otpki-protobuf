@@ -73,7 +73,7 @@ func (x *CreateKeyStorageConfigRequest) GetConfig() *v1.KeyStorageConfig {
 
 type CreateKeyStorageConfigResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -108,16 +108,16 @@ func (*CreateKeyStorageConfigResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_key_storage_config_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateKeyStorageConfigResponse) GetId() int64 {
+func (x *CreateKeyStorageConfigResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetKeyStorageConfigRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -152,11 +152,11 @@ func (*GetKeyStorageConfigRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_key_storage_config_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetKeyStorageConfigRequest) GetId() int64 {
+func (x *GetKeyStorageConfigRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetKeyStorageConfigResponse struct {
@@ -293,7 +293,7 @@ func (*UpdateKeyStorageConfigResponse) Descriptor() ([]byte, []int) {
 
 type DeleteKeyStorageConfigRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -328,11 +328,11 @@ func (*DeleteKeyStorageConfigRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_key_storage_config_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteKeyStorageConfigRequest) GetId() int64 {
+func (x *DeleteKeyStorageConfigRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteKeyStorageConfigResponse struct {
@@ -637,7 +637,7 @@ func (*ActivateKeyStorageConfigResponse) Descriptor() ([]byte, []int) {
 
 type DeactivateKeyStorageConfigRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	KeyStorageConfigId int64                  `protobuf:"varint,1,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
+	KeyStorageConfigId string                 `protobuf:"bytes,1,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -672,11 +672,11 @@ func (*DeactivateKeyStorageConfigRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_key_storage_config_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *DeactivateKeyStorageConfigRequest) GetKeyStorageConfigId() int64 {
+func (x *DeactivateKeyStorageConfigRequest) GetKeyStorageConfigId() string {
 	if x != nil {
 		return x.KeyStorageConfigId
 	}
-	return 0
+	return ""
 }
 
 type DeactivateKeyStorageConfigResponse struct {
@@ -721,20 +721,20 @@ const file_otpki_public_issuance_v1_key_storage_config_proto_rawDesc = "" +
 	"\n" +
 	"1otpki/public/issuance/v1/key_storage_config.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a<otpki/common/issuance/key_storage_config/v1/activation.proto\x1aDotpki/common/issuance/key_storage_config/v1/key_storage_config.proto\x1a7otpki/common/issuance/plugin/key_driver/v1/plugin.proto\"~\n" +
 	"\x1dCreateKeyStorageConfigRequest\x12]\n" +
-	"\x06config\x18\x01 \x01(\v2=.otpki.common.issuance.key_storage_config.v1.KeyStorageConfigB\x06\xbaH\x03\xc8\x01\x01R\x06config\"0\n" +
-	"\x1eCreateKeyStorageConfigResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"5\n" +
-	"\x1aGetKeyStorageConfigRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"t\n" +
+	"\x06config\x18\x01 \x01(\v2=.otpki.common.issuance.key_storage_config.v1.KeyStorageConfigB\x06\xbaH\x03\xc8\x01\x01R\x06config\":\n" +
+	"\x1eCreateKeyStorageConfigResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"9\n" +
+	"\x1aGetKeyStorageConfigRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"t\n" +
 	"\x1bGetKeyStorageConfigResponse\x12U\n" +
 	"\x06config\x18\x01 \x01(\v2=.otpki.common.issuance.key_storage_config.v1.KeyStorageConfigR\x06config\"\xb3\x01\n" +
 	"\x1dUpdateKeyStorageConfigRequest\x12U\n" +
 	"\x06config\x18\x01 \x01(\v2=.otpki.common.issuance.key_storage_config.v1.KeyStorageConfigR\x06config\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\" \n" +
-	"\x1eUpdateKeyStorageConfigResponse\"8\n" +
-	"\x1dDeleteKeyStorageConfigRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\" \n" +
+	"\x1eUpdateKeyStorageConfigResponse\"<\n" +
+	"\x1dDeleteKeyStorageConfigRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\" \n" +
 	"\x1eDeleteKeyStorageConfigResponse\"n\n" +
 	"\x1eGetKeyStorageConfigListRequest\x12L\n" +
 	"\n" +
@@ -753,9 +753,9 @@ const file_otpki_public_issuance_v1_key_storage_config_proto_rawDesc = "" +
 	"\n" +
 	"activation\x18\x01 \x01(\v27.otpki.common.issuance.key_storage_config.v1.ActivationB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"activation\"\"\n" +
-	" ActivateKeyStorageConfigResponse\"^\n" +
-	"!DeactivateKeyStorageConfigRequest\x129\n" +
-	"\x15key_storage_config_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x12keyStorageConfigId\"$\n" +
+	" ActivateKeyStorageConfigResponse\"c\n" +
+	"!DeactivateKeyStorageConfigRequest\x12>\n" +
+	"\x15key_storage_config_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x12keyStorageConfigId\"$\n" +
 	"\"DeactivateKeyStorageConfigResponseB\x83\x02\n" +
 	"\x1ccom.otpki.public.issuance.v1B\x15KeyStorageConfigProtoP\x01ZGgithub.com/otpki/otpki-protobuf/gen/otpki/public/issuance/v1;issuancev1\xa2\x02\x03OPI\xaa\x02\x18Otpki.Public.Issuance.V1\xca\x02\x19Otpki\\Public_\\Issuance\\V1\xe2\x02%Otpki\\Public_\\Issuance\\V1\\GPBMetadata\xea\x02\x1bOtpki::Public::Issuance::V1b\x06proto3"
 

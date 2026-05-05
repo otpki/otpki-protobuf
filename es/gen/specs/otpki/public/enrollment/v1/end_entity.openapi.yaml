@@ -624,11 +624,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         description:
@@ -637,11 +635,10 @@ components:
           description: string name = 2; // using "login id" now
         endEntityProfileId:
           type:
-            - integer
             - string
             - "null"
           title: end_entity_profile_id
-          format: int64
+          format: uuid
         status:
           title: status
           description: this should only be set by backend
@@ -697,18 +694,14 @@ components:
             san
              note: certificate email can differ from EE email
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          format: int64
+          format: uuid
           description: issuance information
         certificateAuthorityId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_authority_id
-          format: int64
+          format: uuid
         validityStartTimeOffset:
           title: validity_start_time_offset
           description: validity override offset from 'now' when to issue certificate
@@ -792,11 +785,8 @@ components:
         customCertificateExtensionIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
       title: EndEntity
@@ -890,22 +880,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateEndEntityResponse
       additionalProperties: false
     otpki.public.enrollment.v1.DeleteEndEntityRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteEndEntityRequest
       required:
         - id
@@ -939,11 +925,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetEndEntityRequest
       required:
         - id

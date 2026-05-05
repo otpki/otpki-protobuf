@@ -17,9 +17,9 @@ export declare const file_otpki_public_issuance_v1_key: GenFile;
  */
 export declare type GetKeyRequest = Message<"otpki.public.issuance.v1.GetKeyRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -27,7 +27,7 @@ export declare type GetKeyRequest = Message<"otpki.public.issuance.v1.GetKeyRequ
  */
 export declare type GetKeyRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -37,9 +37,9 @@ export declare type GetKeyRequestJson = {
  */
 export declare type GetKeyRequestValid = Message<"otpki.public.issuance.v1.GetKeyRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -161,9 +161,9 @@ export declare const CreateKeyRequestSchema: GenMessage<CreateKeyRequest, {jsonT
  */
 export declare type CreateKeyResponse = Message<"otpki.public.issuance.v1.CreateKeyResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -171,7 +171,7 @@ export declare type CreateKeyResponse = Message<"otpki.public.issuance.v1.Create
  */
 export declare type CreateKeyResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -268,9 +268,9 @@ export declare const GetKeyListResponseSchema: GenMessage<GetKeyListResponse, {j
  */
 export declare type DeleteKeyRequest = Message<"otpki.public.issuance.v1.DeleteKeyRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -278,7 +278,7 @@ export declare type DeleteKeyRequest = Message<"otpki.public.issuance.v1.DeleteK
  */
 export declare type DeleteKeyRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -288,9 +288,9 @@ export declare type DeleteKeyRequestJson = {
  */
 export declare type DeleteKeyRequestValid = Message<"otpki.public.issuance.v1.DeleteKeyRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

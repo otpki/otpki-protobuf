@@ -7,7 +7,7 @@ import "otpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate
 
 message GetEndEntityCertificateBySerialNumberRequest {
   bytes serial_number = 1 [(buf.validate.field).required = true];
-  int64 end_entity_id = 2; // this param does not do anything, it's for the path to satisfy a pattern
+  string end_entity_id = 2 [(buf.validate.field).string.uuid = true]; // this param does not do anything, it's for the path to satisfy a pattern
 }
 
 message GetEndEntityCertificateBySerialNumberResponse {
@@ -15,7 +15,10 @@ message GetEndEntityCertificateBySerialNumberResponse {
 }
 
 message GetEndEntityCertificatesRequest {
-  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetEndEntityCertificatesResponse {

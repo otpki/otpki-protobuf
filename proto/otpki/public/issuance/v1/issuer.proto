@@ -15,7 +15,10 @@ message CreateIssuanceRequestResponse {
 }
 
 message GetIssuanceByRequestIDRequest {
-  int64 issuance_request_id = 1 [(buf.validate.field).required = true];
+  string issuance_request_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetIssuanceByRequestIDResponse {
@@ -24,10 +27,12 @@ message GetIssuanceByRequestIDResponse {
 }
 
 message RevokeIssuedCertificatesRequest {
-  repeated int64 certificate_ids = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).repeated.unique = true
-  ];
+  repeated string certificate_ids = 1 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
   common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
 }
 

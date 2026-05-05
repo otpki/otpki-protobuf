@@ -19,7 +19,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/issuance/v1/certificate_authority.proto.
  */
 export const file_otpki_public_issuance_v1_certificate_authority: GenFile = /*@__PURE__*/
-  fileDesc("CjRvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvY2VydGlmaWNhdGVfYXV0aG9yaXR5LnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEikAEKIUNyZWF0ZUNlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBJrChVjZXJ0aWZpY2F0ZV9hdXRob3JpdHkYASABKAsyRC5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5Qga6SAPIAQEiMAoiQ3JlYXRlQ2VydGlmaWNhdGVBdXRob3JpdHlSZXNwb25zZRIKCgJpZBgBIAEoAyKyAgohSW1wb3J0Q2VydGlmaWNhdGVBdXRob3JpdHlSZXF1ZXN0EmsKFWNlcnRpZmljYXRlX2F1dGhvcml0eRgBIAEoCzJELm90cGtpLmNvbW1vbi5pc3N1YW5jZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlCBrpIA8gBARIXCg9jZXJ0aWZpY2F0ZV9wZW0YAiABKAwSHQoVcDdiX2NlcnRpZmljYXRlX2NoYWluGAMgASgMEj0KCmtleV9jb25maWcYBCABKAsyIS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5LnYxLktleUIGukgDyAEBEhcKB2tleV9wZW0YBSABKAxCBrpIA8gBARIQCghwYXNzd29yZBgGIAEoCSIwCiJJbXBvcnRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlEgoKAmlkGAEgASgDIvwBCidJbXBvcnRDZXJ0aWZpY2F0ZUF1dGhvcml0eVBLQ1MxMlJlcXVlc3QSawoVY2VydGlmaWNhdGVfYXV0aG9yaXR5GAEgASgLMkQub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eUIGukgDyAEBEj0KCmtleV9jb25maWcYAiABKAsyIS5vdHBraS5jb21tb24uaXNzdWFuY2Uua2V5LnYxLktleUIGukgDyAEBEhMKA3AxMhgDIAEoDEIGukgDyAEBEhAKCHBhc3N3b3JkGAQgASgJIjYKKEltcG9ydENlcnRpZmljYXRlQXV0aG9yaXR5UEtDUzEyUmVzcG9uc2USCgoCaWQYASABKAMiTQokQ3JlYXRlQ2VydGlmaWNhdGVBdXRob3JpdHlDU1JSZXF1ZXN0EhUKBWNhX2lkGAEgASgDQga6SAPIAQESDgoGa2V5X2lkGAIgASgDIkgKJUNyZWF0ZUNlcnRpZmljYXRlQXV0aG9yaXR5Q1NSUmVzcG9uc2USHwoXY2VydGlmaWNhdGVfcmVxdWVzdF9kZXIYASABKAwifQosSW1wb3J0Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZVJlcXVlc3QSFQoFY2FfaWQYASABKANCBrpIA8gBARIXCg9jZXJ0aWZpY2F0ZV9wZW0YAiABKAwSHQoVcDdiX2NlcnRpZmljYXRlX2NoYWluGAMgASgMIkoKLUltcG9ydENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXNwb25zZRIZChFjYV9jZXJ0aWZpY2F0ZV9pZBgBIAEoAyKVAQogUmVuZXdDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlcXVlc3QSFQoFY2FfaWQYASABKANCBrpIA8gBARIYCgtuZXh0X2tleV9pZBgCIAEoA0gAiAEBEhwKD25leHRfYWx0X2tleV9pZBgDIAEoA0gBiAEBQg4KDF9uZXh0X2tleV9pZEISChBfbmV4dF9hbHRfa2V5X2lkIiMKIVJlbmV3Q2VydGlmaWNhdGVBdXRob3JpdHlSZXNwb25zZSI3Ch5HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlcXVlc3QSFQoFY2FfaWQYASABKANCBrpIA8gBASKGAQofR2V0Q2VydGlmaWNhdGVBdXRob3JpdHlSZXNwb25zZRJjChVjZXJ0aWZpY2F0ZV9hdXRob3JpdHkYASABKAsyRC5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5ImYKIkdldENlcnRpZmljYXRlQXV0aG9yaXR5TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QivAEKI0dldENlcnRpZmljYXRlQXV0aG9yaXR5TGlzdFJlc3BvbnNlElIKBGRhdGEYASADKAsyRC5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5EkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZSLBAQohVXBkYXRlQ2VydGlmaWNhdGVBdXRob3JpdHlSZXF1ZXN0EmsKFWNlcnRpZmljYXRlX2F1dGhvcml0eRgBIAEoCzJELm90cGtpLmNvbW1vbi5pc3N1YW5jZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlCBrpIA8gBARIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siJAoiVXBkYXRlQ2VydGlmaWNhdGVBdXRob3JpdHlSZXNwb25zZSI6CiFEZWxldGVDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlcXVlc3QSFQoFY2FfaWQYASABKANCBrpIA8gBASIkCiJEZWxldGVDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlIkMKKkdldENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVxdWVzdBIVCgVjYV9pZBgBIAEoA0IGukgDyAEBIqoBCitHZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlc1Jlc3BvbnNlEnsKImNlcnRpZmljYXRlX2F1dGhvcml0eV9jZXJ0aWZpY2F0ZXMYASADKAsyTy5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVCvgEKHGNvbS5vdHBraS5wdWJsaWMuaXNzdWFuY2UudjFCGUNlcnRpZmljYXRlQXV0aG9yaXR5UHJvdG9QAaICA09QSaoCGE90cGtpLlB1YmxpYy5Jc3N1YW5jZS5WMcoCGU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjHiAiVPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYxXEdQQk1ldGFkYXRh6gIbT3Rwa2k6OlB1YmxpYzo6SXNzdWFuY2U6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_certificate_authority_v1_certificate_authority, file_otpki_common_issuance_key_v1_key]);
+  fileDesc("CjRvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvY2VydGlmaWNhdGVfYXV0aG9yaXR5LnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEikAEKIUNyZWF0ZUNlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBJrChVjZXJ0aWZpY2F0ZV9hdXRob3JpdHkYASABKAsyRC5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5Qga6SAPIAQEiOgoiQ3JlYXRlQ2VydGlmaWNhdGVBdXRob3JpdHlSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEisgIKIUltcG9ydENlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBJrChVjZXJ0aWZpY2F0ZV9hdXRob3JpdHkYASABKAsyRC5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5Qga6SAPIAQESFwoPY2VydGlmaWNhdGVfcGVtGAIgASgMEh0KFXA3Yl9jZXJ0aWZpY2F0ZV9jaGFpbhgDIAEoDBI9CgprZXlfY29uZmlnGAQgASgLMiEub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmtleS52MS5LZXlCBrpIA8gBARIXCgdrZXlfcGVtGAUgASgMQga6SAPIAQESEAoIcGFzc3dvcmQYBiABKAkiOgoiSW1wb3J0Q2VydGlmaWNhdGVBdXRob3JpdHlSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEi/AEKJ0ltcG9ydENlcnRpZmljYXRlQXV0aG9yaXR5UEtDUzEyUmVxdWVzdBJrChVjZXJ0aWZpY2F0ZV9hdXRob3JpdHkYASABKAsyRC5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5Qga6SAPIAQESPQoKa2V5X2NvbmZpZxgCIAEoCzIhLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5rZXkudjEuS2V5Qga6SAPIAQESEwoDcDEyGAMgASgMQga6SAPIAQESEAoIcGFzc3dvcmQYBCABKAkiQAooSW1wb3J0Q2VydGlmaWNhdGVBdXRob3JpdHlQS0NTMTJSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiXAokQ3JlYXRlQ2VydGlmaWNhdGVBdXRob3JpdHlDU1JSZXF1ZXN0EhoKBWNhX2lkGAEgASgJQgu6SAjIAQFyA7ABARIYCgZrZXlfaWQYAiABKAlCCLpIBXIDsAEBIkgKJUNyZWF0ZUNlcnRpZmljYXRlQXV0aG9yaXR5Q1NSUmVzcG9uc2USHwoXY2VydGlmaWNhdGVfcmVxdWVzdF9kZXIYASABKAwiggEKLEltcG9ydENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXF1ZXN0EhoKBWNhX2lkGAEgASgJQgu6SAjIAQFyA7ABARIXCg9jZXJ0aWZpY2F0ZV9wZW0YAiABKAwSHQoVcDdiX2NlcnRpZmljYXRlX2NoYWluGAMgASgMIlQKLUltcG9ydENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXNwb25zZRIjChFjYV9jZXJ0aWZpY2F0ZV9pZBgBIAEoCUIIukgFcgOwAQEirgEKIFJlbmV3Q2VydGlmaWNhdGVBdXRob3JpdHlSZXF1ZXN0EhoKBWNhX2lkGAEgASgJQgu6SAjIAQFyA7ABARIiCgtuZXh0X2tleV9pZBgCIAEoCUIIukgFcgOwAQFIAIgBARImCg9uZXh0X2FsdF9rZXlfaWQYAyABKAlCCLpIBXIDsAEBSAGIAQFCDgoMX25leHRfa2V5X2lkQhIKEF9uZXh0X2FsdF9rZXlfaWQiIwohUmVuZXdDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlIjwKHkdldENlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBIaCgVjYV9pZBgBIAEoCUILukgIyAEBcgOwAQEihgEKH0dldENlcnRpZmljYXRlQXV0aG9yaXR5UmVzcG9uc2USYwoVY2VydGlmaWNhdGVfYXV0aG9yaXR5GAEgASgLMkQub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eSJmCiJHZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eUxpc3RSZXF1ZXN0EkAKCnBhZ2luYXRpb24YASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0IrwBCiNHZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eUxpc3RSZXNwb25zZRJSCgRkYXRhGAEgAygLMkQub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eRJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UiwQEKIVVwZGF0ZUNlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBJrChVjZXJ0aWZpY2F0ZV9hdXRob3JpdHkYASABKAsyRC5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5Qga6SAPIAQESLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIiQKIlVwZGF0ZUNlcnRpZmljYXRlQXV0aG9yaXR5UmVzcG9uc2UiPwohRGVsZXRlQ2VydGlmaWNhdGVBdXRob3JpdHlSZXF1ZXN0EhoKBWNhX2lkGAEgASgJQgu6SAjIAQFyA7ABASIkCiJEZWxldGVDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlIkgKKkdldENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVxdWVzdBIaCgVjYV9pZBgBIAEoCUILukgIyAEBcgOwAQEiqgEKK0dldENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVzcG9uc2USewoiY2VydGlmaWNhdGVfYXV0aG9yaXR5X2NlcnRpZmljYXRlcxgBIAMoCzJPLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZUK+AQocY29tLm90cGtpLnB1YmxpYy5pc3N1YW5jZS52MUIZQ2VydGlmaWNhdGVBdXRob3JpdHlQcm90b1ABogIDT1BJqgIYT3Rwa2kuUHVibGljLklzc3VhbmNlLlYxygIZT3Rwa2lcUHVibGljX1xJc3N1YW5jZVxWMeICJU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjFcR1BCTWV0YWRhdGHqAhtPdHBraTo6UHVibGljOjpJc3N1YW5jZTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_certificate_authority_v1_certificate_authority, file_otpki_common_issuance_key_v1_key]);
 
 /**
  * @generated from message otpki.public.issuance.v1.CreateCertificateAuthorityRequest
@@ -63,9 +63,9 @@ export const CreateCertificateAuthorityRequestSchema: GenMessage<CreateCertifica
  */
 export type CreateCertificateAuthorityResponse = Message<"otpki.public.issuance.v1.CreateCertificateAuthorityResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -73,7 +73,7 @@ export type CreateCertificateAuthorityResponse = Message<"otpki.public.issuance.
  */
 export type CreateCertificateAuthorityResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -204,9 +204,9 @@ export const ImportCertificateAuthorityRequestSchema: GenMessage<ImportCertifica
  */
 export type ImportCertificateAuthorityResponse = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -214,7 +214,7 @@ export type ImportCertificateAuthorityResponse = Message<"otpki.public.issuance.
  */
 export type ImportCertificateAuthorityResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -315,9 +315,9 @@ export const ImportCertificateAuthorityPKCS12RequestSchema: GenMessage<ImportCer
  */
 export type ImportCertificateAuthorityPKCS12Response = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityPKCS12Response"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -325,7 +325,7 @@ export type ImportCertificateAuthorityPKCS12Response = Message<"otpki.public.iss
  */
 export type ImportCertificateAuthorityPKCS12ResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -344,14 +344,14 @@ export const ImportCertificateAuthorityPKCS12ResponseSchema: GenMessage<ImportCe
  */
 export type CreateCertificateAuthorityCSRRequest = Message<"otpki.public.issuance.v1.CreateCertificateAuthorityCSRRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: int64 key_id = 2;
+   * @generated from field: string key_id = 2;
    */
-  keyId: bigint;
+  keyId: string;
 };
 
 /**
@@ -359,12 +359,12 @@ export type CreateCertificateAuthorityCSRRequest = Message<"otpki.public.issuanc
  */
 export type CreateCertificateAuthorityCSRRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
   /**
-   * @generated from field: int64 key_id = 2;
+   * @generated from field: string key_id = 2;
    */
   keyId?: string;
 };
@@ -374,14 +374,14 @@ export type CreateCertificateAuthorityCSRRequestJson = {
  */
 export type CreateCertificateAuthorityCSRRequestValid = Message<"otpki.public.issuance.v1.CreateCertificateAuthorityCSRRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: int64 key_id = 2;
+   * @generated from field: string key_id = 2;
    */
-  keyId: bigint;
+  keyId: string;
 };
 
 /**
@@ -425,9 +425,9 @@ export const CreateCertificateAuthorityCSRResponseSchema: GenMessage<CreateCerti
  */
 export type ImportCertificateAuthorityCertificateRequest = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityCertificateRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
    * @generated from field: bytes certificate_pem = 2;
@@ -445,7 +445,7 @@ export type ImportCertificateAuthorityCertificateRequest = Message<"otpki.public
  */
 export type ImportCertificateAuthorityCertificateRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
@@ -465,9 +465,9 @@ export type ImportCertificateAuthorityCertificateRequestJson = {
  */
 export type ImportCertificateAuthorityCertificateRequestValid = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityCertificateRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
    * @generated from field: bytes certificate_pem = 2;
@@ -492,9 +492,9 @@ export const ImportCertificateAuthorityCertificateRequestSchema: GenMessage<Impo
  */
 export type ImportCertificateAuthorityCertificateResponse = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityCertificateResponse"> & {
   /**
-   * @generated from field: int64 ca_certificate_id = 1;
+   * @generated from field: string ca_certificate_id = 1;
    */
-  caCertificateId: bigint;
+  caCertificateId: string;
 };
 
 /**
@@ -502,7 +502,7 @@ export type ImportCertificateAuthorityCertificateResponse = Message<"otpki.publi
  */
 export type ImportCertificateAuthorityCertificateResponseJson = {
   /**
-   * @generated from field: int64 ca_certificate_id = 1;
+   * @generated from field: string ca_certificate_id = 1;
    */
   caCertificateId?: string;
 };
@@ -521,19 +521,19 @@ export const ImportCertificateAuthorityCertificateResponseSchema: GenMessage<Imp
  */
 export type RenewCertificateAuthorityRequest = Message<"otpki.public.issuance.v1.RenewCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: optional int64 next_key_id = 2;
+   * @generated from field: optional string next_key_id = 2;
    */
-  nextKeyId?: bigint;
+  nextKeyId?: string;
 
   /**
-   * @generated from field: optional int64 next_alt_key_id = 3;
+   * @generated from field: optional string next_alt_key_id = 3;
    */
-  nextAltKeyId?: bigint;
+  nextAltKeyId?: string;
 };
 
 /**
@@ -541,17 +541,17 @@ export type RenewCertificateAuthorityRequest = Message<"otpki.public.issuance.v1
  */
 export type RenewCertificateAuthorityRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
   /**
-   * @generated from field: optional int64 next_key_id = 2;
+   * @generated from field: optional string next_key_id = 2;
    */
   nextKeyId?: string;
 
   /**
-   * @generated from field: optional int64 next_alt_key_id = 3;
+   * @generated from field: optional string next_alt_key_id = 3;
    */
   nextAltKeyId?: string;
 };
@@ -561,19 +561,19 @@ export type RenewCertificateAuthorityRequestJson = {
  */
 export type RenewCertificateAuthorityRequestValid = Message<"otpki.public.issuance.v1.RenewCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: optional int64 next_key_id = 2;
+   * @generated from field: optional string next_key_id = 2;
    */
-  nextKeyId?: bigint;
+  nextKeyId?: string;
 
   /**
-   * @generated from field: optional int64 next_alt_key_id = 3;
+   * @generated from field: optional string next_alt_key_id = 3;
    */
-  nextAltKeyId?: bigint;
+  nextAltKeyId?: string;
 };
 
 /**
@@ -609,9 +609,9 @@ export const RenewCertificateAuthorityResponseSchema: GenMessage<RenewCertificat
  */
 export type GetCertificateAuthorityRequest = Message<"otpki.public.issuance.v1.GetCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -619,7 +619,7 @@ export type GetCertificateAuthorityRequest = Message<"otpki.public.issuance.v1.G
  */
 export type GetCertificateAuthorityRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -629,9 +629,9 @@ export type GetCertificateAuthorityRequestJson = {
  */
 export type GetCertificateAuthorityRequestValid = Message<"otpki.public.issuance.v1.GetCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -837,9 +837,9 @@ export const UpdateCertificateAuthorityResponseSchema: GenMessage<UpdateCertific
  */
 export type DeleteCertificateAuthorityRequest = Message<"otpki.public.issuance.v1.DeleteCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -847,7 +847,7 @@ export type DeleteCertificateAuthorityRequest = Message<"otpki.public.issuance.v
  */
 export type DeleteCertificateAuthorityRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -857,9 +857,9 @@ export type DeleteCertificateAuthorityRequestJson = {
  */
 export type DeleteCertificateAuthorityRequestValid = Message<"otpki.public.issuance.v1.DeleteCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -895,9 +895,9 @@ export const DeleteCertificateAuthorityResponseSchema: GenMessage<DeleteCertific
  */
 export type GetCertificateAuthorityCertificatesRequest = Message<"otpki.public.issuance.v1.GetCertificateAuthorityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -905,7 +905,7 @@ export type GetCertificateAuthorityCertificatesRequest = Message<"otpki.public.i
  */
 export type GetCertificateAuthorityCertificatesRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -915,9 +915,9 @@ export type GetCertificateAuthorityCertificatesRequestJson = {
  */
 export type GetCertificateAuthorityCertificatesRequestValid = Message<"otpki.public.issuance.v1.GetCertificateAuthorityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**

@@ -7,6 +7,7 @@
 package scpv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/issuance/publisher/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -24,7 +25,7 @@ const (
 
 type ScpConfig struct {
 	state                           protoimpl.MessageState `protogen:"open.v1"`
-	KeyId                           int64                  `protobuf:"varint,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"` // ssh key in keystore
+	KeyId                           string                 `protobuf:"bytes,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"` // ssh key in keystore
 	Username                        string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
 	Host                            string                 `protobuf:"bytes,3,opt,name=host,proto3" json:"host,omitempty"`
 	Port                            int64                  `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty"`
@@ -65,11 +66,11 @@ func (*ScpConfig) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_plugin_publisher_scp_v1_scp_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ScpConfig) GetKeyId() int64 {
+func (x *ScpConfig) GetKeyId() string {
 	if x != nil {
 		return x.KeyId
 	}
-	return 0
+	return ""
 }
 
 func (x *ScpConfig) GetUsername() string {
@@ -118,9 +119,9 @@ var File_otpki_common_issuance_plugin_publisher_scp_v1_scp_proto protoreflect.Fi
 
 const file_otpki_common_issuance_plugin_publisher_scp_v1_scp_proto_rawDesc = "" +
 	"\n" +
-	"7otpki/common/issuance/plugin/publisher/scp/v1/scp.proto\x12-otpki.common.issuance.plugin.publisher.scp.v1\x1a2otpki/common/issuance/publisher/v1/publisher.proto\"\xc2\x02\n" +
-	"\tScpConfig\x12\x15\n" +
-	"\x06key_id\x18\x01 \x01(\x03R\x05keyId\x12\x1a\n" +
+	"7otpki/common/issuance/plugin/publisher/scp/v1/scp.proto\x12-otpki.common.issuance.plugin.publisher.scp.v1\x1a\x1bbuf/validate/validate.proto\x1a2otpki/common/issuance/publisher/v1/publisher.proto\"\xcc\x02\n" +
+	"\tScpConfig\x12\x1f\n" +
+	"\x06key_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x12\n" +
 	"\x04host\x18\x03 \x01(\tR\x04host\x12\x12\n" +
 	"\x04port\x18\x04 \x01(\x03R\x04port\x12P\n" +

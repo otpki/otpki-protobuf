@@ -1225,11 +1225,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         description:
@@ -1238,11 +1236,10 @@ components:
           description: string name = 2; // using "login id" now
         endEntityProfileId:
           type:
-            - integer
             - string
             - "null"
           title: end_entity_profile_id
-          format: int64
+          format: uuid
         status:
           title: status
           description: this should only be set by backend
@@ -1298,18 +1295,14 @@ components:
             san
              note: certificate email can differ from EE email
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          format: int64
+          format: uuid
           description: issuance information
         certificateAuthorityId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_authority_id
-          format: int64
+          format: uuid
         validityStartTimeOffset:
           title: validity_start_time_offset
           description: validity override offset from 'now' when to issue certificate
@@ -1393,11 +1386,8 @@ components:
         customCertificateExtensionIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
       title: EndEntity
@@ -1416,23 +1406,17 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
         enrollmentRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: enrollment_request_id
-          format: int64
+          format: uuid
         issuedCertificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_certificate_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -1482,11 +1466,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         status:
           title: status
@@ -1522,23 +1504,17 @@ components:
       type: object
       properties:
         enrollmentRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: enrollment_request_id
-          format: int64
+          format: uuid
         issuanceRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: issuance_request_id
-          format: int64
+          format: uuid
         certificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -1563,11 +1539,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -1577,18 +1551,15 @@ components:
           type: string
           title: description
         keyId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_id
-          format: int64
+          format: uuid
         alternativeKeyId:
           type:
-            - integer
             - string
             - "null"
           title: alternative_key_id
-          format: int64
+          format: uuid
         signatureAlgorithm:
           title: signature_algorithm
           $ref: '#/components/schemas/otpki.common.x509.v1.SignatureAlgorithm'
@@ -1623,11 +1594,9 @@ components:
             type: string
           title: issuer_uris
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
         createdAt:
           title: created_at
           description: not settable on creation
@@ -1644,17 +1613,13 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
         certificateAuthorityId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_authority_id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -1667,11 +1632,10 @@ components:
           title: certificate_chain
         issuedCertificateId:
           type:
-            - integer
             - string
             - "null"
           title: issued_certificate_id
-          format: int64
+          format: uuid
         displayName:
           type: string
           title: display_name
@@ -1681,11 +1645,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -1920,39 +1882,28 @@ components:
         customExtKeyUsages:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_ext_key_usages
           uniqueItems: true
         customCertificateExts:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_exts
           uniqueItems: true
         availableCertificateAuthorities:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: available_certificate_authorities
           uniqueItems: true
         approvalProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: approval_profile_id
-          format: int64
+          format: uuid
       title: CertificateProfile
       additionalProperties: false
     otpki.common.issuance.certificate_profile.v1.CertificateProfileKind:
@@ -1988,11 +1939,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -2014,11 +1963,9 @@ components:
           title: key_config_data
           $ref: '#/components/schemas/google.protobuf.Any'
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
         keyDriverType:
           title: key_driver_type
           $ref: '#/components/schemas/otpki.common.issuance.key_storage_config.v1.KeyDriverType'
@@ -2224,19 +2171,16 @@ components:
           title: subject_alternative_name_attributes
           description: san
         certificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: certificate_profile_id
-          format: int64
+          format: uuid
           description: issuance information
         certificateAuthorityId:
           type:
-            - integer
             - string
             - "null"
           title: certificate_authority_id
-          format: int64
+          format: uuid
           description: empty means self signed
         validityStartTimeOffset:
           title: validity_start_time_offset
@@ -2321,11 +2265,8 @@ components:
         customCertificateExtensionIds:
           type: array
           items:
-            exclusiveMinimum: 0
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
       title: CertificateTemplate
@@ -2750,11 +2691,9 @@ components:
       type: object
       properties:
         keyId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_id
-          format: int64
+          format: uuid
         ciphertext:
           type: string
           title: ciphertext
@@ -2884,11 +2823,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
       title: GetCertificateAuthorityRequest
       required:
         - caId
@@ -2905,11 +2842,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetCertificateProfileRequest
       required:
         - id
@@ -2963,11 +2898,9 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
       title: GetEndEntityCertificatesRequest
       required:
         - endEntityId
@@ -2986,11 +2919,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetEndEntityRequest
       required:
         - id
@@ -3007,11 +2938,9 @@ components:
       type: object
       properties:
         enrollmentRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: enrollment_request_id
-          format: int64
+          format: uuid
         password:
           type: string
           title: password
@@ -3037,11 +2966,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetKeyRequest
       required:
         - id
@@ -3062,11 +2989,9 @@ components:
       type: object
       properties:
         caId:
-          type:
-            - integer
-            - string
+          type: string
           title: ca_id
-          format: int64
+          format: uuid
       title: GetLatestCertificateAuthorityCertificateRequest
       required:
         - caId
@@ -3130,17 +3055,13 @@ components:
       type: object
       properties:
         endEntityId:
-          type:
-            - integer
-            - string
+          type: string
           title: end_entity_id
-          format: int64
+          format: uuid
         issuedCertificateId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_certificate_id
-          format: int64
+          format: uuid
         revocationReasonCode:
           title: revocation_reason_code
           $ref: '#/components/schemas/otpki.common.x509.v1.RevocationReasonCode'
@@ -3243,11 +3164,9 @@ components:
       type: object
       properties:
         keyId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_id
-          format: int64
+          format: uuid
         digest:
           type: string
           title: digest

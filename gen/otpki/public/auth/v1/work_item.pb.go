@@ -26,7 +26,7 @@ const (
 
 type GetWorkItemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -61,11 +61,11 @@ func (*GetWorkItemRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_work_item_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetWorkItemRequest) GetId() int64 {
+func (x *GetWorkItemRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetWorkItemResponse struct {
@@ -210,7 +210,7 @@ func (x *GetWorkItemListResponse) GetPagination() *v11.PaginationResponse {
 
 type ApproveWorkItemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -245,11 +245,11 @@ func (*ApproveWorkItemRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_work_item_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ApproveWorkItemRequest) GetId() int64 {
+func (x *ApproveWorkItemRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type ApproveWorkItemResponse struct {
@@ -290,7 +290,7 @@ func (*ApproveWorkItemResponse) Descriptor() ([]byte, []int) {
 
 type RejectWorkItemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -325,11 +325,11 @@ func (*RejectWorkItemRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_work_item_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *RejectWorkItemRequest) GetId() int64 {
+func (x *RejectWorkItemRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type RejectWorkItemResponse struct {
@@ -370,7 +370,7 @@ func (*RejectWorkItemResponse) Descriptor() ([]byte, []int) {
 
 type IsCurrentUserValidApproverRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	ApprovalProfileId int64                  `protobuf:"varint,1,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	ApprovalProfileId string                 `protobuf:"bytes,1,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -405,11 +405,11 @@ func (*IsCurrentUserValidApproverRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_auth_v1_work_item_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *IsCurrentUserValidApproverRequest) GetApprovalProfileId() int64 {
+func (x *IsCurrentUserValidApproverRequest) GetApprovalProfileId() string {
 	if x != nil {
 		return x.ApprovalProfileId
 	}
-	return 0
+	return ""
 }
 
 type IsCurrentUserValidApproverResponse struct {
@@ -460,9 +460,9 @@ var File_otpki_public_auth_v1_work_item_proto protoreflect.FileDescriptor
 
 const file_otpki_public_auth_v1_work_item_proto_rawDesc = "" +
 	"\n" +
-	"$otpki/public/auth/v1/work_item.proto\x12\x14otpki.public.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\",\n" +
-	"\x12GetWorkItemRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"R\n" +
+	"$otpki/public/auth/v1/work_item.proto\x12\x14otpki.public.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\"1\n" +
+	"\x12GetWorkItemRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"R\n" +
 	"\x13GetWorkItemResponse\x12;\n" +
 	"\twork_item\x18\x01 \x01(\v2\x1e.otpki.common.auth.v1.WorkItemR\bworkItem\"f\n" +
 	"\x16GetWorkItemListRequest\x12L\n" +
@@ -473,15 +473,15 @@ const file_otpki_public_auth_v1_work_item_proto_rawDesc = "" +
 	"\x04data\x18\x01 \x03(\v2\x1e.otpki.common.auth.v1.WorkItemR\x04data\x12M\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
-	"pagination\"0\n" +
-	"\x16ApproveWorkItemRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x19\n" +
-	"\x17ApproveWorkItemResponse\"/\n" +
-	"\x15RejectWorkItemRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x18\n" +
-	"\x16RejectWorkItemResponse\"[\n" +
-	"!IsCurrentUserValidApproverRequest\x126\n" +
-	"\x13approval_profile_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x11approvalProfileId\"?\n" +
+	"pagination\"5\n" +
+	"\x16ApproveWorkItemRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x19\n" +
+	"\x17ApproveWorkItemResponse\"4\n" +
+	"\x15RejectWorkItemRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x18\n" +
+	"\x16RejectWorkItemResponse\"`\n" +
+	"!IsCurrentUserValidApproverRequest\x12;\n" +
+	"\x13approval_profile_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x11approvalProfileId\"?\n" +
 	"\"IsCurrentUserValidApproverResponse\x12\x19\n" +
 	"\bis_valid\x18\x01 \x01(\bR\aisValidB\xdf\x01\n" +
 	"\x18com.otpki.public.auth.v1B\rWorkItemProtoP\x01Z?github.com/otpki/otpki-protobuf/gen/otpki/public/auth/v1;authv1\xa2\x02\x03OPA\xaa\x02\x14Otpki.Public.Auth.V1\xca\x02\x15Otpki\\Public_\\Auth\\V1\xe2\x02!Otpki\\Public_\\Auth\\V1\\GPBMetadata\xea\x02\x17Otpki::Public::Auth::V1b\x06proto3"

@@ -119,9 +119,9 @@ export declare const CreateKeyResponseSchema: GenMessage<CreateKeyResponse, {jso
  */
 export declare type KeyDriverMessage = Message<"otpki.common.issuance.plugin.key_driver.v1.KeyDriverMessage"> & {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 
   /**
    * @generated from field: google.protobuf.Any message = 2;
@@ -134,7 +134,7 @@ export declare type KeyDriverMessage = Message<"otpki.common.issuance.plugin.key
  */
 export declare type KeyDriverMessageJson = {
   /**
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
   keyStorageConfigId?: string;
 
@@ -157,9 +157,9 @@ export declare const KeyDriverMessageSchema: GenMessage<KeyDriverMessage, {jsonT
  */
 export declare type SignRequest = Message<"otpki.common.issuance.plugin.key_driver.v1.SignRequest"> & {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: bytes digest = 2;
@@ -179,7 +179,7 @@ export declare type SignRequest = Message<"otpki.common.issuance.plugin.key_driv
  */
 export declare type SignRequestJson = {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
   keyId?: string;
 
@@ -237,9 +237,9 @@ export declare const SignResponseSchema: GenMessage<SignResponse, {jsonType: Sig
  */
 export declare type DecryptRequest = Message<"otpki.common.issuance.plugin.key_driver.v1.DecryptRequest"> & {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
    * @generated from field: bytes ciphertext = 2;
@@ -259,7 +259,7 @@ export declare type DecryptRequest = Message<"otpki.common.issuance.plugin.key_d
  */
 export declare type DecryptRequestJson = {
   /**
-   * @generated from field: int64 key_id = 1;
+   * @generated from field: string key_id = 1;
    */
   keyId?: string;
 

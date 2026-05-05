@@ -54,9 +54,9 @@ export declare const CreateApprovalProfileRequestSchema: GenMessage<CreateApprov
  */
 export declare type CreateApprovalProfileResponse = Message<"otpki.public.auth.v1.CreateApprovalProfileResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateApprovalProfileResponse = Message<"otpki.public.auth.v
  */
 export declare type CreateApprovalProfileResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateApprovalProfileResponseSchema: GenMessage<CreateAppro
  */
 export declare type GetApprovalProfileRequest = Message<"otpki.public.auth.v1.GetApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetApprovalProfileRequest = Message<"otpki.public.auth.v1.Ge
  */
 export declare type GetApprovalProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetApprovalProfileRequestJson = {
  */
 export declare type GetApprovalProfileRequestValid = Message<"otpki.public.auth.v1.GetApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -204,9 +204,9 @@ export declare const UpdateApprovalProfileResponseSchema: GenMessage<UpdateAppro
  */
 export declare type DeleteApprovalProfileRequest = Message<"otpki.public.auth.v1.DeleteApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -214,7 +214,7 @@ export declare type DeleteApprovalProfileRequest = Message<"otpki.public.auth.v1
  */
 export declare type DeleteApprovalProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -224,9 +224,9 @@ export declare type DeleteApprovalProfileRequestJson = {
  */
 export declare type DeleteApprovalProfileRequestValid = Message<"otpki.public.auth.v1.DeleteApprovalProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

@@ -432,11 +432,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           description: not settable on creation
           readOnly: true
         name:
@@ -458,11 +456,9 @@ components:
           title: key_config_data
           $ref: '#/components/schemas/google.protobuf.Any'
         keyStorageConfigId:
-          type:
-            - integer
-            - string
+          type: string
           title: key_storage_config_id
-          format: int64
+          format: uuid
         keyDriverType:
           title: key_driver_type
           $ref: '#/components/schemas/otpki.common.issuance.key_storage_config.v1.KeyDriverType'
@@ -646,22 +642,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateKeyResponse
       additionalProperties: false
     otpki.public.issuance.v1.DeleteKeyRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteKeyRequest
       required:
         - id
@@ -695,11 +687,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetKeyRequest
       required:
         - id

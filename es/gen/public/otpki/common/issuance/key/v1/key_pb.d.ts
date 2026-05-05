@@ -19,9 +19,9 @@ export declare type Key = Message<"otpki.common.issuance.key.v1.Key"> & {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -49,9 +49,9 @@ export declare type Key = Message<"otpki.common.issuance.key.v1.Key"> & {
   keyConfigData?: Any;
 
   /**
-   * @generated from field: int64 key_storage_config_id = 7;
+   * @generated from field: string key_storage_config_id = 7;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 
   /**
    * @generated from field: otpki.common.issuance.key_storage_config.v1.KeyDriverType key_driver_type = 8;
@@ -80,7 +80,7 @@ export declare type KeyJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -110,7 +110,7 @@ export declare type KeyJson = {
   keyConfigData?: AnyJson;
 
   /**
-   * @generated from field: int64 key_storage_config_id = 7;
+   * @generated from field: string key_storage_config_id = 7;
    */
   keyStorageConfigId?: string;
 
@@ -141,9 +141,9 @@ export declare type KeyValid = Message<"otpki.common.issuance.key.v1.Key"> & {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -171,9 +171,9 @@ export declare type KeyValid = Message<"otpki.common.issuance.key.v1.Key"> & {
   keyConfigData?: Any;
 
   /**
-   * @generated from field: int64 key_storage_config_id = 7;
+   * @generated from field: string key_storage_config_id = 7;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 
   /**
    * @generated from field: otpki.common.issuance.key_storage_config.v1.KeyDriverType key_driver_type = 8;

@@ -18,9 +18,9 @@ export declare type PublisherConfig = Message<"otpki.common.issuance.publisher.v
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -64,7 +64,7 @@ export declare type PublisherConfigJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -120,19 +120,19 @@ export declare type CrlPublisher = Message<"otpki.common.issuance.publisher.v1.C
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 ca_id = 2;
+   * @generated from field: string ca_id = 2;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 3;
+   * @generated from field: string publisher_config_id = 3;
    */
-  publisherConfigId: bigint;
+  publisherConfigId: string;
 };
 
 /**
@@ -144,17 +144,17 @@ export declare type CrlPublisherJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 ca_id = 2;
+   * @generated from field: string ca_id = 2;
    */
   caId?: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 3;
+   * @generated from field: string publisher_config_id = 3;
    */
   publisherConfigId?: string;
 };
@@ -176,28 +176,28 @@ export declare type CertificatePublisher = Message<"otpki.common.issuance.publis
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 2;
+   * @generated from field: string publisher_config_id = 2;
    */
-  publisherConfigId: bigint;
-
-  /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: int64 ca_id = 3;
-   */
-  caId: bigint;
+  publisherConfigId: string;
 
   /**
    * CHECK: at least one of these two must be set
    *
-   * @generated from field: int64 certificate_profile_id = 4;
+   * @generated from field: string ca_id = 3;
    */
-  certificateProfileId: bigint;
+  caId: string;
+
+  /**
+   * CHECK: at least one of these two must be set
+   *
+   * @generated from field: string certificate_profile_id = 4;
+   */
+  certificateProfileId: string;
 
   /**
    * @generated from field: repeated otpki.common.issuance.publisher.v1.CertEventType subscribed_events = 5;
@@ -214,26 +214,26 @@ export declare type CertificatePublisherJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 2;
+   * @generated from field: string publisher_config_id = 2;
    */
   publisherConfigId?: string;
 
   /**
    * CHECK: at least one of these two must be set
    *
-   * @generated from field: int64 ca_id = 3;
+   * @generated from field: string ca_id = 3;
    */
   caId?: string;
 
   /**
    * CHECK: at least one of these two must be set
    *
-   * @generated from field: int64 certificate_profile_id = 4;
+   * @generated from field: string certificate_profile_id = 4;
    */
   certificateProfileId?: string;
 

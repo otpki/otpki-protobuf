@@ -54,9 +54,9 @@ export declare const CreateUserRequestSchema: GenMessage<CreateUserRequest, {jso
  */
 export declare type CreateUserResponse = Message<"otpki.public.auth.v1.CreateUserResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateUserResponse = Message<"otpki.public.auth.v1.CreateUse
  */
 export declare type CreateUserResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateUserResponseSchema: GenMessage<CreateUserResponse, {j
  */
 export declare type GetUserRequest = Message<"otpki.public.auth.v1.GetUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetUserRequest = Message<"otpki.public.auth.v1.GetUserReques
  */
 export declare type GetUserRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetUserRequestJson = {
  */
 export declare type GetUserRequestValid = Message<"otpki.public.auth.v1.GetUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -417,9 +417,9 @@ export declare const UpdateUserResponseSchema: GenMessage<UpdateUserResponse, {j
  */
 export declare type DeleteUserRequest = Message<"otpki.public.auth.v1.DeleteUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -427,7 +427,7 @@ export declare type DeleteUserRequest = Message<"otpki.public.auth.v1.DeleteUser
  */
 export declare type DeleteUserRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -437,9 +437,9 @@ export declare type DeleteUserRequestJson = {
  */
 export declare type DeleteUserRequestValid = Message<"otpki.public.auth.v1.DeleteUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

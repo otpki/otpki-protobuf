@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/issuance/publisher/v1/publisher.proto.
  */
 export const file_otpki_common_issuance_publisher_v1_publisher: GenFile = /*@__PURE__*/
-  fileDesc("CjJvdHBraS9jb21tb24vaXNzdWFuY2UvcHVibGlzaGVyL3YxL3B1Ymxpc2hlci5wcm90bxIib3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MSLzAgoPUHVibGlzaGVyQ29uZmlnEhEKAmlkGAEgASgDQgW6RwIYARIYCgRuYW1lGAIgASgJQgq6SAfYAQFyAhADEhMKC2Rlc2NyaXB0aW9uGAMgASgJElMKDnB1Ymxpc2hlcl90eXBlGAQgASgOMjEub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUeXBlQgi6SAWCAQIQARIpCgtjb25maWdfZGF0YRgFIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkSSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lOgSYtRgBIl8KDENybFB1Ymxpc2hlchIRCgJpZBgBIAEoA0IFukcCGAESFgoFY2FfaWQYAiABKANCB7pIBCICKAESJAoTcHVibGlzaGVyX2NvbmZpZ19pZBgDIAEoA0IHukgEIgIoASLeAQoUQ2VydGlmaWNhdGVQdWJsaXNoZXISEQoCaWQYASABKANCBbpHAhgBEiQKE3B1Ymxpc2hlcl9jb25maWdfaWQYAiABKANCB7pIBCICKAESFgoFY2FfaWQYAyABKANCB7pIBCICKAASJwoWY2VydGlmaWNhdGVfcHJvZmlsZV9pZBgEIAEoA0IHukgEIgIoABJMChFzdWJzY3JpYmVkX2V2ZW50cxgFIAMoDjIxLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wdWJsaXNoZXIudjEuQ2VydEV2ZW50VHlwZSp3Cg1QdWJsaXNoZXJUeXBlEh4KGlBVQkxJU0hFUl9UWVBFX1VOU1BFQ0lGSUVEEAASFQoRUFVCTElTSEVSX1RZUEVfVlMQARIXChNQVUJMSVNIRVJfVFlQRV9IVFRQEAISFgoSUFVCTElTSEVSX1RZUEVfU0NQEAMqXwoLUGtpQXJ0aWZhY3QSHAoYUEtJX0FSVElGQUNUX1VOU1BFQ0lGSUVEEAASFAoQUEtJX0FSVElGQUNUX0NSTBABEhwKGFBLSV9BUlRJRkFDVF9DRVJUSUZJQ0FURRACKnEKDUNlcnRFdmVudFR5cGUSHwobQ0VSVF9FVkVOVF9UWVBFX1VOU1BFQ0lGSUVEEAASHgoaQ0VSVF9FVkVOVF9UWVBFX0NFUlRfSVNTVUUQARIfChtDRVJUX0VWRU5UX1RZUEVfQ0VSVF9SRVZPS0UQAkLlAQomY29tLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5wdWJsaXNoZXIudjFCDlB1Ymxpc2hlclByb3RvUAGiAgRPQ0lQqgIiT3Rwa2kuQ29tbW9uLklzc3VhbmNlLlB1Ymxpc2hlci5WMcoCIk90cGtpXENvbW1vblxJc3N1YW5jZVxQdWJsaXNoZXJcVjHiAi5PdHBraVxDb21tb25cSXNzdWFuY2VcUHVibGlzaGVyXFYxXEdQQk1ldGFkYXRh6gImT3Rwa2k6OkNvbW1vbjo6SXNzdWFuY2U6OlB1Ymxpc2hlcjo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_any, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type]);
+  fileDesc("CjJvdHBraS9jb21tb24vaXNzdWFuY2UvcHVibGlzaGVyL3YxL3B1Ymxpc2hlci5wcm90bxIib3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MSL7AgoPUHVibGlzaGVyQ29uZmlnEhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEhgKBG5hbWUYAiABKAlCCrpIB9gBAXICEAMSEwoLZGVzY3JpcHRpb24YAyABKAkSUwoOcHVibGlzaGVyX3R5cGUYBCABKA4yMS5vdHBraS5jb21tb24uaXNzdWFuY2UucHVibGlzaGVyLnYxLlB1Ymxpc2hlclR5cGVCCLpIBYIBAhABEikKC2NvbmZpZ19kYXRhGAUgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEiaQoMQ3JsUHVibGlzaGVyEhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEhcKBWNhX2lkGAIgASgJQgi6SAVyA7ABARIlChNwdWJsaXNoZXJfY29uZmlnX2lkGAMgASgJQgi6SAVyA7ABASLpAQoUQ2VydGlmaWNhdGVQdWJsaXNoZXISGQoCaWQYASABKAlCDbpHAhgBukgFcgOwAQESJQoTcHVibGlzaGVyX2NvbmZpZ19pZBgCIAEoCUIIukgFcgOwAQESFwoFY2FfaWQYAyABKAlCCLpIBXIDsAEBEigKFmNlcnRpZmljYXRlX3Byb2ZpbGVfaWQYBCABKAlCCLpIBXIDsAEBEkwKEXN1YnNjcmliZWRfZXZlbnRzGAUgAygOMjEub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DZXJ0RXZlbnRUeXBlKncKDVB1Ymxpc2hlclR5cGUSHgoaUFVCTElTSEVSX1RZUEVfVU5TUEVDSUZJRUQQABIVChFQVUJMSVNIRVJfVFlQRV9WUxABEhcKE1BVQkxJU0hFUl9UWVBFX0hUVFAQAhIWChJQVUJMSVNIRVJfVFlQRV9TQ1AQAypfCgtQa2lBcnRpZmFjdBIcChhQS0lfQVJUSUZBQ1RfVU5TUEVDSUZJRUQQABIUChBQS0lfQVJUSUZBQ1RfQ1JMEAESHAoYUEtJX0FSVElGQUNUX0NFUlRJRklDQVRFEAIqcQoNQ2VydEV2ZW50VHlwZRIfChtDRVJUX0VWRU5UX1RZUEVfVU5TUEVDSUZJRUQQABIeChpDRVJUX0VWRU5UX1RZUEVfQ0VSVF9JU1NVRRABEh8KG0NFUlRfRVZFTlRfVFlQRV9DRVJUX1JFVk9LRRACQuUBCiZjb20ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLnB1Ymxpc2hlci52MUIOUHVibGlzaGVyUHJvdG9QAaICBE9DSVCqAiJPdHBraS5Db21tb24uSXNzdWFuY2UuUHVibGlzaGVyLlYxygIiT3Rwa2lcQ29tbW9uXElzc3VhbmNlXFB1Ymxpc2hlclxWMeICLk90cGtpXENvbW1vblxJc3N1YW5jZVxQdWJsaXNoZXJcVjFcR1BCTWV0YWRhdGHqAiZPdHBraTo6Q29tbW9uOjpJc3N1YW5jZTo6UHVibGlzaGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_any, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type]);
 
 /**
  * @generated from message otpki.common.issuance.publisher.v1.PublisherConfig
@@ -24,9 +24,9 @@ export type PublisherConfig = Message<"otpki.common.issuance.publisher.v1.Publis
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -70,7 +70,7 @@ export type PublisherConfigJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -127,19 +127,19 @@ export type CrlPublisher = Message<"otpki.common.issuance.publisher.v1.CrlPublis
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 ca_id = 2;
+   * @generated from field: string ca_id = 2;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 3;
+   * @generated from field: string publisher_config_id = 3;
    */
-  publisherConfigId: bigint;
+  publisherConfigId: string;
 };
 
 /**
@@ -151,17 +151,17 @@ export type CrlPublisherJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 ca_id = 2;
+   * @generated from field: string ca_id = 2;
    */
   caId?: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 3;
+   * @generated from field: string publisher_config_id = 3;
    */
   publisherConfigId?: string;
 };
@@ -184,28 +184,28 @@ export type CertificatePublisher = Message<"otpki.common.issuance.publisher.v1.C
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 2;
+   * @generated from field: string publisher_config_id = 2;
    */
-  publisherConfigId: bigint;
-
-  /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: int64 ca_id = 3;
-   */
-  caId: bigint;
+  publisherConfigId: string;
 
   /**
    * CHECK: at least one of these two must be set
    *
-   * @generated from field: int64 certificate_profile_id = 4;
+   * @generated from field: string ca_id = 3;
    */
-  certificateProfileId: bigint;
+  caId: string;
+
+  /**
+   * CHECK: at least one of these two must be set
+   *
+   * @generated from field: string certificate_profile_id = 4;
+   */
+  certificateProfileId: string;
 
   /**
    * @generated from field: repeated otpki.common.issuance.publisher.v1.CertEventType subscribed_events = 5;
@@ -222,26 +222,26 @@ export type CertificatePublisherJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 publisher_config_id = 2;
+   * @generated from field: string publisher_config_id = 2;
    */
   publisherConfigId?: string;
 
   /**
    * CHECK: at least one of these two must be set
    *
-   * @generated from field: int64 ca_id = 3;
+   * @generated from field: string ca_id = 3;
    */
   caId?: string;
 
   /**
    * CHECK: at least one of these two must be set
    *
-   * @generated from field: int64 certificate_profile_id = 4;
+   * @generated from field: string certificate_profile_id = 4;
    */
   certificateProfileId?: string;
 

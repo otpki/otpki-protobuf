@@ -19,9 +19,9 @@ export declare type KeyStorageConfig = Message<"otpki.common.issuance.key_storag
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -44,9 +44,9 @@ export declare type KeyStorageConfig = Message<"otpki.common.issuance.key_storag
   configData?: Any;
 
   /**
-   * @generated from field: optional int64 crypto_key_id = 6;
+   * @generated from field: optional string crypto_key_id = 6;
    */
-  cryptoKeyId?: bigint;
+  cryptoKeyId?: string;
 
   /**
    * activation
@@ -118,7 +118,7 @@ export declare type KeyStorageConfigJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -143,7 +143,7 @@ export declare type KeyStorageConfigJson = {
   configData?: AnyJson;
 
   /**
-   * @generated from field: optional int64 crypto_key_id = 6;
+   * @generated from field: optional string crypto_key_id = 6;
    */
   cryptoKeyId?: string;
 

@@ -8,7 +8,6 @@ package pluginv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/auth/v1"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/enrollment/end_entity/v1"
 	v16 "github.com/otpki/otpki-protobuf/gen/otpki/common/enrollment/end_entity_certificate/v1"
 	v14 "github.com/otpki/otpki-protobuf/gen/otpki/common/enrollment/enroller/v1"
@@ -545,7 +544,7 @@ func (x *GetEndEntityByLoginIDResponse) GetEndEntity() *v1.EndEntity {
 
 type GetEndEntityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -580,11 +579,11 @@ func (*GetEndEntityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *GetEndEntityRequest) GetId() int64 {
+func (x *GetEndEntityRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityResponse struct {
@@ -633,7 +632,7 @@ func (x *GetEndEntityResponse) GetEndEntity() *v1.EndEntity {
 
 type GetKeyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -668,11 +667,11 @@ func (*GetKeyRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *GetKeyRequest) GetId() int64 {
+func (x *GetKeyRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetKeyResponse struct {
@@ -809,7 +808,7 @@ func (x *GetAllRootCertificateAuthorityCertificatesResponse) GetCertificatesDer(
 
 type GetLatestCertificateAuthorityCertificateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -844,11 +843,11 @@ func (*GetLatestCertificateAuthorityCertificateRequest) Descriptor() ([]byte, []
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *GetLatestCertificateAuthorityCertificateRequest) GetCaId() int64 {
+func (x *GetLatestCertificateAuthorityCertificateRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 type GetLatestCertificateAuthorityCertificateResponse struct {
@@ -897,7 +896,7 @@ func (x *GetLatestCertificateAuthorityCertificateResponse) GetCertificateAuthori
 
 type GetCertificateAuthorityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -932,11 +931,11 @@ func (*GetCertificateAuthorityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *GetCertificateAuthorityRequest) GetCaId() int64 {
+func (x *GetCertificateAuthorityRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 type GetCertificateAuthorityResponse struct {
@@ -985,7 +984,7 @@ func (x *GetCertificateAuthorityResponse) GetCertificateAuthority() *v12.Certifi
 
 type GetCertificateProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1020,11 +1019,11 @@ func (*GetCertificateProfileRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *GetCertificateProfileRequest) GetId() int64 {
+func (x *GetCertificateProfileRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetCertificateProfileResponse struct {
@@ -1193,7 +1192,7 @@ func (x *CreateEnrollmentRequestResponse) GetEnrollmentResponse() *v14.Enrollmen
 
 type GetEnrollmentByRequestIDRequest struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequestId int64                  `protobuf:"varint,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
+	EnrollmentRequestId string                 `protobuf:"bytes,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
 	Password            string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	CheckPassword       bool                   `protobuf:"varint,3,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
 	unknownFields       protoimpl.UnknownFields
@@ -1230,11 +1229,11 @@ func (*GetEnrollmentByRequestIDRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestId() int64 {
+func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestId() string {
 	if x != nil {
 		return x.EnrollmentRequestId
 	}
-	return 0
+	return ""
 }
 
 func (x *GetEnrollmentByRequestIDRequest) GetPassword() string {
@@ -1305,8 +1304,8 @@ func (x *GetEnrollmentByRequestIDResponse) GetEnrollmentResponse() *v14.Enrollme
 
 type RevokeEndEntityCertificateRequest struct {
 	state                protoimpl.MessageState   `protogen:"open.v1"`
-	EndEntityId          int64                    `protobuf:"varint,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
-	IssuedCertificateId  int64                    `protobuf:"varint,2,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
+	EndEntityId          string                   `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
+	IssuedCertificateId  string                   `protobuf:"bytes,2,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
 	RevocationReasonCode v15.RevocationReasonCode `protobuf:"varint,3,opt,name=revocation_reason_code,json=revocationReasonCode,proto3,enum=otpki.common.x509.v1.RevocationReasonCode" json:"revocation_reason_code,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -1342,18 +1341,18 @@ func (*RevokeEndEntityCertificateRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{28}
 }
 
-func (x *RevokeEndEntityCertificateRequest) GetEndEntityId() int64 {
+func (x *RevokeEndEntityCertificateRequest) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
 	}
-	return 0
+	return ""
 }
 
-func (x *RevokeEndEntityCertificateRequest) GetIssuedCertificateId() int64 {
+func (x *RevokeEndEntityCertificateRequest) GetIssuedCertificateId() string {
 	if x != nil {
 		return x.IssuedCertificateId
 	}
-	return 0
+	return ""
 }
 
 func (x *RevokeEndEntityCertificateRequest) GetRevocationReasonCode() v15.RevocationReasonCode {
@@ -1489,7 +1488,7 @@ func (x *GetEndEntityCertificateBySerialNumberResponse) GetEndEntityCertificate(
 
 type GetEndEntityCertificatesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	EndEntityId   int64                  `protobuf:"varint,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
+	EndEntityId   string                 `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1524,11 +1523,11 @@ func (*GetEndEntityCertificatesRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{32}
 }
 
-func (x *GetEndEntityCertificatesRequest) GetEndEntityId() int64 {
+func (x *GetEndEntityCertificatesRequest) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityCertificatesResponse struct {
@@ -1579,7 +1578,7 @@ func (x *GetEndEntityCertificatesResponse) GetEndEntityCertificates() []*v16.End
 // otpki.common.issuance.key.v1 when the underlying key type requires it.
 type SignKeyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KeyId         int64                  `protobuf:"varint,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	KeyId         string                 `protobuf:"bytes,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	Digest        []byte                 `protobuf:"bytes,2,opt,name=digest,proto3" json:"digest,omitempty"`
 	Opts          *anypb.Any             `protobuf:"bytes,3,opt,name=opts,proto3" json:"opts,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1616,11 +1615,11 @@ func (*SignKeyRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{34}
 }
 
-func (x *SignKeyRequest) GetKeyId() int64 {
+func (x *SignKeyRequest) GetKeyId() string {
 	if x != nil {
 		return x.KeyId
 	}
-	return 0
+	return ""
 }
 
 func (x *SignKeyRequest) GetDigest() []byte {
@@ -1685,7 +1684,7 @@ func (x *SignKeyResponse) GetSignature() []byte {
 // otpki.common.issuance.key.v1 when the underlying key type requires it.
 type DecryptKeyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	KeyId         int64                  `protobuf:"varint,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	KeyId         string                 `protobuf:"bytes,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	Ciphertext    []byte                 `protobuf:"bytes,2,opt,name=ciphertext,proto3" json:"ciphertext,omitempty"`
 	Opts          *anypb.Any             `protobuf:"bytes,3,opt,name=opts,proto3" json:"opts,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1722,11 +1721,11 @@ func (*DecryptKeyRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_v1_runtime_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *DecryptKeyRequest) GetKeyId() int64 {
+func (x *DecryptKeyRequest) GetKeyId() string {
 	if x != nil {
 		return x.KeyId
 	}
-	return 0
+	return ""
 }
 
 func (x *DecryptKeyRequest) GetCiphertext() []byte {
@@ -2099,7 +2098,7 @@ var File_otpki_public_plugin_v1_runtime_proto protoreflect.FileDescriptor
 
 const file_otpki_public_plugin_v1_runtime_proto_rawDesc = "" +
 	"\n" +
-	"$otpki/public/plugin/v1/runtime.proto\x12\x16otpki.public.plugin.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a\x1fotpki/common/auth/v1/auth.proto\x1a6otpki/common/enrollment/end_entity/v1/end_entity.proto\x1aNotpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto\x1a2otpki/common/enrollment/enroller/v1/enroller.proto\x1aJotpki/common/issuance/certificate_authority/v1/certificate_authority.proto\x1aFotpki/common/issuance/certificate_profile/v1/certificate_profile.proto\x1a&otpki/common/issuance/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\x1a otpki/public/plugin/v1/sql.proto\"\x16\n" +
+	"$otpki/public/plugin/v1/runtime.proto\x12\x16otpki.public.plugin.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a6otpki/common/enrollment/end_entity/v1/end_entity.proto\x1aNotpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto\x1a2otpki/common/enrollment/enroller/v1/enroller.proto\x1aJotpki/common/issuance/certificate_authority/v1/certificate_authority.proto\x1aFotpki/common/issuance/certificate_profile/v1/certificate_profile.proto\x1a&otpki/common/issuance/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\x1a otpki/public/plugin/v1/sql.proto\"\x16\n" +
 	"\x14GetBaseConfigRequest\"8\n" +
 	"\x15GetBaseConfigResponse\x12\x1f\n" +
 	"\vconfig_json\x18\x01 \x01(\fR\n" +
@@ -2123,30 +2122,30 @@ const file_otpki_public_plugin_v1_runtime_proto_rawDesc = "" +
 	"\blogin_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\aloginId\"p\n" +
 	"\x1dGetEndEntityByLoginIDResponse\x12O\n" +
 	"\n" +
-	"end_entity\x18\x01 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\tendEntity\"-\n" +
-	"\x13GetEndEntityRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"g\n" +
+	"end_entity\x18\x01 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\tendEntity\"2\n" +
+	"\x13GetEndEntityRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"g\n" +
 	"\x14GetEndEntityResponse\x12O\n" +
 	"\n" +
-	"end_entity\x18\x01 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\tendEntity\"'\n" +
-	"\rGetKeyRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"k\n" +
+	"end_entity\x18\x01 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\tendEntity\",\n" +
+	"\rGetKeyRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"k\n" +
 	"\x0eGetKeyResponse\x123\n" +
 	"\x03key\x18\x01 \x01(\v2!.otpki.common.issuance.key.v1.KeyR\x03key\x12$\n" +
 	"\x0epublic_key_der\x18\x02 \x01(\fR\fpublicKeyDer\"3\n" +
 	"1GetAllRootCertificateAuthorityCertificatesRequest\"_\n" +
 	"2GetAllRootCertificateAuthorityCertificatesResponse\x12)\n" +
-	"\x10certificates_der\x18\x01 \x03(\fR\x0fcertificatesDer\"N\n" +
-	"/GetLatestCertificateAuthorityCertificateRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\"\xd0\x01\n" +
+	"\x10certificates_der\x18\x01 \x03(\fR\x0fcertificatesDer\"S\n" +
+	"/GetLatestCertificateAuthorityCertificateRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\"\xd0\x01\n" +
 	"0GetLatestCertificateAuthorityCertificateResponse\x12\x9b\x01\n" +
-	"!certificate_authority_certificate\x18\x01 \x01(\v2O.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityCertificateR\x1fcertificateAuthorityCertificate\"=\n" +
-	"\x1eGetCertificateAuthorityRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\"\x9c\x01\n" +
+	"!certificate_authority_certificate\x18\x01 \x01(\v2O.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityCertificateR\x1fcertificateAuthorityCertificate\"B\n" +
+	"\x1eGetCertificateAuthorityRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\"\x9c\x01\n" +
 	"\x1fGetCertificateAuthorityResponse\x12y\n" +
-	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityR\x14certificateAuthority\"6\n" +
-	"\x1cGetCertificateProfileRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x92\x01\n" +
+	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityR\x14certificateAuthority\";\n" +
+	"\x1cGetCertificateProfileRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x92\x01\n" +
 	"\x1dGetCertificateProfileResponse\x12q\n" +
 	"\x13certificate_profile\x18\x01 \x01(\v2@.otpki.common.issuance.certificate_profile.v1.CertificateProfileR\x12certificateProfile\"\xb5\x02\n" +
 	"\x1eCreateEnrollmentRequestRequest\x12m\n" +
@@ -2156,35 +2155,35 @@ const file_otpki_public_plugin_v1_runtime_proto_rawDesc = "" +
 	"\x10require_existing\x18\x04 \x01(\bR\x0frequireExisting\x12%\n" +
 	"\x0echeck_password\x18\x05 \x01(\bR\rcheckPassword\"\x8b\x01\n" +
 	"\x1fCreateEnrollmentRequestResponse\x12h\n" +
-	"\x13enrollment_response\x18\x01 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xa0\x01\n" +
-	"\x1fGetEnrollmentByRequestIDRequest\x12:\n" +
-	"\x15enrollment_request_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x13enrollmentRequestId\x12\x1a\n" +
+	"\x13enrollment_response\x18\x01 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xa5\x01\n" +
+	"\x1fGetEnrollmentByRequestIDRequest\x12?\n" +
+	"\x15enrollment_request_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12%\n" +
 	"\x0echeck_password\x18\x03 \x01(\bR\rcheckPassword\"\xf3\x01\n" +
 	" GetEnrollmentByRequestIDResponse\x12e\n" +
 	"\x12enrollment_request\x18\x01 \x01(\v26.otpki.common.enrollment.enroller.v1.EnrollmentRequestR\x11enrollmentRequest\x12h\n" +
-	"\x13enrollment_response\x18\x02 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xf5\x01\n" +
-	"!RevokeEndEntityCertificateRequest\x12*\n" +
-	"\rend_entity_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\vendEntityId\x12:\n" +
-	"\x15issued_certificate_id\x18\x02 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x13issuedCertificateId\x12h\n" +
+	"\x13enrollment_response\x18\x02 \x01(\v27.otpki.common.enrollment.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xff\x01\n" +
+	"!RevokeEndEntityCertificateRequest\x12/\n" +
+	"\rend_entity_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vendEntityId\x12?\n" +
+	"\x15issued_certificate_id\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13issuedCertificateId\x12h\n" +
 	"\x16revocation_reason_code\x18\x03 \x01(\x0e2*.otpki.common.x509.v1.RevocationReasonCodeB\x06\xbaH\x03\xc8\x01\x01R\x14revocationReasonCode\"$\n" +
 	"\"RevokeEndEntityCertificateResponse\"[\n" +
 	",GetEndEntityCertificateBySerialNumberRequest\x12+\n" +
 	"\rserial_number\x18\x01 \x01(\fB\x06\xbaH\x03\xc8\x01\x01R\fserialNumber\"\xae\x01\n" +
 	"-GetEndEntityCertificateBySerialNumberResponse\x12}\n" +
-	"\x16end_entity_certificate\x18\x01 \x01(\v2G.otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificateR\x14endEntityCertificate\"M\n" +
-	"\x1fGetEndEntityCertificatesRequest\x12*\n" +
-	"\rend_entity_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\vendEntityId\"\xa3\x01\n" +
+	"\x16end_entity_certificate\x18\x01 \x01(\v2G.otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificateR\x14endEntityCertificate\"R\n" +
+	"\x1fGetEndEntityCertificatesRequest\x12/\n" +
+	"\rend_entity_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vendEntityId\"\xa3\x01\n" +
 	" GetEndEntityCertificatesResponse\x12\x7f\n" +
-	"\x17end_entity_certificates\x18\x01 \x03(\v2G.otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificateR\x15endEntityCertificates\"y\n" +
-	"\x0eSignKeyRequest\x12\x1d\n" +
-	"\x06key_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x05keyId\x12\x1e\n" +
+	"\x17end_entity_certificates\x18\x01 \x03(\v2G.otpki.common.enrollment.end_entity_certificate.v1.EndEntityCertificateR\x15endEntityCertificates\"~\n" +
+	"\x0eSignKeyRequest\x12\"\n" +
+	"\x06key_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x05keyId\x12\x1e\n" +
 	"\x06digest\x18\x02 \x01(\fB\x06\xbaH\x03\xc8\x01\x01R\x06digest\x12(\n" +
 	"\x04opts\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\x04opts\"/\n" +
 	"\x0fSignKeyResponse\x12\x1c\n" +
-	"\tsignature\x18\x01 \x01(\fR\tsignature\"\x84\x01\n" +
-	"\x11DecryptKeyRequest\x12\x1d\n" +
-	"\x06key_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x05keyId\x12&\n" +
+	"\tsignature\x18\x01 \x01(\fR\tsignature\"\x89\x01\n" +
+	"\x11DecryptKeyRequest\x12\"\n" +
+	"\x06key_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x05keyId\x12&\n" +
 	"\n" +
 	"ciphertext\x18\x02 \x01(\fB\x06\xbaH\x03\xc8\x01\x01R\n" +
 	"ciphertext\x12(\n" +

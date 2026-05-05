@@ -7,6 +7,7 @@
 package validationv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -24,7 +25,7 @@ const (
 
 type GetLatestRevocationListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,11 +60,11 @@ func (*GetLatestRevocationListRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_validation_v1_revocation_list_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetLatestRevocationListRequest) GetCaId() int64 {
+func (x *GetLatestRevocationListRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 type GetLatestRevocationListResponse struct {
@@ -112,7 +113,7 @@ func (x *GetLatestRevocationListResponse) GetRevocationList() *v1.RevocationList
 
 type GetRevocationListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -147,11 +148,11 @@ func (*GetRevocationListRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_validation_v1_revocation_list_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetRevocationListRequest) GetId() int64 {
+func (x *GetRevocationListRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetRevocationListResponse struct {
@@ -246,13 +247,13 @@ var File_otpki_public_validation_v1_revocation_list_proto protoreflect.FileDescr
 
 const file_otpki_public_validation_v1_revocation_list_proto_rawDesc = "" +
 	"\n" +
-	"0otpki/public/validation/v1/revocation_list.proto\x12\x1aotpki.public.validation.v1\x1a*otpki/common/x509/v1/revocation_list.proto\"5\n" +
-	"\x1eGetLatestRevocationListRequest\x12\x13\n" +
-	"\x05ca_id\x18\x01 \x01(\x03R\x04caId\"p\n" +
+	"0otpki/public/validation/v1/revocation_list.proto\x12\x1aotpki.public.validation.v1\x1a\x1bbuf/validate/validate.proto\x1a*otpki/common/x509/v1/revocation_list.proto\"?\n" +
+	"\x1eGetLatestRevocationListRequest\x12\x1d\n" +
+	"\x05ca_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\"p\n" +
 	"\x1fGetLatestRevocationListResponse\x12M\n" +
-	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationList\"*\n" +
-	"\x18GetRevocationListRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"j\n" +
+	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationList\"4\n" +
+	"\x18GetRevocationListRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"j\n" +
 	"\x19GetRevocationListResponse\x12M\n" +
 	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationList\"?\n" +
 	"\x1bCRLDistributionPointRequest\x12 \n" +

@@ -19,7 +19,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/issuance/certificate_authority/v1/certificate_authority.proto.
  */
 export const file_otpki_common_issuance_certificate_authority_v1_certificate_authority: GenFile = /*@__PURE__*/
-  fileDesc("CkpvdHBraS9jb21tb24vaXNzdWFuY2UvY2VydGlmaWNhdGVfYXV0aG9yaXR5L3YxL2NlcnRpZmljYXRlX2F1dGhvcml0eS5wcm90bxIub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MSKWBwoUQ2VydGlmaWNhdGVBdXRob3JpdHkSEQoCaWQYASABKANCBbpHAhgBEgwKBG5hbWUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSDgoGa2V5X2lkGAQgASgDEh8KEmFsdGVybmF0aXZlX2tleV9pZBgFIAEoA0gAiAEBEnkKE3NpZ25hdHVyZV9hbGdvcml0aG0YBiABKA4yKC5vdHBraS5jb21tb24ueDUwOS52MS5TaWduYXR1cmVBbGdvcml0aG1CMrpIBYIBAhABirUYF3g1MDkuU2lnbmF0dXJlQWxnb3JpdGhtkrUYC2NyeXB0by94NTA5EoUBCh9hbHRlcm5hdGl2ZV9zaWduYXR1cmVfYWxnb3JpdGhtGAcgASgOMigub3Rwa2kuY29tbW9uLng1MDkudjEuU2lnbmF0dXJlQWxnb3JpdGhtQjK6SAWCAQIQAYq1GBd4NTA5LlNpZ25hdHVyZUFsZ29yaXRobZK1GAtjcnlwdG8veDUwORJHChRjZXJ0aWZpY2F0ZV90ZW1wbGF0ZRgIIAEoCzIpLm90cGtpLmNvbW1vbi54NTA5LnYxLkNlcnRpZmljYXRlVGVtcGxhdGUSUQoTY3JsX3ZhbGlkaXR5X3BlcmlvZBgJIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkIZirUYDXRpbWUuRHVyYXRpb26StRgEdGltZRJXChlkZWx0YV9jcmxfdmFsaWRpdHlfcGVyaW9kGAogASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQhmKtRgNdGltZS5EdXJhdGlvbpK1GAR0aW1lEiMKG2NybF9kaXN0cmlidXRpb25fcG9pbnRfdXJpcxgLIAMoCRIRCglvY3NwX3VyaXMYDCADKAkSEwoLaXNzdWVyX3VyaXMYDSADKAkSGwoTYXBwcm92YWxfcHJvZmlsZV9pZBgOIAEoAxJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAFCFQoTX2FsdGVybmF0aXZlX2tleV9pZCLTAQofQ2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZRIKCgJpZBgBIAEoAxIgChhjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfaWQYAiABKAMSEwoLY2VydGlmaWNhdGUYAyABKAwSGQoRY2VydGlmaWNhdGVfY2hhaW4YBCADKAwSIgoVaXNzdWVkX2NlcnRpZmljYXRlX2lkGAUgASgDSACIAQESFAoMZGlzcGxheV9uYW1lGAYgASgJQhgKFl9pc3N1ZWRfY2VydGlmaWNhdGVfaWRCqAIKMmNvbS5vdHBraS5jb21tb24uaXNzdWFuY2UuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxQhlDZXJ0aWZpY2F0ZUF1dGhvcml0eVByb3RvUAGiAgRPQ0lDqgItT3Rwa2kuQ29tbW9uLklzc3VhbmNlLkNlcnRpZmljYXRlQXV0aG9yaXR5LlYxygItT3Rwa2lcQ29tbW9uXElzc3VhbmNlXENlcnRpZmljYXRlQXV0aG9yaXR5XFYx4gI5T3Rwa2lcQ29tbW9uXElzc3VhbmNlXENlcnRpZmljYXRlQXV0aG9yaXR5XFYxXEdQQk1ldGFkYXRh6gIxT3Rwa2k6OkNvbW1vbjo6SXNzdWFuY2U6OkNlcnRpZmljYXRlQXV0aG9yaXR5OjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_duration, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template, file_otpki_common_x509_v1_x509]);
+  fileDesc("CkpvdHBraS9jb21tb24vaXNzdWFuY2UvY2VydGlmaWNhdGVfYXV0aG9yaXR5L3YxL2NlcnRpZmljYXRlX2F1dGhvcml0eS5wcm90bxIub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MSK8BwoUQ2VydGlmaWNhdGVBdXRob3JpdHkSGQoCaWQYASABKAlCDbpHAhgBukgFcgOwAQESDAoEbmFtZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRIYCgZrZXlfaWQYBCABKAlCCLpIBXIDsAEBEikKEmFsdGVybmF0aXZlX2tleV9pZBgFIAEoCUIIukgFcgOwAQFIAIgBARJ5ChNzaWduYXR1cmVfYWxnb3JpdGhtGAYgASgOMigub3Rwa2kuY29tbW9uLng1MDkudjEuU2lnbmF0dXJlQWxnb3JpdGhtQjK6SAWCAQIQAYq1GBd4NTA5LlNpZ25hdHVyZUFsZ29yaXRobZK1GAtjcnlwdG8veDUwORKFAQofYWx0ZXJuYXRpdmVfc2lnbmF0dXJlX2FsZ29yaXRobRgHIAEoDjIoLm90cGtpLmNvbW1vbi54NTA5LnYxLlNpZ25hdHVyZUFsZ29yaXRobUIyukgFggECEAGKtRgXeDUwOS5TaWduYXR1cmVBbGdvcml0aG2StRgLY3J5cHRvL3g1MDkSRwoUY2VydGlmaWNhdGVfdGVtcGxhdGUYCCABKAsyKS5vdHBraS5jb21tb24ueDUwOS52MS5DZXJ0aWZpY2F0ZVRlbXBsYXRlElEKE2NybF92YWxpZGl0eV9wZXJpb2QYCSABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CGYq1GA10aW1lLkR1cmF0aW9ukrUYBHRpbWUSVwoZZGVsdGFfY3JsX3ZhbGlkaXR5X3BlcmlvZBgKIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkIZirUYDXRpbWUuRHVyYXRpb26StRgEdGltZRIjChtjcmxfZGlzdHJpYnV0aW9uX3BvaW50X3VyaXMYCyADKAkSEQoJb2NzcF91cmlzGAwgAygJEhMKC2lzc3Vlcl91cmlzGA0gAygJEiUKE2FwcHJvdmFsX3Byb2ZpbGVfaWQYDiABKAlCCLpIBXIDsAEBEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYAUIVChNfYWx0ZXJuYXRpdmVfa2V5X2lkIvEBCh9DZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlEhQKAmlkGAEgASgJQgi6SAVyA7ABARIqChhjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfaWQYAiABKAlCCLpIBXIDsAEBEhMKC2NlcnRpZmljYXRlGAMgASgMEhkKEWNlcnRpZmljYXRlX2NoYWluGAQgAygMEiwKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgFIAEoCUIIukgFcgOwAQFIAIgBARIUCgxkaXNwbGF5X25hbWUYBiABKAlCGAoWX2lzc3VlZF9jZXJ0aWZpY2F0ZV9pZEKoAgoyY29tLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjFCGUNlcnRpZmljYXRlQXV0aG9yaXR5UHJvdG9QAaICBE9DSUOqAi1PdHBraS5Db21tb24uSXNzdWFuY2UuQ2VydGlmaWNhdGVBdXRob3JpdHkuVjHKAi1PdHBraVxDb21tb25cSXNzdWFuY2VcQ2VydGlmaWNhdGVBdXRob3JpdHlcVjHiAjlPdHBraVxDb21tb25cSXNzdWFuY2VcQ2VydGlmaWNhdGVBdXRob3JpdHlcVjFcR1BCTWV0YWRhdGHqAjFPdHBraTo6Q29tbW9uOjpJc3N1YW5jZTo6Q2VydGlmaWNhdGVBdXRob3JpdHk6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_duration, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.common.issuance.certificate_authority.v1.CertificateAuthority
@@ -28,9 +28,9 @@ export type CertificateAuthority = Message<"otpki.common.issuance.certificate_au
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -43,14 +43,14 @@ export type CertificateAuthority = Message<"otpki.common.issuance.certificate_au
   description: string;
 
   /**
-   * @generated from field: int64 key_id = 4;
+   * @generated from field: string key_id = 4;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
-   * @generated from field: optional int64 alternative_key_id = 5;
+   * @generated from field: optional string alternative_key_id = 5;
    */
-  alternativeKeyId?: bigint;
+  alternativeKeyId?: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.SignatureAlgorithm signature_algorithm = 6;
@@ -101,9 +101,9 @@ export type CertificateAuthority = Message<"otpki.common.issuance.certificate_au
   issuerUris: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 14;
+   * @generated from field: string approval_profile_id = 14;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 
   /**
    * not settable on creation
@@ -127,7 +127,7 @@ export type CertificateAuthorityJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -142,12 +142,12 @@ export type CertificateAuthorityJson = {
   description?: string;
 
   /**
-   * @generated from field: int64 key_id = 4;
+   * @generated from field: string key_id = 4;
    */
   keyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_key_id = 5;
+   * @generated from field: optional string alternative_key_id = 5;
    */
   alternativeKeyId?: string;
 
@@ -200,7 +200,7 @@ export type CertificateAuthorityJson = {
   issuerUris?: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 14;
+   * @generated from field: string approval_profile_id = 14;
    */
   approvalProfileId?: string;
 
@@ -226,9 +226,9 @@ export type CertificateAuthorityValid = Message<"otpki.common.issuance.certifica
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -241,14 +241,14 @@ export type CertificateAuthorityValid = Message<"otpki.common.issuance.certifica
   description: string;
 
   /**
-   * @generated from field: int64 key_id = 4;
+   * @generated from field: string key_id = 4;
    */
-  keyId: bigint;
+  keyId: string;
 
   /**
-   * @generated from field: optional int64 alternative_key_id = 5;
+   * @generated from field: optional string alternative_key_id = 5;
    */
-  alternativeKeyId?: bigint;
+  alternativeKeyId?: string;
 
   /**
    * @generated from field: otpki.common.x509.v1.SignatureAlgorithm signature_algorithm = 6;
@@ -299,9 +299,9 @@ export type CertificateAuthorityValid = Message<"otpki.common.issuance.certifica
   issuerUris: string[];
 
   /**
-   * @generated from field: int64 approval_profile_id = 14;
+   * @generated from field: string approval_profile_id = 14;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 
   /**
    * not settable on creation
@@ -330,14 +330,14 @@ export const CertificateAuthoritySchema: GenMessage<CertificateAuthority, {jsonT
  */
 export type CertificateAuthorityCertificate = Message<"otpki.common.issuance.certificate_authority.v1.CertificateAuthorityCertificate"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
-   * @generated from field: int64 certificate_authority_id = 2;
+   * @generated from field: string certificate_authority_id = 2;
    */
-  certificateAuthorityId: bigint;
+  certificateAuthorityId: string;
 
   /**
    * @generated from field: bytes certificate = 3;
@@ -350,9 +350,9 @@ export type CertificateAuthorityCertificate = Message<"otpki.common.issuance.cer
   certificateChain: Uint8Array[];
 
   /**
-   * @generated from field: optional int64 issued_certificate_id = 5;
+   * @generated from field: optional string issued_certificate_id = 5;
    */
-  issuedCertificateId?: bigint;
+  issuedCertificateId?: string;
 
   /**
    * @generated from field: string display_name = 6;
@@ -365,12 +365,12 @@ export type CertificateAuthorityCertificate = Message<"otpki.common.issuance.cer
  */
 export type CertificateAuthorityCertificateJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: int64 certificate_authority_id = 2;
+   * @generated from field: string certificate_authority_id = 2;
    */
   certificateAuthorityId?: string;
 
@@ -385,7 +385,7 @@ export type CertificateAuthorityCertificateJson = {
   certificateChain?: string[];
 
   /**
-   * @generated from field: optional int64 issued_certificate_id = 5;
+   * @generated from field: optional string issued_certificate_id = 5;
    */
   issuedCertificateId?: string;
 

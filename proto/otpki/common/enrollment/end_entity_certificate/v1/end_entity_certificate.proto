@@ -1,6 +1,7 @@
 syntax = "proto3";
 package otpki.common.enrollment.end_entity_certificate.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 import "otpki/common/api/v1/native_type.proto";
 import "otpki/common/issuance/issuer/v1/issuer.proto";
@@ -8,9 +9,9 @@ import "otpki/common/x509/v1/x509.proto";
 
 message EndEntityCertificate {
   option (api.v1.generate_native) = true;
-  int64 end_entity_id = 1;
-  int64 enrollment_request_id = 2;
-  int64 issued_certificate_id = 3;
+  string end_entity_id = 1 [(buf.validate.field).string.uuid = true];
+  string enrollment_request_id = 2 [(buf.validate.field).string.uuid = true];
+  string issued_certificate_id = 3 [(buf.validate.field).string.uuid = true];
   bytes certificate = 4;
   repeated bytes certificate_chain = 5;
   bytes serial_number = 6;

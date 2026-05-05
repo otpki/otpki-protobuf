@@ -145,10 +145,10 @@ func (LoginIDScheme) EnumDescriptor() ([]byte, []int) {
 
 type EndEntity struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	Id    int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id    string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	// string name = 2; // using "login id" now
 	Description        string          `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	EndEntityProfileId *int64          `protobuf:"varint,4,opt,name=end_entity_profile_id,json=endEntityProfileId,proto3,oneof" json:"end_entity_profile_id,omitempty"`
+	EndEntityProfileId *string         `protobuf:"bytes,4,opt,name=end_entity_profile_id,json=endEntityProfileId,proto3,oneof" json:"end_entity_profile_id,omitempty"`
 	Status             EndEntityStatus `protobuf:"varint,5,opt,name=status,proto3,enum=otpki.common.enrollment.end_entity.v1.EndEntityStatus" json:"status,omitempty"` // this should only be set by backend
 	// db details
 	// not settable on creation
@@ -168,8 +168,8 @@ type EndEntity struct {
 	// note: certificate email can differ from EE email
 	SubjectAlternativeNameAttributes []*v1.SANAttribute `protobuf:"bytes,501,rep,name=subject_alternative_name_attributes,json=subjectAlternativeNameAttributes,proto3" json:"subject_alternative_name_attributes,omitempty"`
 	// issuance information
-	CertificateProfileId   int64 `protobuf:"varint,601,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"`
-	CertificateAuthorityId int64 `protobuf:"varint,602,opt,name=certificate_authority_id,json=certificateAuthorityId,proto3" json:"certificate_authority_id,omitempty"`
+	CertificateProfileId   string `protobuf:"bytes,601,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"`
+	CertificateAuthorityId string `protobuf:"bytes,602,opt,name=certificate_authority_id,json=certificateAuthorityId,proto3" json:"certificate_authority_id,omitempty"`
 	// validity override
 	ValidityStartTimeOffset *durationpb.Duration   `protobuf:"bytes,701,opt,name=validity_start_time_offset,json=validityStartTimeOffset,proto3" json:"validity_start_time_offset,omitempty"` // offset from 'now' when to issue certificate
 	ValidityStartDate       *timestamppb.Timestamp `protobuf:"bytes,702,opt,name=validity_start_date,json=validityStartDate,proto3" json:"validity_start_date,omitempty"`                     // start date for notBefore, if both are set, offset is added to start date rather than 'now'
@@ -186,7 +186,7 @@ type EndEntity struct {
 	ExcludedIpRanges              []string `protobuf:"bytes,806,rep,name=excluded_ip_ranges,json=excludedIpRanges,proto3" json:"excluded_ip_ranges,omitempty"`
 	ExcludedEmailAddresses        []string `protobuf:"bytes,807,rep,name=excluded_email_addresses,json=excludedEmailAddresses,proto3" json:"excluded_email_addresses,omitempty"`
 	ExcludedUriDomains            []string `protobuf:"bytes,808,rep,name=excluded_uri_domains,json=excludedUriDomains,proto3" json:"excluded_uri_domains,omitempty"`
-	CustomCertificateExtensionIds []int64  `protobuf:"varint,809,rep,packed,name=custom_certificate_extension_ids,json=customCertificateExtensionIds,proto3" json:"custom_certificate_extension_ids,omitempty"`
+	CustomCertificateExtensionIds []string `protobuf:"bytes,809,rep,name=custom_certificate_extension_ids,json=customCertificateExtensionIds,proto3" json:"custom_certificate_extension_ids,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -221,11 +221,11 @@ func (*EndEntity) Descriptor() ([]byte, []int) {
 	return file_otpki_common_enrollment_end_entity_v1_end_entity_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *EndEntity) GetId() int64 {
+func (x *EndEntity) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *EndEntity) GetDescription() string {
@@ -235,11 +235,11 @@ func (x *EndEntity) GetDescription() string {
 	return ""
 }
 
-func (x *EndEntity) GetEndEntityProfileId() int64 {
+func (x *EndEntity) GetEndEntityProfileId() string {
 	if x != nil && x.EndEntityProfileId != nil {
 		return *x.EndEntityProfileId
 	}
-	return 0
+	return ""
 }
 
 func (x *EndEntity) GetStatus() EndEntityStatus {
@@ -312,18 +312,18 @@ func (x *EndEntity) GetSubjectAlternativeNameAttributes() []*v1.SANAttribute {
 	return nil
 }
 
-func (x *EndEntity) GetCertificateProfileId() int64 {
+func (x *EndEntity) GetCertificateProfileId() string {
 	if x != nil {
 		return x.CertificateProfileId
 	}
-	return 0
+	return ""
 }
 
-func (x *EndEntity) GetCertificateAuthorityId() int64 {
+func (x *EndEntity) GetCertificateAuthorityId() string {
 	if x != nil {
 		return x.CertificateAuthorityId
 	}
-	return 0
+	return ""
 }
 
 func (x *EndEntity) GetValidityStartTimeOffset() *durationpb.Duration {
@@ -410,7 +410,7 @@ func (x *EndEntity) GetExcludedUriDomains() []string {
 	return nil
 }
 
-func (x *EndEntity) GetCustomCertificateExtensionIds() []int64 {
+func (x *EndEntity) GetCustomCertificateExtensionIds() []string {
 	if x != nil {
 		return x.CustomCertificateExtensionIds
 	}
@@ -421,11 +421,11 @@ var File_otpki_common_enrollment_end_entity_v1_end_entity_proto protoreflect.Fil
 
 const file_otpki_common_enrollment_end_entity_v1_end_entity_proto_rawDesc = "" +
 	"\n" +
-	"6otpki/common/enrollment/end_entity/v1/end_entity.proto\x12%otpki.common.enrollment.end_entity.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xad\x11\n" +
-	"\tEndEntity\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x126\n" +
-	"\x15end_entity_profile_id\x18\x04 \x01(\x03H\x00R\x12endEntityProfileId\x88\x01\x01\x12U\n" +
+	"6otpki/common/enrollment/end_entity/v1/end_entity.proto\x12%otpki.common.enrollment.end_entity.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xd4\x11\n" +
+	"\tEndEntity\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12@\n" +
+	"\x15end_entity_profile_id\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x12endEntityProfileId\x88\x01\x01\x12U\n" +
 	"\x06status\x18\x05 \x01(\x0e26.otpki.common.enrollment.end_entity.v1.EndEntityStatusB\x05\xbaG\x02\x18\x01R\x06status\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
@@ -439,9 +439,9 @@ const file_otpki_common_enrollment_end_entity_v1_end_entity_proto_rawDesc = "" +
 	"\x05email\x18\xb0\x02 \x01(\tBP\xbaHM\xba\x01J\n" +
 	"\remail.isEmail\x12\x1bvalue must be a valid email\x1a\x1cthis == '' || this.isEmail()R\x05email\x12]\n" +
 	"\x15subject_dn_attributes\x18\x91\x03 \x03(\v2(.otpki.common.x509.v1.SubjectDNAttributeR\x13subjectDnAttributes\x12r\n" +
-	"#subject_alternative_name_attributes\x18\xf5\x03 \x03(\v2\".otpki.common.x509.v1.SANAttributeR subjectAlternativeNameAttributes\x125\n" +
-	"\x16certificate_profile_id\x18\xd9\x04 \x01(\x03R\x14certificateProfileId\x129\n" +
-	"\x18certificate_authority_id\x18\xda\x04 \x01(\x03R\x16certificateAuthorityId\x12r\n" +
+	"#subject_alternative_name_attributes\x18\xf5\x03 \x03(\v2\".otpki.common.x509.v1.SANAttributeR subjectAlternativeNameAttributes\x12?\n" +
+	"\x16certificate_profile_id\x18\xd9\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x14certificateProfileId\x12C\n" +
+	"\x18certificate_authority_id\x18\xda\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x16certificateAuthorityId\x12r\n" +
 	"\x1avalidity_start_time_offset\x18\xbd\x05 \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x17validityStartTimeOffset\x12b\n" +
 	"\x13validity_start_date\x18\xbe\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x15\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\x11validityStartDate\x12n\n" +
 	"\x18validity_end_time_offset\x18\xbf\x05 \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x15validityEndTimeOffset\x12^\n" +
@@ -453,8 +453,8 @@ const file_otpki_common_enrollment_end_entity_v1_end_entity_proto_rawDesc = "" +
 	"\x14excluded_dns_domains\x18\xa5\x06 \x03(\tB\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04r\x02h\x01R\x12excludedDnsDomains\x12U\n" +
 	"\x12excluded_ip_ranges\x18\xa6\x06 \x03(\tB&\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xd0\x01\x01\x8a\xb5\x18\f[]*net.IPNet\x92\xb5\x18\x03netR\x10excludedIpRanges\x12I\n" +
 	"\x18excluded_email_addresses\x18\xa7\x06 \x03(\tB\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04r\x02`\x01R\x16excludedEmailAddresses\x12B\n" +
-	"\x14excluded_uri_domains\x18\xa8\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x12excludedUriDomains\x12X\n" +
-	" custom_certificate_extension_ids\x18\xa9\x06 \x03(\x03B\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04\"\x02 \x00R\x1dcustomCertificateExtensionIds:\x04\x98\xb5\x18\x01B\x18\n" +
+	"\x14excluded_uri_domains\x18\xa8\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x12excludedUriDomains\x12Y\n" +
+	" custom_certificate_extension_ids\x18\xa9\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1dcustomCertificateExtensionIds:\x04\x98\xb5\x18\x01B\x18\n" +
 	"\x16_end_entity_profile_id*\xd9\x01\n" +
 	"\x0fEndEntityStatus\x12!\n" +
 	"\x1dEND_ENTITY_STATUS_UNSPECIFIED\x10\x00\x12\x19\n" +

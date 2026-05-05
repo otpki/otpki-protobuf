@@ -4,6 +4,7 @@ package publisherv1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	anypb "google.golang.org/protobuf/types/known/anypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
@@ -11,7 +12,7 @@ import (
 
 // PublisherConfigNative is the native typing representation of PublisherConfig
 type PublisherConfigNative struct {
-	Id            int64
+	Id            uuid.UUID
 	Name          string
 	Description   string
 	PublisherType PublisherType
@@ -27,7 +28,10 @@ func (n *PublisherConfigNative) ToProto() (*PublisherConfig, error) {
 	}
 	var err error
 	protoStruct := &PublisherConfig{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
 	protoStruct.PublisherType = n.PublisherType
@@ -50,7 +54,10 @@ func (p *PublisherConfig) ToNative() (*PublisherConfigNative, error) {
 	}
 	var err error
 	nativeStruct := &PublisherConfigNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
 	nativeStruct.PublisherType = p.PublisherType
@@ -66,6 +73,94 @@ func (p *PublisherConfig) ToNative() (*PublisherConfigNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *PublisherConfig) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetIdUUID returns Id as a UUID when possible.
+func (x *CrlPublisher) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetCaIdUUID returns CaId as a UUID when possible.
+func (x *CrlPublisher) GetCaIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CaId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetPublisherConfigIdUUID returns PublisherConfigId as a UUID when possible.
+func (x *CrlPublisher) GetPublisherConfigIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.PublisherConfigId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetIdUUID returns Id as a UUID when possible.
+func (x *CertificatePublisher) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetPublisherConfigIdUUID returns PublisherConfigId as a UUID when possible.
+func (x *CertificatePublisher) GetPublisherConfigIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.PublisherConfigId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetCaIdUUID returns CaId as a UUID when possible.
+func (x *CertificatePublisher) GetCaIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CaId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetCertificateProfileIdUUID returns CertificateProfileId as a UUID when possible.
+func (x *CertificatePublisher) GetCertificateProfileIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CertificateProfileId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
 
 // convertProtoToTime comes from the converter package
@@ -76,7 +171,20 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/auth/v1/user.proto.
  */
 export const file_otpki_public_auth_v1_user: GenFile = /*@__PURE__*/
-  fileDesc("Ch9vdHBraS9wdWJsaWMvYXV0aC92MS91c2VyLnByb3RvEhRvdHBraS5wdWJsaWMuYXV0aC52MSJFChFDcmVhdGVVc2VyUmVxdWVzdBIwCgR1c2VyGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuVXNlckIGukgDyAEBIiAKEkNyZWF0ZVVzZXJSZXNwb25zZRIKCgJpZBgBIAEoAyIkCg5HZXRVc2VyUmVxdWVzdBISCgJpZBgBIAEoA0IGukgDyAEBIjsKD0dldFVzZXJSZXNwb25zZRIoCgR1c2VyGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuVXNlciI0ChhHZXRVc2VyQnlVc2VybmFtZVJlcXVlc3QSGAoIdXNlcm5hbWUYASABKAlCBrpIA8gBASJFChlHZXRVc2VyQnlVc2VybmFtZVJlc3BvbnNlEigKBHVzZXIYASABKAsyGi5vdHBraS5jb21tb24uYXV0aC52MS5Vc2VyIlAKJEdldFVzZXJCeU9JRENTdWJqZWN0QW5kSXNzdWVyUmVxdWVzdBITCgNzdWIYASABKAlCBrpIA8gBARITCgNpc3MYAiABKAlCBrpIA8gBASJRCiVHZXRVc2VyQnlPSURDU3ViamVjdEFuZElzc3VlclJlc3BvbnNlEigKBHVzZXIYASABKAsyGi5vdHBraS5jb21tb24uYXV0aC52MS5Vc2VyIjoKG0dldFVzZXJCeUNlcnRpZmljYXRlUmVxdWVzdBIbCgtjZXJ0aWZpY2F0ZRgBIAEoDEIGukgDyAEBIkgKHEdldFVzZXJCeUNlcnRpZmljYXRlUmVzcG9uc2USKAoEdXNlchgBIAEoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlVzZXIibgoRVXBkYXRlVXNlclJlcXVlc3QSKAoEdXNlchgBIAEoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlVzZXISLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIhQKElVwZGF0ZVVzZXJSZXNwb25zZSInChFEZWxldGVVc2VyUmVxdWVzdBISCgJpZBgBIAEoA0IGukgDyAEBIhQKEkRlbGV0ZVVzZXJSZXNwb25zZSJWChJHZXRVc2VyTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QiggEKE0dldFVzZXJMaXN0UmVzcG9uc2USKAoEZGF0YRgBIAMoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlVzZXISQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlIhcKFUdldEN1cnJlbnRVc2VyUmVxdWVzdCJCChZHZXRDdXJyZW50VXNlclJlc3BvbnNlEigKBHVzZXIYASABKAsyGi5vdHBraS5jb21tb24uYXV0aC52MS5Vc2VyIo0BCiFDaGVja0N1cnJlbnRVc2VyUGVybWlzc2lvblJlcXVlc3QSNQoNcmVzb3VyY2VfdHlwZRgBIAEoDjIeLm90cGtpLmNvbW1vbi5hdXRoLnYxLlJlc291cmNlEjEKC2FjdGlvbl90eXBlGAIgASgOMhwub3Rwa2kuY29tbW9uLmF1dGgudjEuQWN0aW9uIjUKIkNoZWNrQ3VycmVudFVzZXJQZXJtaXNzaW9uUmVzcG9uc2USDwoHYWxsb3dlZBgBIAEoCEKaAQoYY29tLm90cGtpLnB1YmxpYy5hdXRoLnYxQglVc2VyUHJvdG9QAaICA09QQaoCFE90cGtpLlB1YmxpYy5BdXRoLlYxygIVT3Rwa2lcUHVibGljX1xBdXRoXFYx4gIhT3Rwa2lcUHVibGljX1xBdXRoXFYxXEdQQk1ldGFkYXRh6gIXT3Rwa2k6OlB1YmxpYzo6QXV0aDo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
+  fileDesc("Ch9vdHBraS9wdWJsaWMvYXV0aC92MS91c2VyLnByb3RvEhRvdHBraS5wdWJsaWMuYXV0aC52MSJFChFDcmVhdGVVc2VyUmVxdWVzdBIwCgR1c2VyGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuVXNlckIGukgDyAEBIioKEkNyZWF0ZVVzZXJSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiKQoOR2V0VXNlclJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIjsKD0dldFVzZXJSZXNwb25zZRIoCgR1c2VyGAEgASgLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuVXNlciI0ChhHZXRVc2VyQnlVc2VybmFtZVJlcXVlc3QSGAoIdXNlcm5hbWUYASABKAlCBrpIA8gBASJFChlHZXRVc2VyQnlVc2VybmFtZVJlc3BvbnNlEigKBHVzZXIYASABKAsyGi5vdHBraS5jb21tb24uYXV0aC52MS5Vc2VyIlAKJEdldFVzZXJCeU9JRENTdWJqZWN0QW5kSXNzdWVyUmVxdWVzdBITCgNzdWIYASABKAlCBrpIA8gBARITCgNpc3MYAiABKAlCBrpIA8gBASJRCiVHZXRVc2VyQnlPSURDU3ViamVjdEFuZElzc3VlclJlc3BvbnNlEigKBHVzZXIYASABKAsyGi5vdHBraS5jb21tb24uYXV0aC52MS5Vc2VyIjoKG0dldFVzZXJCeUNlcnRpZmljYXRlUmVxdWVzdBIbCgtjZXJ0aWZpY2F0ZRgBIAEoDEIGukgDyAEBIkgKHEdldFVzZXJCeUNlcnRpZmljYXRlUmVzcG9uc2USKAoEdXNlchgBIAEoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlVzZXIibgoRVXBkYXRlVXNlclJlcXVlc3QSKAoEdXNlchgBIAEoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlVzZXISLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIhQKElVwZGF0ZVVzZXJSZXNwb25zZSIsChFEZWxldGVVc2VyUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiFAoSRGVsZXRlVXNlclJlc3BvbnNlIlYKEkdldFVzZXJMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKCAQoTR2V0VXNlckxpc3RSZXNwb25zZRIoCgRkYXRhGAEgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuVXNlchJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UiFwoVR2V0Q3VycmVudFVzZXJSZXF1ZXN0IkIKFkdldEN1cnJlbnRVc2VyUmVzcG9uc2USKAoEdXNlchgBIAEoCzIaLm90cGtpLmNvbW1vbi5hdXRoLnYxLlVzZXIijQEKIUNoZWNrQ3VycmVudFVzZXJQZXJtaXNzaW9uUmVxdWVzdBI1Cg1yZXNvdXJjZV90eXBlGAEgASgOMh4ub3Rwa2kuY29tbW9uLmF1dGgudjEuUmVzb3VyY2USMQoLYWN0aW9uX3R5cGUYAiABKA4yHC5vdHBraS5jb21tb24uYXV0aC52MS5BY3Rpb24iNQoiQ2hlY2tDdXJyZW50VXNlclBlcm1pc3Npb25SZXNwb25zZRIPCgdhbGxvd2VkGAEgASgIQpoBChhjb20ub3Rwa2kucHVibGljLmF1dGgudjFCCVVzZXJQcm90b1ABogIDT1BBqgIUT3Rwa2kuUHVibGljLkF1dGguVjHKAhVPdHBraVxQdWJsaWNfXEF1dGhcVjHiAiFPdHBraVxQdWJsaWNfXEF1dGhcVjFcR1BCTWV0YWRhdGHqAhdPdHBraTo6UHVibGljOjpBdXRoOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth]);
 
 /**
  * @generated from message otpki.public.auth.v1.CreateUserRequest
@@ -61,9 +61,9 @@ export const CreateUserRequestSchema: GenMessage<CreateUserRequest, {jsonType: C
  */
 export type CreateUserResponse = Message<"otpki.public.auth.v1.CreateUserResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreateUserResponse = Message<"otpki.public.auth.v1.CreateUserRespons
  */
 export type CreateUserResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreateUserResponseSchema: GenMessage<CreateUserResponse, {jsonType:
  */
 export type GetUserRequest = Message<"otpki.public.auth.v1.GetUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,7 +100,7 @@ export type GetUserRequest = Message<"otpki.public.auth.v1.GetUserRequest"> & {
  */
 export type GetUserRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -110,9 +110,9 @@ export type GetUserRequestJson = {
  */
 export type GetUserRequestValid = Message<"otpki.public.auth.v1.GetUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -435,9 +435,9 @@ export const UpdateUserResponseSchema: GenMessage<UpdateUserResponse, {jsonType:
  */
 export type DeleteUserRequest = Message<"otpki.public.auth.v1.DeleteUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -445,7 +445,7 @@ export type DeleteUserRequest = Message<"otpki.public.auth.v1.DeleteUserRequest"
  */
 export type DeleteUserRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -455,9 +455,9 @@ export type DeleteUserRequestJson = {
  */
 export type DeleteUserRequestValid = Message<"otpki.public.auth.v1.DeleteUserRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

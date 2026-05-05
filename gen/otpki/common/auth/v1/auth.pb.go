@@ -319,7 +319,7 @@ func (x *ResourceActions) GetActions() []Action {
 
 type Group struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	Id          int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	// not settable on creation
@@ -359,11 +359,11 @@ func (*Group) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Group) GetId() int64 {
+func (x *Group) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *Group) GetName() string {
@@ -396,7 +396,7 @@ func (x *Group) GetUpdatedAt() *timestamppb.Timestamp {
 
 type Role struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	Id          int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	SystemRole  bool                   `protobuf:"varint,4,opt,name=system_role,json=systemRole,proto3" json:"system_role,omitempty"`
@@ -437,11 +437,11 @@ func (*Role) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Role) GetId() int64 {
+func (x *Role) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *Role) GetName() string {
@@ -481,11 +481,11 @@ func (x *Role) GetUpdatedAt() *timestamppb.Timestamp {
 
 type Permission struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	IsAllowed     bool                   `protobuf:"varint,2,opt,name=is_allowed,json=isAllowed,proto3" json:"is_allowed,omitempty"`
 	ResourceType  Resource               `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=otpki.common.auth.v1.Resource" json:"resource_type,omitempty"` // when unspecified, is_allowed controls all resources
 	ActionType    Action                 `protobuf:"varint,4,opt,name=action_type,json=actionType,proto3,enum=otpki.common.auth.v1.Action" json:"action_type,omitempty"`         // when unspecified, is_allowed grants all actions on a particular resource
-	ObjectId      int64                  `protobuf:"varint,5,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`                                                // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
+	ObjectId      string                 `protobuf:"bytes,5,opt,name=object_id,json=objectId,proto3" json:"object_id,omitempty"`                                                 // when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -520,11 +520,11 @@ func (*Permission) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Permission) GetId() int64 {
+func (x *Permission) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *Permission) GetIsAllowed() bool {
@@ -548,16 +548,16 @@ func (x *Permission) GetActionType() Action {
 	return Action_ACTION_UNSPECIFIED
 }
 
-func (x *Permission) GetObjectId() int64 {
+func (x *Permission) GetObjectId() string {
 	if x != nil {
 		return x.ObjectId
 	}
-	return 0
+	return ""
 }
 
 type User struct {
 	state        protoimpl.MessageState `protogen:"open.v1"`
-	Id           int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id           string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Username     string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
 	FirstName    string                 `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName     string                 `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
@@ -568,8 +568,8 @@ type User struct {
 	Certificate  []byte                 `protobuf:"bytes,9,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	OidcIssuer   string                 `protobuf:"bytes,10,opt,name=oidc_issuer,json=oidcIssuer,proto3" json:"oidc_issuer,omitempty"`
 	OidcSubject  string                 `protobuf:"bytes,11,opt,name=oidc_subject,json=oidcSubject,proto3" json:"oidc_subject,omitempty"`
-	Groups       []int64                `protobuf:"varint,12,rep,packed,name=groups,proto3" json:"groups,omitempty"`
-	Roles        []int64                `protobuf:"varint,13,rep,packed,name=roles,proto3" json:"roles,omitempty"`
+	Groups       []string               `protobuf:"bytes,12,rep,name=groups,proto3" json:"groups,omitempty"`
+	Roles        []string               `protobuf:"bytes,13,rep,name=roles,proto3" json:"roles,omitempty"`
 	// not settable on creation
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,202,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -607,11 +607,11 @@ func (*User) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *User) GetId() int64 {
+func (x *User) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *User) GetUsername() string {
@@ -684,14 +684,14 @@ func (x *User) GetOidcSubject() string {
 	return ""
 }
 
-func (x *User) GetGroups() []int64 {
+func (x *User) GetGroups() []string {
 	if x != nil {
 		return x.Groups
 	}
 	return nil
 }
 
-func (x *User) GetRoles() []int64 {
+func (x *User) GetRoles() []string {
 	if x != nil {
 		return x.Roles
 	}
@@ -714,13 +714,13 @@ func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
 
 type ApprovalProfile struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Id                   int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name                 string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description          string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	NumApprovalsRequired int32                  `protobuf:"varint,4,opt,name=num_approvals_required,json=numApprovalsRequired,proto3" json:"num_approvals_required,omitempty"`
-	ApproverRoleIds      []int64                `protobuf:"varint,5,rep,packed,name=approver_role_ids,json=approverRoleIds,proto3" json:"approver_role_ids,omitempty"`
-	ApproverGroupIds     []int64                `protobuf:"varint,6,rep,packed,name=approver_group_ids,json=approverGroupIds,proto3" json:"approver_group_ids,omitempty"`
-	ApproverUserIds      []int64                `protobuf:"varint,7,rep,packed,name=approver_user_ids,json=approverUserIds,proto3" json:"approver_user_ids,omitempty"`
+	ApproverRoleIds      []string               `protobuf:"bytes,5,rep,name=approver_role_ids,json=approverRoleIds,proto3" json:"approver_role_ids,omitempty"`
+	ApproverGroupIds     []string               `protobuf:"bytes,6,rep,name=approver_group_ids,json=approverGroupIds,proto3" json:"approver_group_ids,omitempty"`
+	ApproverUserIds      []string               `protobuf:"bytes,7,rep,name=approver_user_ids,json=approverUserIds,proto3" json:"approver_user_ids,omitempty"`
 	// not settable on creation
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,202,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -758,11 +758,11 @@ func (*ApprovalProfile) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ApprovalProfile) GetId() int64 {
+func (x *ApprovalProfile) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *ApprovalProfile) GetName() string {
@@ -786,21 +786,21 @@ func (x *ApprovalProfile) GetNumApprovalsRequired() int32 {
 	return 0
 }
 
-func (x *ApprovalProfile) GetApproverRoleIds() []int64 {
+func (x *ApprovalProfile) GetApproverRoleIds() []string {
 	if x != nil {
 		return x.ApproverRoleIds
 	}
 	return nil
 }
 
-func (x *ApprovalProfile) GetApproverGroupIds() []int64 {
+func (x *ApprovalProfile) GetApproverGroupIds() []string {
 	if x != nil {
 		return x.ApproverGroupIds
 	}
 	return nil
 }
 
-func (x *ApprovalProfile) GetApproverUserIds() []int64 {
+func (x *ApprovalProfile) GetApproverUserIds() []string {
 	if x != nil {
 		return x.ApproverUserIds
 	}
@@ -823,7 +823,7 @@ func (x *ApprovalProfile) GetUpdatedAt() *timestamppb.Timestamp {
 
 type OIDCProvider struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Id                 int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name               string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	ClientId           string                 `protobuf:"bytes,4,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	ClientSecret       string                 `protobuf:"bytes,5,opt,name=client_secret,json=clientSecret,proto3" json:"client_secret,omitempty"`
@@ -874,11 +874,11 @@ func (*OIDCProvider) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *OIDCProvider) GetId() int64 {
+func (x *OIDCProvider) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *OIDCProvider) GetName() string {
@@ -988,10 +988,10 @@ func (x *OIDCProvider) GetUpdatedAt() *timestamppb.Timestamp {
 
 type WorkItem struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	Id                int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	ApprovalProfileId int64                  `protobuf:"varint,2,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ApprovalProfileId string                 `protobuf:"bytes,2,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
 	ResourceType      Resource               `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=otpki.common.auth.v1.Resource" json:"resource_type,omitempty"`
-	ResourceId        int64                  `protobuf:"varint,4,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	ResourceId        string                 `protobuf:"bytes,4,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	Description       string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Status            WorkItemStatus         `protobuf:"varint,6,opt,name=status,proto3,enum=otpki.common.auth.v1.WorkItemStatus" json:"status,omitempty"`
 	Approvals         []*WorkItemApproval    `protobuf:"bytes,7,rep,name=approvals,proto3" json:"approvals,omitempty"`
@@ -1032,18 +1032,18 @@ func (*WorkItem) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *WorkItem) GetId() int64 {
+func (x *WorkItem) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
-func (x *WorkItem) GetApprovalProfileId() int64 {
+func (x *WorkItem) GetApprovalProfileId() string {
 	if x != nil {
 		return x.ApprovalProfileId
 	}
-	return 0
+	return ""
 }
 
 func (x *WorkItem) GetResourceType() Resource {
@@ -1053,11 +1053,11 @@ func (x *WorkItem) GetResourceType() Resource {
 	return Resource_RESOURCE_UNSPECIFIED
 }
 
-func (x *WorkItem) GetResourceId() int64 {
+func (x *WorkItem) GetResourceId() string {
 	if x != nil {
 		return x.ResourceId
 	}
-	return 0
+	return ""
 }
 
 func (x *WorkItem) GetDescription() string {
@@ -1097,7 +1097,7 @@ func (x *WorkItem) GetUpdatedAt() *timestamppb.Timestamp {
 
 type WorkItemApproval struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1134,11 +1134,11 @@ func (*WorkItemApproval) Descriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *WorkItemApproval) GetUserId() int64 {
+func (x *WorkItemApproval) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
-	return 0
+	return ""
 }
 
 func (x *WorkItemApproval) GetUsername() string {
@@ -1162,17 +1162,17 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\x1fotpki/common/auth/v1/auth.proto\x12\x14otpki.common.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\"\x85\x01\n" +
 	"\x0fResourceActions\x12:\n" +
 	"\bresource\x18\x01 \x01(\x0e2\x1e.otpki.common.auth.v1.ResourceR\bresource\x126\n" +
-	"\aactions\x18\x02 \x03(\x0e2\x1c.otpki.common.auth.v1.ActionR\aactions\"\x93\x02\n" +
-	"\x05Group\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1b\n" +
+	"\aactions\x18\x02 \x03(\x0e2\x1c.otpki.common.auth.v1.ActionR\aactions\"\x9b\x02\n" +
+	"\x05Group\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1b\n" +
 	"\x04name\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x03R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xb3\x02\n" +
-	"\x04Role\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1b\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xbb\x02\n" +
+	"\x04Role\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1b\n" +
 	"\x04name\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x03R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1f\n" +
 	"\vsystem_role\x18\x04 \x01(\bR\n" +
@@ -1180,18 +1180,18 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xe3\x01\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xf5\x01\n" +
 	"\n" +
-	"Permission\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1d\n" +
+	"Permission\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\n" +
 	"is_allowed\x18\x02 \x01(\bR\tisAllowed\x12C\n" +
 	"\rresource_type\x18\x03 \x01(\x0e2\x1e.otpki.common.auth.v1.ResourceR\fresourceType\x12=\n" +
 	"\vaction_type\x18\x04 \x01(\x0e2\x1c.otpki.common.auth.v1.ActionR\n" +
-	"actionType\x12\x1b\n" +
-	"\tobject_id\x18\x05 \x01(\x03R\bobjectId\"\xe2\x04\n" +
-	"\x04User\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12%\n" +
+	"actionType\x12%\n" +
+	"\tobject_id\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bobjectId\"\x8c\x05\n" +
+	"\x04User\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12%\n" +
 	"\busername\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\busername\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x03 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -1204,27 +1204,27 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\voidc_issuer\x18\n" +
 	" \x01(\tB\x05\xbaG\x02\x18\x01R\n" +
 	"oidcIssuer\x12(\n" +
-	"\foidc_subject\x18\v \x01(\tB\x05\xbaG\x02\x18\x01R\voidcSubject\x12\x16\n" +
-	"\x06groups\x18\f \x03(\x03R\x06groups\x12\x14\n" +
-	"\x05roles\x18\r \x03(\x03R\x05roles\x12V\n" +
+	"\foidc_subject\x18\v \x01(\tB\x05\xbaG\x02\x18\x01R\voidcSubject\x12'\n" +
+	"\x06groups\x18\f \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x06groups\x12%\n" +
+	"\x05roles\x18\r \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x05roles\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xe2\x03\n" +
-	"\x0fApprovalProfile\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1b\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x9d\x04\n" +
+	"\x0fApprovalProfile\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1b\n" +
 	"\x04name\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x03R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12=\n" +
-	"\x16num_approvals_required\x18\x04 \x01(\x05B\a\xbaH\x04\x1a\x02(\x01R\x14numApprovalsRequired\x12*\n" +
-	"\x11approver_role_ids\x18\x05 \x03(\x03R\x0fapproverRoleIds\x12,\n" +
-	"\x12approver_group_ids\x18\x06 \x03(\x03R\x10approverGroupIds\x12*\n" +
-	"\x11approver_user_ids\x18\a \x03(\x03R\x0fapproverUserIds\x12V\n" +
+	"\x16num_approvals_required\x18\x04 \x01(\x05B\a\xbaH\x04\x1a\x02(\x01R\x14numApprovalsRequired\x12;\n" +
+	"\x11approver_role_ids\x18\x05 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x0fapproverRoleIds\x12=\n" +
+	"\x12approver_group_ids\x18\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x10approverGroupIds\x12;\n" +
+	"\x11approver_user_ids\x18\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x0fapproverUserIds\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xe4\x06\n" +
-	"\fOIDCProvider\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1b\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xec\x06\n" +
+	"\fOIDCProvider\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1b\n" +
 	"\x04name\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x03R\x04name\x12\x1b\n" +
 	"\tclient_id\x18\x04 \x01(\tR\bclientId\x12#\n" +
 	"\rclient_secret\x18\x05 \x01(\tR\fclientSecret\x12'\n" +
@@ -1243,12 +1243,12 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x9a\x04\n" +
-	"\bWorkItem\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12.\n" +
-	"\x13approval_profile_id\x18\x02 \x01(\x03R\x11approvalProfileId\x12C\n" +
-	"\rresource_type\x18\x03 \x01(\x0e2\x1e.otpki.common.auth.v1.ResourceR\fresourceType\x12\x1f\n" +
-	"\vresource_id\x18\x04 \x01(\x03R\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xb6\x04\n" +
+	"\bWorkItem\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x128\n" +
+	"\x13approval_profile_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId\x12C\n" +
+	"\rresource_type\x18\x03 \x01(\x0e2\x1e.otpki.common.auth.v1.ResourceR\fresourceType\x12)\n" +
+	"\vresource_id\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
 	"resourceId\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12<\n" +
 	"\x06status\x18\x06 \x01(\x0e2$.otpki.common.auth.v1.WorkItemStatusR\x06status\x12K\n" +
@@ -1256,9 +1256,9 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x9f\x01\n" +
-	"\x10WorkItemApproval\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x1a\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xa9\x01\n" +
+	"\x10WorkItemApproval\x12!\n" +
+	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt*\x91\x01\n" +

@@ -61,16 +61,16 @@ export declare type CertificateTemplate = Message<"otpki.common.x509.v1.Certific
   /**
    * issuance information
    *
-   * @generated from field: int64 certificate_profile_id = 601;
+   * @generated from field: string certificate_profile_id = 601;
    */
-  certificateProfileId: bigint;
+  certificateProfileId: string;
 
   /**
    * empty means self signed
    *
-   * @generated from field: optional int64 certificate_authority_id = 602;
+   * @generated from field: optional string certificate_authority_id = 602;
    */
-  certificateAuthorityId?: bigint;
+  certificateAuthorityId?: string;
 
   /**
    * validity override
@@ -148,9 +148,9 @@ export declare type CertificateTemplate = Message<"otpki.common.x509.v1.Certific
   excludedUriDomains: string[];
 
   /**
-   * @generated from field: repeated int64 custom_certificate_extension_ids = 809;
+   * @generated from field: repeated string custom_certificate_extension_ids = 809;
    */
-  customCertificateExtensionIds: bigint[];
+  customCertificateExtensionIds: string[];
 };
 
 /**
@@ -202,14 +202,14 @@ export declare type CertificateTemplateJson = {
   /**
    * issuance information
    *
-   * @generated from field: int64 certificate_profile_id = 601;
+   * @generated from field: string certificate_profile_id = 601;
    */
   certificateProfileId?: string;
 
   /**
    * empty means self signed
    *
-   * @generated from field: optional int64 certificate_authority_id = 602;
+   * @generated from field: optional string certificate_authority_id = 602;
    */
   certificateAuthorityId?: string;
 
@@ -289,7 +289,7 @@ export declare type CertificateTemplateJson = {
   excludedUriDomains?: string[];
 
   /**
-   * @generated from field: repeated int64 custom_certificate_extension_ids = 809;
+   * @generated from field: repeated string custom_certificate_extension_ids = 809;
    */
   customCertificateExtensionIds?: string[];
 };
@@ -343,16 +343,16 @@ export declare type CertificateTemplateValid = Message<"otpki.common.x509.v1.Cer
   /**
    * issuance information
    *
-   * @generated from field: int64 certificate_profile_id = 601;
+   * @generated from field: string certificate_profile_id = 601;
    */
-  certificateProfileId: bigint;
+  certificateProfileId: string;
 
   /**
    * empty means self signed
    *
-   * @generated from field: optional int64 certificate_authority_id = 602;
+   * @generated from field: optional string certificate_authority_id = 602;
    */
-  certificateAuthorityId?: bigint;
+  certificateAuthorityId?: string;
 
   /**
    * validity override
@@ -430,9 +430,9 @@ export declare type CertificateTemplateValid = Message<"otpki.common.x509.v1.Cer
   excludedUriDomains: string[];
 
   /**
-   * @generated from field: repeated int64 custom_certificate_extension_ids = 809;
+   * @generated from field: repeated string custom_certificate_extension_ids = 809;
    */
-  customCertificateExtensionIds: bigint[];
+  customCertificateExtensionIds: string[];
 };
 
 /**

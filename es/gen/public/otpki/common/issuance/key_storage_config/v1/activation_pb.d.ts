@@ -20,9 +20,9 @@ export declare type Activation = Message<"otpki.common.issuance.key_storage_conf
    * activation. the key storage config will control
    * whether or not this is persisted via auto-activation
    *
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
-  keyStorageConfigId: bigint;
+  keyStorageConfigId: string;
 
   /**
    * when this is checked, it will ignore all the other fields
@@ -68,7 +68,7 @@ export declare type ActivationJson = {
    * activation. the key storage config will control
    * whether or not this is persisted via auto-activation
    *
-   * @generated from field: int64 key_storage_config_id = 1;
+   * @generated from field: string key_storage_config_id = 1;
    */
   keyStorageConfigId?: string;
 

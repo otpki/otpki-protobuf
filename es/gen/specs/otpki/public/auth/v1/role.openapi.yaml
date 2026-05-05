@@ -635,11 +635,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         isAllowed:
           type: boolean
@@ -653,11 +651,9 @@ components:
           description: when unspecified, is_allowed grants all actions on a particular resource
           $ref: '#/components/schemas/otpki.common.auth.v1.Action'
         objectId:
-          type:
-            - integer
-            - string
+          type: string
           title: object_id
-          format: int64
+          format: uuid
           description: 'when unspecified, is_allowed grants a particular action to all objects, note: not a FK since this is a reference to any arbitrary object'
       title: Permission
       additionalProperties: false
@@ -696,11 +692,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -759,22 +753,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateRoleResponse
       additionalProperties: false
     otpki.public.auth.v1.DeleteRoleRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteRoleRequest
       required:
         - id
@@ -811,10 +801,8 @@ components:
         ids:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: ids
           uniqueItems: true
       title: GetManyRolesRequest
@@ -854,11 +842,9 @@ components:
       type: object
       properties:
         roleId:
-          type:
-            - integer
-            - string
+          type: string
           title: role_id
-          format: int64
+          format: uuid
       title: GetRolePermissionsRequest
       required:
         - roleId
@@ -877,11 +863,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetRoleRequest
       required:
         - id
@@ -903,11 +887,9 @@ components:
             $ref: '#/components/schemas/otpki.common.auth.v1.Permission'
           title: permissions
         roleId:
-          type:
-            - integer
-            - string
+          type: string
           title: role_id
-          format: int64
+          format: uuid
       title: SetRolePermissionsRequest
       required:
         - roleId

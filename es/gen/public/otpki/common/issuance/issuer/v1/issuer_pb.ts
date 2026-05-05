@@ -17,16 +17,16 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/issuance/issuer/v1/issuer.proto.
  */
 export const file_otpki_common_issuance_issuer_v1_issuer: GenFile = /*@__PURE__*/
-  fileDesc("CixvdHBraS9jb21tb24vaXNzdWFuY2UvaXNzdWVyL3YxL2lzc3Vlci5wcm90bxIfb3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MSL9BAoPSXNzdWFuY2VSZXF1ZXN0EhEKAmlkGAEgASgDQgW6RwIYARJGCgZzdGF0dXMYAiABKA4yLy5vdHBraS5jb21tb24uaXNzdWFuY2UuaXNzdWVyLnYxLklzc3VhbmNlU3RhdHVzQgW6RwIYARJUCg1wcm90b2NvbF91c2VkGAMgASgOMjAub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MS5Jc3N1aW5nUHJvdG9jb2xCC7pICMgBAYIBAhABEk8KFGNlcnRpZmljYXRlX3RlbXBsYXRlGAQgASgLMikub3Rwa2kuY29tbW9uLng1MDkudjEuQ2VydGlmaWNhdGVUZW1wbGF0ZUIGukgDyAEBEhsKDnNpZ25pbmdfa2V5X2lkGAUgASgDSACIAQESJwoaYWx0ZXJuYXRpdmVfc2lnbmluZ19rZXlfaWQYBiABKANIAYgBARIsCh90YXJnZXRfY2VydGlmaWNhdGVfYXV0aG9yaXR5X2lkGAcgASgDSAKIAQESSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lOgSYtRgBQhEKD19zaWduaW5nX2tleV9pZEIdChtfYWx0ZXJuYXRpdmVfc2lnbmluZ19rZXlfaWRCIgogX3RhcmdldF9jZXJ0aWZpY2F0ZV9hdXRob3JpdHlfaWQiuAEKEElzc3VhbmNlUmVzcG9uc2USGwoTaXNzdWFuY2VfcmVxdWVzdF9pZBgBIAEoAxI/CgZzdGF0dXMYAiABKA4yLy5vdHBraS5jb21tb24uaXNzdWFuY2UuaXNzdWVyLnYxLklzc3VhbmNlU3RhdHVzEhYKDmNlcnRpZmljYXRlX2lkGAMgASgDEhMKC2NlcnRpZmljYXRlGAQgASgMEhkKEWNlcnRpZmljYXRlX2NoYWluGAUgAygMKs0BCg5Jc3N1YW5jZVN0YXR1cxIfChtJU1NVQU5DRV9TVEFUVVNfVU5TUEVDSUZJRUQQABIXChNJU1NVQU5DRV9TVEFUVVNfTkVXEAESGgoWSVNTVUFOQ0VfU1RBVFVTX0ZBSUxFRBACEh0KGUlTU1VBTkNFX1NUQVRVU19HRU5FUkFURUQQAxIcChhJU1NVQU5DRV9TVEFUVVNfUkVKRUNURUQQBBIoCiRJU1NVQU5DRV9TVEFUVVNfV0FJVElOR19GT1JfQVBQUk9WQUwQBSrvAQoPSXNzdWluZ1Byb3RvY29sEiAKHElTU1VJTkdfUFJPVE9DT0xfVU5TUEVDSUZJRUQQABIYChRJU1NVSU5HX1BST1RPQ09MX0FQSRABEhkKFUlTU1VJTkdfUFJPVE9DT0xfU0NFUBACEhkKFUlTU1VJTkdfUFJPVE9DT0xfQUNNRRADEhgKFElTU1VJTkdfUFJPVE9DT0xfRVNUEAQSGQoVSVNTVUlOR19QUk9UT0NPTF9NU0FFEAUSGAoUSVNTVUlOR19QUk9UT0NPTF9DTVAQBhIbChdJU1NVSU5HX1BST1RPQ09MX0lNUE9SVBAHQtMBCiNjb20ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MUILSXNzdWVyUHJvdG9QAaICBE9DSUmqAh9PdHBraS5Db21tb24uSXNzdWFuY2UuSXNzdWVyLlYxygIfT3Rwa2lcQ29tbW9uXElzc3VhbmNlXElzc3VlclxWMeICK090cGtpXENvbW1vblxJc3N1YW5jZVxJc3N1ZXJcVjFcR1BCTWV0YWRhdGHqAiNPdHBraTo6Q29tbW9uOjpJc3N1YW5jZTo6SXNzdWVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template]);
+  fileDesc("CixvdHBraS9jb21tb24vaXNzdWFuY2UvaXNzdWVyL3YxL2lzc3Vlci5wcm90bxIfb3Rwa2kuY29tbW9uLmlzc3VhbmNlLmlzc3Vlci52MSKjBQoPSXNzdWFuY2VSZXF1ZXN0EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEkYKBnN0YXR1cxgCIAEoDjIvLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5pc3N1ZXIudjEuSXNzdWFuY2VTdGF0dXNCBbpHAhgBElQKDXByb3RvY29sX3VzZWQYAyABKA4yMC5vdHBraS5jb21tb24uaXNzdWFuY2UuaXNzdWVyLnYxLklzc3VpbmdQcm90b2NvbEILukgIyAEBggECEAESTwoUY2VydGlmaWNhdGVfdGVtcGxhdGUYBCABKAsyKS5vdHBraS5jb21tb24ueDUwOS52MS5DZXJ0aWZpY2F0ZVRlbXBsYXRlQga6SAPIAQESJQoOc2lnbmluZ19rZXlfaWQYBSABKAlCCLpIBXIDsAEBSACIAQESMQoaYWx0ZXJuYXRpdmVfc2lnbmluZ19rZXlfaWQYBiABKAlCCLpIBXIDsAEBSAGIAQESNgofdGFyZ2V0X2NlcnRpZmljYXRlX2F1dGhvcml0eV9pZBgHIAEoCUIIukgFcgOwAQFIAogBARJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAFCEQoPX3NpZ25pbmdfa2V5X2lkQh0KG19hbHRlcm5hdGl2ZV9zaWduaW5nX2tleV9pZEIiCiBfdGFyZ2V0X2NlcnRpZmljYXRlX2F1dGhvcml0eV9pZCLMAQoQSXNzdWFuY2VSZXNwb25zZRIlChNpc3N1YW5jZV9yZXF1ZXN0X2lkGAEgASgJQgi6SAVyA7ABARI/CgZzdGF0dXMYAiABKA4yLy5vdHBraS5jb21tb24uaXNzdWFuY2UuaXNzdWVyLnYxLklzc3VhbmNlU3RhdHVzEiAKDmNlcnRpZmljYXRlX2lkGAMgASgJQgi6SAVyA7ABARITCgtjZXJ0aWZpY2F0ZRgEIAEoDBIZChFjZXJ0aWZpY2F0ZV9jaGFpbhgFIAMoDCrNAQoOSXNzdWFuY2VTdGF0dXMSHwobSVNTVUFOQ0VfU1RBVFVTX1VOU1BFQ0lGSUVEEAASFwoTSVNTVUFOQ0VfU1RBVFVTX05FVxABEhoKFklTU1VBTkNFX1NUQVRVU19GQUlMRUQQAhIdChlJU1NVQU5DRV9TVEFUVVNfR0VORVJBVEVEEAMSHAoYSVNTVUFOQ0VfU1RBVFVTX1JFSkVDVEVEEAQSKAokSVNTVUFOQ0VfU1RBVFVTX1dBSVRJTkdfRk9SX0FQUFJPVkFMEAUq7wEKD0lzc3VpbmdQcm90b2NvbBIgChxJU1NVSU5HX1BST1RPQ09MX1VOU1BFQ0lGSUVEEAASGAoUSVNTVUlOR19QUk9UT0NPTF9BUEkQARIZChVJU1NVSU5HX1BST1RPQ09MX1NDRVAQAhIZChVJU1NVSU5HX1BST1RPQ09MX0FDTUUQAxIYChRJU1NVSU5HX1BST1RPQ09MX0VTVBAEEhkKFUlTU1VJTkdfUFJPVE9DT0xfTVNBRRAFEhgKFElTU1VJTkdfUFJPVE9DT0xfQ01QEAYSGwoXSVNTVUlOR19QUk9UT0NPTF9JTVBPUlQQB0LTAQojY29tLm90cGtpLmNvbW1vbi5pc3N1YW5jZS5pc3N1ZXIudjFCC0lzc3VlclByb3RvUAGiAgRPQ0lJqgIfT3Rwa2kuQ29tbW9uLklzc3VhbmNlLklzc3Vlci5WMcoCH090cGtpXENvbW1vblxJc3N1YW5jZVxJc3N1ZXJcVjHiAitPdHBraVxDb21tb25cSXNzdWFuY2VcSXNzdWVyXFYxXEdQQk1ldGFkYXRh6gIjT3Rwa2k6OkNvbW1vbjo6SXNzdWFuY2U6Oklzc3Vlcjo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_gnostic_openapi_v3_annotations, file_google_protobuf_timestamp, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template]);
 
 /**
  * @generated from message otpki.common.issuance.issuer.v1.IssuanceRequest
  */
 export type IssuanceRequest = Message<"otpki.common.issuance.issuer.v1.IssuanceRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: otpki.common.issuance.issuer.v1.IssuanceStatus status = 2;
@@ -46,21 +46,21 @@ export type IssuanceRequest = Message<"otpki.common.issuance.issuer.v1.IssuanceR
   /**
    * only used for self-signed root ca issuance
    *
-   * @generated from field: optional int64 signing_key_id = 5;
+   * @generated from field: optional string signing_key_id = 5;
    */
-  signingKeyId?: bigint;
+  signingKeyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_signing_key_id = 6;
+   * @generated from field: optional string alternative_signing_key_id = 6;
    */
-  alternativeSigningKeyId?: bigint;
+  alternativeSigningKeyId?: string;
 
   /**
    * only used for CA certificate issuance - points to the CA entity that will receive the issued cert
    *
-   * @generated from field: optional int64 target_certificate_authority_id = 7;
+   * @generated from field: optional string target_certificate_authority_id = 7;
    */
-  targetCertificateAuthorityId?: bigint;
+  targetCertificateAuthorityId?: string;
 
   /**
    * not settable on creation
@@ -82,7 +82,7 @@ export type IssuanceRequest = Message<"otpki.common.issuance.issuer.v1.IssuanceR
  */
 export type IssuanceRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -104,19 +104,19 @@ export type IssuanceRequestJson = {
   /**
    * only used for self-signed root ca issuance
    *
-   * @generated from field: optional int64 signing_key_id = 5;
+   * @generated from field: optional string signing_key_id = 5;
    */
   signingKeyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_signing_key_id = 6;
+   * @generated from field: optional string alternative_signing_key_id = 6;
    */
   alternativeSigningKeyId?: string;
 
   /**
    * only used for CA certificate issuance - points to the CA entity that will receive the issued cert
    *
-   * @generated from field: optional int64 target_certificate_authority_id = 7;
+   * @generated from field: optional string target_certificate_authority_id = 7;
    */
   targetCertificateAuthorityId?: string;
 
@@ -140,9 +140,9 @@ export type IssuanceRequestJson = {
  */
 export type IssuanceRequestValid = Message<"otpki.common.issuance.issuer.v1.IssuanceRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: otpki.common.issuance.issuer.v1.IssuanceStatus status = 2;
@@ -162,21 +162,21 @@ export type IssuanceRequestValid = Message<"otpki.common.issuance.issuer.v1.Issu
   /**
    * only used for self-signed root ca issuance
    *
-   * @generated from field: optional int64 signing_key_id = 5;
+   * @generated from field: optional string signing_key_id = 5;
    */
-  signingKeyId?: bigint;
+  signingKeyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_signing_key_id = 6;
+   * @generated from field: optional string alternative_signing_key_id = 6;
    */
-  alternativeSigningKeyId?: bigint;
+  alternativeSigningKeyId?: string;
 
   /**
    * only used for CA certificate issuance - points to the CA entity that will receive the issued cert
    *
-   * @generated from field: optional int64 target_certificate_authority_id = 7;
+   * @generated from field: optional string target_certificate_authority_id = 7;
    */
-  targetCertificateAuthorityId?: bigint;
+  targetCertificateAuthorityId?: string;
 
   /**
    * not settable on creation
@@ -205,9 +205,9 @@ export const IssuanceRequestSchema: GenMessage<IssuanceRequest, {jsonType: Issua
  */
 export type IssuanceResponse = Message<"otpki.common.issuance.issuer.v1.IssuanceResponse"> & {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 
   /**
    * @generated from field: otpki.common.issuance.issuer.v1.IssuanceStatus status = 2;
@@ -215,9 +215,9 @@ export type IssuanceResponse = Message<"otpki.common.issuance.issuer.v1.Issuance
   status: IssuanceStatus;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
-  certificateId: bigint;
+  certificateId: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -237,7 +237,7 @@ export type IssuanceResponse = Message<"otpki.common.issuance.issuer.v1.Issuance
  */
 export type IssuanceResponseJson = {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
   issuanceRequestId?: string;
 
@@ -247,7 +247,7 @@ export type IssuanceResponseJson = {
   status?: IssuanceStatusJson;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
   certificateId?: string;
 

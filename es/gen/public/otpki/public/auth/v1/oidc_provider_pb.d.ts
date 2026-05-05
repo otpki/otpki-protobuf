@@ -54,9 +54,9 @@ export declare const CreateOIDCProviderRequestSchema: GenMessage<CreateOIDCProvi
  */
 export declare type CreateOIDCProviderResponse = Message<"otpki.public.auth.v1.CreateOIDCProviderResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateOIDCProviderResponse = Message<"otpki.public.auth.v1.C
  */
 export declare type CreateOIDCProviderResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateOIDCProviderResponseSchema: GenMessage<CreateOIDCProv
  */
 export declare type GetOIDCProviderRequest = Message<"otpki.public.auth.v1.GetOIDCProviderRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetOIDCProviderRequest = Message<"otpki.public.auth.v1.GetOI
  */
 export declare type GetOIDCProviderRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetOIDCProviderRequestJson = {
  */
 export declare type GetOIDCProviderRequestValid = Message<"otpki.public.auth.v1.GetOIDCProviderRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -332,9 +332,9 @@ export declare const UpdateOIDCProviderResponseSchema: GenMessage<UpdateOIDCProv
  */
 export declare type DeleteOIDCProviderRequest = Message<"otpki.public.auth.v1.DeleteOIDCProviderRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -342,7 +342,7 @@ export declare type DeleteOIDCProviderRequest = Message<"otpki.public.auth.v1.De
  */
 export declare type DeleteOIDCProviderRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -352,9 +352,9 @@ export declare type DeleteOIDCProviderRequestJson = {
  */
 export declare type DeleteOIDCProviderRequestValid = Message<"otpki.public.auth.v1.DeleteOIDCProviderRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

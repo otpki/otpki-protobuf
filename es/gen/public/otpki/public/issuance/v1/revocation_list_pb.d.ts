@@ -16,9 +16,9 @@ export declare const file_otpki_public_issuance_v1_revocation_list: GenFile;
  */
 export declare type CreateRevocationListRequest = Message<"otpki.public.issuance.v1.CreateRevocationListRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
    * @generated from field: bool is_delta = 2;
@@ -31,7 +31,7 @@ export declare type CreateRevocationListRequest = Message<"otpki.public.issuance
  */
 export declare type CreateRevocationListRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
@@ -46,9 +46,9 @@ export declare type CreateRevocationListRequestJson = {
  */
 export declare type CreateRevocationListRequestValid = Message<"otpki.public.issuance.v1.CreateRevocationListRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
    * @generated from field: bool is_delta = 2;

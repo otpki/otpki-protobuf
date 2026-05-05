@@ -26,7 +26,7 @@ const (
 
 type GetKeyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -61,11 +61,11 @@ func (*GetKeyRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_key_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetKeyRequest) GetId() int64 {
+func (x *GetKeyRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetKeyResponse struct {
@@ -174,7 +174,7 @@ func (x *CreateKeyRequest) GetKey() *v1.Key {
 
 type CreateKeyResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -209,11 +209,11 @@ func (*CreateKeyResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_key_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreateKeyResponse) GetId() int64 {
+func (x *CreateKeyResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetKeyListRequest struct {
@@ -314,7 +314,7 @@ func (x *GetKeyListResponse) GetPagination() *v11.PaginationResponse {
 
 type DeleteKeyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -349,11 +349,11 @@ func (*DeleteKeyRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_key_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteKeyRequest) GetId() int64 {
+func (x *DeleteKeyRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteKeyResponse struct {
@@ -476,17 +476,17 @@ var File_otpki_public_issuance_v1_key_proto protoreflect.FileDescriptor
 
 const file_otpki_public_issuance_v1_key_proto_rawDesc = "" +
 	"\n" +
-	"\"otpki/public/issuance/v1/key.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1a&otpki/common/issuance/key/v1/key.proto\"'\n" +
-	"\rGetKeyRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x91\x01\n" +
+	"\"otpki/public/issuance/v1/key.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1a&otpki/common/issuance/key/v1/key.proto\",\n" +
+	"\rGetKeyRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x91\x01\n" +
 	"\x0eGetKeyResponse\x123\n" +
 	"\x03key\x18\x01 \x01(\v2!.otpki.common.issuance.key.v1.KeyR\x03key\x12$\n" +
 	"\x0epublic_key_pem\x18\x02 \x01(\tR\fpublicKeyPem\x12$\n" +
 	"\x0epublic_key_der\x18\x03 \x01(\fR\fpublicKeyDer\"O\n" +
 	"\x10CreateKeyRequest\x12;\n" +
-	"\x03key\x18\x01 \x01(\v2!.otpki.common.issuance.key.v1.KeyB\x06\xbaH\x03\xc8\x01\x01R\x03key\"#\n" +
-	"\x11CreateKeyResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"a\n" +
+	"\x03key\x18\x01 \x01(\v2!.otpki.common.issuance.key.v1.KeyB\x06\xbaH\x03\xc8\x01\x01R\x03key\"-\n" +
+	"\x11CreateKeyResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"a\n" +
 	"\x11GetKeyListRequest\x12L\n" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\n" +
@@ -495,9 +495,9 @@ const file_otpki_public_issuance_v1_key_proto_rawDesc = "" +
 	"\x04data\x18\x01 \x03(\v2!.otpki.common.issuance.key.v1.KeyR\x04data\x12M\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
-	"pagination\"*\n" +
-	"\x10DeleteKeyRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x13\n" +
+	"pagination\"/\n" +
+	"\x10DeleteKeyRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x13\n" +
 	"\x11DeleteKeyResponse\"\x16\n" +
 	"\x14GetPQKeyTypesRequest\"R\n" +
 	"\x15GetPQKeyTypesResponse\x129\n" +

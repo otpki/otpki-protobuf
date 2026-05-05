@@ -624,11 +624,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         name:
           type: string
@@ -662,22 +660,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateGroupResponse
       additionalProperties: false
     otpki.public.auth.v1.DeleteGroupRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteGroupRequest
       required:
         - id
@@ -711,11 +705,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetGroupRequest
       required:
         - id
@@ -734,14 +726,11 @@ components:
         ids:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: ids
+          uniqueItems: true
       title: GetManyGroupsRequest
-      required:
-        - ids
       additionalProperties: false
     otpki.public.auth.v1.GetManyGroupsResponse:
       type: object

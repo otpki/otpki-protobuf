@@ -39,8 +39,8 @@ type CertificateTemplate struct {
 	// san
 	SubjectAlternativeNameAttributes []*SANAttribute `protobuf:"bytes,501,rep,name=subject_alternative_name_attributes,json=subjectAlternativeNameAttributes,proto3" json:"subject_alternative_name_attributes,omitempty"`
 	// issuance information
-	CertificateProfileId   int64  `protobuf:"varint,601,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"`
-	CertificateAuthorityId *int64 `protobuf:"varint,602,opt,name=certificate_authority_id,json=certificateAuthorityId,proto3,oneof" json:"certificate_authority_id,omitempty"` // empty means self signed
+	CertificateProfileId   string  `protobuf:"bytes,601,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"`
+	CertificateAuthorityId *string `protobuf:"bytes,602,opt,name=certificate_authority_id,json=certificateAuthorityId,proto3,oneof" json:"certificate_authority_id,omitempty"` // empty means self signed
 	// validity override
 	ValidityStartTimeOffset *durationpb.Duration   `protobuf:"bytes,701,opt,name=validity_start_time_offset,json=validityStartTimeOffset,proto3" json:"validity_start_time_offset,omitempty"` // offset from 'now' when to issue certificate
 	ValidityStartDate       *timestamppb.Timestamp `protobuf:"bytes,702,opt,name=validity_start_date,json=validityStartDate,proto3" json:"validity_start_date,omitempty"`                     // start date for notBefore, if both are set, offset is added to start date rather than 'now'
@@ -57,7 +57,7 @@ type CertificateTemplate struct {
 	ExcludedIpRanges              []string `protobuf:"bytes,806,rep,name=excluded_ip_ranges,json=excludedIpRanges,proto3" json:"excluded_ip_ranges,omitempty"`
 	ExcludedEmailAddresses        []string `protobuf:"bytes,807,rep,name=excluded_email_addresses,json=excludedEmailAddresses,proto3" json:"excluded_email_addresses,omitempty"`
 	ExcludedUriDomains            []string `protobuf:"bytes,808,rep,name=excluded_uri_domains,json=excludedUriDomains,proto3" json:"excluded_uri_domains,omitempty"`
-	CustomCertificateExtensionIds []int64  `protobuf:"varint,809,rep,packed,name=custom_certificate_extension_ids,json=customCertificateExtensionIds,proto3" json:"custom_certificate_extension_ids,omitempty"`
+	CustomCertificateExtensionIds []string `protobuf:"bytes,809,rep,name=custom_certificate_extension_ids,json=customCertificateExtensionIds,proto3" json:"custom_certificate_extension_ids,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -134,18 +134,18 @@ func (x *CertificateTemplate) GetSubjectAlternativeNameAttributes() []*SANAttrib
 	return nil
 }
 
-func (x *CertificateTemplate) GetCertificateProfileId() int64 {
+func (x *CertificateTemplate) GetCertificateProfileId() string {
 	if x != nil {
 		return x.CertificateProfileId
 	}
-	return 0
+	return ""
 }
 
-func (x *CertificateTemplate) GetCertificateAuthorityId() int64 {
+func (x *CertificateTemplate) GetCertificateAuthorityId() string {
 	if x != nil && x.CertificateAuthorityId != nil {
 		return *x.CertificateAuthorityId
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificateTemplate) GetValidityStartTimeOffset() *durationpb.Duration {
@@ -232,7 +232,7 @@ func (x *CertificateTemplate) GetExcludedUriDomains() []string {
 	return nil
 }
 
-func (x *CertificateTemplate) GetCustomCertificateExtensionIds() []int64 {
+func (x *CertificateTemplate) GetCustomCertificateExtensionIds() []string {
 	if x != nil {
 		return x.CustomCertificateExtensionIds
 	}
@@ -243,7 +243,7 @@ var File_otpki_common_x509_v1_certificate_template_proto protoreflect.FileDescri
 
 const file_otpki_common_x509_v1_certificate_template_proto_rawDesc = "" +
 	"\n" +
-	"/otpki/common/x509/v1/certificate_template.proto\x12\x14otpki.common.x509.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x87\x0e\n" +
+	"/otpki/common/x509/v1/certificate_template.proto\x12\x14otpki.common.x509.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x97\x0e\n" +
 	"\x13CertificateTemplate\x127\n" +
 	"\n" +
 	"public_key\x18\xc9\x01 \x01(\fB\x17\x8a\xb5\x18\tPublicKey\x92\xb5\x18\x06cryptoR\tpublicKey\x12N\n" +
@@ -253,9 +253,9 @@ const file_otpki_common_x509_v1_certificate_template_proto_rawDesc = "" +
 	"extensions\x18\xae\x02 \x03(\v2\x1f.otpki.common.x509.v1.ExtensionB#\x8a\xb5\x18\v[]Extension\x92\xb5\x18\x10crypto/x509/pkixR\n" +
 	"extensions\x12]\n" +
 	"\x15subject_dn_attributes\x18\x91\x03 \x03(\v2(.otpki.common.x509.v1.SubjectDNAttributeR\x13subjectDnAttributes\x12r\n" +
-	"#subject_alternative_name_attributes\x18\xf5\x03 \x03(\v2\".otpki.common.x509.v1.SANAttributeR subjectAlternativeNameAttributes\x12=\n" +
-	"\x16certificate_profile_id\x18\xd9\x04 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x14certificateProfileId\x12>\n" +
-	"\x18certificate_authority_id\x18\xda\x04 \x01(\x03H\x00R\x16certificateAuthorityId\x88\x01\x01\x12r\n" +
+	"#subject_alternative_name_attributes\x18\xf5\x03 \x03(\v2\".otpki.common.x509.v1.SANAttributeR subjectAlternativeNameAttributes\x12B\n" +
+	"\x16certificate_profile_id\x18\xd9\x04 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x14certificateProfileId\x12H\n" +
+	"\x18certificate_authority_id\x18\xda\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x16certificateAuthorityId\x88\x01\x01\x12r\n" +
 	"\x1avalidity_start_time_offset\x18\xbd\x05 \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x17validityStartTimeOffset\x12b\n" +
 	"\x13validity_start_date\x18\xbe\x05 \x01(\v2\x1a.google.protobuf.TimestampB\x15\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\x11validityStartDate\x12n\n" +
 	"\x18validity_end_time_offset\x18\xbf\x05 \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x15validityEndTimeOffset\x12^\n" +
@@ -267,8 +267,8 @@ const file_otpki_common_x509_v1_certificate_template_proto_rawDesc = "" +
 	"\x14excluded_dns_domains\x18\xa5\x06 \x03(\tB\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04r\x02h\x01R\x12excludedDnsDomains\x12U\n" +
 	"\x12excluded_ip_ranges\x18\xa6\x06 \x03(\tB&\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xd0\x01\x01\x8a\xb5\x18\f[]*net.IPNet\x92\xb5\x18\x03netR\x10excludedIpRanges\x12I\n" +
 	"\x18excluded_email_addresses\x18\xa7\x06 \x03(\tB\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04r\x02`\x01R\x16excludedEmailAddresses\x12B\n" +
-	"\x14excluded_uri_domains\x18\xa8\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x12excludedUriDomains\x12X\n" +
-	" custom_certificate_extension_ids\x18\xa9\x06 \x03(\x03B\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04\"\x02 \x00R\x1dcustomCertificateExtensionIds:\x04\x98\xb5\x18\x01B\x1b\n" +
+	"\x14excluded_uri_domains\x18\xa8\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x12excludedUriDomains\x12Y\n" +
+	" custom_certificate_extension_ids\x18\xa9\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1dcustomCertificateExtensionIds:\x04\x98\xb5\x18\x01B\x1b\n" +
 	"\x19_certificate_authority_idB\xe8\x01\n" +
 	"\x18com.otpki.common.x509.v1B\x18CertificateTemplateProtoP\x01Z?github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1;x509v1\xa2\x02\x03OCX\xaa\x02\x14Otpki.Common.X509.V1\xca\x02\x14Otpki\\Common\\X509\\V1\xe2\x02 Otpki\\Common\\X509\\V1\\GPBMetadata\xea\x02\x17Otpki::Common::X509::V1b\x06proto3"
 

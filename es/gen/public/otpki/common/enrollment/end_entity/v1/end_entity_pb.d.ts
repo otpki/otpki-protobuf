@@ -19,9 +19,9 @@ export declare type EndEntity = Message<"otpki.common.enrollment.end_entity.v1.E
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * string name = 2; // using "login id" now
@@ -31,9 +31,9 @@ export declare type EndEntity = Message<"otpki.common.enrollment.end_entity.v1.E
   description: string;
 
   /**
-   * @generated from field: optional int64 end_entity_profile_id = 4;
+   * @generated from field: optional string end_entity_profile_id = 4;
    */
-  endEntityProfileId?: bigint;
+  endEntityProfileId?: string;
 
   /**
    * this should only be set by backend
@@ -103,14 +103,14 @@ export declare type EndEntity = Message<"otpki.common.enrollment.end_entity.v1.E
   /**
    * issuance information
    *
-   * @generated from field: int64 certificate_profile_id = 601;
+   * @generated from field: string certificate_profile_id = 601;
    */
-  certificateProfileId: bigint;
+  certificateProfileId: string;
 
   /**
-   * @generated from field: int64 certificate_authority_id = 602;
+   * @generated from field: string certificate_authority_id = 602;
    */
-  certificateAuthorityId: bigint;
+  certificateAuthorityId: string;
 
   /**
    * validity override
@@ -188,9 +188,9 @@ export declare type EndEntity = Message<"otpki.common.enrollment.end_entity.v1.E
   excludedUriDomains: string[];
 
   /**
-   * @generated from field: repeated int64 custom_certificate_extension_ids = 809;
+   * @generated from field: repeated string custom_certificate_extension_ids = 809;
    */
-  customCertificateExtensionIds: bigint[];
+  customCertificateExtensionIds: string[];
 };
 
 /**
@@ -200,7 +200,7 @@ export declare type EndEntityJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -212,7 +212,7 @@ export declare type EndEntityJson = {
   description?: string;
 
   /**
-   * @generated from field: optional int64 end_entity_profile_id = 4;
+   * @generated from field: optional string end_entity_profile_id = 4;
    */
   endEntityProfileId?: string;
 
@@ -284,12 +284,12 @@ export declare type EndEntityJson = {
   /**
    * issuance information
    *
-   * @generated from field: int64 certificate_profile_id = 601;
+   * @generated from field: string certificate_profile_id = 601;
    */
   certificateProfileId?: string;
 
   /**
-   * @generated from field: int64 certificate_authority_id = 602;
+   * @generated from field: string certificate_authority_id = 602;
    */
   certificateAuthorityId?: string;
 
@@ -369,7 +369,7 @@ export declare type EndEntityJson = {
   excludedUriDomains?: string[];
 
   /**
-   * @generated from field: repeated int64 custom_certificate_extension_ids = 809;
+   * @generated from field: repeated string custom_certificate_extension_ids = 809;
    */
   customCertificateExtensionIds?: string[];
 };

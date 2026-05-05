@@ -54,9 +54,9 @@ export declare const CreatePublisherConfigRequestSchema: GenMessage<CreatePublis
  */
 export declare type CreatePublisherConfigResponse = Message<"otpki.public.issuance.v1.CreatePublisherConfigResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreatePublisherConfigResponse = Message<"otpki.public.issuan
  */
 export declare type CreatePublisherConfigResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreatePublisherConfigResponseSchema: GenMessage<CreatePubli
  */
 export declare type GetPublisherConfigRequest = Message<"otpki.public.issuance.v1.GetPublisherConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,12 +92,20 @@ export declare type GetPublisherConfigRequest = Message<"otpki.public.issuance.v
  */
 export declare type GetPublisherConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type GetPublisherConfigRequestValid = GetPublisherConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.GetPublisherConfigRequest
+ */
+export declare type GetPublisherConfigRequestValid = Message<"otpki.public.issuance.v1.GetPublisherConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.GetPublisherConfigRequest.
@@ -196,9 +204,9 @@ export declare const UpdatePublisherConfigResponseSchema: GenMessage<UpdatePubli
  */
 export declare type DeletePublisherConfigRequest = Message<"otpki.public.issuance.v1.DeletePublisherConfigRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -206,12 +214,20 @@ export declare type DeletePublisherConfigRequest = Message<"otpki.public.issuanc
  */
 export declare type DeletePublisherConfigRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type DeletePublisherConfigRequestValid = DeletePublisherConfigRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeletePublisherConfigRequest
+ */
+export declare type DeletePublisherConfigRequestValid = Message<"otpki.public.issuance.v1.DeletePublisherConfigRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeletePublisherConfigRequest.
@@ -338,9 +354,9 @@ export declare const CreateCrlPublisherRequestSchema: GenMessage<CreateCrlPublis
  */
 export declare type CreateCrlPublisherResponse = Message<"otpki.public.issuance.v1.CreateCrlPublisherResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -348,7 +364,7 @@ export declare type CreateCrlPublisherResponse = Message<"otpki.public.issuance.
  */
 export declare type CreateCrlPublisherResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -366,9 +382,9 @@ export declare const CreateCrlPublisherResponseSchema: GenMessage<CreateCrlPubli
  */
 export declare type DeleteCrlPublisherRequest = Message<"otpki.public.issuance.v1.DeleteCrlPublisherRequest"> & {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
-  publisherId: bigint;
+  publisherId: string;
 };
 
 /**
@@ -376,12 +392,20 @@ export declare type DeleteCrlPublisherRequest = Message<"otpki.public.issuance.v
  */
 export declare type DeleteCrlPublisherRequestJson = {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
   publisherId?: string;
 };
 
-export declare type DeleteCrlPublisherRequestValid = DeleteCrlPublisherRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeleteCrlPublisherRequest
+ */
+export declare type DeleteCrlPublisherRequestValid = Message<"otpki.public.issuance.v1.DeleteCrlPublisherRequest"> & {
+  /**
+   * @generated from field: string publisher_id = 1;
+   */
+  publisherId: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeleteCrlPublisherRequest.
@@ -512,9 +536,9 @@ export declare const CreateCertificatePublisherRequestSchema: GenMessage<CreateC
  */
 export declare type CreateCertificatePublisherResponse = Message<"otpki.public.issuance.v1.CreateCertificatePublisherResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -522,7 +546,7 @@ export declare type CreateCertificatePublisherResponse = Message<"otpki.public.i
  */
 export declare type CreateCertificatePublisherResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -540,9 +564,9 @@ export declare const CreateCertificatePublisherResponseSchema: GenMessage<Create
  */
 export declare type DeleteCertificatePublisherRequest = Message<"otpki.public.issuance.v1.DeleteCertificatePublisherRequest"> & {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
-  publisherId: bigint;
+  publisherId: string;
 };
 
 /**
@@ -550,12 +574,20 @@ export declare type DeleteCertificatePublisherRequest = Message<"otpki.public.is
  */
 export declare type DeleteCertificatePublisherRequestJson = {
   /**
-   * @generated from field: int64 publisher_id = 1;
+   * @generated from field: string publisher_id = 1;
    */
   publisherId?: string;
 };
 
-export declare type DeleteCertificatePublisherRequestValid = DeleteCertificatePublisherRequest;
+/**
+ * @generated from message otpki.public.issuance.v1.DeleteCertificatePublisherRequest
+ */
+export declare type DeleteCertificatePublisherRequestValid = Message<"otpki.public.issuance.v1.DeleteCertificatePublisherRequest"> & {
+  /**
+   * @generated from field: string publisher_id = 1;
+   */
+  publisherId: string;
+};
 
 /**
  * Describes the message otpki.public.issuance.v1.DeleteCertificatePublisherRequest.

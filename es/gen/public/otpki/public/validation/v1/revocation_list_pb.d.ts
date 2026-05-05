@@ -16,9 +16,9 @@ export declare const file_otpki_public_validation_v1_revocation_list: GenFile;
  */
 export declare type GetLatestRevocationListRequest = Message<"otpki.public.validation.v1.GetLatestRevocationListRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -26,7 +26,7 @@ export declare type GetLatestRevocationListRequest = Message<"otpki.public.valid
  */
 export declare type GetLatestRevocationListRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -72,9 +72,9 @@ export declare const GetLatestRevocationListResponseSchema: GenMessage<GetLatest
  */
 export declare type GetRevocationListRequest = Message<"otpki.public.validation.v1.GetRevocationListRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -82,7 +82,7 @@ export declare type GetRevocationListRequest = Message<"otpki.public.validation.
  */
 export declare type GetRevocationListRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };

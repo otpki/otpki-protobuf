@@ -525,13 +525,13 @@ func (KeyUsage) EnumDescriptor() ([]byte, []int) {
 
 type Key struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Id                 int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	Name               string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description        string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	KeyType            KeyType                `protobuf:"varint,4,opt,name=key_type,json=keyType,proto3,enum=otpki.common.issuance.key.v1.KeyType" json:"key_type,omitempty"`
 	KeyUsage           []KeyUsage             `protobuf:"varint,5,rep,packed,name=key_usage,json=keyUsage,proto3,enum=otpki.common.issuance.key.v1.KeyUsage" json:"key_usage,omitempty"`
 	KeyConfigData      *anypb.Any             `protobuf:"bytes,6,opt,name=key_config_data,json=keyConfigData,proto3" json:"key_config_data,omitempty"`
-	KeyStorageConfigId int64                  `protobuf:"varint,7,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
+	KeyStorageConfigId string                 `protobuf:"bytes,7,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
 	KeyDriverType      v1.KeyDriverType       `protobuf:"varint,8,opt,name=key_driver_type,json=keyDriverType,proto3,enum=otpki.common.issuance.key_storage_config.v1.KeyDriverType" json:"key_driver_type,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
@@ -571,11 +571,11 @@ func (*Key) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_key_v1_key_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Key) GetId() int64 {
+func (x *Key) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *Key) GetName() string {
@@ -613,11 +613,11 @@ func (x *Key) GetKeyConfigData() *anypb.Any {
 	return nil
 }
 
-func (x *Key) GetKeyStorageConfigId() int64 {
+func (x *Key) GetKeyStorageConfigId() string {
 	if x != nil {
 		return x.KeyStorageConfigId
 	}
-	return 0
+	return ""
 }
 
 func (x *Key) GetKeyDriverType() v1.KeyDriverType {
@@ -645,15 +645,15 @@ var File_otpki_common_issuance_key_v1_key_proto protoreflect.FileDescriptor
 
 const file_otpki_common_issuance_key_v1_key_proto_rawDesc = "" +
 	"\n" +
-	"&otpki/common/issuance/key/v1/key.proto\x12\x1cotpki.common.issuance.key.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a6otpki/common/issuance/key_storage_config/v1/enum.proto\"\x84\x05\n" +
-	"\x03Key\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x120\n" +
+	"&otpki/common/issuance/key/v1/key.proto\x12\x1cotpki.common.issuance.key.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a6otpki/common/issuance/key_storage_config/v1/enum.proto\"\x91\x05\n" +
+	"\x03Key\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x120\n" +
 	"\x04name\x18\x02 \x01(\tB\x1c\xbaH\x19\xc8\x01\x01r\x142\x12^[a-zA-Z0-9:/_-]+$R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12@\n" +
 	"\bkey_type\x18\x04 \x01(\x0e2%.otpki.common.issuance.key.v1.KeyTypeR\akeyType\x12C\n" +
 	"\tkey_usage\x18\x05 \x03(\x0e2&.otpki.common.issuance.key.v1.KeyUsageR\bkeyUsage\x12<\n" +
-	"\x0fkey_config_data\x18\x06 \x01(\v2\x14.google.protobuf.AnyR\rkeyConfigData\x129\n" +
-	"\x15key_storage_config_id\x18\a \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x12keyStorageConfigId\x12b\n" +
+	"\x0fkey_config_data\x18\x06 \x01(\v2\x14.google.protobuf.AnyR\rkeyConfigData\x12>\n" +
+	"\x15key_storage_config_id\x18\a \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x12keyStorageConfigId\x12b\n" +
 	"\x0fkey_driver_type\x18\b \x01(\x0e2:.otpki.common.issuance.key_storage_config.v1.KeyDriverTypeR\rkeyDriverType\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +

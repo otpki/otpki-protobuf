@@ -22,12 +22,8 @@ binny:
     test -x {{tool_path}}/binny || curl -sSfL https://get.anchore.io/binny | sh -s -- -b {{tool_path}}
 
 # install tools necessary to build the application
-tools: build-tools
+tools:
     {{tool_path}}/binny install
-
-build-tools:
-    cd tools/protoc-gen-authrequired && go build -o protoc-gen-authrequired
-    cd tools/protoc-gen-native && go build -o protoc-gen-native
 
 clean:
     rm -rf gen es
@@ -50,8 +46,7 @@ gen:
     npm install && npm run generate
 
 update:
-    cd tools/protoc-gen-authrequired && go get -u all && go mod tidy
-    cd tools/protoc-gen-native && go get -u all && go mod tidy
+    go get -u all && go mod tidy
     buf dep update
 
 native-type:

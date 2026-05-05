@@ -71,7 +71,7 @@ func (x *CreateCustomExtKeyUsageRequest) GetKeyUsage() *v1.CustomExtKeyUsage {
 
 type CreateCustomExtKeyUsageResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateCustomExtKeyUsageResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_extended_key_usage_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateCustomExtKeyUsageResponse) GetId() int64 {
+func (x *CreateCustomExtKeyUsageResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetCustomExtKeyUsageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetCustomExtKeyUsageRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_extended_key_usage_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetCustomExtKeyUsageRequest) GetId() int64 {
+func (x *GetCustomExtKeyUsageRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetCustomExtKeyUsageResponse struct {
@@ -291,7 +291,7 @@ func (*UpdateCustomExtKeyUsageResponse) Descriptor() ([]byte, []int) {
 
 type DeleteCustomExtKeyUsageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,11 +326,11 @@ func (*DeleteCustomExtKeyUsageRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_extended_key_usage_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteCustomExtKeyUsageRequest) GetId() int64 {
+func (x *DeleteCustomExtKeyUsageRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteCustomExtKeyUsageResponse struct {
@@ -471,20 +471,20 @@ const file_otpki_public_issuance_v1_extended_key_usage_proto_rawDesc = "" +
 	"\n" +
 	"1otpki/public/issuance/v1/extended_key_usage.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aDotpki/common/issuance/extended_key_usage/v1/extended_key_usage.proto\"\x85\x01\n" +
 	"\x1eCreateCustomExtKeyUsageRequest\x12c\n" +
-	"\tkey_usage\x18\x01 \x01(\v2>.otpki.common.issuance.extended_key_usage.v1.CustomExtKeyUsageB\x06\xbaH\x03\xc8\x01\x01R\bkeyUsage\"1\n" +
-	"\x1fCreateCustomExtKeyUsageResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"5\n" +
-	"\x1bGetCustomExtKeyUsageRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"{\n" +
+	"\tkey_usage\x18\x01 \x01(\v2>.otpki.common.issuance.extended_key_usage.v1.CustomExtKeyUsageB\x06\xbaH\x03\xc8\x01\x01R\bkeyUsage\";\n" +
+	"\x1fCreateCustomExtKeyUsageResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\":\n" +
+	"\x1bGetCustomExtKeyUsageRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"{\n" +
 	"\x1cGetCustomExtKeyUsageResponse\x12[\n" +
 	"\tkey_usage\x18\x01 \x01(\v2>.otpki.common.issuance.extended_key_usage.v1.CustomExtKeyUsageR\bkeyUsage\"\xc2\x01\n" +
 	"\x1eUpdateCustomExtKeyUsageRequest\x12c\n" +
 	"\tkey_usage\x18\x01 \x01(\v2>.otpki.common.issuance.extended_key_usage.v1.CustomExtKeyUsageB\x06\xbaH\x03\xc8\x01\x01R\bkeyUsage\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"!\n" +
-	"\x1fUpdateCustomExtKeyUsageResponse\"8\n" +
-	"\x1eDeleteCustomExtKeyUsageRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"!\n" +
+	"\x1fUpdateCustomExtKeyUsageResponse\"=\n" +
+	"\x1eDeleteCustomExtKeyUsageRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"!\n" +
 	"\x1fDeleteCustomExtKeyUsageResponse\"o\n" +
 	"\x1fGetCustomExtKeyUsageListRequest\x12L\n" +
 	"\n" +

@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/issuance/v1/extended_key_usage.proto.
  */
 export const file_otpki_public_issuance_v1_extended_key_usage: GenFile = /*@__PURE__*/
-  fileDesc("CjFvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvZXh0ZW5kZWRfa2V5X3VzYWdlLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEiewoeQ3JlYXRlQ3VzdG9tRXh0S2V5VXNhZ2VSZXF1ZXN0ElkKCWtleV91c2FnZRgBIAEoCzI+Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5leHRlbmRlZF9rZXlfdXNhZ2UudjEuQ3VzdG9tRXh0S2V5VXNhZ2VCBrpIA8gBASItCh9DcmVhdGVDdXN0b21FeHRLZXlVc2FnZVJlc3BvbnNlEgoKAmlkGAEgASgDIjEKG0dldEN1c3RvbUV4dEtleVVzYWdlUmVxdWVzdBISCgJpZBgBIAEoA0IGukgDyAEBInEKHEdldEN1c3RvbUV4dEtleVVzYWdlUmVzcG9uc2USUQoJa2V5X3VzYWdlGAEgASgLMj4ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmV4dGVuZGVkX2tleV91c2FnZS52MS5DdXN0b21FeHRLZXlVc2FnZSKsAQoeVXBkYXRlQ3VzdG9tRXh0S2V5VXNhZ2VSZXF1ZXN0ElkKCWtleV91c2FnZRgBIAEoCzI+Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5leHRlbmRlZF9rZXlfdXNhZ2UudjEuQ3VzdG9tRXh0S2V5VXNhZ2VCBrpIA8gBARIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siIQofVXBkYXRlQ3VzdG9tRXh0S2V5VXNhZ2VSZXNwb25zZSI0Ch5EZWxldGVDdXN0b21FeHRLZXlVc2FnZVJlcXVlc3QSEgoCaWQYASABKANCBrpIA8gBASIhCh9EZWxldGVDdXN0b21FeHRLZXlVc2FnZVJlc3BvbnNlImMKH0dldEN1c3RvbUV4dEtleVVzYWdlTGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QiswEKIEdldEN1c3RvbUV4dEtleVVzYWdlTGlzdFJlc3BvbnNlEkwKBGRhdGEYASADKAsyPi5vdHBraS5jb21tb24uaXNzdWFuY2UuZXh0ZW5kZWRfa2V5X3VzYWdlLnYxLkN1c3RvbUV4dEtleVVzYWdlEkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZUK6AQocY29tLm90cGtpLnB1YmxpYy5pc3N1YW5jZS52MUIVRXh0ZW5kZWRLZXlVc2FnZVByb3RvUAGiAgNPUEmqAhhPdHBraS5QdWJsaWMuSXNzdWFuY2UuVjHKAhlPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYx4gIlT3Rwa2lcUHVibGljX1xJc3N1YW5jZVxWMVxHUEJNZXRhZGF0YeoCG090cGtpOjpQdWJsaWM6Oklzc3VhbmNlOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_extended_key_usage_v1_extended_key_usage]);
+  fileDesc("CjFvdHBraS9wdWJsaWMvaXNzdWFuY2UvdjEvZXh0ZW5kZWRfa2V5X3VzYWdlLnByb3RvEhhvdHBraS5wdWJsaWMuaXNzdWFuY2UudjEiewoeQ3JlYXRlQ3VzdG9tRXh0S2V5VXNhZ2VSZXF1ZXN0ElkKCWtleV91c2FnZRgBIAEoCzI+Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5leHRlbmRlZF9rZXlfdXNhZ2UudjEuQ3VzdG9tRXh0S2V5VXNhZ2VCBrpIA8gBASI3Ch9DcmVhdGVDdXN0b21FeHRLZXlVc2FnZVJlc3BvbnNlEhQKAmlkGAEgASgJQgi6SAVyA7ABASI2ChtHZXRDdXN0b21FeHRLZXlVc2FnZVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBInEKHEdldEN1c3RvbUV4dEtleVVzYWdlUmVzcG9uc2USUQoJa2V5X3VzYWdlGAEgASgLMj4ub3Rwa2kuY29tbW9uLmlzc3VhbmNlLmV4dGVuZGVkX2tleV91c2FnZS52MS5DdXN0b21FeHRLZXlVc2FnZSKsAQoeVXBkYXRlQ3VzdG9tRXh0S2V5VXNhZ2VSZXF1ZXN0ElkKCWtleV91c2FnZRgBIAEoCzI+Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5leHRlbmRlZF9rZXlfdXNhZ2UudjEuQ3VzdG9tRXh0S2V5VXNhZ2VCBrpIA8gBARIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siIQofVXBkYXRlQ3VzdG9tRXh0S2V5VXNhZ2VSZXNwb25zZSI5Ch5EZWxldGVDdXN0b21FeHRLZXlVc2FnZVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIiEKH0RlbGV0ZUN1c3RvbUV4dEtleVVzYWdlUmVzcG9uc2UiYwofR2V0Q3VzdG9tRXh0S2V5VXNhZ2VMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKzAQogR2V0Q3VzdG9tRXh0S2V5VXNhZ2VMaXN0UmVzcG9uc2USTAoEZGF0YRgBIAMoCzI+Lm90cGtpLmNvbW1vbi5pc3N1YW5jZS5leHRlbmRlZF9rZXlfdXNhZ2UudjEuQ3VzdG9tRXh0S2V5VXNhZ2USQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQroBChxjb20ub3Rwa2kucHVibGljLmlzc3VhbmNlLnYxQhVFeHRlbmRlZEtleVVzYWdlUHJvdG9QAaICA09QSaoCGE90cGtpLlB1YmxpYy5Jc3N1YW5jZS5WMcoCGU90cGtpXFB1YmxpY19cSXNzdWFuY2VcVjHiAiVPdHBraVxQdWJsaWNfXElzc3VhbmNlXFYxXEdQQk1ldGFkYXRh6gIbT3Rwa2k6OlB1YmxpYzo6SXNzdWFuY2U6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_issuance_extended_key_usage_v1_extended_key_usage]);
 
 /**
  * @generated from message otpki.public.issuance.v1.CreateCustomExtKeyUsageRequest
@@ -61,9 +61,9 @@ export const CreateCustomExtKeyUsageRequestSchema: GenMessage<CreateCustomExtKey
  */
 export type CreateCustomExtKeyUsageResponse = Message<"otpki.public.issuance.v1.CreateCustomExtKeyUsageResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreateCustomExtKeyUsageResponse = Message<"otpki.public.issuance.v1.
  */
 export type CreateCustomExtKeyUsageResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreateCustomExtKeyUsageResponseSchema: GenMessage<CreateCustomExtKe
  */
 export type GetCustomExtKeyUsageRequest = Message<"otpki.public.issuance.v1.GetCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,7 +100,7 @@ export type GetCustomExtKeyUsageRequest = Message<"otpki.public.issuance.v1.GetC
  */
 export type GetCustomExtKeyUsageRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -110,9 +110,9 @@ export type GetCustomExtKeyUsageRequestJson = {
  */
 export type GetCustomExtKeyUsageRequestValid = Message<"otpki.public.issuance.v1.GetCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -237,9 +237,9 @@ export const UpdateCustomExtKeyUsageResponseSchema: GenMessage<UpdateCustomExtKe
  */
 export type DeleteCustomExtKeyUsageRequest = Message<"otpki.public.issuance.v1.DeleteCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -247,7 +247,7 @@ export type DeleteCustomExtKeyUsageRequest = Message<"otpki.public.issuance.v1.D
  */
 export type DeleteCustomExtKeyUsageRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -257,9 +257,9 @@ export type DeleteCustomExtKeyUsageRequestJson = {
  */
 export type DeleteCustomExtKeyUsageRequestValid = Message<"otpki.public.issuance.v1.DeleteCustomExtKeyUsageRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**

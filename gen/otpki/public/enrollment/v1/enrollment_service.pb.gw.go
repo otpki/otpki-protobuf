@@ -75,7 +75,7 @@ func request_EnrollmentService_GetEndEntityProfile_0(ctx context.Context, marsha
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -93,7 +93,7 @@ func local_request_EnrollmentService_GetEndEntityProfile_0(ctx context.Context, 
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -254,7 +254,7 @@ func request_EnrollmentService_DeleteEndEntityProfile_0(ctx context.Context, mar
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -272,7 +272,7 @@ func local_request_EnrollmentService_DeleteEndEntityProfile_0(ctx context.Contex
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -382,7 +382,7 @@ func request_EnrollmentService_GetEndEntity_0(ctx context.Context, marshaler run
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -400,7 +400,7 @@ func local_request_EnrollmentService_GetEndEntity_0(ctx context.Context, marshal
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -483,7 +483,7 @@ func request_EnrollmentService_DeleteEndEntity_0(ctx context.Context, marshaler 
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -501,7 +501,7 @@ func local_request_EnrollmentService_DeleteEndEntity_0(ctx context.Context, mars
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-	protoReq.Id, err = runtime.Int64(val)
+	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
@@ -719,7 +719,7 @@ func request_EnrollmentService_GetEnrollmentByRequestID_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "enrollment_request_id")
 	}
-	protoReq.EnrollmentRequestId, err = runtime.Int64(val)
+	protoReq.EnrollmentRequestId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "enrollment_request_id", err)
 	}
@@ -740,7 +740,7 @@ func local_request_EnrollmentService_GetEnrollmentByRequestID_0(ctx context.Cont
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "enrollment_request_id")
 	}
-	protoReq.EnrollmentRequestId, err = runtime.Int64(val)
+	protoReq.EnrollmentRequestId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "enrollment_request_id", err)
 	}
@@ -764,7 +764,7 @@ func request_EnrollmentService_RevokeEndEntity_0(ctx context.Context, marshaler 
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}
@@ -785,7 +785,7 @@ func local_request_EnrollmentService_RevokeEndEntity_0(ctx context.Context, mars
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}
@@ -809,7 +809,7 @@ func request_EnrollmentService_RevokeEndEntityCertificate_0(ctx context.Context,
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}
@@ -817,7 +817,7 @@ func request_EnrollmentService_RevokeEndEntityCertificate_0(ctx context.Context,
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "issued_certificate_id")
 	}
-	protoReq.IssuedCertificateId, err = runtime.Int64(val)
+	protoReq.IssuedCertificateId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "issued_certificate_id", err)
 	}
@@ -838,7 +838,7 @@ func local_request_EnrollmentService_RevokeEndEntityCertificate_0(ctx context.Co
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}
@@ -846,7 +846,7 @@ func local_request_EnrollmentService_RevokeEndEntityCertificate_0(ctx context.Co
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "issued_certificate_id")
 	}
-	protoReq.IssuedCertificateId, err = runtime.Int64(val)
+	protoReq.IssuedCertificateId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "issued_certificate_id", err)
 	}
@@ -929,7 +929,7 @@ func request_EnrollmentService_GetEndEntityCertificateBySerialNumber_0(ctx conte
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}
@@ -955,7 +955,7 @@ func local_request_EnrollmentService_GetEndEntityCertificateBySerialNumber_0(ctx
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}
@@ -984,7 +984,7 @@ func request_EnrollmentService_GetEndEntityCertificates_0(ctx context.Context, m
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}
@@ -1002,7 +1002,7 @@ func local_request_EnrollmentService_GetEndEntityCertificates_0(ctx context.Cont
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "end_entity_id")
 	}
-	protoReq.EndEntityId, err = runtime.Int64(val)
+	protoReq.EndEntityId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "end_entity_id", err)
 	}

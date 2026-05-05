@@ -195,9 +195,9 @@ export declare type EndEntityProfile = Message<"otpki.common.enrollment.end_enti
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: string name = 2;
@@ -343,24 +343,24 @@ export declare type EndEntityProfile = Message<"otpki.common.enrollment.end_enti
   /**
    * issuance information
    *
-   * @generated from field: repeated int64 available_certificate_profile_ids = 601;
+   * @generated from field: repeated string available_certificate_profile_ids = 601;
    */
-  availableCertificateProfileIds: bigint[];
+  availableCertificateProfileIds: string[];
 
   /**
-   * @generated from field: int64 default_certificate_profile_id = 602;
+   * @generated from field: string default_certificate_profile_id = 602;
    */
-  defaultCertificateProfileId: bigint;
+  defaultCertificateProfileId: string;
 
   /**
-   * @generated from field: repeated int64 available_certificate_authority_ids = 603;
+   * @generated from field: repeated string available_certificate_authority_ids = 603;
    */
-  availableCertificateAuthorityIds: bigint[];
+  availableCertificateAuthorityIds: string[];
 
   /**
-   * @generated from field: int64 default_certificate_authority_id = 604;
+   * @generated from field: string default_certificate_authority_id = 604;
    */
-  defaultCertificateAuthorityId: bigint;
+  defaultCertificateAuthorityId: string;
 
   /**
    * validity override, requires 'allow validity override' in certificate profile
@@ -457,9 +457,9 @@ export declare type EndEntityProfile = Message<"otpki.common.enrollment.end_enti
   useCustomCertificateExts: boolean;
 
   /**
-   * @generated from field: int64 approval_profile_id = 806;
+   * @generated from field: string approval_profile_id = 806;
    */
-  approvalProfileId: bigint;
+  approvalProfileId: string;
 };
 
 /**
@@ -469,7 +469,7 @@ export declare type EndEntityProfileJson = {
   /**
    * not settable on creation
    *
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -617,22 +617,22 @@ export declare type EndEntityProfileJson = {
   /**
    * issuance information
    *
-   * @generated from field: repeated int64 available_certificate_profile_ids = 601;
+   * @generated from field: repeated string available_certificate_profile_ids = 601;
    */
   availableCertificateProfileIds?: string[];
 
   /**
-   * @generated from field: int64 default_certificate_profile_id = 602;
+   * @generated from field: string default_certificate_profile_id = 602;
    */
   defaultCertificateProfileId?: string;
 
   /**
-   * @generated from field: repeated int64 available_certificate_authority_ids = 603;
+   * @generated from field: repeated string available_certificate_authority_ids = 603;
    */
   availableCertificateAuthorityIds?: string[];
 
   /**
-   * @generated from field: int64 default_certificate_authority_id = 604;
+   * @generated from field: string default_certificate_authority_id = 604;
    */
   defaultCertificateAuthorityId?: string;
 
@@ -731,7 +731,7 @@ export declare type EndEntityProfileJson = {
   useCustomCertificateExts?: boolean;
 
   /**
-   * @generated from field: int64 approval_profile_id = 806;
+   * @generated from field: string approval_profile_id = 806;
    */
   approvalProfileId?: string;
 };

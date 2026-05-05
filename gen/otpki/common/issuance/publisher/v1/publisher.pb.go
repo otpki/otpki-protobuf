@@ -178,7 +178,7 @@ func (CertEventType) EnumDescriptor() ([]byte, []int) {
 
 type PublisherConfig struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	PublisherType PublisherType          `protobuf:"varint,4,opt,name=publisher_type,json=publisherType,proto3,enum=otpki.common.issuance.publisher.v1.PublisherType" json:"publisher_type,omitempty"`
@@ -221,11 +221,11 @@ func (*PublisherConfig) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_publisher_v1_publisher_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PublisherConfig) GetId() int64 {
+func (x *PublisherConfig) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *PublisherConfig) GetName() string {
@@ -273,9 +273,9 @@ func (x *PublisherConfig) GetUpdatedAt() *timestamppb.Timestamp {
 // CRL Publisher can only subscribe to CAs on CRL generation events
 type CrlPublisher struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	Id                int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
-	CaId              int64                  `protobuf:"varint,2,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
-	PublisherConfigId int64                  `protobuf:"varint,3,opt,name=publisher_config_id,json=publisherConfigId,proto3" json:"publisher_config_id,omitempty"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	CaId              string                 `protobuf:"bytes,2,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	PublisherConfigId string                 `protobuf:"bytes,3,opt,name=publisher_config_id,json=publisherConfigId,proto3" json:"publisher_config_id,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -310,34 +310,34 @@ func (*CrlPublisher) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_publisher_v1_publisher_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CrlPublisher) GetId() int64 {
+func (x *CrlPublisher) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
-func (x *CrlPublisher) GetCaId() int64 {
+func (x *CrlPublisher) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
-func (x *CrlPublisher) GetPublisherConfigId() int64 {
+func (x *CrlPublisher) GetPublisherConfigId() string {
 	if x != nil {
 		return x.PublisherConfigId
 	}
-	return 0
+	return ""
 }
 
 // Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
 type CertificatePublisher struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Id                   int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
-	PublisherConfigId    int64                  `protobuf:"varint,2,opt,name=publisher_config_id,json=publisherConfigId,proto3" json:"publisher_config_id,omitempty"`
-	CaId                 int64                  `protobuf:"varint,3,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`                                                   // CHECK: at least one of these two must be set
-	CertificateProfileId int64                  `protobuf:"varint,4,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"` // CHECK: at least one of these two must be set
+	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	PublisherConfigId    string                 `protobuf:"bytes,2,opt,name=publisher_config_id,json=publisherConfigId,proto3" json:"publisher_config_id,omitempty"`
+	CaId                 string                 `protobuf:"bytes,3,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`                                                   // CHECK: at least one of these two must be set
+	CertificateProfileId string                 `protobuf:"bytes,4,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"` // CHECK: at least one of these two must be set
 	SubscribedEvents     []CertEventType        `protobuf:"varint,5,rep,packed,name=subscribed_events,json=subscribedEvents,proto3,enum=otpki.common.issuance.publisher.v1.CertEventType" json:"subscribed_events,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -373,32 +373,32 @@ func (*CertificatePublisher) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_publisher_v1_publisher_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CertificatePublisher) GetId() int64 {
+func (x *CertificatePublisher) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
-func (x *CertificatePublisher) GetPublisherConfigId() int64 {
+func (x *CertificatePublisher) GetPublisherConfigId() string {
 	if x != nil {
 		return x.PublisherConfigId
 	}
-	return 0
+	return ""
 }
 
-func (x *CertificatePublisher) GetCaId() int64 {
+func (x *CertificatePublisher) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
-func (x *CertificatePublisher) GetCertificateProfileId() int64 {
+func (x *CertificatePublisher) GetCertificateProfileId() string {
 	if x != nil {
 		return x.CertificateProfileId
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificatePublisher) GetSubscribedEvents() []CertEventType {
@@ -412,9 +412,9 @@ var File_otpki_common_issuance_publisher_v1_publisher_proto protoreflect.FileDes
 
 const file_otpki_common_issuance_publisher_v1_publisher_proto_rawDesc = "" +
 	"\n" +
-	"2otpki/common/issuance/publisher/v1/publisher.proto\x12\"otpki.common.issuance.publisher.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\"\xbb\x03\n" +
-	"\x0fPublisherConfig\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1e\n" +
+	"2otpki/common/issuance/publisher/v1/publisher.proto\x12\"otpki.common.issuance.publisher.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\"\xc3\x03\n" +
+	"\x0fPublisherConfig\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1e\n" +
 	"\x04name\x18\x02 \x01(\tB\n" +
 	"\xbaH\a\xd8\x01\x01r\x02\x10\x03R\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12b\n" +
@@ -424,16 +424,16 @@ const file_otpki_common_issuance_publisher_v1_publisher_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"|\n" +
-	"\fCrlPublisher\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x1c\n" +
-	"\x05ca_id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x04caId\x127\n" +
-	"\x13publisher_config_id\x18\x03 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x11publisherConfigId\"\xa3\x02\n" +
-	"\x14CertificatePublisher\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x127\n" +
-	"\x13publisher_config_id\x18\x02 \x01(\x03B\a\xbaH\x04\"\x02(\x01R\x11publisherConfigId\x12\x1c\n" +
-	"\x05ca_id\x18\x03 \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x04caId\x12=\n" +
-	"\x16certificate_profile_id\x18\x04 \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x14certificateProfileId\x12^\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x86\x01\n" +
+	"\fCrlPublisher\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
+	"\x05ca_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\x128\n" +
+	"\x13publisher_config_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11publisherConfigId\"\xae\x02\n" +
+	"\x14CertificatePublisher\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x128\n" +
+	"\x13publisher_config_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11publisherConfigId\x12\x1d\n" +
+	"\x05ca_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\x12>\n" +
+	"\x16certificate_profile_id\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x14certificateProfileId\x12^\n" +
 	"\x11subscribed_events\x18\x05 \x03(\x0e21.otpki.common.issuance.publisher.v1.CertEventTypeR\x10subscribedEvents*w\n" +
 	"\rPublisherType\x12\x1e\n" +
 	"\x1aPUBLISHER_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +

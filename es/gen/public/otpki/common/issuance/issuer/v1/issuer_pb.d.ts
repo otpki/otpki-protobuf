@@ -17,9 +17,9 @@ export declare const file_otpki_common_issuance_issuer_v1_issuer: GenFile;
  */
 export declare type IssuanceRequest = Message<"otpki.common.issuance.issuer.v1.IssuanceRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: otpki.common.issuance.issuer.v1.IssuanceStatus status = 2;
@@ -39,21 +39,21 @@ export declare type IssuanceRequest = Message<"otpki.common.issuance.issuer.v1.I
   /**
    * only used for self-signed root ca issuance
    *
-   * @generated from field: optional int64 signing_key_id = 5;
+   * @generated from field: optional string signing_key_id = 5;
    */
-  signingKeyId?: bigint;
+  signingKeyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_signing_key_id = 6;
+   * @generated from field: optional string alternative_signing_key_id = 6;
    */
-  alternativeSigningKeyId?: bigint;
+  alternativeSigningKeyId?: string;
 
   /**
    * only used for CA certificate issuance - points to the CA entity that will receive the issued cert
    *
-   * @generated from field: optional int64 target_certificate_authority_id = 7;
+   * @generated from field: optional string target_certificate_authority_id = 7;
    */
-  targetCertificateAuthorityId?: bigint;
+  targetCertificateAuthorityId?: string;
 
   /**
    * not settable on creation
@@ -75,7 +75,7 @@ export declare type IssuanceRequest = Message<"otpki.common.issuance.issuer.v1.I
  */
 export declare type IssuanceRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 
@@ -97,19 +97,19 @@ export declare type IssuanceRequestJson = {
   /**
    * only used for self-signed root ca issuance
    *
-   * @generated from field: optional int64 signing_key_id = 5;
+   * @generated from field: optional string signing_key_id = 5;
    */
   signingKeyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_signing_key_id = 6;
+   * @generated from field: optional string alternative_signing_key_id = 6;
    */
   alternativeSigningKeyId?: string;
 
   /**
    * only used for CA certificate issuance - points to the CA entity that will receive the issued cert
    *
-   * @generated from field: optional int64 target_certificate_authority_id = 7;
+   * @generated from field: optional string target_certificate_authority_id = 7;
    */
   targetCertificateAuthorityId?: string;
 
@@ -133,9 +133,9 @@ export declare type IssuanceRequestJson = {
  */
 export declare type IssuanceRequestValid = Message<"otpki.common.issuance.issuer.v1.IssuanceRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 
   /**
    * @generated from field: otpki.common.issuance.issuer.v1.IssuanceStatus status = 2;
@@ -155,21 +155,21 @@ export declare type IssuanceRequestValid = Message<"otpki.common.issuance.issuer
   /**
    * only used for self-signed root ca issuance
    *
-   * @generated from field: optional int64 signing_key_id = 5;
+   * @generated from field: optional string signing_key_id = 5;
    */
-  signingKeyId?: bigint;
+  signingKeyId?: string;
 
   /**
-   * @generated from field: optional int64 alternative_signing_key_id = 6;
+   * @generated from field: optional string alternative_signing_key_id = 6;
    */
-  alternativeSigningKeyId?: bigint;
+  alternativeSigningKeyId?: string;
 
   /**
    * only used for CA certificate issuance - points to the CA entity that will receive the issued cert
    *
-   * @generated from field: optional int64 target_certificate_authority_id = 7;
+   * @generated from field: optional string target_certificate_authority_id = 7;
    */
-  targetCertificateAuthorityId?: bigint;
+  targetCertificateAuthorityId?: string;
 
   /**
    * not settable on creation
@@ -197,9 +197,9 @@ export declare const IssuanceRequestSchema: GenMessage<IssuanceRequest, {jsonTyp
  */
 export declare type IssuanceResponse = Message<"otpki.common.issuance.issuer.v1.IssuanceResponse"> & {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
-  issuanceRequestId: bigint;
+  issuanceRequestId: string;
 
   /**
    * @generated from field: otpki.common.issuance.issuer.v1.IssuanceStatus status = 2;
@@ -207,9 +207,9 @@ export declare type IssuanceResponse = Message<"otpki.common.issuance.issuer.v1.
   status: IssuanceStatus;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
-  certificateId: bigint;
+  certificateId: string;
 
   /**
    * @generated from field: bytes certificate = 4;
@@ -229,7 +229,7 @@ export declare type IssuanceResponse = Message<"otpki.common.issuance.issuer.v1.
  */
 export declare type IssuanceResponseJson = {
   /**
-   * @generated from field: int64 issuance_request_id = 1;
+   * @generated from field: string issuance_request_id = 1;
    */
   issuanceRequestId?: string;
 
@@ -239,7 +239,7 @@ export declare type IssuanceResponseJson = {
   status?: IssuanceStatusJson;
 
   /**
-   * @generated from field: int64 certificate_id = 3;
+   * @generated from field: string certificate_id = 3;
    */
   certificateId?: string;
 

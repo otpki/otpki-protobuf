@@ -43,7 +43,10 @@ message EndEntityProfileSANAttribute {
 
 message EndEntityProfile {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ]; // not settable on creation
   string name = 2 [
     (buf.validate.field).string.min_len = 3,
     (buf.validate.field).string.max_len = 64
@@ -98,21 +101,21 @@ message EndEntityProfile {
   repeated EndEntityProfileSANAttribute subject_alternative_name_attributes = 501;
 
   // issuance information
-  repeated int64 available_certificate_profile_ids = 601 [(buf.validate.field).repeated = {
+  repeated string available_certificate_profile_ids = 601 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      int64: {gt: 0}
+      string: {uuid: true}
     }
   }];
-  int64 default_certificate_profile_id = 602 [(buf.validate.field).int64.gt = 0];
+  string default_certificate_profile_id = 602 [(buf.validate.field).string.uuid = true];
 
-  repeated int64 available_certificate_authority_ids = 603 [(buf.validate.field).repeated = {
+  repeated string available_certificate_authority_ids = 603 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      int64: {gt: 0}
+      string: {uuid: true}
     }
   }];
-  int64 default_certificate_authority_id = 604 [(buf.validate.field).int64.gt = 0];
+  string default_certificate_authority_id = 604 [(buf.validate.field).string.uuid = true];
 
   // validity override, requires 'allow validity override' in certificate profile
   bool use_validity_start_time = 701; // if this is true, EE can set start time settings, the following values are defaults to set notBefore
@@ -144,5 +147,5 @@ message EndEntityProfile {
   bool name_constraints_excluded_required = 804;
   // explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity
   bool use_custom_certificate_exts = 805; // allow EE to add to custom exts (will be concatenated with cert profile)
-  int64 approval_profile_id = 806;
+  string approval_profile_id = 806 [(buf.validate.field).string.uuid = true];
 }

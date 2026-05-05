@@ -54,9 +54,9 @@ export declare const CreateRoleRequestSchema: GenMessage<CreateRoleRequest, {jso
  */
 export declare type CreateRoleResponse = Message<"otpki.public.auth.v1.CreateRoleResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -64,7 +64,7 @@ export declare type CreateRoleResponse = Message<"otpki.public.auth.v1.CreateRol
  */
 export declare type CreateRoleResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -82,9 +82,9 @@ export declare const CreateRoleResponseSchema: GenMessage<CreateRoleResponse, {j
  */
 export declare type GetRoleRequest = Message<"otpki.public.auth.v1.GetRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -92,7 +92,7 @@ export declare type GetRoleRequest = Message<"otpki.public.auth.v1.GetRoleReques
  */
 export declare type GetRoleRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -102,9 +102,9 @@ export declare type GetRoleRequestJson = {
  */
 export declare type GetRoleRequestValid = Message<"otpki.public.auth.v1.GetRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -146,9 +146,9 @@ export declare const GetRoleResponseSchema: GenMessage<GetRoleResponse, {jsonTyp
  */
 export declare type GetManyRolesRequest = Message<"otpki.public.auth.v1.GetManyRolesRequest"> & {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
-  ids: bigint[];
+  ids: string[];
 };
 
 /**
@@ -156,7 +156,7 @@ export declare type GetManyRolesRequest = Message<"otpki.public.auth.v1.GetManyR
  */
 export declare type GetManyRolesRequestJson = {
   /**
-   * @generated from field: repeated int64 ids = 1;
+   * @generated from field: repeated string ids = 1;
    */
   ids?: string[];
 };
@@ -372,9 +372,9 @@ export declare const UpdateRoleResponseSchema: GenMessage<UpdateRoleResponse, {j
  */
 export declare type DeleteRoleRequest = Message<"otpki.public.auth.v1.DeleteRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -382,7 +382,7 @@ export declare type DeleteRoleRequest = Message<"otpki.public.auth.v1.DeleteRole
  */
 export declare type DeleteRoleRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -392,9 +392,9 @@ export declare type DeleteRoleRequestJson = {
  */
 export declare type DeleteRoleRequestValid = Message<"otpki.public.auth.v1.DeleteRoleRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -499,9 +499,9 @@ export declare type SetRolePermissionsRequest = Message<"otpki.public.auth.v1.Se
   permissions: Permission[];
 
   /**
-   * @generated from field: int64 role_id = 2;
+   * @generated from field: string role_id = 2;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**
@@ -514,7 +514,7 @@ export declare type SetRolePermissionsRequestJson = {
   permissions?: PermissionJson[];
 
   /**
-   * @generated from field: int64 role_id = 2;
+   * @generated from field: string role_id = 2;
    */
   roleId?: string;
 };
@@ -529,9 +529,9 @@ export declare type SetRolePermissionsRequestValid = Message<"otpki.public.auth.
   permissions: PermissionValid[];
 
   /**
-   * @generated from field: int64 role_id = 2;
+   * @generated from field: string role_id = 2;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**
@@ -565,9 +565,9 @@ export declare const SetRolePermissionsResponseSchema: GenMessage<SetRolePermiss
  */
 export declare type GetRolePermissionsRequest = Message<"otpki.public.auth.v1.GetRolePermissionsRequest"> & {
   /**
-   * @generated from field: int64 role_id = 1;
+   * @generated from field: string role_id = 1;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**
@@ -575,7 +575,7 @@ export declare type GetRolePermissionsRequest = Message<"otpki.public.auth.v1.Ge
  */
 export declare type GetRolePermissionsRequestJson = {
   /**
-   * @generated from field: int64 role_id = 1;
+   * @generated from field: string role_id = 1;
    */
   roleId?: string;
 };
@@ -585,9 +585,9 @@ export declare type GetRolePermissionsRequestJson = {
  */
 export declare type GetRolePermissionsRequestValid = Message<"otpki.public.auth.v1.GetRolePermissionsRequest"> & {
   /**
-   * @generated from field: int64 role_id = 1;
+   * @generated from field: string role_id = 1;
    */
-  roleId: bigint;
+  roleId: string;
 };
 
 /**

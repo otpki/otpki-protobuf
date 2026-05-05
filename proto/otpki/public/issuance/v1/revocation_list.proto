@@ -5,7 +5,10 @@ import "buf/validate/validate.proto";
 import "otpki/common/x509/v1/revocation_list.proto";
 
 message CreateRevocationListRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   bool is_delta = 2;
 }
 

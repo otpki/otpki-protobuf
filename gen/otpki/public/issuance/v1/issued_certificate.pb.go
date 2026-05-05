@@ -26,7 +26,7 @@ const (
 
 type GetIssuedCertificateRequest struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	IssuedCertificateId int64                  `protobuf:"varint,1,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
+	IssuedCertificateId string                 `protobuf:"bytes,1,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -61,11 +61,11 @@ func (*GetIssuedCertificateRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_issued_certificate_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetIssuedCertificateRequest) GetIssuedCertificateId() int64 {
+func (x *GetIssuedCertificateRequest) GetIssuedCertificateId() string {
 	if x != nil {
 		return x.IssuedCertificateId
 	}
-	return 0
+	return ""
 }
 
 type GetIssuedCertificateResponse struct {
@@ -300,9 +300,9 @@ var File_otpki_public_issuance_v1_issued_certificate_proto protoreflect.FileDesc
 
 const file_otpki_public_issuance_v1_issued_certificate_proto_rawDesc = "" +
 	"\n" +
-	"1otpki/public/issuance/v1/issued_certificate.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1aDotpki/common/issuance/issued_certificate/v1/issued_certificate.proto\"Y\n" +
-	"\x1bGetIssuedCertificateRequest\x12:\n" +
-	"\x15issued_certificate_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x13issuedCertificateId\"\x8d\x01\n" +
+	"1otpki/public/issuance/v1/issued_certificate.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a%otpki/common/api/query/v1/query.proto\x1aDotpki/common/issuance/issued_certificate/v1/issued_certificate.proto\"^\n" +
+	"\x1bGetIssuedCertificateRequest\x12?\n" +
+	"\x15issued_certificate_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13issuedCertificateId\"\x8d\x01\n" +
 	"\x1cGetIssuedCertificateResponse\x12m\n" +
 	"\x12issued_certificate\x18\x01 \x01(\v2>.otpki.common.issuance.issued_certificate.v1.IssuedCertificateR\x11issuedCertificate\"X\n" +
 	")GetIssuedCertificateBySerialNumberRequest\x12+\n" +

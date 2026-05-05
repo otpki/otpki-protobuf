@@ -29,11 +29,11 @@ const (
 
 type CertificateAuthority struct {
 	state                         protoimpl.MessageState  `protogen:"open.v1"`
-	Id                            int64                   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
+	Id                            string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	Name                          string                  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description                   string                  `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	KeyId                         int64                   `protobuf:"varint,4,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
-	AlternativeKeyId              *int64                  `protobuf:"varint,5,opt,name=alternative_key_id,json=alternativeKeyId,proto3,oneof" json:"alternative_key_id,omitempty"`
+	KeyId                         string                  `protobuf:"bytes,4,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	AlternativeKeyId              *string                 `protobuf:"bytes,5,opt,name=alternative_key_id,json=alternativeKeyId,proto3,oneof" json:"alternative_key_id,omitempty"`
 	SignatureAlgorithm            v1.SignatureAlgorithm   `protobuf:"varint,6,opt,name=signature_algorithm,json=signatureAlgorithm,proto3,enum=otpki.common.x509.v1.SignatureAlgorithm" json:"signature_algorithm,omitempty"`
 	AlternativeSignatureAlgorithm v1.SignatureAlgorithm   `protobuf:"varint,7,opt,name=alternative_signature_algorithm,json=alternativeSignatureAlgorithm,proto3,enum=otpki.common.x509.v1.SignatureAlgorithm" json:"alternative_signature_algorithm,omitempty"`
 	CertificateTemplate           *v1.CertificateTemplate `protobuf:"bytes,8,opt,name=certificate_template,json=certificateTemplate,proto3" json:"certificate_template,omitempty"`
@@ -44,7 +44,7 @@ type CertificateAuthority struct {
 	CrlDistributionPointUris []string `protobuf:"bytes,11,rep,name=crl_distribution_point_uris,json=crlDistributionPointUris,proto3" json:"crl_distribution_point_uris,omitempty"`
 	OcspUris                 []string `protobuf:"bytes,12,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
 	IssuerUris               []string `protobuf:"bytes,13,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
-	ApprovalProfileId        int64    `protobuf:"varint,14,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
+	ApprovalProfileId        string   `protobuf:"bytes,14,opt,name=approval_profile_id,json=approvalProfileId,proto3" json:"approval_profile_id,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -83,11 +83,11 @@ func (*CertificateAuthority) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_certificate_authority_v1_certificate_authority_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CertificateAuthority) GetId() int64 {
+func (x *CertificateAuthority) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificateAuthority) GetName() string {
@@ -104,18 +104,18 @@ func (x *CertificateAuthority) GetDescription() string {
 	return ""
 }
 
-func (x *CertificateAuthority) GetKeyId() int64 {
+func (x *CertificateAuthority) GetKeyId() string {
 	if x != nil {
 		return x.KeyId
 	}
-	return 0
+	return ""
 }
 
-func (x *CertificateAuthority) GetAlternativeKeyId() int64 {
+func (x *CertificateAuthority) GetAlternativeKeyId() string {
 	if x != nil && x.AlternativeKeyId != nil {
 		return *x.AlternativeKeyId
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificateAuthority) GetSignatureAlgorithm() v1.SignatureAlgorithm {
@@ -174,11 +174,11 @@ func (x *CertificateAuthority) GetIssuerUris() []string {
 	return nil
 }
 
-func (x *CertificateAuthority) GetApprovalProfileId() int64 {
+func (x *CertificateAuthority) GetApprovalProfileId() string {
 	if x != nil {
 		return x.ApprovalProfileId
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificateAuthority) GetCreatedAt() *timestamppb.Timestamp {
@@ -197,11 +197,11 @@ func (x *CertificateAuthority) GetUpdatedAt() *timestamppb.Timestamp {
 
 type CertificateAuthorityCertificate struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
-	Id                     int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	CertificateAuthorityId int64                  `protobuf:"varint,2,opt,name=certificate_authority_id,json=certificateAuthorityId,proto3" json:"certificate_authority_id,omitempty"`
+	Id                     string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CertificateAuthorityId string                 `protobuf:"bytes,2,opt,name=certificate_authority_id,json=certificateAuthorityId,proto3" json:"certificate_authority_id,omitempty"`
 	Certificate            []byte                 `protobuf:"bytes,3,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain       [][]byte               `protobuf:"bytes,4,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"`
-	IssuedCertificateId    *int64                 `protobuf:"varint,5,opt,name=issued_certificate_id,json=issuedCertificateId,proto3,oneof" json:"issued_certificate_id,omitempty"`
+	IssuedCertificateId    *string                `protobuf:"bytes,5,opt,name=issued_certificate_id,json=issuedCertificateId,proto3,oneof" json:"issued_certificate_id,omitempty"`
 	DisplayName            string                 `protobuf:"bytes,6,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
@@ -237,18 +237,18 @@ func (*CertificateAuthorityCertificate) Descriptor() ([]byte, []int) {
 	return file_otpki_common_issuance_certificate_authority_v1_certificate_authority_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CertificateAuthorityCertificate) GetId() int64 {
+func (x *CertificateAuthorityCertificate) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
-func (x *CertificateAuthorityCertificate) GetCertificateAuthorityId() int64 {
+func (x *CertificateAuthorityCertificate) GetCertificateAuthorityId() string {
 	if x != nil {
 		return x.CertificateAuthorityId
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificateAuthorityCertificate) GetCertificate() []byte {
@@ -265,11 +265,11 @@ func (x *CertificateAuthorityCertificate) GetCertificateChain() [][]byte {
 	return nil
 }
 
-func (x *CertificateAuthorityCertificate) GetIssuedCertificateId() int64 {
+func (x *CertificateAuthorityCertificate) GetIssuedCertificateId() string {
 	if x != nil && x.IssuedCertificateId != nil {
 		return *x.IssuedCertificateId
 	}
-	return 0
+	return ""
 }
 
 func (x *CertificateAuthorityCertificate) GetDisplayName() string {
@@ -283,13 +283,13 @@ var File_otpki_common_issuance_certificate_authority_v1_certificate_authority_pr
 
 const file_otpki_common_issuance_certificate_authority_v1_certificate_authority_proto_rawDesc = "" +
 	"\n" +
-	"Jotpki/common/issuance/certificate_authority/v1/certificate_authority.proto\x12.otpki.common.issuance.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x93\t\n" +
-	"\x14CertificateAuthority\x12\x15\n" +
-	"\x02id\x18\x01 \x01(\x03B\x05\xbaG\x02\x18\x01R\x02id\x12\x12\n" +
+	"Jotpki/common/issuance/certificate_authority/v1/certificate_authority.proto\x12.otpki.common.issuance.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xb9\t\n" +
+	"\x14CertificateAuthority\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x15\n" +
-	"\x06key_id\x18\x04 \x01(\x03R\x05keyId\x121\n" +
-	"\x12alternative_key_id\x18\x05 \x01(\x03H\x00R\x10alternativeKeyId\x88\x01\x01\x12\x8d\x01\n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1f\n" +
+	"\x06key_id\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\x12;\n" +
+	"\x12alternative_key_id\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x10alternativeKeyId\x88\x01\x01\x12\x8d\x01\n" +
 	"\x13signature_algorithm\x18\x06 \x01(\x0e2(.otpki.common.x509.v1.SignatureAlgorithmB2\xbaH\x05\x82\x01\x02\x10\x01\x8a\xb5\x18\x17x509.SignatureAlgorithm\x92\xb5\x18\vcrypto/x509R\x12signatureAlgorithm\x12\xa4\x01\n" +
 	"\x1falternative_signature_algorithm\x18\a \x01(\x0e2(.otpki.common.x509.v1.SignatureAlgorithmB2\xbaH\x05\x82\x01\x02\x10\x01\x8a\xb5\x18\x17x509.SignatureAlgorithm\x92\xb5\x18\vcrypto/x509R\x1dalternativeSignatureAlgorithm\x12\\\n" +
 	"\x14certificate_template\x18\b \x01(\v2).otpki.common.x509.v1.CertificateTemplateR\x13certificateTemplate\x12d\n" +
@@ -299,19 +299,19 @@ const file_otpki_common_issuance_certificate_authority_v1_certificate_authority_
 	"\x1bcrl_distribution_point_uris\x18\v \x03(\tR\x18crlDistributionPointUris\x12\x1b\n" +
 	"\tocsp_uris\x18\f \x03(\tR\bocspUris\x12\x1f\n" +
 	"\vissuer_uris\x18\r \x03(\tR\n" +
-	"issuerUris\x12.\n" +
-	"\x13approval_profile_id\x18\x0e \x01(\x03R\x11approvalProfileId\x12V\n" +
+	"issuerUris\x128\n" +
+	"\x13approval_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
 	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01B\x15\n" +
-	"\x13_alternative_key_id\"\xb0\x02\n" +
-	"\x1fCertificateAuthorityCertificate\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x128\n" +
-	"\x18certificate_authority_id\x18\x02 \x01(\x03R\x16certificateAuthorityId\x12 \n" +
+	"\x13_alternative_key_id\"\xce\x02\n" +
+	"\x1fCertificateAuthorityCertificate\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12B\n" +
+	"\x18certificate_authority_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x16certificateAuthorityId\x12 \n" +
 	"\vcertificate\x18\x03 \x01(\fR\vcertificate\x12+\n" +
-	"\x11certificate_chain\x18\x04 \x03(\fR\x10certificateChain\x127\n" +
-	"\x15issued_certificate_id\x18\x05 \x01(\x03H\x00R\x13issuedCertificateId\x88\x01\x01\x12!\n" +
+	"\x11certificate_chain\x18\x04 \x03(\fR\x10certificateChain\x12A\n" +
+	"\x15issued_certificate_id\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x13issuedCertificateId\x88\x01\x01\x12!\n" +
 	"\fdisplay_name\x18\x06 \x01(\tR\vdisplayNameB\x18\n" +
 	"\x16_issued_certificate_idB\x94\x03\n" +
 	"2com.otpki.common.issuance.certificate_authority.v1B\x19CertificateAuthorityProtoP\x01Zjgithub.com/otpki/otpki-protobuf/gen/otpki/common/issuance/certificate_authority/v1;certificate_authorityv1\xa2\x02\x04OCIC\xaa\x02-Otpki.Common.Issuance.CertificateAuthority.V1\xca\x02-Otpki\\Common\\Issuance\\CertificateAuthority\\V1\xe2\x029Otpki\\Common\\Issuance\\CertificateAuthority\\V1\\GPBMetadata\xea\x021Otpki::Common::Issuance::CertificateAuthority::V1b\x06proto3"

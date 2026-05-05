@@ -13,11 +13,14 @@ message CreatePublisherConfigRequest {
 }
 
 message CreatePublisherConfigResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetPublisherConfigRequest {
-  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetPublisherConfigResponse {
@@ -32,7 +35,10 @@ message UpdatePublisherConfigRequest {
 message UpdatePublisherConfigResponse {}
 
 message DeletePublisherConfigRequest {
-  int64 id = 1 [(buf.validate.field).int64.gt = 0];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeletePublisherConfigResponse {}
@@ -52,11 +58,14 @@ message CreateCrlPublisherRequest {
   common.issuance.publisher.v1.CrlPublisher publisher = 1;
 }
 message CreateCrlPublisherResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeleteCrlPublisherRequest {
-  int64 publisher_id = 1 [(buf.validate.field).int64.gt = 0];
+  string publisher_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 message DeleteCrlPublisherResponse {}
 
@@ -74,11 +83,14 @@ message CreateCertificatePublisherRequest {
   common.issuance.publisher.v1.CertificatePublisher publisher = 1;
 }
 message CreateCertificatePublisherResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message DeleteCertificatePublisherRequest {
-  int64 publisher_id = 1 [(buf.validate.field).int64.gt = 0];
+  string publisher_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 message DeleteCertificatePublisherResponse {}
 

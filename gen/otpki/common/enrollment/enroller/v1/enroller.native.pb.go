@@ -4,6 +4,7 @@ package enrollerv1
 
 import (
 	fmt "fmt"
+	uuid "github.com/google/uuid"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/enrollment/end_entity/v1"
 	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/issuance/issuer/v1"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -12,7 +13,7 @@ import (
 
 // EnrollmentRequestNative is the native typing representation of EnrollmentRequest
 type EnrollmentRequestNative struct {
-	Id                int64
+	Id                uuid.UUID
 	Status            v1.EndEntityStatus
 	Data              []byte
 	DataType          EnrollmentDataType
@@ -29,7 +30,10 @@ func (n *EnrollmentRequestNative) ToProto() (*EnrollmentRequest, error) {
 	}
 	var err error
 	protoStruct := &EnrollmentRequest{}
-	protoStruct.Id = n.Id
+	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting Id: %w", err)
+	}
 	protoStruct.Status = n.Status
 	protoStruct.Data = n.Data
 	protoStruct.DataType = n.DataType
@@ -53,7 +57,10 @@ func (p *EnrollmentRequest) ToNative() (*EnrollmentRequestNative, error) {
 	}
 	var err error
 	nativeStruct := &EnrollmentRequestNative{}
-	nativeStruct.Id = p.Id
+	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IdNative: %w", err)
+	}
 	nativeStruct.Status = p.Status
 	nativeStruct.Data = p.Data
 	nativeStruct.DataType = p.DataType
@@ -70,6 +77,50 @@ func (p *EnrollmentRequest) ToNative() (*EnrollmentRequestNative, error) {
 	return nativeStruct, nil
 }
 
+// GetIdUUID returns Id as a UUID when possible.
+func (x *EnrollmentRequest) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetEnrollmentRequestIdUUID returns EnrollmentRequestId as a UUID when possible.
+func (x *EnrollmentResponse) GetEnrollmentRequestIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.EnrollmentRequestId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetIssuanceRequestIdUUID returns IssuanceRequestId as a UUID when possible.
+func (x *EnrollmentResponse) GetIssuanceRequestIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.IssuanceRequestId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetCertificateIdUUID returns CertificateId as a UUID when possible.
+func (x *EnrollmentResponse) GetCertificateIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CertificateId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
 
 // convertProtoToTime comes from the converter package
@@ -80,7 +131,20 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
+// convertProtoToUUID comes from the converter package
+func convertProtoToUUID(id string) (uuid.UUID, error) {
+	if len(id) == 0 {
+		return uuid.Nil, nil
+	}
+	return uuid.Parse(id)
+}
+
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil
+}
+
+// convertUUIDToProto comes from the converter package
+func convertUUIDToProto(id uuid.UUID) (string, error) {
+	return id.String(), nil
 }

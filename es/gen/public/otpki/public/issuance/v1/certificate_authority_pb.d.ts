@@ -55,9 +55,9 @@ export declare const CreateCertificateAuthorityRequestSchema: GenMessage<CreateC
  */
 export declare type CreateCertificateAuthorityResponse = Message<"otpki.public.issuance.v1.CreateCertificateAuthorityResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -65,7 +65,7 @@ export declare type CreateCertificateAuthorityResponse = Message<"otpki.public.i
  */
 export declare type CreateCertificateAuthorityResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -194,9 +194,9 @@ export declare const ImportCertificateAuthorityRequestSchema: GenMessage<ImportC
  */
 export declare type ImportCertificateAuthorityResponse = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -204,7 +204,7 @@ export declare type ImportCertificateAuthorityResponse = Message<"otpki.public.i
  */
 export declare type ImportCertificateAuthorityResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -303,9 +303,9 @@ export declare const ImportCertificateAuthorityPKCS12RequestSchema: GenMessage<I
  */
 export declare type ImportCertificateAuthorityPKCS12Response = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityPKCS12Response"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -313,7 +313,7 @@ export declare type ImportCertificateAuthorityPKCS12Response = Message<"otpki.pu
  */
 export declare type ImportCertificateAuthorityPKCS12ResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -331,14 +331,14 @@ export declare const ImportCertificateAuthorityPKCS12ResponseSchema: GenMessage<
  */
 export declare type CreateCertificateAuthorityCSRRequest = Message<"otpki.public.issuance.v1.CreateCertificateAuthorityCSRRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: int64 key_id = 2;
+   * @generated from field: string key_id = 2;
    */
-  keyId: bigint;
+  keyId: string;
 };
 
 /**
@@ -346,12 +346,12 @@ export declare type CreateCertificateAuthorityCSRRequest = Message<"otpki.public
  */
 export declare type CreateCertificateAuthorityCSRRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
   /**
-   * @generated from field: int64 key_id = 2;
+   * @generated from field: string key_id = 2;
    */
   keyId?: string;
 };
@@ -361,14 +361,14 @@ export declare type CreateCertificateAuthorityCSRRequestJson = {
  */
 export declare type CreateCertificateAuthorityCSRRequestValid = Message<"otpki.public.issuance.v1.CreateCertificateAuthorityCSRRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: int64 key_id = 2;
+   * @generated from field: string key_id = 2;
    */
-  keyId: bigint;
+  keyId: string;
 };
 
 /**
@@ -410,9 +410,9 @@ export declare const CreateCertificateAuthorityCSRResponseSchema: GenMessage<Cre
  */
 export declare type ImportCertificateAuthorityCertificateRequest = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityCertificateRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
    * @generated from field: bytes certificate_pem = 2;
@@ -430,7 +430,7 @@ export declare type ImportCertificateAuthorityCertificateRequest = Message<"otpk
  */
 export declare type ImportCertificateAuthorityCertificateRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
@@ -450,9 +450,9 @@ export declare type ImportCertificateAuthorityCertificateRequestJson = {
  */
 export declare type ImportCertificateAuthorityCertificateRequestValid = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityCertificateRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
    * @generated from field: bytes certificate_pem = 2;
@@ -476,9 +476,9 @@ export declare const ImportCertificateAuthorityCertificateRequestSchema: GenMess
  */
 export declare type ImportCertificateAuthorityCertificateResponse = Message<"otpki.public.issuance.v1.ImportCertificateAuthorityCertificateResponse"> & {
   /**
-   * @generated from field: int64 ca_certificate_id = 1;
+   * @generated from field: string ca_certificate_id = 1;
    */
-  caCertificateId: bigint;
+  caCertificateId: string;
 };
 
 /**
@@ -486,7 +486,7 @@ export declare type ImportCertificateAuthorityCertificateResponse = Message<"otp
  */
 export declare type ImportCertificateAuthorityCertificateResponseJson = {
   /**
-   * @generated from field: int64 ca_certificate_id = 1;
+   * @generated from field: string ca_certificate_id = 1;
    */
   caCertificateId?: string;
 };
@@ -504,19 +504,19 @@ export declare const ImportCertificateAuthorityCertificateResponseSchema: GenMes
  */
 export declare type RenewCertificateAuthorityRequest = Message<"otpki.public.issuance.v1.RenewCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: optional int64 next_key_id = 2;
+   * @generated from field: optional string next_key_id = 2;
    */
-  nextKeyId?: bigint;
+  nextKeyId?: string;
 
   /**
-   * @generated from field: optional int64 next_alt_key_id = 3;
+   * @generated from field: optional string next_alt_key_id = 3;
    */
-  nextAltKeyId?: bigint;
+  nextAltKeyId?: string;
 };
 
 /**
@@ -524,17 +524,17 @@ export declare type RenewCertificateAuthorityRequest = Message<"otpki.public.iss
  */
 export declare type RenewCertificateAuthorityRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
   /**
-   * @generated from field: optional int64 next_key_id = 2;
+   * @generated from field: optional string next_key_id = 2;
    */
   nextKeyId?: string;
 
   /**
-   * @generated from field: optional int64 next_alt_key_id = 3;
+   * @generated from field: optional string next_alt_key_id = 3;
    */
   nextAltKeyId?: string;
 };
@@ -544,19 +544,19 @@ export declare type RenewCertificateAuthorityRequestJson = {
  */
 export declare type RenewCertificateAuthorityRequestValid = Message<"otpki.public.issuance.v1.RenewCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 
   /**
-   * @generated from field: optional int64 next_key_id = 2;
+   * @generated from field: optional string next_key_id = 2;
    */
-  nextKeyId?: bigint;
+  nextKeyId?: string;
 
   /**
-   * @generated from field: optional int64 next_alt_key_id = 3;
+   * @generated from field: optional string next_alt_key_id = 3;
    */
-  nextAltKeyId?: bigint;
+  nextAltKeyId?: string;
 };
 
 /**
@@ -590,9 +590,9 @@ export declare const RenewCertificateAuthorityResponseSchema: GenMessage<RenewCe
  */
 export declare type GetCertificateAuthorityRequest = Message<"otpki.public.issuance.v1.GetCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -600,7 +600,7 @@ export declare type GetCertificateAuthorityRequest = Message<"otpki.public.issua
  */
 export declare type GetCertificateAuthorityRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -610,9 +610,9 @@ export declare type GetCertificateAuthorityRequestJson = {
  */
 export declare type GetCertificateAuthorityRequestValid = Message<"otpki.public.issuance.v1.GetCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -812,9 +812,9 @@ export declare const UpdateCertificateAuthorityResponseSchema: GenMessage<Update
  */
 export declare type DeleteCertificateAuthorityRequest = Message<"otpki.public.issuance.v1.DeleteCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -822,7 +822,7 @@ export declare type DeleteCertificateAuthorityRequest = Message<"otpki.public.is
  */
 export declare type DeleteCertificateAuthorityRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -832,9 +832,9 @@ export declare type DeleteCertificateAuthorityRequestJson = {
  */
 export declare type DeleteCertificateAuthorityRequestValid = Message<"otpki.public.issuance.v1.DeleteCertificateAuthorityRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -868,9 +868,9 @@ export declare const DeleteCertificateAuthorityResponseSchema: GenMessage<Delete
  */
 export declare type GetCertificateAuthorityCertificatesRequest = Message<"otpki.public.issuance.v1.GetCertificateAuthorityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**
@@ -878,7 +878,7 @@ export declare type GetCertificateAuthorityCertificatesRequest = Message<"otpki.
  */
 export declare type GetCertificateAuthorityCertificatesRequestJson = {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 };
@@ -888,9 +888,9 @@ export declare type GetCertificateAuthorityCertificatesRequestJson = {
  */
 export declare type GetCertificateAuthorityCertificatesRequestValid = Message<"otpki.public.issuance.v1.GetCertificateAuthorityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 ca_id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  caId: bigint;
+  caId: string;
 };
 
 /**

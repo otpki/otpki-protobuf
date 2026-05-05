@@ -71,7 +71,7 @@ func (x *CreateEndEntityRequest) GetEndEntity() *v1.EndEntity {
 
 type CreateEndEntityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreateEndEntityResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_end_entity_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateEndEntityResponse) GetId() int64 {
+func (x *CreateEndEntityResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetEndEntityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_end_entity_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetEndEntityRequest) GetId() int64 {
+func (x *GetEndEntityRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetEndEntityResponse struct {
@@ -299,7 +299,7 @@ func (x *GetEndEntityListResponse) GetPagination() *v11.PaginationResponse {
 
 type DeleteEndEntityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -334,11 +334,11 @@ func (*DeleteEndEntityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_v1_end_entity_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeleteEndEntityRequest) GetId() int64 {
+func (x *DeleteEndEntityRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteEndEntityResponse struct {
@@ -472,11 +472,11 @@ const file_otpki_public_enrollment_v1_end_entity_proto_rawDesc = "" +
 	"+otpki/public/enrollment/v1/end_entity.proto\x12\x1aotpki.public.enrollment.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a6otpki/common/enrollment/end_entity/v1/end_entity.proto\"q\n" +
 	"\x16CreateEndEntityRequest\x12W\n" +
 	"\n" +
-	"end_entity\x18\x01 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityB\x06\xbaH\x03\xc8\x01\x01R\tendEntity\")\n" +
-	"\x17CreateEndEntityResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"-\n" +
-	"\x13GetEndEntityRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"g\n" +
+	"end_entity\x18\x01 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityB\x06\xbaH\x03\xc8\x01\x01R\tendEntity\"3\n" +
+	"\x17CreateEndEntityResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"2\n" +
+	"\x13GetEndEntityRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"g\n" +
 	"\x14GetEndEntityResponse\x12O\n" +
 	"\n" +
 	"end_entity\x18\x01 \x01(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\tendEntity\"g\n" +
@@ -488,9 +488,9 @@ const file_otpki_public_enrollment_v1_end_entity_proto_rawDesc = "" +
 	"\x04data\x18\x01 \x03(\v20.otpki.common.enrollment.end_entity.v1.EndEntityR\x04data\x12M\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
-	"pagination\"0\n" +
-	"\x16DeleteEndEntityRequest\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x19\n" +
+	"pagination\"5\n" +
+	"\x16DeleteEndEntityRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x19\n" +
 	"\x17DeleteEndEntityResponse\"\xa6\x01\n" +
 	"\x16UpdateEndEntityRequest\x12O\n" +
 	"\n" +

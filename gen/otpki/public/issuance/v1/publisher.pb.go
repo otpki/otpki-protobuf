@@ -71,7 +71,7 @@ func (x *CreatePublisherConfigRequest) GetConfig() *v1.PublisherConfig {
 
 type CreatePublisherConfigResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,16 +106,16 @@ func (*CreatePublisherConfigResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreatePublisherConfigResponse) GetId() int64 {
+func (x *CreatePublisherConfigResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetPublisherConfigRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetPublisherConfigRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetPublisherConfigRequest) GetId() int64 {
+func (x *GetPublisherConfigRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type GetPublisherConfigResponse struct {
@@ -291,7 +291,7 @@ func (*UpdatePublisherConfigResponse) Descriptor() ([]byte, []int) {
 
 type DeletePublisherConfigRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,11 +326,11 @@ func (*DeletePublisherConfigRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DeletePublisherConfigRequest) GetId() int64 {
+func (x *DeletePublisherConfigRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeletePublisherConfigResponse struct {
@@ -511,7 +511,7 @@ func (x *CreateCrlPublisherRequest) GetPublisher() *v1.CrlPublisher {
 
 type CreateCrlPublisherResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -546,16 +546,16 @@ func (*CreateCrlPublisherResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *CreateCrlPublisherResponse) GetId() int64 {
+func (x *CreateCrlPublisherResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteCrlPublisherRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PublisherId   int64                  `protobuf:"varint,1,opt,name=publisher_id,json=publisherId,proto3" json:"publisher_id,omitempty"`
+	PublisherId   string                 `protobuf:"bytes,1,opt,name=publisher_id,json=publisherId,proto3" json:"publisher_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -590,11 +590,11 @@ func (*DeleteCrlPublisherRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *DeleteCrlPublisherRequest) GetPublisherId() int64 {
+func (x *DeleteCrlPublisherRequest) GetPublisherId() string {
 	if x != nil {
 		return x.PublisherId
 	}
-	return 0
+	return ""
 }
 
 type DeleteCrlPublisherResponse struct {
@@ -776,7 +776,7 @@ func (x *CreateCertificatePublisherRequest) GetPublisher() *v1.CertificatePublis
 
 type CreateCertificatePublisherResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -811,16 +811,16 @@ func (*CreateCertificatePublisherResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *CreateCertificatePublisherResponse) GetId() int64 {
+func (x *CreateCertificatePublisherResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type DeleteCertificatePublisherRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PublisherId   int64                  `protobuf:"varint,1,opt,name=publisher_id,json=publisherId,proto3" json:"publisher_id,omitempty"`
+	PublisherId   string                 `protobuf:"bytes,1,opt,name=publisher_id,json=publisherId,proto3" json:"publisher_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -855,11 +855,11 @@ func (*DeleteCertificatePublisherRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *DeleteCertificatePublisherRequest) GetPublisherId() int64 {
+func (x *DeleteCertificatePublisherRequest) GetPublisherId() string {
 	if x != nil {
 		return x.PublisherId
 	}
-	return 0
+	return ""
 }
 
 type DeleteCertificatePublisherResponse struct {
@@ -1000,20 +1000,20 @@ const file_otpki_public_issuance_v1_publisher_proto_rawDesc = "" +
 	"\n" +
 	"(otpki/public/issuance/v1/publisher.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1a2otpki/common/issuance/publisher/v1/publisher.proto\"s\n" +
 	"\x1cCreatePublisherConfigRequest\x12S\n" +
-	"\x06config\x18\x01 \x01(\v23.otpki.common.issuance.publisher.v1.PublisherConfigB\x06\xbaH\x03\xc8\x01\x01R\x06config\"/\n" +
-	"\x1dCreatePublisherConfigResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"4\n" +
-	"\x19GetPublisherConfigRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"i\n" +
+	"\x06config\x18\x01 \x01(\v23.otpki.common.issuance.publisher.v1.PublisherConfigB\x06\xbaH\x03\xc8\x01\x01R\x06config\"9\n" +
+	"\x1dCreatePublisherConfigResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"8\n" +
+	"\x19GetPublisherConfigRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"i\n" +
 	"\x1aGetPublisherConfigResponse\x12K\n" +
 	"\x06config\x18\x01 \x01(\v23.otpki.common.issuance.publisher.v1.PublisherConfigR\x06config\"\xa8\x01\n" +
 	"\x1cUpdatePublisherConfigRequest\x12K\n" +
 	"\x06config\x18\x01 \x01(\v23.otpki.common.issuance.publisher.v1.PublisherConfigR\x06config\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"\x1f\n" +
-	"\x1dUpdatePublisherConfigResponse\"7\n" +
-	"\x1cDeletePublisherConfigRequest\x12\x17\n" +
-	"\x02id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x02id\"\x1f\n" +
+	"\x1dUpdatePublisherConfigResponse\";\n" +
+	"\x1cDeletePublisherConfigRequest\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x1f\n" +
 	"\x1dDeletePublisherConfigResponse\"m\n" +
 	"\x1dGetPublisherConfigListRequest\x12L\n" +
 	"\n" +
@@ -1025,11 +1025,11 @@ const file_otpki_public_issuance_v1_publisher_proto_rawDesc = "" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
 	"pagination\"k\n" +
 	"\x19CreateCrlPublisherRequest\x12N\n" +
-	"\tpublisher\x18\x01 \x01(\v20.otpki.common.issuance.publisher.v1.CrlPublisherR\tpublisher\",\n" +
-	"\x1aCreateCrlPublisherResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"G\n" +
-	"\x19DeleteCrlPublisherRequest\x12*\n" +
-	"\fpublisher_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\vpublisherId\"\x1c\n" +
+	"\tpublisher\x18\x01 \x01(\v20.otpki.common.issuance.publisher.v1.CrlPublisherR\tpublisher\"6\n" +
+	"\x1aCreateCrlPublisherResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"K\n" +
+	"\x19DeleteCrlPublisherRequest\x12.\n" +
+	"\fpublisher_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vpublisherId\"\x1c\n" +
 	"\x1aDeleteCrlPublisherResponse\"j\n" +
 	"\x1aGetCrlPublisherListRequest\x12L\n" +
 	"\n" +
@@ -1041,11 +1041,11 @@ const file_otpki_public_issuance_v1_publisher_proto_rawDesc = "" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
 	"pagination\"{\n" +
 	"!CreateCertificatePublisherRequest\x12V\n" +
-	"\tpublisher\x18\x01 \x01(\v28.otpki.common.issuance.publisher.v1.CertificatePublisherR\tpublisher\"4\n" +
-	"\"CreateCertificatePublisherResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"O\n" +
-	"!DeleteCertificatePublisherRequest\x12*\n" +
-	"\fpublisher_id\x18\x01 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\vpublisherId\"$\n" +
+	"\tpublisher\x18\x01 \x01(\v28.otpki.common.issuance.publisher.v1.CertificatePublisherR\tpublisher\">\n" +
+	"\"CreateCertificatePublisherResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"S\n" +
+	"!DeleteCertificatePublisherRequest\x12.\n" +
+	"\fpublisher_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vpublisherId\"$\n" +
 	"\"DeleteCertificatePublisherResponse\"r\n" +
 	"\"GetCertificatePublisherListRequest\x12L\n" +
 	"\n" +

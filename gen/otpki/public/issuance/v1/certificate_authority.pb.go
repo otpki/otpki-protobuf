@@ -72,7 +72,7 @@ func (x *CreateCertificateAuthorityRequest) GetCertificateAuthority() *v1.Certif
 
 type CreateCertificateAuthorityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -107,11 +107,11 @@ func (*CreateCertificateAuthorityResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateCertificateAuthorityResponse) GetId() int64 {
+func (x *CreateCertificateAuthorityResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type ImportCertificateAuthorityRequest struct {
@@ -200,7 +200,7 @@ func (x *ImportCertificateAuthorityRequest) GetPassword() string {
 
 type ImportCertificateAuthorityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -235,11 +235,11 @@ func (*ImportCertificateAuthorityResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ImportCertificateAuthorityResponse) GetId() int64 {
+func (x *ImportCertificateAuthorityResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type ImportCertificateAuthorityPKCS12Request struct {
@@ -312,7 +312,7 @@ func (x *ImportCertificateAuthorityPKCS12Request) GetPassword() string {
 
 type ImportCertificateAuthorityPKCS12Response struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -347,17 +347,17 @@ func (*ImportCertificateAuthorityPKCS12Response) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ImportCertificateAuthorityPKCS12Response) GetId() int64 {
+func (x *ImportCertificateAuthorityPKCS12Response) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 type CreateCertificateAuthorityCSRRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
-	KeyId         int64                  `protobuf:"varint,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	KeyId         string                 `protobuf:"bytes,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -392,18 +392,18 @@ func (*CreateCertificateAuthorityCSRRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *CreateCertificateAuthorityCSRRequest) GetCaId() int64 {
+func (x *CreateCertificateAuthorityCSRRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
-func (x *CreateCertificateAuthorityCSRRequest) GetKeyId() int64 {
+func (x *CreateCertificateAuthorityCSRRequest) GetKeyId() string {
 	if x != nil {
 		return x.KeyId
 	}
-	return 0
+	return ""
 }
 
 type CreateCertificateAuthorityCSRResponse struct {
@@ -452,7 +452,7 @@ func (x *CreateCertificateAuthorityCSRResponse) GetCertificateRequestDer() []byt
 
 type ImportCertificateAuthorityCertificateRequest struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	CaId                int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId                string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	CertificatePem      []byte                 `protobuf:"bytes,2,opt,name=certificate_pem,json=certificatePem,proto3" json:"certificate_pem,omitempty"`
 	P7BCertificateChain []byte                 `protobuf:"bytes,3,opt,name=p7b_certificate_chain,json=p7bCertificateChain,proto3" json:"p7b_certificate_chain,omitempty"`
 	unknownFields       protoimpl.UnknownFields
@@ -489,11 +489,11 @@ func (*ImportCertificateAuthorityCertificateRequest) Descriptor() ([]byte, []int
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ImportCertificateAuthorityCertificateRequest) GetCaId() int64 {
+func (x *ImportCertificateAuthorityCertificateRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 func (x *ImportCertificateAuthorityCertificateRequest) GetCertificatePem() []byte {
@@ -512,7 +512,7 @@ func (x *ImportCertificateAuthorityCertificateRequest) GetP7BCertificateChain() 
 
 type ImportCertificateAuthorityCertificateResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	CaCertificateId int64                  `protobuf:"varint,1,opt,name=ca_certificate_id,json=caCertificateId,proto3" json:"ca_certificate_id,omitempty"`
+	CaCertificateId string                 `protobuf:"bytes,1,opt,name=ca_certificate_id,json=caCertificateId,proto3" json:"ca_certificate_id,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -547,18 +547,18 @@ func (*ImportCertificateAuthorityCertificateResponse) Descriptor() ([]byte, []in
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ImportCertificateAuthorityCertificateResponse) GetCaCertificateId() int64 {
+func (x *ImportCertificateAuthorityCertificateResponse) GetCaCertificateId() string {
 	if x != nil {
 		return x.CaCertificateId
 	}
-	return 0
+	return ""
 }
 
 type RenewCertificateAuthorityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
-	NextKeyId     *int64                 `protobuf:"varint,2,opt,name=next_key_id,json=nextKeyId,proto3,oneof" json:"next_key_id,omitempty"`
-	NextAltKeyId  *int64                 `protobuf:"varint,3,opt,name=next_alt_key_id,json=nextAltKeyId,proto3,oneof" json:"next_alt_key_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	NextKeyId     *string                `protobuf:"bytes,2,opt,name=next_key_id,json=nextKeyId,proto3,oneof" json:"next_key_id,omitempty"`
+	NextAltKeyId  *string                `protobuf:"bytes,3,opt,name=next_alt_key_id,json=nextAltKeyId,proto3,oneof" json:"next_alt_key_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -593,25 +593,25 @@ func (*RenewCertificateAuthorityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *RenewCertificateAuthorityRequest) GetCaId() int64 {
+func (x *RenewCertificateAuthorityRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
-func (x *RenewCertificateAuthorityRequest) GetNextKeyId() int64 {
+func (x *RenewCertificateAuthorityRequest) GetNextKeyId() string {
 	if x != nil && x.NextKeyId != nil {
 		return *x.NextKeyId
 	}
-	return 0
+	return ""
 }
 
-func (x *RenewCertificateAuthorityRequest) GetNextAltKeyId() int64 {
+func (x *RenewCertificateAuthorityRequest) GetNextAltKeyId() string {
 	if x != nil && x.NextAltKeyId != nil {
 		return *x.NextAltKeyId
 	}
-	return 0
+	return ""
 }
 
 type RenewCertificateAuthorityResponse struct {
@@ -652,7 +652,7 @@ func (*RenewCertificateAuthorityResponse) Descriptor() ([]byte, []int) {
 
 type GetCertificateAuthorityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -687,11 +687,11 @@ func (*GetCertificateAuthorityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *GetCertificateAuthorityRequest) GetCaId() int64 {
+func (x *GetCertificateAuthorityRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 type GetCertificateAuthorityResponse struct {
@@ -924,7 +924,7 @@ func (*UpdateCertificateAuthorityResponse) Descriptor() ([]byte, []int) {
 
 type DeleteCertificateAuthorityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -959,11 +959,11 @@ func (*DeleteCertificateAuthorityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *DeleteCertificateAuthorityRequest) GetCaId() int64 {
+func (x *DeleteCertificateAuthorityRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 type DeleteCertificateAuthorityResponse struct {
@@ -1004,7 +1004,7 @@ func (*DeleteCertificateAuthorityResponse) Descriptor() ([]byte, []int) {
 
 type GetCertificateAuthorityCertificatesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          int64                  `protobuf:"varint,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1039,11 +1039,11 @@ func (*GetCertificateAuthorityCertificatesRequest) Descriptor() ([]byte, []int) 
 	return file_otpki_public_issuance_v1_certificate_authority_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *GetCertificateAuthorityCertificatesRequest) GetCaId() int64 {
+func (x *GetCertificateAuthorityCertificatesRequest) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
-	return 0
+	return ""
 }
 
 type GetCertificateAuthorityCertificatesResponse struct {
@@ -1096,9 +1096,9 @@ const file_otpki_public_issuance_v1_certificate_authority_proto_rawDesc = "" +
 	"\n" +
 	"4otpki/public/issuance/v1/certificate_authority.proto\x12\x18otpki.public.issuance.v1\x1a\x1bbuf/validate/validate.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aJotpki/common/issuance/certificate_authority/v1/certificate_authority.proto\x1a&otpki/common/issuance/key/v1/key.proto\"\xa7\x01\n" +
 	"!CreateCertificateAuthorityRequest\x12\x81\x01\n" +
-	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\"4\n" +
-	"\"CreateCertificateAuthorityResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"\x8b\x03\n" +
+	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\">\n" +
+	"\"CreateCertificateAuthorityResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x8b\x03\n" +
 	"!ImportCertificateAuthorityRequest\x12\x81\x01\n" +
 	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\x12'\n" +
 	"\x0fcertificate_pem\x18\x02 \x01(\fR\x0ecertificatePem\x122\n" +
@@ -1106,37 +1106,37 @@ const file_otpki_public_issuance_v1_certificate_authority_proto_rawDesc = "" +
 	"\n" +
 	"key_config\x18\x04 \x01(\v2!.otpki.common.issuance.key.v1.KeyB\x06\xbaH\x03\xc8\x01\x01R\tkeyConfig\x12\x1f\n" +
 	"\akey_pem\x18\x05 \x01(\fB\x06\xbaH\x03\xc8\x01\x01R\x06keyPem\x12\x1a\n" +
-	"\bpassword\x18\x06 \x01(\tR\bpassword\"4\n" +
-	"\"ImportCertificateAuthorityResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"\xad\x02\n" +
+	"\bpassword\x18\x06 \x01(\tR\bpassword\">\n" +
+	"\"ImportCertificateAuthorityResponse\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\xad\x02\n" +
 	"'ImportCertificateAuthorityPKCS12Request\x12\x81\x01\n" +
 	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\x12H\n" +
 	"\n" +
 	"key_config\x18\x02 \x01(\v2!.otpki.common.issuance.key.v1.KeyB\x06\xbaH\x03\xc8\x01\x01R\tkeyConfig\x12\x18\n" +
 	"\x03p12\x18\x03 \x01(\fB\x06\xbaH\x03\xc8\x01\x01R\x03p12\x12\x1a\n" +
-	"\bpassword\x18\x04 \x01(\tR\bpassword\":\n" +
-	"(ImportCertificateAuthorityPKCS12Response\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"Z\n" +
-	"$CreateCertificateAuthorityCSRRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\x12\x15\n" +
-	"\x06key_id\x18\x02 \x01(\x03R\x05keyId\"_\n" +
+	"\bpassword\x18\x04 \x01(\tR\bpassword\"D\n" +
+	"(ImportCertificateAuthorityPKCS12Response\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"i\n" +
+	"$CreateCertificateAuthorityCSRRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12\x1f\n" +
+	"\x06key_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\"_\n" +
 	"%CreateCertificateAuthorityCSRResponse\x126\n" +
-	"\x17certificate_request_der\x18\x01 \x01(\fR\x15certificateRequestDer\"\xa8\x01\n" +
-	",ImportCertificateAuthorityCertificateRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\x12'\n" +
+	"\x17certificate_request_der\x18\x01 \x01(\fR\x15certificateRequestDer\"\xad\x01\n" +
+	",ImportCertificateAuthorityCertificateRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12'\n" +
 	"\x0fcertificate_pem\x18\x02 \x01(\fR\x0ecertificatePem\x122\n" +
-	"\x15p7b_certificate_chain\x18\x03 \x01(\fR\x13p7bCertificateChain\"[\n" +
-	"-ImportCertificateAuthorityCertificateResponse\x12*\n" +
-	"\x11ca_certificate_id\x18\x01 \x01(\x03R\x0fcaCertificateId\"\xb4\x01\n" +
-	" RenewCertificateAuthorityRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\x12#\n" +
-	"\vnext_key_id\x18\x02 \x01(\x03H\x00R\tnextKeyId\x88\x01\x01\x12*\n" +
-	"\x0fnext_alt_key_id\x18\x03 \x01(\x03H\x01R\fnextAltKeyId\x88\x01\x01B\x0e\n" +
+	"\x15p7b_certificate_chain\x18\x03 \x01(\fR\x13p7bCertificateChain\"e\n" +
+	"-ImportCertificateAuthorityCertificateResponse\x124\n" +
+	"\x11ca_certificate_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x0fcaCertificateId\"\xcd\x01\n" +
+	" RenewCertificateAuthorityRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12-\n" +
+	"\vnext_key_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\tnextKeyId\x88\x01\x01\x124\n" +
+	"\x0fnext_alt_key_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\fnextAltKeyId\x88\x01\x01B\x0e\n" +
 	"\f_next_key_idB\x12\n" +
 	"\x10_next_alt_key_id\"#\n" +
-	"!RenewCertificateAuthorityResponse\"=\n" +
-	"\x1eGetCertificateAuthorityRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\"\x9c\x01\n" +
+	"!RenewCertificateAuthorityResponse\"B\n" +
+	"\x1eGetCertificateAuthorityRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\"\x9c\x01\n" +
 	"\x1fGetCertificateAuthorityResponse\x12y\n" +
 	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityR\x14certificateAuthority\"r\n" +
 	"\"GetCertificateAuthorityListRequest\x12L\n" +
@@ -1152,12 +1152,12 @@ const file_otpki_public_issuance_v1_certificate_authority_proto_rawDesc = "" +
 	"\x15certificate_authority\x18\x01 \x01(\v2D.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
 	"updateMask\"$\n" +
-	"\"UpdateCertificateAuthorityResponse\"@\n" +
-	"!DeleteCertificateAuthorityRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\"$\n" +
-	"\"DeleteCertificateAuthorityResponse\"I\n" +
-	"*GetCertificateAuthorityCertificatesRequest\x12\x1b\n" +
-	"\x05ca_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x04caId\"\xcd\x01\n" +
+	"\"UpdateCertificateAuthorityResponse\"E\n" +
+	"!DeleteCertificateAuthorityRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\"$\n" +
+	"\"DeleteCertificateAuthorityResponse\"N\n" +
+	"*GetCertificateAuthorityCertificatesRequest\x12 \n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\"\xcd\x01\n" +
 	"+GetCertificateAuthorityCertificatesResponse\x12\x9d\x01\n" +
 	"\"certificate_authority_certificates\x18\x01 \x03(\v2O.otpki.common.issuance.certificate_authority.v1.CertificateAuthorityCertificateR certificateAuthorityCertificatesB\x87\x02\n" +
 	"\x1ccom.otpki.public.issuance.v1B\x19CertificateAuthorityProtoP\x01ZGgithub.com/otpki/otpki-protobuf/gen/otpki/public/issuance/v1;issuancev1\xa2\x02\x03OPI\xaa\x02\x18Otpki.Public.Issuance.V1\xca\x02\x19Otpki\\Public_\\Issuance\\V1\xe2\x02%Otpki\\Public_\\Issuance\\V1\\GPBMetadata\xea\x02\x1bOtpki::Public::Issuance::V1b\x06proto3"

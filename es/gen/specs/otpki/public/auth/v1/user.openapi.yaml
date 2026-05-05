@@ -666,11 +666,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
           readOnly: true
         username:
           type: string
@@ -712,19 +710,17 @@ components:
         groups:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: groups
+          uniqueItems: true
         roles:
           type: array
           items:
-            type:
-              - integer
-              - string
-            format: int64
+            type: string
+            format: uuid
           title: roles
+          uniqueItems: true
         createdAt:
           title: created_at
           description: not settable on creation
@@ -769,22 +765,18 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: CreateUserResponse
       additionalProperties: false
     otpki.public.auth.v1.DeleteUserRequest:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: DeleteUserRequest
       required:
         - id
@@ -890,11 +882,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
       title: GetUserRequest
       required:
         - id

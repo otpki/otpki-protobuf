@@ -115,7 +115,7 @@ func (x *CreateIssuanceRequestResponse) GetIssuanceResponse() *v1.IssuanceRespon
 
 type GetIssuanceByRequestIDRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	IssuanceRequestId int64                  `protobuf:"varint,1,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
+	IssuanceRequestId string                 `protobuf:"bytes,1,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -150,11 +150,11 @@ func (*GetIssuanceByRequestIDRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_issuer_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetIssuanceByRequestIDRequest) GetIssuanceRequestId() int64 {
+func (x *GetIssuanceByRequestIDRequest) GetIssuanceRequestId() string {
 	if x != nil {
 		return x.IssuanceRequestId
 	}
-	return 0
+	return ""
 }
 
 type GetIssuanceByRequestIDResponse struct {
@@ -211,7 +211,7 @@ func (x *GetIssuanceByRequestIDResponse) GetIssuanceResponse() *v1.IssuanceRespo
 
 type RevokeIssuedCertificatesRequest struct {
 	state                protoimpl.MessageState   `protogen:"open.v1"`
-	CertificateIds       []int64                  `protobuf:"varint,1,rep,packed,name=certificate_ids,json=certificateIds,proto3" json:"certificate_ids,omitempty"`
+	CertificateIds       []string                 `protobuf:"bytes,1,rep,name=certificate_ids,json=certificateIds,proto3" json:"certificate_ids,omitempty"`
 	RevocationReasonCode v11.RevocationReasonCode `protobuf:"varint,2,opt,name=revocation_reason_code,json=revocationReasonCode,proto3,enum=otpki.common.x509.v1.RevocationReasonCode" json:"revocation_reason_code,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -247,7 +247,7 @@ func (*RevokeIssuedCertificatesRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_v1_issuer_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *RevokeIssuedCertificatesRequest) GetCertificateIds() []int64 {
+func (x *RevokeIssuedCertificatesRequest) GetCertificateIds() []string {
 	if x != nil {
 		return x.CertificateIds
 	}
@@ -401,14 +401,14 @@ const file_otpki_public_issuance_v1_issuer_proto_rawDesc = "" +
 	"\x1cCreateIssuanceRequestRequest\x12c\n" +
 	"\x10issuance_request\x18\x01 \x01(\v20.otpki.common.issuance.issuer.v1.IssuanceRequestB\x06\xbaH\x03\xc8\x01\x01R\x0fissuanceRequest\"\x7f\n" +
 	"\x1dCreateIssuanceRequestResponse\x12^\n" +
-	"\x11issuance_response\x18\x01 \x01(\v21.otpki.common.issuance.issuer.v1.IssuanceResponseR\x10issuanceResponse\"W\n" +
-	"\x1dGetIssuanceByRequestIDRequest\x126\n" +
-	"\x13issuance_request_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\x11issuanceRequestId\"\xdd\x01\n" +
+	"\x11issuance_response\x18\x01 \x01(\v21.otpki.common.issuance.issuer.v1.IssuanceResponseR\x10issuanceResponse\"\\\n" +
+	"\x1dGetIssuanceByRequestIDRequest\x12;\n" +
+	"\x13issuance_request_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x11issuanceRequestId\"\xdd\x01\n" +
 	"\x1eGetIssuanceByRequestIDResponse\x12[\n" +
 	"\x10issuance_request\x18\x01 \x01(\v20.otpki.common.issuance.issuer.v1.IssuanceRequestR\x0fissuanceRequest\x12^\n" +
-	"\x11issuance_response\x18\x02 \x01(\v21.otpki.common.issuance.issuer.v1.IssuanceResponseR\x10issuanceResponse\"\xb9\x01\n" +
-	"\x1fRevokeIssuedCertificatesRequest\x124\n" +
-	"\x0fcertificate_ids\x18\x01 \x03(\x03B\v\xbaH\b\xc8\x01\x01\x92\x01\x02\x18\x01R\x0ecertificateIds\x12`\n" +
+	"\x11issuance_response\x18\x02 \x01(\v21.otpki.common.issuance.issuer.v1.IssuanceResponseR\x10issuanceResponse\"\xbd\x01\n" +
+	"\x1fRevokeIssuedCertificatesRequest\x128\n" +
+	"\x0fcertificate_ids\x18\x01 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x0ecertificateIds\x12`\n" +
 	"\x16revocation_reason_code\x18\x02 \x01(\x0e2*.otpki.common.x509.v1.RevocationReasonCodeR\x14revocationReasonCode\"\"\n" +
 	" RevokeIssuedCertificatesResponse\"m\n" +
 	"\x1dGetIssuanceRequestListRequest\x12L\n" +

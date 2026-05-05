@@ -6,7 +6,10 @@ import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/issuance/key/v1/key.proto";
 
 message GetKeyRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetKeyResponse {
@@ -20,7 +23,7 @@ message CreateKeyRequest {
 }
 
 message CreateKeyResponse {
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
 message GetKeyListRequest {
@@ -33,7 +36,10 @@ message GetKeyListResponse {
 }
 
 message DeleteKeyRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message DeleteKeyResponse {}

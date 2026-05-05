@@ -3,7 +3,6 @@ package otpki.public.plugin.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
-import "otpki/common/auth/v1/auth.proto";
 import "otpki/common/enrollment/end_entity/v1/end_entity.proto";
 import "otpki/common/enrollment/end_entity_certificate/v1/end_entity_certificate.proto";
 import "otpki/common/enrollment/enroller/v1/enroller.proto";
@@ -58,7 +57,10 @@ message GetEndEntityByLoginIDResponse {
 }
 
 message GetEndEntityRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetEndEntityResponse {
@@ -66,7 +68,10 @@ message GetEndEntityResponse {
 }
 
 message GetKeyRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetKeyResponse {
@@ -81,7 +86,10 @@ message GetAllRootCertificateAuthorityCertificatesResponse {
 }
 
 message GetLatestCertificateAuthorityCertificateRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetLatestCertificateAuthorityCertificateResponse {
@@ -89,7 +97,10 @@ message GetLatestCertificateAuthorityCertificateResponse {
 }
 
 message GetCertificateAuthorityRequest {
-  int64 ca_id = 1 [(buf.validate.field).required = true];
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetCertificateAuthorityResponse {
@@ -97,7 +108,10 @@ message GetCertificateAuthorityResponse {
 }
 
 message GetCertificateProfileRequest {
-  int64 id = 1 [(buf.validate.field).required = true];
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetCertificateProfileResponse {
@@ -117,7 +131,10 @@ message CreateEnrollmentRequestResponse {
 }
 
 message GetEnrollmentByRequestIDRequest {
-  int64 enrollment_request_id = 1 [(buf.validate.field).required = true];
+  string enrollment_request_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   string password = 2;
   bool check_password = 3;
 }
@@ -128,8 +145,14 @@ message GetEnrollmentByRequestIDResponse {
 }
 
 message RevokeEndEntityCertificateRequest {
-  int64 end_entity_id = 1 [(buf.validate.field).required = true];
-  int64 issued_certificate_id = 2 [(buf.validate.field).required = true];
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  string issued_certificate_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   common.x509.v1.RevocationReasonCode revocation_reason_code = 3 [(buf.validate.field).required = true];
 }
 
@@ -144,7 +167,10 @@ message GetEndEntityCertificateBySerialNumberResponse {
 }
 
 message GetEndEntityCertificatesRequest {
-  int64 end_entity_id = 1 [(buf.validate.field).required = true];
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetEndEntityCertificatesResponse {
@@ -154,7 +180,10 @@ message GetEndEntityCertificatesResponse {
 // The optional Any payload should contain one of the public key option messages from
 // otpki.common.issuance.key.v1 when the underlying key type requires it.
 message SignKeyRequest {
-  int64 key_id = 1 [(buf.validate.field).required = true];
+  string key_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   bytes digest = 2 [(buf.validate.field).required = true];
   google.protobuf.Any opts = 3;
 }
@@ -166,7 +195,10 @@ message SignKeyResponse {
 // The optional Any payload should contain one of the public key option messages from
 // otpki.common.issuance.key.v1 when the underlying key type requires it.
 message DecryptKeyRequest {
-  int64 key_id = 1 [(buf.validate.field).required = true];
+  string key_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   bytes ciphertext = 2 [(buf.validate.field).required = true];
   google.protobuf.Any opts = 3;
 }

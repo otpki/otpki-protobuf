@@ -17,7 +17,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/enrollment/v1/end_entity_profile.proto.
  */
 export const file_otpki_public_enrollment_v1_end_entity_profile: GenFile = /*@__PURE__*/
-  fileDesc("CjNvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbmRfZW50aXR5X3Byb2ZpbGUucHJvdG8SGm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LnYxInkKHUNyZWF0ZUVuZEVudGl0eVByb2ZpbGVSZXF1ZXN0ElgKB3Byb2ZpbGUYASABKAsyPy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X3Byb2ZpbGUudjEuRW5kRW50aXR5UHJvZmlsZUIGukgDyAEBIiwKHkNyZWF0ZUVuZEVudGl0eVByb2ZpbGVSZXNwb25zZRIKCgJpZBgBIAEoAyIxChpHZXRFbmRFbnRpdHlQcm9maWxlUmVxdWVzdBITCgJpZBgBIAEoA0IHukgEIgIgACJvChtHZXRFbmRFbnRpdHlQcm9maWxlUmVzcG9uc2USUAoHcHJvZmlsZRgBIAEoCzI/Lm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHlfcHJvZmlsZS52MS5FbmRFbnRpdHlQcm9maWxlIqIBCh1VcGRhdGVFbmRFbnRpdHlQcm9maWxlUmVxdWVzdBJQCgdwcm9maWxlGAEgASgLMj8ub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eV9wcm9maWxlLnYxLkVuZEVudGl0eVByb2ZpbGUSLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIiAKHlVwZGF0ZUVuZEVudGl0eVByb2ZpbGVSZXNwb25zZSI0Ch1EZWxldGVFbmRFbnRpdHlQcm9maWxlUmVxdWVzdBITCgJpZBgBIAEoA0IHukgEIgIgACIgCh5EZWxldGVFbmRFbnRpdHlQcm9maWxlUmVzcG9uc2UiYgoeR2V0RW5kRW50aXR5UHJvZmlsZUxpc3RSZXF1ZXN0EkAKCnBhZ2luYXRpb24YASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0IrMBCh9HZXRFbmRFbnRpdHlQcm9maWxlTGlzdFJlc3BvbnNlEk0KBGRhdGEYASADKAsyPy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X3Byb2ZpbGUudjEuRW5kRW50aXR5UHJvZmlsZRJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2VCxAEKHmNvbS5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MUIVRW5kRW50aXR5UHJvZmlsZVByb3RvUAGiAgNPUEWqAhpPdHBraS5QdWJsaWMuRW5yb2xsbWVudC5WMcoCG090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMeICJ090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMVxHUEJNZXRhZGF0YeoCHU90cGtpOjpQdWJsaWM6OkVucm9sbG1lbnQ6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile]);
+  fileDesc("CjNvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbmRfZW50aXR5X3Byb2ZpbGUucHJvdG8SGm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LnYxInkKHUNyZWF0ZUVuZEVudGl0eVByb2ZpbGVSZXF1ZXN0ElgKB3Byb2ZpbGUYASABKAsyPy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X3Byb2ZpbGUudjEuRW5kRW50aXR5UHJvZmlsZUIGukgDyAEBIjYKHkNyZWF0ZUVuZEVudGl0eVByb2ZpbGVSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiNQoaR2V0RW5kRW50aXR5UHJvZmlsZVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIm8KG0dldEVuZEVudGl0eVByb2ZpbGVSZXNwb25zZRJQCgdwcm9maWxlGAEgASgLMj8ub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eV9wcm9maWxlLnYxLkVuZEVudGl0eVByb2ZpbGUiogEKHVVwZGF0ZUVuZEVudGl0eVByb2ZpbGVSZXF1ZXN0ElAKB3Byb2ZpbGUYASABKAsyPy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X3Byb2ZpbGUudjEuRW5kRW50aXR5UHJvZmlsZRIvCgt1cGRhdGVfbWFzaxgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2siIAoeVXBkYXRlRW5kRW50aXR5UHJvZmlsZVJlc3BvbnNlIjgKHURlbGV0ZUVuZEVudGl0eVByb2ZpbGVSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASIgCh5EZWxldGVFbmRFbnRpdHlQcm9maWxlUmVzcG9uc2UiYgoeR2V0RW5kRW50aXR5UHJvZmlsZUxpc3RSZXF1ZXN0EkAKCnBhZ2luYXRpb24YASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0IrMBCh9HZXRFbmRFbnRpdHlQcm9maWxlTGlzdFJlc3BvbnNlEk0KBGRhdGEYASADKAsyPy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X3Byb2ZpbGUudjEuRW5kRW50aXR5UHJvZmlsZRJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2VCxAEKHmNvbS5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MUIVRW5kRW50aXR5UHJvZmlsZVByb3RvUAGiAgNPUEWqAhpPdHBraS5QdWJsaWMuRW5yb2xsbWVudC5WMcoCG090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMeICJ090cGtpXFB1YmxpY19cRW5yb2xsbWVudFxWMVxHUEJNZXRhZGF0YeoCHU90cGtpOjpQdWJsaWM6OkVucm9sbG1lbnQ6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_end_entity_profile_v1_end_entity_profile]);
 
 /**
  * @generated from message otpki.public.enrollment.v1.CreateEndEntityProfileRequest
@@ -61,9 +61,9 @@ export const CreateEndEntityProfileRequestSchema: GenMessage<CreateEndEntityProf
  */
 export type CreateEndEntityProfileResponse = Message<"otpki.public.enrollment.v1.CreateEndEntityProfileResponse"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -71,7 +71,7 @@ export type CreateEndEntityProfileResponse = Message<"otpki.public.enrollment.v1
  */
 export type CreateEndEntityProfileResponseJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
@@ -90,9 +90,9 @@ export const CreateEndEntityProfileResponseSchema: GenMessage<CreateEndEntityPro
  */
 export type GetEndEntityProfileRequest = Message<"otpki.public.enrollment.v1.GetEndEntityProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -100,12 +100,20 @@ export type GetEndEntityProfileRequest = Message<"otpki.public.enrollment.v1.Get
  */
 export type GetEndEntityProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export type GetEndEntityProfileRequestValid = GetEndEntityProfileRequest;
+/**
+ * @generated from message otpki.public.enrollment.v1.GetEndEntityProfileRequest
+ */
+export type GetEndEntityProfileRequestValid = Message<"otpki.public.enrollment.v1.GetEndEntityProfileRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.enrollment.v1.GetEndEntityProfileRequest.
@@ -208,9 +216,9 @@ export const UpdateEndEntityProfileResponseSchema: GenMessage<UpdateEndEntityPro
  */
 export type DeleteEndEntityProfileRequest = Message<"otpki.public.enrollment.v1.DeleteEndEntityProfileRequest"> & {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id: bigint;
+  id: string;
 };
 
 /**
@@ -218,12 +226,20 @@ export type DeleteEndEntityProfileRequest = Message<"otpki.public.enrollment.v1.
  */
 export type DeleteEndEntityProfileRequestJson = {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export type DeleteEndEntityProfileRequestValid = DeleteEndEntityProfileRequest;
+/**
+ * @generated from message otpki.public.enrollment.v1.DeleteEndEntityProfileRequest
+ */
+export type DeleteEndEntityProfileRequestValid = Message<"otpki.public.enrollment.v1.DeleteEndEntityProfileRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
 
 /**
  * Describes the message otpki.public.enrollment.v1.DeleteEndEntityProfileRequest.

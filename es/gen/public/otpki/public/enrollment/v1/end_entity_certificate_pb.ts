@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/enrollment/v1/end_entity_certificate.proto.
  */
 export const file_otpki_public_enrollment_v1_end_entity_certificate: GenFile = /*@__PURE__*/
-  fileDesc("CjdvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbmRfZW50aXR5X2NlcnRpZmljYXRlLnByb3RvEhpvdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MSJkCixHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBIdCg1zZXJpYWxfbnVtYmVyGAEgASgMQga6SAPIAQESFQoNZW5kX2VudGl0eV9pZBgCIAEoAyKYAQotR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVCeVNlcmlhbE51bWJlclJlc3BvbnNlEmcKFmVuZF9lbnRpdHlfY2VydGlmaWNhdGUYASABKAsyRy5vdHBraS5jb21tb24uZW5yb2xsbWVudC5lbmRfZW50aXR5X2NlcnRpZmljYXRlLnYxLkVuZEVudGl0eUNlcnRpZmljYXRlIkAKH0dldEVuZEVudGl0eUNlcnRpZmljYXRlc1JlcXVlc3QSHQoNZW5kX2VudGl0eV9pZBgBIAEoA0IGukgDyAEBIowBCiBHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRJoChdlbmRfZW50aXR5X2NlcnRpZmljYXRlcxgBIAMoCzJHLm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUiZgoiR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCK/AQojR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVMaXN0UmVzcG9uc2USVQoEZGF0YRgBIAMoCzJHLm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQsgBCh5jb20ub3Rwa2kucHVibGljLmVucm9sbG1lbnQudjFCGUVuZEVudGl0eUNlcnRpZmljYXRlUHJvdG9QAaICA09QRaoCGk90cGtpLlB1YmxpYy5FbnJvbGxtZW50LlYxygIbT3Rwa2lcUHVibGljX1xFbnJvbGxtZW50XFYx4gInT3Rwa2lcUHVibGljX1xFbnJvbGxtZW50XFYxXEdQQk1ldGFkYXRh6gIdT3Rwa2k6OlB1YmxpYzo6RW5yb2xsbWVudDo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_end_entity_certificate_v1_end_entity_certificate]);
+  fileDesc("CjdvdHBraS9wdWJsaWMvZW5yb2xsbWVudC92MS9lbmRfZW50aXR5X2NlcnRpZmljYXRlLnByb3RvEhpvdHBraS5wdWJsaWMuZW5yb2xsbWVudC52MSJuCixHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBIdCg1zZXJpYWxfbnVtYmVyGAEgASgMQga6SAPIAQESHwoNZW5kX2VudGl0eV9pZBgCIAEoCUIIukgFcgOwAQEimAEKLUdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXNwb25zZRJnChZlbmRfZW50aXR5X2NlcnRpZmljYXRlGAEgASgLMkcub3Rwa2kuY29tbW9uLmVucm9sbG1lbnQuZW5kX2VudGl0eV9jZXJ0aWZpY2F0ZS52MS5FbmRFbnRpdHlDZXJ0aWZpY2F0ZSJFCh9HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBIowBCiBHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRJoChdlbmRfZW50aXR5X2NlcnRpZmljYXRlcxgBIAMoCzJHLm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUiZgoiR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCK/AQojR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVMaXN0UmVzcG9uc2USVQoEZGF0YRgBIAMoCzJHLm90cGtpLmNvbW1vbi5lbnJvbGxtZW50LmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlQsgBCh5jb20ub3Rwa2kucHVibGljLmVucm9sbG1lbnQudjFCGUVuZEVudGl0eUNlcnRpZmljYXRlUHJvdG9QAaICA09QRaoCGk90cGtpLlB1YmxpYy5FbnJvbGxtZW50LlYxygIbT3Rwa2lcUHVibGljX1xFbnJvbGxtZW50XFYx4gInT3Rwa2lcUHVibGljX1xFbnJvbGxtZW50XFYxXEdQQk1ldGFkYXRh6gIdT3Rwa2k6OlB1YmxpYzo6RW5yb2xsbWVudDo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_otpki_common_api_query_v1_query, file_otpki_common_enrollment_end_entity_certificate_v1_end_entity_certificate]);
 
 /**
  * @generated from message otpki.public.enrollment.v1.GetEndEntityCertificateBySerialNumberRequest
@@ -29,9 +29,9 @@ export type GetEndEntityCertificateBySerialNumberRequest = Message<"otpki.public
   /**
    * this param does not do anything, it's for the path to satisfy a pattern
    *
-   * @generated from field: int64 end_entity_id = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -46,7 +46,7 @@ export type GetEndEntityCertificateBySerialNumberRequestJson = {
   /**
    * this param does not do anything, it's for the path to satisfy a pattern
    *
-   * @generated from field: int64 end_entity_id = 2;
+   * @generated from field: string end_entity_id = 2;
    */
   endEntityId?: string;
 };
@@ -63,9 +63,9 @@ export type GetEndEntityCertificateBySerialNumberRequestValid = Message<"otpki.p
   /**
    * this param does not do anything, it's for the path to satisfy a pattern
    *
-   * @generated from field: int64 end_entity_id = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -109,9 +109,9 @@ export const GetEndEntityCertificateBySerialNumberResponseSchema: GenMessage<Get
  */
 export type GetEndEntityCertificatesRequest = Message<"otpki.public.enrollment.v1.GetEndEntityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**
@@ -119,7 +119,7 @@ export type GetEndEntityCertificatesRequest = Message<"otpki.public.enrollment.v
  */
 export type GetEndEntityCertificatesRequestJson = {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
 };
@@ -129,9 +129,9 @@ export type GetEndEntityCertificatesRequestJson = {
  */
 export type GetEndEntityCertificatesRequestValid = Message<"otpki.public.enrollment.v1.GetEndEntityCertificatesRequest"> & {
   /**
-   * @generated from field: int64 end_entity_id = 1;
+   * @generated from field: string end_entity_id = 1;
    */
-  endEntityId: bigint;
+  endEntityId: string;
 };
 
 /**

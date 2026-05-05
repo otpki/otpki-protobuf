@@ -6,7 +6,10 @@ import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/issuance/issued_certificate/v1/issued_certificate.proto";
 
 message GetIssuedCertificateRequest {
-  int64 issued_certificate_id = 1 [(buf.validate.field).required = true];
+  string issued_certificate_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetIssuedCertificateResponse {

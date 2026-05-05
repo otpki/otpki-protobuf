@@ -1,6 +1,7 @@
 syntax = "proto3";
 package otpki.common.issuance.issued_certificate.v1;
 
+import "buf/validate/validate.proto";
 import "gnostic/openapi/v3/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "otpki/common/api/v1/native_type.proto";
@@ -9,7 +10,7 @@ import "otpki/common/x509/v1/x509.proto";
 
 message IssuedCertificate {
   option (api.v1.generate_native) = true;
-  int64 id = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
   bytes certificate = 2;
   repeated bytes certificate_chain = 3;
   bytes serial_number = 4;
@@ -32,9 +33,9 @@ message IssuedCertificate {
   optional x509.v1.RevocationReasonCode revocation_reason_code = 11;
   bool in_crl = 12;
 
-  optional int64 issued_by_ca_certificate_id = 13;
-  int64 issued_from_certificate_profile_id = 14;
-  int64 issued_from_issuance_request_id = 15;
+  optional string issued_by_ca_certificate_id = 13 [(buf.validate.field).string.uuid = true];
+  string issued_from_certificate_profile_id = 14 [(buf.validate.field).string.uuid = true];
+  string issued_from_issuance_request_id = 15 [(buf.validate.field).string.uuid = true];
 
   issuer.v1.IssuingProtocol protocol_used = 16;
 

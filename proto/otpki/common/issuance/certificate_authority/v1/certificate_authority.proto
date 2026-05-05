@@ -11,11 +11,14 @@ import "otpki/common/x509/v1/x509.proto";
 
 message CertificateAuthority {
   option (api.v1.generate_native) = true;
-  int64 id = 1 [(gnostic.openapi.v3.property).read_only = true]; // not settable on creation
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (gnostic.openapi.v3.property).read_only = true
+  ]; // not settable on creation
   string name = 2;
   string description = 3;
-  int64 key_id = 4;
-  optional int64 alternative_key_id = 5;
+  string key_id = 4 [(buf.validate.field).string.uuid = true];
+  optional string alternative_key_id = 5 [(buf.validate.field).string.uuid = true];
   x509.v1.SignatureAlgorithm signature_algorithm = 6 [
     (buf.validate.field).enum.defined_only = true,
     (api.v1.go_native_type) = "x509.SignatureAlgorithm",
@@ -43,7 +46,7 @@ message CertificateAuthority {
   repeated string ocsp_uris = 12;
   repeated string issuer_uris = 13;
 
-  int64 approval_profile_id = 14;
+  string approval_profile_id = 14 [(buf.validate.field).string.uuid = true];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
@@ -60,10 +63,10 @@ message CertificateAuthority {
 }
 
 message CertificateAuthorityCertificate {
-  int64 id = 1;
-  int64 certificate_authority_id = 2;
+  string id = 1 [(buf.validate.field).string.uuid = true];
+  string certificate_authority_id = 2 [(buf.validate.field).string.uuid = true];
   bytes certificate = 3;
   repeated bytes certificate_chain = 4;
-  optional int64 issued_certificate_id = 5;
+  optional string issued_certificate_id = 5 [(buf.validate.field).string.uuid = true];
   string display_name = 6;
 }

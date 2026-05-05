@@ -104,11 +104,9 @@ components:
       type: object
       properties:
         id:
-          type:
-            - integer
-            - string
+          type: string
           title: id
-          format: int64
+          format: uuid
         certificate:
           type: string
           title: certificate
@@ -157,23 +155,18 @@ components:
           title: in_crl
         issuedByCaCertificateId:
           type:
-            - integer
             - string
             - "null"
           title: issued_by_ca_certificate_id
-          format: int64
+          format: uuid
         issuedFromCertificateProfileId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_from_certificate_profile_id
-          format: int64
+          format: uuid
         issuedFromIssuanceRequestId:
-          type:
-            - integer
-            - string
+          type: string
           title: issued_from_issuance_request_id
-          format: int64
+          format: uuid
         protocolUsed:
           title: protocol_used
           $ref: '#/components/schemas/otpki.common.issuance.issuer.v1.IssuingProtocol'
