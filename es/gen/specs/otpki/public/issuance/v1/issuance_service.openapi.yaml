@@ -5219,6 +5219,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.issuance.v1.CreatePublisherConfigResponse'
+  /v1/publisher/configs/test:
+    post:
+      tags:
+        - otpki.public.issuance.v1.IssuanceService
+      summary: TestPublisherConnection
+      operationId: otpki.public.issuance.v1.IssuanceService.TestPublisherConnection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: config
+              $ref: '#/components/schemas/otpki.common.issuance.publisher.v1.PublisherConfig'
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.issuance.v1.TestPublisherConnectionResponse'
+  /v1/publisher/configs/test-publish:
+    post:
+      tags:
+        - otpki.public.issuance.v1.IssuanceService
+      summary: TestPublisherPublish
+      operationId: otpki.public.issuance.v1.IssuanceService.TestPublisherPublish
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/otpki.public.issuance.v1.TestPublisherPublishRequest'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.issuance.v1.TestPublisherPublishResponse'
   /v1/publisher/configs/{config.id}:
     patch:
       tags:
@@ -8206,6 +8244,13 @@ components:
       title: CrlPublisher
       additionalProperties: false
       description: CRL Publisher can only subscribe to CAs on CRL generation events
+    otpki.common.issuance.publisher.v1.PkiArtifact:
+      type: string
+      title: PkiArtifact
+      enum:
+        - PKI_ARTIFACT_UNSPECIFIED
+        - PKI_ARTIFACT_CRL
+        - PKI_ARTIFACT_CERTIFICATE
     otpki.common.issuance.publisher.v1.PublisherConfig:
       type: object
       properties:
@@ -10222,6 +10267,40 @@ components:
           title: form_zip
           format: byte
       title: SplitSecretResponse
+      additionalProperties: false
+    otpki.public.issuance.v1.TestPublisherConnectionRequest:
+      type: object
+      properties:
+        config:
+          title: config
+          $ref: '#/components/schemas/otpki.common.issuance.publisher.v1.PublisherConfig'
+      title: TestPublisherConnectionRequest
+      required:
+        - config
+      additionalProperties: false
+    otpki.public.issuance.v1.TestPublisherConnectionResponse:
+      type: object
+      title: TestPublisherConnectionResponse
+      additionalProperties: false
+    otpki.public.issuance.v1.TestPublisherPublishRequest:
+      type: object
+      properties:
+        config:
+          title: config
+          $ref: '#/components/schemas/otpki.common.issuance.publisher.v1.PublisherConfig'
+        artifact:
+          not:
+            enum:
+              - PKI_ARTIFACT_UNSPECIFIED
+          title: artifact
+          $ref: '#/components/schemas/otpki.common.issuance.publisher.v1.PkiArtifact'
+      title: TestPublisherPublishRequest
+      required:
+        - config
+      additionalProperties: false
+    otpki.public.issuance.v1.TestPublisherPublishResponse:
+      type: object
+      title: TestPublisherPublishResponse
       additionalProperties: false
     otpki.public.issuance.v1.TimeSeriesDataPoint:
       type: object

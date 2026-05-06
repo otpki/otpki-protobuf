@@ -215,6 +215,12 @@ const (
 	// IssuanceServiceGetPublisherConfigListProcedure is the fully-qualified name of the
 	// IssuanceService's GetPublisherConfigList RPC.
 	IssuanceServiceGetPublisherConfigListProcedure = "/otpki.public.issuance.v1.IssuanceService/GetPublisherConfigList"
+	// IssuanceServiceTestPublisherConnectionProcedure is the fully-qualified name of the
+	// IssuanceService's TestPublisherConnection RPC.
+	IssuanceServiceTestPublisherConnectionProcedure = "/otpki.public.issuance.v1.IssuanceService/TestPublisherConnection"
+	// IssuanceServiceTestPublisherPublishProcedure is the fully-qualified name of the IssuanceService's
+	// TestPublisherPublish RPC.
+	IssuanceServiceTestPublisherPublishProcedure = "/otpki.public.issuance.v1.IssuanceService/TestPublisherPublish"
 	// IssuanceServiceGetTaskLogListProcedure is the fully-qualified name of the IssuanceService's
 	// GetTaskLogList RPC.
 	IssuanceServiceGetTaskLogListProcedure = "/otpki.public.issuance.v1.IssuanceService/GetTaskLogList"
@@ -301,6 +307,8 @@ type IssuanceServiceClient interface {
 	UpdatePublisherConfig(context.Context, *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error)
 	DeletePublisherConfig(context.Context, *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error)
 	GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error)
+	TestPublisherConnection(context.Context, *connect.Request[v1.TestPublisherConnectionRequest]) (*connect.Response[v1.TestPublisherConnectionResponse], error)
+	TestPublisherPublish(context.Context, *connect.Request[v1.TestPublisherPublishRequest]) (*connect.Response[v1.TestPublisherPublishResponse], error)
 	// Tasklog
 	GetTaskLogList(context.Context, *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error)
 	GetTaskQueues(context.Context, *connect.Request[v1.GetTaskQueuesRequest]) (*connect.Response[v1.GetTaskQueuesResponse], error)
@@ -709,6 +717,18 @@ func NewIssuanceServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
+		testPublisherConnection: connect.NewClient[v1.TestPublisherConnectionRequest, v1.TestPublisherConnectionResponse](
+			httpClient,
+			baseURL+IssuanceServiceTestPublisherConnectionProcedure,
+			connect.WithSchema(issuanceServiceMethods.ByName("TestPublisherConnection")),
+			connect.WithClientOptions(opts...),
+		),
+		testPublisherPublish: connect.NewClient[v1.TestPublisherPublishRequest, v1.TestPublisherPublishResponse](
+			httpClient,
+			baseURL+IssuanceServiceTestPublisherPublishProcedure,
+			connect.WithSchema(issuanceServiceMethods.ByName("TestPublisherPublish")),
+			connect.WithClientOptions(opts...),
+		),
 		getTaskLogList: connect.NewClient[v1.GetTaskLogListRequest, v1.GetTaskLogListResponse](
 			httpClient,
 			baseURL+IssuanceServiceGetTaskLogListProcedure,
@@ -796,6 +816,8 @@ type issuanceServiceClient struct {
 	updatePublisherConfig                 *connect.Client[v1.UpdatePublisherConfigRequest, v1.UpdatePublisherConfigResponse]
 	deletePublisherConfig                 *connect.Client[v1.DeletePublisherConfigRequest, v1.DeletePublisherConfigResponse]
 	getPublisherConfigList                *connect.Client[v1.GetPublisherConfigListRequest, v1.GetPublisherConfigListResponse]
+	testPublisherConnection               *connect.Client[v1.TestPublisherConnectionRequest, v1.TestPublisherConnectionResponse]
+	testPublisherPublish                  *connect.Client[v1.TestPublisherPublishRequest, v1.TestPublisherPublishResponse]
 	getTaskLogList                        *connect.Client[v1.GetTaskLogListRequest, v1.GetTaskLogListResponse]
 	getTaskQueues                         *connect.Client[v1.GetTaskQueuesRequest, v1.GetTaskQueuesResponse]
 	getTaskQueueInfo                      *connect.Client[v1.GetTaskQueueInfoRequest, v1.GetTaskQueueInfoResponse]
@@ -1127,6 +1149,16 @@ func (c *issuanceServiceClient) GetPublisherConfigList(ctx context.Context, req 
 	return c.getPublisherConfigList.CallUnary(ctx, req)
 }
 
+// TestPublisherConnection calls otpki.public.issuance.v1.IssuanceService.TestPublisherConnection.
+func (c *issuanceServiceClient) TestPublisherConnection(ctx context.Context, req *connect.Request[v1.TestPublisherConnectionRequest]) (*connect.Response[v1.TestPublisherConnectionResponse], error) {
+	return c.testPublisherConnection.CallUnary(ctx, req)
+}
+
+// TestPublisherPublish calls otpki.public.issuance.v1.IssuanceService.TestPublisherPublish.
+func (c *issuanceServiceClient) TestPublisherPublish(ctx context.Context, req *connect.Request[v1.TestPublisherPublishRequest]) (*connect.Response[v1.TestPublisherPublishResponse], error) {
+	return c.testPublisherPublish.CallUnary(ctx, req)
+}
+
 // GetTaskLogList calls otpki.public.issuance.v1.IssuanceService.GetTaskLogList.
 func (c *issuanceServiceClient) GetTaskLogList(ctx context.Context, req *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error) {
 	return c.getTaskLogList.CallUnary(ctx, req)
@@ -1218,6 +1250,8 @@ type IssuanceServiceHandler interface {
 	UpdatePublisherConfig(context.Context, *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error)
 	DeletePublisherConfig(context.Context, *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error)
 	GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error)
+	TestPublisherConnection(context.Context, *connect.Request[v1.TestPublisherConnectionRequest]) (*connect.Response[v1.TestPublisherConnectionResponse], error)
+	TestPublisherPublish(context.Context, *connect.Request[v1.TestPublisherPublishRequest]) (*connect.Response[v1.TestPublisherPublishResponse], error)
 	// Tasklog
 	GetTaskLogList(context.Context, *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error)
 	GetTaskQueues(context.Context, *connect.Request[v1.GetTaskQueuesRequest]) (*connect.Response[v1.GetTaskQueuesResponse], error)
@@ -1622,6 +1656,18 @@ func NewIssuanceServiceHandler(svc IssuanceServiceHandler, opts ...connect.Handl
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
+	issuanceServiceTestPublisherConnectionHandler := connect.NewUnaryHandler(
+		IssuanceServiceTestPublisherConnectionProcedure,
+		svc.TestPublisherConnection,
+		connect.WithSchema(issuanceServiceMethods.ByName("TestPublisherConnection")),
+		connect.WithHandlerOptions(opts...),
+	)
+	issuanceServiceTestPublisherPublishHandler := connect.NewUnaryHandler(
+		IssuanceServiceTestPublisherPublishProcedure,
+		svc.TestPublisherPublish,
+		connect.WithSchema(issuanceServiceMethods.ByName("TestPublisherPublish")),
+		connect.WithHandlerOptions(opts...),
+	)
 	issuanceServiceGetTaskLogListHandler := connect.NewUnaryHandler(
 		IssuanceServiceGetTaskLogListProcedure,
 		svc.GetTaskLogList,
@@ -1767,6 +1813,10 @@ func NewIssuanceServiceHandler(svc IssuanceServiceHandler, opts ...connect.Handl
 			issuanceServiceDeletePublisherConfigHandler.ServeHTTP(w, r)
 		case IssuanceServiceGetPublisherConfigListProcedure:
 			issuanceServiceGetPublisherConfigListHandler.ServeHTTP(w, r)
+		case IssuanceServiceTestPublisherConnectionProcedure:
+			issuanceServiceTestPublisherConnectionHandler.ServeHTTP(w, r)
+		case IssuanceServiceTestPublisherPublishProcedure:
+			issuanceServiceTestPublisherPublishHandler.ServeHTTP(w, r)
 		case IssuanceServiceGetTaskLogListProcedure:
 			issuanceServiceGetTaskLogListHandler.ServeHTTP(w, r)
 		case IssuanceServiceGetTaskQueuesProcedure:
@@ -2024,6 +2074,14 @@ func (UnimplementedIssuanceServiceHandler) DeletePublisherConfig(context.Context
 
 func (UnimplementedIssuanceServiceHandler) GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.v1.IssuanceService.GetPublisherConfigList is not implemented"))
+}
+
+func (UnimplementedIssuanceServiceHandler) TestPublisherConnection(context.Context, *connect.Request[v1.TestPublisherConnectionRequest]) (*connect.Response[v1.TestPublisherConnectionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.v1.IssuanceService.TestPublisherConnection is not implemented"))
+}
+
+func (UnimplementedIssuanceServiceHandler) TestPublisherPublish(context.Context, *connect.Request[v1.TestPublisherPublishRequest]) (*connect.Response[v1.TestPublisherPublishResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.v1.IssuanceService.TestPublisherPublish is not implemented"))
 }
 
 func (UnimplementedIssuanceServiceHandler) GetTaskLogList(context.Context, *connect.Request[v1.GetTaskLogListRequest]) (*connect.Response[v1.GetTaskLogListResponse], error) {

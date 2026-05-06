@@ -52,6 +52,22 @@ message GetPublisherConfigListResponse {
   common.api.query.v1.PaginationResponse pagination = 2;
 }
 
+message TestPublisherConnectionRequest {
+  common.issuance.publisher.v1.PublisherConfig config = 1 [(buf.validate.field).required = true];
+}
+
+message TestPublisherConnectionResponse {}
+
+message TestPublisherPublishRequest {
+  common.issuance.publisher.v1.PublisherConfig config = 1 [(buf.validate.field).required = true];
+  common.issuance.publisher.v1.PkiArtifact artifact = 2 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
+}
+
+message TestPublisherPublishResponse {}
+
 // -- CRL Publishers
 
 message CreateCrlPublisherRequest {

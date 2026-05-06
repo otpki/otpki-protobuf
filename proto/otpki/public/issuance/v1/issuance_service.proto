@@ -398,6 +398,18 @@ service IssuanceService {
       additional_bindings: {get: "/v1/publisher/configs"}
     };
   }
+  rpc TestPublisherConnection(TestPublisherConnectionRequest) returns (TestPublisherConnectionResponse) {
+    option (google.api.http) = {
+      post: "/v1/publisher/configs/test"
+      body: "config"
+    };
+  }
+  rpc TestPublisherPublish(TestPublisherPublishRequest) returns (TestPublisherPublishResponse) {
+    option (google.api.http) = {
+      post: "/v1/publisher/configs/test-publish"
+      body: "*"
+    };
+  }
 
   // Tasklog
   rpc GetTaskLogList(GetTaskLogListRequest) returns (GetTaskLogListResponse) {

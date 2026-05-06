@@ -80,6 +80,8 @@ const (
 	IssuanceService_UpdatePublisherConfig_FullMethodName                 = "/otpki.public.issuance.v1.IssuanceService/UpdatePublisherConfig"
 	IssuanceService_DeletePublisherConfig_FullMethodName                 = "/otpki.public.issuance.v1.IssuanceService/DeletePublisherConfig"
 	IssuanceService_GetPublisherConfigList_FullMethodName                = "/otpki.public.issuance.v1.IssuanceService/GetPublisherConfigList"
+	IssuanceService_TestPublisherConnection_FullMethodName               = "/otpki.public.issuance.v1.IssuanceService/TestPublisherConnection"
+	IssuanceService_TestPublisherPublish_FullMethodName                  = "/otpki.public.issuance.v1.IssuanceService/TestPublisherPublish"
 	IssuanceService_GetTaskLogList_FullMethodName                        = "/otpki.public.issuance.v1.IssuanceService/GetTaskLogList"
 	IssuanceService_GetTaskQueues_FullMethodName                         = "/otpki.public.issuance.v1.IssuanceService/GetTaskQueues"
 	IssuanceService_GetTaskQueueInfo_FullMethodName                      = "/otpki.public.issuance.v1.IssuanceService/GetTaskQueueInfo"
@@ -162,6 +164,8 @@ type IssuanceServiceClient interface {
 	UpdatePublisherConfig(ctx context.Context, in *UpdatePublisherConfigRequest, opts ...grpc.CallOption) (*UpdatePublisherConfigResponse, error)
 	DeletePublisherConfig(ctx context.Context, in *DeletePublisherConfigRequest, opts ...grpc.CallOption) (*DeletePublisherConfigResponse, error)
 	GetPublisherConfigList(ctx context.Context, in *GetPublisherConfigListRequest, opts ...grpc.CallOption) (*GetPublisherConfigListResponse, error)
+	TestPublisherConnection(ctx context.Context, in *TestPublisherConnectionRequest, opts ...grpc.CallOption) (*TestPublisherConnectionResponse, error)
+	TestPublisherPublish(ctx context.Context, in *TestPublisherPublishRequest, opts ...grpc.CallOption) (*TestPublisherPublishResponse, error)
 	// Tasklog
 	GetTaskLogList(ctx context.Context, in *GetTaskLogListRequest, opts ...grpc.CallOption) (*GetTaskLogListResponse, error)
 	GetTaskQueues(ctx context.Context, in *GetTaskQueuesRequest, opts ...grpc.CallOption) (*GetTaskQueuesResponse, error)
@@ -786,6 +790,26 @@ func (c *issuanceServiceClient) GetPublisherConfigList(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *issuanceServiceClient) TestPublisherConnection(ctx context.Context, in *TestPublisherConnectionRequest, opts ...grpc.CallOption) (*TestPublisherConnectionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TestPublisherConnectionResponse)
+	err := c.cc.Invoke(ctx, IssuanceService_TestPublisherConnection_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *issuanceServiceClient) TestPublisherPublish(ctx context.Context, in *TestPublisherPublishRequest, opts ...grpc.CallOption) (*TestPublisherPublishResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TestPublisherPublishResponse)
+	err := c.cc.Invoke(ctx, IssuanceService_TestPublisherPublish_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *issuanceServiceClient) GetTaskLogList(ctx context.Context, in *GetTaskLogListRequest, opts ...grpc.CallOption) (*GetTaskLogListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTaskLogListResponse)
@@ -893,6 +917,8 @@ type IssuanceServiceServer interface {
 	UpdatePublisherConfig(context.Context, *UpdatePublisherConfigRequest) (*UpdatePublisherConfigResponse, error)
 	DeletePublisherConfig(context.Context, *DeletePublisherConfigRequest) (*DeletePublisherConfigResponse, error)
 	GetPublisherConfigList(context.Context, *GetPublisherConfigListRequest) (*GetPublisherConfigListResponse, error)
+	TestPublisherConnection(context.Context, *TestPublisherConnectionRequest) (*TestPublisherConnectionResponse, error)
+	TestPublisherPublish(context.Context, *TestPublisherPublishRequest) (*TestPublisherPublishResponse, error)
 	// Tasklog
 	GetTaskLogList(context.Context, *GetTaskLogListRequest) (*GetTaskLogListResponse, error)
 	GetTaskQueues(context.Context, *GetTaskQueuesRequest) (*GetTaskQueuesResponse, error)
@@ -1089,6 +1115,12 @@ func (UnimplementedIssuanceServiceServer) DeletePublisherConfig(context.Context,
 }
 func (UnimplementedIssuanceServiceServer) GetPublisherConfigList(context.Context, *GetPublisherConfigListRequest) (*GetPublisherConfigListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPublisherConfigList not implemented")
+}
+func (UnimplementedIssuanceServiceServer) TestPublisherConnection(context.Context, *TestPublisherConnectionRequest) (*TestPublisherConnectionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method TestPublisherConnection not implemented")
+}
+func (UnimplementedIssuanceServiceServer) TestPublisherPublish(context.Context, *TestPublisherPublishRequest) (*TestPublisherPublishResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method TestPublisherPublish not implemented")
 }
 func (UnimplementedIssuanceServiceServer) GetTaskLogList(context.Context, *GetTaskLogListRequest) (*GetTaskLogListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTaskLogList not implemented")
@@ -2218,6 +2250,42 @@ func _IssuanceService_GetPublisherConfigList_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IssuanceService_TestPublisherConnection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestPublisherConnectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IssuanceServiceServer).TestPublisherConnection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IssuanceService_TestPublisherConnection_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IssuanceServiceServer).TestPublisherConnection(ctx, req.(*TestPublisherConnectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IssuanceService_TestPublisherPublish_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestPublisherPublishRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IssuanceServiceServer).TestPublisherPublish(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IssuanceService_TestPublisherPublish_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IssuanceServiceServer).TestPublisherPublish(ctx, req.(*TestPublisherPublishRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _IssuanceService_GetTaskLogList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetTaskLogListRequest)
 	if err := dec(in); err != nil {
@@ -2522,6 +2590,14 @@ var IssuanceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPublisherConfigList",
 			Handler:    _IssuanceService_GetPublisherConfigList_Handler,
+		},
+		{
+			MethodName: "TestPublisherConnection",
+			Handler:    _IssuanceService_TestPublisherConnection_Handler,
+		},
+		{
+			MethodName: "TestPublisherPublish",
+			Handler:    _IssuanceService_TestPublisherPublish_Handler,
 		},
 		{
 			MethodName: "GetTaskLogList",

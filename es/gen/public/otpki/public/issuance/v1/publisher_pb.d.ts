@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { CertificatePublisher, CertificatePublisherJson, CrlPublisher, CrlPublisherJson, PublisherConfig, PublisherConfigJson, PublisherConfigValid } from "../../../common/issuance/publisher/v1/publisher_pb";
+import type { CertificatePublisher, CertificatePublisherJson, CrlPublisher, CrlPublisherJson, PkiArtifact, PkiArtifactJson, PublisherConfig, PublisherConfigJson, PublisherConfigValid } from "../../../common/issuance/publisher/v1/publisher_pb";
 import type { FieldMask, FieldMaskJson } from "@bufbuild/protobuf/wkt";
 import type { PaginationRequest, PaginationRequestJson, PaginationResponse, PaginationResponseJson } from "../../../common/api/query/v1/query_pb";
 
@@ -320,6 +320,133 @@ export declare type GetPublisherConfigListResponseValid = GetPublisherConfigList
  * Use `create(GetPublisherConfigListResponseSchema)` to create a new message.
  */
 export declare const GetPublisherConfigListResponseSchema: GenMessage<GetPublisherConfigListResponse, {jsonType: GetPublisherConfigListResponseJson, validType: GetPublisherConfigListResponseValid}>;
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherConnectionRequest
+ */
+export declare type TestPublisherConnectionRequest = Message<"otpki.public.issuance.v1.TestPublisherConnectionRequest"> & {
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PublisherConfig config = 1;
+   */
+  config?: PublisherConfig;
+};
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherConnectionRequest
+ */
+export declare type TestPublisherConnectionRequestJson = {
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PublisherConfig config = 1;
+   */
+  config?: PublisherConfigJson;
+};
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherConnectionRequest
+ */
+export declare type TestPublisherConnectionRequestValid = Message<"otpki.public.issuance.v1.TestPublisherConnectionRequest"> & {
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PublisherConfig config = 1;
+   */
+  config: PublisherConfigValid;
+};
+
+/**
+ * Describes the message otpki.public.issuance.v1.TestPublisherConnectionRequest.
+ * Use `create(TestPublisherConnectionRequestSchema)` to create a new message.
+ */
+export declare const TestPublisherConnectionRequestSchema: GenMessage<TestPublisherConnectionRequest, {jsonType: TestPublisherConnectionRequestJson, validType: TestPublisherConnectionRequestValid}>;
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherConnectionResponse
+ */
+export declare type TestPublisherConnectionResponse = Message<"otpki.public.issuance.v1.TestPublisherConnectionResponse"> & {
+};
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherConnectionResponse
+ */
+export declare type TestPublisherConnectionResponseJson = {
+};
+
+export declare type TestPublisherConnectionResponseValid = TestPublisherConnectionResponse;
+
+/**
+ * Describes the message otpki.public.issuance.v1.TestPublisherConnectionResponse.
+ * Use `create(TestPublisherConnectionResponseSchema)` to create a new message.
+ */
+export declare const TestPublisherConnectionResponseSchema: GenMessage<TestPublisherConnectionResponse, {jsonType: TestPublisherConnectionResponseJson, validType: TestPublisherConnectionResponseValid}>;
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherPublishRequest
+ */
+export declare type TestPublisherPublishRequest = Message<"otpki.public.issuance.v1.TestPublisherPublishRequest"> & {
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PublisherConfig config = 1;
+   */
+  config?: PublisherConfig;
+
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PkiArtifact artifact = 2;
+   */
+  artifact: PkiArtifact;
+};
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherPublishRequest
+ */
+export declare type TestPublisherPublishRequestJson = {
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PublisherConfig config = 1;
+   */
+  config?: PublisherConfigJson;
+
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PkiArtifact artifact = 2;
+   */
+  artifact?: PkiArtifactJson;
+};
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherPublishRequest
+ */
+export declare type TestPublisherPublishRequestValid = Message<"otpki.public.issuance.v1.TestPublisherPublishRequest"> & {
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PublisherConfig config = 1;
+   */
+  config: PublisherConfigValid;
+
+  /**
+   * @generated from field: otpki.common.issuance.publisher.v1.PkiArtifact artifact = 2;
+   */
+  artifact: PkiArtifact;
+};
+
+/**
+ * Describes the message otpki.public.issuance.v1.TestPublisherPublishRequest.
+ * Use `create(TestPublisherPublishRequestSchema)` to create a new message.
+ */
+export declare const TestPublisherPublishRequestSchema: GenMessage<TestPublisherPublishRequest, {jsonType: TestPublisherPublishRequestJson, validType: TestPublisherPublishRequestValid}>;
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherPublishResponse
+ */
+export declare type TestPublisherPublishResponse = Message<"otpki.public.issuance.v1.TestPublisherPublishResponse"> & {
+};
+
+/**
+ * @generated from message otpki.public.issuance.v1.TestPublisherPublishResponse
+ */
+export declare type TestPublisherPublishResponseJson = {
+};
+
+export declare type TestPublisherPublishResponseValid = TestPublisherPublishResponse;
+
+/**
+ * Describes the message otpki.public.issuance.v1.TestPublisherPublishResponse.
+ * Use `create(TestPublisherPublishResponseSchema)` to create a new message.
+ */
+export declare const TestPublisherPublishResponseSchema: GenMessage<TestPublisherPublishResponse, {jsonType: TestPublisherPublishResponseJson, validType: TestPublisherPublishResponseValid}>;
 
 /**
  * @generated from message otpki.public.issuance.v1.CreateCrlPublisherRequest

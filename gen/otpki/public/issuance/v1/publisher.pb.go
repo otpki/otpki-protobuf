@@ -465,6 +465,174 @@ func (x *GetPublisherConfigListResponse) GetPagination() *v11.PaginationResponse
 	return nil
 }
 
+type TestPublisherConnectionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Config        *v1.PublisherConfig    `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TestPublisherConnectionRequest) Reset() {
+	*x = TestPublisherConnectionRequest{}
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TestPublisherConnectionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestPublisherConnectionRequest) ProtoMessage() {}
+
+func (x *TestPublisherConnectionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestPublisherConnectionRequest.ProtoReflect.Descriptor instead.
+func (*TestPublisherConnectionRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *TestPublisherConnectionRequest) GetConfig() *v1.PublisherConfig {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+type TestPublisherConnectionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TestPublisherConnectionResponse) Reset() {
+	*x = TestPublisherConnectionResponse{}
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TestPublisherConnectionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestPublisherConnectionResponse) ProtoMessage() {}
+
+func (x *TestPublisherConnectionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestPublisherConnectionResponse.ProtoReflect.Descriptor instead.
+func (*TestPublisherConnectionResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{11}
+}
+
+type TestPublisherPublishRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Config        *v1.PublisherConfig    `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
+	Artifact      v1.PkiArtifact         `protobuf:"varint,2,opt,name=artifact,proto3,enum=otpki.common.issuance.publisher.v1.PkiArtifact" json:"artifact,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TestPublisherPublishRequest) Reset() {
+	*x = TestPublisherPublishRequest{}
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TestPublisherPublishRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestPublisherPublishRequest) ProtoMessage() {}
+
+func (x *TestPublisherPublishRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestPublisherPublishRequest.ProtoReflect.Descriptor instead.
+func (*TestPublisherPublishRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *TestPublisherPublishRequest) GetConfig() *v1.PublisherConfig {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+func (x *TestPublisherPublishRequest) GetArtifact() v1.PkiArtifact {
+	if x != nil {
+		return x.Artifact
+	}
+	return v1.PkiArtifact(0)
+}
+
+type TestPublisherPublishResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TestPublisherPublishResponse) Reset() {
+	*x = TestPublisherPublishResponse{}
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TestPublisherPublishResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestPublisherPublishResponse) ProtoMessage() {}
+
+func (x *TestPublisherPublishResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestPublisherPublishResponse.ProtoReflect.Descriptor instead.
+func (*TestPublisherPublishResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{13}
+}
+
 type CreateCrlPublisherRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Publisher     *v1.CrlPublisher       `protobuf:"bytes,1,opt,name=publisher,proto3" json:"publisher,omitempty"`
@@ -474,7 +642,7 @@ type CreateCrlPublisherRequest struct {
 
 func (x *CreateCrlPublisherRequest) Reset() {
 	*x = CreateCrlPublisherRequest{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[10]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -486,7 +654,7 @@ func (x *CreateCrlPublisherRequest) String() string {
 func (*CreateCrlPublisherRequest) ProtoMessage() {}
 
 func (x *CreateCrlPublisherRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[10]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -499,7 +667,7 @@ func (x *CreateCrlPublisherRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCrlPublisherRequest.ProtoReflect.Descriptor instead.
 func (*CreateCrlPublisherRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{10}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CreateCrlPublisherRequest) GetPublisher() *v1.CrlPublisher {
@@ -518,7 +686,7 @@ type CreateCrlPublisherResponse struct {
 
 func (x *CreateCrlPublisherResponse) Reset() {
 	*x = CreateCrlPublisherResponse{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[11]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -530,7 +698,7 @@ func (x *CreateCrlPublisherResponse) String() string {
 func (*CreateCrlPublisherResponse) ProtoMessage() {}
 
 func (x *CreateCrlPublisherResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[11]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -543,7 +711,7 @@ func (x *CreateCrlPublisherResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCrlPublisherResponse.ProtoReflect.Descriptor instead.
 func (*CreateCrlPublisherResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{11}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CreateCrlPublisherResponse) GetId() string {
@@ -562,7 +730,7 @@ type DeleteCrlPublisherRequest struct {
 
 func (x *DeleteCrlPublisherRequest) Reset() {
 	*x = DeleteCrlPublisherRequest{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[12]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -574,7 +742,7 @@ func (x *DeleteCrlPublisherRequest) String() string {
 func (*DeleteCrlPublisherRequest) ProtoMessage() {}
 
 func (x *DeleteCrlPublisherRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[12]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -587,7 +755,7 @@ func (x *DeleteCrlPublisherRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCrlPublisherRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCrlPublisherRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{12}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DeleteCrlPublisherRequest) GetPublisherId() string {
@@ -605,7 +773,7 @@ type DeleteCrlPublisherResponse struct {
 
 func (x *DeleteCrlPublisherResponse) Reset() {
 	*x = DeleteCrlPublisherResponse{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[13]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -617,7 +785,7 @@ func (x *DeleteCrlPublisherResponse) String() string {
 func (*DeleteCrlPublisherResponse) ProtoMessage() {}
 
 func (x *DeleteCrlPublisherResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[13]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -630,7 +798,7 @@ func (x *DeleteCrlPublisherResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCrlPublisherResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCrlPublisherResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{13}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{17}
 }
 
 type GetCrlPublisherListRequest struct {
@@ -642,7 +810,7 @@ type GetCrlPublisherListRequest struct {
 
 func (x *GetCrlPublisherListRequest) Reset() {
 	*x = GetCrlPublisherListRequest{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[14]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -654,7 +822,7 @@ func (x *GetCrlPublisherListRequest) String() string {
 func (*GetCrlPublisherListRequest) ProtoMessage() {}
 
 func (x *GetCrlPublisherListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[14]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -667,7 +835,7 @@ func (x *GetCrlPublisherListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCrlPublisherListRequest.ProtoReflect.Descriptor instead.
 func (*GetCrlPublisherListRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{14}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetCrlPublisherListRequest) GetPagination() *v11.PaginationRequest {
@@ -687,7 +855,7 @@ type GetCrlPublisherListResponse struct {
 
 func (x *GetCrlPublisherListResponse) Reset() {
 	*x = GetCrlPublisherListResponse{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[15]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -699,7 +867,7 @@ func (x *GetCrlPublisherListResponse) String() string {
 func (*GetCrlPublisherListResponse) ProtoMessage() {}
 
 func (x *GetCrlPublisherListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[15]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -712,7 +880,7 @@ func (x *GetCrlPublisherListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCrlPublisherListResponse.ProtoReflect.Descriptor instead.
 func (*GetCrlPublisherListResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{15}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetCrlPublisherListResponse) GetData() []*v1.CrlPublisher {
@@ -739,7 +907,7 @@ type CreateCertificatePublisherRequest struct {
 
 func (x *CreateCertificatePublisherRequest) Reset() {
 	*x = CreateCertificatePublisherRequest{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[16]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -751,7 +919,7 @@ func (x *CreateCertificatePublisherRequest) String() string {
 func (*CreateCertificatePublisherRequest) ProtoMessage() {}
 
 func (x *CreateCertificatePublisherRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[16]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -764,7 +932,7 @@ func (x *CreateCertificatePublisherRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CreateCertificatePublisherRequest.ProtoReflect.Descriptor instead.
 func (*CreateCertificatePublisherRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{16}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CreateCertificatePublisherRequest) GetPublisher() *v1.CertificatePublisher {
@@ -783,7 +951,7 @@ type CreateCertificatePublisherResponse struct {
 
 func (x *CreateCertificatePublisherResponse) Reset() {
 	*x = CreateCertificatePublisherResponse{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[17]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -795,7 +963,7 @@ func (x *CreateCertificatePublisherResponse) String() string {
 func (*CreateCertificatePublisherResponse) ProtoMessage() {}
 
 func (x *CreateCertificatePublisherResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[17]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -808,7 +976,7 @@ func (x *CreateCertificatePublisherResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use CreateCertificatePublisherResponse.ProtoReflect.Descriptor instead.
 func (*CreateCertificatePublisherResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{17}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *CreateCertificatePublisherResponse) GetId() string {
@@ -827,7 +995,7 @@ type DeleteCertificatePublisherRequest struct {
 
 func (x *DeleteCertificatePublisherRequest) Reset() {
 	*x = DeleteCertificatePublisherRequest{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[18]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -839,7 +1007,7 @@ func (x *DeleteCertificatePublisherRequest) String() string {
 func (*DeleteCertificatePublisherRequest) ProtoMessage() {}
 
 func (x *DeleteCertificatePublisherRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[18]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -852,7 +1020,7 @@ func (x *DeleteCertificatePublisherRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use DeleteCertificatePublisherRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCertificatePublisherRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{18}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *DeleteCertificatePublisherRequest) GetPublisherId() string {
@@ -870,7 +1038,7 @@ type DeleteCertificatePublisherResponse struct {
 
 func (x *DeleteCertificatePublisherResponse) Reset() {
 	*x = DeleteCertificatePublisherResponse{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[19]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -882,7 +1050,7 @@ func (x *DeleteCertificatePublisherResponse) String() string {
 func (*DeleteCertificatePublisherResponse) ProtoMessage() {}
 
 func (x *DeleteCertificatePublisherResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[19]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -895,7 +1063,7 @@ func (x *DeleteCertificatePublisherResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeleteCertificatePublisherResponse.ProtoReflect.Descriptor instead.
 func (*DeleteCertificatePublisherResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{19}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{23}
 }
 
 type GetCertificatePublisherListRequest struct {
@@ -907,7 +1075,7 @@ type GetCertificatePublisherListRequest struct {
 
 func (x *GetCertificatePublisherListRequest) Reset() {
 	*x = GetCertificatePublisherListRequest{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[20]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -919,7 +1087,7 @@ func (x *GetCertificatePublisherListRequest) String() string {
 func (*GetCertificatePublisherListRequest) ProtoMessage() {}
 
 func (x *GetCertificatePublisherListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[20]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -932,7 +1100,7 @@ func (x *GetCertificatePublisherListRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetCertificatePublisherListRequest.ProtoReflect.Descriptor instead.
 func (*GetCertificatePublisherListRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{20}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetCertificatePublisherListRequest) GetPagination() *v11.PaginationRequest {
@@ -952,7 +1120,7 @@ type GetCertificatePublisherListResponse struct {
 
 func (x *GetCertificatePublisherListResponse) Reset() {
 	*x = GetCertificatePublisherListResponse{}
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[21]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -964,7 +1132,7 @@ func (x *GetCertificatePublisherListResponse) String() string {
 func (*GetCertificatePublisherListResponse) ProtoMessage() {}
 
 func (x *GetCertificatePublisherListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[21]
+	mi := &file_otpki_public_issuance_v1_publisher_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -977,7 +1145,7 @@ func (x *GetCertificatePublisherListResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetCertificatePublisherListResponse.ProtoReflect.Descriptor instead.
 func (*GetCertificatePublisherListResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{21}
+	return file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetCertificatePublisherListResponse) GetData() []*v1.CertificatePublisher {
@@ -1023,7 +1191,15 @@ const file_otpki_public_issuance_v1_publisher_proto_rawDesc = "" +
 	"\x04data\x18\x01 \x03(\v23.otpki.common.issuance.publisher.v1.PublisherConfigR\x04data\x12M\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
-	"pagination\"k\n" +
+	"pagination\"u\n" +
+	"\x1eTestPublisherConnectionRequest\x12S\n" +
+	"\x06config\x18\x01 \x01(\v23.otpki.common.issuance.publisher.v1.PublisherConfigB\x06\xbaH\x03\xc8\x01\x01R\x06config\"!\n" +
+	"\x1fTestPublisherConnectionResponse\"\xcb\x01\n" +
+	"\x1bTestPublisherPublishRequest\x12S\n" +
+	"\x06config\x18\x01 \x01(\v23.otpki.common.issuance.publisher.v1.PublisherConfigB\x06\xbaH\x03\xc8\x01\x01R\x06config\x12W\n" +
+	"\bartifact\x18\x02 \x01(\x0e2/.otpki.common.issuance.publisher.v1.PkiArtifactB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\bartifact\"\x1e\n" +
+	"\x1cTestPublisherPublishResponse\"k\n" +
 	"\x19CreateCrlPublisherRequest\x12N\n" +
 	"\tpublisher\x18\x01 \x01(\v20.otpki.common.issuance.publisher.v1.CrlPublisherR\tpublisher\"6\n" +
 	"\x1aCreateCrlPublisherResponse\x12\x18\n" +
@@ -1070,7 +1246,7 @@ func file_otpki_public_issuance_v1_publisher_proto_rawDescGZIP() []byte {
 	return file_otpki_public_issuance_v1_publisher_proto_rawDescData
 }
 
-var file_otpki_public_issuance_v1_publisher_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_otpki_public_issuance_v1_publisher_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_otpki_public_issuance_v1_publisher_proto_goTypes = []any{
 	(*CreatePublisherConfigRequest)(nil),        // 0: otpki.public.issuance.v1.CreatePublisherConfigRequest
 	(*CreatePublisherConfigResponse)(nil),       // 1: otpki.public.issuance.v1.CreatePublisherConfigResponse
@@ -1082,46 +1258,54 @@ var file_otpki_public_issuance_v1_publisher_proto_goTypes = []any{
 	(*DeletePublisherConfigResponse)(nil),       // 7: otpki.public.issuance.v1.DeletePublisherConfigResponse
 	(*GetPublisherConfigListRequest)(nil),       // 8: otpki.public.issuance.v1.GetPublisherConfigListRequest
 	(*GetPublisherConfigListResponse)(nil),      // 9: otpki.public.issuance.v1.GetPublisherConfigListResponse
-	(*CreateCrlPublisherRequest)(nil),           // 10: otpki.public.issuance.v1.CreateCrlPublisherRequest
-	(*CreateCrlPublisherResponse)(nil),          // 11: otpki.public.issuance.v1.CreateCrlPublisherResponse
-	(*DeleteCrlPublisherRequest)(nil),           // 12: otpki.public.issuance.v1.DeleteCrlPublisherRequest
-	(*DeleteCrlPublisherResponse)(nil),          // 13: otpki.public.issuance.v1.DeleteCrlPublisherResponse
-	(*GetCrlPublisherListRequest)(nil),          // 14: otpki.public.issuance.v1.GetCrlPublisherListRequest
-	(*GetCrlPublisherListResponse)(nil),         // 15: otpki.public.issuance.v1.GetCrlPublisherListResponse
-	(*CreateCertificatePublisherRequest)(nil),   // 16: otpki.public.issuance.v1.CreateCertificatePublisherRequest
-	(*CreateCertificatePublisherResponse)(nil),  // 17: otpki.public.issuance.v1.CreateCertificatePublisherResponse
-	(*DeleteCertificatePublisherRequest)(nil),   // 18: otpki.public.issuance.v1.DeleteCertificatePublisherRequest
-	(*DeleteCertificatePublisherResponse)(nil),  // 19: otpki.public.issuance.v1.DeleteCertificatePublisherResponse
-	(*GetCertificatePublisherListRequest)(nil),  // 20: otpki.public.issuance.v1.GetCertificatePublisherListRequest
-	(*GetCertificatePublisherListResponse)(nil), // 21: otpki.public.issuance.v1.GetCertificatePublisherListResponse
-	(*v1.PublisherConfig)(nil),                  // 22: otpki.common.issuance.publisher.v1.PublisherConfig
-	(*fieldmaskpb.FieldMask)(nil),               // 23: google.protobuf.FieldMask
-	(*v11.PaginationRequest)(nil),               // 24: otpki.common.api.query.v1.PaginationRequest
-	(*v11.PaginationResponse)(nil),              // 25: otpki.common.api.query.v1.PaginationResponse
-	(*v1.CrlPublisher)(nil),                     // 26: otpki.common.issuance.publisher.v1.CrlPublisher
-	(*v1.CertificatePublisher)(nil),             // 27: otpki.common.issuance.publisher.v1.CertificatePublisher
+	(*TestPublisherConnectionRequest)(nil),      // 10: otpki.public.issuance.v1.TestPublisherConnectionRequest
+	(*TestPublisherConnectionResponse)(nil),     // 11: otpki.public.issuance.v1.TestPublisherConnectionResponse
+	(*TestPublisherPublishRequest)(nil),         // 12: otpki.public.issuance.v1.TestPublisherPublishRequest
+	(*TestPublisherPublishResponse)(nil),        // 13: otpki.public.issuance.v1.TestPublisherPublishResponse
+	(*CreateCrlPublisherRequest)(nil),           // 14: otpki.public.issuance.v1.CreateCrlPublisherRequest
+	(*CreateCrlPublisherResponse)(nil),          // 15: otpki.public.issuance.v1.CreateCrlPublisherResponse
+	(*DeleteCrlPublisherRequest)(nil),           // 16: otpki.public.issuance.v1.DeleteCrlPublisherRequest
+	(*DeleteCrlPublisherResponse)(nil),          // 17: otpki.public.issuance.v1.DeleteCrlPublisherResponse
+	(*GetCrlPublisherListRequest)(nil),          // 18: otpki.public.issuance.v1.GetCrlPublisherListRequest
+	(*GetCrlPublisherListResponse)(nil),         // 19: otpki.public.issuance.v1.GetCrlPublisherListResponse
+	(*CreateCertificatePublisherRequest)(nil),   // 20: otpki.public.issuance.v1.CreateCertificatePublisherRequest
+	(*CreateCertificatePublisherResponse)(nil),  // 21: otpki.public.issuance.v1.CreateCertificatePublisherResponse
+	(*DeleteCertificatePublisherRequest)(nil),   // 22: otpki.public.issuance.v1.DeleteCertificatePublisherRequest
+	(*DeleteCertificatePublisherResponse)(nil),  // 23: otpki.public.issuance.v1.DeleteCertificatePublisherResponse
+	(*GetCertificatePublisherListRequest)(nil),  // 24: otpki.public.issuance.v1.GetCertificatePublisherListRequest
+	(*GetCertificatePublisherListResponse)(nil), // 25: otpki.public.issuance.v1.GetCertificatePublisherListResponse
+	(*v1.PublisherConfig)(nil),                  // 26: otpki.common.issuance.publisher.v1.PublisherConfig
+	(*fieldmaskpb.FieldMask)(nil),               // 27: google.protobuf.FieldMask
+	(*v11.PaginationRequest)(nil),               // 28: otpki.common.api.query.v1.PaginationRequest
+	(*v11.PaginationResponse)(nil),              // 29: otpki.common.api.query.v1.PaginationResponse
+	(v1.PkiArtifact)(0),                         // 30: otpki.common.issuance.publisher.v1.PkiArtifact
+	(*v1.CrlPublisher)(nil),                     // 31: otpki.common.issuance.publisher.v1.CrlPublisher
+	(*v1.CertificatePublisher)(nil),             // 32: otpki.common.issuance.publisher.v1.CertificatePublisher
 }
 var file_otpki_public_issuance_v1_publisher_proto_depIdxs = []int32{
-	22, // 0: otpki.public.issuance.v1.CreatePublisherConfigRequest.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
-	22, // 1: otpki.public.issuance.v1.GetPublisherConfigResponse.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
-	22, // 2: otpki.public.issuance.v1.UpdatePublisherConfigRequest.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
-	23, // 3: otpki.public.issuance.v1.UpdatePublisherConfigRequest.update_mask:type_name -> google.protobuf.FieldMask
-	24, // 4: otpki.public.issuance.v1.GetPublisherConfigListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
-	22, // 5: otpki.public.issuance.v1.GetPublisherConfigListResponse.data:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
-	25, // 6: otpki.public.issuance.v1.GetPublisherConfigListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
-	26, // 7: otpki.public.issuance.v1.CreateCrlPublisherRequest.publisher:type_name -> otpki.common.issuance.publisher.v1.CrlPublisher
-	24, // 8: otpki.public.issuance.v1.GetCrlPublisherListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
-	26, // 9: otpki.public.issuance.v1.GetCrlPublisherListResponse.data:type_name -> otpki.common.issuance.publisher.v1.CrlPublisher
-	25, // 10: otpki.public.issuance.v1.GetCrlPublisherListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
-	27, // 11: otpki.public.issuance.v1.CreateCertificatePublisherRequest.publisher:type_name -> otpki.common.issuance.publisher.v1.CertificatePublisher
-	24, // 12: otpki.public.issuance.v1.GetCertificatePublisherListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
-	27, // 13: otpki.public.issuance.v1.GetCertificatePublisherListResponse.data:type_name -> otpki.common.issuance.publisher.v1.CertificatePublisher
-	25, // 14: otpki.public.issuance.v1.GetCertificatePublisherListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	26, // 0: otpki.public.issuance.v1.CreatePublisherConfigRequest.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
+	26, // 1: otpki.public.issuance.v1.GetPublisherConfigResponse.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
+	26, // 2: otpki.public.issuance.v1.UpdatePublisherConfigRequest.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
+	27, // 3: otpki.public.issuance.v1.UpdatePublisherConfigRequest.update_mask:type_name -> google.protobuf.FieldMask
+	28, // 4: otpki.public.issuance.v1.GetPublisherConfigListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
+	26, // 5: otpki.public.issuance.v1.GetPublisherConfigListResponse.data:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
+	29, // 6: otpki.public.issuance.v1.GetPublisherConfigListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
+	26, // 7: otpki.public.issuance.v1.TestPublisherConnectionRequest.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
+	26, // 8: otpki.public.issuance.v1.TestPublisherPublishRequest.config:type_name -> otpki.common.issuance.publisher.v1.PublisherConfig
+	30, // 9: otpki.public.issuance.v1.TestPublisherPublishRequest.artifact:type_name -> otpki.common.issuance.publisher.v1.PkiArtifact
+	31, // 10: otpki.public.issuance.v1.CreateCrlPublisherRequest.publisher:type_name -> otpki.common.issuance.publisher.v1.CrlPublisher
+	28, // 11: otpki.public.issuance.v1.GetCrlPublisherListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
+	31, // 12: otpki.public.issuance.v1.GetCrlPublisherListResponse.data:type_name -> otpki.common.issuance.publisher.v1.CrlPublisher
+	29, // 13: otpki.public.issuance.v1.GetCrlPublisherListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
+	32, // 14: otpki.public.issuance.v1.CreateCertificatePublisherRequest.publisher:type_name -> otpki.common.issuance.publisher.v1.CertificatePublisher
+	28, // 15: otpki.public.issuance.v1.GetCertificatePublisherListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
+	32, // 16: otpki.public.issuance.v1.GetCertificatePublisherListResponse.data:type_name -> otpki.common.issuance.publisher.v1.CertificatePublisher
+	29, // 17: otpki.public.issuance.v1.GetCertificatePublisherListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
+	18, // [18:18] is the sub-list for method output_type
+	18, // [18:18] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_issuance_v1_publisher_proto_init() }
@@ -1135,7 +1319,7 @@ func file_otpki_public_issuance_v1_publisher_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_public_issuance_v1_publisher_proto_rawDesc), len(file_otpki_public_issuance_v1_publisher_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

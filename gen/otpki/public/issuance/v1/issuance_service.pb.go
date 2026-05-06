@@ -25,7 +25,7 @@ var File_otpki_public_issuance_v1_issuance_service_proto protoreflect.FileDescri
 
 const file_otpki_public_issuance_v1_issuance_service_proto_rawDesc = "" +
 	"\n" +
-	"/otpki/public/issuance/v1/issuance_service.proto\x12\x18otpki.public.issuance.v1\x1a\x1cgoogle/api/annotations.proto\x1a4otpki/public/issuance/v1/certificate_authority.proto\x1a4otpki/public/issuance/v1/certificate_extension.proto\x1a2otpki/public/issuance/v1/certificate_profile.proto\x1a1otpki/public/issuance/v1/extended_key_usage.proto\x1a1otpki/public/issuance/v1/issued_certificate.proto\x1a%otpki/public/issuance/v1/issuer.proto\x1a\"otpki/public/issuance/v1/key.proto\x1a1otpki/public/issuance/v1/key_storage_config.proto\x1a&otpki/public/issuance/v1/metrics.proto\x1a(otpki/public/issuance/v1/publisher.proto\x1a.otpki/public/issuance/v1/revocation_list.proto\x1a+otpki/public/issuance/v1/secret_share.proto\x1a&otpki/public/issuance/v1/tasklog.proto2\x9fd\n" +
+	"/otpki/public/issuance/v1/issuance_service.proto\x12\x18otpki.public.issuance.v1\x1a\x1cgoogle/api/annotations.proto\x1a4otpki/public/issuance/v1/certificate_authority.proto\x1a4otpki/public/issuance/v1/certificate_extension.proto\x1a2otpki/public/issuance/v1/certificate_profile.proto\x1a1otpki/public/issuance/v1/extended_key_usage.proto\x1a1otpki/public/issuance/v1/issued_certificate.proto\x1a%otpki/public/issuance/v1/issuer.proto\x1a\"otpki/public/issuance/v1/key.proto\x1a1otpki/public/issuance/v1/key_storage_config.proto\x1a&otpki/public/issuance/v1/metrics.proto\x1a(otpki/public/issuance/v1/publisher.proto\x1a.otpki/public/issuance/v1/revocation_list.proto\x1a+otpki/public/issuance/v1/secret_share.proto\x1a&otpki/public/issuance/v1/tasklog.proto2\x93g\n" +
 	"\x0fIssuanceService\x12\xce\x01\n" +
 	"\x14CreateRevocationList\x125.otpki.public.issuance.v1.CreateRevocationListRequest\x1a6.otpki.public.issuance.v1.CreateRevocationListResponse\"G\x82\xd3\xe4\x93\x02A:\x01*\"</v1/certificate-authorities/{ca_id}/generate-revocation-list\x12\xbc\x01\n" +
 	"\x18CreateCertificateProfile\x129.otpki.public.issuance.v1.CreateCertificateProfileRequest\x1a:.otpki.public.issuance.v1.CreateCertificateProfileResponse\")\x82\xd3\xe4\x93\x02#:\aprofile\"\x18/v1/profiles/certificate\x12\xb2\x01\n" +
@@ -101,7 +101,9 @@ const file_otpki_public_issuance_v1_issuance_service_proto_rawDesc = "" +
 	"\x15UpdatePublisherConfig\x126.otpki.public.issuance.v1.UpdatePublisherConfigRequest\x1a7.otpki.public.issuance.v1.UpdatePublisherConfigResponse\"a\x82\xd3\xe4\x93\x02X:\x06configZ+:\x06config2!/v1/publisher/configs/{config.id}\x1a!/v1/publisher/configs/{config.id}\x90\x02\x01\x12\xac\x01\n" +
 	"\x15DeletePublisherConfig\x126.otpki.public.issuance.v1.DeletePublisherConfigRequest\x1a7.otpki.public.issuance.v1.DeletePublisherConfigResponse\"\"\x82\xd3\xe4\x93\x02\x1c*\x1a/v1/publisher/configs/{id}\x12\xd2\x01\n" +
 	"\x16GetPublisherConfigList\x127.otpki.public.issuance.v1.GetPublisherConfigListRequest\x1a8.otpki.public.issuance.v1.GetPublisherConfigListResponse\"E\x82\xd3\xe4\x93\x02<:\n" +
-	"paginationZ\x17\x12\x15/v1/publisher/configs\x1a\x15/v1/publisher/configs\x90\x02\x01\x12\xa6\x01\n" +
+	"paginationZ\x17\x12\x15/v1/publisher/configs\x1a\x15/v1/publisher/configs\x90\x02\x01\x12\xba\x01\n" +
+	"\x17TestPublisherConnection\x128.otpki.public.issuance.v1.TestPublisherConnectionRequest\x1a9.otpki.public.issuance.v1.TestPublisherConnectionResponse\"*\x82\xd3\xe4\x93\x02$:\x06config\"\x1a/v1/publisher/configs/test\x12\xb4\x01\n" +
+	"\x14TestPublisherPublish\x125.otpki.public.issuance.v1.TestPublisherPublishRequest\x1a6.otpki.public.issuance.v1.TestPublisherPublishResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/publisher/configs/test-publish\x12\xa6\x01\n" +
 	"\x0eGetTaskLogList\x12/.otpki.public.issuance.v1.GetTaskLogListRequest\x1a0.otpki.public.issuance.v1.GetTaskLogListResponse\"1\x82\xd3\xe4\x93\x02(:\n" +
 	"paginationZ\r\x12\v/v1/tasklog\x1a\v/v1/tasklog\x90\x02\x01\x12\xb1\x01\n" +
 	"\rGetTaskQueues\x12..otpki.public.issuance.v1.GetTaskQueuesRequest\x1a/.otpki.public.issuance.v1.GetTaskQueuesResponse\"?\x82\xd3\xe4\x93\x026:\n" +
@@ -171,73 +173,77 @@ var file_otpki_public_issuance_v1_issuance_service_proto_goTypes = []any{
 	(*UpdatePublisherConfigRequest)(nil),                  // 58: otpki.public.issuance.v1.UpdatePublisherConfigRequest
 	(*DeletePublisherConfigRequest)(nil),                  // 59: otpki.public.issuance.v1.DeletePublisherConfigRequest
 	(*GetPublisherConfigListRequest)(nil),                 // 60: otpki.public.issuance.v1.GetPublisherConfigListRequest
-	(*GetTaskLogListRequest)(nil),                         // 61: otpki.public.issuance.v1.GetTaskLogListRequest
-	(*GetTaskQueuesRequest)(nil),                          // 62: otpki.public.issuance.v1.GetTaskQueuesRequest
-	(*GetTaskQueueInfoRequest)(nil),                       // 63: otpki.public.issuance.v1.GetTaskQueueInfoRequest
-	(*CreateRevocationListResponse)(nil),                  // 64: otpki.public.issuance.v1.CreateRevocationListResponse
-	(*CreateCertificateProfileResponse)(nil),              // 65: otpki.public.issuance.v1.CreateCertificateProfileResponse
-	(*GetCertificateProfileResponse)(nil),                 // 66: otpki.public.issuance.v1.GetCertificateProfileResponse
-	(*UpdateCertificateProfileResponse)(nil),              // 67: otpki.public.issuance.v1.UpdateCertificateProfileResponse
-	(*DeleteCertificateProfileResponse)(nil),              // 68: otpki.public.issuance.v1.DeleteCertificateProfileResponse
-	(*GetCertificateProfileListResponse)(nil),             // 69: otpki.public.issuance.v1.GetCertificateProfileListResponse
-	(*GetKeyResponse)(nil),                                // 70: otpki.public.issuance.v1.GetKeyResponse
-	(*GetKeyListResponse)(nil),                            // 71: otpki.public.issuance.v1.GetKeyListResponse
-	(*CreateKeyResponse)(nil),                             // 72: otpki.public.issuance.v1.CreateKeyResponse
-	(*DeleteKeyResponse)(nil),                             // 73: otpki.public.issuance.v1.DeleteKeyResponse
-	(*GetPQKeyTypesResponse)(nil),                         // 74: otpki.public.issuance.v1.GetPQKeyTypesResponse
-	(*CreateKeyStorageConfigResponse)(nil),                // 75: otpki.public.issuance.v1.CreateKeyStorageConfigResponse
-	(*GetKeyStorageConfigResponse)(nil),                   // 76: otpki.public.issuance.v1.GetKeyStorageConfigResponse
-	(*UpdateKeyStorageConfigResponse)(nil),                // 77: otpki.public.issuance.v1.UpdateKeyStorageConfigResponse
-	(*DeleteKeyStorageConfigResponse)(nil),                // 78: otpki.public.issuance.v1.DeleteKeyStorageConfigResponse
-	(*GetKeyStorageConfigListResponse)(nil),               // 79: otpki.public.issuance.v1.GetKeyStorageConfigListResponse
-	(*SendKeyDriverMessageResponse)(nil),                  // 80: otpki.public.issuance.v1.SendKeyDriverMessageResponse
-	(*ActivateKeyStorageConfigResponse)(nil),              // 81: otpki.public.issuance.v1.ActivateKeyStorageConfigResponse
-	(*DeactivateKeyStorageConfigResponse)(nil),            // 82: otpki.public.issuance.v1.DeactivateKeyStorageConfigResponse
-	(*CombineSecretResponse)(nil),                         // 83: otpki.public.issuance.v1.CombineSecretResponse
-	(*SplitSecretResponse)(nil),                           // 84: otpki.public.issuance.v1.SplitSecretResponse
-	(*CreateCustomCertificateExtensionResponse)(nil),      // 85: otpki.public.issuance.v1.CreateCustomCertificateExtensionResponse
-	(*GetCustomCertificateExtensionResponse)(nil),         // 86: otpki.public.issuance.v1.GetCustomCertificateExtensionResponse
-	(*UpdateCustomCertificateExtensionResponse)(nil),      // 87: otpki.public.issuance.v1.UpdateCustomCertificateExtensionResponse
-	(*DeleteCustomCertificateExtensionResponse)(nil),      // 88: otpki.public.issuance.v1.DeleteCustomCertificateExtensionResponse
-	(*GetCustomCertificateExtensionListResponse)(nil),     // 89: otpki.public.issuance.v1.GetCustomCertificateExtensionListResponse
-	(*CreateCustomExtKeyUsageResponse)(nil),               // 90: otpki.public.issuance.v1.CreateCustomExtKeyUsageResponse
-	(*GetCustomExtKeyUsageResponse)(nil),                  // 91: otpki.public.issuance.v1.GetCustomExtKeyUsageResponse
-	(*UpdateCustomExtKeyUsageResponse)(nil),               // 92: otpki.public.issuance.v1.UpdateCustomExtKeyUsageResponse
-	(*DeleteCustomExtKeyUsageResponse)(nil),               // 93: otpki.public.issuance.v1.DeleteCustomExtKeyUsageResponse
-	(*GetCustomExtKeyUsageListResponse)(nil),              // 94: otpki.public.issuance.v1.GetCustomExtKeyUsageListResponse
-	(*GetDashboardMetricsResponse)(nil),                   // 95: otpki.public.issuance.v1.GetDashboardMetricsResponse
-	(*CreateIssuanceRequestResponse)(nil),                 // 96: otpki.public.issuance.v1.CreateIssuanceRequestResponse
-	(*GetIssuanceByRequestIDResponse)(nil),                // 97: otpki.public.issuance.v1.GetIssuanceByRequestIDResponse
-	(*RevokeIssuedCertificatesResponse)(nil),              // 98: otpki.public.issuance.v1.RevokeIssuedCertificatesResponse
-	(*GetIssuanceRequestListResponse)(nil),                // 99: otpki.public.issuance.v1.GetIssuanceRequestListResponse
-	(*GetIssuedCertificateResponse)(nil),                  // 100: otpki.public.issuance.v1.GetIssuedCertificateResponse
-	(*GetIssuedCertificateBySerialNumberResponse)(nil),    // 101: otpki.public.issuance.v1.GetIssuedCertificateBySerialNumberResponse
-	(*GetIssuedCertificateListResponse)(nil),              // 102: otpki.public.issuance.v1.GetIssuedCertificateListResponse
-	(*CreateCertificateAuthorityResponse)(nil),            // 103: otpki.public.issuance.v1.CreateCertificateAuthorityResponse
-	(*ImportCertificateAuthorityResponse)(nil),            // 104: otpki.public.issuance.v1.ImportCertificateAuthorityResponse
-	(*ImportCertificateAuthorityPKCS12Response)(nil),      // 105: otpki.public.issuance.v1.ImportCertificateAuthorityPKCS12Response
-	(*CreateCertificateAuthorityCSRResponse)(nil),         // 106: otpki.public.issuance.v1.CreateCertificateAuthorityCSRResponse
-	(*ImportCertificateAuthorityCertificateResponse)(nil), // 107: otpki.public.issuance.v1.ImportCertificateAuthorityCertificateResponse
-	(*RenewCertificateAuthorityResponse)(nil),             // 108: otpki.public.issuance.v1.RenewCertificateAuthorityResponse
-	(*GetCertificateAuthorityResponse)(nil),               // 109: otpki.public.issuance.v1.GetCertificateAuthorityResponse
-	(*GetCertificateAuthorityListResponse)(nil),           // 110: otpki.public.issuance.v1.GetCertificateAuthorityListResponse
-	(*UpdateCertificateAuthorityResponse)(nil),            // 111: otpki.public.issuance.v1.UpdateCertificateAuthorityResponse
-	(*DeleteCertificateAuthorityResponse)(nil),            // 112: otpki.public.issuance.v1.DeleteCertificateAuthorityResponse
-	(*GetCertificateAuthorityCertificatesResponse)(nil),   // 113: otpki.public.issuance.v1.GetCertificateAuthorityCertificatesResponse
-	(*CreateCrlPublisherResponse)(nil),                    // 114: otpki.public.issuance.v1.CreateCrlPublisherResponse
-	(*DeleteCrlPublisherResponse)(nil),                    // 115: otpki.public.issuance.v1.DeleteCrlPublisherResponse
-	(*GetCrlPublisherListResponse)(nil),                   // 116: otpki.public.issuance.v1.GetCrlPublisherListResponse
-	(*CreateCertificatePublisherResponse)(nil),            // 117: otpki.public.issuance.v1.CreateCertificatePublisherResponse
-	(*DeleteCertificatePublisherResponse)(nil),            // 118: otpki.public.issuance.v1.DeleteCertificatePublisherResponse
-	(*GetCertificatePublisherListResponse)(nil),           // 119: otpki.public.issuance.v1.GetCertificatePublisherListResponse
-	(*CreatePublisherConfigResponse)(nil),                 // 120: otpki.public.issuance.v1.CreatePublisherConfigResponse
-	(*GetPublisherConfigResponse)(nil),                    // 121: otpki.public.issuance.v1.GetPublisherConfigResponse
-	(*UpdatePublisherConfigResponse)(nil),                 // 122: otpki.public.issuance.v1.UpdatePublisherConfigResponse
-	(*DeletePublisherConfigResponse)(nil),                 // 123: otpki.public.issuance.v1.DeletePublisherConfigResponse
-	(*GetPublisherConfigListResponse)(nil),                // 124: otpki.public.issuance.v1.GetPublisherConfigListResponse
-	(*GetTaskLogListResponse)(nil),                        // 125: otpki.public.issuance.v1.GetTaskLogListResponse
-	(*GetTaskQueuesResponse)(nil),                         // 126: otpki.public.issuance.v1.GetTaskQueuesResponse
-	(*GetTaskQueueInfoResponse)(nil),                      // 127: otpki.public.issuance.v1.GetTaskQueueInfoResponse
+	(*TestPublisherConnectionRequest)(nil),                // 61: otpki.public.issuance.v1.TestPublisherConnectionRequest
+	(*TestPublisherPublishRequest)(nil),                   // 62: otpki.public.issuance.v1.TestPublisherPublishRequest
+	(*GetTaskLogListRequest)(nil),                         // 63: otpki.public.issuance.v1.GetTaskLogListRequest
+	(*GetTaskQueuesRequest)(nil),                          // 64: otpki.public.issuance.v1.GetTaskQueuesRequest
+	(*GetTaskQueueInfoRequest)(nil),                       // 65: otpki.public.issuance.v1.GetTaskQueueInfoRequest
+	(*CreateRevocationListResponse)(nil),                  // 66: otpki.public.issuance.v1.CreateRevocationListResponse
+	(*CreateCertificateProfileResponse)(nil),              // 67: otpki.public.issuance.v1.CreateCertificateProfileResponse
+	(*GetCertificateProfileResponse)(nil),                 // 68: otpki.public.issuance.v1.GetCertificateProfileResponse
+	(*UpdateCertificateProfileResponse)(nil),              // 69: otpki.public.issuance.v1.UpdateCertificateProfileResponse
+	(*DeleteCertificateProfileResponse)(nil),              // 70: otpki.public.issuance.v1.DeleteCertificateProfileResponse
+	(*GetCertificateProfileListResponse)(nil),             // 71: otpki.public.issuance.v1.GetCertificateProfileListResponse
+	(*GetKeyResponse)(nil),                                // 72: otpki.public.issuance.v1.GetKeyResponse
+	(*GetKeyListResponse)(nil),                            // 73: otpki.public.issuance.v1.GetKeyListResponse
+	(*CreateKeyResponse)(nil),                             // 74: otpki.public.issuance.v1.CreateKeyResponse
+	(*DeleteKeyResponse)(nil),                             // 75: otpki.public.issuance.v1.DeleteKeyResponse
+	(*GetPQKeyTypesResponse)(nil),                         // 76: otpki.public.issuance.v1.GetPQKeyTypesResponse
+	(*CreateKeyStorageConfigResponse)(nil),                // 77: otpki.public.issuance.v1.CreateKeyStorageConfigResponse
+	(*GetKeyStorageConfigResponse)(nil),                   // 78: otpki.public.issuance.v1.GetKeyStorageConfigResponse
+	(*UpdateKeyStorageConfigResponse)(nil),                // 79: otpki.public.issuance.v1.UpdateKeyStorageConfigResponse
+	(*DeleteKeyStorageConfigResponse)(nil),                // 80: otpki.public.issuance.v1.DeleteKeyStorageConfigResponse
+	(*GetKeyStorageConfigListResponse)(nil),               // 81: otpki.public.issuance.v1.GetKeyStorageConfigListResponse
+	(*SendKeyDriverMessageResponse)(nil),                  // 82: otpki.public.issuance.v1.SendKeyDriverMessageResponse
+	(*ActivateKeyStorageConfigResponse)(nil),              // 83: otpki.public.issuance.v1.ActivateKeyStorageConfigResponse
+	(*DeactivateKeyStorageConfigResponse)(nil),            // 84: otpki.public.issuance.v1.DeactivateKeyStorageConfigResponse
+	(*CombineSecretResponse)(nil),                         // 85: otpki.public.issuance.v1.CombineSecretResponse
+	(*SplitSecretResponse)(nil),                           // 86: otpki.public.issuance.v1.SplitSecretResponse
+	(*CreateCustomCertificateExtensionResponse)(nil),      // 87: otpki.public.issuance.v1.CreateCustomCertificateExtensionResponse
+	(*GetCustomCertificateExtensionResponse)(nil),         // 88: otpki.public.issuance.v1.GetCustomCertificateExtensionResponse
+	(*UpdateCustomCertificateExtensionResponse)(nil),      // 89: otpki.public.issuance.v1.UpdateCustomCertificateExtensionResponse
+	(*DeleteCustomCertificateExtensionResponse)(nil),      // 90: otpki.public.issuance.v1.DeleteCustomCertificateExtensionResponse
+	(*GetCustomCertificateExtensionListResponse)(nil),     // 91: otpki.public.issuance.v1.GetCustomCertificateExtensionListResponse
+	(*CreateCustomExtKeyUsageResponse)(nil),               // 92: otpki.public.issuance.v1.CreateCustomExtKeyUsageResponse
+	(*GetCustomExtKeyUsageResponse)(nil),                  // 93: otpki.public.issuance.v1.GetCustomExtKeyUsageResponse
+	(*UpdateCustomExtKeyUsageResponse)(nil),               // 94: otpki.public.issuance.v1.UpdateCustomExtKeyUsageResponse
+	(*DeleteCustomExtKeyUsageResponse)(nil),               // 95: otpki.public.issuance.v1.DeleteCustomExtKeyUsageResponse
+	(*GetCustomExtKeyUsageListResponse)(nil),              // 96: otpki.public.issuance.v1.GetCustomExtKeyUsageListResponse
+	(*GetDashboardMetricsResponse)(nil),                   // 97: otpki.public.issuance.v1.GetDashboardMetricsResponse
+	(*CreateIssuanceRequestResponse)(nil),                 // 98: otpki.public.issuance.v1.CreateIssuanceRequestResponse
+	(*GetIssuanceByRequestIDResponse)(nil),                // 99: otpki.public.issuance.v1.GetIssuanceByRequestIDResponse
+	(*RevokeIssuedCertificatesResponse)(nil),              // 100: otpki.public.issuance.v1.RevokeIssuedCertificatesResponse
+	(*GetIssuanceRequestListResponse)(nil),                // 101: otpki.public.issuance.v1.GetIssuanceRequestListResponse
+	(*GetIssuedCertificateResponse)(nil),                  // 102: otpki.public.issuance.v1.GetIssuedCertificateResponse
+	(*GetIssuedCertificateBySerialNumberResponse)(nil),    // 103: otpki.public.issuance.v1.GetIssuedCertificateBySerialNumberResponse
+	(*GetIssuedCertificateListResponse)(nil),              // 104: otpki.public.issuance.v1.GetIssuedCertificateListResponse
+	(*CreateCertificateAuthorityResponse)(nil),            // 105: otpki.public.issuance.v1.CreateCertificateAuthorityResponse
+	(*ImportCertificateAuthorityResponse)(nil),            // 106: otpki.public.issuance.v1.ImportCertificateAuthorityResponse
+	(*ImportCertificateAuthorityPKCS12Response)(nil),      // 107: otpki.public.issuance.v1.ImportCertificateAuthorityPKCS12Response
+	(*CreateCertificateAuthorityCSRResponse)(nil),         // 108: otpki.public.issuance.v1.CreateCertificateAuthorityCSRResponse
+	(*ImportCertificateAuthorityCertificateResponse)(nil), // 109: otpki.public.issuance.v1.ImportCertificateAuthorityCertificateResponse
+	(*RenewCertificateAuthorityResponse)(nil),             // 110: otpki.public.issuance.v1.RenewCertificateAuthorityResponse
+	(*GetCertificateAuthorityResponse)(nil),               // 111: otpki.public.issuance.v1.GetCertificateAuthorityResponse
+	(*GetCertificateAuthorityListResponse)(nil),           // 112: otpki.public.issuance.v1.GetCertificateAuthorityListResponse
+	(*UpdateCertificateAuthorityResponse)(nil),            // 113: otpki.public.issuance.v1.UpdateCertificateAuthorityResponse
+	(*DeleteCertificateAuthorityResponse)(nil),            // 114: otpki.public.issuance.v1.DeleteCertificateAuthorityResponse
+	(*GetCertificateAuthorityCertificatesResponse)(nil),   // 115: otpki.public.issuance.v1.GetCertificateAuthorityCertificatesResponse
+	(*CreateCrlPublisherResponse)(nil),                    // 116: otpki.public.issuance.v1.CreateCrlPublisherResponse
+	(*DeleteCrlPublisherResponse)(nil),                    // 117: otpki.public.issuance.v1.DeleteCrlPublisherResponse
+	(*GetCrlPublisherListResponse)(nil),                   // 118: otpki.public.issuance.v1.GetCrlPublisherListResponse
+	(*CreateCertificatePublisherResponse)(nil),            // 119: otpki.public.issuance.v1.CreateCertificatePublisherResponse
+	(*DeleteCertificatePublisherResponse)(nil),            // 120: otpki.public.issuance.v1.DeleteCertificatePublisherResponse
+	(*GetCertificatePublisherListResponse)(nil),           // 121: otpki.public.issuance.v1.GetCertificatePublisherListResponse
+	(*CreatePublisherConfigResponse)(nil),                 // 122: otpki.public.issuance.v1.CreatePublisherConfigResponse
+	(*GetPublisherConfigResponse)(nil),                    // 123: otpki.public.issuance.v1.GetPublisherConfigResponse
+	(*UpdatePublisherConfigResponse)(nil),                 // 124: otpki.public.issuance.v1.UpdatePublisherConfigResponse
+	(*DeletePublisherConfigResponse)(nil),                 // 125: otpki.public.issuance.v1.DeletePublisherConfigResponse
+	(*GetPublisherConfigListResponse)(nil),                // 126: otpki.public.issuance.v1.GetPublisherConfigListResponse
+	(*TestPublisherConnectionResponse)(nil),               // 127: otpki.public.issuance.v1.TestPublisherConnectionResponse
+	(*TestPublisherPublishResponse)(nil),                  // 128: otpki.public.issuance.v1.TestPublisherPublishResponse
+	(*GetTaskLogListResponse)(nil),                        // 129: otpki.public.issuance.v1.GetTaskLogListResponse
+	(*GetTaskQueuesResponse)(nil),                         // 130: otpki.public.issuance.v1.GetTaskQueuesResponse
+	(*GetTaskQueueInfoResponse)(nil),                      // 131: otpki.public.issuance.v1.GetTaskQueueInfoResponse
 }
 var file_otpki_public_issuance_v1_issuance_service_proto_depIdxs = []int32{
 	0,   // 0: otpki.public.issuance.v1.IssuanceService.CreateRevocationList:input_type -> otpki.public.issuance.v1.CreateRevocationListRequest
@@ -301,75 +307,79 @@ var file_otpki_public_issuance_v1_issuance_service_proto_depIdxs = []int32{
 	58,  // 58: otpki.public.issuance.v1.IssuanceService.UpdatePublisherConfig:input_type -> otpki.public.issuance.v1.UpdatePublisherConfigRequest
 	59,  // 59: otpki.public.issuance.v1.IssuanceService.DeletePublisherConfig:input_type -> otpki.public.issuance.v1.DeletePublisherConfigRequest
 	60,  // 60: otpki.public.issuance.v1.IssuanceService.GetPublisherConfigList:input_type -> otpki.public.issuance.v1.GetPublisherConfigListRequest
-	61,  // 61: otpki.public.issuance.v1.IssuanceService.GetTaskLogList:input_type -> otpki.public.issuance.v1.GetTaskLogListRequest
-	62,  // 62: otpki.public.issuance.v1.IssuanceService.GetTaskQueues:input_type -> otpki.public.issuance.v1.GetTaskQueuesRequest
-	63,  // 63: otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo:input_type -> otpki.public.issuance.v1.GetTaskQueueInfoRequest
-	64,  // 64: otpki.public.issuance.v1.IssuanceService.CreateRevocationList:output_type -> otpki.public.issuance.v1.CreateRevocationListResponse
-	65,  // 65: otpki.public.issuance.v1.IssuanceService.CreateCertificateProfile:output_type -> otpki.public.issuance.v1.CreateCertificateProfileResponse
-	66,  // 66: otpki.public.issuance.v1.IssuanceService.GetCertificateProfile:output_type -> otpki.public.issuance.v1.GetCertificateProfileResponse
-	67,  // 67: otpki.public.issuance.v1.IssuanceService.UpdateCertificateProfile:output_type -> otpki.public.issuance.v1.UpdateCertificateProfileResponse
-	68,  // 68: otpki.public.issuance.v1.IssuanceService.DeleteCertificateProfile:output_type -> otpki.public.issuance.v1.DeleteCertificateProfileResponse
-	69,  // 69: otpki.public.issuance.v1.IssuanceService.GetCertificateProfileList:output_type -> otpki.public.issuance.v1.GetCertificateProfileListResponse
-	70,  // 70: otpki.public.issuance.v1.IssuanceService.GetKey:output_type -> otpki.public.issuance.v1.GetKeyResponse
-	71,  // 71: otpki.public.issuance.v1.IssuanceService.GetKeyList:output_type -> otpki.public.issuance.v1.GetKeyListResponse
-	72,  // 72: otpki.public.issuance.v1.IssuanceService.CreateKey:output_type -> otpki.public.issuance.v1.CreateKeyResponse
-	73,  // 73: otpki.public.issuance.v1.IssuanceService.DeleteKey:output_type -> otpki.public.issuance.v1.DeleteKeyResponse
-	74,  // 74: otpki.public.issuance.v1.IssuanceService.GetPQKeyTypes:output_type -> otpki.public.issuance.v1.GetPQKeyTypesResponse
-	75,  // 75: otpki.public.issuance.v1.IssuanceService.CreateKeyStorageConfig:output_type -> otpki.public.issuance.v1.CreateKeyStorageConfigResponse
-	76,  // 76: otpki.public.issuance.v1.IssuanceService.GetKeyStorageConfig:output_type -> otpki.public.issuance.v1.GetKeyStorageConfigResponse
-	77,  // 77: otpki.public.issuance.v1.IssuanceService.UpdateKeyStorageConfig:output_type -> otpki.public.issuance.v1.UpdateKeyStorageConfigResponse
-	78,  // 78: otpki.public.issuance.v1.IssuanceService.DeleteKeyStorageConfig:output_type -> otpki.public.issuance.v1.DeleteKeyStorageConfigResponse
-	79,  // 79: otpki.public.issuance.v1.IssuanceService.GetKeyStorageConfigList:output_type -> otpki.public.issuance.v1.GetKeyStorageConfigListResponse
-	80,  // 80: otpki.public.issuance.v1.IssuanceService.SendKeyDriverMessage:output_type -> otpki.public.issuance.v1.SendKeyDriverMessageResponse
-	81,  // 81: otpki.public.issuance.v1.IssuanceService.ActivateKeyStorageConfig:output_type -> otpki.public.issuance.v1.ActivateKeyStorageConfigResponse
-	82,  // 82: otpki.public.issuance.v1.IssuanceService.DeactivateKeyStorageConfig:output_type -> otpki.public.issuance.v1.DeactivateKeyStorageConfigResponse
-	83,  // 83: otpki.public.issuance.v1.IssuanceService.CombineSecret:output_type -> otpki.public.issuance.v1.CombineSecretResponse
-	84,  // 84: otpki.public.issuance.v1.IssuanceService.SplitSecret:output_type -> otpki.public.issuance.v1.SplitSecretResponse
-	85,  // 85: otpki.public.issuance.v1.IssuanceService.CreateCustomCertificateExtension:output_type -> otpki.public.issuance.v1.CreateCustomCertificateExtensionResponse
-	86,  // 86: otpki.public.issuance.v1.IssuanceService.GetCustomCertificateExtension:output_type -> otpki.public.issuance.v1.GetCustomCertificateExtensionResponse
-	87,  // 87: otpki.public.issuance.v1.IssuanceService.UpdateCustomCertificateExtension:output_type -> otpki.public.issuance.v1.UpdateCustomCertificateExtensionResponse
-	88,  // 88: otpki.public.issuance.v1.IssuanceService.DeleteCustomCertificateExtension:output_type -> otpki.public.issuance.v1.DeleteCustomCertificateExtensionResponse
-	89,  // 89: otpki.public.issuance.v1.IssuanceService.GetCustomCertificateExtensionList:output_type -> otpki.public.issuance.v1.GetCustomCertificateExtensionListResponse
-	90,  // 90: otpki.public.issuance.v1.IssuanceService.CreateCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.CreateCustomExtKeyUsageResponse
-	91,  // 91: otpki.public.issuance.v1.IssuanceService.GetCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.GetCustomExtKeyUsageResponse
-	92,  // 92: otpki.public.issuance.v1.IssuanceService.UpdateCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.UpdateCustomExtKeyUsageResponse
-	93,  // 93: otpki.public.issuance.v1.IssuanceService.DeleteCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.DeleteCustomExtKeyUsageResponse
-	94,  // 94: otpki.public.issuance.v1.IssuanceService.GetCustomExtKeyUsageList:output_type -> otpki.public.issuance.v1.GetCustomExtKeyUsageListResponse
-	95,  // 95: otpki.public.issuance.v1.IssuanceService.GetDashboardMetrics:output_type -> otpki.public.issuance.v1.GetDashboardMetricsResponse
-	96,  // 96: otpki.public.issuance.v1.IssuanceService.CreateIssuanceRequest:output_type -> otpki.public.issuance.v1.CreateIssuanceRequestResponse
-	97,  // 97: otpki.public.issuance.v1.IssuanceService.GetIssuanceByRequestID:output_type -> otpki.public.issuance.v1.GetIssuanceByRequestIDResponse
-	98,  // 98: otpki.public.issuance.v1.IssuanceService.RevokeIssuedCertificates:output_type -> otpki.public.issuance.v1.RevokeIssuedCertificatesResponse
-	99,  // 99: otpki.public.issuance.v1.IssuanceService.GetIssuanceRequestList:output_type -> otpki.public.issuance.v1.GetIssuanceRequestListResponse
-	100, // 100: otpki.public.issuance.v1.IssuanceService.GetIssuedCertificate:output_type -> otpki.public.issuance.v1.GetIssuedCertificateResponse
-	101, // 101: otpki.public.issuance.v1.IssuanceService.GetIssuedCertificateBySerialNumber:output_type -> otpki.public.issuance.v1.GetIssuedCertificateBySerialNumberResponse
-	102, // 102: otpki.public.issuance.v1.IssuanceService.GetIssuedCertificateList:output_type -> otpki.public.issuance.v1.GetIssuedCertificateListResponse
-	103, // 103: otpki.public.issuance.v1.IssuanceService.CreateCertificateAuthority:output_type -> otpki.public.issuance.v1.CreateCertificateAuthorityResponse
-	104, // 104: otpki.public.issuance.v1.IssuanceService.ImportCertificateAuthority:output_type -> otpki.public.issuance.v1.ImportCertificateAuthorityResponse
-	105, // 105: otpki.public.issuance.v1.IssuanceService.ImportCertificateAuthorityPKCS12:output_type -> otpki.public.issuance.v1.ImportCertificateAuthorityPKCS12Response
-	106, // 106: otpki.public.issuance.v1.IssuanceService.CreateCertificateAuthorityCSR:output_type -> otpki.public.issuance.v1.CreateCertificateAuthorityCSRResponse
-	107, // 107: otpki.public.issuance.v1.IssuanceService.ImportCertificateAuthorityCertificate:output_type -> otpki.public.issuance.v1.ImportCertificateAuthorityCertificateResponse
-	108, // 108: otpki.public.issuance.v1.IssuanceService.RenewCertificateAuthority:output_type -> otpki.public.issuance.v1.RenewCertificateAuthorityResponse
-	109, // 109: otpki.public.issuance.v1.IssuanceService.GetCertificateAuthority:output_type -> otpki.public.issuance.v1.GetCertificateAuthorityResponse
-	110, // 110: otpki.public.issuance.v1.IssuanceService.GetCertificateAuthorityList:output_type -> otpki.public.issuance.v1.GetCertificateAuthorityListResponse
-	111, // 111: otpki.public.issuance.v1.IssuanceService.UpdateCertificateAuthority:output_type -> otpki.public.issuance.v1.UpdateCertificateAuthorityResponse
-	112, // 112: otpki.public.issuance.v1.IssuanceService.DeleteCertificateAuthority:output_type -> otpki.public.issuance.v1.DeleteCertificateAuthorityResponse
-	113, // 113: otpki.public.issuance.v1.IssuanceService.GetCertificateAuthorityCertificates:output_type -> otpki.public.issuance.v1.GetCertificateAuthorityCertificatesResponse
-	114, // 114: otpki.public.issuance.v1.IssuanceService.CreateCrlPublisher:output_type -> otpki.public.issuance.v1.CreateCrlPublisherResponse
-	115, // 115: otpki.public.issuance.v1.IssuanceService.DeleteCrlPublisher:output_type -> otpki.public.issuance.v1.DeleteCrlPublisherResponse
-	116, // 116: otpki.public.issuance.v1.IssuanceService.GetCrlPublisherList:output_type -> otpki.public.issuance.v1.GetCrlPublisherListResponse
-	117, // 117: otpki.public.issuance.v1.IssuanceService.CreateCertificatePublisher:output_type -> otpki.public.issuance.v1.CreateCertificatePublisherResponse
-	118, // 118: otpki.public.issuance.v1.IssuanceService.DeleteCertificatePublisher:output_type -> otpki.public.issuance.v1.DeleteCertificatePublisherResponse
-	119, // 119: otpki.public.issuance.v1.IssuanceService.GetCertificatePublisherList:output_type -> otpki.public.issuance.v1.GetCertificatePublisherListResponse
-	120, // 120: otpki.public.issuance.v1.IssuanceService.CreatePublisherConfig:output_type -> otpki.public.issuance.v1.CreatePublisherConfigResponse
-	121, // 121: otpki.public.issuance.v1.IssuanceService.GetPublisherConfig:output_type -> otpki.public.issuance.v1.GetPublisherConfigResponse
-	122, // 122: otpki.public.issuance.v1.IssuanceService.UpdatePublisherConfig:output_type -> otpki.public.issuance.v1.UpdatePublisherConfigResponse
-	123, // 123: otpki.public.issuance.v1.IssuanceService.DeletePublisherConfig:output_type -> otpki.public.issuance.v1.DeletePublisherConfigResponse
-	124, // 124: otpki.public.issuance.v1.IssuanceService.GetPublisherConfigList:output_type -> otpki.public.issuance.v1.GetPublisherConfigListResponse
-	125, // 125: otpki.public.issuance.v1.IssuanceService.GetTaskLogList:output_type -> otpki.public.issuance.v1.GetTaskLogListResponse
-	126, // 126: otpki.public.issuance.v1.IssuanceService.GetTaskQueues:output_type -> otpki.public.issuance.v1.GetTaskQueuesResponse
-	127, // 127: otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo:output_type -> otpki.public.issuance.v1.GetTaskQueueInfoResponse
-	64,  // [64:128] is the sub-list for method output_type
-	0,   // [0:64] is the sub-list for method input_type
+	61,  // 61: otpki.public.issuance.v1.IssuanceService.TestPublisherConnection:input_type -> otpki.public.issuance.v1.TestPublisherConnectionRequest
+	62,  // 62: otpki.public.issuance.v1.IssuanceService.TestPublisherPublish:input_type -> otpki.public.issuance.v1.TestPublisherPublishRequest
+	63,  // 63: otpki.public.issuance.v1.IssuanceService.GetTaskLogList:input_type -> otpki.public.issuance.v1.GetTaskLogListRequest
+	64,  // 64: otpki.public.issuance.v1.IssuanceService.GetTaskQueues:input_type -> otpki.public.issuance.v1.GetTaskQueuesRequest
+	65,  // 65: otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo:input_type -> otpki.public.issuance.v1.GetTaskQueueInfoRequest
+	66,  // 66: otpki.public.issuance.v1.IssuanceService.CreateRevocationList:output_type -> otpki.public.issuance.v1.CreateRevocationListResponse
+	67,  // 67: otpki.public.issuance.v1.IssuanceService.CreateCertificateProfile:output_type -> otpki.public.issuance.v1.CreateCertificateProfileResponse
+	68,  // 68: otpki.public.issuance.v1.IssuanceService.GetCertificateProfile:output_type -> otpki.public.issuance.v1.GetCertificateProfileResponse
+	69,  // 69: otpki.public.issuance.v1.IssuanceService.UpdateCertificateProfile:output_type -> otpki.public.issuance.v1.UpdateCertificateProfileResponse
+	70,  // 70: otpki.public.issuance.v1.IssuanceService.DeleteCertificateProfile:output_type -> otpki.public.issuance.v1.DeleteCertificateProfileResponse
+	71,  // 71: otpki.public.issuance.v1.IssuanceService.GetCertificateProfileList:output_type -> otpki.public.issuance.v1.GetCertificateProfileListResponse
+	72,  // 72: otpki.public.issuance.v1.IssuanceService.GetKey:output_type -> otpki.public.issuance.v1.GetKeyResponse
+	73,  // 73: otpki.public.issuance.v1.IssuanceService.GetKeyList:output_type -> otpki.public.issuance.v1.GetKeyListResponse
+	74,  // 74: otpki.public.issuance.v1.IssuanceService.CreateKey:output_type -> otpki.public.issuance.v1.CreateKeyResponse
+	75,  // 75: otpki.public.issuance.v1.IssuanceService.DeleteKey:output_type -> otpki.public.issuance.v1.DeleteKeyResponse
+	76,  // 76: otpki.public.issuance.v1.IssuanceService.GetPQKeyTypes:output_type -> otpki.public.issuance.v1.GetPQKeyTypesResponse
+	77,  // 77: otpki.public.issuance.v1.IssuanceService.CreateKeyStorageConfig:output_type -> otpki.public.issuance.v1.CreateKeyStorageConfigResponse
+	78,  // 78: otpki.public.issuance.v1.IssuanceService.GetKeyStorageConfig:output_type -> otpki.public.issuance.v1.GetKeyStorageConfigResponse
+	79,  // 79: otpki.public.issuance.v1.IssuanceService.UpdateKeyStorageConfig:output_type -> otpki.public.issuance.v1.UpdateKeyStorageConfigResponse
+	80,  // 80: otpki.public.issuance.v1.IssuanceService.DeleteKeyStorageConfig:output_type -> otpki.public.issuance.v1.DeleteKeyStorageConfigResponse
+	81,  // 81: otpki.public.issuance.v1.IssuanceService.GetKeyStorageConfigList:output_type -> otpki.public.issuance.v1.GetKeyStorageConfigListResponse
+	82,  // 82: otpki.public.issuance.v1.IssuanceService.SendKeyDriverMessage:output_type -> otpki.public.issuance.v1.SendKeyDriverMessageResponse
+	83,  // 83: otpki.public.issuance.v1.IssuanceService.ActivateKeyStorageConfig:output_type -> otpki.public.issuance.v1.ActivateKeyStorageConfigResponse
+	84,  // 84: otpki.public.issuance.v1.IssuanceService.DeactivateKeyStorageConfig:output_type -> otpki.public.issuance.v1.DeactivateKeyStorageConfigResponse
+	85,  // 85: otpki.public.issuance.v1.IssuanceService.CombineSecret:output_type -> otpki.public.issuance.v1.CombineSecretResponse
+	86,  // 86: otpki.public.issuance.v1.IssuanceService.SplitSecret:output_type -> otpki.public.issuance.v1.SplitSecretResponse
+	87,  // 87: otpki.public.issuance.v1.IssuanceService.CreateCustomCertificateExtension:output_type -> otpki.public.issuance.v1.CreateCustomCertificateExtensionResponse
+	88,  // 88: otpki.public.issuance.v1.IssuanceService.GetCustomCertificateExtension:output_type -> otpki.public.issuance.v1.GetCustomCertificateExtensionResponse
+	89,  // 89: otpki.public.issuance.v1.IssuanceService.UpdateCustomCertificateExtension:output_type -> otpki.public.issuance.v1.UpdateCustomCertificateExtensionResponse
+	90,  // 90: otpki.public.issuance.v1.IssuanceService.DeleteCustomCertificateExtension:output_type -> otpki.public.issuance.v1.DeleteCustomCertificateExtensionResponse
+	91,  // 91: otpki.public.issuance.v1.IssuanceService.GetCustomCertificateExtensionList:output_type -> otpki.public.issuance.v1.GetCustomCertificateExtensionListResponse
+	92,  // 92: otpki.public.issuance.v1.IssuanceService.CreateCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.CreateCustomExtKeyUsageResponse
+	93,  // 93: otpki.public.issuance.v1.IssuanceService.GetCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.GetCustomExtKeyUsageResponse
+	94,  // 94: otpki.public.issuance.v1.IssuanceService.UpdateCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.UpdateCustomExtKeyUsageResponse
+	95,  // 95: otpki.public.issuance.v1.IssuanceService.DeleteCustomExtKeyUsage:output_type -> otpki.public.issuance.v1.DeleteCustomExtKeyUsageResponse
+	96,  // 96: otpki.public.issuance.v1.IssuanceService.GetCustomExtKeyUsageList:output_type -> otpki.public.issuance.v1.GetCustomExtKeyUsageListResponse
+	97,  // 97: otpki.public.issuance.v1.IssuanceService.GetDashboardMetrics:output_type -> otpki.public.issuance.v1.GetDashboardMetricsResponse
+	98,  // 98: otpki.public.issuance.v1.IssuanceService.CreateIssuanceRequest:output_type -> otpki.public.issuance.v1.CreateIssuanceRequestResponse
+	99,  // 99: otpki.public.issuance.v1.IssuanceService.GetIssuanceByRequestID:output_type -> otpki.public.issuance.v1.GetIssuanceByRequestIDResponse
+	100, // 100: otpki.public.issuance.v1.IssuanceService.RevokeIssuedCertificates:output_type -> otpki.public.issuance.v1.RevokeIssuedCertificatesResponse
+	101, // 101: otpki.public.issuance.v1.IssuanceService.GetIssuanceRequestList:output_type -> otpki.public.issuance.v1.GetIssuanceRequestListResponse
+	102, // 102: otpki.public.issuance.v1.IssuanceService.GetIssuedCertificate:output_type -> otpki.public.issuance.v1.GetIssuedCertificateResponse
+	103, // 103: otpki.public.issuance.v1.IssuanceService.GetIssuedCertificateBySerialNumber:output_type -> otpki.public.issuance.v1.GetIssuedCertificateBySerialNumberResponse
+	104, // 104: otpki.public.issuance.v1.IssuanceService.GetIssuedCertificateList:output_type -> otpki.public.issuance.v1.GetIssuedCertificateListResponse
+	105, // 105: otpki.public.issuance.v1.IssuanceService.CreateCertificateAuthority:output_type -> otpki.public.issuance.v1.CreateCertificateAuthorityResponse
+	106, // 106: otpki.public.issuance.v1.IssuanceService.ImportCertificateAuthority:output_type -> otpki.public.issuance.v1.ImportCertificateAuthorityResponse
+	107, // 107: otpki.public.issuance.v1.IssuanceService.ImportCertificateAuthorityPKCS12:output_type -> otpki.public.issuance.v1.ImportCertificateAuthorityPKCS12Response
+	108, // 108: otpki.public.issuance.v1.IssuanceService.CreateCertificateAuthorityCSR:output_type -> otpki.public.issuance.v1.CreateCertificateAuthorityCSRResponse
+	109, // 109: otpki.public.issuance.v1.IssuanceService.ImportCertificateAuthorityCertificate:output_type -> otpki.public.issuance.v1.ImportCertificateAuthorityCertificateResponse
+	110, // 110: otpki.public.issuance.v1.IssuanceService.RenewCertificateAuthority:output_type -> otpki.public.issuance.v1.RenewCertificateAuthorityResponse
+	111, // 111: otpki.public.issuance.v1.IssuanceService.GetCertificateAuthority:output_type -> otpki.public.issuance.v1.GetCertificateAuthorityResponse
+	112, // 112: otpki.public.issuance.v1.IssuanceService.GetCertificateAuthorityList:output_type -> otpki.public.issuance.v1.GetCertificateAuthorityListResponse
+	113, // 113: otpki.public.issuance.v1.IssuanceService.UpdateCertificateAuthority:output_type -> otpki.public.issuance.v1.UpdateCertificateAuthorityResponse
+	114, // 114: otpki.public.issuance.v1.IssuanceService.DeleteCertificateAuthority:output_type -> otpki.public.issuance.v1.DeleteCertificateAuthorityResponse
+	115, // 115: otpki.public.issuance.v1.IssuanceService.GetCertificateAuthorityCertificates:output_type -> otpki.public.issuance.v1.GetCertificateAuthorityCertificatesResponse
+	116, // 116: otpki.public.issuance.v1.IssuanceService.CreateCrlPublisher:output_type -> otpki.public.issuance.v1.CreateCrlPublisherResponse
+	117, // 117: otpki.public.issuance.v1.IssuanceService.DeleteCrlPublisher:output_type -> otpki.public.issuance.v1.DeleteCrlPublisherResponse
+	118, // 118: otpki.public.issuance.v1.IssuanceService.GetCrlPublisherList:output_type -> otpki.public.issuance.v1.GetCrlPublisherListResponse
+	119, // 119: otpki.public.issuance.v1.IssuanceService.CreateCertificatePublisher:output_type -> otpki.public.issuance.v1.CreateCertificatePublisherResponse
+	120, // 120: otpki.public.issuance.v1.IssuanceService.DeleteCertificatePublisher:output_type -> otpki.public.issuance.v1.DeleteCertificatePublisherResponse
+	121, // 121: otpki.public.issuance.v1.IssuanceService.GetCertificatePublisherList:output_type -> otpki.public.issuance.v1.GetCertificatePublisherListResponse
+	122, // 122: otpki.public.issuance.v1.IssuanceService.CreatePublisherConfig:output_type -> otpki.public.issuance.v1.CreatePublisherConfigResponse
+	123, // 123: otpki.public.issuance.v1.IssuanceService.GetPublisherConfig:output_type -> otpki.public.issuance.v1.GetPublisherConfigResponse
+	124, // 124: otpki.public.issuance.v1.IssuanceService.UpdatePublisherConfig:output_type -> otpki.public.issuance.v1.UpdatePublisherConfigResponse
+	125, // 125: otpki.public.issuance.v1.IssuanceService.DeletePublisherConfig:output_type -> otpki.public.issuance.v1.DeletePublisherConfigResponse
+	126, // 126: otpki.public.issuance.v1.IssuanceService.GetPublisherConfigList:output_type -> otpki.public.issuance.v1.GetPublisherConfigListResponse
+	127, // 127: otpki.public.issuance.v1.IssuanceService.TestPublisherConnection:output_type -> otpki.public.issuance.v1.TestPublisherConnectionResponse
+	128, // 128: otpki.public.issuance.v1.IssuanceService.TestPublisherPublish:output_type -> otpki.public.issuance.v1.TestPublisherPublishResponse
+	129, // 129: otpki.public.issuance.v1.IssuanceService.GetTaskLogList:output_type -> otpki.public.issuance.v1.GetTaskLogListResponse
+	130, // 130: otpki.public.issuance.v1.IssuanceService.GetTaskQueues:output_type -> otpki.public.issuance.v1.GetTaskQueuesResponse
+	131, // 131: otpki.public.issuance.v1.IssuanceService.GetTaskQueueInfo:output_type -> otpki.public.issuance.v1.GetTaskQueueInfoResponse
+	66,  // [66:132] is the sub-list for method output_type
+	0,   // [0:66] is the sub-list for method input_type
 	0,   // [0:0] is the sub-list for extension type_name
 	0,   // [0:0] is the sub-list for extension extendee
 	0,   // [0:0] is the sub-list for field type_name
