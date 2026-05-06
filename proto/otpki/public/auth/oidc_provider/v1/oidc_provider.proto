@@ -1,0 +1,124 @@
+syntax = "proto3";
+package otpki.public.auth.oidc_provider.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/api/v1/auth_required.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateOIDCProviderRequest {
+  common.auth.v1.OIDCProvider oidc_provider = 1 [(buf.validate.field).required = true];
+}
+
+message CreateOIDCProviderResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetOIDCProviderRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetOIDCProviderResponse {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+}
+
+message GetOIDCProviderByIssuerRequest {
+  string issuer = 1 [(buf.validate.field).required = true];
+}
+
+message GetOIDCProviderByIssuerResponse {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+}
+
+message GetOIDCProviderByNameRequest {
+  string name = 1 [(buf.validate.field).required = true];
+}
+
+message GetOIDCProviderByNameResponse {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+}
+
+message UpdateOIDCProviderRequest {
+  common.auth.v1.OIDCProvider oidc_provider = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateOIDCProviderResponse {}
+
+message DeleteOIDCProviderRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteOIDCProviderResponse {}
+
+message GetOIDCProviderListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetOIDCProviderListResponse {
+  repeated common.auth.v1.OIDCProvider data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+// unauthenticated route so user can make actual
+// login requests
+message GetOIDCProviderNamesRequest {}
+
+message GetOIDCProviderNamesResponse {
+  repeated string provider_names = 1;
+}
+
+service OIDCProviderService {
+  rpc CreateOIDCProvider(CreateOIDCProviderRequest) returns (CreateOIDCProviderResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/oidc-providers"
+      body: "oidc_provider"
+    };
+  }
+  rpc GetOIDCProvider(GetOIDCProviderRequest) returns (GetOIDCProviderResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/{id}"};
+  }
+  rpc GetOIDCProviderByIssuer(GetOIDCProviderByIssuerRequest) returns (GetOIDCProviderByIssuerResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/by-issuer/{issuer}"};
+  }
+  rpc GetOIDCProviderByName(GetOIDCProviderByNameRequest) returns (GetOIDCProviderByNameResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/by-name/{name}"};
+  }
+  rpc UpdateOIDCProvider(UpdateOIDCProviderRequest) returns (UpdateOIDCProviderResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/oidc-providers/{oidc_provider.id}"
+      body: "oidc_provider"
+      additional_bindings: {
+        patch: "/v1/auth/oidc-providers/{oidc_provider.id}"
+        body: "oidc_provider"
+      }
+    };
+  }
+  rpc DeleteOIDCProvider(DeleteOIDCProviderRequest) returns (DeleteOIDCProviderResponse) {
+    option (google.api.http) = {delete: "/v1/auth/oidc-providers/{id}"};
+  }
+  rpc GetOIDCProviderList(GetOIDCProviderListRequest) returns (GetOIDCProviderListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/oidc-providers"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/oidc-providers"}
+    };
+  }
+  rpc GetOIDCProviderNames(GetOIDCProviderNamesRequest) returns (GetOIDCProviderNamesResponse) {
+    option (common.api.v1.auth_required) = false;
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/oidc-providers/names"};
+  }
+}

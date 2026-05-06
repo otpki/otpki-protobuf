@@ -1,0 +1,39 @@
+syntax = "proto3";
+package otpki.common.core.extended_key_usage.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+
+message CustomExtKeyUsage {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  string oid = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 255
+  ];
+  string name = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 127
+  ];
+  string description = 4 [(buf.validate.field).string.max_len = 255];
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package otpki.public.auth.resource.v1;
+
+import "google/api/annotations.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message GetAllResourcesRequest {}
+
+message GetAllResourcesResponse {
+  repeated common.auth.v1.ResourceActions resources = 1;
+}
+
+service ResourceService {
+  rpc GetAllResources(GetAllResourcesRequest) returns (GetAllResourcesResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/resources"};
+  }
+}

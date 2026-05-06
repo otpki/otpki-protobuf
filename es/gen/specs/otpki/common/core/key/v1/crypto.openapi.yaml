@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.core.key.v1
+paths: {}
+components:
+  schemas:
+    otpki.common.core.key.v1.Ed25519Options:
+      type: object
+      properties:
+        hash:
+          type: integer
+          title: hash
+        context:
+          type: string
+          title: context
+      title: Ed25519Options
+      additionalProperties: false
+    otpki.common.core.key.v1.MLDSAPHType:
+      type: string
+      title: MLDSAPHType
+      enum:
+        - MLDSAPH_TYPE_UNSPECIFIED
+        - MLDSAPH_TYPE_PURE
+        - MLDSAPH_TYPE_PREHASH
+        - MLDSAPH_TYPE_EXTERNAL_MU
+    otpki.common.core.key.v1.MLDSASigningOptions:
+      type: object
+      properties:
+        variant:
+          title: variant
+          $ref: '#/components/schemas/otpki.common.core.key.v1.MLDSAPHType'
+        context:
+          type: string
+          title: context
+          format: byte
+        prehash:
+          type: integer
+          title: prehash
+      title: MLDSASigningOptions
+      additionalProperties: false
+    otpki.common.core.key.v1.RSAOAEPOptions:
+      type: object
+      properties:
+        hash:
+          type: integer
+          title: hash
+        label:
+          type: string
+          title: label
+          format: byte
+      title: RSAOAEPOptions
+      additionalProperties: false
+    otpki.common.core.key.v1.RSAPKCS1V15DecryptOptions:
+      type: object
+      properties:
+        sessionKeyLen:
+          type: integer
+          title: session_key_len
+          format: int32
+      title: RSAPKCS1V15DecryptOptions
+      additionalProperties: false
+    otpki.common.core.key.v1.RSAPSSOptions:
+      type: object
+      properties:
+        saltLength:
+          type: integer
+          title: salt_length
+          format: int32
+        hash:
+          type: integer
+          title: hash
+      title: RSAPSSOptions
+      additionalProperties: false
+security: []

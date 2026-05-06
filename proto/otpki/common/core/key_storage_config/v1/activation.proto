@@ -1,0 +1,33 @@
+syntax = "proto3";
+package otpki.common.core.key_storage_config.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+
+message Activation {
+  // the key storage config for which to apply this
+  // activation. the key storage config will control
+  // whether or not this is persisted via auto-activation
+  string key_storage_config_id = 1 [(buf.validate.field).string.uuid = true];
+
+  // when this is checked, it will ignore all the other fields
+  // and just use the stored auto activation code if it exists
+  bool use_auto_activation = 2;
+
+  // this is the provided pin
+  string activation_code = 3;
+
+  // if the pin is an empty string, attempt to
+  // construct the pin from secret shares. note: these should be hex strings
+  // and can be formatted any which way (i.e. 0xDEADBEEF, DEADBEEF, DE AD BE EF, 0Xdeadbeef, etc.)
+  repeated string secret_shares = 4 [
+    (buf.validate.field).repeated.unique = true,
+    (buf.validate.field).repeated.items.string.min_len = 2
+  ];
+
+  // if activation duration is set, this will a) prevent code from being stored for auto activation
+  // and b) restrict the activation code from being used after this period of time
+  // if it is unset and the key storage config does not have auto activation, this activation will
+  // persist for the lifetime of the activation state store (either in mem or valkey backed)
+  google.protobuf.Duration activation_duration = 5;
+}

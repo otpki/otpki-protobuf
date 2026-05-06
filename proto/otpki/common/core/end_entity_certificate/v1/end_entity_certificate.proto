@@ -1,0 +1,35 @@
+syntax = "proto3";
+package otpki.common.core.end_entity_certificate.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/core/issuer/v1/issuer.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message EndEntityCertificate {
+  option (api.v1.generate_native) = true;
+  string end_entity_id = 1 [(buf.validate.field).string.uuid = true];
+  string enrollment_request_id = 2 [(buf.validate.field).string.uuid = true];
+  string issued_certificate_id = 3 [(buf.validate.field).string.uuid = true];
+  bytes certificate = 4;
+  repeated bytes certificate_chain = 5;
+  bytes serial_number = 6;
+  string display_name = 7;
+  repeated x509.v1.SubjectDNAttribute subject_dn = 8;
+  repeated x509.v1.SubjectDNAttribute issuer_dn = 9;
+  google.protobuf.Timestamp not_before = 10 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp not_after = 11 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+
+  issuer.v1.IssuingProtocol protocol_used = 12;
+
+  // no created_at or updated_at since we are really just a "mirror" of fetched IS certificates
+  // the existence of this model basically signifies the end of the "contract" between the ES and IS
+  // and is simply for enrollment protocols to quickly fetch EE certs without IS calls.
+}

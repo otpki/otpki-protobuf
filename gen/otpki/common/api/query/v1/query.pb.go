@@ -314,6 +314,55 @@ func (FieldType) EnumDescriptor() ([]byte, []int) {
 	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{3}
 }
 
+type LogicalOperator int32
+
+const (
+	LogicalOperator_LOGICAL_OPERATOR_UNSPECIFIED LogicalOperator = 0
+	LogicalOperator_LOGICAL_OPERATOR_AND         LogicalOperator = 1
+	LogicalOperator_LOGICAL_OPERATOR_OR          LogicalOperator = 2
+)
+
+// Enum value maps for LogicalOperator.
+var (
+	LogicalOperator_name = map[int32]string{
+		0: "LOGICAL_OPERATOR_UNSPECIFIED",
+		1: "LOGICAL_OPERATOR_AND",
+		2: "LOGICAL_OPERATOR_OR",
+	}
+	LogicalOperator_value = map[string]int32{
+		"LOGICAL_OPERATOR_UNSPECIFIED": 0,
+		"LOGICAL_OPERATOR_AND":         1,
+		"LOGICAL_OPERATOR_OR":          2,
+	}
+)
+
+func (x LogicalOperator) Enum() *LogicalOperator {
+	p := new(LogicalOperator)
+	*p = x
+	return p
+}
+
+func (x LogicalOperator) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LogicalOperator) Descriptor() protoreflect.EnumDescriptor {
+	return file_otpki_common_api_query_v1_query_proto_enumTypes[4].Descriptor()
+}
+
+func (LogicalOperator) Type() protoreflect.EnumType {
+	return &file_otpki_common_api_query_v1_query_proto_enumTypes[4]
+}
+
+func (x LogicalOperator) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use LogicalOperator.Descriptor instead.
+func (LogicalOperator) EnumDescriptor() ([]byte, []int) {
+	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{4}
+}
+
 type SortEntry struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
 	Column string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
@@ -567,6 +616,58 @@ func (x *Filter) GetValues() []*FilterValue {
 	return nil
 }
 
+type FilterGroup struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Operator      LogicalOperator        `protobuf:"varint,1,opt,name=operator,proto3,enum=otpki.common.api.query.v1.LogicalOperator" json:"operator,omitempty"`
+	Filters       []*Filter              `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FilterGroup) Reset() {
+	*x = FilterGroup{}
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FilterGroup) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FilterGroup) ProtoMessage() {}
+
+func (x *FilterGroup) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FilterGroup.ProtoReflect.Descriptor instead.
+func (*FilterGroup) Descriptor() ([]byte, []int) {
+	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FilterGroup) GetOperator() LogicalOperator {
+	if x != nil {
+		return x.Operator
+	}
+	return LogicalOperator_LOGICAL_OPERATOR_UNSPECIFIED
+}
+
+func (x *FilterGroup) GetFilters() []*Filter {
+	if x != nil {
+		return x.Filters
+	}
+	return nil
+}
+
 type PaginationInfoEntry struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	Column                 string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
@@ -582,7 +683,7 @@ type PaginationInfoEntry struct {
 
 func (x *PaginationInfoEntry) Reset() {
 	*x = PaginationInfoEntry{}
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[3]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -594,7 +695,7 @@ func (x *PaginationInfoEntry) String() string {
 func (*PaginationInfoEntry) ProtoMessage() {}
 
 func (x *PaginationInfoEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[3]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -607,7 +708,7 @@ func (x *PaginationInfoEntry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationInfoEntry.ProtoReflect.Descriptor instead.
 func (*PaginationInfoEntry) Descriptor() ([]byte, []int) {
-	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{3}
+	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PaginationInfoEntry) GetColumn() string {
@@ -668,7 +769,7 @@ type PaginationInfoResponse struct {
 
 func (x *PaginationInfoResponse) Reset() {
 	*x = PaginationInfoResponse{}
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[4]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -680,7 +781,7 @@ func (x *PaginationInfoResponse) String() string {
 func (*PaginationInfoResponse) ProtoMessage() {}
 
 func (x *PaginationInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[4]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -693,7 +794,7 @@ func (x *PaginationInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationInfoResponse.ProtoReflect.Descriptor instead.
 func (*PaginationInfoResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{4}
+	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PaginationInfoResponse) GetColumns() []*PaginationInfoEntry {
@@ -710,17 +811,18 @@ type PaginationRequest struct {
 	Skip                   int64                  `protobuf:"varint,3,opt,name=skip,proto3" json:"skip,omitempty"`
 	Sort                   []*SortEntry           `protobuf:"bytes,4,rep,name=sort,proto3" json:"sort,omitempty"`
 	Filters                []*Filter              `protobuf:"bytes,5,rep,name=filters,proto3" json:"filters,omitempty"`
-	WithoutCount           bool                   `protobuf:"varint,6,opt,name=without_count,json=withoutCount,proto3" json:"without_count,omitempty"`
-	WithCountEstimate      bool                   `protobuf:"varint,7,opt,name=with_count_estimate,json=withCountEstimate,proto3" json:"with_count_estimate,omitempty"`
-	WithSoftDeleted        bool                   `protobuf:"varint,8,opt,name=with_soft_deleted,json=withSoftDeleted,proto3" json:"with_soft_deleted,omitempty"`
-	WithPaginationInfoOnly bool                   `protobuf:"varint,9,opt,name=with_pagination_info_only,json=withPaginationInfoOnly,proto3" json:"with_pagination_info_only,omitempty"`
+	FilterGroups           []*FilterGroup         `protobuf:"bytes,6,rep,name=filter_groups,json=filterGroups,proto3" json:"filter_groups,omitempty"`
+	WithoutCount           bool                   `protobuf:"varint,7,opt,name=without_count,json=withoutCount,proto3" json:"without_count,omitempty"`
+	WithCountEstimate      bool                   `protobuf:"varint,8,opt,name=with_count_estimate,json=withCountEstimate,proto3" json:"with_count_estimate,omitempty"`
+	WithSoftDeleted        bool                   `protobuf:"varint,9,opt,name=with_soft_deleted,json=withSoftDeleted,proto3" json:"with_soft_deleted,omitempty"`
+	WithPaginationInfoOnly bool                   `protobuf:"varint,10,opt,name=with_pagination_info_only,json=withPaginationInfoOnly,proto3" json:"with_pagination_info_only,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
 
 func (x *PaginationRequest) Reset() {
 	*x = PaginationRequest{}
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[5]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -732,7 +834,7 @@ func (x *PaginationRequest) String() string {
 func (*PaginationRequest) ProtoMessage() {}
 
 func (x *PaginationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[5]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -745,7 +847,7 @@ func (x *PaginationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationRequest.ProtoReflect.Descriptor instead.
 func (*PaginationRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{5}
+	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PaginationRequest) GetPageToken() string {
@@ -779,6 +881,13 @@ func (x *PaginationRequest) GetSort() []*SortEntry {
 func (x *PaginationRequest) GetFilters() []*Filter {
 	if x != nil {
 		return x.Filters
+	}
+	return nil
+}
+
+func (x *PaginationRequest) GetFilterGroups() []*FilterGroup {
+	if x != nil {
+		return x.FilterGroups
 	}
 	return nil
 }
@@ -826,7 +935,7 @@ type PaginationResponse struct {
 
 func (x *PaginationResponse) Reset() {
 	*x = PaginationResponse{}
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[6]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -838,7 +947,7 @@ func (x *PaginationResponse) String() string {
 func (*PaginationResponse) ProtoMessage() {}
 
 func (x *PaginationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[6]
+	mi := &file_otpki_common_api_query_v1_query_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -851,7 +960,7 @@ func (x *PaginationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationResponse.ProtoReflect.Descriptor instead.
 func (*PaginationResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{6}
+	return file_otpki_common_api_query_v1_query_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PaginationResponse) GetPageSize() int64 {
@@ -978,7 +1087,10 @@ const file_otpki_common_api_query_v1_query_proto_rawDesc = "" +
 	"\x06Filter\x12\x16\n" +
 	"\x06column\x18\x01 \x01(\tR\x06column\x12E\n" +
 	"\boperator\x18\x02 \x01(\x0e2).otpki.common.api.query.v1.FilterOperatorR\boperator\x12>\n" +
-	"\x06values\x18\x03 \x03(\v2&.otpki.common.api.query.v1.FilterValueR\x06values\"\x8e\x03\n" +
+	"\x06values\x18\x03 \x03(\v2&.otpki.common.api.query.v1.FilterValueR\x06values\"\x92\x01\n" +
+	"\vFilterGroup\x12F\n" +
+	"\boperator\x18\x01 \x01(\x0e2*.otpki.common.api.query.v1.LogicalOperatorR\boperator\x12;\n" +
+	"\afilters\x18\x02 \x03(\v2!.otpki.common.api.query.v1.FilterR\afilters\"\x8e\x03\n" +
 	"\x13PaginationInfoEntry\x12\x16\n" +
 	"\x06column\x18\x01 \x01(\tR\x06column\x12\x1e\n" +
 	"\n" +
@@ -991,18 +1103,20 @@ const file_otpki_common_api_query_v1_query_proto_rawDesc = "" +
 	"field_type\x18\x06 \x01(\x0e2$.otpki.common.api.query.v1.FieldTypeR\tfieldType\x12\x1a\n" +
 	"\brepeated\x18\a \x01(\bR\brepeated\"b\n" +
 	"\x16PaginationInfoResponse\x12H\n" +
-	"\acolumns\x18\x01 \x03(\v2..otpki.common.api.query.v1.PaginationInfoEntryR\acolumns\"\x96\x03\n" +
+	"\acolumns\x18\x01 \x03(\v2..otpki.common.api.query.v1.PaginationInfoEntryR\acolumns\"\xe3\x03\n" +
 	"\x11PaginationRequest\x12\x1d\n" +
 	"\n" +
 	"page_token\x18\x01 \x01(\tR\tpageToken\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x03R\bpageSize\x12\x12\n" +
 	"\x04skip\x18\x03 \x01(\x03R\x04skip\x128\n" +
 	"\x04sort\x18\x04 \x03(\v2$.otpki.common.api.query.v1.SortEntryR\x04sort\x12;\n" +
-	"\afilters\x18\x05 \x03(\v2!.otpki.common.api.query.v1.FilterR\afilters\x12#\n" +
-	"\rwithout_count\x18\x06 \x01(\bR\fwithoutCount\x12.\n" +
-	"\x13with_count_estimate\x18\a \x01(\bR\x11withCountEstimate\x12*\n" +
-	"\x11with_soft_deleted\x18\b \x01(\bR\x0fwithSoftDeleted\x129\n" +
-	"\x19with_pagination_info_only\x18\t \x01(\bR\x16withPaginationInfoOnly\"\xa6\x02\n" +
+	"\afilters\x18\x05 \x03(\v2!.otpki.common.api.query.v1.FilterR\afilters\x12K\n" +
+	"\rfilter_groups\x18\x06 \x03(\v2&.otpki.common.api.query.v1.FilterGroupR\ffilterGroups\x12#\n" +
+	"\rwithout_count\x18\a \x01(\bR\fwithoutCount\x12.\n" +
+	"\x13with_count_estimate\x18\b \x01(\bR\x11withCountEstimate\x12*\n" +
+	"\x11with_soft_deleted\x18\t \x01(\bR\x0fwithSoftDeleted\x129\n" +
+	"\x19with_pagination_info_only\x18\n" +
+	" \x01(\bR\x16withPaginationInfoOnly\"\xa6\x02\n" +
 	"\x12PaginationResponse\x12\x1b\n" +
 	"\tpage_size\x18\x01 \x01(\x03R\bpageSize\x12\x12\n" +
 	"\x04skip\x18\x02 \x01(\x03R\x04skip\x12&\n" +
@@ -1060,7 +1174,11 @@ const file_otpki_common_api_query_v1_query_proto_rawDesc = "" +
 	"\x0fFIELD_TYPE_BOOL\x10\x04\x12\x18\n" +
 	"\x14FIELD_TYPE_TIMESTAMP\x10\x05\x12\x17\n" +
 	"\x13FIELD_TYPE_DURATION\x10\x06\x12\x14\n" +
-	"\x10FIELD_TYPE_BYTES\x10\a:B\n" +
+	"\x10FIELD_TYPE_BYTES\x10\a*f\n" +
+	"\x0fLogicalOperator\x12 \n" +
+	"\x1cLOGICAL_OPERATOR_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14LOGICAL_OPERATOR_AND\x10\x01\x12\x17\n" +
+	"\x13LOGICAL_OPERATOR_OR\x10\x02:B\n" +
 	"\n" +
 	"filterable\x12\x1d.google.protobuf.FieldOptions\x18\xe1\xd4\x03 \x01(\bR\n" +
 	"filterable\x88\x01\x01:>\n" +
@@ -1082,48 +1200,53 @@ func file_otpki_common_api_query_v1_query_proto_rawDescGZIP() []byte {
 	return file_otpki_common_api_query_v1_query_proto_rawDescData
 }
 
-var file_otpki_common_api_query_v1_query_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_otpki_common_api_query_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_otpki_common_api_query_v1_query_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_otpki_common_api_query_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_otpki_common_api_query_v1_query_proto_goTypes = []any{
 	(SortOrder)(0),                    // 0: otpki.common.api.query.v1.SortOrder
 	(FilterOperator)(0),               // 1: otpki.common.api.query.v1.FilterOperator
 	(SortOperator)(0),                 // 2: otpki.common.api.query.v1.SortOperator
 	(FieldType)(0),                    // 3: otpki.common.api.query.v1.FieldType
-	(*SortEntry)(nil),                 // 4: otpki.common.api.query.v1.SortEntry
-	(*FilterValue)(nil),               // 5: otpki.common.api.query.v1.FilterValue
-	(*Filter)(nil),                    // 6: otpki.common.api.query.v1.Filter
-	(*PaginationInfoEntry)(nil),       // 7: otpki.common.api.query.v1.PaginationInfoEntry
-	(*PaginationInfoResponse)(nil),    // 8: otpki.common.api.query.v1.PaginationInfoResponse
-	(*PaginationRequest)(nil),         // 9: otpki.common.api.query.v1.PaginationRequest
-	(*PaginationResponse)(nil),        // 10: otpki.common.api.query.v1.PaginationResponse
-	(*timestamppb.Timestamp)(nil),     // 11: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),       // 12: google.protobuf.Duration
-	(*descriptorpb.FieldOptions)(nil), // 13: google.protobuf.FieldOptions
+	(LogicalOperator)(0),              // 4: otpki.common.api.query.v1.LogicalOperator
+	(*SortEntry)(nil),                 // 5: otpki.common.api.query.v1.SortEntry
+	(*FilterValue)(nil),               // 6: otpki.common.api.query.v1.FilterValue
+	(*Filter)(nil),                    // 7: otpki.common.api.query.v1.Filter
+	(*FilterGroup)(nil),               // 8: otpki.common.api.query.v1.FilterGroup
+	(*PaginationInfoEntry)(nil),       // 9: otpki.common.api.query.v1.PaginationInfoEntry
+	(*PaginationInfoResponse)(nil),    // 10: otpki.common.api.query.v1.PaginationInfoResponse
+	(*PaginationRequest)(nil),         // 11: otpki.common.api.query.v1.PaginationRequest
+	(*PaginationResponse)(nil),        // 12: otpki.common.api.query.v1.PaginationResponse
+	(*timestamppb.Timestamp)(nil),     // 13: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),       // 14: google.protobuf.Duration
+	(*descriptorpb.FieldOptions)(nil), // 15: google.protobuf.FieldOptions
 }
 var file_otpki_common_api_query_v1_query_proto_depIdxs = []int32{
 	0,  // 0: otpki.common.api.query.v1.SortEntry.order:type_name -> otpki.common.api.query.v1.SortOrder
-	11, // 1: otpki.common.api.query.v1.FilterValue.timestamp_value:type_name -> google.protobuf.Timestamp
-	12, // 2: otpki.common.api.query.v1.FilterValue.duration_value:type_name -> google.protobuf.Duration
+	13, // 1: otpki.common.api.query.v1.FilterValue.timestamp_value:type_name -> google.protobuf.Timestamp
+	14, // 2: otpki.common.api.query.v1.FilterValue.duration_value:type_name -> google.protobuf.Duration
 	1,  // 3: otpki.common.api.query.v1.Filter.operator:type_name -> otpki.common.api.query.v1.FilterOperator
-	5,  // 4: otpki.common.api.query.v1.Filter.values:type_name -> otpki.common.api.query.v1.FilterValue
-	1,  // 5: otpki.common.api.query.v1.PaginationInfoEntry.allowed_filter_operators:type_name -> otpki.common.api.query.v1.FilterOperator
-	2,  // 6: otpki.common.api.query.v1.PaginationInfoEntry.allowed_sort_operators:type_name -> otpki.common.api.query.v1.SortOperator
-	3,  // 7: otpki.common.api.query.v1.PaginationInfoEntry.field_type:type_name -> otpki.common.api.query.v1.FieldType
-	7,  // 8: otpki.common.api.query.v1.PaginationInfoResponse.columns:type_name -> otpki.common.api.query.v1.PaginationInfoEntry
-	4,  // 9: otpki.common.api.query.v1.PaginationRequest.sort:type_name -> otpki.common.api.query.v1.SortEntry
-	6,  // 10: otpki.common.api.query.v1.PaginationRequest.filters:type_name -> otpki.common.api.query.v1.Filter
-	8,  // 11: otpki.common.api.query.v1.PaginationResponse.pagination_info:type_name -> otpki.common.api.query.v1.PaginationInfoResponse
-	13, // 12: otpki.common.api.query.v1.filterable:extendee -> google.protobuf.FieldOptions
-	13, // 13: otpki.common.api.query.v1.sortable:extendee -> google.protobuf.FieldOptions
-	13, // 14: otpki.common.api.query.v1.allowed_filter_operators:extendee -> google.protobuf.FieldOptions
-	13, // 15: otpki.common.api.query.v1.allowed_sort_operators:extendee -> google.protobuf.FieldOptions
-	1,  // 16: otpki.common.api.query.v1.allowed_filter_operators:type_name -> otpki.common.api.query.v1.FilterOperator
-	2,  // 17: otpki.common.api.query.v1.allowed_sort_operators:type_name -> otpki.common.api.query.v1.SortOperator
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	16, // [16:18] is the sub-list for extension type_name
-	12, // [12:16] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	6,  // 4: otpki.common.api.query.v1.Filter.values:type_name -> otpki.common.api.query.v1.FilterValue
+	4,  // 5: otpki.common.api.query.v1.FilterGroup.operator:type_name -> otpki.common.api.query.v1.LogicalOperator
+	7,  // 6: otpki.common.api.query.v1.FilterGroup.filters:type_name -> otpki.common.api.query.v1.Filter
+	1,  // 7: otpki.common.api.query.v1.PaginationInfoEntry.allowed_filter_operators:type_name -> otpki.common.api.query.v1.FilterOperator
+	2,  // 8: otpki.common.api.query.v1.PaginationInfoEntry.allowed_sort_operators:type_name -> otpki.common.api.query.v1.SortOperator
+	3,  // 9: otpki.common.api.query.v1.PaginationInfoEntry.field_type:type_name -> otpki.common.api.query.v1.FieldType
+	9,  // 10: otpki.common.api.query.v1.PaginationInfoResponse.columns:type_name -> otpki.common.api.query.v1.PaginationInfoEntry
+	5,  // 11: otpki.common.api.query.v1.PaginationRequest.sort:type_name -> otpki.common.api.query.v1.SortEntry
+	7,  // 12: otpki.common.api.query.v1.PaginationRequest.filters:type_name -> otpki.common.api.query.v1.Filter
+	8,  // 13: otpki.common.api.query.v1.PaginationRequest.filter_groups:type_name -> otpki.common.api.query.v1.FilterGroup
+	10, // 14: otpki.common.api.query.v1.PaginationResponse.pagination_info:type_name -> otpki.common.api.query.v1.PaginationInfoResponse
+	15, // 15: otpki.common.api.query.v1.filterable:extendee -> google.protobuf.FieldOptions
+	15, // 16: otpki.common.api.query.v1.sortable:extendee -> google.protobuf.FieldOptions
+	15, // 17: otpki.common.api.query.v1.allowed_filter_operators:extendee -> google.protobuf.FieldOptions
+	15, // 18: otpki.common.api.query.v1.allowed_sort_operators:extendee -> google.protobuf.FieldOptions
+	1,  // 19: otpki.common.api.query.v1.allowed_filter_operators:type_name -> otpki.common.api.query.v1.FilterOperator
+	2,  // 20: otpki.common.api.query.v1.allowed_sort_operators:type_name -> otpki.common.api.query.v1.SortOperator
+	21, // [21:21] is the sub-list for method output_type
+	21, // [21:21] is the sub-list for method input_type
+	19, // [19:21] is the sub-list for extension type_name
+	15, // [15:19] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_api_query_v1_query_proto_init() }
@@ -1136,8 +1259,8 @@ func file_otpki_common_api_query_v1_query_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_api_query_v1_query_proto_rawDesc), len(file_otpki_common_api_query_v1_query_proto_rawDesc)),
-			NumEnums:      4,
-			NumMessages:   7,
+			NumEnums:      5,
+			NumMessages:   8,
 			NumExtensions: 4,
 			NumServices:   0,
 		},

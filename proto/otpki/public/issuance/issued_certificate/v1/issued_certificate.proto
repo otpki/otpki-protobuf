@@ -1,0 +1,54 @@
+syntax = "proto3";
+package otpki.public.issuance.issued_certificate.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/issued_certificate/v1/issued_certificate.proto";
+
+message GetIssuedCertificateRequest {
+  string issued_certificate_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetIssuedCertificateResponse {
+  common.core.issued_certificate.v1.IssuedCertificate issued_certificate = 1;
+}
+
+message GetIssuedCertificateBySerialNumberRequest {
+  bytes serial_number = 1 [(buf.validate.field).required = true];
+}
+
+message GetIssuedCertificateBySerialNumberResponse {
+  common.core.issued_certificate.v1.IssuedCertificate issued_certificate = 1;
+}
+
+message GetIssuedCertificateListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetIssuedCertificateListResponse {
+  repeated common.core.issued_certificate.v1.IssuedCertificate data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service IssuedCertificateService {
+  rpc GetIssuedCertificate(GetIssuedCertificateRequest) returns (GetIssuedCertificateResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificates/{issued_certificate_id}"};
+  }
+  rpc GetIssuedCertificateBySerialNumber(GetIssuedCertificateBySerialNumberRequest) returns (GetIssuedCertificateBySerialNumberResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificates/by-serial-number/{serial_number}"};
+  }
+  rpc GetIssuedCertificateList(GetIssuedCertificateListRequest) returns (GetIssuedCertificateListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/certificates"
+      body: "pagination"
+      additional_bindings: {get: "/v1/certificates"}
+    };
+  }
+}

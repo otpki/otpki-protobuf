@@ -1,0 +1,4 @@
+syntax = "proto3";
+package otpki.public.plugin.publisher.vs.v1;
+
+message VsConfig {}

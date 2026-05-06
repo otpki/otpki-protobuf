@@ -1,0 +1,72 @@
+syntax = "proto3";
+package otpki.common.core.certificate_authority.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/x509/v1/certificate_template.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message CertificateAuthority {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  string name = 2;
+  string description = 3;
+  string key_id = 4 [(buf.validate.field).string.uuid = true];
+  optional string alternative_key_id = 5 [(buf.validate.field).string.uuid = true];
+  x509.v1.SignatureAlgorithm signature_algorithm = 6 [
+    (buf.validate.field).enum.defined_only = true,
+    (api.v1.go_native_type) = "x509.SignatureAlgorithm",
+    (api.v1.go_native_import_path) = "crypto/x509"
+  ];
+  x509.v1.SignatureAlgorithm alternative_signature_algorithm = 7 [
+    (buf.validate.field).enum.defined_only = true,
+    (api.v1.go_native_type) = "x509.SignatureAlgorithm",
+    (api.v1.go_native_import_path) = "crypto/x509"
+  ];
+  x509.v1.CertificateTemplate certificate_template = 8;
+
+  // CRL Config
+  google.protobuf.Duration crl_validity_period = 9 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // validity period for crl, next update set to this update + this period
+  google.protobuf.Duration delta_crl_validity_period = 10 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // validity period for delta crl. they are not generated if this is set to 0, should be smaller than crl_expire_period.
+
+  // Validation
+  repeated string crl_distribution_point_uris = 11;
+  repeated string ocsp_uris = 12;
+  repeated string issuer_uris = 13;
+
+  optional string approval_profile_id = 14 [(buf.validate.field).string.uuid = true];
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+message CertificateAuthorityCertificate {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+  string certificate_authority_id = 2 [(buf.validate.field).string.uuid = true];
+  bytes certificate = 3;
+  repeated bytes certificate_chain = 4;
+  optional string issued_certificate_id = 5 [(buf.validate.field).string.uuid = true];
+  string display_name = 6;
+}

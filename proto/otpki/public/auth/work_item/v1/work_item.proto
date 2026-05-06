@@ -1,0 +1,90 @@
+syntax = "proto3";
+package otpki.public.auth.work_item.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message GetWorkItemRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetWorkItemResponse {
+  common.auth.v1.WorkItem work_item = 1;
+}
+
+message GetWorkItemListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetWorkItemListResponse {
+  repeated common.auth.v1.WorkItem data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message ApproveWorkItemRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message ApproveWorkItemResponse {}
+
+message RejectWorkItemRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message RejectWorkItemResponse {}
+
+message IsCurrentUserValidApproverRequest {
+  string approval_profile_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message IsCurrentUserValidApproverResponse {
+  bool is_valid = 1;
+}
+
+service WorkItemService {
+  rpc GetWorkItem(GetWorkItemRequest) returns (GetWorkItemResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/work-items/{id}"};
+  }
+  rpc GetWorkItemList(GetWorkItemListRequest) returns (GetWorkItemListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/work-items"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/work-items"}
+    };
+  }
+  rpc ApproveWorkItem(ApproveWorkItemRequest) returns (ApproveWorkItemResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/work-items/{id}/approve"
+      body: "*"
+    };
+  }
+  rpc RejectWorkItem(RejectWorkItemRequest) returns (RejectWorkItemResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/work-items/{id}/reject"
+      body: "*"
+    };
+  }
+  rpc IsCurrentUserValidApprover(IsCurrentUserValidApproverRequest) returns (IsCurrentUserValidApproverResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      post: "/v1/auth/work-items/check-approver"
+      body: "*"
+    };
+  }
+}

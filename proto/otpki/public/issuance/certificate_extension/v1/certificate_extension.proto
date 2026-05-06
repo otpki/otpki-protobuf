@@ -1,0 +1,86 @@
+syntax = "proto3";
+package otpki.public.issuance.certificate_extension.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/certificate_extension/v1/certificate_extension.proto";
+
+message CreateCustomCertificateExtensionRequest {
+  common.core.certificate_extension.v1.CustomCertificateExtension extension = 1 [(buf.validate.field).required = true];
+}
+
+message CreateCustomCertificateExtensionResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetCustomCertificateExtensionRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetCustomCertificateExtensionResponse {
+  common.core.certificate_extension.v1.CustomCertificateExtension extension = 1;
+}
+
+message UpdateCustomCertificateExtensionRequest {
+  common.core.certificate_extension.v1.CustomCertificateExtension extension = 1 [(buf.validate.field).required = true];
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateCustomCertificateExtensionResponse {}
+
+message DeleteCustomCertificateExtensionRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteCustomCertificateExtensionResponse {}
+
+message GetCustomCertificateExtensionListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetCustomCertificateExtensionListResponse {
+  repeated common.core.certificate_extension.v1.CustomCertificateExtension data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service CertificateExtensionService {
+  rpc CreateCustomCertificateExtension(CreateCustomCertificateExtensionRequest) returns (CreateCustomCertificateExtensionResponse) {
+    option (google.api.http) = {
+      post: "/v1/custom-extensions"
+      body: "extension"
+    };
+  }
+  rpc GetCustomCertificateExtension(GetCustomCertificateExtensionRequest) returns (GetCustomCertificateExtensionResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/custom-extensions/{id}"};
+  }
+  rpc UpdateCustomCertificateExtension(UpdateCustomCertificateExtensionRequest) returns (UpdateCustomCertificateExtensionResponse) {
+    option (google.api.http) = {
+      put: "/v1/custom-extensions/{extension.id}"
+      body: "extension"
+      additional_bindings: {
+        patch: "/v1/custom-extensions/{extension.id}"
+        body: "extension"
+      }
+    };
+  }
+  rpc DeleteCustomCertificateExtension(DeleteCustomCertificateExtensionRequest) returns (DeleteCustomCertificateExtensionResponse) {
+    option (google.api.http) = {delete: "/v1/custom-extensions/{id}"};
+  }
+  rpc GetCustomCertificateExtensionList(GetCustomCertificateExtensionListRequest) returns (GetCustomCertificateExtensionListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/custom-extensions"
+      body: "pagination"
+      additional_bindings: {get: "/v1/custom-extensions"}
+    };
+  }
+}

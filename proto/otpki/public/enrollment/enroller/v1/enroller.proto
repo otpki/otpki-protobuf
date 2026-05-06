@@ -1,0 +1,74 @@
+syntax = "proto3";
+package otpki.public.enrollment.enroller.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/enroller/v1/enroller.proto";
+
+message CreateEnrollmentRequestRequest {
+  common.core.enroller.v1.EnrollmentRequest enrollment_request = 1 [(buf.validate.field).required = true];
+}
+
+message CreateEnrollmentRequestResponse {
+  common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
+}
+
+message CreateEnrollmentRequestForExistingEndEntityRequest {
+  common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+}
+
+message CreateEnrollmentRequestForExistingEndEntityResponse {
+  common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
+}
+
+message GetEnrollmentByRequestIDRequest {
+  string enrollment_request_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  string password = 2;
+}
+
+message GetEnrollmentByRequestIDResponse {
+  common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+  common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
+}
+
+message GetEnrollmentRequestListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetEnrollmentRequestListResponse {
+  repeated common.core.enroller.v1.EnrollmentRequest data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service EnrollerService {
+  rpc CreateEnrollmentRequest(CreateEnrollmentRequestRequest) returns (CreateEnrollmentRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/enrollment"
+      body: "enrollment_request"
+    };
+  }
+  rpc CreateEnrollmentRequestForExistingEndEntity(CreateEnrollmentRequestForExistingEndEntityRequest) returns (CreateEnrollmentRequestForExistingEndEntityResponse) {
+    option (google.api.http) = {
+      post: "/v1/enroll-existing"
+      body: "enrollment_request"
+    };
+  }
+  rpc GetEnrollmentByRequestID(GetEnrollmentByRequestIDRequest) returns (GetEnrollmentByRequestIDResponse) {
+    option (google.api.http) = {
+      post: "/v1/enrollment/{enrollment_request_id}"
+      body: "*"
+    };
+  }
+  rpc GetEnrollmentRequestList(GetEnrollmentRequestListRequest) returns (GetEnrollmentRequestListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/enrollment"
+      body: "pagination"
+      additional_bindings: {get: "/v1/enrollment"}
+    };
+  }
+}

@@ -13,8 +13,6 @@ managed:
       module: buf.build/googleapis/googleapis
     - file_option: go_package
       module: buf.build/bufbuild/protovalidate
-    - file_option: go_package
-      module: buf.build/gnostic/gnostic
 
 plugins:
   # Go & Connect

@@ -1,0 +1,106 @@
+syntax = "proto3";
+package otpki.public.auth.group.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateGroupRequest {
+  common.auth.v1.Group group = 1 [(buf.validate.field).required = true];
+}
+
+message CreateGroupResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetGroupRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetGroupResponse {
+  common.auth.v1.Group group = 1;
+}
+
+message GetManyGroupsRequest {
+  repeated string ids = 1 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+}
+
+message GetManyGroupsResponse {
+  repeated common.auth.v1.Group groups = 1;
+}
+
+message UpdateGroupRequest {
+  common.auth.v1.Group group = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateGroupResponse {}
+
+message DeleteGroupRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteGroupResponse {}
+
+message GetGroupListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetGroupListResponse {
+  repeated common.auth.v1.Group data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service GroupService {
+  rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/groups"
+      body: "group"
+    };
+  }
+  rpc GetGroup(GetGroupRequest) returns (GetGroupResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/groups/{id}"};
+  }
+  rpc GetManyGroups(GetManyGroupsRequest) returns (GetManyGroupsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/groups/by-ids"
+      body: "*"
+    };
+  }
+  rpc UpdateGroup(UpdateGroupRequest) returns (UpdateGroupResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/groups/{group.id}"
+      body: "group"
+      additional_bindings: {
+        patch: "/v1/auth/groups/{group.id}"
+        body: "group"
+      }
+    };
+  }
+  rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse) {
+    option (google.api.http) = {delete: "/v1/auth/groups/{id}"};
+  }
+  rpc GetGroupList(GetGroupListRequest) returns (GetGroupListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/groups"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/groups"}
+    };
+  }
+}

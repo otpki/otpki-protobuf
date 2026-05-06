@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: otpki.public.plugin.key_driver.awskms.v1
+paths: {}
+components:
+  schemas:
+    otpki.public.plugin.key_driver.awskms.v1.AWSKMSKeyData:
+      type: object
+      properties:
+        remoteKeyIdentifier:
+          type: string
+          title: remote_key_identifier
+        keyArn:
+          type: string
+          title: key_arn
+        region:
+          type: string
+          title: region
+      title: AWSKMSKeyData
+      additionalProperties: false
+    otpki.public.plugin.key_driver.awskms.v1.AWSKMSProfile:
+      type: object
+      properties:
+        region:
+          type: string
+          title: region
+        endpoint:
+          type: string
+          title: endpoint
+          description: optional AWS KMS custom endpoint (for local/test environments).
+        profile:
+          type: string
+          title: profile
+          description: optional config profile (really only used for local/test environments).
+        accessKeyId:
+          type: string
+          title: access_key_id
+          description: |-
+            optional static credentials
+             ideally these come from env vars or IAM context
+             can be set with (function of aws go sdk v2, not our env vars)
+              - AWS_ACCESS_KEY_ID
+              - AWS_SECRET_ACCESS_KEY
+              - AWS_REGION
+              - etc.
+        secretAccessKey:
+          type: string
+          title: secret_access_key
+        sessionToken:
+          type: string
+          title: session_token
+          description: only needed for temporary sessions created with STS
+      title: AWSKMSProfile
+      additionalProperties: false
+security: []

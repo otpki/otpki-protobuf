@@ -1,0 +1,82 @@
+syntax = "proto3";
+package otpki.public.issuance.metrics.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+// Dashboard metrics
+message DashboardMetrics {
+  google.protobuf.Timestamp timestamp = 1;
+
+  // Chart 1: Certificate Status Distribution (Donut/Pie Chart)
+  CertificateStatusDistribution certificate_status = 2;
+
+  // Chart 2: Certificate Issuance Trend (Area/Line Chart)
+  repeated TimeSeriesDataPoint issuance_trend = 3;
+
+  // Chart 3: CA Hierarchy Overview (Radial/Tree Chart)
+  CAHierarchyOverview ca_hierarchy = 4;
+
+  // Chart 4: Protocol Usage Distribution (Bar Chart)
+  repeated ProtocolUsageMetric protocol_usage = 5;
+}
+
+// Chart 1: Certificate Status Distribution
+message CertificateStatusDistribution {
+  int64 active = 1;
+  int64 expired = 2;
+  int64 revoked = 3;
+  int64 expiring_soon = 4; // Next 30 days
+}
+
+// Chart 2: Time series data point for trend charts
+message TimeSeriesDataPoint {
+  google.protobuf.Timestamp timestamp = 1;
+  int64 count = 2;
+  string label = 3; // e.g., "Jan 2025"
+}
+
+// Chart 3: CA Hierarchy for visualization
+message CAHierarchyOverview {
+  repeated CANode nodes = 1;
+  int64 total_cas = 2;
+  int64 active_cas = 3;
+}
+
+message CANode {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+  string name = 2;
+  string parent_id = 3 [(buf.validate.field).string.uuid = true]; // 0 for root CAs
+  int64 certificates_issued = 4;
+  uint32 depth = 5;
+  bool is_active = 6;
+}
+
+// Chart 4: Protocol usage metrics
+message ProtocolUsageMetric {
+  string protocol_name = 1;
+  int64 certificate_count = 2;
+  int64 config_count = 3;
+  double percentage = 4;
+}
+
+message GetDashboardMetricsRequest {
+  // Time range for trend data (defaults to last 30 days)
+  google.protobuf.Timestamp start_time = 1;
+  google.protobuf.Timestamp end_time = 2;
+
+  // Number of data points for trend chart (defaults to 7)
+  uint32 trend_data_points = 3;
+}
+
+message GetDashboardMetricsResponse {
+  DashboardMetrics metrics = 1;
+}
+
+service MetricsService {
+  rpc GetDashboardMetrics(GetDashboardMetricsRequest) returns (GetDashboardMetricsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/metrics/dashboard"};
+  }
+}

@@ -1,0 +1,86 @@
+syntax = "proto3";
+package otpki.public.auth.approval_profile.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateApprovalProfileRequest {
+  common.auth.v1.ApprovalProfile approval_profile = 1 [(buf.validate.field).required = true];
+}
+
+message CreateApprovalProfileResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetApprovalProfileRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetApprovalProfileResponse {
+  common.auth.v1.ApprovalProfile approval_profile = 1;
+}
+
+message UpdateApprovalProfileRequest {
+  common.auth.v1.ApprovalProfile approval_profile = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateApprovalProfileResponse {}
+
+message DeleteApprovalProfileRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteApprovalProfileResponse {}
+
+message GetApprovalProfileListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetApprovalProfileListResponse {
+  repeated common.auth.v1.ApprovalProfile data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service ApprovalProfileService {
+  rpc CreateApprovalProfile(CreateApprovalProfileRequest) returns (CreateApprovalProfileResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/approval-profiles"
+      body: "approval_profile"
+    };
+  }
+  rpc GetApprovalProfile(GetApprovalProfileRequest) returns (GetApprovalProfileResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/approval-profiles/{id}"};
+  }
+  rpc UpdateApprovalProfile(UpdateApprovalProfileRequest) returns (UpdateApprovalProfileResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/approval-profiles/{approval_profile.id}"
+      body: "approval_profile"
+      additional_bindings: {
+        patch: "/v1/auth/approval-profiles/{approval_profile.id}"
+        body: "approval_profile"
+      }
+    };
+  }
+  rpc DeleteApprovalProfile(DeleteApprovalProfileRequest) returns (DeleteApprovalProfileResponse) {
+    option (google.api.http) = {delete: "/v1/auth/approval-profiles/{id}"};
+  }
+  rpc GetApprovalProfileList(GetApprovalProfileListRequest) returns (GetApprovalProfileListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/approval-profiles"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/approval-profiles"}
+    };
+  }
+}

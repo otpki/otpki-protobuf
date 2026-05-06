@@ -10,6 +10,10 @@
     },
     "./specs/*": {
       "default": "./es/gen/specs/*"
+    },
+    "./registry": {
+      "types": "./es/gen/registry.d.ts",
+      "default": "./es/gen/registry.js"
     }
   },
   "files": [
@@ -17,11 +21,15 @@
     "proto/**/*"
   ],
   "scripts": {
-    "generate": "buf generate --template buf.gen.frontend.yaml"
+    "generate": "buf generate --template buf.gen.frontend.yaml",
+    "generate:registry": "tsx tools/es-registry/generate-registry.ts",
+    "prepublishOnly": "npm run generate:registry"
   },
   "devDependencies": {
     "@bufbuild/protoc-gen-es": "^2.11.0",
-    "@connectrpc/protoc-gen-connect-query": "^2.2.0"
+    "@connectrpc/protoc-gen-connect-query": "^2.2.0",
+    "glob": "^13.0.6",
+    "tsx": "^4.22.3"
   },
   "peerDependencies": {
     "@bufbuild/protobuf": "^2.11.0",

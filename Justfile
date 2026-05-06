@@ -43,11 +43,20 @@ breaking:
 gen:
     buf generate
     buf generate --template buf.gen.common.yaml
-    npm install && npm run generate
+    npm install && npm run generate && npm run generate:registry
 
 update:
     #go get -u all && go mod tidy
+    mkdir -p proto/openapiv3
+    curl -fsSL \
+      https://raw.githubusercontent.com/google/gnostic/main/openapiv3/annotations.proto \
+      -o proto/openapiv3/annotations.proto
+
+    curl -fsSL \
+      https://raw.githubusercontent.com/google/gnostic/main/openapiv3/OpenAPIv3.proto \
+      -o proto/openapiv3/OpenAPIv3.proto
     buf dep update
+
 
 native-type:
     protoc \

@@ -1,0 +1,152 @@
+syntax = "proto3";
+package otpki.public.auth.user.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message CreateUserRequest {
+  common.auth.v1.User user = 1 [(buf.validate.field).required = true];
+}
+
+message CreateUserResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetUserRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetUserResponse {
+  common.auth.v1.User user = 1;
+}
+
+message GetUserByUsernameRequest {
+  string username = 1 [(buf.validate.field).required = true];
+}
+
+message GetUserByUsernameResponse {
+  common.auth.v1.User user = 1;
+}
+
+message GetUserByOIDCSubjectAndIssuerRequest {
+  string sub = 1 [(buf.validate.field).required = true];
+  string iss = 2 [(buf.validate.field).required = true];
+}
+
+message GetUserByOIDCSubjectAndIssuerResponse {
+  common.auth.v1.User user = 1;
+}
+
+message GetUserByCertificateRequest {
+  bytes certificate = 1 [(buf.validate.field).required = true]; // should be der encoded (base64 in json mode)
+}
+
+message GetUserByCertificateResponse {
+  common.auth.v1.User user = 1;
+}
+
+message UpdateUserRequest {
+  common.auth.v1.User user = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateUserResponse {}
+
+message DeleteUserRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteUserResponse {}
+
+message GetUserListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetUserListResponse {
+  repeated common.auth.v1.User data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message GetCurrentUserRequest {}
+
+message GetCurrentUserResponse {
+  common.auth.v1.User user = 1;
+}
+
+message CheckCurrentUserPermissionRequest {
+  common.auth.v1.Resource resource_type = 1;
+  common.auth.v1.Action action_type = 2;
+}
+
+message CheckCurrentUserPermissionResponse {
+  bool allowed = 1;
+}
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/users"
+      body: "user"
+    };
+  }
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/{id}"};
+  }
+  rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/by-username/{username}"};
+  }
+  rpc GetUserByOIDCSubjectAndIssuer(GetUserByOIDCSubjectAndIssuerRequest) returns (GetUserByOIDCSubjectAndIssuerResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/by-oidc"}; // needs query params to get
+  }
+  rpc GetUserByCertificate(GetUserByCertificateRequest) returns (GetUserByCertificateResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/users/by-cert/{certificate}"};
+  }
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/users/{user.id}"
+      body: "user"
+      additional_bindings: {
+        patch: "/v1/auth/users/{user.id}"
+        body: "user"
+      }
+    };
+  }
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+    option (google.api.http) = {delete: "/v1/auth/users/{id}"};
+  }
+  rpc GetUserList(GetUserListRequest) returns (GetUserListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/auth/users"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/users"}
+    };
+  }
+  rpc GetCurrentUser(GetCurrentUserRequest) returns (GetCurrentUserResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      get: "/v1/auth/users/me"
+      additional_bindings: {get: "/auth/me"}
+    };
+  }
+  rpc CheckCurrentUserPermission(CheckCurrentUserPermissionRequest) returns (CheckCurrentUserPermissionResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      post: "/v1/auth/check-permission"
+      body: "*"
+    };
+  }
+}

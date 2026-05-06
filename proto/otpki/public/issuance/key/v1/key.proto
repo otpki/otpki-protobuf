@@ -1,0 +1,78 @@
+syntax = "proto3";
+package otpki.public.issuance.key.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/key/v1/key.proto";
+
+message GetKeyRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetKeyResponse {
+  common.core.key.v1.Key key = 1;
+  string public_key_pem = 2; // PEM encoded
+  bytes public_key_der = 3;
+}
+
+message CreateKeyRequest {
+  common.core.key.v1.Key key = 1 [(buf.validate.field).required = true];
+}
+
+message CreateKeyResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetKeyListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetKeyListResponse {
+  repeated common.core.key.v1.Key data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message DeleteKeyRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteKeyResponse {}
+
+message GetPQKeyTypesRequest {}
+message GetPQKeyTypesResponse {
+  repeated common.core.key.v1.KeyType data = 1;
+}
+
+service KeyService {
+  rpc GetKey(GetKeyRequest) returns (GetKeyResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/keys/{id}"};
+  }
+  rpc GetKeyList(GetKeyListRequest) returns (GetKeyListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/keys"
+      body: "pagination"
+      additional_bindings: {get: "/v1/keys"}
+    };
+  }
+  rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse) {
+    option (google.api.http) = {
+      post: "/v1/keys"
+      body: "key"
+    };
+  }
+  rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse) {
+    option (google.api.http) = {delete: "/v1/keys/{id}"};
+  }
+  rpc GetPQKeyTypes(GetPQKeyTypesRequest) returns (GetPQKeyTypesResponse) {
+    option (google.api.http) = {get: "/v1/key-types/pq"};
+  }
+}

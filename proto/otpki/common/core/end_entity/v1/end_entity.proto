@@ -1,0 +1,164 @@
+syntax = "proto3";
+package otpki.common.core.end_entity.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+enum EndEntityStatus {
+  END_ENTITY_STATUS_UNSPECIFIED = 0;
+  END_ENTITY_STATUS_NEW = 1; // end entity has been created/approved, waiting on certificate
+  END_ENTITY_STATUS_FAILED = 2; // certificate generation has failed
+  END_ENTITY_STATUS_GENERATED = 3; // certificate generation has succeeded and certificate has been fetched
+  END_ENTITY_STATUS_REVOKED = 4; // end entity is revoked
+  END_ENTITY_STATUS_WAITING_FOR_APPROVAL = 5; // end entity has not been created, waiting for approval
+}
+
+enum LoginIDScheme {
+  LOGIN_ID_SCHEME_UNSPECIFIED = 0;
+  LOGIN_ID_SCHEME_FULL = 1; // use the entire DN as the login id
+  LOGIN_ID_SCHEME_DN_PART = 2; // order of precedence list to decide which part to use as login id
+  LOGIN_ID_SCHEME_DN_COMBO = 3; // combine multiple parts of DN to get login id
+  LOGIN_ID_SCHEME_FIXED = 4; // user specified login id override
+  LOGIN_ID_SCHEME_RANDOM = 5; // random
+}
+
+message EndEntity {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  // string name = 2; // using "login id" now
+  string description = 3;
+  optional string end_entity_profile_id = 4 [(buf.validate.field).string.uuid = true];
+  EndEntityStatus status = 5 [(openapi.v3.property).read_only = true]; // this should only be set by backend
+
+  // db details
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+
+  // identity
+  string display_name = 301;
+  string login_id = 302 [(buf.validate.field).cel = {
+    id: "login_id.isLongEnough"
+    message: "length must be >= 3 and <= 64"
+    expression: "this == '' || (size(this) >= 3 && size(this) <= 64)"
+  }];
+  string password = 303;
+  string password_clear = 305 [(openapi.v3.property).read_only = true];
+  string email = 304 [(buf.validate.field).cel = {
+    id: "email.isEmail"
+    message: "value must be a valid email"
+    expression: "this == '' || this.isEmail()" // allow empty email
+  }];
+
+  // subject DN
+  // note: certificate email can differ from EE email
+  repeated x509.v1.SubjectDNAttribute subject_dn_attributes = 401;
+
+  // san
+  // note: certificate email can differ from EE email
+  repeated x509.v1.SANAttribute subject_alternative_name_attributes = 501;
+
+  // issuance information
+  string certificate_profile_id = 601 [(buf.validate.field).string.uuid = true];
+  string certificate_authority_id = 602 [(buf.validate.field).string.uuid = true];
+
+  // validity override
+  google.protobuf.Duration validity_start_time_offset = 701 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // offset from 'now' when to issue certificate
+  google.protobuf.Timestamp validity_start_date = 702 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ]; // start date for notBefore, if both are set, offset is added to start date rather than 'now'
+  google.protobuf.Duration validity_end_time_offset = 703 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // offset from 'now' when to expire certificate
+  google.protobuf.Timestamp validity_end_date = 704 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ]; // end date for notAfter, if both are set, offset is added to end date rather than 'now'
+
+  // other
+  // profile can prevent permitted constraints from being set
+  repeated string permitted_dns_domains = 801 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {hostname: true}
+    }
+  }];
+  repeated string permitted_ip_ranges = 802 [
+    (api.v1.go_native_type) = "[]*net.IPNet",
+    (api.v1.go_native_import_path) = "net",
+    (buf.validate.field).repeated = {
+      unique: true
+      items: {
+        string: {ip_with_prefixlen: true}
+      }
+    }
+  ];
+  repeated string permitted_email_addresses = 803 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {email: true}
+    }
+  }];
+  repeated string permitted_uri_domains = 804 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uri: true}
+    }
+  }];
+  // profile can prevent excluded constraints from being set
+  repeated string excluded_dns_domains = 805 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {hostname: true}
+    }
+  }];
+  repeated string excluded_ip_ranges = 806 [
+    (api.v1.go_native_type) = "[]*net.IPNet",
+    (api.v1.go_native_import_path) = "net",
+    (buf.validate.field).repeated = {
+      unique: true
+      items: {
+        string: {ip_with_prefixlen: true}
+      }
+    }
+  ];
+  repeated string excluded_email_addresses = 807 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {email: true}
+    }
+  }];
+  repeated string excluded_uri_domains = 808 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uri: true}
+    }
+  }];
+  repeated string custom_certificate_extension_ids = 809 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+}

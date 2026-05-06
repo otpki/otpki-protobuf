@@ -4,10 +4,11 @@ modules:
 lint:
   use:
     - STANDARD
+  ignore:
+    - proto/openapiv3
 breaking:
   use:
     - FILE
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/bufbuild/protovalidate
-  - buf.build/gnostic/gnostic

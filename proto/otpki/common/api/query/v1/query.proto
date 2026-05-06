@@ -68,6 +68,12 @@ enum FieldType {
   FIELD_TYPE_BYTES = 7;
 }
 
+enum LogicalOperator {
+  LOGICAL_OPERATOR_UNSPECIFIED = 0;
+  LOGICAL_OPERATOR_AND = 1;
+  LOGICAL_OPERATOR_OR = 2;
+}
+
 message SortEntry {
   string column = 1;
   SortOrder order = 2;
@@ -97,6 +103,11 @@ message Filter {
   repeated FilterValue values = 3;
 }
 
+message FilterGroup {
+  LogicalOperator operator = 1;
+  repeated Filter filters = 2;
+}
+
 message PaginationInfoEntry {
   string column = 1;
   bool filterable = 2;
@@ -117,10 +128,11 @@ message PaginationRequest {
   int64 skip = 3;
   repeated SortEntry sort = 4;
   repeated Filter filters = 5;
-  bool without_count = 6;
-  bool with_count_estimate = 7;
-  bool with_soft_deleted = 8;
-  bool with_pagination_info_only = 9;
+  repeated FilterGroup filter_groups = 6;
+  bool without_count = 7;
+  bool with_count_estimate = 8;
+  bool with_soft_deleted = 9;
+  bool with_pagination_info_only = 10;
 }
 
 message PaginationResponse {

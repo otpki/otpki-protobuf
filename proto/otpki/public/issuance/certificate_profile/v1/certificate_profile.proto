@@ -1,0 +1,90 @@
+syntax = "proto3";
+package otpki.public.issuance.certificate_profile.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
+
+message CreateCertificateProfileRequest {
+  common.core.certificate_profile.v1.CertificateProfile profile = 1 [(buf.validate.field).required = true];
+}
+
+message CreateCertificateProfileResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetCertificateProfileRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetCertificateProfileResponse {
+  common.core.certificate_profile.v1.CertificateProfile profile = 1;
+}
+
+message UpdateCertificateProfileRequest {
+  common.core.certificate_profile.v1.CertificateProfile profile = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateCertificateProfileResponse {}
+
+message DeleteCertificateProfileRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteCertificateProfileResponse {}
+
+message GetCertificateProfileListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetCertificateProfileListResponse {
+  repeated common.core.certificate_profile.v1.CertificateProfile data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service CertificateProfileService {
+  rpc CreateCertificateProfile(CreateCertificateProfileRequest) returns (CreateCertificateProfileResponse) {
+    option (google.api.http) = {
+      post: "/v1/profiles/certificate"
+      body: "profile"
+    };
+  }
+
+  rpc GetCertificateProfile(GetCertificateProfileRequest) returns (GetCertificateProfileResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/profiles/certificate/{id}"};
+  }
+
+  rpc UpdateCertificateProfile(UpdateCertificateProfileRequest) returns (UpdateCertificateProfileResponse) {
+    option (google.api.http) = {
+      put: "/v1/profiles/certificate/{profile.id}"
+      body: "profile"
+      additional_bindings: {
+        patch: "/v1/profiles/certificate/{profile.id}"
+        body: "profile"
+      }
+    };
+  }
+
+  rpc DeleteCertificateProfile(DeleteCertificateProfileRequest) returns (DeleteCertificateProfileResponse) {
+    option (google.api.http) = {delete: "/v1/profiles/certificate/{id}"};
+  }
+
+  rpc GetCertificateProfileList(GetCertificateProfileListRequest) returns (GetCertificateProfileListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/profiles/certificate"
+      body: "pagination"
+      additional_bindings: {get: "/v1/profiles/certificate"}
+    };
+  }
+}

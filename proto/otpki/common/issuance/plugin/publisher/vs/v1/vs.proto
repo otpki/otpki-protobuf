@@ -1,4 +1,0 @@
-syntax = "proto3";
-package otpki.common.issuance.plugin.publisher.vs.v1;
-
-message VsConfig {}

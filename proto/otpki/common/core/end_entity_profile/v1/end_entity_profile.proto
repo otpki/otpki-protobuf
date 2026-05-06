@@ -1,0 +1,151 @@
+syntax = "proto3";
+package otpki.common.core.end_entity_profile.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+enum EndEntityPasswordGenerationCharset {
+  END_ENTITY_PASSWORD_GENERATION_CHARSET_UNSPECIFIED = 0;
+  END_ENTITY_PASSWORD_GENERATION_CHARSET_DIGITS_ONLY = 1;
+  END_ENTITY_PASSWORD_GENERATION_CHARSET_ENGLISH_LETTERS_AND_DIGITS = 2;
+  END_ENTITY_PASSWORD_GENERATION_CHARSET_ALL_PRINTABLE_ENGLISH_CHARACTERS = 3;
+}
+
+message EndEntityProfileSubjectDNAttribute {
+  x509.v1.SubjectDNAttrType attribute_type = 1 [(buf.validate.field).enum = {
+    not_in: [0]
+    defined_only: true
+  }];
+  string attribute_value = 2;
+  string oid = 3;
+  bool required = 4;
+  bool modifiable = 5;
+  bool validation = 6;
+  string regex = 7;
+}
+
+message EndEntityProfileSANAttribute {
+  x509.v1.SANAttrType attribute_type = 1 [(buf.validate.field).enum = {
+    not_in: [0]
+    defined_only: true
+  }];
+  string attribute_value = 2;
+  string oid = 3;
+  bool required = 4;
+  bool modifiable = 5;
+  bool validation = 6;
+  string regex = 7;
+}
+
+message EndEntityProfile {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  string name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 64
+  ];
+  string description = 3;
+
+  // db details
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+
+  // identity
+  string login_id_prefix = 301 [(buf.validate.field).string.max_len = 64];
+  string login_id_suffix = 302 [(buf.validate.field).string.max_len = 64];
+  bool login_id_auto_generated = 303;
+  bool login_id_validation = 304;
+  string login_id_regex = 305; // regex validation that is applied if login_id_validation == true. mutually exclusive with auto-generate
+  string default_password = 306; // if default == "", and password required == false, EE may have no password
+  bool password_required = 307;
+  bool password_auto_generated = 308; // mutually exclusive with prior PW settings
+  EndEntityPasswordGenerationCharset password_generation_charset = 309;
+  int64 password_generation_length = 310 [(buf.validate.field).int64 = {
+    gte: 4
+    lte: 0
+  }]; // can be unset, or >= 4
+  int64 minimum_password_strength = 311; // floor((# chars in PW)*log2(# chars in charset))
+  bool allow_cleartext_password = 316;
+  bool use_email = 312; // EE creation allows email to be specified
+  bool email_required = 313; // EE creation requires email to be specified
+  bool email_domain_modifiable = 314; // false == EE creation does not allow domain (@example.com) to be specified
+  string email_domain = 315 [(buf.validate.field).cel = {
+    id: "email_domain.isHostname"
+    message: "value must be a valid hostname"
+    expression: "this == '' || this.isHostname()" // allow empty hostname
+  }]; // if use_email == true and domain == "", it must be modifiable
+
+  // subject DN
+  // note: certificate email can differ from EE email
+  repeated EndEntityProfileSubjectDNAttribute subject_dn_attributes = 401;
+
+  // san
+  // note: certificate email can differ from EE email
+  repeated EndEntityProfileSANAttribute subject_alternative_name_attributes = 501;
+
+  // issuance information
+  repeated string available_certificate_profile_ids = 601 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+  string default_certificate_profile_id = 602 [(buf.validate.field).string.uuid = true];
+
+  repeated string available_certificate_authority_ids = 603 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+  string default_certificate_authority_id = 604 [(buf.validate.field).string.uuid = true];
+
+  // validity override, requires 'allow validity override' in certificate profile
+  bool use_validity_start_time = 701; // if this is true, EE can set start time settings, the following values are defaults to set notBefore
+  bool validity_start_time_modifiable = 702; // whether the EE can set their own params
+  google.protobuf.Duration validity_start_time_offset = 703 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // default offset from 'now' when to issue certificate
+  google.protobuf.Timestamp validity_start_date = 704 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ]; // default start date for notBefore, if both are set, offset is added to start date rather than 'now'
+  bool use_validity_end_time = 705; // if this is true, EE can set end time settings, the following values are defaults to set notAfter
+  bool validity_end_time_modifiable = 706; // whether the EE can set their own params
+  google.protobuf.Duration validity_end_time_offset = 707 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // default offset from 'now' when to expire certificate
+  google.protobuf.Timestamp validity_end_date = 708 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ]; // default end date for notAfter, if both are set, offset is added to end date rather than 'now'
+
+  // other
+  // name constraints must be enabled in the certificate profile for these to propagate to certificate
+  bool use_name_constraints_permitted = 801; // allow EE to specify name constraints
+  bool name_constraints_permitted_required = 802; // require EE to specify name constraints
+  bool use_name_constraints_excluded = 803;
+  bool name_constraints_excluded_required = 804;
+  // explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity
+  bool use_custom_certificate_exts = 805; // allow EE to add to custom exts (will be concatenated with cert profile)
+  optional string approval_profile_id = 806 [(buf.validate.field).string.uuid = true];
+}

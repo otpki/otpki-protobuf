@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: otpki.public.plugin.publisher.scp.v1
+paths: {}
+components:
+  schemas:
+    otpki.common.core.publisher.v1.PkiArtifact:
+      type: string
+      title: PkiArtifact
+      enum:
+        - PKI_ARTIFACT_UNSPECIFIED
+        - PKI_ARTIFACT_CRL
+        - PKI_ARTIFACT_CERTIFICATE
+    otpki.public.plugin.publisher.scp.v1.ScpConfig:
+      type: object
+      properties:
+        keyId:
+          type: string
+          title: key_id
+          format: uuid
+          description: ssh key in keystore
+        username:
+          type: string
+          title: username
+        host:
+          type: string
+          title: host
+        port:
+          type:
+            - integer
+            - string
+          title: port
+          format: int64
+        allowedFor:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.publisher.v1.PkiArtifact'
+          title: allowed_for
+        certificatePublisherTemplateUrl:
+          type: string
+          title: certificate_publisher_template_url
+        crlPublisherTemplateUrl:
+          type: string
+          title: crl_publisher_template_url
+      title: ScpConfig
+      additionalProperties: false
+security: []

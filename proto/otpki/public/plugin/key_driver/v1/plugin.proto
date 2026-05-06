@@ -1,0 +1,60 @@
+syntax = "proto3";
+package otpki.public.plugin.key_driver.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "otpki/common/core/key/v1/key.proto";
+
+message KeyModel {
+  common.core.key.v1.Key key_info = 1;
+  bytes public_key = 2;
+}
+
+message CreateKeyResponse {
+  KeyModel key = 1;
+  google.protobuf.Any plugin_data = 2;
+}
+
+message KeyDriverMessage {
+  string key_storage_config_id = 1 [(buf.validate.field).string.uuid = true];
+  google.protobuf.Any message = 2;
+}
+
+message SignRequest {
+  string key_id = 1 [(buf.validate.field).string.uuid = true];
+  bytes digest = 2;
+  optional google.protobuf.Any opts = 3; // custom serialized format to build crypto.SignerOpts
+}
+
+message SignResponse {
+  bytes signature = 1;
+}
+
+message DecryptRequest {
+  string key_id = 1 [(buf.validate.field).string.uuid = true];
+  bytes ciphertext = 2;
+  optional google.protobuf.Any opts = 3; // custom serialized format to build crypto.DecrypterOpts
+}
+
+message DecryptResponse {
+  bytes plaintext = 1;
+}
+
+message DeleteKeyResponse {
+  google.protobuf.Any plugin_data = 1;
+}
+
+// Key driver message for pre-validation of an activation code against a backing store (or its own config)
+message ValidateActivationRequest {}
+
+message ValidateActivationResponse {}
+
+// Stored in KeyStorageConfig.key_storage_config.
+// Holds shared crypto material used to protect key_storage_key_config data.
+message KeyStorageCryptoConfig {
+  // Encrypted DEK bytes (wrapped by the configured crypto key).
+  bytes wrapped_dek = 1;
+
+  // Nonce used for key data encryption.
+  bytes key_data_nonce = 2;
+}

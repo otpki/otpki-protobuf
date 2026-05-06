@@ -1159,7 +1159,7 @@ var File_otpki_common_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x1fotpki/common/auth/v1/auth.proto\x12\x14otpki.common.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a$gnostic/openapi/v3/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\"\x85\x01\n" +
+	"\x1fotpki/common/auth/v1/auth.proto\x12\x14otpki.common.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\"\x85\x01\n" +
 	"\x0fResourceActions\x12:\n" +
 	"\bresource\x18\x01 \x01(\x0e2\x1e.otpki.common.auth.v1.ResourceR\bresource\x126\n" +
 	"\aactions\x18\x02 \x03(\x0e2\x1c.otpki.common.auth.v1.ActionR\aactions\"\x9b\x02\n" +

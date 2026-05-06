@@ -1,0 +1,141 @@
+import { createRegistry } from '@bufbuild/protobuf';
+
+import * as mod0 from './public/buf/validate/validate_pb.js';
+import * as mod1 from './public/google/api/annotations_pb.js';
+import * as mod2 from './public/google/api/http_pb.js';
+import * as mod3 from './public/google/api/httpbody_pb.js';
+import * as mod4 from './public/openapiv3/OpenAPIv3_pb.js';
+import * as mod5 from './public/openapiv3/annotations_pb.js';
+import * as mod6 from './public/otpki/common/api/query/v1/query_pb.js';
+import * as mod7 from './public/otpki/common/api/v1/auth_required_pb.js';
+import * as mod8 from './public/otpki/common/api/v1/http_methods_pb.js';
+import * as mod9 from './public/otpki/common/api/v1/httpbody_pb.js';
+import * as mod10 from './public/otpki/common/api/v1/native_type_pb.js';
+import * as mod11 from './public/otpki/common/api/v1/string_enum_pb.js';
+import * as mod12 from './public/otpki/common/auth/v1/auth_pb.js';
+import * as mod13 from './public/otpki/common/core/certificate_authority/v1/certificate_authority_pb.js';
+import * as mod14 from './public/otpki/common/core/certificate_extension/v1/certificate_extension_pb.js';
+import * as mod15 from './public/otpki/common/core/certificate_profile/v1/certificate_profile_pb.js';
+import * as mod16 from './public/otpki/common/core/end_entity/v1/end_entity_pb.js';
+import * as mod17 from './public/otpki/common/core/end_entity_certificate/v1/end_entity_certificate_pb.js';
+import * as mod18 from './public/otpki/common/core/end_entity_profile/v1/end_entity_profile_pb.js';
+import * as mod19 from './public/otpki/common/core/enroller/v1/enroller_pb.js';
+import * as mod20 from './public/otpki/common/core/extended_key_usage/v1/extended_key_usage_pb.js';
+import * as mod21 from './public/otpki/common/core/issued_certificate/v1/issued_certificate_pb.js';
+import * as mod22 from './public/otpki/common/core/issuer/v1/issuer_pb.js';
+import * as mod23 from './public/otpki/common/core/key/v1/crypto_pb.js';
+import * as mod24 from './public/otpki/common/core/key/v1/key_pb.js';
+import * as mod25 from './public/otpki/common/core/key_storage_config/v1/activation_pb.js';
+import * as mod26 from './public/otpki/common/core/key_storage_config/v1/enum_pb.js';
+import * as mod27 from './public/otpki/common/core/key_storage_config/v1/key_storage_config_pb.js';
+import * as mod28 from './public/otpki/common/core/publisher/v1/publisher_pb.js';
+import * as mod29 from './public/otpki/common/core/task_log/v1/task_log_pb.js';
+import * as mod30 from './public/otpki/common/x509/v1/certificate_template_pb.js';
+import * as mod31 from './public/otpki/common/x509/v1/revocation_list_pb.js';
+import * as mod32 from './public/otpki/common/x509/v1/x509_pb.js';
+import * as mod33 from './public/otpki/public/auth/approval_profile/v1/approval_profile_pb.js';
+import * as mod34 from './public/otpki/public/auth/group/v1/group_pb.js';
+import * as mod35 from './public/otpki/public/auth/oidc_provider/v1/oidc_provider_pb.js';
+import * as mod36 from './public/otpki/public/auth/resource/v1/resource_pb.js';
+import * as mod37 from './public/otpki/public/auth/role/v1/role_pb.js';
+import * as mod38 from './public/otpki/public/auth/user/v1/user_pb.js';
+import * as mod39 from './public/otpki/public/auth/work_item/v1/work_item_pb.js';
+import * as mod40 from './public/otpki/public/enrollment/enroller/v1/enroller_pb.js';
+import * as mod41 from './public/otpki/public/issuance/certificate_authority/v1/certificate_authority_pb.js';
+import * as mod42 from './public/otpki/public/issuance/certificate_extension/v1/certificate_extension_pb.js';
+import * as mod43 from './public/otpki/public/issuance/certificate_profile/v1/certificate_profile_pb.js';
+import * as mod44 from './public/otpki/public/issuance/end_entity/v1/end_entity_pb.js';
+import * as mod45 from './public/otpki/public/issuance/end_entity_certificate/v1/end_entity_certificate_pb.js';
+import * as mod46 from './public/otpki/public/issuance/end_entity_profile/v1/end_entity_profile_pb.js';
+import * as mod47 from './public/otpki/public/issuance/extended_key_usage/v1/extended_key_usage_pb.js';
+import * as mod48 from './public/otpki/public/issuance/issued_certificate/v1/issued_certificate_pb.js';
+import * as mod49 from './public/otpki/public/issuance/issuer/v1/issuer_pb.js';
+import * as mod50 from './public/otpki/public/issuance/key/v1/key_pb.js';
+import * as mod51 from './public/otpki/public/issuance/key_storage_config/v1/key_storage_config_pb.js';
+import * as mod52 from './public/otpki/public/issuance/metrics/v1/metrics_pb.js';
+import * as mod53 from './public/otpki/public/issuance/publisher/v1/publisher_pb.js';
+import * as mod54 from './public/otpki/public/issuance/secret_share/v1/secret_share_pb.js';
+import * as mod55 from './public/otpki/public/issuance/task_log/v1/task_log_pb.js';
+import * as mod56 from './public/otpki/public/plugin/key_driver/awskms/v1/awskms_pb.js';
+import * as mod57 from './public/otpki/public/plugin/key_driver/pkcs11proxy/v1/pkcs11proxy_pb.js';
+import * as mod58 from './public/otpki/public/plugin/key_driver/softdbkms/v1/softdbkms_pb.js';
+import * as mod59 from './public/otpki/public/plugin/key_driver/v1/plugin_pb.js';
+import * as mod60 from './public/otpki/public/plugin/publisher/http/v1/http_pb.js';
+import * as mod61 from './public/otpki/public/plugin/publisher/scp/v1/scp_pb.js';
+import * as mod62 from './public/otpki/public/plugin/publisher/vs/v1/vs_pb.js';
+import * as mod63 from './public/otpki/public/plugin/runtime/v1/manifest_pb.js';
+import * as mod64 from './public/otpki/public/plugin/runtime/v1/plugin_pb.js';
+import * as mod65 from './public/otpki/public/plugin/runtime/v1/runtime_pb.js';
+import * as mod66 from './public/otpki/public/validation/revocation_list/v1/revocation_list_pb.js';
+
+const fileDescs = [
+  ...Object.entries(mod0).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod1).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod2).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod3).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod4).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod5).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod6).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod7).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod8).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod9).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod10).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod11).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod12).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod13).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod14).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod15).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod16).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod17).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod18).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod19).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod20).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod21).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod22).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod23).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod24).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod25).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod26).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod27).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod28).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod29).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod30).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod31).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod32).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod33).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod34).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod35).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod36).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod37).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod38).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod39).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod40).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod41).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod42).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod43).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod44).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod45).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod46).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod47).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod48).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod49).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod50).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod51).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod52).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod53).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod54).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod55).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod56).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod57).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod58).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod59).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod60).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod61).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod62).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod63).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod64).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod65).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod66).filter(([k]) => k.startsWith('file_')).map(([, v]) => v)
+];
+
+export const registry = createRegistry(...fileDescs);

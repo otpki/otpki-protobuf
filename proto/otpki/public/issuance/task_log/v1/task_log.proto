@@ -1,0 +1,59 @@
+syntax = "proto3";
+package otpki.public.issuance.task_log.v1;
+
+import "google/api/annotations.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/task_log/v1/task_log.proto";
+
+message GetTaskLogListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetTaskLogListResponse {
+  repeated common.core.task_log.v1.TaskLogEntry data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message GetTaskQueuesRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetTaskQueuesResponse {
+  repeated string data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message GetTaskQueueInfoRequest {
+  string queue = 1;
+}
+
+message GetTaskQueueInfoResponse {
+  common.core.task_log.v1.TaskQueueInfo info = 1;
+}
+
+service TaskLogService {
+  rpc GetTaskLogList(GetTaskLogListRequest) returns (GetTaskLogListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/task-logs"
+      body: "pagination"
+      additional_bindings: {get: "/v1/task-logs"}
+    };
+  }
+  rpc GetTaskQueues(GetTaskQueuesRequest) returns (GetTaskQueuesResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/task-logs/queues"
+      body: "pagination"
+      additional_bindings: {get: "/v1/task-logs/queues"}
+    };
+  }
+  rpc GetTaskQueueInfo(GetTaskQueueInfoRequest) returns (GetTaskQueueInfoResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/task-logs/queue/info"
+      body: "queue"
+      additional_bindings: {get: "/v1/task-logs/queue/info"}
+    };
+  }
+}

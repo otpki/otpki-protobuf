@@ -1,0 +1,90 @@
+syntax = "proto3";
+package otpki.public.issuance.end_entity_profile.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/end_entity_profile/v1/end_entity_profile.proto";
+
+message CreateEndEntityProfileRequest {
+  common.core.end_entity_profile.v1.EndEntityProfile profile = 1 [(buf.validate.field).required = true];
+}
+
+message CreateEndEntityProfileResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetEndEntityProfileRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetEndEntityProfileResponse {
+  common.core.end_entity_profile.v1.EndEntityProfile profile = 1;
+}
+
+message UpdateEndEntityProfileRequest {
+  common.core.end_entity_profile.v1.EndEntityProfile profile = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateEndEntityProfileResponse {}
+
+message DeleteEndEntityProfileRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteEndEntityProfileResponse {}
+
+message GetEndEntityProfileListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetEndEntityProfileListResponse {
+  repeated common.core.end_entity_profile.v1.EndEntityProfile data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service EndEntityProfileService {
+  rpc CreateEndEntityProfile(CreateEndEntityProfileRequest) returns (CreateEndEntityProfileResponse) {
+    option (google.api.http) = {
+      post: "/v1/profiles/end-entity"
+      body: "profile"
+    };
+  }
+
+  rpc GetEndEntityProfile(GetEndEntityProfileRequest) returns (GetEndEntityProfileResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/profiles/end-entity/{id}"};
+  }
+
+  rpc UpdateEndEntityProfile(UpdateEndEntityProfileRequest) returns (UpdateEndEntityProfileResponse) {
+    option (google.api.http) = {
+      put: "/v1/profiles/end-entity/{profile.id}"
+      body: "profile"
+      additional_bindings: {
+        patch: "/v1/profiles/end-entity/{profile.id}"
+        body: "profile"
+      }
+    };
+  }
+
+  rpc DeleteEndEntityProfile(DeleteEndEntityProfileRequest) returns (DeleteEndEntityProfileResponse) {
+    option (google.api.http) = {delete: "/v1/profiles/end-entity/{id}"};
+  }
+
+  rpc GetEndEntityProfileList(GetEndEntityProfileListRequest) returns (GetEndEntityProfileListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/profiles/end-entity"
+      body: "pagination"
+      additional_bindings: {get: "/v1/profiles/end-entity"}
+    };
+  }
+}

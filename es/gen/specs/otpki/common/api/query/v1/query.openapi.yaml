@@ -190,6 +190,19 @@ components:
           title: values
       title: Filter
       additionalProperties: false
+    otpki.common.api.query.v1.FilterGroup:
+      type: object
+      properties:
+        operator:
+          title: operator
+          $ref: '#/components/schemas/otpki.common.api.query.v1.LogicalOperator'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.Filter'
+          title: filters
+      title: FilterGroup
+      additionalProperties: false
     otpki.common.api.query.v1.FilterOperator:
       type: string
       title: FilterOperator
@@ -249,6 +262,13 @@ components:
           format: byte
       title: FilterValue
       additionalProperties: false
+    otpki.common.api.query.v1.LogicalOperator:
+      type: string
+      title: LogicalOperator
+      enum:
+        - LOGICAL_OPERATOR_UNSPECIFIED
+        - LOGICAL_OPERATOR_AND
+        - LOGICAL_OPERATOR_OR
     otpki.common.api.query.v1.PaginationInfoEntry:
       type: object
       properties:
@@ -317,6 +337,11 @@ components:
           items:
             $ref: '#/components/schemas/otpki.common.api.query.v1.Filter'
           title: filters
+        filterGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.api.query.v1.FilterGroup'
+          title: filter_groups
         withoutCount:
           type: boolean
           title: without_count

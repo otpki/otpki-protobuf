@@ -1,0 +1,76 @@
+syntax = "proto3";
+package otpki.public.issuance.issuer.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/issuer/v1/issuer.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message CreateIssuanceRequestRequest {
+  common.core.issuer.v1.IssuanceRequest issuance_request = 1 [(buf.validate.field).required = true];
+}
+
+message CreateIssuanceRequestResponse {
+  common.core.issuer.v1.IssuanceResponse issuance_response = 1;
+}
+
+message GetIssuanceByRequestIDRequest {
+  string issuance_request_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetIssuanceByRequestIDResponse {
+  common.core.issuer.v1.IssuanceRequest issuance_request = 1;
+  common.core.issuer.v1.IssuanceResponse issuance_response = 2;
+}
+
+message RevokeIssuedCertificatesRequest {
+  repeated string certificate_ids = 1 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+  common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
+}
+
+message RevokeIssuedCertificatesResponse {}
+
+message GetIssuanceRequestListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetIssuanceRequestListResponse {
+  repeated common.core.issuer.v1.IssuanceRequest data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+service IssuerService {
+  rpc CreateIssuanceRequest(CreateIssuanceRequestRequest) returns (CreateIssuanceRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/issuance"
+      body: "issuance_request"
+    };
+  }
+  rpc GetIssuanceByRequestID(GetIssuanceByRequestIDRequest) returns (GetIssuanceByRequestIDResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/issuance/{issuance_request_id}"};
+  }
+  rpc RevokeIssuedCertificates(RevokeIssuedCertificatesRequest) returns (RevokeIssuedCertificatesResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificates/revoke"
+      body: "*"
+    };
+  }
+  rpc GetIssuanceRequestList(GetIssuanceRequestListRequest) returns (GetIssuanceRequestListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/issuance"
+      body: "pagination"
+      additional_bindings: {get: "/v1/issuance"}
+    };
+  }
+}

@@ -1,0 +1,126 @@
+syntax = "proto3";
+package otpki.public.issuance.key_storage_config.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/key_storage_config/v1/activation.proto";
+import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
+import "otpki/public/plugin/key_driver/v1/plugin.proto";
+
+message CreateKeyStorageConfigRequest {
+  common.core.key_storage_config.v1.KeyStorageConfig config = 1 [(buf.validate.field).required = true];
+}
+
+message CreateKeyStorageConfigResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetKeyStorageConfigRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetKeyStorageConfigResponse {
+  common.core.key_storage_config.v1.KeyStorageConfig config = 1;
+}
+
+message UpdateKeyStorageConfigRequest {
+  common.core.key_storage_config.v1.KeyStorageConfig config = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateKeyStorageConfigResponse {}
+
+message DeleteKeyStorageConfigRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteKeyStorageConfigResponse {}
+
+message GetKeyStorageConfigListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetKeyStorageConfigListResponse {
+  repeated common.core.key_storage_config.v1.KeyStorageConfig data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message SendKeyDriverMessageRequest {
+  plugin.key_driver.v1.KeyDriverMessage message = 1;
+}
+
+message SendKeyDriverMessageResponse {
+  google.protobuf.Any response = 1;
+}
+
+message ActivateKeyStorageConfigRequest {
+  common.core.key_storage_config.v1.Activation activation = 1 [(buf.validate.field).required = true];
+}
+
+message ActivateKeyStorageConfigResponse {}
+
+message DeactivateKeyStorageConfigRequest {
+  string key_storage_config_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeactivateKeyStorageConfigResponse {}
+
+service KeyStorageConfigService {
+  rpc CreateKeyStorageConfig(CreateKeyStorageConfigRequest) returns (CreateKeyStorageConfigResponse) {
+    option (google.api.http) = {
+      post: "/v1/key-storage-configs"
+      body: "config"
+    };
+  }
+  rpc GetKeyStorageConfig(GetKeyStorageConfigRequest) returns (GetKeyStorageConfigResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/key-storage-configs/{id}"};
+  }
+  rpc UpdateKeyStorageConfig(UpdateKeyStorageConfigRequest) returns (UpdateKeyStorageConfigResponse) {
+    option (google.api.http) = {
+      put: "/v1/key-storage-configs/{config.id}"
+      body: "config"
+    };
+  }
+  rpc DeleteKeyStorageConfig(DeleteKeyStorageConfigRequest) returns (DeleteKeyStorageConfigResponse) {
+    option (google.api.http) = {delete: "/v1/key-storage-configs/{id}"};
+  }
+  rpc GetKeyStorageConfigList(GetKeyStorageConfigListRequest) returns (GetKeyStorageConfigListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/key-storage-configs"
+      body: "pagination"
+      additional_bindings: {get: "/v1/key-storage-configs"}
+    };
+  }
+  rpc SendKeyDriverMessage(SendKeyDriverMessageRequest) returns (SendKeyDriverMessageResponse) {
+    option (google.api.http) = {
+      post: "/v1/key-storage-configs/{message.key_storage_config_id}/message"
+      body: "message.message"
+    };
+  }
+  rpc ActivateKeyStorageConfig(ActivateKeyStorageConfigRequest) returns (ActivateKeyStorageConfigResponse) {
+    option (google.api.http) = {
+      post: "/v1/key-storage-configs/{activation.key_storage_config_id}/activate"
+      body: "activation"
+    };
+  }
+  rpc DeactivateKeyStorageConfig(DeactivateKeyStorageConfigRequest) returns (DeactivateKeyStorageConfigResponse) {
+    option (google.api.http) = {
+      post: "/v1/key-storage-configs/{key_storage_config_id}/deactivate"
+      body: "*"
+    };
+  }
+}

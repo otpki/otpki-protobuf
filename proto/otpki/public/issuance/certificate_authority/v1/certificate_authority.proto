@@ -1,0 +1,211 @@
+syntax = "proto3";
+package otpki.public.issuance.certificate_authority.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/field_mask.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
+import "otpki/common/core/key/v1/key.proto";
+import "otpki/common/x509/v1/revocation_list.proto";
+
+message CreateCertificateAuthorityRequest {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
+}
+
+message CreateCertificateAuthorityResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message ImportCertificateAuthorityRequest {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
+  bytes certificate_pem = 2;
+  bytes p7b_certificate_chain = 3;
+  common.core.key.v1.Key key_config = 4 [(buf.validate.field).required = true];
+  bytes key_pem = 5 [(buf.validate.field).required = true];
+  string password = 6;
+}
+
+message ImportCertificateAuthorityResponse {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message ImportCertificateAuthorityPKCS12Request {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
+  common.core.key.v1.Key key_config = 2 [(buf.validate.field).required = true];
+  bytes p12 = 3 [(buf.validate.field).required = true];
+  string password = 4;
+}
+
+message ImportCertificateAuthorityPKCS12Response {
+  string id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message CreateCertificateAuthorityCSRRequest {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  string key_id = 2 [(buf.validate.field).string.uuid = true];
+}
+
+message CreateCertificateAuthorityCSRResponse {
+  bytes certificate_request_der = 1;
+}
+
+message ImportCertificateAuthorityCertificateRequest {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  bytes certificate_pem = 2;
+  bytes p7b_certificate_chain = 3;
+}
+
+message ImportCertificateAuthorityCertificateResponse {
+  string ca_certificate_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message RenewCertificateAuthorityRequest {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  optional string next_key_id = 2 [(buf.validate.field).string.uuid = true];
+  optional string next_alt_key_id = 3 [(buf.validate.field).string.uuid = true];
+}
+
+message RenewCertificateAuthorityResponse {}
+
+// ---- STORE ----
+
+message GetCertificateAuthorityRequest {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetCertificateAuthorityResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+}
+
+message GetCertificateAuthorityListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetCertificateAuthorityListResponse {
+  repeated common.core.certificate_authority.v1.CertificateAuthority data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message UpdateCertificateAuthorityRequest {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateCertificateAuthorityResponse {}
+
+message DeleteCertificateAuthorityRequest {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteCertificateAuthorityResponse {}
+
+message GetCertificateAuthorityCertificatesRequest {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetCertificateAuthorityCertificatesResponse {
+  repeated common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificates = 1;
+}
+
+message CreateRevocationListRequest {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  bool is_delta = 2;
+}
+
+message CreateRevocationListResponse {
+  common.x509.v1.RevocationList revocation_list = 1;
+}
+
+service CertificateAuthorityService {
+  rpc CreateCertificateAuthority(CreateCertificateAuthorityRequest) returns (CreateCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities"
+      body: "certificate_authority"
+    };
+  }
+  rpc ImportCertificateAuthority(ImportCertificateAuthorityRequest) returns (ImportCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/import"
+      body: "*"
+    };
+  }
+  rpc ImportCertificateAuthorityPKCS12(ImportCertificateAuthorityPKCS12Request) returns (ImportCertificateAuthorityPKCS12Response) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/import-p12"
+      body: "*"
+    };
+  }
+  rpc CreateCertificateAuthorityCSR(CreateCertificateAuthorityCSRRequest) returns (CreateCertificateAuthorityCSRResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/key/{key_id}/generate-certificate-request"};
+  }
+  rpc ImportCertificateAuthorityCertificate(ImportCertificateAuthorityCertificateRequest) returns (ImportCertificateAuthorityCertificateResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{ca_id}/import-certificate"
+      body: "*"
+    };
+  }
+  rpc RenewCertificateAuthority(RenewCertificateAuthorityRequest) returns (RenewCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{ca_id}/renew"
+      body: "*"
+    };
+  }
+  rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}"};
+  }
+  rpc GetCertificateAuthorityList(GetCertificateAuthorityListRequest) returns (GetCertificateAuthorityListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/certificate-authorities"
+      body: "pagination"
+      additional_bindings: {get: "/v1/certificate-authorities"}
+    };
+  }
+  rpc UpdateCertificateAuthority(UpdateCertificateAuthorityRequest) returns (UpdateCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      put: "/v1/certificate-authorities/{certificate_authority.id}"
+      body: "certificate_authority"
+      additional_bindings: {
+        patch: "/v1/certificate-authorities/{certificate_authority.id}"
+        body: "certificate_authority"
+      }
+    };
+  }
+  rpc DeleteCertificateAuthority(DeleteCertificateAuthorityRequest) returns (DeleteCertificateAuthorityResponse) {
+    option (google.api.http) = {delete: "/v1/certificate-authorities/{ca_id}"};
+  }
+  rpc GetCertificateAuthorityCertificates(GetCertificateAuthorityCertificatesRequest) returns (GetCertificateAuthorityCertificatesResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/certificates"};
+  }
+  rpc CreateRevocationList(CreateRevocationListRequest) returns (CreateRevocationListResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{ca_id}/generate-revocation-list"
+      body: "*"
+    };
+  }
+}

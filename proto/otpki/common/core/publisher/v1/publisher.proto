@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package otpki.common.core.publisher.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+
+/***
+ * CRL publisher, only assigned to CA, only on CRL pub event
+ * CERT publisher, for CA or cert profile, on all events
+ */
+
+enum PublisherType {
+  PUBLISHER_TYPE_UNSPECIFIED = 0;
+  PUBLISHER_TYPE_VS = 1;
+  PUBLISHER_TYPE_HTTP = 2;
+  PUBLISHER_TYPE_SCP = 3;
+}
+
+enum PkiArtifact {
+  PKI_ARTIFACT_UNSPECIFIED = 0;
+  PKI_ARTIFACT_CRL = 1;
+  PKI_ARTIFACT_CERTIFICATE = 2;
+}
+
+enum CertEventType {
+  CERT_EVENT_TYPE_UNSPECIFIED = 0;
+  CERT_EVENT_TYPE_CERT_ISSUE = 1;
+  CERT_EVENT_TYPE_CERT_REVOKE = 2;
+}
+
+message PublisherConfig {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  string name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string description = 3;
+  PublisherType publisher_type = 4 [(buf.validate.field).enum.defined_only = true];
+  google.protobuf.Any config_data = 5;
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
+
+// CRL Publisher can only subscribe to CAs on CRL generation events
+message CrlPublisher {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  string ca_id = 2 [(buf.validate.field).string.uuid = true];
+  string publisher_config_id = 3 [(buf.validate.field).string.uuid = true];
+}
+
+// Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
+message CertificatePublisher {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  string publisher_config_id = 2 [(buf.validate.field).string.uuid = true];
+  string ca_id = 3 [(buf.validate.field).string.uuid = true]; // CHECK: at least one of these two must be set
+  string certificate_profile_id = 4 [(buf.validate.field).string.uuid = true]; // CHECK: at least one of these two must be set
+  repeated CertEventType subscribed_events = 5;
+}

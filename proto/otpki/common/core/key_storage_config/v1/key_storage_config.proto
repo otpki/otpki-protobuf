@@ -1,0 +1,60 @@
+syntax = "proto3";
+package otpki.common.core.key_storage_config.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/core/key_storage_config/v1/enum.proto";
+
+message KeyStorageConfig {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+  string name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string description = 3;
+  KeyDriverType key_driver_type = 4 [(buf.validate.field).enum.defined_only = true];
+  google.protobuf.Any config_data = 5;
+  optional string crypto_key_id = 6 [(buf.validate.field).string.uuid = true];
+
+  // activation
+  // if this is false, this config cannot be activated and is always "active"
+  // if it is true, activation is always required.
+  // note: if the key driver requires an activation pin (like pkcs11proxy) you
+  // must enable activation
+  bool enable_activation = 7;
+  // if this is true, on the first activation, the resulting activation code
+  // will be persisted and encrypted in the database
+  // if this is updated to be false, we delete any stored activation code.
+  // the latest manual activation is always stored as the pin to use for auto activation.
+  bool auto_activation = 8;
+  // this should be a calculated field, not stored in the DB and not settable by
+  // the end user
+  bool is_activated = 9 [(openapi.v3.property).read_only = true];
+
+  // when verify activation is true, the resulting activation code (whether via SSS or direct)
+  // must match the activation_code_to_verify
+  // this is primarily used to protect keystores that do not have an external pin requirement (i.e. soft db)
+  bool verify_activation = 10;
+  string activation_code_to_verify = 11;
+  google.protobuf.Any plugin_data = 12 [(openapi.v3.property).read_only = true];
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}
