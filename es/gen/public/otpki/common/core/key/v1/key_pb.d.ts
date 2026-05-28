@@ -61,6 +61,15 @@ export declare type Key = Message<"otpki.common.core.key.v1.Key"> & {
   /**
    * not settable on creation
    *
+   * PEM encoded
+   *
+   * @generated from field: string public_key_pem = 9;
+   */
+  publicKeyPem: string;
+
+  /**
+   * not settable on creation
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
    */
   createdAt?: Timestamp;
@@ -122,6 +131,15 @@ export declare type KeyJson = {
   /**
    * not settable on creation
    *
+   * PEM encoded
+   *
+   * @generated from field: string public_key_pem = 9;
+   */
+  publicKeyPem?: string;
+
+  /**
+   * not settable on creation
+   *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
    */
   createdAt?: TimestampJson;
@@ -179,6 +197,15 @@ export declare type KeyValid = Message<"otpki.common.core.key.v1.Key"> & {
    * @generated from field: otpki.common.core.key_storage_config.v1.KeyDriverType key_driver_type = 8;
    */
   keyDriverType: KeyDriverType;
+
+  /**
+   * not settable on creation
+   *
+   * PEM encoded
+   *
+   * @generated from field: string public_key_pem = 9;
+   */
+  publicKeyPem: string;
 
   /**
    * not settable on creation

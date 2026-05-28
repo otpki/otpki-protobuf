@@ -58,13 +58,6 @@ export declare type GetKeyResponse = Message<"otpki.public.issuance.key.v1.GetKe
   key?: Key;
 
   /**
-   * PEM encoded
-   *
-   * @generated from field: string public_key_pem = 2;
-   */
-  publicKeyPem: string;
-
-  /**
    * @generated from field: bytes public_key_der = 3;
    */
   publicKeyDer: Uint8Array;
@@ -80,13 +73,6 @@ export declare type GetKeyResponseJson = {
   key?: KeyJson;
 
   /**
-   * PEM encoded
-   *
-   * @generated from field: string public_key_pem = 2;
-   */
-  publicKeyPem?: string;
-
-  /**
    * @generated from field: bytes public_key_der = 3;
    */
   publicKeyDer?: string;
@@ -100,13 +86,6 @@ export declare type GetKeyResponseValid = Message<"otpki.public.issuance.key.v1.
    * @generated from field: otpki.common.core.key.v1.Key key = 1;
    */
   key?: KeyValid;
-
-  /**
-   * PEM encoded
-   *
-   * @generated from field: string public_key_pem = 2;
-   */
-  publicKeyPem: string;
 
   /**
    * @generated from field: bytes public_key_der = 3;

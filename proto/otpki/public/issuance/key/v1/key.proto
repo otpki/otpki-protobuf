@@ -15,7 +15,6 @@ message GetKeyRequest {
 
 message GetKeyResponse {
   common.core.key.v1.Key key = 1;
-  string public_key_pem = 2; // PEM encoded
   bytes public_key_der = 3;
 }
 

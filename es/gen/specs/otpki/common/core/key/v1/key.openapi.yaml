@@ -144,6 +144,11 @@ components:
         keyDriverType:
           title: key_driver_type
           $ref: '#/components/schemas/otpki.common.core.key_storage_config.v1.KeyDriverType'
+        publicKeyPem:
+          type: string
+          title: public_key_pem
+          description: not settable on creation PEM encoded
+          readOnly: true
         createdAt:
           title: created_at
           description: not settable on creation

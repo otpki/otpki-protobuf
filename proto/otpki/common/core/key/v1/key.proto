@@ -203,6 +203,8 @@ message Key {
   ];
   key_storage_config.v1.KeyDriverType key_driver_type = 8;
   // not settable on creation
+  string public_key_pem = 9 [(openapi.v3.property).read_only = true]; // PEM encoded
+  // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,
     (api.v1.go_native_type) = "time.Time",
