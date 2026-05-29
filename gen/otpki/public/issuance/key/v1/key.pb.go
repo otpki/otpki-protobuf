@@ -72,7 +72,6 @@ func (x *GetKeyRequest) GetId() string {
 type GetKeyResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Key           *v1.Key                `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-	PublicKeyDer  []byte                 `protobuf:"bytes,3,opt,name=public_key_der,json=publicKeyDer,proto3" json:"public_key_der,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -110,13 +109,6 @@ func (*GetKeyResponse) Descriptor() ([]byte, []int) {
 func (x *GetKeyResponse) GetKey() *v1.Key {
 	if x != nil {
 		return x.Key
-	}
-	return nil
-}
-
-func (x *GetKeyResponse) GetPublicKeyDer() []byte {
-	if x != nil {
-		return x.PublicKeyDer
 	}
 	return nil
 }
@@ -471,10 +463,9 @@ const file_otpki_public_issuance_key_v1_key_proto_rawDesc = "" +
 	"\n" +
 	"&otpki/public/issuance/key/v1/key.proto\x12\x1cotpki.public.issuance.key.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a%otpki/common/api/query/v1/query.proto\x1a\"otpki/common/core/key/v1/key.proto\",\n" +
 	"\rGetKeyRequest\x12\x1b\n" +
-	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"g\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"A\n" +
 	"\x0eGetKeyResponse\x12/\n" +
-	"\x03key\x18\x01 \x01(\v2\x1d.otpki.common.core.key.v1.KeyR\x03key\x12$\n" +
-	"\x0epublic_key_der\x18\x03 \x01(\fR\fpublicKeyDer\"K\n" +
+	"\x03key\x18\x01 \x01(\v2\x1d.otpki.common.core.key.v1.KeyR\x03key\"K\n" +
 	"\x10CreateKeyRequest\x127\n" +
 	"\x03key\x18\x01 \x01(\v2\x1d.otpki.common.core.key.v1.KeyB\x06\xbaH\x03\xc8\x01\x01R\x03key\"-\n" +
 	"\x11CreateKeyResponse\x12\x18\n" +

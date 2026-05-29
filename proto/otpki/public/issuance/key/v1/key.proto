@@ -15,7 +15,6 @@ message GetKeyRequest {
 
 message GetKeyResponse {
   common.core.key.v1.Key key = 1;
-  bytes public_key_der = 3;
 }
 
 message CreateKeyRequest {

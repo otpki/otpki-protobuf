@@ -1109,10 +1109,6 @@ components:
         key:
           title: key
           $ref: '#/components/schemas/otpki.common.core.key.v1.Key'
-        publicKeyDer:
-          type: string
-          title: public_key_der
-          format: byte
       title: GetKeyResponse
       additionalProperties: false
     otpki.public.issuance.key.v1.GetPQKeyTypesRequest:
