@@ -260,11 +260,11 @@ const file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawD
 	"\x19GetRevocationListResponse\x12M\n" +
 	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationList\"?\n" +
 	"\x1bCRLDistributionPointRequest\x12 \n" +
-	"\vfingerprint\x18\x01 \x01(\tR\vfingerprint2\x9d\x05\n" +
-	"\x15RevocationListService\x12\xf2\x01\n" +
-	"\x17GetLatestRevocationList\x12J.otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest\x1aK.otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse\">\x82\xd3\xe4\x93\x025\x123/v1/certificate-authorities/{ca_id}/revocation-list\x90\x02\x01\x12\xc6\x01\n" +
-	"\x11GetRevocationList\x12D.otpki.public.validation.revocation_list.v1.GetRevocationListRequest\x1aE.otpki.public.validation.revocation_list.v1.GetRevocationListResponse\"$\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/revocation-lists/{id}\x90\x02\x01\x12\xc5\x01\n" +
-	"\x14CRLDistributionPoint\x12G.otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest\x1a\x14.google.api.HttpBody\"N\x82\xd3\xe4\x93\x02E\x12C/v1/certificate-authorities/by-fingerprint/{fingerprint}/latest.crl\x90\x02\x01B\xf2\x02\n" +
+	"\vfingerprint\x18\x01 \x01(\tR\vfingerprint2\xb3\x05\n" +
+	"\x15RevocationListService\x12\xfd\x01\n" +
+	"\x17GetLatestRevocationList\x12J.otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest\x1aK.otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse\"I\x82\xd3\xe4\x93\x02@\x12>/v1/certificate-authorities/validation/{ca_id}/revocation-list\x90\x02\x01\x12\xc6\x01\n" +
+	"\x11GetRevocationList\x12D.otpki.public.validation.revocation_list.v1.GetRevocationListRequest\x1aE.otpki.public.validation.revocation_list.v1.GetRevocationListResponse\"$\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/revocation-lists/{id}\x90\x02\x01\x12\xd0\x01\n" +
+	"\x14CRLDistributionPoint\x12G.otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest\x1a\x14.google.api.HttpBody\"Y\x82\xd3\xe4\x93\x02P\x12N/v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl\x90\x02\x01B\xf2\x02\n" +
 	".com.otpki.public.validation.revocation_list.v1B\x13RevocationListProtoP\x01Z`github.com/otpki/otpki-protobuf/gen/otpki/public/validation/revocation_list/v1;revocation_listv1\xa2\x02\x04OPVR\xaa\x02)Otpki.Public.Validation.RevocationList.V1\xca\x02*Otpki\\Public_\\Validation\\RevocationList\\V1\xe2\x026Otpki\\Public_\\Validation\\RevocationList\\V1\\GPBMetadata\xea\x02-Otpki::Public::Validation::RevocationList::V1b\x06proto3"
 
 var (

@@ -15,25 +15,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.auth.user.v1.GetCurrentUserResponse'
-  /v1/auth/check-permission:
-    post:
-      tags:
-        - otpki.public.auth.user.v1.UserService
-      summary: CheckCurrentUserPermission
-      operationId: otpki.public.auth.user.v1.UserService.CheckCurrentUserPermission
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/otpki.public.auth.user.v1.CheckCurrentUserPermissionRequest'
-        required: true
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.auth.user.v1.CheckCurrentUserPermissionResponse'
   /v1/auth/users:
     get:
       tags:
@@ -428,6 +409,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.auth.user.v1.GetUserByUsernameResponse'
+  /v1/auth/users/check-permission:
+    post:
+      tags:
+        - otpki.public.auth.user.v1.UserService
+      summary: CheckCurrentUserPermission
+      operationId: otpki.public.auth.user.v1.UserService.CheckCurrentUserPermission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/otpki.public.auth.user.v1.CheckCurrentUserPermissionRequest'
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.auth.user.v1.CheckCurrentUserPermissionResponse'
   /v1/auth/users/me:
     get:
       tags:

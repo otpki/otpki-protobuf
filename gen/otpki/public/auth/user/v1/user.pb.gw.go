@@ -776,7 +776,7 @@ func RegisterUserServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.auth.user.v1.UserService/CheckCurrentUserPermission", runtime.WithHTTPPathPattern("/v1/auth/check-permission"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.auth.user.v1.UserService/CheckCurrentUserPermission", runtime.WithHTTPPathPattern("/v1/auth/users/check-permission"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1038,7 +1038,7 @@ func RegisterUserServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.auth.user.v1.UserService/CheckCurrentUserPermission", runtime.WithHTTPPathPattern("/v1/auth/check-permission"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.auth.user.v1.UserService/CheckCurrentUserPermission", runtime.WithHTTPPathPattern("/v1/auth/users/check-permission"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1067,7 +1067,7 @@ var (
 	pattern_UserService_GetUserList_1                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "users"}, ""))
 	pattern_UserService_GetCurrentUser_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1", "auth", "users", "me"}, ""))
 	pattern_UserService_GetCurrentUser_1                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"auth", "me"}, ""))
-	pattern_UserService_CheckCurrentUserPermission_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "auth", "check-permission"}, ""))
+	pattern_UserService_CheckCurrentUserPermission_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1", "auth", "users", "check-permission"}, ""))
 )
 
 var (

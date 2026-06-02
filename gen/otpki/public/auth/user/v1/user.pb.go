@@ -965,7 +965,7 @@ const file_otpki_public_auth_user_v1_user_proto_rawDesc = "" +
 	"\vaction_type\x18\x02 \x01(\x0e2\x1c.otpki.common.auth.v1.ActionR\n" +
 	"actionType\">\n" +
 	"\"CheckCurrentUserPermissionResponse\x12\x18\n" +
-	"\aallowed\x18\x01 \x01(\bR\aallowed2\x9e\r\n" +
+	"\aallowed\x18\x01 \x01(\bR\aallowed2\xa4\r\n" +
 	"\vUserService\x12\x87\x01\n" +
 	"\n" +
 	"CreateUser\x12,.otpki.public.auth.user.v1.CreateUserRequest\x1a-.otpki.public.auth.user.v1.CreateUserResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x04user\"\x0e/v1/auth/users\x12\x80\x01\n" +
@@ -980,8 +980,8 @@ const file_otpki_public_auth_user_v1_user_proto_rawDesc = "" +
 	"\vGetUserList\x12-.otpki.public.auth.user.v1.GetUserListRequest\x1a..otpki.public.auth.user.v1.GetUserListResponse\"7\x82\xd3\xe4\x93\x02.:\n" +
 	"paginationZ\x10\x12\x0e/v1/auth/users\x1a\x0e/v1/auth/users\x90\x02\x01\x12\x9f\x01\n" +
 	"\x0eGetCurrentUser\x120.otpki.public.auth.user.v1.GetCurrentUserRequest\x1a1.otpki.public.auth.user.v1.GetCurrentUserResponse\"(\x82\xd3\xe4\x93\x02\x1fZ\n" +
-	"\x12\b/auth/me\x12\x11/v1/auth/users/me\x90\x02\x01\x12\xc2\x01\n" +
-	"\x1aCheckCurrentUserPermission\x12<.otpki.public.auth.user.v1.CheckCurrentUserPermissionRequest\x1a=.otpki.public.auth.user.v1.CheckCurrentUserPermissionResponse\"'\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/auth/check-permission\x90\x02\x01B\xfb\x01\n" +
+	"\x12\b/auth/me\x12\x11/v1/auth/users/me\x90\x02\x01\x12\xc8\x01\n" +
+	"\x1aCheckCurrentUserPermission\x12<.otpki.public.auth.user.v1.CheckCurrentUserPermissionRequest\x1a=.otpki.public.auth.user.v1.CheckCurrentUserPermissionResponse\"-\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v1/auth/users/check-permission\x90\x02\x01B\xfb\x01\n" +
 	"\x1dcom.otpki.public.auth.user.v1B\tUserProtoP\x01ZDgithub.com/otpki/otpki-protobuf/gen/otpki/public/auth/user/v1;userv1\xa2\x02\x04OPAU\xaa\x02\x19Otpki.Public.Auth.User.V1\xca\x02\x1aOtpki\\Public_\\Auth\\User\\V1\xe2\x02&Otpki\\Public_\\Auth\\User\\V1\\GPBMetadata\xea\x02\x1dOtpki::Public::Auth::User::V1b\x06proto3"
 
 var (

@@ -145,7 +145,7 @@ service UserService {
   rpc CheckCurrentUserPermission(CheckCurrentUserPermissionRequest) returns (CheckCurrentUserPermissionResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      post: "/v1/auth/check-permission"
+      post: "/v1/auth/users/check-permission"
       body: "*"
     };
   }

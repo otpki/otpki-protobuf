@@ -164,7 +164,7 @@ func RegisterRevocationListServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList", runtime.WithHTTPPathPattern("/v1/certificate-authorities/{ca_id}/revocation-list"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/{ca_id}/revocation-list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -204,7 +204,7 @@ func RegisterRevocationListServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/certificate-authorities/by-fingerprint/{fingerprint}/latest.crl"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -262,7 +262,7 @@ func RegisterRevocationListServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList", runtime.WithHTTPPathPattern("/v1/certificate-authorities/{ca_id}/revocation-list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/{ca_id}/revocation-list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -296,7 +296,7 @@ func RegisterRevocationListServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/certificate-authorities/by-fingerprint/{fingerprint}/latest.crl"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -313,9 +313,9 @@ func RegisterRevocationListServiceHandlerClient(ctx context.Context, mux *runtim
 }
 
 var (
-	pattern_RevocationListService_GetLatestRevocationList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "certificate-authorities", "ca_id", "revocation-list"}, ""))
+	pattern_RevocationListService_GetLatestRevocationList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "certificate-authorities", "validation", "ca_id", "revocation-list"}, ""))
 	pattern_RevocationListService_GetRevocationList_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "revocation-lists", "id"}, ""))
-	pattern_RevocationListService_CRLDistributionPoint_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "certificate-authorities", "by-fingerprint", "fingerprint", "latest.crl"}, ""))
+	pattern_RevocationListService_CRLDistributionPoint_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1", "certificate-authorities", "validation", "by-fingerprint", "fingerprint", "latest.crl"}, ""))
 )
 
 var (

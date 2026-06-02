@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: otpki.public.validation.revocation_list.v1
 paths:
-  /v1/certificate-authorities/by-fingerprint/{fingerprint}/latest.crl:
+  /v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl:
     get:
       tags:
         - otpki.public.validation.revocation_list.v1.RevocationListService
@@ -25,7 +25,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/google.api.HttpBody'
-  /v1/certificate-authorities/{ca_id}/revocation-list:
+  /v1/certificate-authorities/validation/{ca_id}/revocation-list:
     get:
       tags:
         - otpki.public.validation.revocation_list.v1.RevocationListService

@@ -30,7 +30,7 @@ message CRLDistributionPointRequest {
 service RevocationListService {
   rpc GetLatestRevocationList(GetLatestRevocationListRequest) returns (GetLatestRevocationListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/revocation-list"};
+    option (google.api.http) = {get: "/v1/certificate-authorities/validation/{ca_id}/revocation-list"};
   }
 
   rpc GetRevocationList(GetRevocationListRequest) returns (GetRevocationListResponse) {
@@ -42,7 +42,7 @@ service RevocationListService {
   // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
   rpc CRLDistributionPoint(CRLDistributionPointRequest) returns (google.api.HttpBody) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/by-fingerprint/{fingerprint}/latest.crl"};
+    option (google.api.http) = {get: "/v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl"};
   }
 
   //  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
