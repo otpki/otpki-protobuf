@@ -59,6 +59,11 @@ export declare type CreateCertificateAuthorityResponse = Message<"otpki.public.i
    * @generated from field: string id = 1;
    */
   id: string;
+
+  /**
+   * @generated from field: string warning = 2;
+   */
+  warning: string;
 };
 
 /**
@@ -69,6 +74,11 @@ export declare type CreateCertificateAuthorityResponseJson = {
    * @generated from field: string id = 1;
    */
   id?: string;
+
+  /**
+   * @generated from field: string warning = 2;
+   */
+  warning?: string;
 };
 
 export declare type CreateCertificateAuthorityResponseValid = CreateCertificateAuthorityResponse;

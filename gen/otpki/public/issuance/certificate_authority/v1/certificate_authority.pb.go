@@ -75,6 +75,7 @@ func (x *CreateCertificateAuthorityRequest) GetCertificateAuthority() *v1.Certif
 type CreateCertificateAuthorityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Warning       string                 `protobuf:"bytes,2,opt,name=warning,proto3" json:"warning,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -112,6 +113,13 @@ func (*CreateCertificateAuthorityResponse) Descriptor() ([]byte, []int) {
 func (x *CreateCertificateAuthorityResponse) GetId() string {
 	if x != nil {
 		return x.Id
+	}
+	return ""
+}
+
+func (x *CreateCertificateAuthorityResponse) GetWarning() string {
+	if x != nil {
+		return x.Warning
 	}
 	return ""
 }
@@ -1194,9 +1202,10 @@ const file_otpki_public_issuance_certificate_authority_v1_certificate_authority_
 	"\n" +
 	"Jotpki/public/issuance/certificate_authority/v1/certificate_authority.proto\x12.otpki.public.issuance.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aFotpki/common/core/certificate_authority/v1/certificate_authority.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a*otpki/common/x509/v1/revocation_list.proto\"\xa2\x01\n" +
 	"!CreateCertificateAuthorityRequest\x12}\n" +
-	"\x15certificate_authority\x18\x01 \x01(\v2@.otpki.common.core.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\">\n" +
+	"\x15certificate_authority\x18\x01 \x01(\v2@.otpki.common.core.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\"X\n" +
 	"\"CreateCertificateAuthorityResponse\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"\x82\x03\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x18\n" +
+	"\awarning\x18\x02 \x01(\tR\awarning\"\x82\x03\n" +
 	"!ImportCertificateAuthorityRequest\x12}\n" +
 	"\x15certificate_authority\x18\x01 \x01(\v2@.otpki.common.core.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\x12'\n" +
 	"\x0fcertificate_pem\x18\x02 \x01(\fR\x0ecertificatePem\x122\n" +

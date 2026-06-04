@@ -2297,6 +2297,9 @@ components:
           type: string
           title: id
           format: uuid
+        warning:
+          type: string
+          title: warning
       title: CreateCertificateAuthorityResponse
       additionalProperties: false
     otpki.public.issuance.certificate_authority.v1.CreateRevocationListRequest:

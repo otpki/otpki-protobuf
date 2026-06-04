@@ -15,6 +15,7 @@ message CreateCertificateAuthorityRequest {
 
 message CreateCertificateAuthorityResponse {
   string id = 1 [(buf.validate.field).string.uuid = true];
+  string warning = 2;
 }
 
 message ImportCertificateAuthorityRequest {
