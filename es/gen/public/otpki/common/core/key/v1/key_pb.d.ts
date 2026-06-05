@@ -68,6 +68,11 @@ export declare type Key = Message<"otpki.common.core.key.v1.Key"> & {
   publicKeyPem: string;
 
   /**
+   * @generated from field: string public_key_hash = 10;
+   */
+  publicKeyHash: string;
+
+  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -138,6 +143,11 @@ export declare type KeyJson = {
   publicKeyPem?: string;
 
   /**
+   * @generated from field: string public_key_hash = 10;
+   */
+  publicKeyHash?: string;
+
+  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -206,6 +216,11 @@ export declare type KeyValid = Message<"otpki.common.core.key.v1.Key"> & {
    * @generated from field: string public_key_pem = 9;
    */
   publicKeyPem: string;
+
+  /**
+   * @generated from field: string public_key_hash = 10;
+   */
+  publicKeyHash: string;
 
   /**
    * not settable on creation

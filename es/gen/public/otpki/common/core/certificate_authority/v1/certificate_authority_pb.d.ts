@@ -394,3 +394,51 @@ export declare type CertificateAuthorityCertificateValid = CertificateAuthorityC
  */
 export declare const CertificateAuthorityCertificateSchema: GenMessage<CertificateAuthorityCertificate, {jsonType: CertificateAuthorityCertificateJson, validType: CertificateAuthorityCertificateValid}>;
 
+/**
+ * @generated from message otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+ */
+export declare type CertificateAuthorityCertificateKey = Message<"otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey"> & {
+  /**
+   * @generated from field: string ca_certificate_id = 1;
+   */
+  caCertificateId: string;
+
+  /**
+   * @generated from field: string key_id = 2;
+   */
+  keyId: string;
+
+  /**
+   * @generated from field: bool alternative_key = 3;
+   */
+  alternativeKey: boolean;
+};
+
+/**
+ * @generated from message otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+ */
+export declare type CertificateAuthorityCertificateKeyJson = {
+  /**
+   * @generated from field: string ca_certificate_id = 1;
+   */
+  caCertificateId?: string;
+
+  /**
+   * @generated from field: string key_id = 2;
+   */
+  keyId?: string;
+
+  /**
+   * @generated from field: bool alternative_key = 3;
+   */
+  alternativeKey?: boolean;
+};
+
+export declare type CertificateAuthorityCertificateKeyValid = CertificateAuthorityCertificateKey;
+
+/**
+ * Describes the message otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey.
+ * Use `create(CertificateAuthorityCertificateKeySchema)` to create a new message.
+ */
+export declare const CertificateAuthorityCertificateKeySchema: GenMessage<CertificateAuthorityCertificateKey, {jsonType: CertificateAuthorityCertificateKeyJson, validType: CertificateAuthorityCertificateKeyValid}>;
+

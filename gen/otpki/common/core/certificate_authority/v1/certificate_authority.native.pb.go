@@ -221,6 +221,28 @@ func (x *CertificateAuthorityCertificate) GetIssuedCertificateIdUUID() uuid.Null
 	return uuid.NullUUID{}
 }
 
+// GetCaCertificateIdUUID returns CaCertificateId as a UUID when possible.
+func (x *CertificateAuthorityCertificateKey) GetCaCertificateIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CaCertificateId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetKeyIdUUID returns KeyId as a UUID when possible.
+func (x *CertificateAuthorityCertificateKey) GetKeyIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.KeyId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
 
 // convertDurationToProto comes from the converter package

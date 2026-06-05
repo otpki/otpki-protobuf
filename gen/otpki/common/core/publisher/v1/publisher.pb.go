@@ -276,8 +276,12 @@ type CrlPublisher struct {
 	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
 	CaId              string                 `protobuf:"bytes,2,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	PublisherConfigId string                 `protobuf:"bytes,3,opt,name=publisher_config_id,json=publisherConfigId,proto3" json:"publisher_config_id,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// not settable on creation
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// not settable on creation
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,202,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CrlPublisher) Reset() {
@@ -331,6 +335,20 @@ func (x *CrlPublisher) GetPublisherConfigId() string {
 	return ""
 }
 
+func (x *CrlPublisher) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *CrlPublisher) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 // Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
 type CertificatePublisher struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
@@ -339,8 +357,12 @@ type CertificatePublisher struct {
 	CaId                 string                 `protobuf:"bytes,3,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`                                                   // CHECK: at least one of these two must be set
 	CertificateProfileId string                 `protobuf:"bytes,4,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"` // CHECK: at least one of these two must be set
 	SubscribedEvents     []CertEventType        `protobuf:"varint,5,rep,packed,name=subscribed_events,json=subscribedEvents,proto3,enum=otpki.common.core.publisher.v1.CertEventType" json:"subscribed_events,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	// not settable on creation
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// not settable on creation
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,202,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CertificatePublisher) Reset() {
@@ -408,6 +430,20 @@ func (x *CertificatePublisher) GetSubscribedEvents() []CertEventType {
 	return nil
 }
 
+func (x *CertificatePublisher) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *CertificatePublisher) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 var File_otpki_common_core_publisher_v1_publisher_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_publisher_v1_publisher_proto_rawDesc = "" +
@@ -424,17 +460,25 @@ const file_otpki_common_core_publisher_v1_publisher_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x86\x01\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xb6\x02\n" +
 	"\fCrlPublisher\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x05ca_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\x128\n" +
-	"\x13publisher_config_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11publisherConfigId\"\xaa\x02\n" +
+	"\x13publisher_config_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11publisherConfigId\x12V\n" +
+	"\n" +
+	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
+	"\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt\"\xda\x03\n" +
 	"\x14CertificatePublisher\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x128\n" +
 	"\x13publisher_config_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11publisherConfigId\x12\x1d\n" +
 	"\x05ca_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\x12>\n" +
 	"\x16certificate_profile_id\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x14certificateProfileId\x12Z\n" +
-	"\x11subscribed_events\x18\x05 \x03(\x0e2-.otpki.common.core.publisher.v1.CertEventTypeR\x10subscribedEvents*w\n" +
+	"\x11subscribed_events\x18\x05 \x03(\x0e2-.otpki.common.core.publisher.v1.CertEventTypeR\x10subscribedEvents\x12V\n" +
+	"\n" +
+	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
+	"\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt*w\n" +
 	"\rPublisherType\x12\x1e\n" +
 	"\x1aPUBLISHER_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11PUBLISHER_TYPE_VS\x10\x01\x12\x17\n" +
@@ -479,12 +523,16 @@ var file_otpki_common_core_publisher_v1_publisher_proto_depIdxs = []int32{
 	6, // 1: otpki.common.core.publisher.v1.PublisherConfig.config_data:type_name -> google.protobuf.Any
 	7, // 2: otpki.common.core.publisher.v1.PublisherConfig.created_at:type_name -> google.protobuf.Timestamp
 	7, // 3: otpki.common.core.publisher.v1.PublisherConfig.updated_at:type_name -> google.protobuf.Timestamp
-	2, // 4: otpki.common.core.publisher.v1.CertificatePublisher.subscribed_events:type_name -> otpki.common.core.publisher.v1.CertEventType
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	7, // 4: otpki.common.core.publisher.v1.CrlPublisher.created_at:type_name -> google.protobuf.Timestamp
+	7, // 5: otpki.common.core.publisher.v1.CrlPublisher.updated_at:type_name -> google.protobuf.Timestamp
+	2, // 6: otpki.common.core.publisher.v1.CertificatePublisher.subscribed_events:type_name -> otpki.common.core.publisher.v1.CertEventType
+	7, // 7: otpki.common.core.publisher.v1.CertificatePublisher.created_at:type_name -> google.protobuf.Timestamp
+	7, // 8: otpki.common.core.publisher.v1.CertificatePublisher.updated_at:type_name -> google.protobuf.Timestamp
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_core_publisher_v1_publisher_proto_init() }

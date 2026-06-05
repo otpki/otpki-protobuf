@@ -43,11 +43,16 @@ export declare type EnrollmentRequest = Message<"otpki.common.core.enroller.v1.E
   protocolUsed: IssuingProtocol;
 
   /**
-   * extensible for more complex enrollment (key recovery??)
-   *
    * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity_template = 6;
    */
   endEntityTemplate?: EndEntity;
+
+  /**
+   * extensible for more complex enrollment (key recovery??)
+   *
+   * @generated from field: optional string issuance_request_id = 7;
+   */
+  issuanceRequestId?: string;
 
   /**
    * not settable on creation
@@ -94,11 +99,16 @@ export declare type EnrollmentRequestJson = {
   protocolUsed?: IssuingProtocolJson;
 
   /**
-   * extensible for more complex enrollment (key recovery??)
-   *
    * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity_template = 6;
    */
   endEntityTemplate?: EndEntityJson;
+
+  /**
+   * extensible for more complex enrollment (key recovery??)
+   *
+   * @generated from field: optional string issuance_request_id = 7;
+   */
+  issuanceRequestId?: string;
 
   /**
    * not settable on creation

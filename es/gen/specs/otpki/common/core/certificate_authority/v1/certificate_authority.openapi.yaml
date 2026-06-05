@@ -270,6 +270,22 @@ components:
           title: display_name
       title: CertificateAuthorityCertificate
       additionalProperties: false
+    otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey:
+      type: object
+      properties:
+        caCertificateId:
+          type: string
+          title: ca_certificate_id
+          format: uuid
+        keyId:
+          type: string
+          title: key_id
+          format: uuid
+        alternativeKey:
+          type: boolean
+          title: alternative_key
+      title: CertificateAuthorityCertificateKey
+      additionalProperties: false
     otpki.common.x509.v1.CertificateTemplate:
       type: object
       properties:

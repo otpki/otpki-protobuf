@@ -1,0 +1,67 @@
+syntax = "proto3";
+package otpki.public.importer.v1;
+
+import "google/api/annotations.proto";
+import "otpki/common/core/importer/v1/importer.proto";
+
+message ExportDataRequest {
+  otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+}
+message ExportDataResponse {
+  otpki.common.core.importer.v1.ExportData data = 1;
+}
+
+message ImportDataRequest {
+  otpki.common.core.importer.v1.ExportData data = 1;
+}
+message ImportDataResponse {}
+
+message ExportDataRawRequest {
+  otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+}
+message ExportDataRawResponse {
+  bytes data = 1;
+}
+
+message ImportDataRawRequest {
+  bytes data = 1;
+}
+message ImportDataRawResponse {}
+
+service ImporterService {
+  // The ExportData route supports export of all or partial subsets of
+  // otpki system data.
+  // If Pagination is included, only the specified models for the specified page and filters
+  // will be exported.
+  // If Pagination is empty all data will be exported.
+  rpc ExportData(ExportDataRequest) returns (ExportDataResponse) {
+    option (google.api.http) = {
+      put: "/v1/importer/export"
+      body: "export_pagination"
+      additional_bindings: {get: "/v1/importer/export"}
+    };
+  }
+  // The ImportData route takes a message in the format of an ExportData message.
+  // The content can be a full or partial export of an otpki system or a crafted message, as long as
+  // all of the ID references resolve either to relationships in the same import payload or
+  // existing entities on the target system.
+  rpc ImportData(ImportDataRequest) returns (ImportDataResponse) {
+    option (google.api.http) = {
+      post: "/v1/importer/import"
+      body: "data"
+    };
+  }
+  rpc ExportDataRaw(ExportDataRawRequest) returns (ExportDataRawResponse) {
+    option (google.api.http) = {
+      put: "/v1/importer/export/raw"
+      body: "export_pagination"
+      additional_bindings: {get: "/v1/importer/export/raw"}
+    };
+  }
+  rpc ImportDataRaw(ImportDataRawRequest) returns (ImportDataRawResponse) {
+    option (google.api.http) = {
+      post: "/v1/importer/import/raw"
+      body: "data"
+    };
+  }
+}

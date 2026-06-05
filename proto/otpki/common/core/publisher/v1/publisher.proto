@@ -67,6 +67,19 @@ message CrlPublisher {
   ]; // not settable on creation
   string ca_id = 2 [(buf.validate.field).string.uuid = true];
   string publisher_config_id = 3 [(buf.validate.field).string.uuid = true];
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
 }
 
 // Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
@@ -79,4 +92,17 @@ message CertificatePublisher {
   string ca_id = 3 [(buf.validate.field).string.uuid = true]; // CHECK: at least one of these two must be set
   string certificate_profile_id = 4 [(buf.validate.field).string.uuid = true]; // CHECK: at least one of these two must be set
   repeated CertEventType subscribed_events = 5;
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
 }

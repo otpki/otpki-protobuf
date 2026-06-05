@@ -1601,6 +1601,10 @@ components:
           title: public_key_pem
           description: not settable on creation PEM encoded
           readOnly: true
+        publicKeyHash:
+          type: string
+          title: public_key_hash
+          readOnly: true
         createdAt:
           title: created_at
           description: not settable on creation

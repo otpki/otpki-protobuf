@@ -237,6 +237,14 @@ export declare type Permission = Message<"otpki.common.auth.v1.Permission"> & {
    * @generated from field: optional string object_id = 5;
    */
   objectId?: string;
+
+  /**
+   * when object_id is specified, is_allowed controls this specific action on this specific object
+   * when object_id is specified but action_type is unspecified, is_allowed grants all actions on this specific object
+   *
+   * @generated from field: string role_id = 6;
+   */
+  roleId: string;
 };
 
 /**
@@ -273,6 +281,14 @@ export declare type PermissionJson = {
    * @generated from field: optional string object_id = 5;
    */
   objectId?: string;
+
+  /**
+   * when object_id is specified, is_allowed controls this specific action on this specific object
+   * when object_id is specified but action_type is unspecified, is_allowed grants all actions on this specific object
+   *
+   * @generated from field: string role_id = 6;
+   */
+  roleId?: string;
 };
 
 export declare type PermissionValid = Permission;

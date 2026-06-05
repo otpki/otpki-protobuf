@@ -25,6 +25,7 @@ message EnrollmentRequest {
   EnrollmentDataType data_type = 4;
   issuer.v1.IssuingProtocol protocol_used = 5;
   end_entity.v1.EndEntity end_entity_template = 6;
+  optional string issuance_request_id = 7 [(buf.validate.field).string.uuid = true];
   // extensible for more complex enrollment (key recovery??)
 
   // not settable on creation

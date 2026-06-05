@@ -19,6 +19,7 @@ type EnrollmentRequestNative struct {
 	DataType          EnrollmentDataType
 	ProtocolUsed      v11.IssuingProtocol
 	EndEntityTemplate *v1.EndEntity
+	IssuanceRequestId uuid.NullUUID
 	CreatedAt         time.Time
 	UpdatedAt         time.Time
 }
@@ -39,6 +40,10 @@ func (n *EnrollmentRequestNative) ToProto() (*EnrollmentRequest, error) {
 	protoStruct.DataType = n.DataType
 	protoStruct.ProtocolUsed = n.ProtocolUsed
 	protoStruct.EndEntityTemplate = n.EndEntityTemplate
+	protoStruct.IssuanceRequestId, err = convertNullUUIDToProto(n.IssuanceRequestId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuanceRequestId: %w", err)
+	}
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -66,6 +71,10 @@ func (p *EnrollmentRequest) ToNative() (*EnrollmentRequestNative, error) {
 	nativeStruct.DataType = p.DataType
 	nativeStruct.ProtocolUsed = p.ProtocolUsed
 	nativeStruct.EndEntityTemplate = p.EndEntityTemplate
+	nativeStruct.IssuanceRequestId, err = convertProtoToNullUUID(p.IssuanceRequestId)
+	if err != nil {
+		return nil, fmt.Errorf("error converting IssuanceRequestIdNative: %w", err)
+	}
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)
@@ -86,6 +95,17 @@ func (x *EnrollmentRequest) GetIdUUID() uuid.UUID {
 		}
 	}
 	return uuid.UUID{}
+}
+
+// GetIssuanceRequestIdUUID returns IssuanceRequestId as a UUID when possible.
+func (x *EnrollmentRequest) GetIssuanceRequestIdUUID() uuid.NullUUID {
+	if x != nil {
+		value, err := convertProtoToNullUUID(x.IssuanceRequestId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.NullUUID{}
 }
 
 // GetEnrollmentRequestIdUUID returns EnrollmentRequestId as a UUID when possible.
@@ -122,6 +142,18 @@ func (x *EnrollmentResponse) GetCertificateIdUUID() uuid.NullUUID {
 }
 
 // Converter functions for native types
+
+// convertNullUUIDToProto comes from the converter package
+func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
+	if !id.Valid {
+		return nil, nil
+	}
+	uuidVal, err := convertUUIDToProto(id.UUID)
+	if err != nil {
+		return nil, err
+	}
+	return &uuidVal, nil
+}
 
 // convertProtoToNullUUID comes from the converter package
 func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {

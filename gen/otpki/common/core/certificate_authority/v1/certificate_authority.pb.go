@@ -279,6 +279,66 @@ func (x *CertificateAuthorityCertificate) GetDisplayName() string {
 	return ""
 }
 
+type CertificateAuthorityCertificateKey struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	CaCertificateId string                 `protobuf:"bytes,1,opt,name=ca_certificate_id,json=caCertificateId,proto3" json:"ca_certificate_id,omitempty"`
+	KeyId           string                 `protobuf:"bytes,2,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"`
+	AlternativeKey  bool                   `protobuf:"varint,3,opt,name=alternative_key,json=alternativeKey,proto3" json:"alternative_key,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *CertificateAuthorityCertificateKey) Reset() {
+	*x = CertificateAuthorityCertificateKey{}
+	mi := &file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CertificateAuthorityCertificateKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CertificateAuthorityCertificateKey) ProtoMessage() {}
+
+func (x *CertificateAuthorityCertificateKey) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CertificateAuthorityCertificateKey.ProtoReflect.Descriptor instead.
+func (*CertificateAuthorityCertificateKey) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CertificateAuthorityCertificateKey) GetCaCertificateId() string {
+	if x != nil {
+		return x.CaCertificateId
+	}
+	return ""
+}
+
+func (x *CertificateAuthorityCertificateKey) GetKeyId() string {
+	if x != nil {
+		return x.KeyId
+	}
+	return ""
+}
+
+func (x *CertificateAuthorityCertificateKey) GetAlternativeKey() bool {
+	if x != nil {
+		return x.AlternativeKey
+	}
+	return false
+}
+
 var File_otpki_common_core_certificate_authority_v1_certificate_authority_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDesc = "" +
@@ -314,7 +374,11 @@ const file_otpki_common_core_certificate_authority_v1_certificate_authority_prot
 	"\x11certificate_chain\x18\x04 \x03(\fR\x10certificateChain\x12A\n" +
 	"\x15issued_certificate_id\x18\x05 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x13issuedCertificateId\x88\x01\x01\x12!\n" +
 	"\fdisplay_name\x18\x06 \x01(\tR\vdisplayNameB\x18\n" +
-	"\x16_issued_certificate_idB\xfc\x02\n" +
+	"\x16_issued_certificate_id\"\xa4\x01\n" +
+	"\"CertificateAuthorityCertificateKey\x124\n" +
+	"\x11ca_certificate_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x0fcaCertificateId\x12\x1f\n" +
+	"\x06key_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\x12'\n" +
+	"\x0falternative_key\x18\x03 \x01(\bR\x0ealternativeKeyB\xfc\x02\n" +
 	".com.otpki.common.core.certificate_authority.v1B\x19CertificateAuthorityProtoP\x01Zfgithub.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_authority/v1;certificate_authorityv1\xa2\x02\x04OCCC\xaa\x02)Otpki.Common.Core.CertificateAuthority.V1\xca\x02)Otpki\\Common\\Core\\CertificateAuthority\\V1\xe2\x025Otpki\\Common\\Core\\CertificateAuthority\\V1\\GPBMetadata\xea\x02-Otpki::Common::Core::CertificateAuthority::V1b\x06proto3"
 
 var (
@@ -329,23 +393,24 @@ func file_otpki_common_core_certificate_authority_v1_certificate_authority_proto
 	return file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDescData
 }
 
-var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_goTypes = []any{
-	(*CertificateAuthority)(nil),            // 0: otpki.common.core.certificate_authority.v1.CertificateAuthority
-	(*CertificateAuthorityCertificate)(nil), // 1: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	(v1.SignatureAlgorithm)(0),              // 2: otpki.common.x509.v1.SignatureAlgorithm
-	(*v1.CertificateTemplate)(nil),          // 3: otpki.common.x509.v1.CertificateTemplate
-	(*durationpb.Duration)(nil),             // 4: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),           // 5: google.protobuf.Timestamp
+	(*CertificateAuthority)(nil),               // 0: otpki.common.core.certificate_authority.v1.CertificateAuthority
+	(*CertificateAuthorityCertificate)(nil),    // 1: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	(*CertificateAuthorityCertificateKey)(nil), // 2: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+	(v1.SignatureAlgorithm)(0),                 // 3: otpki.common.x509.v1.SignatureAlgorithm
+	(*v1.CertificateTemplate)(nil),             // 4: otpki.common.x509.v1.CertificateTemplate
+	(*durationpb.Duration)(nil),                // 5: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),              // 6: google.protobuf.Timestamp
 }
 var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_depIdxs = []int32{
-	2, // 0: otpki.common.core.certificate_authority.v1.CertificateAuthority.signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
-	2, // 1: otpki.common.core.certificate_authority.v1.CertificateAuthority.alternative_signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
-	3, // 2: otpki.common.core.certificate_authority.v1.CertificateAuthority.certificate_template:type_name -> otpki.common.x509.v1.CertificateTemplate
-	4, // 3: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_validity_period:type_name -> google.protobuf.Duration
-	4, // 4: otpki.common.core.certificate_authority.v1.CertificateAuthority.delta_crl_validity_period:type_name -> google.protobuf.Duration
-	5, // 5: otpki.common.core.certificate_authority.v1.CertificateAuthority.created_at:type_name -> google.protobuf.Timestamp
-	5, // 6: otpki.common.core.certificate_authority.v1.CertificateAuthority.updated_at:type_name -> google.protobuf.Timestamp
+	3, // 0: otpki.common.core.certificate_authority.v1.CertificateAuthority.signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
+	3, // 1: otpki.common.core.certificate_authority.v1.CertificateAuthority.alternative_signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
+	4, // 2: otpki.common.core.certificate_authority.v1.CertificateAuthority.certificate_template:type_name -> otpki.common.x509.v1.CertificateTemplate
+	5, // 3: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_validity_period:type_name -> google.protobuf.Duration
+	5, // 4: otpki.common.core.certificate_authority.v1.CertificateAuthority.delta_crl_validity_period:type_name -> google.protobuf.Duration
+	6, // 5: otpki.common.core.certificate_authority.v1.CertificateAuthority.created_at:type_name -> google.protobuf.Timestamp
+	6, // 6: otpki.common.core.certificate_authority.v1.CertificateAuthority.updated_at:type_name -> google.protobuf.Timestamp
 	7, // [7:7] is the sub-list for method output_type
 	7, // [7:7] is the sub-list for method input_type
 	7, // [7:7] is the sub-list for extension type_name
@@ -366,7 +431,7 @@ func file_otpki_common_core_certificate_authority_v1_certificate_authority_proto
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDesc), len(file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

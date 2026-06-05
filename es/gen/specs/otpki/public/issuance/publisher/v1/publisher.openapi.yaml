@@ -2022,6 +2022,16 @@ components:
           items:
             $ref: '#/components/schemas/otpki.common.core.publisher.v1.CertEventType'
           title: subscribed_events
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
       title: CertificatePublisher
       additionalProperties: false
       description: Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
@@ -2042,6 +2052,16 @@ components:
           type: string
           title: publisher_config_id
           format: uuid
+        createdAt:
+          title: created_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          description: not settable on creation
+          readOnly: true
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
       title: CrlPublisher
       additionalProperties: false
       description: CRL Publisher can only subscribe to CAs on CRL generation events

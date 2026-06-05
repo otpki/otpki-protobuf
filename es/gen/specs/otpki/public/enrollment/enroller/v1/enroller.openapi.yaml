@@ -1032,8 +1032,14 @@ components:
           $ref: '#/components/schemas/otpki.common.core.issuer.v1.IssuingProtocol'
         endEntityTemplate:
           title: end_entity_template
-          description: extensible for more complex enrollment (key recovery??)
           $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
+        issuanceRequestId:
+          type:
+            - string
+            - "null"
+          title: issuance_request_id
+          format: uuid
+          description: extensible for more complex enrollment (key recovery??)
         createdAt:
           title: created_at
           description: not settable on creation

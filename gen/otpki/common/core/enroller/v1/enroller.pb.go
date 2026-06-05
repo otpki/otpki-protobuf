@@ -83,7 +83,8 @@ type EnrollmentRequest struct {
 	Data              []byte                 `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
 	DataType          EnrollmentDataType     `protobuf:"varint,4,opt,name=data_type,json=dataType,proto3,enum=otpki.common.core.enroller.v1.EnrollmentDataType" json:"data_type,omitempty"`
 	ProtocolUsed      v11.IssuingProtocol    `protobuf:"varint,5,opt,name=protocol_used,json=protocolUsed,proto3,enum=otpki.common.core.issuer.v1.IssuingProtocol" json:"protocol_used,omitempty"`
-	EndEntityTemplate *v1.EndEntity          `protobuf:"bytes,6,opt,name=end_entity_template,json=endEntityTemplate,proto3" json:"end_entity_template,omitempty"` // extensible for more complex enrollment (key recovery??)
+	EndEntityTemplate *v1.EndEntity          `protobuf:"bytes,6,opt,name=end_entity_template,json=endEntityTemplate,proto3" json:"end_entity_template,omitempty"`
+	IssuanceRequestId *string                `protobuf:"bytes,7,opt,name=issuance_request_id,json=issuanceRequestId,proto3,oneof" json:"issuance_request_id,omitempty"` // extensible for more complex enrollment (key recovery??)
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -162,6 +163,13 @@ func (x *EnrollmentRequest) GetEndEntityTemplate() *v1.EndEntity {
 		return x.EndEntityTemplate
 	}
 	return nil
+}
+
+func (x *EnrollmentRequest) GetIssuanceRequestId() string {
+	if x != nil && x.IssuanceRequestId != nil {
+		return *x.IssuanceRequestId
+	}
+	return ""
 }
 
 func (x *EnrollmentRequest) GetCreatedAt() *timestamppb.Timestamp {
@@ -269,18 +277,20 @@ var File_otpki_common_core_enroller_v1_enroller_proto protoreflect.FileDescripto
 
 const file_otpki_common_core_enroller_v1_enroller_proto_rawDesc = "" +
 	"\n" +
-	",otpki/common/core/enroller/v1/enroller.proto\x12\x1dotpki.common.core.enroller.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\"\xcc\x04\n" +
+	",otpki/common/core/enroller/v1/enroller.proto\x12\x1dotpki.common.core.enroller.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\"\xa3\x05\n" +
 	"\x11EnrollmentRequest\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12O\n" +
 	"\x06status\x18\x02 \x01(\x0e20.otpki.common.core.end_entity.v1.EndEntityStatusB\x05\xbaG\x02\x18\x01R\x06status\x12\x12\n" +
 	"\x04data\x18\x03 \x01(\fR\x04data\x12N\n" +
 	"\tdata_type\x18\x04 \x01(\x0e21.otpki.common.core.enroller.v1.EnrollmentDataTypeR\bdataType\x12Q\n" +
 	"\rprotocol_used\x18\x05 \x01(\x0e2,.otpki.common.core.issuer.v1.IssuingProtocolR\fprotocolUsed\x12Z\n" +
-	"\x13end_entity_template\x18\x06 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityR\x11endEntityTemplate\x12V\n" +
+	"\x13end_entity_template\x18\x06 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityR\x11endEntityTemplate\x12=\n" +
+	"\x13issuance_request_id\x18\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11issuanceRequestId\x88\x01\x01\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x8c\x03\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01B\x16\n" +
+	"\x14_issuance_request_id\"\x8c\x03\n" +
 	"\x12EnrollmentResponse\x12<\n" +
 	"\x15enrollment_request_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12=\n" +
 	"\x13issuance_request_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11issuanceRequestId\x88\x01\x01\x124\n" +
@@ -340,6 +350,7 @@ func file_otpki_common_core_enroller_v1_enroller_proto_init() {
 	if File_otpki_common_core_enroller_v1_enroller_proto != nil {
 		return
 	}
+	file_otpki_common_core_enroller_v1_enroller_proto_msgTypes[0].OneofWrappers = []any{}
 	file_otpki_common_core_enroller_v1_enroller_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

@@ -133,6 +133,20 @@ export declare type CrlPublisher = Message<"otpki.common.core.publisher.v1.CrlPu
    * @generated from field: string publisher_config_id = 3;
    */
   publisherConfigId: string;
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 201;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp updated_at = 202;
+   */
+  updatedAt?: Timestamp;
 };
 
 /**
@@ -157,6 +171,20 @@ export declare type CrlPublisherJson = {
    * @generated from field: string publisher_config_id = 3;
    */
   publisherConfigId?: string;
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 201;
+   */
+  createdAt?: TimestampJson;
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp updated_at = 202;
+   */
+  updatedAt?: TimestampJson;
 };
 
 export declare type CrlPublisherValid = CrlPublisher;
@@ -203,6 +231,20 @@ export declare type CertificatePublisher = Message<"otpki.common.core.publisher.
    * @generated from field: repeated otpki.common.core.publisher.v1.CertEventType subscribed_events = 5;
    */
   subscribedEvents: CertEventType[];
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 201;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp updated_at = 202;
+   */
+  updatedAt?: Timestamp;
 };
 
 /**
@@ -241,6 +283,20 @@ export declare type CertificatePublisherJson = {
    * @generated from field: repeated otpki.common.core.publisher.v1.CertEventType subscribed_events = 5;
    */
   subscribedEvents?: CertEventTypeJson[];
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp created_at = 201;
+   */
+  createdAt?: TimestampJson;
+
+  /**
+   * not settable on creation
+   *
+   * @generated from field: google.protobuf.Timestamp updated_at = 202;
+   */
+  updatedAt?: TimestampJson;
 };
 
 export declare type CertificatePublisherValid = CertificatePublisher;

@@ -1,0 +1,78 @@
+syntax = "proto3";
+package otpki.common.core.importer.v1;
+
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
+import "otpki/common/core/certificate_extension/v1/certificate_extension.proto";
+import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
+import "otpki/common/core/end_entity/v1/end_entity.proto";
+import "otpki/common/core/end_entity_profile/v1/end_entity_profile.proto";
+import "otpki/common/core/enroller/v1/enroller.proto";
+import "otpki/common/core/extended_key_usage/v1/extended_key_usage.proto";
+import "otpki/common/core/issued_certificate/v1/issued_certificate.proto";
+import "otpki/common/core/issuer/v1/issuer.proto";
+import "otpki/common/core/key/v1/key.proto";
+import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
+import "otpki/common/core/publisher/v1/publisher.proto";
+import "otpki/common/core/smtp_settings/v1/smtp_settings.proto";
+
+// Export Pagination options allow the user to specify either:
+// Specific page-queries of specific models to export  - or -
+// export of everything.
+// If any pagination data is set, only that data will be included for export.
+message ExportPagination {
+  otpki.common.api.query.v1.PaginationRequest permissions = 1;
+  otpki.common.api.query.v1.PaginationRequest roles = 2;
+  otpki.common.api.query.v1.PaginationRequest approval_profiles = 3;
+
+  otpki.common.api.query.v1.PaginationRequest smtp_settings = 4;
+  otpki.common.api.query.v1.PaginationRequest end_entity_profiles = 5;
+  otpki.common.api.query.v1.PaginationRequest end_entities = 6;
+  otpki.common.api.query.v1.PaginationRequest enrollment_requests = 7;
+
+  otpki.common.api.query.v1.PaginationRequest key_storage_configs = 8;
+  otpki.common.api.query.v1.PaginationRequest keys = 9;
+  otpki.common.api.query.v1.PaginationRequest certificate_profiles = 10;
+  otpki.common.api.query.v1.PaginationRequest custom_ekus = 11;
+  otpki.common.api.query.v1.PaginationRequest custom_certificate_extensions = 12;
+  otpki.common.api.query.v1.PaginationRequest certificate_authorities = 13;
+  otpki.common.api.query.v1.PaginationRequest issuance_requests = 14;
+  otpki.common.api.query.v1.PaginationRequest certificates = 15;
+  otpki.common.api.query.v1.PaginationRequest certificate_authority_certificates = 16;
+  otpki.common.api.query.v1.PaginationRequest certificate_authority_keys = 17;
+  otpki.common.api.query.v1.PaginationRequest publisher_configs = 18;
+  otpki.common.api.query.v1.PaginationRequest crl_publishers = 19;
+  otpki.common.api.query.v1.PaginationRequest certificate_publishers = 20;
+}
+
+// The full message format for export and import routes.
+// Export supports exporting of any arbitrary subset of data.
+// However import requires that database constraints are satisfied at the end of the
+// import transaction.
+// Users should ensure that any crafted messages or subset exports include ID references
+// that will resolve either against existing entity IDs or data within the payload.
+message ExportData {
+  repeated otpki.common.auth.v1.Permission permissions = 1;
+  repeated otpki.common.auth.v1.Role roles = 2;
+  repeated otpki.common.auth.v1.ApprovalProfile approval_profiles = 3;
+
+  repeated otpki.common.core.smtp_settings.v1.SMTPSettings smtp_settings = 4;
+  repeated otpki.common.core.end_entity_profile.v1.EndEntityProfile end_entity_profiles = 5;
+  repeated otpki.common.core.end_entity.v1.EndEntity end_entities = 6;
+  repeated otpki.common.core.enroller.v1.EnrollmentRequest enrollment_requests = 7;
+
+  repeated otpki.common.core.key_storage_config.v1.KeyStorageConfig key_storage_configs = 8;
+  repeated otpki.common.core.key.v1.Key keys = 9;
+  repeated otpki.common.core.certificate_profile.v1.CertificateProfile certificate_profiles = 10;
+  repeated otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage custom_ekus = 11;
+  repeated otpki.common.core.certificate_extension.v1.CustomCertificateExtension custom_certificate_extensions = 12;
+  repeated otpki.common.core.certificate_authority.v1.CertificateAuthority certificate_authorities = 13;
+  repeated otpki.common.core.issuer.v1.IssuanceRequest issuance_requests = 14;
+  repeated otpki.common.core.issued_certificate.v1.IssuedCertificate certificates = 15;
+  repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificates = 16;
+  repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey certificate_authority_keys = 17;
+  repeated otpki.common.core.publisher.v1.PublisherConfig publisher_configs = 18;
+  repeated otpki.common.core.publisher.v1.CrlPublisher crl_publishers = 19;
+  repeated otpki.common.core.publisher.v1.CertificatePublisher certificate_publishers = 20;
+}

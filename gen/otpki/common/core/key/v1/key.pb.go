@@ -534,7 +534,8 @@ type Key struct {
 	KeyStorageConfigId string                 `protobuf:"bytes,7,opt,name=key_storage_config_id,json=keyStorageConfigId,proto3" json:"key_storage_config_id,omitempty"`
 	KeyDriverType      v1.KeyDriverType       `protobuf:"varint,8,opt,name=key_driver_type,json=keyDriverType,proto3,enum=otpki.common.core.key_storage_config.v1.KeyDriverType" json:"key_driver_type,omitempty"`
 	// not settable on creation
-	PublicKeyPem string `protobuf:"bytes,9,opt,name=public_key_pem,json=publicKeyPem,proto3" json:"public_key_pem,omitempty"` // PEM encoded
+	PublicKeyPem  string `protobuf:"bytes,9,opt,name=public_key_pem,json=publicKeyPem,proto3" json:"public_key_pem,omitempty"` // PEM encoded
+	PublicKeyHash string `protobuf:"bytes,10,opt,name=public_key_hash,json=publicKeyHash,proto3" json:"public_key_hash,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -636,6 +637,13 @@ func (x *Key) GetPublicKeyPem() string {
 	return ""
 }
 
+func (x *Key) GetPublicKeyHash() string {
+	if x != nil {
+		return x.PublicKeyHash
+	}
+	return ""
+}
+
 func (x *Key) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -654,7 +662,7 @@ var File_otpki_common_core_key_v1_key_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_key_v1_key_proto_rawDesc = "" +
 	"\n" +
-	"\"otpki/common/core/key/v1/key.proto\x12\x18otpki.common.core.key.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a2otpki/common/core/key_storage_config/v1/enum.proto\"\xb2\x05\n" +
+	"\"otpki/common/core/key/v1/key.proto\x12\x18otpki.common.core.key.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a2otpki/common/core/key_storage_config/v1/enum.proto\"\xe1\x05\n" +
 	"\x03Key\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x120\n" +
 	"\x04name\x18\x02 \x01(\tB\x1c\xbaH\x19\xc8\x01\x01r\x142\x12^[a-zA-Z0-9:/_-]+$R\x04name\x12 \n" +
@@ -664,7 +672,9 @@ const file_otpki_common_core_key_v1_key_proto_rawDesc = "" +
 	"\x0fkey_config_data\x18\x06 \x01(\v2\x14.google.protobuf.AnyR\rkeyConfigData\x12>\n" +
 	"\x15key_storage_config_id\x18\a \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x12keyStorageConfigId\x12^\n" +
 	"\x0fkey_driver_type\x18\b \x01(\x0e26.otpki.common.core.key_storage_config.v1.KeyDriverTypeR\rkeyDriverType\x12+\n" +
-	"\x0epublic_key_pem\x18\t \x01(\tB\x05\xbaG\x02\x18\x01R\fpublicKeyPem\x12V\n" +
+	"\x0epublic_key_pem\x18\t \x01(\tB\x05\xbaG\x02\x18\x01R\fpublicKeyPem\x12-\n" +
+	"\x0fpublic_key_hash\x18\n" +
+	" \x01(\tB\x05\xbaG\x02\x18\x01R\rpublicKeyHash\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +

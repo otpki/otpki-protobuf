@@ -171,6 +171,17 @@ func (x *Permission) GetObjectIdUUID() uuid.NullUUID {
 	return uuid.NullUUID{}
 }
 
+// GetRoleIdUUID returns RoleId as a UUID when possible.
+func (x *Permission) GetRoleIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.RoleId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // UserNative is the native typing representation of User
 type UserNative struct {
 	Id           uuid.UUID

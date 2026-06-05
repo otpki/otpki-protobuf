@@ -70,3 +70,9 @@ message CertificateAuthorityCertificate {
   optional string issued_certificate_id = 5 [(buf.validate.field).string.uuid = true];
   string display_name = 6;
 }
+
+message CertificateAuthorityCertificateKey {
+  string ca_certificate_id = 1 [(buf.validate.field).string.uuid = true];
+  string key_id = 2 [(buf.validate.field).string.uuid = true];
+  bool alternative_key = 3;
+}
