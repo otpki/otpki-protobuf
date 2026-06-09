@@ -325,6 +325,20 @@ export declare type EndEntityProfile = Message<"otpki.common.core.end_entity_pro
   emailDomain: string;
 
   /**
+   * email notifications to the EE (login id + password on creation/rotation)
+   *
+   * @generated from field: bool email_notifications = 317;
+   */
+  emailNotifications: boolean;
+
+  /**
+   * SMTP settings used to send email notifications
+   *
+   * @generated from field: optional string smtp_settings_id = 318;
+   */
+  smtpSettingsId?: string;
+
+  /**
    * subject DN
    * note: certificate email can differ from EE email
    *
@@ -597,6 +611,20 @@ export declare type EndEntityProfileJson = {
    * @generated from field: string email_domain = 315;
    */
   emailDomain?: string;
+
+  /**
+   * email notifications to the EE (login id + password on creation/rotation)
+   *
+   * @generated from field: bool email_notifications = 317;
+   */
+  emailNotifications?: boolean;
+
+  /**
+   * SMTP settings used to send email notifications
+   *
+   * @generated from field: optional string smtp_settings_id = 318;
+   */
+  smtpSettingsId?: string;
 
   /**
    * subject DN

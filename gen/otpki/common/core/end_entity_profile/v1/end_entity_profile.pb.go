@@ -290,6 +290,8 @@ type EndEntityProfile struct {
 	EmailRequired             bool                               `protobuf:"varint,313,opt,name=email_required,json=emailRequired,proto3" json:"email_required,omitempty"`                           // EE creation requires email to be specified
 	EmailDomainModifiable     bool                               `protobuf:"varint,314,opt,name=email_domain_modifiable,json=emailDomainModifiable,proto3" json:"email_domain_modifiable,omitempty"` // false == EE creation does not allow domain (@example.com) to be specified
 	EmailDomain               string                             `protobuf:"bytes,315,opt,name=email_domain,json=emailDomain,proto3" json:"email_domain,omitempty"`                                  // if use_email == true and domain == "", it must be modifiable
+	EmailNotifications        bool                               `protobuf:"varint,317,opt,name=email_notifications,json=emailNotifications,proto3" json:"email_notifications,omitempty"`            // email notifications to the EE (login id + password on creation/rotation)
+	SmtpSettingsId            *string                            `protobuf:"bytes,318,opt,name=smtp_settings_id,json=smtpSettingsId,proto3,oneof" json:"smtp_settings_id,omitempty"`                 // SMTP settings used to send email notifications
 	// subject DN
 	// note: certificate email can differ from EE email
 	SubjectDnAttributes []*EndEntityProfileSubjectDNAttribute `protobuf:"bytes,401,rep,name=subject_dn_attributes,json=subjectDnAttributes,proto3" json:"subject_dn_attributes,omitempty"`
@@ -500,6 +502,20 @@ func (x *EndEntityProfile) GetEmailDomain() string {
 	return ""
 }
 
+func (x *EndEntityProfile) GetEmailNotifications() bool {
+	if x != nil {
+		return x.EmailNotifications
+	}
+	return false
+}
+
+func (x *EndEntityProfile) GetSmtpSettingsId() string {
+	if x != nil && x.SmtpSettingsId != nil {
+		return *x.SmtpSettingsId
+	}
+	return ""
+}
+
 func (x *EndEntityProfile) GetSubjectDnAttributes() []*EndEntityProfileSubjectDNAttribute {
 	if x != nil {
 		return x.SubjectDnAttributes
@@ -670,7 +686,7 @@ const file_otpki_common_core_end_entity_profile_v1_end_entity_profile_proto_rawD
 	"\n" +
 	"validation\x18\x06 \x01(\bR\n" +
 	"validation\x12\x14\n" +
-	"\x05regex\x18\a \x01(\tR\x05regex\"\xdf\x17\n" +
+	"\x05regex\x18\a \x01(\tR\x05regex\"\xe0\x18\n" +
 	"\x10EndEntityProfile\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
@@ -695,7 +711,9 @@ const file_otpki_common_core_end_entity_profile_v1_end_entity_profile_proto_rawD
 	"\x0eemail_required\x18\xb9\x02 \x01(\bR\remailRequired\x127\n" +
 	"\x17email_domain_modifiable\x18\xba\x02 \x01(\bR\x15emailDomainModifiable\x12\x84\x01\n" +
 	"\femail_domain\x18\xbb\x02 \x01(\tB`\xbaH]\xba\x01Z\n" +
-	"\x17email_domain.isHostname\x12\x1evalue must be a valid hostname\x1a\x1fthis == '' || this.isHostname()R\vemailDomain\x12\x80\x01\n" +
+	"\x17email_domain.isHostname\x12\x1evalue must be a valid hostname\x1a\x1fthis == '' || this.isHostname()R\vemailDomain\x120\n" +
+	"\x13email_notifications\x18\xbd\x02 \x01(\bR\x12emailNotifications\x128\n" +
+	"\x10smtp_settings_id\x18\xbe\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x0esmtpSettingsId\x88\x01\x01\x12\x80\x01\n" +
 	"\x15subject_dn_attributes\x18\x91\x03 \x03(\v2K.otpki.common.core.end_entity_profile.v1.EndEntityProfileSubjectDNAttributeR\x13subjectDnAttributes\x12\x95\x01\n" +
 	"#subject_alternative_name_attributes\x18\xf5\x03 \x03(\v2E.otpki.common.core.end_entity_profile.v1.EndEntityProfileSANAttributeR subjectAlternativeNameAttributes\x12[\n" +
 	"!available_certificate_profile_ids\x18\xd9\x04 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1eavailableCertificateProfileIds\x12N\n" +
@@ -715,7 +733,8 @@ const file_otpki_common_core_end_entity_profile_v1_end_entity_profile_proto_rawD
 	"\x1duse_name_constraints_excluded\x18\xa3\x06 \x01(\bR\x1auseNameConstraintsExcluded\x12L\n" +
 	"\"name_constraints_excluded_required\x18\xa4\x06 \x01(\bR\x1fnameConstraintsExcludedRequired\x12>\n" +
 	"\x1buse_custom_certificate_exts\x18\xa5\x06 \x01(\bR\x18useCustomCertificateExts\x12>\n" +
-	"\x13approval_profile_id\x18\xa6\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11approvalProfileId\x88\x01\x01:\x04\x98\xb5\x18\x01B\x16\n" +
+	"\x13approval_profile_id\x18\xa6\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01:\x04\x98\xb5\x18\x01B\x13\n" +
+	"\x11_smtp_settings_idB\x16\n" +
 	"\x14_approval_profile_id*\xa8\x02\n" +
 	"\"EndEntityPasswordGenerationCharset\x126\n" +
 	"2END_ENTITY_PASSWORD_GENERATION_CHARSET_UNSPECIFIED\x10\x00\x126\n" +

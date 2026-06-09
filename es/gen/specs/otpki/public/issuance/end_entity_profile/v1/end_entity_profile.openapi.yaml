@@ -1351,6 +1351,17 @@ components:
           description: |
             if use_email == true and domain == "", it must be modifiable
             email_domain.isHostname // value must be a valid hostname
+        emailNotifications:
+          type: boolean
+          title: email_notifications
+          description: email notifications to the EE (login id + password on creation/rotation)
+        smtpSettingsId:
+          type:
+            - string
+            - "null"
+          title: smtp_settings_id
+          format: uuid
+          description: SMTP settings used to send email notifications
         subjectDnAttributes:
           type: array
           items:

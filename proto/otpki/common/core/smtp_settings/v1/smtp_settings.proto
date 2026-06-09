@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package otpki.common.core.smtp_settings.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+
+enum SMTPEncryption {
+  SMTP_ENCRYPTION_UNSPECIFIED = 0;
+  SMTP_ENCRYPTION_NONE = 1;
+  SMTP_ENCRYPTION_STARTTLS = 2;
+  SMTP_ENCRYPTION_SSL = 3;
+}
+
+message SMTPSettings {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
+  string name = 2 [(buf.validate.field).string.min_len = 3];
+  bool enabled = 3;
+  string from_address = 4 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.email = true
+  ];
+  string from_name = 5;
+  string host = 6;
+  string port = 7;
+  string username = 8;
+  string password = 9; // encrypted
+  SMTPEncryption encryption = 10;
+  bool tls_insecure = 11; // skip TLS verification of the SMTP server (the server name is always the host)
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

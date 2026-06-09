@@ -91,6 +91,8 @@ message EndEntityProfile {
     message: "value must be a valid hostname"
     expression: "this == '' || this.isHostname()" // allow empty hostname
   }]; // if use_email == true and domain == "", it must be modifiable
+  bool email_notifications = 317; // email notifications to the EE (login id + password on creation/rotation)
+  optional string smtp_settings_id = 318 [(buf.validate.field).string.uuid = true]; // SMTP settings used to send email notifications
 
   // subject DN
   // note: certificate email can differ from EE email
