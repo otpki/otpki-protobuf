@@ -71,6 +71,7 @@ import * as mod67 from './public/otpki/public/plugin/runtime/v1/manifest_pb.js';
 import * as mod68 from './public/otpki/public/plugin/runtime/v1/plugin_pb.js';
 import * as mod69 from './public/otpki/public/plugin/runtime/v1/runtime_pb.js';
 import * as mod70 from './public/otpki/public/validation/revocation_list/v1/revocation_list_pb.js';
+import * as mod71 from './public/otpki/public/version/v1/version_pb.js';
 
 const fileDescs = [
   ...Object.entries(mod0).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
@@ -143,7 +144,8 @@ const fileDescs = [
   ...Object.entries(mod67).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
   ...Object.entries(mod68).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
   ...Object.entries(mod69).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
-  ...Object.entries(mod70).filter(([k]) => k.startsWith('file_')).map(([, v]) => v)
+  ...Object.entries(mod70).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
+  ...Object.entries(mod71).filter(([k]) => k.startsWith('file_')).map(([, v]) => v)
 ];
 
 export const registry: Registry = createRegistry(...fileDescs);

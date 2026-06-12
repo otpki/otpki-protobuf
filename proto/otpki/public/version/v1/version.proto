@@ -1,0 +1,16 @@
+syntax = "proto3";
+package otpki.public.version.v1;
+
+import "google/api/annotations.proto";
+
+message VersionRequest {}
+message VersionResponse {
+  string version = 1;
+}
+
+service VersionService {
+  rpc Version(VersionRequest) returns (VersionResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/version"};
+  }
+}
