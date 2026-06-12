@@ -131,8 +131,9 @@ message PaginationRequest {
   repeated FilterGroup filter_groups = 6;
   bool without_count = 7;
   bool with_count_estimate = 8;
-  bool with_soft_deleted = 9;
+  bool with_soft_deleted = 9 [deprecated = true]; // no longer have soft deletes
   bool with_pagination_info_only = 10;
+  bool with_token_pagination = 11;
 }
 
 message PaginationResponse {

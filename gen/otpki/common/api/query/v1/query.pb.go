@@ -805,17 +805,19 @@ func (x *PaginationInfoResponse) GetColumns() []*PaginationInfoEntry {
 }
 
 type PaginationRequest struct {
-	state                  protoimpl.MessageState `protogen:"open.v1"`
-	PageToken              string                 `protobuf:"bytes,1,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
-	PageSize               int64                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	Skip                   int64                  `protobuf:"varint,3,opt,name=skip,proto3" json:"skip,omitempty"`
-	Sort                   []*SortEntry           `protobuf:"bytes,4,rep,name=sort,proto3" json:"sort,omitempty"`
-	Filters                []*Filter              `protobuf:"bytes,5,rep,name=filters,proto3" json:"filters,omitempty"`
-	FilterGroups           []*FilterGroup         `protobuf:"bytes,6,rep,name=filter_groups,json=filterGroups,proto3" json:"filter_groups,omitempty"`
-	WithoutCount           bool                   `protobuf:"varint,7,opt,name=without_count,json=withoutCount,proto3" json:"without_count,omitempty"`
-	WithCountEstimate      bool                   `protobuf:"varint,8,opt,name=with_count_estimate,json=withCountEstimate,proto3" json:"with_count_estimate,omitempty"`
-	WithSoftDeleted        bool                   `protobuf:"varint,9,opt,name=with_soft_deleted,json=withSoftDeleted,proto3" json:"with_soft_deleted,omitempty"`
-	WithPaginationInfoOnly bool                   `protobuf:"varint,10,opt,name=with_pagination_info_only,json=withPaginationInfoOnly,proto3" json:"with_pagination_info_only,omitempty"`
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	PageToken         string                 `protobuf:"bytes,1,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
+	PageSize          int64                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	Skip              int64                  `protobuf:"varint,3,opt,name=skip,proto3" json:"skip,omitempty"`
+	Sort              []*SortEntry           `protobuf:"bytes,4,rep,name=sort,proto3" json:"sort,omitempty"`
+	Filters           []*Filter              `protobuf:"bytes,5,rep,name=filters,proto3" json:"filters,omitempty"`
+	FilterGroups      []*FilterGroup         `protobuf:"bytes,6,rep,name=filter_groups,json=filterGroups,proto3" json:"filter_groups,omitempty"`
+	WithoutCount      bool                   `protobuf:"varint,7,opt,name=without_count,json=withoutCount,proto3" json:"without_count,omitempty"`
+	WithCountEstimate bool                   `protobuf:"varint,8,opt,name=with_count_estimate,json=withCountEstimate,proto3" json:"with_count_estimate,omitempty"`
+	// Deprecated: Marked as deprecated in otpki/common/api/query/v1/query.proto.
+	WithSoftDeleted        bool `protobuf:"varint,9,opt,name=with_soft_deleted,json=withSoftDeleted,proto3" json:"with_soft_deleted,omitempty"` // no longer have soft deletes
+	WithPaginationInfoOnly bool `protobuf:"varint,10,opt,name=with_pagination_info_only,json=withPaginationInfoOnly,proto3" json:"with_pagination_info_only,omitempty"`
+	WithTokenPagination    bool `protobuf:"varint,11,opt,name=with_token_pagination,json=withTokenPagination,proto3" json:"with_token_pagination,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -906,6 +908,7 @@ func (x *PaginationRequest) GetWithCountEstimate() bool {
 	return false
 }
 
+// Deprecated: Marked as deprecated in otpki/common/api/query/v1/query.proto.
 func (x *PaginationRequest) GetWithSoftDeleted() bool {
 	if x != nil {
 		return x.WithSoftDeleted
@@ -916,6 +919,13 @@ func (x *PaginationRequest) GetWithSoftDeleted() bool {
 func (x *PaginationRequest) GetWithPaginationInfoOnly() bool {
 	if x != nil {
 		return x.WithPaginationInfoOnly
+	}
+	return false
+}
+
+func (x *PaginationRequest) GetWithTokenPagination() bool {
+	if x != nil {
+		return x.WithTokenPagination
 	}
 	return false
 }
@@ -1103,7 +1113,7 @@ const file_otpki_common_api_query_v1_query_proto_rawDesc = "" +
 	"field_type\x18\x06 \x01(\x0e2$.otpki.common.api.query.v1.FieldTypeR\tfieldType\x12\x1a\n" +
 	"\brepeated\x18\a \x01(\bR\brepeated\"b\n" +
 	"\x16PaginationInfoResponse\x12H\n" +
-	"\acolumns\x18\x01 \x03(\v2..otpki.common.api.query.v1.PaginationInfoEntryR\acolumns\"\xe3\x03\n" +
+	"\acolumns\x18\x01 \x03(\v2..otpki.common.api.query.v1.PaginationInfoEntryR\acolumns\"\x9b\x04\n" +
 	"\x11PaginationRequest\x12\x1d\n" +
 	"\n" +
 	"page_token\x18\x01 \x01(\tR\tpageToken\x12\x1b\n" +
@@ -1113,10 +1123,11 @@ const file_otpki_common_api_query_v1_query_proto_rawDesc = "" +
 	"\afilters\x18\x05 \x03(\v2!.otpki.common.api.query.v1.FilterR\afilters\x12K\n" +
 	"\rfilter_groups\x18\x06 \x03(\v2&.otpki.common.api.query.v1.FilterGroupR\ffilterGroups\x12#\n" +
 	"\rwithout_count\x18\a \x01(\bR\fwithoutCount\x12.\n" +
-	"\x13with_count_estimate\x18\b \x01(\bR\x11withCountEstimate\x12*\n" +
-	"\x11with_soft_deleted\x18\t \x01(\bR\x0fwithSoftDeleted\x129\n" +
+	"\x13with_count_estimate\x18\b \x01(\bR\x11withCountEstimate\x12.\n" +
+	"\x11with_soft_deleted\x18\t \x01(\bB\x02\x18\x01R\x0fwithSoftDeleted\x129\n" +
 	"\x19with_pagination_info_only\x18\n" +
-	" \x01(\bR\x16withPaginationInfoOnly\"\xa6\x02\n" +
+	" \x01(\bR\x16withPaginationInfoOnly\x122\n" +
+	"\x15with_token_pagination\x18\v \x01(\bR\x13withTokenPagination\"\xa6\x02\n" +
 	"\x12PaginationResponse\x12\x1b\n" +
 	"\tpage_size\x18\x01 \x01(\x03R\bpageSize\x12\x12\n" +
 	"\x04skip\x18\x02 \x01(\x03R\x04skip\x12&\n" +

@@ -351,9 +351,14 @@ components:
         withSoftDeleted:
           type: boolean
           title: with_soft_deleted
+          description: no longer have soft deletes
+          deprecated: true
         withPaginationInfoOnly:
           type: boolean
           title: with_pagination_info_only
+        withTokenPagination:
+          type: boolean
+          title: with_token_pagination
       title: PaginationRequest
       additionalProperties: false
     otpki.common.api.query.v1.PaginationResponse:

@@ -448,7 +448,10 @@ export declare type PaginationRequest = Message<"otpki.common.api.query.v1.Pagin
   withCountEstimate: boolean;
 
   /**
-   * @generated from field: bool with_soft_deleted = 9;
+   * no longer have soft deletes
+   *
+   * @generated from field: bool with_soft_deleted = 9 [deprecated = true];
+   * @deprecated
    */
   withSoftDeleted: boolean;
 
@@ -456,6 +459,11 @@ export declare type PaginationRequest = Message<"otpki.common.api.query.v1.Pagin
    * @generated from field: bool with_pagination_info_only = 10;
    */
   withPaginationInfoOnly: boolean;
+
+  /**
+   * @generated from field: bool with_token_pagination = 11;
+   */
+  withTokenPagination: boolean;
 };
 
 /**
@@ -503,7 +511,10 @@ export declare type PaginationRequestJson = {
   withCountEstimate?: boolean;
 
   /**
-   * @generated from field: bool with_soft_deleted = 9;
+   * no longer have soft deletes
+   *
+   * @generated from field: bool with_soft_deleted = 9 [deprecated = true];
+   * @deprecated
    */
   withSoftDeleted?: boolean;
 
@@ -511,6 +522,11 @@ export declare type PaginationRequestJson = {
    * @generated from field: bool with_pagination_info_only = 10;
    */
   withPaginationInfoOnly?: boolean;
+
+  /**
+   * @generated from field: bool with_token_pagination = 11;
+   */
+  withTokenPagination?: boolean;
 };
 
 export declare type PaginationRequestValid = PaginationRequest;

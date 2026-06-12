@@ -294,14 +294,22 @@ paths:
             title: with_count_estimate
         - name: pagination.withSoftDeleted
           in: query
+          description: no longer have soft deletes
           schema:
             type: boolean
             title: with_soft_deleted
+            description: no longer have soft deletes
+            deprecated: true
         - name: pagination.withPaginationInfoOnly
           in: query
           schema:
             type: boolean
             title: with_pagination_info_only
+        - name: pagination.withTokenPagination
+          in: query
+          schema:
+            type: boolean
+            title: with_token_pagination
       responses:
         "200":
           description: Success
@@ -1241,9 +1249,14 @@ components:
         withSoftDeleted:
           type: boolean
           title: with_soft_deleted
+          description: no longer have soft deletes
+          deprecated: true
         withPaginationInfoOnly:
           type: boolean
           title: with_pagination_info_only
+        withTokenPagination:
+          type: boolean
+          title: with_token_pagination
       title: PaginationRequest
       additionalProperties: false
     otpki.common.api.query.v1.PaginationResponse:
