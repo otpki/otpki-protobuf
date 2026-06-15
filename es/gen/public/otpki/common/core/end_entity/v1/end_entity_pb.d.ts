@@ -191,6 +191,11 @@ export declare type EndEntity = Message<"otpki.common.core.end_entity.v1.EndEnti
    * @generated from field: repeated string custom_certificate_extension_ids = 809;
    */
   customCertificateExtensionIds: string[];
+
+  /**
+   * @generated from field: int64 remaining_requests = 810;
+   */
+  remainingRequests: bigint;
 };
 
 /**
@@ -372,6 +377,11 @@ export declare type EndEntityJson = {
    * @generated from field: repeated string custom_certificate_extension_ids = 809;
    */
   customCertificateExtensionIds?: string[];
+
+  /**
+   * @generated from field: int64 remaining_requests = 810;
+   */
+  remainingRequests?: string;
 };
 
 export declare type EndEntityValid = EndEntity;
@@ -381,6 +391,44 @@ export declare type EndEntityValid = EndEntity;
  * Use `create(EndEntitySchema)` to create a new message.
  */
 export declare const EndEntitySchema: GenMessage<EndEntity, {jsonType: EndEntityJson, validType: EndEntityValid}>;
+
+/**
+ * @generated from message otpki.common.core.end_entity.v1.EndEntityIssuanceRequest
+ */
+export declare type EndEntityIssuanceRequest = Message<"otpki.common.core.end_entity.v1.EndEntityIssuanceRequest"> & {
+  /**
+   * @generated from field: string end_entity_id = 1;
+   */
+  endEntityId: string;
+
+  /**
+   * @generated from field: string issuance_request_id = 2;
+   */
+  issuanceRequestId: string;
+};
+
+/**
+ * @generated from message otpki.common.core.end_entity.v1.EndEntityIssuanceRequest
+ */
+export declare type EndEntityIssuanceRequestJson = {
+  /**
+   * @generated from field: string end_entity_id = 1;
+   */
+  endEntityId?: string;
+
+  /**
+   * @generated from field: string issuance_request_id = 2;
+   */
+  issuanceRequestId?: string;
+};
+
+export declare type EndEntityIssuanceRequestValid = EndEntityIssuanceRequest;
+
+/**
+ * Describes the message otpki.common.core.end_entity.v1.EndEntityIssuanceRequest.
+ * Use `create(EndEntityIssuanceRequestSchema)` to create a new message.
+ */
+export declare const EndEntityIssuanceRequestSchema: GenMessage<EndEntityIssuanceRequest, {jsonType: EndEntityIssuanceRequestJson, validType: EndEntityIssuanceRequestValid}>;
 
 /**
  * @generated from enum otpki.common.core.end_entity.v1.EndEntityStatus

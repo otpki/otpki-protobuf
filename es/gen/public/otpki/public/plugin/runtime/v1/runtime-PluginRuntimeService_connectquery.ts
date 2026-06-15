@@ -30,6 +30,11 @@ export const checkNonce = PluginRuntimeService.method.checkNonce;
 export const addUniqueNonce = PluginRuntimeService.method.addUniqueNonce;
 
 /**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEndEntity
+ */
+export const createEndEntity = PluginRuntimeService.method.createEndEntity;
+
+/**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityByLoginID
  */
 export const getEndEntityByLoginID = PluginRuntimeService.method.getEndEntityByLoginID;
@@ -38,6 +43,11 @@ export const getEndEntityByLoginID = PluginRuntimeService.method.getEndEntityByL
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntity
  */
 export const getEndEntity = PluginRuntimeService.method.getEndEntity;
+
+/**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity
+ */
+export const updateEndEntity = PluginRuntimeService.method.updateEndEntity;
 
 /**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey
@@ -65,14 +75,14 @@ export const getCertificateAuthority = PluginRuntimeService.method.getCertificat
 export const getCertificateProfile = PluginRuntimeService.method.getCertificateProfile;
 
 /**
- * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt
  */
-export const createEnrollmentRequest = PluginRuntimeService.method.createEnrollmentRequest;
+export const createEnrollmentAttempt = PluginRuntimeService.method.createEnrollmentAttempt;
 
 /**
- * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentAttemptByID
  */
-export const getEnrollmentByRequestID = PluginRuntimeService.method.getEnrollmentByRequestID;
+export const getEnrollmentAttemptByID = PluginRuntimeService.method.getEnrollmentAttemptByID;
 
 /**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate

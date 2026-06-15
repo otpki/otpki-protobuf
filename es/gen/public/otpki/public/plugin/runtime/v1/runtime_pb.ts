@@ -5,17 +5,17 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb.js";
-import type { Any, AnyJson } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_any } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, FieldMask, FieldMaskJson } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any, file_google_protobuf_field_mask } from "@bufbuild/protobuf/wkt";
 import type { CertificateAuthority, CertificateAuthorityCertificate, CertificateAuthorityCertificateJson, CertificateAuthorityJson, CertificateAuthorityValid } from "../../../../common/core/certificate_authority/v1/certificate_authority_pb.js";
 import { file_otpki_common_core_certificate_authority_v1_certificate_authority } from "../../../../common/core/certificate_authority/v1/certificate_authority_pb.js";
 import type { CertificateProfile, CertificateProfileJson } from "../../../../common/core/certificate_profile/v1/certificate_profile_pb.js";
 import { file_otpki_common_core_certificate_profile_v1_certificate_profile } from "../../../../common/core/certificate_profile/v1/certificate_profile_pb.js";
-import type { EndEntity, EndEntityJson } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
+import type { EndEntity, EndEntityJson, EndEntityValid } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
 import { file_otpki_common_core_end_entity_v1_end_entity } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
 import type { EndEntityCertificate, EndEntityCertificateJson } from "../../../../common/core/end_entity_certificate/v1/end_entity_certificate_pb.js";
 import { file_otpki_common_core_end_entity_certificate_v1_end_entity_certificate } from "../../../../common/core/end_entity_certificate/v1/end_entity_certificate_pb.js";
-import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
+import type { EnrollmentAttempt, EnrollmentAttemptJson, EnrollmentAttemptValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
 import { file_otpki_common_core_enroller_v1_enroller } from "../../../../common/core/enroller/v1/enroller_pb.js";
 import type { Key, KeyJson, KeyValid } from "../../../../common/core/key/v1/key_pb.js";
 import { file_otpki_common_core_key_v1_key } from "../../../../common/core/key/v1/key_pb.js";
@@ -27,7 +27,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/plugin/runtime/v1/runtime.proto.
  */
 export const file_otpki_public_plugin_runtime_v1_runtime: GenFile = /*@__PURE__*/
-  fileDesc("CixvdHBraS9wdWJsaWMvcGx1Z2luL3J1bnRpbWUvdjEvcnVudGltZS5wcm90bxIeb3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxIhIKEEdldENvbmZpZ1JlcXVlc3QiKAoRR2V0Q29uZmlnUmVzcG9uc2USEwoLY29uZmlnX2pzb24YASABKAwiFAoSQ3JlYXRlTm9uY2VSZXF1ZXN0IiQKE0NyZWF0ZU5vbmNlUmVzcG9uc2USDQoFbm9uY2UYASABKAkiKAoPQWRkTm9uY2VSZXF1ZXN0EhUKBW5vbmNlGAEgASgJQga6SAPIAQEiIQoQQWRkTm9uY2VSZXNwb25zZRINCgVub25jZRgBIAEoCSIqChFDaGVja05vbmNlUmVxdWVzdBIVCgVub25jZRgBIAEoCUIGukgDyAEBIiYKEkNoZWNrTm9uY2VSZXNwb25zZRIQCghpc192YWxpZBgBIAEoCCIuChVBZGRVbmlxdWVOb25jZVJlcXVlc3QSFQoFbm9uY2UYASABKAlCBrpIA8gBASIrChZBZGRVbmlxdWVOb25jZVJlc3BvbnNlEhEKCWlzX3VuaXF1ZRgBIAEoCCI4ChxHZXRFbmRFbnRpdHlCeUxvZ2luSURSZXF1ZXN0EhgKCGxvZ2luX2lkGAEgASgJQga6SAPIAQEiXwodR2V0RW5kRW50aXR5QnlMb2dpbklEUmVzcG9uc2USPgoKZW5kX2VudGl0eRgBIAEoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5Ii4KE0dldEVuZEVudGl0eVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIlYKFEdldEVuZEVudGl0eVJlc3BvbnNlEj4KCmVuZF9lbnRpdHkYASABKAsyKi5vdHBraS5jb21tb24uY29yZS5lbmRfZW50aXR5LnYxLkVuZEVudGl0eSIoCg1HZXRLZXlSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJUCg5HZXRLZXlSZXNwb25zZRIqCgNrZXkYASABKAsyHS5vdHBraS5jb21tb24uY29yZS5rZXkudjEuS2V5EhYKDnB1YmxpY19rZXlfZGVyGAIgASgMIjMKMUdldEFsbFJvb3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlc1JlcXVlc3QiTgoyR2V0QWxsUm9vdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVzcG9uc2USGAoQY2VydGlmaWNhdGVzX2RlchgBIAMoDCJNCi9HZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlUmVxdWVzdBIaCgVjYV9pZBgBIAEoCUILukgIyAEBcgOwAQEiqgEKMEdldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXNwb25zZRJ2CiFjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfY2VydGlmaWNhdGUYASABKAsySy5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZSI8Ch5HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlcXVlc3QSGgoFY2FfaWQYASABKAlCC7pICMgBAXIDsAEBIoIBCh9HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlEl8KFWNlcnRpZmljYXRlX2F1dGhvcml0eRgBIAEoCzJALm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eSI3ChxHZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJ6Ch1HZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXNwb25zZRJZChNjZXJ0aWZpY2F0ZV9wcm9maWxlGAEgASgLMjwub3Rwa2kuY29tbW9uLmNvcmUuY2VydGlmaWNhdGVfcHJvZmlsZS52MS5DZXJ0aWZpY2F0ZVByb2ZpbGUi2wEKHkNyZWF0ZUVucm9sbG1lbnRSZXF1ZXN0UmVxdWVzdBJUChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdEIGukgDyAEBEhkKEXNraXBfdmVyaWZpY2F0aW9uGAIgASgIEhYKDmFsbG93X2V4aXN0aW5nGAMgASgIEhgKEHJlcXVpcmVfZXhpc3RpbmcYBCABKAgSFgoOY2hlY2tfcGFzc3dvcmQYBSABKAgicQofQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXNwb25zZRJOChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIncKH0dldEVucm9sbG1lbnRCeVJlcXVlc3RJRFJlcXVlc3QSKgoVZW5yb2xsbWVudF9yZXF1ZXN0X2lkGAEgASgJQgu6SAjIAQFyA7ABARIQCghwYXNzd29yZBgCIAEoCRIWCg5jaGVja19wYXNzd29yZBgDIAEoCCLAAQogR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVzcG9uc2USTAoSZW5yb2xsbWVudF9yZXF1ZXN0GAEgASgLMjAub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlcXVlc3QSTgoTZW5yb2xsbWVudF9yZXNwb25zZRgCIAEoCzIxLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXNwb25zZSLHAQohUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBEioKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgCIAEoCUILukgIyAEBcgOwAQESUgoWcmV2b2NhdGlvbl9yZWFzb25fY29kZRgDIAEoDjIqLm90cGtpLmNvbW1vbi54NTA5LnYxLlJldm9jYXRpb25SZWFzb25Db2RlQga6SAPIAQEiJAoiUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXNwb25zZSJNCixHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBIdCg1zZXJpYWxfbnVtYmVyGAEgASgMQga6SAPIAQEikgEKLUdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXNwb25zZRJhChZlbmRfZW50aXR5X2NlcnRpZmljYXRlGAEgASgLMkEub3Rwa2kuY29tbW9uLmNvcmUuZW5kX2VudGl0eV9jZXJ0aWZpY2F0ZS52MS5FbmRFbnRpdHlDZXJ0aWZpY2F0ZSJFCh9HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBIoYBCiBHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRJiChdlbmRfZW50aXR5X2NlcnRpZmljYXRlcxgBIAMoCzJBLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUiaQoOU2lnbktleVJlcXVlc3QSGwoGa2V5X2lkGAEgASgJQgu6SAjIAQFyA7ABARIWCgZkaWdlc3QYAiABKAxCBrpIA8gBARIiCgRvcHRzGAMgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueSIkCg9TaWduS2V5UmVzcG9uc2USEQoJc2lnbmF0dXJlGAEgASgMInAKEURlY3J5cHRLZXlSZXF1ZXN0EhsKBmtleV9pZBgBIAEoCUILukgIyAEBcgOwAQESGgoKY2lwaGVydGV4dBgCIAEoDEIGukgDyAEBEiIKBG9wdHMYAyABKAsyFC5nb29nbGUucHJvdG9idWYuQW55IicKEkRlY3J5cHRLZXlSZXNwb25zZRIRCglwbGFpbnRleHQYASABKAwiOgoiRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBIUCgRkYXRhGAEgASgMQga6SAPIAQEiPQojRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVzcG9uc2USFgoOZW5jcnlwdGVkX2RhdGEYASABKAwiRAoiRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBIeCg5lbmNyeXB0ZWRfZGF0YRgBIAEoDEIGukgDyAEBIjgKI0RlY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlc3BvbnNlEhEKCXBsYWludGV4dBgBIAEoDCIeCgxIZWFkZXJWYWx1ZXMSDgoGdmFsdWVzGAEgAygJIsYBChNBdXRoZW50aWNhdGVSZXF1ZXN0ElEKB2hlYWRlcnMYASADKAsyQC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQXV0aGVudGljYXRlUmVxdWVzdC5IZWFkZXJzRW50cnkaXAoMSGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRI7CgV2YWx1ZRgCIAEoCzIsLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5IZWFkZXJWYWx1ZXM6AjgBIikKFEF1dGhlbnRpY2F0ZVJlc3BvbnNlEhEKCXByaW5jaXBhbBgBIAEoDDKyGQoUUGx1Z2luUnVudGltZVNlcnZpY2UScAoJR2V0Q29uZmlnEjAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENvbmZpZ1JlcXVlc3QaMS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q29uZmlnUmVzcG9uc2USdgoLQ3JlYXRlTm9uY2USMi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlTm9uY2VSZXF1ZXN0GjMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNyZWF0ZU5vbmNlUmVzcG9uc2USbQoIQWRkTm9uY2USLy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkTm9uY2VSZXF1ZXN0GjAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkFkZE5vbmNlUmVzcG9uc2UScwoKQ2hlY2tOb25jZRIxLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DaGVja05vbmNlUmVxdWVzdBoyLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DaGVja05vbmNlUmVzcG9uc2USfwoOQWRkVW5pcXVlTm9uY2USNS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkVW5pcXVlTm9uY2VSZXF1ZXN0GjYub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkFkZFVuaXF1ZU5vbmNlUmVzcG9uc2USlAEKFUdldEVuZEVudGl0eUJ5TG9naW5JRBI8Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlCeUxvZ2luSURSZXF1ZXN0Gj0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUJ5TG9naW5JRFJlc3BvbnNlEnkKDEdldEVuZEVudGl0eRIzLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlSZXF1ZXN0GjQub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eVJlc3BvbnNlEmcKBkdldEtleRItLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRLZXlSZXF1ZXN0Gi4ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEtleVJlc3BvbnNlEtMBCipHZXRBbGxSb290Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZXMSUS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0QWxsUm9vdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVxdWVzdBpSLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRBbGxSb290Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRLNAQooR2V0TGF0ZXN0Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZRJPLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlUmVxdWVzdBpQLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlUmVzcG9uc2USmgEKF0dldENlcnRpZmljYXRlQXV0aG9yaXR5Ej4ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBo/Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlEpQBChVHZXRDZXJ0aWZpY2F0ZVByb2ZpbGUSPC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q2VydGlmaWNhdGVQcm9maWxlUmVxdWVzdBo9Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXNwb25zZRKaAQoXQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3QSPi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXF1ZXN0Gj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNyZWF0ZUVucm9sbG1lbnRSZXF1ZXN0UmVzcG9uc2USnQEKGEdldEVucm9sbG1lbnRCeVJlcXVlc3RJRBI/Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbnJvbGxtZW50QnlSZXF1ZXN0SURSZXF1ZXN0GkAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVucm9sbG1lbnRCeVJlcXVlc3RJRFJlc3BvbnNlEqMBChpSZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZRJBLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5SZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZVJlcXVlc3QaQi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXNwb25zZRLEAQolR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVCeVNlcmlhbE51bWJlchJMLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBpNLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVzcG9uc2USnQEKGEdldEVuZEVudGl0eUNlcnRpZmljYXRlcxI/Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0GkAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlc1Jlc3BvbnNlEmoKB1NpZ25LZXkSLi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuU2lnbktleVJlcXVlc3QaLy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuU2lnbktleVJlc3BvbnNlEnMKCkRlY3J5cHRLZXkSMS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRGVjcnlwdEtleVJlcXVlc3QaMi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRGVjcnlwdEtleVJlc3BvbnNlEqYBChtFbmNyeXB0V2l0aEVudmlyb25tZW50VG9rZW4SQi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBpDLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5FbmNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXNwb25zZRKmAQobRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuEkIub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkRlY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlcXVlc3QaQy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVzcG9uc2USeQoMQXV0aGVudGljYXRlEjMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkF1dGhlbnRpY2F0ZVJlcXVlc3QaNC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQXV0aGVudGljYXRlUmVzcG9uc2VC0QEKImNvbS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjFCDFJ1bnRpbWVQcm90b1ABogIET1BQUqoCHk90cGtpLlB1YmxpYy5QbHVnaW4uUnVudGltZS5WMcoCH090cGtpXFB1YmxpY19cUGx1Z2luXFJ1bnRpbWVcVjHiAitPdHBraVxQdWJsaWNfXFBsdWdpblxSdW50aW1lXFYxXEdQQk1ldGFkYXRh6gIiT3Rwa2k6OlB1YmxpYzo6UGx1Z2luOjpSdW50aW1lOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_any, file_otpki_common_core_certificate_authority_v1_certificate_authority, file_otpki_common_core_certificate_profile_v1_certificate_profile, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_end_entity_certificate_v1_end_entity_certificate, file_otpki_common_core_enroller_v1_enroller, file_otpki_common_core_key_v1_key, file_otpki_common_x509_v1_x509]);
+  fileDesc("CixvdHBraS9wdWJsaWMvcGx1Z2luL3J1bnRpbWUvdjEvcnVudGltZS5wcm90bxIeb3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxIhIKEEdldENvbmZpZ1JlcXVlc3QiKAoRR2V0Q29uZmlnUmVzcG9uc2USEwoLY29uZmlnX2pzb24YASABKAwiFAoSQ3JlYXRlTm9uY2VSZXF1ZXN0IiQKE0NyZWF0ZU5vbmNlUmVzcG9uc2USDQoFbm9uY2UYASABKAkiKAoPQWRkTm9uY2VSZXF1ZXN0EhUKBW5vbmNlGAEgASgJQga6SAPIAQEiIQoQQWRkTm9uY2VSZXNwb25zZRINCgVub25jZRgBIAEoCSIqChFDaGVja05vbmNlUmVxdWVzdBIVCgVub25jZRgBIAEoCUIGukgDyAEBIiYKEkNoZWNrTm9uY2VSZXNwb25zZRIQCghpc192YWxpZBgBIAEoCCIuChVBZGRVbmlxdWVOb25jZVJlcXVlc3QSFQoFbm9uY2UYASABKAlCBrpIA8gBASIrChZBZGRVbmlxdWVOb25jZVJlc3BvbnNlEhEKCWlzX3VuaXF1ZRgBIAEoCCI4ChxHZXRFbmRFbnRpdHlCeUxvZ2luSURSZXF1ZXN0EhgKCGxvZ2luX2lkGAEgASgJQga6SAPIAQEiXwodR2V0RW5kRW50aXR5QnlMb2dpbklEUmVzcG9uc2USPgoKZW5kX2VudGl0eRgBIAEoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5Ii4KE0dldEVuZEVudGl0eVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIlYKFEdldEVuZEVudGl0eVJlc3BvbnNlEj4KCmVuZF9lbnRpdHkYASABKAsyKi5vdHBraS5jb21tb24uY29yZS5lbmRfZW50aXR5LnYxLkVuZEVudGl0eSJgChZDcmVhdGVFbmRFbnRpdHlSZXF1ZXN0EkYKCmVuZF9lbnRpdHkYASABKAsyKi5vdHBraS5jb21tb24uY29yZS5lbmRfZW50aXR5LnYxLkVuZEVudGl0eUIGukgDyAEBIjIKF0NyZWF0ZUVuZEVudGl0eVJlc3BvbnNlEhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASKJAQoWVXBkYXRlRW5kRW50aXR5UmVxdWVzdBI+CgplbmRfZW50aXR5GAEgASgLMioub3Rwa2kuY29tbW9uLmNvcmUuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkSLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIhkKF1VwZGF0ZUVuZEVudGl0eVJlc3BvbnNlIigKDUdldEtleVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIlQKDkdldEtleVJlc3BvbnNlEioKA2tleRgBIAEoCzIdLm90cGtpLmNvbW1vbi5jb3JlLmtleS52MS5LZXkSFgoOcHVibGljX2tleV9kZXIYAiABKAwiMwoxR2V0QWxsUm9vdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVxdWVzdCJOCjJHZXRBbGxSb290Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRIYChBjZXJ0aWZpY2F0ZXNfZGVyGAEgAygMIk0KL0dldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXF1ZXN0EhoKBWNhX2lkGAEgASgJQgu6SAjIAQFyA7ABASKqAQowR2V0TGF0ZXN0Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZVJlc3BvbnNlEnYKIWNlcnRpZmljYXRlX2F1dGhvcml0eV9jZXJ0aWZpY2F0ZRgBIAEoCzJLLm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlIjwKHkdldENlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBIaCgVjYV9pZBgBIAEoCUILukgIyAEBcgOwAQEiggEKH0dldENlcnRpZmljYXRlQXV0aG9yaXR5UmVzcG9uc2USXwoVY2VydGlmaWNhdGVfYXV0aG9yaXR5GAEgASgLMkAub3Rwa2kuY29tbW9uLmNvcmUuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxLkNlcnRpZmljYXRlQXV0aG9yaXR5IjcKHEdldENlcnRpZmljYXRlUHJvZmlsZVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBInoKHUdldENlcnRpZmljYXRlUHJvZmlsZVJlc3BvbnNlElkKE2NlcnRpZmljYXRlX3Byb2ZpbGUYASABKAsyPC5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9wcm9maWxlLnYxLkNlcnRpZmljYXRlUHJvZmlsZSKbAgoeQ3JlYXRlRW5yb2xsbWVudEF0dGVtcHRSZXF1ZXN0ElQKEmVucm9sbG1lbnRfYXR0ZW1wdBgBIAEoCzIwLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRBdHRlbXB0Qga6SAPIAQESPgoKZW5kX2VudGl0eRgCIAEoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5EhkKEXNraXBfdmVyaWZpY2F0aW9uGAMgASgIEhYKDmFsbG93X2V4aXN0aW5nGAQgASgIEhgKEHJlcXVpcmVfZXhpc3RpbmcYBSABKAgSFgoOY2hlY2tfcGFzc3dvcmQYBiABKAgicQofQ3JlYXRlRW5yb2xsbWVudEF0dGVtcHRSZXNwb25zZRJOChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIncKH0dldEVucm9sbG1lbnRBdHRlbXB0QnlJRFJlcXVlc3QSKgoVZW5yb2xsbWVudF9hdHRlbXB0X2lkGAEgASgJQgu6SAjIAQFyA7ABARIQCghwYXNzd29yZBgCIAEoCRIWCg5jaGVja19wYXNzd29yZBgDIAEoCCLAAQogR2V0RW5yb2xsbWVudEF0dGVtcHRCeUlEUmVzcG9uc2USTAoSZW5yb2xsbWVudF9hdHRlbXB0GAEgASgLMjAub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudEF0dGVtcHQSTgoTZW5yb2xsbWVudF9yZXNwb25zZRgCIAEoCzIxLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXNwb25zZSLHAQohUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBEioKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgCIAEoCUILukgIyAEBcgOwAQESUgoWcmV2b2NhdGlvbl9yZWFzb25fY29kZRgDIAEoDjIqLm90cGtpLmNvbW1vbi54NTA5LnYxLlJldm9jYXRpb25SZWFzb25Db2RlQga6SAPIAQEiJAoiUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXNwb25zZSJNCixHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBIdCg1zZXJpYWxfbnVtYmVyGAEgASgMQga6SAPIAQEikgEKLUdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXNwb25zZRJhChZlbmRfZW50aXR5X2NlcnRpZmljYXRlGAEgASgLMkEub3Rwa2kuY29tbW9uLmNvcmUuZW5kX2VudGl0eV9jZXJ0aWZpY2F0ZS52MS5FbmRFbnRpdHlDZXJ0aWZpY2F0ZSJFCh9HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBIoYBCiBHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRJiChdlbmRfZW50aXR5X2NlcnRpZmljYXRlcxgBIAMoCzJBLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUiaQoOU2lnbktleVJlcXVlc3QSGwoGa2V5X2lkGAEgASgJQgu6SAjIAQFyA7ABARIWCgZkaWdlc3QYAiABKAxCBrpIA8gBARIiCgRvcHRzGAMgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueSIkCg9TaWduS2V5UmVzcG9uc2USEQoJc2lnbmF0dXJlGAEgASgMInAKEURlY3J5cHRLZXlSZXF1ZXN0EhsKBmtleV9pZBgBIAEoCUILukgIyAEBcgOwAQESGgoKY2lwaGVydGV4dBgCIAEoDEIGukgDyAEBEiIKBG9wdHMYAyABKAsyFC5nb29nbGUucHJvdG9idWYuQW55IicKEkRlY3J5cHRLZXlSZXNwb25zZRIRCglwbGFpbnRleHQYASABKAwiOgoiRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBIUCgRkYXRhGAEgASgMQga6SAPIAQEiPQojRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVzcG9uc2USFgoOZW5jcnlwdGVkX2RhdGEYASABKAwiRAoiRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBIeCg5lbmNyeXB0ZWRfZGF0YRgBIAEoDEIGukgDyAEBIjgKI0RlY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlc3BvbnNlEhEKCXBsYWludGV4dBgBIAEoDCIeCgxIZWFkZXJWYWx1ZXMSDgoGdmFsdWVzGAEgAygJIsYBChNBdXRoZW50aWNhdGVSZXF1ZXN0ElEKB2hlYWRlcnMYASADKAsyQC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQXV0aGVudGljYXRlUmVxdWVzdC5IZWFkZXJzRW50cnkaXAoMSGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRI7CgV2YWx1ZRgCIAEoCzIsLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5IZWFkZXJWYWx1ZXM6AjgBIikKFEF1dGhlbnRpY2F0ZVJlc3BvbnNlEhEKCXByaW5jaXBhbBgBIAEoDDK8GwoUUGx1Z2luUnVudGltZVNlcnZpY2UScAoJR2V0Q29uZmlnEjAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENvbmZpZ1JlcXVlc3QaMS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q29uZmlnUmVzcG9uc2USdgoLQ3JlYXRlTm9uY2USMi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlTm9uY2VSZXF1ZXN0GjMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNyZWF0ZU5vbmNlUmVzcG9uc2USbQoIQWRkTm9uY2USLy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkTm9uY2VSZXF1ZXN0GjAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkFkZE5vbmNlUmVzcG9uc2UScwoKQ2hlY2tOb25jZRIxLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DaGVja05vbmNlUmVxdWVzdBoyLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DaGVja05vbmNlUmVzcG9uc2USfwoOQWRkVW5pcXVlTm9uY2USNS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkVW5pcXVlTm9uY2VSZXF1ZXN0GjYub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkFkZFVuaXF1ZU5vbmNlUmVzcG9uc2USggEKD0NyZWF0ZUVuZEVudGl0eRI2Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DcmVhdGVFbmRFbnRpdHlSZXF1ZXN0Gjcub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNyZWF0ZUVuZEVudGl0eVJlc3BvbnNlEpQBChVHZXRFbmRFbnRpdHlCeUxvZ2luSUQSPC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5kRW50aXR5QnlMb2dpbklEUmVxdWVzdBo9Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlCeUxvZ2luSURSZXNwb25zZRJ5CgxHZXRFbmRFbnRpdHkSMy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5kRW50aXR5UmVxdWVzdBo0Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlSZXNwb25zZRKCAQoPVXBkYXRlRW5kRW50aXR5EjYub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLlVwZGF0ZUVuZEVudGl0eVJlcXVlc3QaNy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuVXBkYXRlRW5kRW50aXR5UmVzcG9uc2USZwoGR2V0S2V5Ei0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEtleVJlcXVlc3QaLi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0S2V5UmVzcG9uc2US0wEKKkdldEFsbFJvb3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlcxJRLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRBbGxSb290Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0GlIub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEFsbFJvb3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlc1Jlc3BvbnNlEs0BCihHZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlEk8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXF1ZXN0GlAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXNwb25zZRKaAQoXR2V0Q2VydGlmaWNhdGVBdXRob3JpdHkSPi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q2VydGlmaWNhdGVBdXRob3JpdHlSZXF1ZXN0Gj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENlcnRpZmljYXRlQXV0aG9yaXR5UmVzcG9uc2USlAEKFUdldENlcnRpZmljYXRlUHJvZmlsZRI8Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXF1ZXN0Gj0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENlcnRpZmljYXRlUHJvZmlsZVJlc3BvbnNlEpoBChdDcmVhdGVFbnJvbGxtZW50QXR0ZW1wdBI+Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DcmVhdGVFbnJvbGxtZW50QXR0ZW1wdFJlcXVlc3QaPy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlRW5yb2xsbWVudEF0dGVtcHRSZXNwb25zZRKdAQoYR2V0RW5yb2xsbWVudEF0dGVtcHRCeUlEEj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVucm9sbG1lbnRBdHRlbXB0QnlJRFJlcXVlc3QaQC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5yb2xsbWVudEF0dGVtcHRCeUlEUmVzcG9uc2USowEKGlJldm9rZUVuZEVudGl0eUNlcnRpZmljYXRlEkEub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLlJldm9rZUVuZEVudGl0eUNlcnRpZmljYXRlUmVxdWVzdBpCLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5SZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZVJlc3BvbnNlEsQBCiVHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyEkwub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXF1ZXN0Gk0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXNwb25zZRKdAQoYR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVzEj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlc1JlcXVlc3QaQC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVzUmVzcG9uc2USagoHU2lnbktleRIuLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5TaWduS2V5UmVxdWVzdBovLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5TaWduS2V5UmVzcG9uc2UScwoKRGVjcnlwdEtleRIxLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5EZWNyeXB0S2V5UmVxdWVzdBoyLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5EZWNyeXB0S2V5UmVzcG9uc2USpgEKG0VuY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlbhJCLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5FbmNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXF1ZXN0GkMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkVuY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlc3BvbnNlEqYBChtEZWNyeXB0V2l0aEVudmlyb25tZW50VG9rZW4SQi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBpDLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5EZWNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXNwb25zZRJ5CgxBdXRoZW50aWNhdGUSMy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQXV0aGVudGljYXRlUmVxdWVzdBo0Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5BdXRoZW50aWNhdGVSZXNwb25zZULRAQoiY29tLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MUIMUnVudGltZVByb3RvUAGiAgRPUFBSqgIeT3Rwa2kuUHVibGljLlBsdWdpbi5SdW50aW1lLlYxygIfT3Rwa2lcUHVibGljX1xQbHVnaW5cUnVudGltZVxWMeICK090cGtpXFB1YmxpY19cUGx1Z2luXFJ1bnRpbWVcVjFcR1BCTWV0YWRhdGHqAiJPdHBraTo6UHVibGljOjpQbHVnaW46OlJ1bnRpbWU6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_field_mask, file_otpki_common_core_certificate_authority_v1_certificate_authority, file_otpki_common_core_certificate_profile_v1_certificate_profile, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_end_entity_certificate_v1_end_entity_certificate, file_otpki_common_core_enroller_v1_enroller, file_otpki_common_core_key_v1_key, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetConfigRequest
@@ -460,6 +460,140 @@ export const GetEndEntityResponseSchema: GenMessage<GetEndEntityResponse, {jsonT
   messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 13);
 
 /**
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEndEntityRequest
+ */
+export type CreateEndEntityRequest = Message<"otpki.public.plugin.runtime.v1.CreateEndEntityRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity?: EndEntity;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEndEntityRequest
+ */
+export type CreateEndEntityRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity?: EndEntityJson;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEndEntityRequest
+ */
+export type CreateEndEntityRequestValid = Message<"otpki.public.plugin.runtime.v1.CreateEndEntityRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity: EndEntityValid;
+};
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.CreateEndEntityRequest.
+ * Use `create(CreateEndEntityRequestSchema)` to create a new message.
+ */
+export const CreateEndEntityRequestSchema: GenMessage<CreateEndEntityRequest, {jsonType: CreateEndEntityRequestJson, validType: CreateEndEntityRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 14);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEndEntityResponse
+ */
+export type CreateEndEntityResponse = Message<"otpki.public.plugin.runtime.v1.CreateEndEntityResponse"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEndEntityResponse
+ */
+export type CreateEndEntityResponseJson = {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id?: string;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEndEntityResponse
+ */
+export type CreateEndEntityResponseValid = Message<"otpki.public.plugin.runtime.v1.CreateEndEntityResponse"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.CreateEndEntityResponse.
+ * Use `create(CreateEndEntityResponseSchema)` to create a new message.
+ */
+export const CreateEndEntityResponseSchema: GenMessage<CreateEndEntityResponse, {jsonType: CreateEndEntityResponseJson, validType: CreateEndEntityResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 15);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityRequest
+ */
+export type UpdateEndEntityRequest = Message<"otpki.public.plugin.runtime.v1.UpdateEndEntityRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity?: EndEntity;
+
+  /**
+   * @generated from field: google.protobuf.FieldMask update_mask = 2;
+   */
+  updateMask?: FieldMask;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityRequest
+ */
+export type UpdateEndEntityRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity?: EndEntityJson;
+
+  /**
+   * @generated from field: google.protobuf.FieldMask update_mask = 2;
+   */
+  updateMask?: FieldMaskJson;
+};
+
+export type UpdateEndEntityRequestValid = UpdateEndEntityRequest;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.UpdateEndEntityRequest.
+ * Use `create(UpdateEndEntityRequestSchema)` to create a new message.
+ */
+export const UpdateEndEntityRequestSchema: GenMessage<UpdateEndEntityRequest, {jsonType: UpdateEndEntityRequestJson, validType: UpdateEndEntityRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 16);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityResponse
+ */
+export type UpdateEndEntityResponse = Message<"otpki.public.plugin.runtime.v1.UpdateEndEntityResponse"> & {
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityResponse
+ */
+export type UpdateEndEntityResponseJson = {
+};
+
+export type UpdateEndEntityResponseValid = UpdateEndEntityResponse;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.UpdateEndEntityResponse.
+ * Use `create(UpdateEndEntityResponseSchema)` to create a new message.
+ */
+export const UpdateEndEntityResponseSchema: GenMessage<UpdateEndEntityResponse, {jsonType: UpdateEndEntityResponseJson, validType: UpdateEndEntityResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 17);
+
+/**
  * @generated from message otpki.public.plugin.runtime.v1.GetKeyRequest
  */
 export type GetKeyRequest = Message<"otpki.public.plugin.runtime.v1.GetKeyRequest"> & {
@@ -494,7 +628,7 @@ export type GetKeyRequestValid = Message<"otpki.public.plugin.runtime.v1.GetKeyR
  * Use `create(GetKeyRequestSchema)` to create a new message.
  */
 export const GetKeyRequestSchema: GenMessage<GetKeyRequest, {jsonType: GetKeyRequestJson, validType: GetKeyRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 14);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 18);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetKeyResponse
@@ -546,7 +680,7 @@ export type GetKeyResponseValid = Message<"otpki.public.plugin.runtime.v1.GetKey
  * Use `create(GetKeyResponseSchema)` to create a new message.
  */
 export const GetKeyResponseSchema: GenMessage<GetKeyResponse, {jsonType: GetKeyResponseJson, validType: GetKeyResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 15);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 19);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesRequest
@@ -567,7 +701,7 @@ export type GetAllRootCertificateAuthorityCertificatesRequestValid = GetAllRootC
  * Use `create(GetAllRootCertificateAuthorityCertificatesRequestSchema)` to create a new message.
  */
 export const GetAllRootCertificateAuthorityCertificatesRequestSchema: GenMessage<GetAllRootCertificateAuthorityCertificatesRequest, {jsonType: GetAllRootCertificateAuthorityCertificatesRequestJson, validType: GetAllRootCertificateAuthorityCertificatesRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 16);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 20);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesResponse
@@ -596,7 +730,7 @@ export type GetAllRootCertificateAuthorityCertificatesResponseValid = GetAllRoot
  * Use `create(GetAllRootCertificateAuthorityCertificatesResponseSchema)` to create a new message.
  */
 export const GetAllRootCertificateAuthorityCertificatesResponseSchema: GenMessage<GetAllRootCertificateAuthorityCertificatesResponse, {jsonType: GetAllRootCertificateAuthorityCertificatesResponseJson, validType: GetAllRootCertificateAuthorityCertificatesResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 17);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 21);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateRequest
@@ -633,7 +767,7 @@ export type GetLatestCertificateAuthorityCertificateRequestValid = Message<"otpk
  * Use `create(GetLatestCertificateAuthorityCertificateRequestSchema)` to create a new message.
  */
 export const GetLatestCertificateAuthorityCertificateRequestSchema: GenMessage<GetLatestCertificateAuthorityCertificateRequest, {jsonType: GetLatestCertificateAuthorityCertificateRequestJson, validType: GetLatestCertificateAuthorityCertificateRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 18);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 22);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse
@@ -662,7 +796,7 @@ export type GetLatestCertificateAuthorityCertificateResponseValid = GetLatestCer
  * Use `create(GetLatestCertificateAuthorityCertificateResponseSchema)` to create a new message.
  */
 export const GetLatestCertificateAuthorityCertificateResponseSchema: GenMessage<GetLatestCertificateAuthorityCertificateResponse, {jsonType: GetLatestCertificateAuthorityCertificateResponseJson, validType: GetLatestCertificateAuthorityCertificateResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 19);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 23);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetCertificateAuthorityRequest
@@ -699,7 +833,7 @@ export type GetCertificateAuthorityRequestValid = Message<"otpki.public.plugin.r
  * Use `create(GetCertificateAuthorityRequestSchema)` to create a new message.
  */
 export const GetCertificateAuthorityRequestSchema: GenMessage<GetCertificateAuthorityRequest, {jsonType: GetCertificateAuthorityRequestJson, validType: GetCertificateAuthorityRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 20);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 24);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse
@@ -736,7 +870,7 @@ export type GetCertificateAuthorityResponseValid = Message<"otpki.public.plugin.
  * Use `create(GetCertificateAuthorityResponseSchema)` to create a new message.
  */
 export const GetCertificateAuthorityResponseSchema: GenMessage<GetCertificateAuthorityResponse, {jsonType: GetCertificateAuthorityResponseJson, validType: GetCertificateAuthorityResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 21);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 25);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetCertificateProfileRequest
@@ -773,7 +907,7 @@ export type GetCertificateProfileRequestValid = Message<"otpki.public.plugin.run
  * Use `create(GetCertificateProfileRequestSchema)` to create a new message.
  */
 export const GetCertificateProfileRequestSchema: GenMessage<GetCertificateProfileRequest, {jsonType: GetCertificateProfileRequestJson, validType: GetCertificateProfileRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 22);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 26);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetCertificateProfileResponse
@@ -802,109 +936,130 @@ export type GetCertificateProfileResponseValid = GetCertificateProfileResponse;
  * Use `create(GetCertificateProfileResponseSchema)` to create a new message.
  */
 export const GetCertificateProfileResponseSchema: GenMessage<GetCertificateProfileResponse, {jsonType: GetCertificateProfileResponseJson, validType: GetCertificateProfileResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 23);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 27);
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
  */
-export type CreateEnrollmentRequestRequest = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest"> & {
+export type CreateEnrollmentAttemptRequest = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
 
   /**
-   * @generated from field: bool skip_verification = 2;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity should be set.
+   *
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntity;
+
+  /**
+   * @generated from field: bool skip_verification = 3;
    */
   skipVerification: boolean;
 
   /**
-   * @generated from field: bool allow_existing = 3;
+   * @generated from field: bool allow_existing = 4;
    */
   allowExisting: boolean;
 
   /**
-   * @generated from field: bool require_existing = 4;
+   * @generated from field: bool require_existing = 5;
    */
   requireExisting: boolean;
 
   /**
-   * @generated from field: bool check_password = 5;
+   * @generated from field: bool check_password = 6;
    */
   checkPassword: boolean;
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
  */
-export type CreateEnrollmentRequestRequestJson = {
+export type CreateEnrollmentAttemptRequestJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
 
   /**
-   * @generated from field: bool skip_verification = 2;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity should be set.
+   *
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityJson;
+
+  /**
+   * @generated from field: bool skip_verification = 3;
    */
   skipVerification?: boolean;
 
   /**
-   * @generated from field: bool allow_existing = 3;
+   * @generated from field: bool allow_existing = 4;
    */
   allowExisting?: boolean;
 
   /**
-   * @generated from field: bool require_existing = 4;
+   * @generated from field: bool require_existing = 5;
    */
   requireExisting?: boolean;
 
   /**
-   * @generated from field: bool check_password = 5;
+   * @generated from field: bool check_password = 6;
    */
   checkPassword?: boolean;
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
  */
-export type CreateEnrollmentRequestRequestValid = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest"> & {
+export type CreateEnrollmentAttemptRequestValid = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest: EnrollmentRequestValid;
+  enrollmentAttempt: EnrollmentAttemptValid;
 
   /**
-   * @generated from field: bool skip_verification = 2;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity should be set.
+   *
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityValid;
+
+  /**
+   * @generated from field: bool skip_verification = 3;
    */
   skipVerification: boolean;
 
   /**
-   * @generated from field: bool allow_existing = 3;
+   * @generated from field: bool allow_existing = 4;
    */
   allowExisting: boolean;
 
   /**
-   * @generated from field: bool require_existing = 4;
+   * @generated from field: bool require_existing = 5;
    */
   requireExisting: boolean;
 
   /**
-   * @generated from field: bool check_password = 5;
+   * @generated from field: bool check_password = 6;
    */
   checkPassword: boolean;
 };
 
 /**
- * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest.
- * Use `create(CreateEnrollmentRequestRequestSchema)` to create a new message.
+ * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest.
+ * Use `create(CreateEnrollmentAttemptRequestSchema)` to create a new message.
  */
-export const CreateEnrollmentRequestRequestSchema: GenMessage<CreateEnrollmentRequestRequest, {jsonType: CreateEnrollmentRequestRequestJson, validType: CreateEnrollmentRequestRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 24);
+export const CreateEnrollmentAttemptRequestSchema: GenMessage<CreateEnrollmentAttemptRequest, {jsonType: CreateEnrollmentAttemptRequestJson, validType: CreateEnrollmentAttemptRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 28);
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse
  */
-export type CreateEnrollmentRequestResponse = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse"> & {
+export type CreateEnrollmentAttemptResponse = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse"> & {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
@@ -912,32 +1067,32 @@ export type CreateEnrollmentRequestResponse = Message<"otpki.public.plugin.runti
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse
  */
-export type CreateEnrollmentRequestResponseJson = {
+export type CreateEnrollmentAttemptResponseJson = {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export type CreateEnrollmentRequestResponseValid = CreateEnrollmentRequestResponse;
+export type CreateEnrollmentAttemptResponseValid = CreateEnrollmentAttemptResponse;
 
 /**
- * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse.
- * Use `create(CreateEnrollmentRequestResponseSchema)` to create a new message.
+ * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse.
+ * Use `create(CreateEnrollmentAttemptResponseSchema)` to create a new message.
  */
-export const CreateEnrollmentRequestResponseSchema: GenMessage<CreateEnrollmentRequestResponse, {jsonType: CreateEnrollmentRequestResponseJson, validType: CreateEnrollmentRequestResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 25);
+export const CreateEnrollmentAttemptResponseSchema: GenMessage<CreateEnrollmentAttemptResponse, {jsonType: CreateEnrollmentAttemptResponseJson, validType: CreateEnrollmentAttemptResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 29);
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDRequest
  */
-export type GetEnrollmentByRequestIDRequest = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest"> & {
+export type GetEnrollmentAttemptByIDRequest = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDRequest"> & {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId: string;
+  enrollmentAttemptId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -951,13 +1106,13 @@ export type GetEnrollmentByRequestIDRequest = Message<"otpki.public.plugin.runti
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDRequest
  */
-export type GetEnrollmentByRequestIDRequestJson = {
+export type GetEnrollmentAttemptByIDRequestJson = {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId?: string;
+  enrollmentAttemptId?: string;
 
   /**
    * @generated from field: string password = 2;
@@ -971,13 +1126,13 @@ export type GetEnrollmentByRequestIDRequestJson = {
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDRequest
  */
-export type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest"> & {
+export type GetEnrollmentAttemptByIDRequestValid = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDRequest"> & {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId: string;
+  enrollmentAttemptId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -991,20 +1146,20 @@ export type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.plugin.
 };
 
 /**
- * Describes the message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest.
- * Use `create(GetEnrollmentByRequestIDRequestSchema)` to create a new message.
+ * Describes the message otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDRequest.
+ * Use `create(GetEnrollmentAttemptByIDRequestSchema)` to create a new message.
  */
-export const GetEnrollmentByRequestIDRequestSchema: GenMessage<GetEnrollmentByRequestIDRequest, {jsonType: GetEnrollmentByRequestIDRequestJson, validType: GetEnrollmentByRequestIDRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 26);
+export const GetEnrollmentAttemptByIDRequestSchema: GenMessage<GetEnrollmentAttemptByIDRequest, {jsonType: GetEnrollmentAttemptByIDRequestJson, validType: GetEnrollmentAttemptByIDRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 30);
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse
+ * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDResponse
  */
-export type GetEnrollmentByRequestIDResponse = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse"> & {
+export type GetEnrollmentAttemptByIDResponse = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDResponse"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
 
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
@@ -1013,13 +1168,13 @@ export type GetEnrollmentByRequestIDResponse = Message<"otpki.public.plugin.runt
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse
+ * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDResponse
  */
-export type GetEnrollmentByRequestIDResponseJson = {
+export type GetEnrollmentAttemptByIDResponseJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
 
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
@@ -1027,14 +1182,14 @@ export type GetEnrollmentByRequestIDResponseJson = {
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export type GetEnrollmentByRequestIDResponseValid = GetEnrollmentByRequestIDResponse;
+export type GetEnrollmentAttemptByIDResponseValid = GetEnrollmentAttemptByIDResponse;
 
 /**
- * Describes the message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse.
- * Use `create(GetEnrollmentByRequestIDResponseSchema)` to create a new message.
+ * Describes the message otpki.public.plugin.runtime.v1.GetEnrollmentAttemptByIDResponse.
+ * Use `create(GetEnrollmentAttemptByIDResponseSchema)` to create a new message.
  */
-export const GetEnrollmentByRequestIDResponseSchema: GenMessage<GetEnrollmentByRequestIDResponse, {jsonType: GetEnrollmentByRequestIDResponseJson, validType: GetEnrollmentByRequestIDResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 27);
+export const GetEnrollmentAttemptByIDResponseSchema: GenMessage<GetEnrollmentAttemptByIDResponse, {jsonType: GetEnrollmentAttemptByIDResponseJson, validType: GetEnrollmentAttemptByIDResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 31);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest
@@ -1101,7 +1256,7 @@ export type RevokeEndEntityCertificateRequestValid = Message<"otpki.public.plugi
  * Use `create(RevokeEndEntityCertificateRequestSchema)` to create a new message.
  */
 export const RevokeEndEntityCertificateRequestSchema: GenMessage<RevokeEndEntityCertificateRequest, {jsonType: RevokeEndEntityCertificateRequestJson, validType: RevokeEndEntityCertificateRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 28);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 32);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateResponse
@@ -1122,7 +1277,7 @@ export type RevokeEndEntityCertificateResponseValid = RevokeEndEntityCertificate
  * Use `create(RevokeEndEntityCertificateResponseSchema)` to create a new message.
  */
 export const RevokeEndEntityCertificateResponseSchema: GenMessage<RevokeEndEntityCertificateResponse, {jsonType: RevokeEndEntityCertificateResponseJson, validType: RevokeEndEntityCertificateResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 29);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 33);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberRequest
@@ -1159,7 +1314,7 @@ export type GetEndEntityCertificateBySerialNumberRequestValid = Message<"otpki.p
  * Use `create(GetEndEntityCertificateBySerialNumberRequestSchema)` to create a new message.
  */
 export const GetEndEntityCertificateBySerialNumberRequestSchema: GenMessage<GetEndEntityCertificateBySerialNumberRequest, {jsonType: GetEndEntityCertificateBySerialNumberRequestJson, validType: GetEndEntityCertificateBySerialNumberRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 30);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 34);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberResponse
@@ -1188,7 +1343,7 @@ export type GetEndEntityCertificateBySerialNumberResponseValid = GetEndEntityCer
  * Use `create(GetEndEntityCertificateBySerialNumberResponseSchema)` to create a new message.
  */
 export const GetEndEntityCertificateBySerialNumberResponseSchema: GenMessage<GetEndEntityCertificateBySerialNumberResponse, {jsonType: GetEndEntityCertificateBySerialNumberResponseJson, validType: GetEndEntityCertificateBySerialNumberResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 31);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 35);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetEndEntityCertificatesRequest
@@ -1225,7 +1380,7 @@ export type GetEndEntityCertificatesRequestValid = Message<"otpki.public.plugin.
  * Use `create(GetEndEntityCertificatesRequestSchema)` to create a new message.
  */
 export const GetEndEntityCertificatesRequestSchema: GenMessage<GetEndEntityCertificatesRequest, {jsonType: GetEndEntityCertificatesRequestJson, validType: GetEndEntityCertificatesRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 32);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 36);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetEndEntityCertificatesResponse
@@ -1254,7 +1409,7 @@ export type GetEndEntityCertificatesResponseValid = GetEndEntityCertificatesResp
  * Use `create(GetEndEntityCertificatesResponseSchema)` to create a new message.
  */
 export const GetEndEntityCertificatesResponseSchema: GenMessage<GetEndEntityCertificatesResponse, {jsonType: GetEndEntityCertificatesResponseJson, validType: GetEndEntityCertificatesResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 33);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 37);
 
 /**
  * The optional Any payload should contain one of the public key option messages from
@@ -1330,7 +1485,7 @@ export type SignKeyRequestValid = Message<"otpki.public.plugin.runtime.v1.SignKe
  * Use `create(SignKeyRequestSchema)` to create a new message.
  */
 export const SignKeyRequestSchema: GenMessage<SignKeyRequest, {jsonType: SignKeyRequestJson, validType: SignKeyRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 34);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 38);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.SignKeyResponse
@@ -1359,7 +1514,7 @@ export type SignKeyResponseValid = SignKeyResponse;
  * Use `create(SignKeyResponseSchema)` to create a new message.
  */
 export const SignKeyResponseSchema: GenMessage<SignKeyResponse, {jsonType: SignKeyResponseJson, validType: SignKeyResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 35);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 39);
 
 /**
  * The optional Any payload should contain one of the public key option messages from
@@ -1435,7 +1590,7 @@ export type DecryptKeyRequestValid = Message<"otpki.public.plugin.runtime.v1.Dec
  * Use `create(DecryptKeyRequestSchema)` to create a new message.
  */
 export const DecryptKeyRequestSchema: GenMessage<DecryptKeyRequest, {jsonType: DecryptKeyRequestJson, validType: DecryptKeyRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 36);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 40);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.DecryptKeyResponse
@@ -1464,7 +1619,7 @@ export type DecryptKeyResponseValid = DecryptKeyResponse;
  * Use `create(DecryptKeyResponseSchema)` to create a new message.
  */
 export const DecryptKeyResponseSchema: GenMessage<DecryptKeyResponse, {jsonType: DecryptKeyResponseJson, validType: DecryptKeyResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 37);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 41);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenRequest
@@ -1501,7 +1656,7 @@ export type EncryptWithEnvironmentTokenRequestValid = Message<"otpki.public.plug
  * Use `create(EncryptWithEnvironmentTokenRequestSchema)` to create a new message.
  */
 export const EncryptWithEnvironmentTokenRequestSchema: GenMessage<EncryptWithEnvironmentTokenRequest, {jsonType: EncryptWithEnvironmentTokenRequestJson, validType: EncryptWithEnvironmentTokenRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 38);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 42);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenResponse
@@ -1530,7 +1685,7 @@ export type EncryptWithEnvironmentTokenResponseValid = EncryptWithEnvironmentTok
  * Use `create(EncryptWithEnvironmentTokenResponseSchema)` to create a new message.
  */
 export const EncryptWithEnvironmentTokenResponseSchema: GenMessage<EncryptWithEnvironmentTokenResponse, {jsonType: EncryptWithEnvironmentTokenResponseJson, validType: EncryptWithEnvironmentTokenResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 39);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 43);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenRequest
@@ -1567,7 +1722,7 @@ export type DecryptWithEnvironmentTokenRequestValid = Message<"otpki.public.plug
  * Use `create(DecryptWithEnvironmentTokenRequestSchema)` to create a new message.
  */
 export const DecryptWithEnvironmentTokenRequestSchema: GenMessage<DecryptWithEnvironmentTokenRequest, {jsonType: DecryptWithEnvironmentTokenRequestJson, validType: DecryptWithEnvironmentTokenRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 40);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 44);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenResponse
@@ -1596,7 +1751,7 @@ export type DecryptWithEnvironmentTokenResponseValid = DecryptWithEnvironmentTok
  * Use `create(DecryptWithEnvironmentTokenResponseSchema)` to create a new message.
  */
 export const DecryptWithEnvironmentTokenResponseSchema: GenMessage<DecryptWithEnvironmentTokenResponse, {jsonType: DecryptWithEnvironmentTokenResponseJson, validType: DecryptWithEnvironmentTokenResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 41);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 45);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.HeaderValues
@@ -1625,7 +1780,7 @@ export type HeaderValuesValid = HeaderValues;
  * Use `create(HeaderValuesSchema)` to create a new message.
  */
 export const HeaderValuesSchema: GenMessage<HeaderValues, {jsonType: HeaderValuesJson, validType: HeaderValuesValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 42);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 46);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.AuthenticateRequest
@@ -1654,7 +1809,7 @@ export type AuthenticateRequestValid = AuthenticateRequest;
  * Use `create(AuthenticateRequestSchema)` to create a new message.
  */
 export const AuthenticateRequestSchema: GenMessage<AuthenticateRequest, {jsonType: AuthenticateRequestJson, validType: AuthenticateRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 43);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 47);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.AuthenticateResponse
@@ -1683,7 +1838,7 @@ export type AuthenticateResponseValid = AuthenticateResponse;
  * Use `create(AuthenticateResponseSchema)` to create a new message.
  */
 export const AuthenticateResponseSchema: GenMessage<AuthenticateResponse, {jsonType: AuthenticateResponseJson, validType: AuthenticateResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 44);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 48);
 
 /**
  * @generated from service otpki.public.plugin.runtime.v1.PluginRuntimeService
@@ -1730,6 +1885,14 @@ export const PluginRuntimeService: GenService<{
     output: typeof AddUniqueNonceResponseSchema;
   },
   /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEndEntity
+   */
+  createEndEntity: {
+    methodKind: "unary";
+    input: typeof CreateEndEntityRequestSchema;
+    output: typeof CreateEndEntityResponseSchema;
+  },
+  /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityByLoginID
    */
   getEndEntityByLoginID: {
@@ -1744,6 +1907,14 @@ export const PluginRuntimeService: GenService<{
     methodKind: "unary";
     input: typeof GetEndEntityRequestSchema;
     output: typeof GetEndEntityResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity
+   */
+  updateEndEntity: {
+    methodKind: "unary";
+    input: typeof UpdateEndEntityRequestSchema;
+    output: typeof UpdateEndEntityResponseSchema;
   },
   /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey
@@ -1786,20 +1957,20 @@ export const PluginRuntimeService: GenService<{
     output: typeof GetCertificateProfileResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt
    */
-  createEnrollmentRequest: {
+  createEnrollmentAttempt: {
     methodKind: "unary";
-    input: typeof CreateEnrollmentRequestRequestSchema;
-    output: typeof CreateEnrollmentRequestResponseSchema;
+    input: typeof CreateEnrollmentAttemptRequestSchema;
+    output: typeof CreateEnrollmentAttemptResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentAttemptByID
    */
-  getEnrollmentByRequestID: {
+  getEnrollmentAttemptByID: {
     methodKind: "unary";
-    input: typeof GetEnrollmentByRequestIDRequestSchema;
-    output: typeof GetEnrollmentByRequestIDResponseSchema;
+    input: typeof GetEnrollmentAttemptByIDRequestSchema;
+    output: typeof GetEnrollmentAttemptByIDResponseSchema;
   },
   /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate

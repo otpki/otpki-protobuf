@@ -6,10 +6,10 @@ import (
 	uuid "github.com/google/uuid"
 )
 
-// GetEnrollmentRequestIdUUID returns EnrollmentRequestId as a UUID when possible.
-func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestIdUUID() uuid.UUID {
+// GetEnrollmentAttemptIdUUID returns EnrollmentAttemptId as a UUID when possible.
+func (x *GetEnrollmentAttemptByIDRequest) GetEnrollmentAttemptIdUUID() uuid.UUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.EnrollmentRequestId)
+		value, err := convertProtoToUUID(x.EnrollmentAttemptId)
 		if err == nil {
 			return value
 		}

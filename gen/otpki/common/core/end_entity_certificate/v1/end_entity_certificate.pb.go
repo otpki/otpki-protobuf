@@ -29,7 +29,6 @@ const (
 type EndEntityCertificate struct {
 	state               protoimpl.MessageState   `protogen:"open.v1"`
 	EndEntityId         string                   `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
-	EnrollmentRequestId string                   `protobuf:"bytes,2,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
 	IssuedCertificateId string                   `protobuf:"bytes,3,opt,name=issued_certificate_id,json=issuedCertificateId,proto3" json:"issued_certificate_id,omitempty"`
 	Certificate         []byte                   `protobuf:"bytes,4,opt,name=certificate,proto3" json:"certificate,omitempty"`
 	CertificateChain    [][]byte                 `protobuf:"bytes,5,rep,name=certificate_chain,json=certificateChain,proto3" json:"certificate_chain,omitempty"`
@@ -77,13 +76,6 @@ func (*EndEntityCertificate) Descriptor() ([]byte, []int) {
 func (x *EndEntityCertificate) GetEndEntityId() string {
 	if x != nil {
 		return x.EndEntityId
-	}
-	return ""
-}
-
-func (x *EndEntityCertificate) GetEnrollmentRequestId() string {
-	if x != nil {
-		return x.EnrollmentRequestId
 	}
 	return ""
 }
@@ -162,10 +154,9 @@ var File_otpki_common_core_end_entity_certificate_v1_end_entity_certificate_prot
 
 const file_otpki_common_core_end_entity_certificate_v1_end_entity_certificate_proto_rawDesc = "" +
 	"\n" +
-	"Hotpki/common/core/end_entity_certificate/v1/end_entity_certificate.proto\x12+otpki.common.core.end_entity_certificate.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xe2\x05\n" +
+	"Hotpki/common/core/end_entity_certificate/v1/end_entity_certificate.proto\x12+otpki.common.core.end_entity_certificate.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a%otpki/common/api/v1/native_type.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xa4\x05\n" +
 	"\x14EndEntityCertificate\x12,\n" +
 	"\rend_entity_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\vendEntityId\x12<\n" +
-	"\x15enrollment_request_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12<\n" +
 	"\x15issued_certificate_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x13issuedCertificateId\x12 \n" +
 	"\vcertificate\x18\x04 \x01(\fR\vcertificate\x12+\n" +
 	"\x11certificate_chain\x18\x05 \x03(\fR\x10certificateChain\x12#\n" +

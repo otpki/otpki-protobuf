@@ -5,18 +5,18 @@
 import { EnrollerService } from "./enroller_pb.js";
 
 /**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest
+ * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt
  */
-export const createEnrollmentRequest: typeof EnrollerService["method"]["createEnrollmentRequest"];
+export const createEnrollmentAttempt: typeof EnrollerService["method"]["createEnrollmentAttempt"];
 /**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity
+ * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity
  */
-export const createEnrollmentRequestForExistingEndEntity: typeof EnrollerService["method"]["createEnrollmentRequestForExistingEndEntity"];
+export const createEnrollmentAttemptForExistingEndEntity: typeof EnrollerService["method"]["createEnrollmentAttemptForExistingEndEntity"];
 /**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID
+ * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptByID
  */
-export const getEnrollmentByRequestID: typeof EnrollerService["method"]["getEnrollmentByRequestID"];
+export const getEnrollmentAttemptByID: typeof EnrollerService["method"]["getEnrollmentAttemptByID"];
 /**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList
+ * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList
  */
-export const getEnrollmentRequestList: typeof EnrollerService["method"]["getEnrollmentRequestList"];
+export const getEnrollmentAttemptList: typeof EnrollerService["method"]["getEnrollmentAttemptList"];

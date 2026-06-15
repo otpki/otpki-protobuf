@@ -4,9 +4,9 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { EndEntity, EndEntityJson, EndEntityStatus, EndEntityStatusJson } from "../../end_entity/v1/end_entity_pb.js";
 import type { IssuingProtocol, IssuingProtocolJson } from "../../issuer/v1/issuer_pb.js";
 import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import type { EndEntity, EndEntityJson } from "../../end_entity/v1/end_entity_pb.js";
 
 /**
  * Describes the file otpki/common/core/enroller/v1/enroller.proto.
@@ -14,18 +14,18 @@ import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 export declare const file_otpki_common_core_enroller_v1_enroller: GenFile;
 
 /**
- * @generated from message otpki.common.core.enroller.v1.EnrollmentRequest
+ * @generated from message otpki.common.core.enroller.v1.EnrollmentAttempt
  */
-export declare type EnrollmentRequest = Message<"otpki.common.core.enroller.v1.EnrollmentRequest"> & {
+export declare type EnrollmentAttempt = Message<"otpki.common.core.enroller.v1.EnrollmentAttempt"> & {
   /**
    * @generated from field: string id = 1;
    */
   id: string;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntityStatus status = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  status: EndEntityStatus;
+  endEntityId: string;
 
   /**
    * @generated from field: bytes data = 3;
@@ -43,18 +43,6 @@ export declare type EnrollmentRequest = Message<"otpki.common.core.enroller.v1.E
   protocolUsed: IssuingProtocol;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity_template = 6;
-   */
-  endEntityTemplate?: EndEntity;
-
-  /**
-   * extensible for more complex enrollment (key recovery??)
-   *
-   * @generated from field: optional string issuance_request_id = 7;
-   */
-  issuanceRequestId?: string;
-
-  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -70,18 +58,18 @@ export declare type EnrollmentRequest = Message<"otpki.common.core.enroller.v1.E
 };
 
 /**
- * @generated from message otpki.common.core.enroller.v1.EnrollmentRequest
+ * @generated from message otpki.common.core.enroller.v1.EnrollmentAttempt
  */
-export declare type EnrollmentRequestJson = {
+export declare type EnrollmentAttemptJson = {
   /**
    * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntityStatus status = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  status?: EndEntityStatusJson;
+  endEntityId?: string;
 
   /**
    * @generated from field: bytes data = 3;
@@ -99,18 +87,6 @@ export declare type EnrollmentRequestJson = {
   protocolUsed?: IssuingProtocolJson;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity_template = 6;
-   */
-  endEntityTemplate?: EndEntityJson;
-
-  /**
-   * extensible for more complex enrollment (key recovery??)
-   *
-   * @generated from field: optional string issuance_request_id = 7;
-   */
-  issuanceRequestId?: string;
-
-  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -125,23 +101,18 @@ export declare type EnrollmentRequestJson = {
   updatedAt?: TimestampJson;
 };
 
-export declare type EnrollmentRequestValid = EnrollmentRequest;
+export declare type EnrollmentAttemptValid = EnrollmentAttempt;
 
 /**
- * Describes the message otpki.common.core.enroller.v1.EnrollmentRequest.
- * Use `create(EnrollmentRequestSchema)` to create a new message.
+ * Describes the message otpki.common.core.enroller.v1.EnrollmentAttempt.
+ * Use `create(EnrollmentAttemptSchema)` to create a new message.
  */
-export declare const EnrollmentRequestSchema: GenMessage<EnrollmentRequest, {jsonType: EnrollmentRequestJson, validType: EnrollmentRequestValid}>;
+export declare const EnrollmentAttemptSchema: GenMessage<EnrollmentAttempt, {jsonType: EnrollmentAttemptJson, validType: EnrollmentAttemptValid}>;
 
 /**
  * @generated from message otpki.common.core.enroller.v1.EnrollmentResponse
  */
 export declare type EnrollmentResponse = Message<"otpki.common.core.enroller.v1.EnrollmentResponse"> & {
-  /**
-   * @generated from field: string enrollment_request_id = 1;
-   */
-  enrollmentRequestId: string;
-
   /**
    * @generated from field: optional string issuance_request_id = 2;
    */
@@ -165,9 +136,9 @@ export declare type EnrollmentResponse = Message<"otpki.common.core.enroller.v1.
   certificateChain: Uint8Array[];
 
   /**
-   * the status of the end entity is the status of the request
-   * since end entities can only have 1 concurrent active request
-   * a new request cannot be made if the end entity is in a pending state
+   * the status of the end entity is the status of the active attempt
+   * since end entities can only have 1 concurrent active attempt
+   * a new attempt cannot be made if the end entity is in a pending state
    *
    * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 6;
    */
@@ -178,11 +149,6 @@ export declare type EnrollmentResponse = Message<"otpki.common.core.enroller.v1.
  * @generated from message otpki.common.core.enroller.v1.EnrollmentResponse
  */
 export declare type EnrollmentResponseJson = {
-  /**
-   * @generated from field: string enrollment_request_id = 1;
-   */
-  enrollmentRequestId?: string;
-
   /**
    * @generated from field: optional string issuance_request_id = 2;
    */
@@ -206,9 +172,9 @@ export declare type EnrollmentResponseJson = {
   certificateChain?: string[];
 
   /**
-   * the status of the end entity is the status of the request
-   * since end entities can only have 1 concurrent active request
-   * a new request cannot be made if the end entity is in a pending state
+   * the status of the end entity is the status of the active attempt
+   * since end entities can only have 1 concurrent active attempt
+   * a new attempt cannot be made if the end entity is in a pending state
    *
    * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 6;
    */

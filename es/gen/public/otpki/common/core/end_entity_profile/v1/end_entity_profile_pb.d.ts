@@ -474,6 +474,11 @@ export declare type EndEntityProfile = Message<"otpki.common.core.end_entity_pro
    * @generated from field: optional string approval_profile_id = 806;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: int64 allowed_requests = 807;
+   */
+  allowedRequests: bigint;
 };
 
 /**
@@ -762,6 +767,11 @@ export declare type EndEntityProfileJson = {
    * @generated from field: optional string approval_profile_id = 806;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: int64 allowed_requests = 807;
+   */
+  allowedRequests?: string;
 };
 
 export declare type EndEntityProfileValid = EndEntityProfile;

@@ -9,7 +9,7 @@ import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import { file_openapiv3_annotations } from "../../../../../openapiv3/annotations_pb.js";
 import { file_otpki_common_api_v1_native_type } from "../../../api/v1/native_type_pb.js";
-import type { EndEntity, EndEntityJson, EndEntityStatus, EndEntityStatusJson } from "../../end_entity/v1/end_entity_pb.js";
+import type { EndEntity, EndEntityJson } from "../../end_entity/v1/end_entity_pb.js";
 import { file_otpki_common_core_end_entity_v1_end_entity } from "../../end_entity/v1/end_entity_pb.js";
 import type { IssuingProtocol, IssuingProtocolJson } from "../../issuer/v1/issuer_pb.js";
 import { file_otpki_common_core_issuer_v1_issuer } from "../../issuer/v1/issuer_pb.js";
@@ -19,21 +19,21 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/core/enroller/v1/enroller.proto.
  */
 export const file_otpki_common_core_enroller_v1_enroller: GenFile = /*@__PURE__*/
-  fileDesc("CixvdHBraS9jb21tb24vY29yZS9lbnJvbGxlci92MS9lbnJvbGxlci5wcm90bxIdb3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEivQQKEUVucm9sbG1lbnRSZXF1ZXN0EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEkcKBnN0YXR1cxgCIAEoDjIwLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5U3RhdHVzQgW6RwIYARIMCgRkYXRhGAMgASgMEkQKCWRhdGFfdHlwZRgEIAEoDjIxLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnREYXRhVHlwZRJDCg1wcm90b2NvbF91c2VkGAUgASgOMiwub3Rwa2kuY29tbW9uLmNvcmUuaXNzdWVyLnYxLklzc3VpbmdQcm90b2NvbBJHChNlbmRfZW50aXR5X3RlbXBsYXRlGAYgASgLMioub3Rwa2kuY29tbW9uLmNvcmUuZW5kX2VudGl0eS52MS5FbmRFbnRpdHkSKgoTaXNzdWFuY2VfcmVxdWVzdF9pZBgHIAEoCUIIukgFcgOwAQFIAIgBARJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAFCFgoUX2lzc3VhbmNlX3JlcXVlc3RfaWQiqwIKEkVucm9sbG1lbnRSZXNwb25zZRInChVlbnJvbGxtZW50X3JlcXVlc3RfaWQYASABKAlCCLpIBXIDsAEBEioKE2lzc3VhbmNlX3JlcXVlc3RfaWQYAiABKAlCCLpIBXIDsAEBSACIAQESJQoOY2VydGlmaWNhdGVfaWQYAyABKAlCCLpIBXIDsAEBSAGIAQESEwoLY2VydGlmaWNhdGUYBCABKAwSGQoRY2VydGlmaWNhdGVfY2hhaW4YBSADKAwSPgoKZW5kX2VudGl0eRgGIAEoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5QhYKFF9pc3N1YW5jZV9yZXF1ZXN0X2lkQhEKD19jZXJ0aWZpY2F0ZV9pZCp6ChJFbnJvbGxtZW50RGF0YVR5cGUSJAogRU5ST0xMTUVOVF9EQVRBX1RZUEVfVU5TUEVDSUZJRUQQABIfChtFTlJPTExNRU5UX0RBVEFfVFlQRV9QS0NTMTAQARIdChlFTlJPTExNRU5UX0RBVEFfVFlQRV9DUk1GEAJCywEKIWNvbS5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MUINRW5yb2xsZXJQcm90b1ABogIET0NDRaoCHU90cGtpLkNvbW1vbi5Db3JlLkVucm9sbGVyLlYxygIdT3Rwa2lcQ29tbW9uXENvcmVcRW5yb2xsZXJcVjHiAilPdHBraVxDb21tb25cQ29yZVxFbnJvbGxlclxWMVxHUEJNZXRhZGF0YeoCIU90cGtpOjpDb21tb246OkNvcmU6OkVucm9sbGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_issuer_v1_issuer]);
+  fileDesc("CixvdHBraS9jb21tb24vY29yZS9lbnJvbGxlci92MS9lbnJvbGxlci5wcm90bxIdb3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEiiAMKEUVucm9sbG1lbnRBdHRlbXB0EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEh8KDWVuZF9lbnRpdHlfaWQYAiABKAlCCLpIBXIDsAEBEgwKBGRhdGEYAyABKAwSRAoJZGF0YV90eXBlGAQgASgOMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudERhdGFUeXBlEkMKDXByb3RvY29sX3VzZWQYBSABKA4yLC5vdHBraS5jb21tb24uY29yZS5pc3N1ZXIudjEuSXNzdWluZ1Byb3RvY29sEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYASKCAgoSRW5yb2xsbWVudFJlc3BvbnNlEioKE2lzc3VhbmNlX3JlcXVlc3RfaWQYAiABKAlCCLpIBXIDsAEBSACIAQESJQoOY2VydGlmaWNhdGVfaWQYAyABKAlCCLpIBXIDsAEBSAGIAQESEwoLY2VydGlmaWNhdGUYBCABKAwSGQoRY2VydGlmaWNhdGVfY2hhaW4YBSADKAwSPgoKZW5kX2VudGl0eRgGIAEoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5QhYKFF9pc3N1YW5jZV9yZXF1ZXN0X2lkQhEKD19jZXJ0aWZpY2F0ZV9pZCp6ChJFbnJvbGxtZW50RGF0YVR5cGUSJAogRU5ST0xMTUVOVF9EQVRBX1RZUEVfVU5TUEVDSUZJRUQQABIfChtFTlJPTExNRU5UX0RBVEFfVFlQRV9QS0NTMTAQARIdChlFTlJPTExNRU5UX0RBVEFfVFlQRV9DUk1GEAJCywEKIWNvbS5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MUINRW5yb2xsZXJQcm90b1ABogIET0NDRaoCHU90cGtpLkNvbW1vbi5Db3JlLkVucm9sbGVyLlYxygIdT3Rwa2lcQ29tbW9uXENvcmVcRW5yb2xsZXJcVjHiAilPdHBraVxDb21tb25cQ29yZVxFbnJvbGxlclxWMVxHUEJNZXRhZGF0YeoCIU90cGtpOjpDb21tb246OkNvcmU6OkVucm9sbGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_issuer_v1_issuer]);
 
 /**
- * @generated from message otpki.common.core.enroller.v1.EnrollmentRequest
+ * @generated from message otpki.common.core.enroller.v1.EnrollmentAttempt
  */
-export type EnrollmentRequest = Message<"otpki.common.core.enroller.v1.EnrollmentRequest"> & {
+export type EnrollmentAttempt = Message<"otpki.common.core.enroller.v1.EnrollmentAttempt"> & {
   /**
    * @generated from field: string id = 1;
    */
   id: string;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntityStatus status = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  status: EndEntityStatus;
+  endEntityId: string;
 
   /**
    * @generated from field: bytes data = 3;
@@ -51,18 +51,6 @@ export type EnrollmentRequest = Message<"otpki.common.core.enroller.v1.Enrollmen
   protocolUsed: IssuingProtocol;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity_template = 6;
-   */
-  endEntityTemplate?: EndEntity;
-
-  /**
-   * extensible for more complex enrollment (key recovery??)
-   *
-   * @generated from field: optional string issuance_request_id = 7;
-   */
-  issuanceRequestId?: string;
-
-  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -78,18 +66,18 @@ export type EnrollmentRequest = Message<"otpki.common.core.enroller.v1.Enrollmen
 };
 
 /**
- * @generated from message otpki.common.core.enroller.v1.EnrollmentRequest
+ * @generated from message otpki.common.core.enroller.v1.EnrollmentAttempt
  */
-export type EnrollmentRequestJson = {
+export type EnrollmentAttemptJson = {
   /**
    * @generated from field: string id = 1;
    */
   id?: string;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntityStatus status = 2;
+   * @generated from field: string end_entity_id = 2;
    */
-  status?: EndEntityStatusJson;
+  endEntityId?: string;
 
   /**
    * @generated from field: bytes data = 3;
@@ -107,18 +95,6 @@ export type EnrollmentRequestJson = {
   protocolUsed?: IssuingProtocolJson;
 
   /**
-   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity_template = 6;
-   */
-  endEntityTemplate?: EndEntityJson;
-
-  /**
-   * extensible for more complex enrollment (key recovery??)
-   *
-   * @generated from field: optional string issuance_request_id = 7;
-   */
-  issuanceRequestId?: string;
-
-  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -133,24 +109,19 @@ export type EnrollmentRequestJson = {
   updatedAt?: TimestampJson;
 };
 
-export type EnrollmentRequestValid = EnrollmentRequest;
+export type EnrollmentAttemptValid = EnrollmentAttempt;
 
 /**
- * Describes the message otpki.common.core.enroller.v1.EnrollmentRequest.
- * Use `create(EnrollmentRequestSchema)` to create a new message.
+ * Describes the message otpki.common.core.enroller.v1.EnrollmentAttempt.
+ * Use `create(EnrollmentAttemptSchema)` to create a new message.
  */
-export const EnrollmentRequestSchema: GenMessage<EnrollmentRequest, {jsonType: EnrollmentRequestJson, validType: EnrollmentRequestValid}> = /*@__PURE__*/
+export const EnrollmentAttemptSchema: GenMessage<EnrollmentAttempt, {jsonType: EnrollmentAttemptJson, validType: EnrollmentAttemptValid}> = /*@__PURE__*/
   messageDesc(file_otpki_common_core_enroller_v1_enroller, 0);
 
 /**
  * @generated from message otpki.common.core.enroller.v1.EnrollmentResponse
  */
 export type EnrollmentResponse = Message<"otpki.common.core.enroller.v1.EnrollmentResponse"> & {
-  /**
-   * @generated from field: string enrollment_request_id = 1;
-   */
-  enrollmentRequestId: string;
-
   /**
    * @generated from field: optional string issuance_request_id = 2;
    */
@@ -174,9 +145,9 @@ export type EnrollmentResponse = Message<"otpki.common.core.enroller.v1.Enrollme
   certificateChain: Uint8Array[];
 
   /**
-   * the status of the end entity is the status of the request
-   * since end entities can only have 1 concurrent active request
-   * a new request cannot be made if the end entity is in a pending state
+   * the status of the end entity is the status of the active attempt
+   * since end entities can only have 1 concurrent active attempt
+   * a new attempt cannot be made if the end entity is in a pending state
    *
    * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 6;
    */
@@ -187,11 +158,6 @@ export type EnrollmentResponse = Message<"otpki.common.core.enroller.v1.Enrollme
  * @generated from message otpki.common.core.enroller.v1.EnrollmentResponse
  */
 export type EnrollmentResponseJson = {
-  /**
-   * @generated from field: string enrollment_request_id = 1;
-   */
-  enrollmentRequestId?: string;
-
   /**
    * @generated from field: optional string issuance_request_id = 2;
    */
@@ -215,9 +181,9 @@ export type EnrollmentResponseJson = {
   certificateChain?: string[];
 
   /**
-   * the status of the end entity is the status of the request
-   * since end entities can only have 1 concurrent active request
-   * a new request cannot be made if the end entity is in a pending state
+   * the status of the end entity is the status of the active attempt
+   * since end entities can only have 1 concurrent active attempt
+   * a new attempt cannot be made if the end entity is in a pending state
    *
    * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 6;
    */

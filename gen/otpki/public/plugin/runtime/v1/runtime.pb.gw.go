@@ -170,6 +170,33 @@ func local_request_PluginRuntimeService_AddUniqueNonce_0(ctx context.Context, ma
 	return msg, metadata, err
 }
 
+func request_PluginRuntimeService_CreateEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateEndEntityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.CreateEndEntity(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PluginRuntimeService_CreateEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateEndEntityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CreateEndEntity(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_PluginRuntimeService_GetEndEntityByLoginID_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetEndEntityByLoginIDRequest
@@ -221,6 +248,33 @@ func local_request_PluginRuntimeService_GetEndEntity_0(ctx context.Context, mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.GetEndEntity(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_PluginRuntimeService_UpdateEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateEndEntityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.UpdateEndEntity(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PluginRuntimeService_UpdateEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateEndEntityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.UpdateEndEntity(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -359,9 +413,9 @@ func local_request_PluginRuntimeService_GetCertificateProfile_0(ctx context.Cont
 	return msg, metadata, err
 }
 
-func request_PluginRuntimeService_CreateEnrollmentRequest_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PluginRuntimeService_CreateEnrollmentAttempt_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateEnrollmentRequestRequest
+		protoReq CreateEnrollmentAttemptRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -370,25 +424,25 @@ func request_PluginRuntimeService_CreateEnrollmentRequest_0(ctx context.Context,
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.CreateEnrollmentRequest(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateEnrollmentAttempt(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PluginRuntimeService_CreateEnrollmentRequest_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PluginRuntimeService_CreateEnrollmentAttempt_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateEnrollmentRequestRequest
+		protoReq CreateEnrollmentAttemptRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.CreateEnrollmentRequest(ctx, &protoReq)
+	msg, err := server.CreateEnrollmentAttempt(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PluginRuntimeService_GetEnrollmentByRequestID_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PluginRuntimeService_GetEnrollmentAttemptByID_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetEnrollmentByRequestIDRequest
+		protoReq GetEnrollmentAttemptByIDRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -397,19 +451,19 @@ func request_PluginRuntimeService_GetEnrollmentByRequestID_0(ctx context.Context
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.GetEnrollmentByRequestID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetEnrollmentAttemptByID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PluginRuntimeService_GetEnrollmentByRequestID_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PluginRuntimeService_GetEnrollmentAttemptByID_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetEnrollmentByRequestIDRequest
+		protoReq GetEnrollmentAttemptByIDRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetEnrollmentByRequestID(ctx, &protoReq)
+	msg, err := server.GetEnrollmentAttemptByID(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -735,6 +789,26 @@ func RegisterPluginRuntimeServiceHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_PluginRuntimeService_AddUniqueNonce_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_CreateEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEndEntity", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEndEntity"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PluginRuntimeService_CreateEndEntity_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_CreateEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetEndEntityByLoginID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -774,6 +848,26 @@ func RegisterPluginRuntimeServiceHandlerServer(ctx context.Context, mux *runtime
 			return
 		}
 		forward_PluginRuntimeService_GetEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_UpdateEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/UpdateEndEntity", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/UpdateEndEntity"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PluginRuntimeService_UpdateEndEntity_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_UpdateEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetKey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -875,45 +969,45 @@ func RegisterPluginRuntimeServiceHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_PluginRuntimeService_GetCertificateProfile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_CreateEnrollmentRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_CreateEnrollmentAttempt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentRequest", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentRequest"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentAttempt", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentAttempt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PluginRuntimeService_CreateEnrollmentRequest_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PluginRuntimeService_CreateEnrollmentAttempt_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PluginRuntimeService_CreateEnrollmentRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PluginRuntimeService_CreateEnrollmentAttempt_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetEnrollmentByRequestID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetEnrollmentAttemptByID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentByRequestID", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentByRequestID"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentAttemptByID", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentAttemptByID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PluginRuntimeService_GetEnrollmentByRequestID_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PluginRuntimeService_GetEnrollmentAttemptByID_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PluginRuntimeService_GetEnrollmentByRequestID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PluginRuntimeService_GetEnrollmentAttemptByID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_RevokeEndEntityCertificate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1200,6 +1294,23 @@ func RegisterPluginRuntimeServiceHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_PluginRuntimeService_AddUniqueNonce_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_CreateEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEndEntity", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEndEntity"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PluginRuntimeService_CreateEndEntity_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_CreateEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetEndEntityByLoginID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1233,6 +1344,23 @@ func RegisterPluginRuntimeServiceHandlerClient(ctx context.Context, mux *runtime
 			return
 		}
 		forward_PluginRuntimeService_GetEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_UpdateEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/UpdateEndEntity", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/UpdateEndEntity"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PluginRuntimeService_UpdateEndEntity_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_UpdateEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetKey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1319,39 +1447,39 @@ func RegisterPluginRuntimeServiceHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_PluginRuntimeService_GetCertificateProfile_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_CreateEnrollmentRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_CreateEnrollmentAttempt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentRequest", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentRequest"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentAttempt", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentAttempt"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PluginRuntimeService_CreateEnrollmentRequest_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PluginRuntimeService_CreateEnrollmentAttempt_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PluginRuntimeService_CreateEnrollmentRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PluginRuntimeService_CreateEnrollmentAttempt_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetEnrollmentByRequestID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetEnrollmentAttemptByID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentByRequestID", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentByRequestID"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentAttemptByID", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentAttemptByID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PluginRuntimeService_GetEnrollmentByRequestID_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PluginRuntimeService_GetEnrollmentAttemptByID_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PluginRuntimeService_GetEnrollmentByRequestID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PluginRuntimeService_GetEnrollmentAttemptByID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_RevokeEndEntityCertificate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -1498,15 +1626,17 @@ var (
 	pattern_PluginRuntimeService_AddNonce_0                                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "AddNonce"}, ""))
 	pattern_PluginRuntimeService_CheckNonce_0                                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "CheckNonce"}, ""))
 	pattern_PluginRuntimeService_AddUniqueNonce_0                             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "AddUniqueNonce"}, ""))
+	pattern_PluginRuntimeService_CreateEndEntity_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "CreateEndEntity"}, ""))
 	pattern_PluginRuntimeService_GetEndEntityByLoginID_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEndEntityByLoginID"}, ""))
 	pattern_PluginRuntimeService_GetEndEntity_0                               = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEndEntity"}, ""))
+	pattern_PluginRuntimeService_UpdateEndEntity_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "UpdateEndEntity"}, ""))
 	pattern_PluginRuntimeService_GetKey_0                                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetKey"}, ""))
 	pattern_PluginRuntimeService_GetAllRootCertificateAuthorityCertificates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetAllRootCertificateAuthorityCertificates"}, ""))
 	pattern_PluginRuntimeService_GetLatestCertificateAuthorityCertificate_0   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetLatestCertificateAuthorityCertificate"}, ""))
 	pattern_PluginRuntimeService_GetCertificateAuthority_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetCertificateAuthority"}, ""))
 	pattern_PluginRuntimeService_GetCertificateProfile_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetCertificateProfile"}, ""))
-	pattern_PluginRuntimeService_CreateEnrollmentRequest_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "CreateEnrollmentRequest"}, ""))
-	pattern_PluginRuntimeService_GetEnrollmentByRequestID_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEnrollmentByRequestID"}, ""))
+	pattern_PluginRuntimeService_CreateEnrollmentAttempt_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "CreateEnrollmentAttempt"}, ""))
+	pattern_PluginRuntimeService_GetEnrollmentAttemptByID_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEnrollmentAttemptByID"}, ""))
 	pattern_PluginRuntimeService_RevokeEndEntityCertificate_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "RevokeEndEntityCertificate"}, ""))
 	pattern_PluginRuntimeService_GetEndEntityCertificateBySerialNumber_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEndEntityCertificateBySerialNumber"}, ""))
 	pattern_PluginRuntimeService_GetEndEntityCertificates_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEndEntityCertificates"}, ""))
@@ -1523,15 +1653,17 @@ var (
 	forward_PluginRuntimeService_AddNonce_0                                   = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_CheckNonce_0                                 = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_AddUniqueNonce_0                             = runtime.ForwardResponseMessage
+	forward_PluginRuntimeService_CreateEndEntity_0                            = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetEndEntityByLoginID_0                      = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetEndEntity_0                               = runtime.ForwardResponseMessage
+	forward_PluginRuntimeService_UpdateEndEntity_0                            = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetKey_0                                     = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetAllRootCertificateAuthorityCertificates_0 = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetLatestCertificateAuthorityCertificate_0   = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetCertificateAuthority_0                    = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetCertificateProfile_0                      = runtime.ForwardResponseMessage
-	forward_PluginRuntimeService_CreateEnrollmentRequest_0                    = runtime.ForwardResponseMessage
-	forward_PluginRuntimeService_GetEnrollmentByRequestID_0                   = runtime.ForwardResponseMessage
+	forward_PluginRuntimeService_CreateEnrollmentAttempt_0                    = runtime.ForwardResponseMessage
+	forward_PluginRuntimeService_GetEnrollmentAttemptByID_0                   = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_RevokeEndEntityCertificate_0                 = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetEndEntityCertificateBySerialNumber_0      = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetEndEntityCertificates_0                   = runtime.ForwardResponseMessage

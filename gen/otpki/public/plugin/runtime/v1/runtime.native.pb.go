@@ -18,6 +18,17 @@ func (x *GetEndEntityRequest) GetIdUUID() uuid.UUID {
 }
 
 // GetIdUUID returns Id as a UUID when possible.
+func (x *CreateEndEntityResponse) GetIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.Id)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
+// GetIdUUID returns Id as a UUID when possible.
 func (x *GetKeyRequest) GetIdUUID() uuid.UUID {
 	if x != nil {
 		value, err := convertProtoToUUID(x.Id)
@@ -61,10 +72,10 @@ func (x *GetCertificateProfileRequest) GetIdUUID() uuid.UUID {
 	return uuid.UUID{}
 }
 
-// GetEnrollmentRequestIdUUID returns EnrollmentRequestId as a UUID when possible.
-func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestIdUUID() uuid.UUID {
+// GetEnrollmentAttemptIdUUID returns EnrollmentAttemptId as a UUID when possible.
+func (x *GetEnrollmentAttemptByIDRequest) GetEnrollmentAttemptIdUUID() uuid.UUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.EnrollmentRequestId)
+		value, err := convertProtoToUUID(x.EnrollmentAttemptId)
 		if err == nil {
 			return value
 		}

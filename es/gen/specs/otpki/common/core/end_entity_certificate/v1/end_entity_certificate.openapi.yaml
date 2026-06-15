@@ -107,10 +107,6 @@ components:
           type: string
           title: end_entity_id
           format: uuid
-        enrollmentRequestId:
-          type: string
-          title: enrollment_request_id
-          format: uuid
         issuedCertificateId:
           type: string
           title: issued_certificate_id

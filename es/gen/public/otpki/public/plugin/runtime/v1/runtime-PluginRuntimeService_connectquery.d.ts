@@ -25,6 +25,10 @@ export const checkNonce: typeof PluginRuntimeService["method"]["checkNonce"];
  */
 export const addUniqueNonce: typeof PluginRuntimeService["method"]["addUniqueNonce"];
 /**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEndEntity
+ */
+export const createEndEntity: typeof PluginRuntimeService["method"]["createEndEntity"];
+/**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityByLoginID
  */
 export const getEndEntityByLoginID: typeof PluginRuntimeService["method"]["getEndEntityByLoginID"];
@@ -32,6 +36,10 @@ export const getEndEntityByLoginID: typeof PluginRuntimeService["method"]["getEn
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntity
  */
 export const getEndEntity: typeof PluginRuntimeService["method"]["getEndEntity"];
+/**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity
+ */
+export const updateEndEntity: typeof PluginRuntimeService["method"]["updateEndEntity"];
 /**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey
  */
@@ -53,13 +61,13 @@ export const getCertificateAuthority: typeof PluginRuntimeService["method"]["get
  */
 export const getCertificateProfile: typeof PluginRuntimeService["method"]["getCertificateProfile"];
 /**
- * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt
  */
-export const createEnrollmentRequest: typeof PluginRuntimeService["method"]["createEnrollmentRequest"];
+export const createEnrollmentAttempt: typeof PluginRuntimeService["method"]["createEnrollmentAttempt"];
 /**
- * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentAttemptByID
  */
-export const getEnrollmentByRequestID: typeof PluginRuntimeService["method"]["getEnrollmentByRequestID"];
+export const getEnrollmentAttemptByID: typeof PluginRuntimeService["method"]["getEnrollmentAttemptByID"];
 /**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate
  */

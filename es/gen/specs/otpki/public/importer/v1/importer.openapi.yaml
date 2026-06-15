@@ -1195,7 +1195,6 @@ components:
         - RESOURCE_WORK_ITEM
         - RESOURCE_SMTP_SETTINGS
         - RESOURCE_ISSUANCE_REQUEST
-        - RESOURCE_ENROLLMENT_REQUEST
     otpki.common.auth.v1.Role:
       type: object
       properties:
@@ -1876,7 +1875,26 @@ components:
             format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
+        remainingRequests:
+          type:
+            - integer
+            - string
+          title: remaining_requests
+          minimum: 0
+          format: int64
+          readOnly: true
       title: EndEntity
+      additionalProperties: false
+    otpki.common.core.end_entity.v1.EndEntityIssuanceRequest:
+      type: object
+      properties:
+        endEntityId:
+          type: string
+          title: end_entity_id
+        issuanceRequestId:
+          type: string
+          title: issuance_request_id
+      title: EndEntityIssuanceRequest
       additionalProperties: false
     otpki.common.core.end_entity.v1.EndEntityStatus:
       type: string
@@ -2103,6 +2121,13 @@ components:
             - "null"
           title: approval_profile_id
           format: uuid
+        allowedRequests:
+          type:
+            - integer
+            - string
+          title: allowed_requests
+          minimum: 0
+          format: int64
       title: EndEntityProfile
       additionalProperties: false
     otpki.common.core.end_entity_profile.v1.EndEntityProfileSANAttribute:
@@ -2162,57 +2187,6 @@ components:
           type: string
           title: regex
       title: EndEntityProfileSubjectDNAttribute
-      additionalProperties: false
-    otpki.common.core.enroller.v1.EnrollmentDataType:
-      type: string
-      title: EnrollmentDataType
-      enum:
-        - ENROLLMENT_DATA_TYPE_UNSPECIFIED
-        - ENROLLMENT_DATA_TYPE_PKCS10
-        - ENROLLMENT_DATA_TYPE_CRMF
-    otpki.common.core.enroller.v1.EnrollmentRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-          readOnly: true
-        status:
-          title: status
-          readOnly: true
-          $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntityStatus'
-        data:
-          type: string
-          title: data
-          format: byte
-        dataType:
-          title: data_type
-          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentDataType'
-        protocolUsed:
-          title: protocol_used
-          $ref: '#/components/schemas/otpki.common.core.issuer.v1.IssuingProtocol'
-        endEntityTemplate:
-          title: end_entity_template
-          $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
-        issuanceRequestId:
-          type:
-            - string
-            - "null"
-          title: issuance_request_id
-          format: uuid
-          description: extensible for more complex enrollment (key recovery??)
-        createdAt:
-          title: created_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        updatedAt:
-          title: updated_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: EnrollmentRequest
       additionalProperties: false
     otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage:
       type: object
@@ -2294,11 +2268,6 @@ components:
           items:
             $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
           title: end_entities
-        enrollmentRequests:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentRequest'
-          title: enrollment_requests
         keyStorageConfigs:
           type: array
           items:
@@ -2364,6 +2333,11 @@ components:
           items:
             $ref: '#/components/schemas/otpki.common.core.publisher.v1.CertificatePublisher'
           title: certificate_publishers
+        endEntityIssuanceRequests:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntityIssuanceRequest'
+          title: end_entity_issuance_requests
       title: ExportData
       additionalProperties: false
       description: |-
@@ -2393,9 +2367,6 @@ components:
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
         endEntities:
           title: end_entities
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-        enrollmentRequests:
-          title: enrollment_requests
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
         keyStorageConfigs:
           title: key_storage_configs
@@ -2435,6 +2406,9 @@ components:
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
         certificatePublishers:
           title: certificate_publishers
+          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
+        endEntityIssuanceRequests:
+          title: end_entity_issuance_requests
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
       title: ExportPagination
       additionalProperties: false

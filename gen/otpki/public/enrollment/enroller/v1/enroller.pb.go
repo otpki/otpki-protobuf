@@ -8,7 +8,8 @@ package enrollerv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/api/query/v1"
+	v12 "github.com/otpki/otpki-protobuf/gen/otpki/common/api/query/v1"
+	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/end_entity/v1"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/enroller/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -25,27 +26,29 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateEnrollmentRequestRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequest *v1.EnrollmentRequest  `protobuf:"bytes,1,opt,name=enrollment_request,json=enrollmentRequest,proto3" json:"enrollment_request,omitempty"`
+type CreateEnrollmentAttemptRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+	EnrollmentAttempt *v1.EnrollmentAttempt `protobuf:"bytes,1,opt,name=enrollment_attempt,json=enrollmentAttempt,proto3" json:"enrollment_attempt,omitempty"`
+	EndEntity         *v11.EndEntity        `protobuf:"bytes,2,opt,name=end_entity,json=endEntity,proto3" json:"end_entity,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
-func (x *CreateEnrollmentRequestRequest) Reset() {
-	*x = CreateEnrollmentRequestRequest{}
+func (x *CreateEnrollmentAttemptRequest) Reset() {
+	*x = CreateEnrollmentAttemptRequest{}
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateEnrollmentRequestRequest) String() string {
+func (x *CreateEnrollmentAttemptRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateEnrollmentRequestRequest) ProtoMessage() {}
+func (*CreateEnrollmentAttemptRequest) ProtoMessage() {}
 
-func (x *CreateEnrollmentRequestRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateEnrollmentAttemptRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -57,39 +60,46 @@ func (x *CreateEnrollmentRequestRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateEnrollmentRequestRequest.ProtoReflect.Descriptor instead.
-func (*CreateEnrollmentRequestRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateEnrollmentAttemptRequest.ProtoReflect.Descriptor instead.
+func (*CreateEnrollmentAttemptRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateEnrollmentRequestRequest) GetEnrollmentRequest() *v1.EnrollmentRequest {
+func (x *CreateEnrollmentAttemptRequest) GetEnrollmentAttempt() *v1.EnrollmentAttempt {
 	if x != nil {
-		return x.EnrollmentRequest
+		return x.EnrollmentAttempt
 	}
 	return nil
 }
 
-type CreateEnrollmentRequestResponse struct {
+func (x *CreateEnrollmentAttemptRequest) GetEndEntity() *v11.EndEntity {
+	if x != nil {
+		return x.EndEntity
+	}
+	return nil
+}
+
+type CreateEnrollmentAttemptResponse struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	EnrollmentResponse *v1.EnrollmentResponse `protobuf:"bytes,1,opt,name=enrollment_response,json=enrollmentResponse,proto3" json:"enrollment_response,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
-func (x *CreateEnrollmentRequestResponse) Reset() {
-	*x = CreateEnrollmentRequestResponse{}
+func (x *CreateEnrollmentAttemptResponse) Reset() {
+	*x = CreateEnrollmentAttemptResponse{}
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateEnrollmentRequestResponse) String() string {
+func (x *CreateEnrollmentAttemptResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateEnrollmentRequestResponse) ProtoMessage() {}
+func (*CreateEnrollmentAttemptResponse) ProtoMessage() {}
 
-func (x *CreateEnrollmentRequestResponse) ProtoReflect() protoreflect.Message {
+func (x *CreateEnrollmentAttemptResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -101,39 +111,42 @@ func (x *CreateEnrollmentRequestResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateEnrollmentRequestResponse.ProtoReflect.Descriptor instead.
-func (*CreateEnrollmentRequestResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateEnrollmentAttemptResponse.ProtoReflect.Descriptor instead.
+func (*CreateEnrollmentAttemptResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateEnrollmentRequestResponse) GetEnrollmentResponse() *v1.EnrollmentResponse {
+func (x *CreateEnrollmentAttemptResponse) GetEnrollmentResponse() *v1.EnrollmentResponse {
 	if x != nil {
 		return x.EnrollmentResponse
 	}
 	return nil
 }
 
-type CreateEnrollmentRequestForExistingEndEntityRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequest *v1.EnrollmentRequest  `protobuf:"bytes,1,opt,name=enrollment_request,json=enrollmentRequest,proto3" json:"enrollment_request,omitempty"`
+type CreateEnrollmentAttemptForExistingEndEntityRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+	EnrollmentAttempt *v1.EnrollmentAttempt `protobuf:"bytes,1,opt,name=enrollment_attempt,json=enrollmentAttempt,proto3" json:"enrollment_attempt,omitempty"`
+	LoginId           string                `protobuf:"bytes,2,opt,name=login_id,json=loginId,proto3" json:"login_id,omitempty"`
+	Password          string                `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
 
-func (x *CreateEnrollmentRequestForExistingEndEntityRequest) Reset() {
-	*x = CreateEnrollmentRequestForExistingEndEntityRequest{}
+func (x *CreateEnrollmentAttemptForExistingEndEntityRequest) Reset() {
+	*x = CreateEnrollmentAttemptForExistingEndEntityRequest{}
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateEnrollmentRequestForExistingEndEntityRequest) String() string {
+func (x *CreateEnrollmentAttemptForExistingEndEntityRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateEnrollmentRequestForExistingEndEntityRequest) ProtoMessage() {}
+func (*CreateEnrollmentAttemptForExistingEndEntityRequest) ProtoMessage() {}
 
-func (x *CreateEnrollmentRequestForExistingEndEntityRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateEnrollmentAttemptForExistingEndEntityRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -145,137 +158,54 @@ func (x *CreateEnrollmentRequestForExistingEndEntityRequest) ProtoReflect() prot
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateEnrollmentRequestForExistingEndEntityRequest.ProtoReflect.Descriptor instead.
-func (*CreateEnrollmentRequestForExistingEndEntityRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateEnrollmentAttemptForExistingEndEntityRequest.ProtoReflect.Descriptor instead.
+func (*CreateEnrollmentAttemptForExistingEndEntityRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateEnrollmentRequestForExistingEndEntityRequest) GetEnrollmentRequest() *v1.EnrollmentRequest {
+func (x *CreateEnrollmentAttemptForExistingEndEntityRequest) GetEnrollmentAttempt() *v1.EnrollmentAttempt {
 	if x != nil {
-		return x.EnrollmentRequest
+		return x.EnrollmentAttempt
 	}
 	return nil
 }
 
-type CreateEnrollmentRequestForExistingEndEntityResponse struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentResponse *v1.EnrollmentResponse `protobuf:"bytes,1,opt,name=enrollment_response,json=enrollmentResponse,proto3" json:"enrollment_response,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
-}
-
-func (x *CreateEnrollmentRequestForExistingEndEntityResponse) Reset() {
-	*x = CreateEnrollmentRequestForExistingEndEntityResponse{}
-	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateEnrollmentRequestForExistingEndEntityResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateEnrollmentRequestForExistingEndEntityResponse) ProtoMessage() {}
-
-func (x *CreateEnrollmentRequestForExistingEndEntityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[3]
+func (x *CreateEnrollmentAttemptForExistingEndEntityRequest) GetLoginId() string {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateEnrollmentRequestForExistingEndEntityResponse.ProtoReflect.Descriptor instead.
-func (*CreateEnrollmentRequestForExistingEndEntityResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *CreateEnrollmentRequestForExistingEndEntityResponse) GetEnrollmentResponse() *v1.EnrollmentResponse {
-	if x != nil {
-		return x.EnrollmentResponse
-	}
-	return nil
-}
-
-type GetEnrollmentByRequestIDRequest struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequestId string                 `protobuf:"bytes,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
-	Password            string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
-}
-
-func (x *GetEnrollmentByRequestIDRequest) Reset() {
-	*x = GetEnrollmentByRequestIDRequest{}
-	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetEnrollmentByRequestIDRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetEnrollmentByRequestIDRequest) ProtoMessage() {}
-
-func (x *GetEnrollmentByRequestIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetEnrollmentByRequestIDRequest.ProtoReflect.Descriptor instead.
-func (*GetEnrollmentByRequestIDRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestId() string {
-	if x != nil {
-		return x.EnrollmentRequestId
+		return x.LoginId
 	}
 	return ""
 }
 
-func (x *GetEnrollmentByRequestIDRequest) GetPassword() string {
+func (x *CreateEnrollmentAttemptForExistingEndEntityRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
 	}
 	return ""
 }
 
-type GetEnrollmentByRequestIDResponse struct {
+type CreateEnrollmentAttemptForExistingEndEntityResponse struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequest  *v1.EnrollmentRequest  `protobuf:"bytes,1,opt,name=enrollment_request,json=enrollmentRequest,proto3" json:"enrollment_request,omitempty"`
-	EnrollmentResponse *v1.EnrollmentResponse `protobuf:"bytes,2,opt,name=enrollment_response,json=enrollmentResponse,proto3" json:"enrollment_response,omitempty"`
+	EnrollmentResponse *v1.EnrollmentResponse `protobuf:"bytes,1,opt,name=enrollment_response,json=enrollmentResponse,proto3" json:"enrollment_response,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
-func (x *GetEnrollmentByRequestIDResponse) Reset() {
-	*x = GetEnrollmentByRequestIDResponse{}
-	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[5]
+func (x *CreateEnrollmentAttemptForExistingEndEntityResponse) Reset() {
+	*x = CreateEnrollmentAttemptForExistingEndEntityResponse{}
+	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetEnrollmentByRequestIDResponse) String() string {
+func (x *CreateEnrollmentAttemptForExistingEndEntityResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetEnrollmentByRequestIDResponse) ProtoMessage() {}
+func (*CreateEnrollmentAttemptForExistingEndEntityResponse) ProtoMessage() {}
 
-func (x *GetEnrollmentByRequestIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[5]
+func (x *CreateEnrollmentAttemptForExistingEndEntityResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -286,46 +216,143 @@ func (x *GetEnrollmentByRequestIDResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetEnrollmentByRequestIDResponse.ProtoReflect.Descriptor instead.
-func (*GetEnrollmentByRequestIDResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{5}
+// Deprecated: Use CreateEnrollmentAttemptForExistingEndEntityResponse.ProtoReflect.Descriptor instead.
+func (*CreateEnrollmentAttemptForExistingEndEntityResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetEnrollmentByRequestIDResponse) GetEnrollmentRequest() *v1.EnrollmentRequest {
-	if x != nil {
-		return x.EnrollmentRequest
-	}
-	return nil
-}
-
-func (x *GetEnrollmentByRequestIDResponse) GetEnrollmentResponse() *v1.EnrollmentResponse {
+func (x *CreateEnrollmentAttemptForExistingEndEntityResponse) GetEnrollmentResponse() *v1.EnrollmentResponse {
 	if x != nil {
 		return x.EnrollmentResponse
 	}
 	return nil
 }
 
-type GetEnrollmentRequestListRequest struct {
+type GetEnrollmentAttemptByIDRequest struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	EnrollmentAttemptId string                 `protobuf:"bytes,1,opt,name=enrollment_attempt_id,json=enrollmentAttemptId,proto3" json:"enrollment_attempt_id,omitempty"`
+	Password            string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *GetEnrollmentAttemptByIDRequest) Reset() {
+	*x = GetEnrollmentAttemptByIDRequest{}
+	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEnrollmentAttemptByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEnrollmentAttemptByIDRequest) ProtoMessage() {}
+
+func (x *GetEnrollmentAttemptByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEnrollmentAttemptByIDRequest.ProtoReflect.Descriptor instead.
+func (*GetEnrollmentAttemptByIDRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetEnrollmentAttemptByIDRequest) GetEnrollmentAttemptId() string {
+	if x != nil {
+		return x.EnrollmentAttemptId
+	}
+	return ""
+}
+
+func (x *GetEnrollmentAttemptByIDRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type GetEnrollmentAttemptByIDResponse struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	EnrollmentAttempt  *v1.EnrollmentAttempt  `protobuf:"bytes,1,opt,name=enrollment_attempt,json=enrollmentAttempt,proto3" json:"enrollment_attempt,omitempty"`
+	EnrollmentResponse *v1.EnrollmentResponse `protobuf:"bytes,2,opt,name=enrollment_response,json=enrollmentResponse,proto3" json:"enrollment_response,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *GetEnrollmentAttemptByIDResponse) Reset() {
+	*x = GetEnrollmentAttemptByIDResponse{}
+	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEnrollmentAttemptByIDResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEnrollmentAttemptByIDResponse) ProtoMessage() {}
+
+func (x *GetEnrollmentAttemptByIDResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEnrollmentAttemptByIDResponse.ProtoReflect.Descriptor instead.
+func (*GetEnrollmentAttemptByIDResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetEnrollmentAttemptByIDResponse) GetEnrollmentAttempt() *v1.EnrollmentAttempt {
+	if x != nil {
+		return x.EnrollmentAttempt
+	}
+	return nil
+}
+
+func (x *GetEnrollmentAttemptByIDResponse) GetEnrollmentResponse() *v1.EnrollmentResponse {
+	if x != nil {
+		return x.EnrollmentResponse
+	}
+	return nil
+}
+
+type GetEnrollmentAttemptListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pagination    *v11.PaginationRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Pagination    *v12.PaginationRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetEnrollmentRequestListRequest) Reset() {
-	*x = GetEnrollmentRequestListRequest{}
+func (x *GetEnrollmentAttemptListRequest) Reset() {
+	*x = GetEnrollmentAttemptListRequest{}
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetEnrollmentRequestListRequest) String() string {
+func (x *GetEnrollmentAttemptListRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetEnrollmentRequestListRequest) ProtoMessage() {}
+func (*GetEnrollmentAttemptListRequest) ProtoMessage() {}
 
-func (x *GetEnrollmentRequestListRequest) ProtoReflect() protoreflect.Message {
+func (x *GetEnrollmentAttemptListRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -337,40 +364,40 @@ func (x *GetEnrollmentRequestListRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetEnrollmentRequestListRequest.ProtoReflect.Descriptor instead.
-func (*GetEnrollmentRequestListRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetEnrollmentAttemptListRequest.ProtoReflect.Descriptor instead.
+func (*GetEnrollmentAttemptListRequest) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetEnrollmentRequestListRequest) GetPagination() *v11.PaginationRequest {
+func (x *GetEnrollmentAttemptListRequest) GetPagination() *v12.PaginationRequest {
 	if x != nil {
 		return x.Pagination
 	}
 	return nil
 }
 
-type GetEnrollmentRequestListResponse struct {
+type GetEnrollmentAttemptListResponse struct {
 	state         protoimpl.MessageState  `protogen:"open.v1"`
-	Data          []*v1.EnrollmentRequest `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
-	Pagination    *v11.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Data          []*v1.EnrollmentAttempt `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	Pagination    *v12.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetEnrollmentRequestListResponse) Reset() {
-	*x = GetEnrollmentRequestListResponse{}
+func (x *GetEnrollmentAttemptListResponse) Reset() {
+	*x = GetEnrollmentAttemptListResponse{}
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetEnrollmentRequestListResponse) String() string {
+func (x *GetEnrollmentAttemptListResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetEnrollmentRequestListResponse) ProtoMessage() {}
+func (*GetEnrollmentAttemptListResponse) ProtoMessage() {}
 
-func (x *GetEnrollmentRequestListResponse) ProtoReflect() protoreflect.Message {
+func (x *GetEnrollmentAttemptListResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -382,19 +409,19 @@ func (x *GetEnrollmentRequestListResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetEnrollmentRequestListResponse.ProtoReflect.Descriptor instead.
-func (*GetEnrollmentRequestListResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetEnrollmentAttemptListResponse.ProtoReflect.Descriptor instead.
+func (*GetEnrollmentAttemptListResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetEnrollmentRequestListResponse) GetData() []*v1.EnrollmentRequest {
+func (x *GetEnrollmentAttemptListResponse) GetData() []*v1.EnrollmentAttempt {
 	if x != nil {
 		return x.Data
 	}
 	return nil
 }
 
-func (x *GetEnrollmentRequestListResponse) GetPagination() *v11.PaginationResponse {
+func (x *GetEnrollmentAttemptListResponse) GetPagination() *v12.PaginationResponse {
 	if x != nil {
 		return x.Pagination
 	}
@@ -405,35 +432,39 @@ var File_otpki_public_enrollment_enroller_v1_enroller_proto protoreflect.FileDes
 
 const file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDesc = "" +
 	"\n" +
-	"2otpki/public/enrollment/enroller/v1/enroller.proto\x12#otpki.public.enrollment.enroller.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a%otpki/common/api/query/v1/query.proto\x1a,otpki/common/core/enroller/v1/enroller.proto\"\x89\x01\n" +
-	"\x1eCreateEnrollmentRequestRequest\x12g\n" +
-	"\x12enrollment_request\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentRequestB\x06\xbaH\x03\xc8\x01\x01R\x11enrollmentRequest\"\x85\x01\n" +
-	"\x1fCreateEnrollmentRequestResponse\x12b\n" +
-	"\x13enrollment_response\x18\x01 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\x95\x01\n" +
-	"2CreateEnrollmentRequestForExistingEndEntityRequest\x12_\n" +
-	"\x12enrollment_request\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentRequestR\x11enrollmentRequest\"\x99\x01\n" +
-	"3CreateEnrollmentRequestForExistingEndEntityResponse\x12b\n" +
+	"2otpki/public/enrollment/enroller/v1/enroller.proto\x12#otpki.public.enrollment.enroller.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a%otpki/common/api/query/v1/query.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\x1a,otpki/common/core/enroller/v1/enroller.proto\"\xd4\x01\n" +
+	"\x1eCreateEnrollmentAttemptRequest\x12g\n" +
+	"\x12enrollment_attempt\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentAttemptB\x06\xbaH\x03\xc8\x01\x01R\x11enrollmentAttempt\x12I\n" +
+	"\n" +
+	"end_entity\x18\x02 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityR\tendEntity\"\x85\x01\n" +
+	"\x1fCreateEnrollmentAttemptResponse\x12b\n" +
+	"\x13enrollment_response\x18\x01 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xd4\x01\n" +
+	"2CreateEnrollmentAttemptForExistingEndEntityRequest\x12g\n" +
+	"\x12enrollment_attempt\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentAttemptB\x06\xbaH\x03\xc8\x01\x01R\x11enrollmentAttempt\x12\x19\n" +
+	"\blogin_id\x18\x02 \x01(\tR\aloginId\x12\x1a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"\x99\x01\n" +
+	"3CreateEnrollmentAttemptForExistingEndEntityResponse\x12b\n" +
 	"\x13enrollment_response\x18\x01 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"~\n" +
-	"\x1fGetEnrollmentByRequestIDRequest\x12?\n" +
-	"\x15enrollment_request_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12\x1a\n" +
+	"\x1fGetEnrollmentAttemptByIDRequest\x12?\n" +
+	"\x15enrollment_attempt_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13enrollmentAttemptId\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xe7\x01\n" +
-	" GetEnrollmentByRequestIDResponse\x12_\n" +
-	"\x12enrollment_request\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentRequestR\x11enrollmentRequest\x12b\n" +
+	" GetEnrollmentAttemptByIDResponse\x12_\n" +
+	"\x12enrollment_attempt\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentAttemptR\x11enrollmentAttempt\x12b\n" +
 	"\x13enrollment_response\x18\x02 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"o\n" +
-	"\x1fGetEnrollmentRequestListRequest\x12L\n" +
+	"\x1fGetEnrollmentAttemptListRequest\x12L\n" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\n" +
 	"pagination\"\xb7\x01\n" +
-	" GetEnrollmentRequestListResponse\x12D\n" +
-	"\x04data\x18\x01 \x03(\v20.otpki.common.core.enroller.v1.EnrollmentRequestR\x04data\x12M\n" +
+	" GetEnrollmentAttemptListResponse\x12D\n" +
+	"\x04data\x18\x01 \x03(\v20.otpki.common.core.enroller.v1.EnrollmentAttemptR\x04data\x12M\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2-.otpki.common.api.query.v1.PaginationResponseR\n" +
-	"pagination2\xb8\a\n" +
-	"\x0fEnrollerService\x12\xd0\x01\n" +
-	"\x17CreateEnrollmentRequest\x12C.otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest\x1aD.otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse\"*\x82\xd3\xe4\x93\x02$:\x12enrollment_request\"\x0e/v1/enrollment\x12\x91\x02\n" +
-	"+CreateEnrollmentRequestForExistingEndEntity\x12W.otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest\x1aX.otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse\"/\x82\xd3\xe4\x93\x02):\x12enrollment_request\"\x13/v1/enroll-existing\x12\xda\x01\n" +
-	"\x18GetEnrollmentByRequestID\x12D.otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest\x1aE.otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/v1/enrollment/{enrollment_request_id}\x12\xe0\x01\n" +
-	"\x18GetEnrollmentRequestList\x12D.otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest\x1aE.otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse\"7\x82\xd3\xe4\x93\x02.:\n" +
+	"pagination2\x96\a\n" +
+	"\x0fEnrollerService\x12\xbf\x01\n" +
+	"\x17CreateEnrollmentAttempt\x12C.otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest\x1aD.otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/enrollment\x12\x80\x02\n" +
+	"+CreateEnrollmentAttemptForExistingEndEntity\x12W.otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest\x1aX.otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/enroll-existing\x12\xda\x01\n" +
+	"\x18GetEnrollmentAttemptByID\x12D.otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest\x1aE.otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/v1/enrollment/{enrollment_attempt_id}\x12\xe0\x01\n" +
+	"\x18GetEnrollmentAttemptList\x12D.otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest\x1aE.otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse\"7\x82\xd3\xe4\x93\x02.:\n" +
 	"paginationZ\x10\x12\x0e/v1/enrollment\x1a\x0e/v1/enrollment\x90\x02\x01B\xbf\x02\n" +
 	"'com.otpki.public.enrollment.enroller.v1B\rEnrollerProtoP\x01ZRgithub.com/otpki/otpki-protobuf/gen/otpki/public/enrollment/enroller/v1;enrollerv1\xa2\x02\x04OPEE\xaa\x02#Otpki.Public.Enrollment.Enroller.V1\xca\x02$Otpki\\Public_\\Enrollment\\Enroller\\V1\xe2\x020Otpki\\Public_\\Enrollment\\Enroller\\V1\\GPBMetadata\xea\x02'Otpki::Public::Enrollment::Enroller::V1b\x06proto3"
 
@@ -451,42 +482,44 @@ func file_otpki_public_enrollment_enroller_v1_enroller_proto_rawDescGZIP() []byt
 
 var file_otpki_public_enrollment_enroller_v1_enroller_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_otpki_public_enrollment_enroller_v1_enroller_proto_goTypes = []any{
-	(*CreateEnrollmentRequestRequest)(nil),                      // 0: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
-	(*CreateEnrollmentRequestResponse)(nil),                     // 1: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse
-	(*CreateEnrollmentRequestForExistingEndEntityRequest)(nil),  // 2: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest
-	(*CreateEnrollmentRequestForExistingEndEntityResponse)(nil), // 3: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse
-	(*GetEnrollmentByRequestIDRequest)(nil),                     // 4: otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
-	(*GetEnrollmentByRequestIDResponse)(nil),                    // 5: otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse
-	(*GetEnrollmentRequestListRequest)(nil),                     // 6: otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest
-	(*GetEnrollmentRequestListResponse)(nil),                    // 7: otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse
-	(*v1.EnrollmentRequest)(nil),                                // 8: otpki.common.core.enroller.v1.EnrollmentRequest
-	(*v1.EnrollmentResponse)(nil),                               // 9: otpki.common.core.enroller.v1.EnrollmentResponse
-	(*v11.PaginationRequest)(nil),                               // 10: otpki.common.api.query.v1.PaginationRequest
-	(*v11.PaginationResponse)(nil),                              // 11: otpki.common.api.query.v1.PaginationResponse
+	(*CreateEnrollmentAttemptRequest)(nil),                      // 0: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
+	(*CreateEnrollmentAttemptResponse)(nil),                     // 1: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse
+	(*CreateEnrollmentAttemptForExistingEndEntityRequest)(nil),  // 2: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
+	(*CreateEnrollmentAttemptForExistingEndEntityResponse)(nil), // 3: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse
+	(*GetEnrollmentAttemptByIDRequest)(nil),                     // 4: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
+	(*GetEnrollmentAttemptByIDResponse)(nil),                    // 5: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse
+	(*GetEnrollmentAttemptListRequest)(nil),                     // 6: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest
+	(*GetEnrollmentAttemptListResponse)(nil),                    // 7: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse
+	(*v1.EnrollmentAttempt)(nil),                                // 8: otpki.common.core.enroller.v1.EnrollmentAttempt
+	(*v11.EndEntity)(nil),                                       // 9: otpki.common.core.end_entity.v1.EndEntity
+	(*v1.EnrollmentResponse)(nil),                               // 10: otpki.common.core.enroller.v1.EnrollmentResponse
+	(*v12.PaginationRequest)(nil),                               // 11: otpki.common.api.query.v1.PaginationRequest
+	(*v12.PaginationResponse)(nil),                              // 12: otpki.common.api.query.v1.PaginationResponse
 }
 var file_otpki_public_enrollment_enroller_v1_enroller_proto_depIdxs = []int32{
-	8,  // 0: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest.enrollment_request:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	9,  // 1: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
-	8,  // 2: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest.enrollment_request:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	9,  // 3: otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
-	8,  // 4: otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse.enrollment_request:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	9,  // 5: otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
-	10, // 6: otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
-	8,  // 7: otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse.data:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	11, // 8: otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
-	0,  // 9: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest:input_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
-	2,  // 10: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity:input_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest
-	4,  // 11: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID:input_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
-	6,  // 12: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList:input_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest
-	1,  // 13: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest:output_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse
-	3,  // 14: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity:output_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse
-	5,  // 15: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID:output_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse
-	7,  // 16: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList:output_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse
-	13, // [13:17] is the sub-list for method output_type
-	9,  // [9:13] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	8,  // 0: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest.enrollment_attempt:type_name -> otpki.common.core.enroller.v1.EnrollmentAttempt
+	9,  // 1: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest.end_entity:type_name -> otpki.common.core.end_entity.v1.EndEntity
+	10, // 2: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
+	8,  // 3: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest.enrollment_attempt:type_name -> otpki.common.core.enroller.v1.EnrollmentAttempt
+	10, // 4: otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
+	8,  // 5: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse.enrollment_attempt:type_name -> otpki.common.core.enroller.v1.EnrollmentAttempt
+	10, // 6: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
+	11, // 7: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
+	8,  // 8: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse.data:type_name -> otpki.common.core.enroller.v1.EnrollmentAttempt
+	12, // 9: otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
+	0,  // 10: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt:input_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
+	2,  // 11: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity:input_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
+	4,  // 12: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptByID:input_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
+	6,  // 13: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList:input_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest
+	1,  // 14: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt:output_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse
+	3,  // 15: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity:output_type -> otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse
+	5,  // 16: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptByID:output_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse
+	7,  // 17: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList:output_type -> otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse
+	14, // [14:18] is the sub-list for method output_type
+	10, // [10:14] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_enrollment_enroller_v1_enroller_proto_init() }

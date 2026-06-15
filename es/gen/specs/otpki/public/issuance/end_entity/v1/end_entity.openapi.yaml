@@ -1459,6 +1459,14 @@ components:
             format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
+        remainingRequests:
+          type:
+            - integer
+            - string
+          title: remaining_requests
+          minimum: 0
+          format: int64
+          readOnly: true
       title: EndEntity
       additionalProperties: false
     otpki.common.core.end_entity.v1.EndEntityStatus:

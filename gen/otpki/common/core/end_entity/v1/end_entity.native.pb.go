@@ -42,6 +42,7 @@ type EndEntityNative struct {
 	ExcludedEmailAddresses           []string
 	ExcludedUriDomains               []string
 	CustomCertificateExtensionIds    []uuid.UUID
+	RemainingRequests                int64
 }
 
 // ToProto converts a EndEntityNative to a EndEntity
@@ -118,6 +119,7 @@ func (n *EndEntityNative) ToProto() (*EndEntity, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting CustomCertificateExtensionIds: %w", err)
 	}
+	protoStruct.RemainingRequests = n.RemainingRequests
 	return protoStruct, nil
 }
 
@@ -195,6 +197,7 @@ func (p *EndEntity) ToNative() (*EndEntityNative, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting CustomCertificateExtensionIdsNative: %w", err)
 	}
+	nativeStruct.RemainingRequests = p.RemainingRequests
 	return nativeStruct, nil
 }
 

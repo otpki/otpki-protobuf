@@ -8,7 +8,9 @@ import { file_buf_validate_validate } from "../../../../../buf/validate/validate
 import { file_google_api_annotations } from "../../../../../google/api/annotations_pb.js";
 import type { PaginationRequest, PaginationRequestJson, PaginationResponse, PaginationResponseJson } from "../../../../common/api/query/v1/query_pb.js";
 import { file_otpki_common_api_query_v1_query } from "../../../../common/api/query/v1/query_pb.js";
-import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
+import type { EndEntity, EndEntityJson, EndEntityValid } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
+import { file_otpki_common_core_end_entity_v1_end_entity } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
+import type { EnrollmentAttempt, EnrollmentAttemptJson, EnrollmentAttemptValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
 import { file_otpki_common_core_enroller_v1_enroller } from "../../../../common/core/enroller/v1/enroller_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -16,49 +18,70 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/enrollment/enroller/v1/enroller.proto.
  */
 export const file_otpki_public_enrollment_enroller_v1_enroller: GenFile = /*@__PURE__*/
-  fileDesc("CjJvdHBraS9wdWJsaWMvZW5yb2xsbWVudC9lbnJvbGxlci92MS9lbnJvbGxlci5wcm90bxIjb3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjEidgoeQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXF1ZXN0ElQKEmVucm9sbG1lbnRfcmVxdWVzdBgBIAEoCzIwLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXF1ZXN0Qga6SAPIAQEicQofQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXNwb25zZRJOChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIoIBCjJDcmVhdGVFbnJvbGxtZW50UmVxdWVzdEZvckV4aXN0aW5nRW5kRW50aXR5UmVxdWVzdBJMChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdCKFAQozQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RGb3JFeGlzdGluZ0VuZEVudGl0eVJlc3BvbnNlEk4KE2Vucm9sbG1lbnRfcmVzcG9uc2UYASABKAsyMS5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVzcG9uc2UiXwofR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVxdWVzdBIqChVlbnJvbGxtZW50X3JlcXVlc3RfaWQYASABKAlCC7pICMgBAXIDsAEBEhAKCHBhc3N3b3JkGAIgASgJIsABCiBHZXRFbnJvbGxtZW50QnlSZXF1ZXN0SURSZXNwb25zZRJMChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdBJOChNlbnJvbGxtZW50X3Jlc3BvbnNlGAIgASgLMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlImMKH0dldEVucm9sbG1lbnRSZXF1ZXN0TGlzdFJlcXVlc3QSQAoKcGFnaW5hdGlvbhgBIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QipQEKIEdldEVucm9sbG1lbnRSZXF1ZXN0TGlzdFJlc3BvbnNlEj4KBGRhdGEYASADKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdBJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2UyuAcKD0Vucm9sbGVyU2VydmljZRLQAQoXQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3QSQy5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC5lbnJvbGxlci52MS5DcmVhdGVFbnJvbGxtZW50UmVxdWVzdFJlcXVlc3QaRC5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC5lbnJvbGxlci52MS5DcmVhdGVFbnJvbGxtZW50UmVxdWVzdFJlc3BvbnNlIiqC0+STAiQ6EmVucm9sbG1lbnRfcmVxdWVzdCIOL3YxL2Vucm9sbG1lbnQSkQIKK0NyZWF0ZUVucm9sbG1lbnRSZXF1ZXN0Rm9yRXhpc3RpbmdFbmRFbnRpdHkSVy5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC5lbnJvbGxlci52MS5DcmVhdGVFbnJvbGxtZW50UmVxdWVzdEZvckV4aXN0aW5nRW5kRW50aXR5UmVxdWVzdBpYLm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkNyZWF0ZUVucm9sbG1lbnRSZXF1ZXN0Rm9yRXhpc3RpbmdFbmRFbnRpdHlSZXNwb25zZSIvgtPkkwIpOhJlbnJvbGxtZW50X3JlcXVlc3QiEy92MS9lbnJvbGwtZXhpc3RpbmcS2gEKGEdldEVucm9sbG1lbnRCeVJlcXVlc3RJRBJELm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkdldEVucm9sbG1lbnRCeVJlcXVlc3RJRFJlcXVlc3QaRS5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC5lbnJvbGxlci52MS5HZXRFbnJvbGxtZW50QnlSZXF1ZXN0SURSZXNwb25zZSIxgtPkkwIrOgEqIiYvdjEvZW5yb2xsbWVudC97ZW5yb2xsbWVudF9yZXF1ZXN0X2lkfRLgAQoYR2V0RW5yb2xsbWVudFJlcXVlc3RMaXN0EkQub3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuR2V0RW5yb2xsbWVudFJlcXVlc3RMaXN0UmVxdWVzdBpFLm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkdldEVucm9sbG1lbnRSZXF1ZXN0TGlzdFJlc3BvbnNlIjeQAgGC0+STAi46CnBhZ2luYXRpb25aEBIOL3YxL2Vucm9sbG1lbnQaDi92MS9lbnJvbGxtZW50QusBCidjb20ub3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjFCDUVucm9sbGVyUHJvdG9QAaICBE9QRUWqAiNPdHBraS5QdWJsaWMuRW5yb2xsbWVudC5FbnJvbGxlci5WMcoCJE90cGtpXFB1YmxpY19cRW5yb2xsbWVudFxFbnJvbGxlclxWMeICME90cGtpXFB1YmxpY19cRW5yb2xsbWVudFxFbnJvbGxlclxWMVxHUEJNZXRhZGF0YeoCJ090cGtpOjpQdWJsaWM6OkVucm9sbG1lbnQ6OkVucm9sbGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_api_annotations, file_otpki_common_api_query_v1_query, file_otpki_common_core_enroller_v1_enroller]);
+  fileDesc("CjJvdHBraS9wdWJsaWMvZW5yb2xsbWVudC9lbnJvbGxlci92MS9lbnJvbGxlci5wcm90bxIjb3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjEitgEKHkNyZWF0ZUVucm9sbG1lbnRBdHRlbXB0UmVxdWVzdBJUChJlbnJvbGxtZW50X2F0dGVtcHQYASABKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50QXR0ZW1wdEIGukgDyAEBEj4KCmVuZF9lbnRpdHkYAiABKAsyKi5vdHBraS5jb21tb24uY29yZS5lbmRfZW50aXR5LnYxLkVuZEVudGl0eSJxCh9DcmVhdGVFbnJvbGxtZW50QXR0ZW1wdFJlc3BvbnNlEk4KE2Vucm9sbG1lbnRfcmVzcG9uc2UYASABKAsyMS5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVzcG9uc2UirgEKMkNyZWF0ZUVucm9sbG1lbnRBdHRlbXB0Rm9yRXhpc3RpbmdFbmRFbnRpdHlSZXF1ZXN0ElQKEmVucm9sbG1lbnRfYXR0ZW1wdBgBIAEoCzIwLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRBdHRlbXB0Qga6SAPIAQESEAoIbG9naW5faWQYAiABKAkSEAoIcGFzc3dvcmQYAyABKAkihQEKM0NyZWF0ZUVucm9sbG1lbnRBdHRlbXB0Rm9yRXhpc3RpbmdFbmRFbnRpdHlSZXNwb25zZRJOChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIl8KH0dldEVucm9sbG1lbnRBdHRlbXB0QnlJRFJlcXVlc3QSKgoVZW5yb2xsbWVudF9hdHRlbXB0X2lkGAEgASgJQgu6SAjIAQFyA7ABARIQCghwYXNzd29yZBgCIAEoCSLAAQogR2V0RW5yb2xsbWVudEF0dGVtcHRCeUlEUmVzcG9uc2USTAoSZW5yb2xsbWVudF9hdHRlbXB0GAEgASgLMjAub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudEF0dGVtcHQSTgoTZW5yb2xsbWVudF9yZXNwb25zZRgCIAEoCzIxLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXNwb25zZSJjCh9HZXRFbnJvbGxtZW50QXR0ZW1wdExpc3RSZXF1ZXN0EkAKCnBhZ2luYXRpb24YASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0IqUBCiBHZXRFbnJvbGxtZW50QXR0ZW1wdExpc3RSZXNwb25zZRI+CgRkYXRhGAEgAygLMjAub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudEF0dGVtcHQSQQoKcGFnaW5hdGlvbhgCIAEoCzItLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlc3BvbnNlMpYHCg9FbnJvbGxlclNlcnZpY2USvwEKF0NyZWF0ZUVucm9sbG1lbnRBdHRlbXB0EkMub3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuQ3JlYXRlRW5yb2xsbWVudEF0dGVtcHRSZXF1ZXN0GkQub3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuQ3JlYXRlRW5yb2xsbWVudEF0dGVtcHRSZXNwb25zZSIZgtPkkwITOgEqIg4vdjEvZW5yb2xsbWVudBKAAgorQ3JlYXRlRW5yb2xsbWVudEF0dGVtcHRGb3JFeGlzdGluZ0VuZEVudGl0eRJXLm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkNyZWF0ZUVucm9sbG1lbnRBdHRlbXB0Rm9yRXhpc3RpbmdFbmRFbnRpdHlSZXF1ZXN0Glgub3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuQ3JlYXRlRW5yb2xsbWVudEF0dGVtcHRGb3JFeGlzdGluZ0VuZEVudGl0eVJlc3BvbnNlIh6C0+STAhg6ASoiEy92MS9lbnJvbGwtZXhpc3RpbmcS2gEKGEdldEVucm9sbG1lbnRBdHRlbXB0QnlJRBJELm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkdldEVucm9sbG1lbnRBdHRlbXB0QnlJRFJlcXVlc3QaRS5vdHBraS5wdWJsaWMuZW5yb2xsbWVudC5lbnJvbGxlci52MS5HZXRFbnJvbGxtZW50QXR0ZW1wdEJ5SURSZXNwb25zZSIxgtPkkwIrOgEqIiYvdjEvZW5yb2xsbWVudC97ZW5yb2xsbWVudF9hdHRlbXB0X2lkfRLgAQoYR2V0RW5yb2xsbWVudEF0dGVtcHRMaXN0EkQub3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjEuR2V0RW5yb2xsbWVudEF0dGVtcHRMaXN0UmVxdWVzdBpFLm90cGtpLnB1YmxpYy5lbnJvbGxtZW50LmVucm9sbGVyLnYxLkdldEVucm9sbG1lbnRBdHRlbXB0TGlzdFJlc3BvbnNlIjeQAgGC0+STAi46CnBhZ2luYXRpb25aEBIOL3YxL2Vucm9sbG1lbnQaDi92MS9lbnJvbGxtZW50QusBCidjb20ub3Rwa2kucHVibGljLmVucm9sbG1lbnQuZW5yb2xsZXIudjFCDUVucm9sbGVyUHJvdG9QAaICBE9QRUWqAiNPdHBraS5QdWJsaWMuRW5yb2xsbWVudC5FbnJvbGxlci5WMcoCJE90cGtpXFB1YmxpY19cRW5yb2xsbWVudFxFbnJvbGxlclxWMeICME90cGtpXFB1YmxpY19cRW5yb2xsbWVudFxFbnJvbGxlclxWMVxHUEJNZXRhZGF0YeoCJ090cGtpOjpQdWJsaWM6OkVucm9sbG1lbnQ6OkVucm9sbGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_api_annotations, file_otpki_common_api_query_v1_query, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_enroller_v1_enroller]);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
  */
-export type CreateEnrollmentRequestRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest"> & {
+export type CreateEnrollmentAttemptRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
+
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntity;
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
  */
-export type CreateEnrollmentRequestRequestJson = {
+export type CreateEnrollmentAttemptRequestJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
+
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityJson;
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
  */
-export type CreateEnrollmentRequestRequestValid = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest"> & {
+export type CreateEnrollmentAttemptRequestValid = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest: EnrollmentRequestValid;
+  enrollmentAttempt: EnrollmentAttemptValid;
+
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityValid;
 };
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest.
- * Use `create(CreateEnrollmentRequestRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest.
+ * Use `create(CreateEnrollmentAttemptRequestSchema)` to create a new message.
  */
-export const CreateEnrollmentRequestRequestSchema: GenMessage<CreateEnrollmentRequestRequest, {jsonType: CreateEnrollmentRequestRequestJson, validType: CreateEnrollmentRequestRequestValid}> = /*@__PURE__*/
+export const CreateEnrollmentAttemptRequestSchema: GenMessage<CreateEnrollmentAttemptRequest, {jsonType: CreateEnrollmentAttemptRequestJson, validType: CreateEnrollmentAttemptRequestValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 0);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse
  */
-export type CreateEnrollmentRequestResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse"> & {
+export type CreateEnrollmentAttemptResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse"> & {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
@@ -66,57 +89,101 @@ export type CreateEnrollmentRequestResponse = Message<"otpki.public.enrollment.e
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse
  */
-export type CreateEnrollmentRequestResponseJson = {
+export type CreateEnrollmentAttemptResponseJson = {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export type CreateEnrollmentRequestResponseValid = CreateEnrollmentRequestResponse;
+export type CreateEnrollmentAttemptResponseValid = CreateEnrollmentAttemptResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse.
- * Use `create(CreateEnrollmentRequestResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse.
+ * Use `create(CreateEnrollmentAttemptResponseSchema)` to create a new message.
  */
-export const CreateEnrollmentRequestResponseSchema: GenMessage<CreateEnrollmentRequestResponse, {jsonType: CreateEnrollmentRequestResponseJson, validType: CreateEnrollmentRequestResponseValid}> = /*@__PURE__*/
+export const CreateEnrollmentAttemptResponseSchema: GenMessage<CreateEnrollmentAttemptResponse, {jsonType: CreateEnrollmentAttemptResponseJson, validType: CreateEnrollmentAttemptResponseValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 1);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
  */
-export type CreateEnrollmentRequestForExistingEndEntityRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest"> & {
+export type CreateEnrollmentAttemptForExistingEndEntityRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
+
+  /**
+   * @generated from field: string login_id = 2;
+   */
+  loginId: string;
+
+  /**
+   * @generated from field: string password = 3;
+   */
+  password: string;
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
  */
-export type CreateEnrollmentRequestForExistingEndEntityRequestJson = {
+export type CreateEnrollmentAttemptForExistingEndEntityRequestJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
+
+  /**
+   * @generated from field: string login_id = 2;
+   */
+  loginId?: string;
+
+  /**
+   * @generated from field: string password = 3;
+   */
+  password?: string;
 };
 
-export type CreateEnrollmentRequestForExistingEndEntityRequestValid = CreateEnrollmentRequestForExistingEndEntityRequest;
+/**
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
+ */
+export type CreateEnrollmentAttemptForExistingEndEntityRequestValid = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest"> & {
+  /**
+   * Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
+   */
+  enrollmentAttempt: EnrollmentAttemptValid;
+
+  /**
+   * @generated from field: string login_id = 2;
+   */
+  loginId: string;
+
+  /**
+   * @generated from field: string password = 3;
+   */
+  password: string;
+};
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest.
- * Use `create(CreateEnrollmentRequestForExistingEndEntityRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest.
+ * Use `create(CreateEnrollmentAttemptForExistingEndEntityRequestSchema)` to create a new message.
  */
-export const CreateEnrollmentRequestForExistingEndEntityRequestSchema: GenMessage<CreateEnrollmentRequestForExistingEndEntityRequest, {jsonType: CreateEnrollmentRequestForExistingEndEntityRequestJson, validType: CreateEnrollmentRequestForExistingEndEntityRequestValid}> = /*@__PURE__*/
+export const CreateEnrollmentAttemptForExistingEndEntityRequestSchema: GenMessage<CreateEnrollmentAttemptForExistingEndEntityRequest, {jsonType: CreateEnrollmentAttemptForExistingEndEntityRequestJson, validType: CreateEnrollmentAttemptForExistingEndEntityRequestValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 2);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse
  */
-export type CreateEnrollmentRequestForExistingEndEntityResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse"> & {
+export type CreateEnrollmentAttemptForExistingEndEntityResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse"> & {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
@@ -124,32 +191,32 @@ export type CreateEnrollmentRequestForExistingEndEntityResponse = Message<"otpki
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse
  */
-export type CreateEnrollmentRequestForExistingEndEntityResponseJson = {
+export type CreateEnrollmentAttemptForExistingEndEntityResponseJson = {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export type CreateEnrollmentRequestForExistingEndEntityResponseValid = CreateEnrollmentRequestForExistingEndEntityResponse;
+export type CreateEnrollmentAttemptForExistingEndEntityResponseValid = CreateEnrollmentAttemptForExistingEndEntityResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse.
- * Use `create(CreateEnrollmentRequestForExistingEndEntityResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse.
+ * Use `create(CreateEnrollmentAttemptForExistingEndEntityResponseSchema)` to create a new message.
  */
-export const CreateEnrollmentRequestForExistingEndEntityResponseSchema: GenMessage<CreateEnrollmentRequestForExistingEndEntityResponse, {jsonType: CreateEnrollmentRequestForExistingEndEntityResponseJson, validType: CreateEnrollmentRequestForExistingEndEntityResponseValid}> = /*@__PURE__*/
+export const CreateEnrollmentAttemptForExistingEndEntityResponseSchema: GenMessage<CreateEnrollmentAttemptForExistingEndEntityResponse, {jsonType: CreateEnrollmentAttemptForExistingEndEntityResponseJson, validType: CreateEnrollmentAttemptForExistingEndEntityResponseValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 3);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
  */
-export type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest"> & {
+export type GetEnrollmentAttemptByIDRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest"> & {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId: string;
+  enrollmentAttemptId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -158,13 +225,13 @@ export type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enrollment.e
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
  */
-export type GetEnrollmentByRequestIDRequestJson = {
+export type GetEnrollmentAttemptByIDRequestJson = {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId?: string;
+  enrollmentAttemptId?: string;
 
   /**
    * @generated from field: string password = 2;
@@ -173,13 +240,13 @@ export type GetEnrollmentByRequestIDRequestJson = {
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
  */
-export type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest"> & {
+export type GetEnrollmentAttemptByIDRequestValid = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest"> & {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId: string;
+  enrollmentAttemptId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -188,20 +255,20 @@ export type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.enrollm
 };
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest.
- * Use `create(GetEnrollmentByRequestIDRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest.
+ * Use `create(GetEnrollmentAttemptByIDRequestSchema)` to create a new message.
  */
-export const GetEnrollmentByRequestIDRequestSchema: GenMessage<GetEnrollmentByRequestIDRequest, {jsonType: GetEnrollmentByRequestIDRequestJson, validType: GetEnrollmentByRequestIDRequestValid}> = /*@__PURE__*/
+export const GetEnrollmentAttemptByIDRequestSchema: GenMessage<GetEnrollmentAttemptByIDRequest, {jsonType: GetEnrollmentAttemptByIDRequestJson, validType: GetEnrollmentAttemptByIDRequestValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 4);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse
  */
-export type GetEnrollmentByRequestIDResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse"> & {
+export type GetEnrollmentAttemptByIDResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
 
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
@@ -210,13 +277,13 @@ export type GetEnrollmentByRequestIDResponse = Message<"otpki.public.enrollment.
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse
  */
-export type GetEnrollmentByRequestIDResponseJson = {
+export type GetEnrollmentAttemptByIDResponseJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
 
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
@@ -224,19 +291,19 @@ export type GetEnrollmentByRequestIDResponseJson = {
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export type GetEnrollmentByRequestIDResponseValid = GetEnrollmentByRequestIDResponse;
+export type GetEnrollmentAttemptByIDResponseValid = GetEnrollmentAttemptByIDResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse.
- * Use `create(GetEnrollmentByRequestIDResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse.
+ * Use `create(GetEnrollmentAttemptByIDResponseSchema)` to create a new message.
  */
-export const GetEnrollmentByRequestIDResponseSchema: GenMessage<GetEnrollmentByRequestIDResponse, {jsonType: GetEnrollmentByRequestIDResponseJson, validType: GetEnrollmentByRequestIDResponseValid}> = /*@__PURE__*/
+export const GetEnrollmentAttemptByIDResponseSchema: GenMessage<GetEnrollmentAttemptByIDResponse, {jsonType: GetEnrollmentAttemptByIDResponseJson, validType: GetEnrollmentAttemptByIDResponseValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 5);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest
  */
-export type GetEnrollmentRequestListRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest"> & {
+export type GetEnrollmentAttemptListRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest"> & {
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
    */
@@ -244,32 +311,32 @@ export type GetEnrollmentRequestListRequest = Message<"otpki.public.enrollment.e
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest
  */
-export type GetEnrollmentRequestListRequestJson = {
+export type GetEnrollmentAttemptListRequestJson = {
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
    */
   pagination?: PaginationRequestJson;
 };
 
-export type GetEnrollmentRequestListRequestValid = GetEnrollmentRequestListRequest;
+export type GetEnrollmentAttemptListRequestValid = GetEnrollmentAttemptListRequest;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest.
- * Use `create(GetEnrollmentRequestListRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest.
+ * Use `create(GetEnrollmentAttemptListRequestSchema)` to create a new message.
  */
-export const GetEnrollmentRequestListRequestSchema: GenMessage<GetEnrollmentRequestListRequest, {jsonType: GetEnrollmentRequestListRequestJson, validType: GetEnrollmentRequestListRequestValid}> = /*@__PURE__*/
+export const GetEnrollmentAttemptListRequestSchema: GenMessage<GetEnrollmentAttemptListRequest, {jsonType: GetEnrollmentAttemptListRequestJson, validType: GetEnrollmentAttemptListRequestValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 6);
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse
  */
-export type GetEnrollmentRequestListResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse"> & {
+export type GetEnrollmentAttemptListResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse"> & {
   /**
-   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentRequest data = 1;
+   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentAttempt data = 1;
    */
-  data: EnrollmentRequest[];
+  data: EnrollmentAttempt[];
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
@@ -278,13 +345,13 @@ export type GetEnrollmentRequestListResponse = Message<"otpki.public.enrollment.
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse
  */
-export type GetEnrollmentRequestListResponseJson = {
+export type GetEnrollmentAttemptListResponseJson = {
   /**
-   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentRequest data = 1;
+   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentAttempt data = 1;
    */
-  data?: EnrollmentRequestJson[];
+  data?: EnrollmentAttemptJson[];
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
@@ -292,13 +359,13 @@ export type GetEnrollmentRequestListResponseJson = {
   pagination?: PaginationResponseJson;
 };
 
-export type GetEnrollmentRequestListResponseValid = GetEnrollmentRequestListResponse;
+export type GetEnrollmentAttemptListResponseValid = GetEnrollmentAttemptListResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse.
- * Use `create(GetEnrollmentRequestListResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse.
+ * Use `create(GetEnrollmentAttemptListResponseSchema)` to create a new message.
  */
-export const GetEnrollmentRequestListResponseSchema: GenMessage<GetEnrollmentRequestListResponse, {jsonType: GetEnrollmentRequestListResponseJson, validType: GetEnrollmentRequestListResponseValid}> = /*@__PURE__*/
+export const GetEnrollmentAttemptListResponseSchema: GenMessage<GetEnrollmentAttemptListResponse, {jsonType: GetEnrollmentAttemptListResponseJson, validType: GetEnrollmentAttemptListResponseValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_enrollment_enroller_v1_enroller, 7);
 
 /**
@@ -306,36 +373,36 @@ export const GetEnrollmentRequestListResponseSchema: GenMessage<GetEnrollmentReq
  */
 export const EnrollerService: GenService<{
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt
    */
-  createEnrollmentRequest: {
+  createEnrollmentAttempt: {
     methodKind: "unary";
-    input: typeof CreateEnrollmentRequestRequestSchema;
-    output: typeof CreateEnrollmentRequestResponseSchema;
+    input: typeof CreateEnrollmentAttemptRequestSchema;
+    output: typeof CreateEnrollmentAttemptResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity
    */
-  createEnrollmentRequestForExistingEndEntity: {
+  createEnrollmentAttemptForExistingEndEntity: {
     methodKind: "unary";
-    input: typeof CreateEnrollmentRequestForExistingEndEntityRequestSchema;
-    output: typeof CreateEnrollmentRequestForExistingEndEntityResponseSchema;
+    input: typeof CreateEnrollmentAttemptForExistingEndEntityRequestSchema;
+    output: typeof CreateEnrollmentAttemptForExistingEndEntityResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptByID
    */
-  getEnrollmentByRequestID: {
+  getEnrollmentAttemptByID: {
     methodKind: "unary";
-    input: typeof GetEnrollmentByRequestIDRequestSchema;
-    output: typeof GetEnrollmentByRequestIDResponseSchema;
+    input: typeof GetEnrollmentAttemptByIDRequestSchema;
+    output: typeof GetEnrollmentAttemptByIDResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList
    */
-  getEnrollmentRequestList: {
+  getEnrollmentAttemptList: {
     methodKind: "unary";
-    input: typeof GetEnrollmentRequestListRequestSchema;
-    output: typeof GetEnrollmentRequestListResponseSchema;
+    input: typeof GetEnrollmentAttemptListRequestSchema;
+    output: typeof GetEnrollmentAttemptListResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_otpki_public_enrollment_enroller_v1_enroller, 0);

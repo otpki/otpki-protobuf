@@ -55,7 +55,6 @@ enum Resource {
 
   // request resources
   RESOURCE_ISSUANCE_REQUEST = 401;
-  RESOURCE_ENROLLMENT_REQUEST = 402;
 }
 
 message ResourceActions {

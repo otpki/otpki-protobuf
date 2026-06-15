@@ -8,7 +8,6 @@ import "otpki/common/core/certificate_extension/v1/certificate_extension.proto";
 import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
 import "otpki/common/core/end_entity_profile/v1/end_entity_profile.proto";
-import "otpki/common/core/enroller/v1/enroller.proto";
 import "otpki/common/core/extended_key_usage/v1/extended_key_usage.proto";
 import "otpki/common/core/issued_certificate/v1/issued_certificate.proto";
 import "otpki/common/core/issuer/v1/issuer.proto";
@@ -29,7 +28,6 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest smtp_settings = 4;
   otpki.common.api.query.v1.PaginationRequest end_entity_profiles = 5;
   otpki.common.api.query.v1.PaginationRequest end_entities = 6;
-  otpki.common.api.query.v1.PaginationRequest enrollment_requests = 7;
 
   otpki.common.api.query.v1.PaginationRequest key_storage_configs = 8;
   otpki.common.api.query.v1.PaginationRequest keys = 9;
@@ -44,6 +42,7 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest publisher_configs = 18;
   otpki.common.api.query.v1.PaginationRequest crl_publishers = 19;
   otpki.common.api.query.v1.PaginationRequest certificate_publishers = 20;
+  otpki.common.api.query.v1.PaginationRequest end_entity_issuance_requests = 21;
 }
 
 // The full message format for export and import routes.
@@ -60,7 +59,6 @@ message ExportData {
   repeated otpki.common.core.smtp_settings.v1.SMTPSettings smtp_settings = 4;
   repeated otpki.common.core.end_entity_profile.v1.EndEntityProfile end_entity_profiles = 5;
   repeated otpki.common.core.end_entity.v1.EndEntity end_entities = 6;
-  repeated otpki.common.core.enroller.v1.EnrollmentRequest enrollment_requests = 7;
 
   repeated otpki.common.core.key_storage_config.v1.KeyStorageConfig key_storage_configs = 8;
   repeated otpki.common.core.key.v1.Key keys = 9;
@@ -75,6 +73,7 @@ message ExportData {
   repeated otpki.common.core.publisher.v1.PublisherConfig publisher_configs = 18;
   repeated otpki.common.core.publisher.v1.CrlPublisher crl_publishers = 19;
   repeated otpki.common.core.publisher.v1.CertificatePublisher certificate_publishers = 20;
+  repeated otpki.common.core.end_entity.v1.EndEntityIssuanceRequest end_entity_issuance_requests = 21;
 }
 
 // Controls import behavior when an incoming record already exists

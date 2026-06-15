@@ -33,27 +33,27 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// EnrollerServiceCreateEnrollmentRequestProcedure is the fully-qualified name of the
-	// EnrollerService's CreateEnrollmentRequest RPC.
-	EnrollerServiceCreateEnrollmentRequestProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequest"
-	// EnrollerServiceCreateEnrollmentRequestForExistingEndEntityProcedure is the fully-qualified name
-	// of the EnrollerService's CreateEnrollmentRequestForExistingEndEntity RPC.
-	EnrollerServiceCreateEnrollmentRequestForExistingEndEntityProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequestForExistingEndEntity"
-	// EnrollerServiceGetEnrollmentByRequestIDProcedure is the fully-qualified name of the
-	// EnrollerService's GetEnrollmentByRequestID RPC.
-	EnrollerServiceGetEnrollmentByRequestIDProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentByRequestID"
-	// EnrollerServiceGetEnrollmentRequestListProcedure is the fully-qualified name of the
-	// EnrollerService's GetEnrollmentRequestList RPC.
-	EnrollerServiceGetEnrollmentRequestListProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentRequestList"
+	// EnrollerServiceCreateEnrollmentAttemptProcedure is the fully-qualified name of the
+	// EnrollerService's CreateEnrollmentAttempt RPC.
+	EnrollerServiceCreateEnrollmentAttemptProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttempt"
+	// EnrollerServiceCreateEnrollmentAttemptForExistingEndEntityProcedure is the fully-qualified name
+	// of the EnrollerService's CreateEnrollmentAttemptForExistingEndEntity RPC.
+	EnrollerServiceCreateEnrollmentAttemptForExistingEndEntityProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttemptForExistingEndEntity"
+	// EnrollerServiceGetEnrollmentAttemptByIDProcedure is the fully-qualified name of the
+	// EnrollerService's GetEnrollmentAttemptByID RPC.
+	EnrollerServiceGetEnrollmentAttemptByIDProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentAttemptByID"
+	// EnrollerServiceGetEnrollmentAttemptListProcedure is the fully-qualified name of the
+	// EnrollerService's GetEnrollmentAttemptList RPC.
+	EnrollerServiceGetEnrollmentAttemptListProcedure = "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentAttemptList"
 )
 
 // EnrollerServiceClient is a client for the otpki.public.enrollment.enroller.v1.EnrollerService
 // service.
 type EnrollerServiceClient interface {
-	CreateEnrollmentRequest(context.Context, *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error)
-	CreateEnrollmentRequestForExistingEndEntity(context.Context, *connect.Request[v1.CreateEnrollmentRequestForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentRequestForExistingEndEntityResponse], error)
-	GetEnrollmentByRequestID(context.Context, *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error)
-	GetEnrollmentRequestList(context.Context, *connect.Request[v1.GetEnrollmentRequestListRequest]) (*connect.Response[v1.GetEnrollmentRequestListResponse], error)
+	CreateEnrollmentAttempt(context.Context, *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error)
+	CreateEnrollmentAttemptForExistingEndEntity(context.Context, *connect.Request[v1.CreateEnrollmentAttemptForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentAttemptForExistingEndEntityResponse], error)
+	GetEnrollmentAttemptByID(context.Context, *connect.Request[v1.GetEnrollmentAttemptByIDRequest]) (*connect.Response[v1.GetEnrollmentAttemptByIDResponse], error)
+	GetEnrollmentAttemptList(context.Context, *connect.Request[v1.GetEnrollmentAttemptListRequest]) (*connect.Response[v1.GetEnrollmentAttemptListResponse], error)
 }
 
 // NewEnrollerServiceClient constructs a client for the
@@ -68,28 +68,28 @@ func NewEnrollerServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 	baseURL = strings.TrimRight(baseURL, "/")
 	enrollerServiceMethods := v1.File_otpki_public_enrollment_enroller_v1_enroller_proto.Services().ByName("EnrollerService").Methods()
 	return &enrollerServiceClient{
-		createEnrollmentRequest: connect.NewClient[v1.CreateEnrollmentRequestRequest, v1.CreateEnrollmentRequestResponse](
+		createEnrollmentAttempt: connect.NewClient[v1.CreateEnrollmentAttemptRequest, v1.CreateEnrollmentAttemptResponse](
 			httpClient,
-			baseURL+EnrollerServiceCreateEnrollmentRequestProcedure,
-			connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentRequest")),
+			baseURL+EnrollerServiceCreateEnrollmentAttemptProcedure,
+			connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentAttempt")),
 			connect.WithClientOptions(opts...),
 		),
-		createEnrollmentRequestForExistingEndEntity: connect.NewClient[v1.CreateEnrollmentRequestForExistingEndEntityRequest, v1.CreateEnrollmentRequestForExistingEndEntityResponse](
+		createEnrollmentAttemptForExistingEndEntity: connect.NewClient[v1.CreateEnrollmentAttemptForExistingEndEntityRequest, v1.CreateEnrollmentAttemptForExistingEndEntityResponse](
 			httpClient,
-			baseURL+EnrollerServiceCreateEnrollmentRequestForExistingEndEntityProcedure,
-			connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentRequestForExistingEndEntity")),
+			baseURL+EnrollerServiceCreateEnrollmentAttemptForExistingEndEntityProcedure,
+			connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentAttemptForExistingEndEntity")),
 			connect.WithClientOptions(opts...),
 		),
-		getEnrollmentByRequestID: connect.NewClient[v1.GetEnrollmentByRequestIDRequest, v1.GetEnrollmentByRequestIDResponse](
+		getEnrollmentAttemptByID: connect.NewClient[v1.GetEnrollmentAttemptByIDRequest, v1.GetEnrollmentAttemptByIDResponse](
 			httpClient,
-			baseURL+EnrollerServiceGetEnrollmentByRequestIDProcedure,
-			connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentByRequestID")),
+			baseURL+EnrollerServiceGetEnrollmentAttemptByIDProcedure,
+			connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentAttemptByID")),
 			connect.WithClientOptions(opts...),
 		),
-		getEnrollmentRequestList: connect.NewClient[v1.GetEnrollmentRequestListRequest, v1.GetEnrollmentRequestListResponse](
+		getEnrollmentAttemptList: connect.NewClient[v1.GetEnrollmentAttemptListRequest, v1.GetEnrollmentAttemptListResponse](
 			httpClient,
-			baseURL+EnrollerServiceGetEnrollmentRequestListProcedure,
-			connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentRequestList")),
+			baseURL+EnrollerServiceGetEnrollmentAttemptListProcedure,
+			connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentAttemptList")),
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
@@ -98,43 +98,43 @@ func NewEnrollerServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 
 // enrollerServiceClient implements EnrollerServiceClient.
 type enrollerServiceClient struct {
-	createEnrollmentRequest                     *connect.Client[v1.CreateEnrollmentRequestRequest, v1.CreateEnrollmentRequestResponse]
-	createEnrollmentRequestForExistingEndEntity *connect.Client[v1.CreateEnrollmentRequestForExistingEndEntityRequest, v1.CreateEnrollmentRequestForExistingEndEntityResponse]
-	getEnrollmentByRequestID                    *connect.Client[v1.GetEnrollmentByRequestIDRequest, v1.GetEnrollmentByRequestIDResponse]
-	getEnrollmentRequestList                    *connect.Client[v1.GetEnrollmentRequestListRequest, v1.GetEnrollmentRequestListResponse]
+	createEnrollmentAttempt                     *connect.Client[v1.CreateEnrollmentAttemptRequest, v1.CreateEnrollmentAttemptResponse]
+	createEnrollmentAttemptForExistingEndEntity *connect.Client[v1.CreateEnrollmentAttemptForExistingEndEntityRequest, v1.CreateEnrollmentAttemptForExistingEndEntityResponse]
+	getEnrollmentAttemptByID                    *connect.Client[v1.GetEnrollmentAttemptByIDRequest, v1.GetEnrollmentAttemptByIDResponse]
+	getEnrollmentAttemptList                    *connect.Client[v1.GetEnrollmentAttemptListRequest, v1.GetEnrollmentAttemptListResponse]
 }
 
-// CreateEnrollmentRequest calls
-// otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest.
-func (c *enrollerServiceClient) CreateEnrollmentRequest(ctx context.Context, req *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error) {
-	return c.createEnrollmentRequest.CallUnary(ctx, req)
+// CreateEnrollmentAttempt calls
+// otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt.
+func (c *enrollerServiceClient) CreateEnrollmentAttempt(ctx context.Context, req *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error) {
+	return c.createEnrollmentAttempt.CallUnary(ctx, req)
 }
 
-// CreateEnrollmentRequestForExistingEndEntity calls
-// otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity.
-func (c *enrollerServiceClient) CreateEnrollmentRequestForExistingEndEntity(ctx context.Context, req *connect.Request[v1.CreateEnrollmentRequestForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentRequestForExistingEndEntityResponse], error) {
-	return c.createEnrollmentRequestForExistingEndEntity.CallUnary(ctx, req)
+// CreateEnrollmentAttemptForExistingEndEntity calls
+// otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity.
+func (c *enrollerServiceClient) CreateEnrollmentAttemptForExistingEndEntity(ctx context.Context, req *connect.Request[v1.CreateEnrollmentAttemptForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentAttemptForExistingEndEntityResponse], error) {
+	return c.createEnrollmentAttemptForExistingEndEntity.CallUnary(ctx, req)
 }
 
-// GetEnrollmentByRequestID calls
-// otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID.
-func (c *enrollerServiceClient) GetEnrollmentByRequestID(ctx context.Context, req *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error) {
-	return c.getEnrollmentByRequestID.CallUnary(ctx, req)
+// GetEnrollmentAttemptByID calls
+// otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptByID.
+func (c *enrollerServiceClient) GetEnrollmentAttemptByID(ctx context.Context, req *connect.Request[v1.GetEnrollmentAttemptByIDRequest]) (*connect.Response[v1.GetEnrollmentAttemptByIDResponse], error) {
+	return c.getEnrollmentAttemptByID.CallUnary(ctx, req)
 }
 
-// GetEnrollmentRequestList calls
-// otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList.
-func (c *enrollerServiceClient) GetEnrollmentRequestList(ctx context.Context, req *connect.Request[v1.GetEnrollmentRequestListRequest]) (*connect.Response[v1.GetEnrollmentRequestListResponse], error) {
-	return c.getEnrollmentRequestList.CallUnary(ctx, req)
+// GetEnrollmentAttemptList calls
+// otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList.
+func (c *enrollerServiceClient) GetEnrollmentAttemptList(ctx context.Context, req *connect.Request[v1.GetEnrollmentAttemptListRequest]) (*connect.Response[v1.GetEnrollmentAttemptListResponse], error) {
+	return c.getEnrollmentAttemptList.CallUnary(ctx, req)
 }
 
 // EnrollerServiceHandler is an implementation of the
 // otpki.public.enrollment.enroller.v1.EnrollerService service.
 type EnrollerServiceHandler interface {
-	CreateEnrollmentRequest(context.Context, *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error)
-	CreateEnrollmentRequestForExistingEndEntity(context.Context, *connect.Request[v1.CreateEnrollmentRequestForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentRequestForExistingEndEntityResponse], error)
-	GetEnrollmentByRequestID(context.Context, *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error)
-	GetEnrollmentRequestList(context.Context, *connect.Request[v1.GetEnrollmentRequestListRequest]) (*connect.Response[v1.GetEnrollmentRequestListResponse], error)
+	CreateEnrollmentAttempt(context.Context, *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error)
+	CreateEnrollmentAttemptForExistingEndEntity(context.Context, *connect.Request[v1.CreateEnrollmentAttemptForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentAttemptForExistingEndEntityResponse], error)
+	GetEnrollmentAttemptByID(context.Context, *connect.Request[v1.GetEnrollmentAttemptByIDRequest]) (*connect.Response[v1.GetEnrollmentAttemptByIDResponse], error)
+	GetEnrollmentAttemptList(context.Context, *connect.Request[v1.GetEnrollmentAttemptListRequest]) (*connect.Response[v1.GetEnrollmentAttemptListResponse], error)
 }
 
 // NewEnrollerServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -144,41 +144,41 @@ type EnrollerServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewEnrollerServiceHandler(svc EnrollerServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	enrollerServiceMethods := v1.File_otpki_public_enrollment_enroller_v1_enroller_proto.Services().ByName("EnrollerService").Methods()
-	enrollerServiceCreateEnrollmentRequestHandler := connect.NewUnaryHandler(
-		EnrollerServiceCreateEnrollmentRequestProcedure,
-		svc.CreateEnrollmentRequest,
-		connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentRequest")),
+	enrollerServiceCreateEnrollmentAttemptHandler := connect.NewUnaryHandler(
+		EnrollerServiceCreateEnrollmentAttemptProcedure,
+		svc.CreateEnrollmentAttempt,
+		connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentAttempt")),
 		connect.WithHandlerOptions(opts...),
 	)
-	enrollerServiceCreateEnrollmentRequestForExistingEndEntityHandler := connect.NewUnaryHandler(
-		EnrollerServiceCreateEnrollmentRequestForExistingEndEntityProcedure,
-		svc.CreateEnrollmentRequestForExistingEndEntity,
-		connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentRequestForExistingEndEntity")),
+	enrollerServiceCreateEnrollmentAttemptForExistingEndEntityHandler := connect.NewUnaryHandler(
+		EnrollerServiceCreateEnrollmentAttemptForExistingEndEntityProcedure,
+		svc.CreateEnrollmentAttemptForExistingEndEntity,
+		connect.WithSchema(enrollerServiceMethods.ByName("CreateEnrollmentAttemptForExistingEndEntity")),
 		connect.WithHandlerOptions(opts...),
 	)
-	enrollerServiceGetEnrollmentByRequestIDHandler := connect.NewUnaryHandler(
-		EnrollerServiceGetEnrollmentByRequestIDProcedure,
-		svc.GetEnrollmentByRequestID,
-		connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentByRequestID")),
+	enrollerServiceGetEnrollmentAttemptByIDHandler := connect.NewUnaryHandler(
+		EnrollerServiceGetEnrollmentAttemptByIDProcedure,
+		svc.GetEnrollmentAttemptByID,
+		connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentAttemptByID")),
 		connect.WithHandlerOptions(opts...),
 	)
-	enrollerServiceGetEnrollmentRequestListHandler := connect.NewUnaryHandler(
-		EnrollerServiceGetEnrollmentRequestListProcedure,
-		svc.GetEnrollmentRequestList,
-		connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentRequestList")),
+	enrollerServiceGetEnrollmentAttemptListHandler := connect.NewUnaryHandler(
+		EnrollerServiceGetEnrollmentAttemptListProcedure,
+		svc.GetEnrollmentAttemptList,
+		connect.WithSchema(enrollerServiceMethods.ByName("GetEnrollmentAttemptList")),
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/otpki.public.enrollment.enroller.v1.EnrollerService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case EnrollerServiceCreateEnrollmentRequestProcedure:
-			enrollerServiceCreateEnrollmentRequestHandler.ServeHTTP(w, r)
-		case EnrollerServiceCreateEnrollmentRequestForExistingEndEntityProcedure:
-			enrollerServiceCreateEnrollmentRequestForExistingEndEntityHandler.ServeHTTP(w, r)
-		case EnrollerServiceGetEnrollmentByRequestIDProcedure:
-			enrollerServiceGetEnrollmentByRequestIDHandler.ServeHTTP(w, r)
-		case EnrollerServiceGetEnrollmentRequestListProcedure:
-			enrollerServiceGetEnrollmentRequestListHandler.ServeHTTP(w, r)
+		case EnrollerServiceCreateEnrollmentAttemptProcedure:
+			enrollerServiceCreateEnrollmentAttemptHandler.ServeHTTP(w, r)
+		case EnrollerServiceCreateEnrollmentAttemptForExistingEndEntityProcedure:
+			enrollerServiceCreateEnrollmentAttemptForExistingEndEntityHandler.ServeHTTP(w, r)
+		case EnrollerServiceGetEnrollmentAttemptByIDProcedure:
+			enrollerServiceGetEnrollmentAttemptByIDHandler.ServeHTTP(w, r)
+		case EnrollerServiceGetEnrollmentAttemptListProcedure:
+			enrollerServiceGetEnrollmentAttemptListHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -188,18 +188,18 @@ func NewEnrollerServiceHandler(svc EnrollerServiceHandler, opts ...connect.Handl
 // UnimplementedEnrollerServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedEnrollerServiceHandler struct{}
 
-func (UnimplementedEnrollerServiceHandler) CreateEnrollmentRequest(context.Context, *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest is not implemented"))
+func (UnimplementedEnrollerServiceHandler) CreateEnrollmentAttempt(context.Context, *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt is not implemented"))
 }
 
-func (UnimplementedEnrollerServiceHandler) CreateEnrollmentRequestForExistingEndEntity(context.Context, *connect.Request[v1.CreateEnrollmentRequestForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentRequestForExistingEndEntityResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity is not implemented"))
+func (UnimplementedEnrollerServiceHandler) CreateEnrollmentAttemptForExistingEndEntity(context.Context, *connect.Request[v1.CreateEnrollmentAttemptForExistingEndEntityRequest]) (*connect.Response[v1.CreateEnrollmentAttemptForExistingEndEntityResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity is not implemented"))
 }
 
-func (UnimplementedEnrollerServiceHandler) GetEnrollmentByRequestID(context.Context, *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID is not implemented"))
+func (UnimplementedEnrollerServiceHandler) GetEnrollmentAttemptByID(context.Context, *connect.Request[v1.GetEnrollmentAttemptByIDRequest]) (*connect.Response[v1.GetEnrollmentAttemptByIDResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptByID is not implemented"))
 }
 
-func (UnimplementedEnrollerServiceHandler) GetEnrollmentRequestList(context.Context, *connect.Request[v1.GetEnrollmentRequestListRequest]) (*connect.Response[v1.GetEnrollmentRequestListResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList is not implemented"))
+func (UnimplementedEnrollerServiceHandler) GetEnrollmentAttemptList(context.Context, *connect.Request[v1.GetEnrollmentAttemptListRequest]) (*connect.Response[v1.GetEnrollmentAttemptListResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList is not implemented"))
 }

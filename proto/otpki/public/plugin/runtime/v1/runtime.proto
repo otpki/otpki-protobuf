@@ -3,6 +3,7 @@ package otpki.public.plugin.runtime.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/field_mask.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
@@ -66,6 +67,24 @@ message GetEndEntityResponse {
   common.core.end_entity.v1.EndEntity end_entity = 1;
 }
 
+message CreateEndEntityRequest {
+  common.core.end_entity.v1.EndEntity end_entity = 1 [(buf.validate.field).required = true];
+}
+
+message CreateEndEntityResponse {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message UpdateEndEntityRequest {
+  common.core.end_entity.v1.EndEntity end_entity = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateEndEntityResponse {}
+
 message GetKeyRequest {
   string id = 1 [
     (buf.validate.field).string.uuid = true,
@@ -117,20 +136,22 @@ message GetCertificateProfileResponse {
   common.core.certificate_profile.v1.CertificateProfile certificate_profile = 1;
 }
 
-message CreateEnrollmentRequestRequest {
-  common.core.enroller.v1.EnrollmentRequest enrollment_request = 1 [(buf.validate.field).required = true];
-  bool skip_verification = 2;
-  bool allow_existing = 3;
-  bool require_existing = 4;
-  bool check_password = 5;
+message CreateEnrollmentAttemptRequest {
+  common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1 [(buf.validate.field).required = true];
+  // Exactly one of enrollment_attempt.end_entity_id or end_entity should be set.
+  common.core.end_entity.v1.EndEntity end_entity = 2;
+  bool skip_verification = 3;
+  bool allow_existing = 4;
+  bool require_existing = 5;
+  bool check_password = 6;
 }
 
-message CreateEnrollmentRequestResponse {
+message CreateEnrollmentAttemptResponse {
   common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
 }
 
-message GetEnrollmentByRequestIDRequest {
-  string enrollment_request_id = 1 [
+message GetEnrollmentAttemptByIDRequest {
+  string enrollment_attempt_id = 1 [
     (buf.validate.field).string.uuid = true,
     (buf.validate.field).required = true
   ];
@@ -138,8 +159,8 @@ message GetEnrollmentByRequestIDRequest {
   bool check_password = 3;
 }
 
-message GetEnrollmentByRequestIDResponse {
-  common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+message GetEnrollmentAttemptByIDResponse {
+  common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
   common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
 }
 
@@ -240,15 +261,17 @@ service PluginRuntimeService {
   rpc AddNonce(AddNonceRequest) returns (AddNonceResponse);
   rpc CheckNonce(CheckNonceRequest) returns (CheckNonceResponse);
   rpc AddUniqueNonce(AddUniqueNonceRequest) returns (AddUniqueNonceResponse);
+  rpc CreateEndEntity(CreateEndEntityRequest) returns (CreateEndEntityResponse);
   rpc GetEndEntityByLoginID(GetEndEntityByLoginIDRequest) returns (GetEndEntityByLoginIDResponse);
   rpc GetEndEntity(GetEndEntityRequest) returns (GetEndEntityResponse);
+  rpc UpdateEndEntity(UpdateEndEntityRequest) returns (UpdateEndEntityResponse);
   rpc GetKey(GetKeyRequest) returns (GetKeyResponse);
   rpc GetAllRootCertificateAuthorityCertificates(GetAllRootCertificateAuthorityCertificatesRequest) returns (GetAllRootCertificateAuthorityCertificatesResponse);
   rpc GetLatestCertificateAuthorityCertificate(GetLatestCertificateAuthorityCertificateRequest) returns (GetLatestCertificateAuthorityCertificateResponse);
   rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse);
   rpc GetCertificateProfile(GetCertificateProfileRequest) returns (GetCertificateProfileResponse);
-  rpc CreateEnrollmentRequest(CreateEnrollmentRequestRequest) returns (CreateEnrollmentRequestResponse);
-  rpc GetEnrollmentByRequestID(GetEnrollmentByRequestIDRequest) returns (GetEnrollmentByRequestIDResponse);
+  rpc CreateEnrollmentAttempt(CreateEnrollmentAttemptRequest) returns (CreateEnrollmentAttemptResponse);
+  rpc GetEnrollmentAttemptByID(GetEnrollmentAttemptByIDRequest) returns (GetEnrollmentAttemptByIDResponse);
   rpc RevokeEndEntityCertificate(RevokeEndEntityCertificateRequest) returns (RevokeEndEntityCertificateResponse);
   rpc GetEndEntityCertificateBySerialNumber(GetEndEntityCertificateBySerialNumberRequest) returns (GetEndEntityCertificateBySerialNumberResponse);
   rpc GetEndEntityCertificates(GetEndEntityCertificatesRequest) returns (GetEndEntityCertificatesResponse);

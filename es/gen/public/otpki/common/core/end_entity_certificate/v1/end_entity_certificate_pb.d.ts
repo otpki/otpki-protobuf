@@ -23,11 +23,6 @@ export declare type EndEntityCertificate = Message<"otpki.common.core.end_entity
   endEntityId: string;
 
   /**
-   * @generated from field: string enrollment_request_id = 2;
-   */
-  enrollmentRequestId: string;
-
-  /**
    * @generated from field: string issued_certificate_id = 3;
    */
   issuedCertificateId: string;
@@ -86,11 +81,6 @@ export declare type EndEntityCertificateJson = {
    * @generated from field: string end_entity_id = 1;
    */
   endEntityId?: string;
-
-  /**
-   * @generated from field: string enrollment_request_id = 2;
-   */
-  enrollmentRequestId?: string;
 
   /**
    * @generated from field: string issued_certificate_id = 3;

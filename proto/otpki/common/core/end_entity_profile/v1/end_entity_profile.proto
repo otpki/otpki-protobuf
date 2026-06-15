@@ -150,4 +150,5 @@ message EndEntityProfile {
   // explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity
   bool use_custom_certificate_exts = 805; // allow EE to add to custom exts (will be concatenated with cert profile)
   optional string approval_profile_id = 806 [(buf.validate.field).string.uuid = true];
+  int64 allowed_requests = 807 [(buf.validate.field).int64.gte = 0];
 }

@@ -121,8 +121,7 @@ const (
 	Resource_RESOURCE_WORK_ITEM        Resource = 306
 	Resource_RESOURCE_SMTP_SETTINGS    Resource = 307
 	// request resources
-	Resource_RESOURCE_ISSUANCE_REQUEST   Resource = 401
-	Resource_RESOURCE_ENROLLMENT_REQUEST Resource = 402
+	Resource_RESOURCE_ISSUANCE_REQUEST Resource = 401
 )
 
 // Enum value maps for Resource.
@@ -155,7 +154,6 @@ var (
 		306: "RESOURCE_WORK_ITEM",
 		307: "RESOURCE_SMTP_SETTINGS",
 		401: "RESOURCE_ISSUANCE_REQUEST",
-		402: "RESOURCE_ENROLLMENT_REQUEST",
 	}
 	Resource_value = map[string]int32{
 		"RESOURCE_UNSPECIFIED":               0,
@@ -185,7 +183,6 @@ var (
 		"RESOURCE_WORK_ITEM":                 306,
 		"RESOURCE_SMTP_SETTINGS":             307,
 		"RESOURCE_ISSUANCE_REQUEST":          401,
-		"RESOURCE_ENROLLMENT_REQUEST":        402,
 	}
 )
 
@@ -1285,7 +1282,7 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\rACTION_UPDATE\x10\x03\x12\x11\n" +
 	"\rACTION_DELETE\x10\x04\x12\x11\n" +
 	"\fACTION_ISSUE\x10\xc9\x01\x12\x12\n" +
-	"\rACTION_REVOKE\x10\xca\x01*\xd0\x06\n" +
+	"\rACTION_REVOKE\x10\xca\x01*\xae\x06\n" +
 	"\bResource\x12\x18\n" +
 	"\x14RESOURCE_UNSPECIFIED\x10\x00\x12\"\n" +
 	"\x1eRESOURCE_CERTIFICATE_AUTHORITY\x10e\x12\x18\n" +
@@ -1313,8 +1310,7 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\x19RESOURCE_APPROVAL_PROFILE\x10\xb1\x02\x12\x17\n" +
 	"\x12RESOURCE_WORK_ITEM\x10\xb2\x02\x12\x1b\n" +
 	"\x16RESOURCE_SMTP_SETTINGS\x10\xb3\x02\x12\x1e\n" +
-	"\x19RESOURCE_ISSUANCE_REQUEST\x10\x91\x03\x12 \n" +
-	"\x1bRESOURCE_ENROLLMENT_REQUEST\x10\x92\x03*\x8e\x01\n" +
+	"\x19RESOURCE_ISSUANCE_REQUEST\x10\x91\x03*\x8e\x01\n" +
 	"\x0eWorkItemStatus\x12 \n" +
 	"\x1cWORK_ITEM_STATUS_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18WORK_ITEM_STATUS_PENDING\x10\x01\x12\x1d\n" +

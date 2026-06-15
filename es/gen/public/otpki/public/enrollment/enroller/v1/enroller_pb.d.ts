@@ -4,7 +4,8 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
+import type { EnrollmentAttempt, EnrollmentAttemptJson, EnrollmentAttemptValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
+import type { EndEntity, EndEntityJson, EndEntityValid } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
 import type { PaginationRequest, PaginationRequestJson, PaginationResponse, PaginationResponseJson } from "../../../../common/api/query/v1/query_pb.js";
 
 /**
@@ -13,45 +14,66 @@ import type { PaginationRequest, PaginationRequestJson, PaginationResponse, Pagi
 export declare const file_otpki_public_enrollment_enroller_v1_enroller: GenFile;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
  */
-export declare type CreateEnrollmentRequestRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest"> & {
+export declare type CreateEnrollmentAttemptRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
+
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntity;
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
  */
-export declare type CreateEnrollmentRequestRequestJson = {
+export declare type CreateEnrollmentAttemptRequestJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
+
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityJson;
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest
  */
-export declare type CreateEnrollmentRequestRequestValid = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest"> & {
+export declare type CreateEnrollmentAttemptRequestValid = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest: EnrollmentRequestValid;
+  enrollmentAttempt: EnrollmentAttemptValid;
+
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityValid;
 };
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest.
- * Use `create(CreateEnrollmentRequestRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest.
+ * Use `create(CreateEnrollmentAttemptRequestSchema)` to create a new message.
  */
-export declare const CreateEnrollmentRequestRequestSchema: GenMessage<CreateEnrollmentRequestRequest, {jsonType: CreateEnrollmentRequestRequestJson, validType: CreateEnrollmentRequestRequestValid}>;
+export declare const CreateEnrollmentAttemptRequestSchema: GenMessage<CreateEnrollmentAttemptRequest, {jsonType: CreateEnrollmentAttemptRequestJson, validType: CreateEnrollmentAttemptRequestValid}>;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse
  */
-export declare type CreateEnrollmentRequestResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse"> & {
+export declare type CreateEnrollmentAttemptResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse"> & {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
@@ -59,55 +81,99 @@ export declare type CreateEnrollmentRequestResponse = Message<"otpki.public.enro
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse
  */
-export declare type CreateEnrollmentRequestResponseJson = {
+export declare type CreateEnrollmentAttemptResponseJson = {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export declare type CreateEnrollmentRequestResponseValid = CreateEnrollmentRequestResponse;
+export declare type CreateEnrollmentAttemptResponseValid = CreateEnrollmentAttemptResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse.
- * Use `create(CreateEnrollmentRequestResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse.
+ * Use `create(CreateEnrollmentAttemptResponseSchema)` to create a new message.
  */
-export declare const CreateEnrollmentRequestResponseSchema: GenMessage<CreateEnrollmentRequestResponse, {jsonType: CreateEnrollmentRequestResponseJson, validType: CreateEnrollmentRequestResponseValid}>;
+export declare const CreateEnrollmentAttemptResponseSchema: GenMessage<CreateEnrollmentAttemptResponse, {jsonType: CreateEnrollmentAttemptResponseJson, validType: CreateEnrollmentAttemptResponseValid}>;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
  */
-export declare type CreateEnrollmentRequestForExistingEndEntityRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest"> & {
+export declare type CreateEnrollmentAttemptForExistingEndEntityRequest = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
+
+  /**
+   * @generated from field: string login_id = 2;
+   */
+  loginId: string;
+
+  /**
+   * @generated from field: string password = 3;
+   */
+  password: string;
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
  */
-export declare type CreateEnrollmentRequestForExistingEndEntityRequestJson = {
+export declare type CreateEnrollmentAttemptForExistingEndEntityRequestJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
+
+  /**
+   * @generated from field: string login_id = 2;
+   */
+  loginId?: string;
+
+  /**
+   * @generated from field: string password = 3;
+   */
+  password?: string;
 };
 
-export declare type CreateEnrollmentRequestForExistingEndEntityRequestValid = CreateEnrollmentRequestForExistingEndEntityRequest;
+/**
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest
+ */
+export declare type CreateEnrollmentAttemptForExistingEndEntityRequestValid = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest"> & {
+  /**
+   * Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+   *
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
+   */
+  enrollmentAttempt: EnrollmentAttemptValid;
+
+  /**
+   * @generated from field: string login_id = 2;
+   */
+  loginId: string;
+
+  /**
+   * @generated from field: string password = 3;
+   */
+  password: string;
+};
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest.
- * Use `create(CreateEnrollmentRequestForExistingEndEntityRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest.
+ * Use `create(CreateEnrollmentAttemptForExistingEndEntityRequestSchema)` to create a new message.
  */
-export declare const CreateEnrollmentRequestForExistingEndEntityRequestSchema: GenMessage<CreateEnrollmentRequestForExistingEndEntityRequest, {jsonType: CreateEnrollmentRequestForExistingEndEntityRequestJson, validType: CreateEnrollmentRequestForExistingEndEntityRequestValid}>;
+export declare const CreateEnrollmentAttemptForExistingEndEntityRequestSchema: GenMessage<CreateEnrollmentAttemptForExistingEndEntityRequest, {jsonType: CreateEnrollmentAttemptForExistingEndEntityRequestJson, validType: CreateEnrollmentAttemptForExistingEndEntityRequestValid}>;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse
  */
-export declare type CreateEnrollmentRequestForExistingEndEntityResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse"> & {
+export declare type CreateEnrollmentAttemptForExistingEndEntityResponse = Message<"otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse"> & {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
@@ -115,31 +181,31 @@ export declare type CreateEnrollmentRequestForExistingEndEntityResponse = Messag
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse
  */
-export declare type CreateEnrollmentRequestForExistingEndEntityResponseJson = {
+export declare type CreateEnrollmentAttemptForExistingEndEntityResponseJson = {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export declare type CreateEnrollmentRequestForExistingEndEntityResponseValid = CreateEnrollmentRequestForExistingEndEntityResponse;
+export declare type CreateEnrollmentAttemptForExistingEndEntityResponseValid = CreateEnrollmentAttemptForExistingEndEntityResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse.
- * Use `create(CreateEnrollmentRequestForExistingEndEntityResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse.
+ * Use `create(CreateEnrollmentAttemptForExistingEndEntityResponseSchema)` to create a new message.
  */
-export declare const CreateEnrollmentRequestForExistingEndEntityResponseSchema: GenMessage<CreateEnrollmentRequestForExistingEndEntityResponse, {jsonType: CreateEnrollmentRequestForExistingEndEntityResponseJson, validType: CreateEnrollmentRequestForExistingEndEntityResponseValid}>;
+export declare const CreateEnrollmentAttemptForExistingEndEntityResponseSchema: GenMessage<CreateEnrollmentAttemptForExistingEndEntityResponse, {jsonType: CreateEnrollmentAttemptForExistingEndEntityResponseJson, validType: CreateEnrollmentAttemptForExistingEndEntityResponseValid}>;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
  */
-export declare type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest"> & {
+export declare type GetEnrollmentAttemptByIDRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest"> & {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId: string;
+  enrollmentAttemptId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -148,13 +214,13 @@ export declare type GetEnrollmentByRequestIDRequest = Message<"otpki.public.enro
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
  */
-export declare type GetEnrollmentByRequestIDRequestJson = {
+export declare type GetEnrollmentAttemptByIDRequestJson = {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId?: string;
+  enrollmentAttemptId?: string;
 
   /**
    * @generated from field: string password = 2;
@@ -163,13 +229,13 @@ export declare type GetEnrollmentByRequestIDRequestJson = {
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest
  */
-export declare type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest"> & {
+export declare type GetEnrollmentAttemptByIDRequestValid = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest"> & {
   /**
-   * @generated from field: string enrollment_request_id = 1;
+   * @generated from field: string enrollment_attempt_id = 1;
    */
-  enrollmentRequestId: string;
+  enrollmentAttemptId: string;
 
   /**
    * @generated from field: string password = 2;
@@ -178,19 +244,19 @@ export declare type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public
 };
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest.
- * Use `create(GetEnrollmentByRequestIDRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDRequest.
+ * Use `create(GetEnrollmentAttemptByIDRequestSchema)` to create a new message.
  */
-export declare const GetEnrollmentByRequestIDRequestSchema: GenMessage<GetEnrollmentByRequestIDRequest, {jsonType: GetEnrollmentByRequestIDRequestJson, validType: GetEnrollmentByRequestIDRequestValid}>;
+export declare const GetEnrollmentAttemptByIDRequestSchema: GenMessage<GetEnrollmentAttemptByIDRequest, {jsonType: GetEnrollmentAttemptByIDRequestJson, validType: GetEnrollmentAttemptByIDRequestValid}>;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse
  */
-export declare type GetEnrollmentByRequestIDResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse"> & {
+export declare type GetEnrollmentAttemptByIDResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
 
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
@@ -199,13 +265,13 @@ export declare type GetEnrollmentByRequestIDResponse = Message<"otpki.public.enr
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse
  */
-export declare type GetEnrollmentByRequestIDResponseJson = {
+export declare type GetEnrollmentAttemptByIDResponseJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
 
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
@@ -213,18 +279,18 @@ export declare type GetEnrollmentByRequestIDResponseJson = {
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export declare type GetEnrollmentByRequestIDResponseValid = GetEnrollmentByRequestIDResponse;
+export declare type GetEnrollmentAttemptByIDResponseValid = GetEnrollmentAttemptByIDResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse.
- * Use `create(GetEnrollmentByRequestIDResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptByIDResponse.
+ * Use `create(GetEnrollmentAttemptByIDResponseSchema)` to create a new message.
  */
-export declare const GetEnrollmentByRequestIDResponseSchema: GenMessage<GetEnrollmentByRequestIDResponse, {jsonType: GetEnrollmentByRequestIDResponseJson, validType: GetEnrollmentByRequestIDResponseValid}>;
+export declare const GetEnrollmentAttemptByIDResponseSchema: GenMessage<GetEnrollmentAttemptByIDResponse, {jsonType: GetEnrollmentAttemptByIDResponseJson, validType: GetEnrollmentAttemptByIDResponseValid}>;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest
  */
-export declare type GetEnrollmentRequestListRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest"> & {
+export declare type GetEnrollmentAttemptListRequest = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest"> & {
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
    */
@@ -232,31 +298,31 @@ export declare type GetEnrollmentRequestListRequest = Message<"otpki.public.enro
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest
  */
-export declare type GetEnrollmentRequestListRequestJson = {
+export declare type GetEnrollmentAttemptListRequestJson = {
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
    */
   pagination?: PaginationRequestJson;
 };
 
-export declare type GetEnrollmentRequestListRequestValid = GetEnrollmentRequestListRequest;
+export declare type GetEnrollmentAttemptListRequestValid = GetEnrollmentAttemptListRequest;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest.
- * Use `create(GetEnrollmentRequestListRequestSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest.
+ * Use `create(GetEnrollmentAttemptListRequestSchema)` to create a new message.
  */
-export declare const GetEnrollmentRequestListRequestSchema: GenMessage<GetEnrollmentRequestListRequest, {jsonType: GetEnrollmentRequestListRequestJson, validType: GetEnrollmentRequestListRequestValid}>;
+export declare const GetEnrollmentAttemptListRequestSchema: GenMessage<GetEnrollmentAttemptListRequest, {jsonType: GetEnrollmentAttemptListRequestJson, validType: GetEnrollmentAttemptListRequestValid}>;
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse
  */
-export declare type GetEnrollmentRequestListResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse"> & {
+export declare type GetEnrollmentAttemptListResponse = Message<"otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse"> & {
   /**
-   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentRequest data = 1;
+   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentAttempt data = 1;
    */
-  data: EnrollmentRequest[];
+  data: EnrollmentAttempt[];
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
@@ -265,13 +331,13 @@ export declare type GetEnrollmentRequestListResponse = Message<"otpki.public.enr
 };
 
 /**
- * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse
+ * @generated from message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse
  */
-export declare type GetEnrollmentRequestListResponseJson = {
+export declare type GetEnrollmentAttemptListResponseJson = {
   /**
-   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentRequest data = 1;
+   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentAttempt data = 1;
    */
-  data?: EnrollmentRequestJson[];
+  data?: EnrollmentAttemptJson[];
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
@@ -279,49 +345,49 @@ export declare type GetEnrollmentRequestListResponseJson = {
   pagination?: PaginationResponseJson;
 };
 
-export declare type GetEnrollmentRequestListResponseValid = GetEnrollmentRequestListResponse;
+export declare type GetEnrollmentAttemptListResponseValid = GetEnrollmentAttemptListResponse;
 
 /**
- * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse.
- * Use `create(GetEnrollmentRequestListResponseSchema)` to create a new message.
+ * Describes the message otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse.
+ * Use `create(GetEnrollmentAttemptListResponseSchema)` to create a new message.
  */
-export declare const GetEnrollmentRequestListResponseSchema: GenMessage<GetEnrollmentRequestListResponse, {jsonType: GetEnrollmentRequestListResponseJson, validType: GetEnrollmentRequestListResponseValid}>;
+export declare const GetEnrollmentAttemptListResponseSchema: GenMessage<GetEnrollmentAttemptListResponse, {jsonType: GetEnrollmentAttemptListResponseJson, validType: GetEnrollmentAttemptListResponseValid}>;
 
 /**
  * @generated from service otpki.public.enrollment.enroller.v1.EnrollerService
  */
 export declare const EnrollerService: GenService<{
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt
    */
-  createEnrollmentRequest: {
+  createEnrollmentAttempt: {
     methodKind: "unary";
-    input: typeof CreateEnrollmentRequestRequestSchema;
-    output: typeof CreateEnrollmentRequestResponseSchema;
+    input: typeof CreateEnrollmentAttemptRequestSchema;
+    output: typeof CreateEnrollmentAttemptResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity
    */
-  createEnrollmentRequestForExistingEndEntity: {
+  createEnrollmentAttemptForExistingEndEntity: {
     methodKind: "unary";
-    input: typeof CreateEnrollmentRequestForExistingEndEntityRequestSchema;
-    output: typeof CreateEnrollmentRequestForExistingEndEntityResponseSchema;
+    input: typeof CreateEnrollmentAttemptForExistingEndEntityRequestSchema;
+    output: typeof CreateEnrollmentAttemptForExistingEndEntityResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptByID
    */
-  getEnrollmentByRequestID: {
+  getEnrollmentAttemptByID: {
     methodKind: "unary";
-    input: typeof GetEnrollmentByRequestIDRequestSchema;
-    output: typeof GetEnrollmentByRequestIDResponseSchema;
+    input: typeof GetEnrollmentAttemptByIDRequestSchema;
+    output: typeof GetEnrollmentAttemptByIDResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList
+   * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList
    */
-  getEnrollmentRequestList: {
+  getEnrollmentAttemptList: {
     methodKind: "unary";
-    input: typeof GetEnrollmentRequestListRequestSchema;
-    output: typeof GetEnrollmentRequestListResponseSchema;
+    input: typeof GetEnrollmentAttemptListRequestSchema;
+    output: typeof GetEnrollmentAttemptListResponseSchema;
   },
 }>;
 

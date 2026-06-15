@@ -24,15 +24,17 @@ const (
 	PluginRuntimeService_AddNonce_FullMethodName                                   = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/AddNonce"
 	PluginRuntimeService_CheckNonce_FullMethodName                                 = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CheckNonce"
 	PluginRuntimeService_AddUniqueNonce_FullMethodName                             = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/AddUniqueNonce"
+	PluginRuntimeService_CreateEndEntity_FullMethodName                            = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEndEntity"
 	PluginRuntimeService_GetEndEntityByLoginID_FullMethodName                      = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntityByLoginID"
 	PluginRuntimeService_GetEndEntity_FullMethodName                               = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntity"
+	PluginRuntimeService_UpdateEndEntity_FullMethodName                            = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/UpdateEndEntity"
 	PluginRuntimeService_GetKey_FullMethodName                                     = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetKey"
 	PluginRuntimeService_GetAllRootCertificateAuthorityCertificates_FullMethodName = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetAllRootCertificateAuthorityCertificates"
 	PluginRuntimeService_GetLatestCertificateAuthorityCertificate_FullMethodName   = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetLatestCertificateAuthorityCertificate"
 	PluginRuntimeService_GetCertificateAuthority_FullMethodName                    = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetCertificateAuthority"
 	PluginRuntimeService_GetCertificateProfile_FullMethodName                      = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetCertificateProfile"
-	PluginRuntimeService_CreateEnrollmentRequest_FullMethodName                    = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentRequest"
-	PluginRuntimeService_GetEnrollmentByRequestID_FullMethodName                   = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentByRequestID"
+	PluginRuntimeService_CreateEnrollmentAttempt_FullMethodName                    = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentAttempt"
+	PluginRuntimeService_GetEnrollmentAttemptByID_FullMethodName                   = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentAttemptByID"
 	PluginRuntimeService_RevokeEndEntityCertificate_FullMethodName                 = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/RevokeEndEntityCertificate"
 	PluginRuntimeService_GetEndEntityCertificateBySerialNumber_FullMethodName      = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntityCertificateBySerialNumber"
 	PluginRuntimeService_GetEndEntityCertificates_FullMethodName                   = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntityCertificates"
@@ -52,15 +54,17 @@ type PluginRuntimeServiceClient interface {
 	AddNonce(ctx context.Context, in *AddNonceRequest, opts ...grpc.CallOption) (*AddNonceResponse, error)
 	CheckNonce(ctx context.Context, in *CheckNonceRequest, opts ...grpc.CallOption) (*CheckNonceResponse, error)
 	AddUniqueNonce(ctx context.Context, in *AddUniqueNonceRequest, opts ...grpc.CallOption) (*AddUniqueNonceResponse, error)
+	CreateEndEntity(ctx context.Context, in *CreateEndEntityRequest, opts ...grpc.CallOption) (*CreateEndEntityResponse, error)
 	GetEndEntityByLoginID(ctx context.Context, in *GetEndEntityByLoginIDRequest, opts ...grpc.CallOption) (*GetEndEntityByLoginIDResponse, error)
 	GetEndEntity(ctx context.Context, in *GetEndEntityRequest, opts ...grpc.CallOption) (*GetEndEntityResponse, error)
+	UpdateEndEntity(ctx context.Context, in *UpdateEndEntityRequest, opts ...grpc.CallOption) (*UpdateEndEntityResponse, error)
 	GetKey(ctx context.Context, in *GetKeyRequest, opts ...grpc.CallOption) (*GetKeyResponse, error)
 	GetAllRootCertificateAuthorityCertificates(ctx context.Context, in *GetAllRootCertificateAuthorityCertificatesRequest, opts ...grpc.CallOption) (*GetAllRootCertificateAuthorityCertificatesResponse, error)
 	GetLatestCertificateAuthorityCertificate(ctx context.Context, in *GetLatestCertificateAuthorityCertificateRequest, opts ...grpc.CallOption) (*GetLatestCertificateAuthorityCertificateResponse, error)
 	GetCertificateAuthority(ctx context.Context, in *GetCertificateAuthorityRequest, opts ...grpc.CallOption) (*GetCertificateAuthorityResponse, error)
 	GetCertificateProfile(ctx context.Context, in *GetCertificateProfileRequest, opts ...grpc.CallOption) (*GetCertificateProfileResponse, error)
-	CreateEnrollmentRequest(ctx context.Context, in *CreateEnrollmentRequestRequest, opts ...grpc.CallOption) (*CreateEnrollmentRequestResponse, error)
-	GetEnrollmentByRequestID(ctx context.Context, in *GetEnrollmentByRequestIDRequest, opts ...grpc.CallOption) (*GetEnrollmentByRequestIDResponse, error)
+	CreateEnrollmentAttempt(ctx context.Context, in *CreateEnrollmentAttemptRequest, opts ...grpc.CallOption) (*CreateEnrollmentAttemptResponse, error)
+	GetEnrollmentAttemptByID(ctx context.Context, in *GetEnrollmentAttemptByIDRequest, opts ...grpc.CallOption) (*GetEnrollmentAttemptByIDResponse, error)
 	RevokeEndEntityCertificate(ctx context.Context, in *RevokeEndEntityCertificateRequest, opts ...grpc.CallOption) (*RevokeEndEntityCertificateResponse, error)
 	GetEndEntityCertificateBySerialNumber(ctx context.Context, in *GetEndEntityCertificateBySerialNumberRequest, opts ...grpc.CallOption) (*GetEndEntityCertificateBySerialNumberResponse, error)
 	GetEndEntityCertificates(ctx context.Context, in *GetEndEntityCertificatesRequest, opts ...grpc.CallOption) (*GetEndEntityCertificatesResponse, error)
@@ -129,6 +133,16 @@ func (c *pluginRuntimeServiceClient) AddUniqueNonce(ctx context.Context, in *Add
 	return out, nil
 }
 
+func (c *pluginRuntimeServiceClient) CreateEndEntity(ctx context.Context, in *CreateEndEntityRequest, opts ...grpc.CallOption) (*CreateEndEntityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateEndEntityResponse)
+	err := c.cc.Invoke(ctx, PluginRuntimeService_CreateEndEntity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pluginRuntimeServiceClient) GetEndEntityByLoginID(ctx context.Context, in *GetEndEntityByLoginIDRequest, opts ...grpc.CallOption) (*GetEndEntityByLoginIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetEndEntityByLoginIDResponse)
@@ -143,6 +157,16 @@ func (c *pluginRuntimeServiceClient) GetEndEntity(ctx context.Context, in *GetEn
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetEndEntityResponse)
 	err := c.cc.Invoke(ctx, PluginRuntimeService_GetEndEntity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pluginRuntimeServiceClient) UpdateEndEntity(ctx context.Context, in *UpdateEndEntityRequest, opts ...grpc.CallOption) (*UpdateEndEntityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateEndEntityResponse)
+	err := c.cc.Invoke(ctx, PluginRuntimeService_UpdateEndEntity_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -199,20 +223,20 @@ func (c *pluginRuntimeServiceClient) GetCertificateProfile(ctx context.Context, 
 	return out, nil
 }
 
-func (c *pluginRuntimeServiceClient) CreateEnrollmentRequest(ctx context.Context, in *CreateEnrollmentRequestRequest, opts ...grpc.CallOption) (*CreateEnrollmentRequestResponse, error) {
+func (c *pluginRuntimeServiceClient) CreateEnrollmentAttempt(ctx context.Context, in *CreateEnrollmentAttemptRequest, opts ...grpc.CallOption) (*CreateEnrollmentAttemptResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateEnrollmentRequestResponse)
-	err := c.cc.Invoke(ctx, PluginRuntimeService_CreateEnrollmentRequest_FullMethodName, in, out, cOpts...)
+	out := new(CreateEnrollmentAttemptResponse)
+	err := c.cc.Invoke(ctx, PluginRuntimeService_CreateEnrollmentAttempt_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *pluginRuntimeServiceClient) GetEnrollmentByRequestID(ctx context.Context, in *GetEnrollmentByRequestIDRequest, opts ...grpc.CallOption) (*GetEnrollmentByRequestIDResponse, error) {
+func (c *pluginRuntimeServiceClient) GetEnrollmentAttemptByID(ctx context.Context, in *GetEnrollmentAttemptByIDRequest, opts ...grpc.CallOption) (*GetEnrollmentAttemptByIDResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetEnrollmentByRequestIDResponse)
-	err := c.cc.Invoke(ctx, PluginRuntimeService_GetEnrollmentByRequestID_FullMethodName, in, out, cOpts...)
+	out := new(GetEnrollmentAttemptByIDResponse)
+	err := c.cc.Invoke(ctx, PluginRuntimeService_GetEnrollmentAttemptByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -308,15 +332,17 @@ type PluginRuntimeServiceServer interface {
 	AddNonce(context.Context, *AddNonceRequest) (*AddNonceResponse, error)
 	CheckNonce(context.Context, *CheckNonceRequest) (*CheckNonceResponse, error)
 	AddUniqueNonce(context.Context, *AddUniqueNonceRequest) (*AddUniqueNonceResponse, error)
+	CreateEndEntity(context.Context, *CreateEndEntityRequest) (*CreateEndEntityResponse, error)
 	GetEndEntityByLoginID(context.Context, *GetEndEntityByLoginIDRequest) (*GetEndEntityByLoginIDResponse, error)
 	GetEndEntity(context.Context, *GetEndEntityRequest) (*GetEndEntityResponse, error)
+	UpdateEndEntity(context.Context, *UpdateEndEntityRequest) (*UpdateEndEntityResponse, error)
 	GetKey(context.Context, *GetKeyRequest) (*GetKeyResponse, error)
 	GetAllRootCertificateAuthorityCertificates(context.Context, *GetAllRootCertificateAuthorityCertificatesRequest) (*GetAllRootCertificateAuthorityCertificatesResponse, error)
 	GetLatestCertificateAuthorityCertificate(context.Context, *GetLatestCertificateAuthorityCertificateRequest) (*GetLatestCertificateAuthorityCertificateResponse, error)
 	GetCertificateAuthority(context.Context, *GetCertificateAuthorityRequest) (*GetCertificateAuthorityResponse, error)
 	GetCertificateProfile(context.Context, *GetCertificateProfileRequest) (*GetCertificateProfileResponse, error)
-	CreateEnrollmentRequest(context.Context, *CreateEnrollmentRequestRequest) (*CreateEnrollmentRequestResponse, error)
-	GetEnrollmentByRequestID(context.Context, *GetEnrollmentByRequestIDRequest) (*GetEnrollmentByRequestIDResponse, error)
+	CreateEnrollmentAttempt(context.Context, *CreateEnrollmentAttemptRequest) (*CreateEnrollmentAttemptResponse, error)
+	GetEnrollmentAttemptByID(context.Context, *GetEnrollmentAttemptByIDRequest) (*GetEnrollmentAttemptByIDResponse, error)
 	RevokeEndEntityCertificate(context.Context, *RevokeEndEntityCertificateRequest) (*RevokeEndEntityCertificateResponse, error)
 	GetEndEntityCertificateBySerialNumber(context.Context, *GetEndEntityCertificateBySerialNumberRequest) (*GetEndEntityCertificateBySerialNumberResponse, error)
 	GetEndEntityCertificates(context.Context, *GetEndEntityCertificatesRequest) (*GetEndEntityCertificatesResponse, error)
@@ -350,11 +376,17 @@ func (UnimplementedPluginRuntimeServiceServer) CheckNonce(context.Context, *Chec
 func (UnimplementedPluginRuntimeServiceServer) AddUniqueNonce(context.Context, *AddUniqueNonceRequest) (*AddUniqueNonceResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AddUniqueNonce not implemented")
 }
+func (UnimplementedPluginRuntimeServiceServer) CreateEndEntity(context.Context, *CreateEndEntityRequest) (*CreateEndEntityResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateEndEntity not implemented")
+}
 func (UnimplementedPluginRuntimeServiceServer) GetEndEntityByLoginID(context.Context, *GetEndEntityByLoginIDRequest) (*GetEndEntityByLoginIDResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetEndEntityByLoginID not implemented")
 }
 func (UnimplementedPluginRuntimeServiceServer) GetEndEntity(context.Context, *GetEndEntityRequest) (*GetEndEntityResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetEndEntity not implemented")
+}
+func (UnimplementedPluginRuntimeServiceServer) UpdateEndEntity(context.Context, *UpdateEndEntityRequest) (*UpdateEndEntityResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateEndEntity not implemented")
 }
 func (UnimplementedPluginRuntimeServiceServer) GetKey(context.Context, *GetKeyRequest) (*GetKeyResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetKey not implemented")
@@ -371,11 +403,11 @@ func (UnimplementedPluginRuntimeServiceServer) GetCertificateAuthority(context.C
 func (UnimplementedPluginRuntimeServiceServer) GetCertificateProfile(context.Context, *GetCertificateProfileRequest) (*GetCertificateProfileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCertificateProfile not implemented")
 }
-func (UnimplementedPluginRuntimeServiceServer) CreateEnrollmentRequest(context.Context, *CreateEnrollmentRequestRequest) (*CreateEnrollmentRequestResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateEnrollmentRequest not implemented")
+func (UnimplementedPluginRuntimeServiceServer) CreateEnrollmentAttempt(context.Context, *CreateEnrollmentAttemptRequest) (*CreateEnrollmentAttemptResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateEnrollmentAttempt not implemented")
 }
-func (UnimplementedPluginRuntimeServiceServer) GetEnrollmentByRequestID(context.Context, *GetEnrollmentByRequestIDRequest) (*GetEnrollmentByRequestIDResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetEnrollmentByRequestID not implemented")
+func (UnimplementedPluginRuntimeServiceServer) GetEnrollmentAttemptByID(context.Context, *GetEnrollmentAttemptByIDRequest) (*GetEnrollmentAttemptByIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEnrollmentAttemptByID not implemented")
 }
 func (UnimplementedPluginRuntimeServiceServer) RevokeEndEntityCertificate(context.Context, *RevokeEndEntityCertificateRequest) (*RevokeEndEntityCertificateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method RevokeEndEntityCertificate not implemented")
@@ -512,6 +544,24 @@ func _PluginRuntimeService_AddUniqueNonce_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PluginRuntimeService_CreateEndEntity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEndEntityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginRuntimeServiceServer).CreateEndEntity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginRuntimeService_CreateEndEntity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginRuntimeServiceServer).CreateEndEntity(ctx, req.(*CreateEndEntityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PluginRuntimeService_GetEndEntityByLoginID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetEndEntityByLoginIDRequest)
 	if err := dec(in); err != nil {
@@ -544,6 +594,24 @@ func _PluginRuntimeService_GetEndEntity_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PluginRuntimeServiceServer).GetEndEntity(ctx, req.(*GetEndEntityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PluginRuntimeService_UpdateEndEntity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateEndEntityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginRuntimeServiceServer).UpdateEndEntity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginRuntimeService_UpdateEndEntity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginRuntimeServiceServer).UpdateEndEntity(ctx, req.(*UpdateEndEntityRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -638,38 +706,38 @@ func _PluginRuntimeService_GetCertificateProfile_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PluginRuntimeService_CreateEnrollmentRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateEnrollmentRequestRequest)
+func _PluginRuntimeService_CreateEnrollmentAttempt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEnrollmentAttemptRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PluginRuntimeServiceServer).CreateEnrollmentRequest(ctx, in)
+		return srv.(PluginRuntimeServiceServer).CreateEnrollmentAttempt(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PluginRuntimeService_CreateEnrollmentRequest_FullMethodName,
+		FullMethod: PluginRuntimeService_CreateEnrollmentAttempt_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginRuntimeServiceServer).CreateEnrollmentRequest(ctx, req.(*CreateEnrollmentRequestRequest))
+		return srv.(PluginRuntimeServiceServer).CreateEnrollmentAttempt(ctx, req.(*CreateEnrollmentAttemptRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PluginRuntimeService_GetEnrollmentByRequestID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEnrollmentByRequestIDRequest)
+func _PluginRuntimeService_GetEnrollmentAttemptByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEnrollmentAttemptByIDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PluginRuntimeServiceServer).GetEnrollmentByRequestID(ctx, in)
+		return srv.(PluginRuntimeServiceServer).GetEnrollmentAttemptByID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PluginRuntimeService_GetEnrollmentByRequestID_FullMethodName,
+		FullMethod: PluginRuntimeService_GetEnrollmentAttemptByID_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PluginRuntimeServiceServer).GetEnrollmentByRequestID(ctx, req.(*GetEnrollmentByRequestIDRequest))
+		return srv.(PluginRuntimeServiceServer).GetEnrollmentAttemptByID(ctx, req.(*GetEnrollmentAttemptByIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -846,12 +914,20 @@ var PluginRuntimeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PluginRuntimeService_AddUniqueNonce_Handler,
 		},
 		{
+			MethodName: "CreateEndEntity",
+			Handler:    _PluginRuntimeService_CreateEndEntity_Handler,
+		},
+		{
 			MethodName: "GetEndEntityByLoginID",
 			Handler:    _PluginRuntimeService_GetEndEntityByLoginID_Handler,
 		},
 		{
 			MethodName: "GetEndEntity",
 			Handler:    _PluginRuntimeService_GetEndEntity_Handler,
+		},
+		{
+			MethodName: "UpdateEndEntity",
+			Handler:    _PluginRuntimeService_UpdateEndEntity_Handler,
 		},
 		{
 			MethodName: "GetKey",
@@ -874,12 +950,12 @@ var PluginRuntimeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PluginRuntimeService_GetCertificateProfile_Handler,
 		},
 		{
-			MethodName: "CreateEnrollmentRequest",
-			Handler:    _PluginRuntimeService_CreateEnrollmentRequest_Handler,
+			MethodName: "CreateEnrollmentAttempt",
+			Handler:    _PluginRuntimeService_CreateEnrollmentAttempt_Handler,
 		},
 		{
-			MethodName: "GetEnrollmentByRequestID",
-			Handler:    _PluginRuntimeService_GetEnrollmentByRequestID_Handler,
+			MethodName: "GetEnrollmentAttemptByID",
+			Handler:    _PluginRuntimeService_GetEnrollmentAttemptByID_Handler,
 		},
 		{
 			MethodName: "RevokeEndEntityCertificate",

@@ -187,6 +187,7 @@ type EndEntity struct {
 	ExcludedEmailAddresses        []string `protobuf:"bytes,807,rep,name=excluded_email_addresses,json=excludedEmailAddresses,proto3" json:"excluded_email_addresses,omitempty"`
 	ExcludedUriDomains            []string `protobuf:"bytes,808,rep,name=excluded_uri_domains,json=excludedUriDomains,proto3" json:"excluded_uri_domains,omitempty"`
 	CustomCertificateExtensionIds []string `protobuf:"bytes,809,rep,name=custom_certificate_extension_ids,json=customCertificateExtensionIds,proto3" json:"custom_certificate_extension_ids,omitempty"`
+	RemainingRequests             int64    `protobuf:"varint,810,opt,name=remaining_requests,json=remainingRequests,proto3" json:"remaining_requests,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -417,11 +418,70 @@ func (x *EndEntity) GetCustomCertificateExtensionIds() []string {
 	return nil
 }
 
+func (x *EndEntity) GetRemainingRequests() int64 {
+	if x != nil {
+		return x.RemainingRequests
+	}
+	return 0
+}
+
+type EndEntityIssuanceRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	EndEntityId       string                 `protobuf:"bytes,1,opt,name=end_entity_id,json=endEntityId,proto3" json:"end_entity_id,omitempty"`
+	IssuanceRequestId string                 `protobuf:"bytes,2,opt,name=issuance_request_id,json=issuanceRequestId,proto3" json:"issuance_request_id,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *EndEntityIssuanceRequest) Reset() {
+	*x = EndEntityIssuanceRequest{}
+	mi := &file_otpki_common_core_end_entity_v1_end_entity_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EndEntityIssuanceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EndEntityIssuanceRequest) ProtoMessage() {}
+
+func (x *EndEntityIssuanceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_end_entity_v1_end_entity_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EndEntityIssuanceRequest.ProtoReflect.Descriptor instead.
+func (*EndEntityIssuanceRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_end_entity_v1_end_entity_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *EndEntityIssuanceRequest) GetEndEntityId() string {
+	if x != nil {
+		return x.EndEntityId
+	}
+	return ""
+}
+
+func (x *EndEntityIssuanceRequest) GetIssuanceRequestId() string {
+	if x != nil {
+		return x.IssuanceRequestId
+	}
+	return ""
+}
+
 var File_otpki_common_core_end_entity_v1_end_entity_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_end_entity_v1_end_entity_proto_rawDesc = "" +
 	"\n" +
-	"0otpki/common/core/end_entity/v1/end_entity.proto\x12\x1fotpki.common.core.end_entity.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xce\x11\n" +
+	"0otpki/common/core/end_entity/v1/end_entity.proto\x12\x1fotpki.common.core.end_entity.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x8c\x12\n" +
 	"\tEndEntity\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12@\n" +
@@ -454,8 +514,12 @@ const file_otpki_common_core_end_entity_v1_end_entity_proto_rawDesc = "" +
 	"\x12excluded_ip_ranges\x18\xa6\x06 \x03(\tB&\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xd0\x01\x01\x8a\xb5\x18\f[]*net.IPNet\x92\xb5\x18\x03netR\x10excludedIpRanges\x12I\n" +
 	"\x18excluded_email_addresses\x18\xa7\x06 \x03(\tB\x0e\xbaH\v\x92\x01\b\x18\x01\"\x04r\x02`\x01R\x16excludedEmailAddresses\x12B\n" +
 	"\x14excluded_uri_domains\x18\xa8\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x12excludedUriDomains\x12Y\n" +
-	" custom_certificate_extension_ids\x18\xa9\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1dcustomCertificateExtensionIds:\x04\x98\xb5\x18\x01B\x18\n" +
-	"\x16_end_entity_profile_id*\xd9\x01\n" +
+	" custom_certificate_extension_ids\x18\xa9\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1dcustomCertificateExtensionIds\x12<\n" +
+	"\x12remaining_requests\x18\xaa\x06 \x01(\x03B\f\xbaG\x02\x18\x01\xbaH\x04\"\x02(\x00R\x11remainingRequests:\x04\x98\xb5\x18\x01B\x18\n" +
+	"\x16_end_entity_profile_id\"n\n" +
+	"\x18EndEntityIssuanceRequest\x12\"\n" +
+	"\rend_entity_id\x18\x01 \x01(\tR\vendEntityId\x12.\n" +
+	"\x13issuance_request_id\x18\x02 \x01(\tR\x11issuanceRequestId*\xd9\x01\n" +
 	"\x0fEndEntityStatus\x12!\n" +
 	"\x1dEND_ENTITY_STATUS_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15END_ENTITY_STATUS_NEW\x10\x01\x12\x1c\n" +
@@ -485,26 +549,27 @@ func file_otpki_common_core_end_entity_v1_end_entity_proto_rawDescGZIP() []byte 
 }
 
 var file_otpki_common_core_end_entity_v1_end_entity_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_otpki_common_core_end_entity_v1_end_entity_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_otpki_common_core_end_entity_v1_end_entity_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_otpki_common_core_end_entity_v1_end_entity_proto_goTypes = []any{
-	(EndEntityStatus)(0),          // 0: otpki.common.core.end_entity.v1.EndEntityStatus
-	(LoginIDScheme)(0),            // 1: otpki.common.core.end_entity.v1.LoginIDScheme
-	(*EndEntity)(nil),             // 2: otpki.common.core.end_entity.v1.EndEntity
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
-	(*v1.SubjectDNAttribute)(nil), // 4: otpki.common.x509.v1.SubjectDNAttribute
-	(*v1.SANAttribute)(nil),       // 5: otpki.common.x509.v1.SANAttribute
-	(*durationpb.Duration)(nil),   // 6: google.protobuf.Duration
+	(EndEntityStatus)(0),             // 0: otpki.common.core.end_entity.v1.EndEntityStatus
+	(LoginIDScheme)(0),               // 1: otpki.common.core.end_entity.v1.LoginIDScheme
+	(*EndEntity)(nil),                // 2: otpki.common.core.end_entity.v1.EndEntity
+	(*EndEntityIssuanceRequest)(nil), // 3: otpki.common.core.end_entity.v1.EndEntityIssuanceRequest
+	(*timestamppb.Timestamp)(nil),    // 4: google.protobuf.Timestamp
+	(*v1.SubjectDNAttribute)(nil),    // 5: otpki.common.x509.v1.SubjectDNAttribute
+	(*v1.SANAttribute)(nil),          // 6: otpki.common.x509.v1.SANAttribute
+	(*durationpb.Duration)(nil),      // 7: google.protobuf.Duration
 }
 var file_otpki_common_core_end_entity_v1_end_entity_proto_depIdxs = []int32{
 	0, // 0: otpki.common.core.end_entity.v1.EndEntity.status:type_name -> otpki.common.core.end_entity.v1.EndEntityStatus
-	3, // 1: otpki.common.core.end_entity.v1.EndEntity.created_at:type_name -> google.protobuf.Timestamp
-	3, // 2: otpki.common.core.end_entity.v1.EndEntity.updated_at:type_name -> google.protobuf.Timestamp
-	4, // 3: otpki.common.core.end_entity.v1.EndEntity.subject_dn_attributes:type_name -> otpki.common.x509.v1.SubjectDNAttribute
-	5, // 4: otpki.common.core.end_entity.v1.EndEntity.subject_alternative_name_attributes:type_name -> otpki.common.x509.v1.SANAttribute
-	6, // 5: otpki.common.core.end_entity.v1.EndEntity.validity_start_time_offset:type_name -> google.protobuf.Duration
-	3, // 6: otpki.common.core.end_entity.v1.EndEntity.validity_start_date:type_name -> google.protobuf.Timestamp
-	6, // 7: otpki.common.core.end_entity.v1.EndEntity.validity_end_time_offset:type_name -> google.protobuf.Duration
-	3, // 8: otpki.common.core.end_entity.v1.EndEntity.validity_end_date:type_name -> google.protobuf.Timestamp
+	4, // 1: otpki.common.core.end_entity.v1.EndEntity.created_at:type_name -> google.protobuf.Timestamp
+	4, // 2: otpki.common.core.end_entity.v1.EndEntity.updated_at:type_name -> google.protobuf.Timestamp
+	5, // 3: otpki.common.core.end_entity.v1.EndEntity.subject_dn_attributes:type_name -> otpki.common.x509.v1.SubjectDNAttribute
+	6, // 4: otpki.common.core.end_entity.v1.EndEntity.subject_alternative_name_attributes:type_name -> otpki.common.x509.v1.SANAttribute
+	7, // 5: otpki.common.core.end_entity.v1.EndEntity.validity_start_time_offset:type_name -> google.protobuf.Duration
+	4, // 6: otpki.common.core.end_entity.v1.EndEntity.validity_start_date:type_name -> google.protobuf.Timestamp
+	7, // 7: otpki.common.core.end_entity.v1.EndEntity.validity_end_time_offset:type_name -> google.protobuf.Duration
+	4, // 8: otpki.common.core.end_entity.v1.EndEntity.validity_end_date:type_name -> google.protobuf.Timestamp
 	9, // [9:9] is the sub-list for method output_type
 	9, // [9:9] is the sub-list for method input_type
 	9, // [9:9] is the sub-list for extension type_name
@@ -524,7 +589,7 @@ func file_otpki_common_core_end_entity_v1_end_entity_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_core_end_entity_v1_end_entity_proto_rawDesc), len(file_otpki_common_core_end_entity_v1_end_entity_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
