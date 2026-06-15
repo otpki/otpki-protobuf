@@ -76,3 +76,30 @@ message ExportData {
   repeated otpki.common.core.publisher.v1.CrlPublisher crl_publishers = 19;
   repeated otpki.common.core.publisher.v1.CertificatePublisher certificate_publishers = 20;
 }
+
+// Controls import behavior when an incoming record already exists
+enum ConflictStrategy {
+  CONFLICT_STRATEGY_UNSPECIFIED = 0; // defaults to CONFLICT_STRATEGY_ERROR
+  CONFLICT_STRATEGY_ERROR = 1; // default
+  CONFLICT_STRATEGY_SKIP = 2; // keep existing and skip imported
+  CONFLICT_STRATEGY_UPSERT = 3; // delete existing (cascaded), replace with imported
+}
+
+message ImportOptions {
+  ConflictStrategy conflict_strategy = 1;
+  bool dry_run = 2; // run in tx and rollback, return expected result to client
+}
+
+message ModelImportResult {
+  string model = 1; // model key
+  int64 inserted = 2; // what was inserted
+  int64 skipped = 3; // rows skipped because a conflicting row exists
+  int64 replaced = 4; // existing rows deleted and (re)inserted
+  int64 deleted = 5; // rows removed as a side effect, ie: cascade of an UPSERT delete
+  repeated string messages = 6; // info to provide user for operational context, ie: notes
+}
+
+message ImportResult {
+  bool dry_run = 1;
+  repeated ModelImportResult models = 2;
+}

@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { ExportData, ExportDataJson, ExportDataValid, ExportPagination, ExportPaginationJson } from "../../../common/core/importer/v1/importer_pb.js";
+import type { ExportData, ExportDataJson, ExportDataValid, ExportPagination, ExportPaginationJson, ImportOptions, ImportOptionsJson, ImportOptionsValid, ImportResult, ImportResultJson } from "../../../common/core/importer/v1/importer_pb.js";
 
 /**
  * Describes the file otpki/public/importer/v1/importer.proto.
@@ -83,6 +83,11 @@ export declare type ImportDataRequest = Message<"otpki.public.importer.v1.Import
    * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
    */
   data?: ExportData;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
 };
 
 /**
@@ -93,6 +98,11 @@ export declare type ImportDataRequestJson = {
    * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
    */
   data?: ExportDataJson;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
 };
 
 /**
@@ -103,6 +113,11 @@ export declare type ImportDataRequestValid = Message<"otpki.public.importer.v1.I
    * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
    */
   data?: ExportDataValid;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsValid;
 };
 
 /**
@@ -115,12 +130,20 @@ export declare const ImportDataRequestSchema: GenMessage<ImportDataRequest, {jso
  * @generated from message otpki.public.importer.v1.ImportDataResponse
  */
 export declare type ImportDataResponse = Message<"otpki.public.importer.v1.ImportDataResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
 };
 
 /**
  * @generated from message otpki.public.importer.v1.ImportDataResponse
  */
 export declare type ImportDataResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
 };
 
 export declare type ImportDataResponseValid = ImportDataResponse;
@@ -195,6 +218,11 @@ export declare type ImportDataRawRequest = Message<"otpki.public.importer.v1.Imp
    * @generated from field: bytes data = 1;
    */
   data: Uint8Array;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
 };
 
 /**
@@ -205,6 +233,11 @@ export declare type ImportDataRawRequestJson = {
    * @generated from field: bytes data = 1;
    */
   data?: string;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
 };
 
 export declare type ImportDataRawRequestValid = ImportDataRawRequest;
@@ -219,12 +252,20 @@ export declare const ImportDataRawRequestSchema: GenMessage<ImportDataRawRequest
  * @generated from message otpki.public.importer.v1.ImportDataRawResponse
  */
 export declare type ImportDataRawResponse = Message<"otpki.public.importer.v1.ImportDataRawResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
 };
 
 /**
  * @generated from message otpki.public.importer.v1.ImportDataRawResponse
  */
 export declare type ImportDataRawResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
 };
 
 export declare type ImportDataRawResponseValid = ImportDataRawResponse;

@@ -2,8 +2,8 @@
 // @generated from file otpki/common/core/importer/v1/importer.proto (package otpki.common.core.importer.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { PaginationRequest, PaginationRequestJson } from "../../../api/query/v1/query_pb.js";
 import { file_otpki_common_api_query_v1_query } from "../../../api/query/v1/query_pb.js";
 import type { ApprovalProfile, ApprovalProfileJson, ApprovalProfileValid, Permission, PermissionJson, PermissionValid, Role, RoleJson, RoleValid } from "../../../auth/v1/auth_pb.js";
@@ -40,7 +40,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/core/importer/v1/importer.proto.
  */
 export const file_otpki_common_core_importer_v1_importer: GenFile = /*@__PURE__*/
-  fileDesc("CixvdHBraS9jb21tb24vY29yZS9pbXBvcnRlci92MS9pbXBvcnRlci5wcm90bxIdb3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEiygsKEEV4cG9ydFBhZ2luYXRpb24SQQoLcGVybWlzc2lvbnMYASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0EjsKBXJvbGVzGAIgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJHChFhcHByb3ZhbF9wcm9maWxlcxgDIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSQwoNc210cF9zZXR0aW5ncxgEIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSSQoTZW5kX2VudGl0eV9wcm9maWxlcxgFIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSQgoMZW5kX2VudGl0aWVzGAYgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJJChNlbnJvbGxtZW50X3JlcXVlc3RzGAcgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJJChNrZXlfc3RvcmFnZV9jb25maWdzGAggASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBI6CgRrZXlzGAkgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJKChRjZXJ0aWZpY2F0ZV9wcm9maWxlcxgKIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSQQoLY3VzdG9tX2VrdXMYCyABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0ElMKHWN1c3RvbV9jZXJ0aWZpY2F0ZV9leHRlbnNpb25zGAwgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJNChdjZXJ0aWZpY2F0ZV9hdXRob3JpdGllcxgNIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSRwoRaXNzdWFuY2VfcmVxdWVzdHMYDiABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0EkIKDGNlcnRpZmljYXRlcxgPIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSWAoiY2VydGlmaWNhdGVfYXV0aG9yaXR5X2NlcnRpZmljYXRlcxgQIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSUAoaY2VydGlmaWNhdGVfYXV0aG9yaXR5X2tleXMYESABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0EkcKEXB1Ymxpc2hlcl9jb25maWdzGBIgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJECg5jcmxfcHVibGlzaGVycxgTIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSTAoWY2VydGlmaWNhdGVfcHVibGlzaGVycxgUIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3Qi1gwKCkV4cG9ydERhdGESNQoLcGVybWlzc2lvbnMYASADKAsyIC5vdHBraS5jb21tb24uYXV0aC52MS5QZXJtaXNzaW9uEikKBXJvbGVzGAIgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZRJAChFhcHByb3ZhbF9wcm9maWxlcxgDIAMoCzIlLm90cGtpLmNvbW1vbi5hdXRoLnYxLkFwcHJvdmFsUHJvZmlsZRJHCg1zbXRwX3NldHRpbmdzGAQgAygLMjAub3Rwa2kuY29tbW9uLmNvcmUuc210cF9zZXR0aW5ncy52MS5TTVRQU2V0dGluZ3MSVgoTZW5kX2VudGl0eV9wcm9maWxlcxgFIAMoCzI5Lm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHlfcHJvZmlsZS52MS5FbmRFbnRpdHlQcm9maWxlEkAKDGVuZF9lbnRpdGllcxgGIAMoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5Ek0KE2Vucm9sbG1lbnRfcmVxdWVzdHMYByADKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdBJWChNrZXlfc3RvcmFnZV9jb25maWdzGAggAygLMjkub3Rwa2kuY29tbW9uLmNvcmUua2V5X3N0b3JhZ2VfY29uZmlnLnYxLktleVN0b3JhZ2VDb25maWcSKwoEa2V5cxgJIAMoCzIdLm90cGtpLmNvbW1vbi5jb3JlLmtleS52MS5LZXkSWgoUY2VydGlmaWNhdGVfcHJvZmlsZXMYCiADKAsyPC5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9wcm9maWxlLnYxLkNlcnRpZmljYXRlUHJvZmlsZRJPCgtjdXN0b21fZWt1cxgLIAMoCzI6Lm90cGtpLmNvbW1vbi5jb3JlLmV4dGVuZGVkX2tleV91c2FnZS52MS5DdXN0b21FeHRLZXlVc2FnZRJtCh1jdXN0b21fY2VydGlmaWNhdGVfZXh0ZW5zaW9ucxgMIAMoCzJGLm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2V4dGVuc2lvbi52MS5DdXN0b21DZXJ0aWZpY2F0ZUV4dGVuc2lvbhJhChdjZXJ0aWZpY2F0ZV9hdXRob3JpdGllcxgNIAMoCzJALm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eRJHChFpc3N1YW5jZV9yZXF1ZXN0cxgOIAMoCzIsLm90cGtpLmNvbW1vbi5jb3JlLmlzc3Vlci52MS5Jc3N1YW5jZVJlcXVlc3QSUAoMY2VydGlmaWNhdGVzGA8gAygLMjoub3Rwa2kuY29tbW9uLmNvcmUuaXNzdWVkX2NlcnRpZmljYXRlLnYxLklzc3VlZENlcnRpZmljYXRlEncKImNlcnRpZmljYXRlX2F1dGhvcml0eV9jZXJ0aWZpY2F0ZXMYECADKAsySy5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZRJyChpjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfa2V5cxgRIAMoCzJOLm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlS2V5EkoKEXB1Ymxpc2hlcl9jb25maWdzGBIgAygLMi8ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZxJECg5jcmxfcHVibGlzaGVycxgTIAMoCzIsLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5DcmxQdWJsaXNoZXISVAoWY2VydGlmaWNhdGVfcHVibGlzaGVycxgUIAMoCzI0Lm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5DZXJ0aWZpY2F0ZVB1Ymxpc2hlckLLAQohY29tLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxQg1JbXBvcnRlclByb3RvUAGiAgRPQ0NJqgIdT3Rwa2kuQ29tbW9uLkNvcmUuSW1wb3J0ZXIuVjHKAh1PdHBraVxDb21tb25cQ29yZVxJbXBvcnRlclxWMeICKU90cGtpXENvbW1vblxDb3JlXEltcG9ydGVyXFYxXEdQQk1ldGFkYXRh6gIhT3Rwa2k6OkNvbW1vbjo6Q29yZTo6SW1wb3J0ZXI6OlYxYgZwcm90bzM", [file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth, file_otpki_common_core_certificate_authority_v1_certificate_authority, file_otpki_common_core_certificate_extension_v1_certificate_extension, file_otpki_common_core_certificate_profile_v1_certificate_profile, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_end_entity_profile_v1_end_entity_profile, file_otpki_common_core_enroller_v1_enroller, file_otpki_common_core_extended_key_usage_v1_extended_key_usage, file_otpki_common_core_issued_certificate_v1_issued_certificate, file_otpki_common_core_issuer_v1_issuer, file_otpki_common_core_key_v1_key, file_otpki_common_core_key_storage_config_v1_key_storage_config, file_otpki_common_core_publisher_v1_publisher, file_otpki_common_core_smtp_settings_v1_smtp_settings]);
+  fileDesc("CixvdHBraS9jb21tb24vY29yZS9pbXBvcnRlci92MS9pbXBvcnRlci5wcm90bxIdb3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEiygsKEEV4cG9ydFBhZ2luYXRpb24SQQoLcGVybWlzc2lvbnMYASABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0EjsKBXJvbGVzGAIgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJHChFhcHByb3ZhbF9wcm9maWxlcxgDIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSQwoNc210cF9zZXR0aW5ncxgEIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSSQoTZW5kX2VudGl0eV9wcm9maWxlcxgFIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSQgoMZW5kX2VudGl0aWVzGAYgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJJChNlbnJvbGxtZW50X3JlcXVlc3RzGAcgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJJChNrZXlfc3RvcmFnZV9jb25maWdzGAggASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBI6CgRrZXlzGAkgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJKChRjZXJ0aWZpY2F0ZV9wcm9maWxlcxgKIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSQQoLY3VzdG9tX2VrdXMYCyABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0ElMKHWN1c3RvbV9jZXJ0aWZpY2F0ZV9leHRlbnNpb25zGAwgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJNChdjZXJ0aWZpY2F0ZV9hdXRob3JpdGllcxgNIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSRwoRaXNzdWFuY2VfcmVxdWVzdHMYDiABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0EkIKDGNlcnRpZmljYXRlcxgPIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSWAoiY2VydGlmaWNhdGVfYXV0aG9yaXR5X2NlcnRpZmljYXRlcxgQIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSUAoaY2VydGlmaWNhdGVfYXV0aG9yaXR5X2tleXMYESABKAsyLC5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXF1ZXN0EkcKEXB1Ymxpc2hlcl9jb25maWdzGBIgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdBJECg5jcmxfcHVibGlzaGVycxgTIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3QSTAoWY2VydGlmaWNhdGVfcHVibGlzaGVycxgUIAEoCzIsLm90cGtpLmNvbW1vbi5hcGkucXVlcnkudjEuUGFnaW5hdGlvblJlcXVlc3Qi1gwKCkV4cG9ydERhdGESNQoLcGVybWlzc2lvbnMYASADKAsyIC5vdHBraS5jb21tb24uYXV0aC52MS5QZXJtaXNzaW9uEikKBXJvbGVzGAIgAygLMhoub3Rwa2kuY29tbW9uLmF1dGgudjEuUm9sZRJAChFhcHByb3ZhbF9wcm9maWxlcxgDIAMoCzIlLm90cGtpLmNvbW1vbi5hdXRoLnYxLkFwcHJvdmFsUHJvZmlsZRJHCg1zbXRwX3NldHRpbmdzGAQgAygLMjAub3Rwa2kuY29tbW9uLmNvcmUuc210cF9zZXR0aW5ncy52MS5TTVRQU2V0dGluZ3MSVgoTZW5kX2VudGl0eV9wcm9maWxlcxgFIAMoCzI5Lm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHlfcHJvZmlsZS52MS5FbmRFbnRpdHlQcm9maWxlEkAKDGVuZF9lbnRpdGllcxgGIAMoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5Ek0KE2Vucm9sbG1lbnRfcmVxdWVzdHMYByADKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdBJWChNrZXlfc3RvcmFnZV9jb25maWdzGAggAygLMjkub3Rwa2kuY29tbW9uLmNvcmUua2V5X3N0b3JhZ2VfY29uZmlnLnYxLktleVN0b3JhZ2VDb25maWcSKwoEa2V5cxgJIAMoCzIdLm90cGtpLmNvbW1vbi5jb3JlLmtleS52MS5LZXkSWgoUY2VydGlmaWNhdGVfcHJvZmlsZXMYCiADKAsyPC5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9wcm9maWxlLnYxLkNlcnRpZmljYXRlUHJvZmlsZRJPCgtjdXN0b21fZWt1cxgLIAMoCzI6Lm90cGtpLmNvbW1vbi5jb3JlLmV4dGVuZGVkX2tleV91c2FnZS52MS5DdXN0b21FeHRLZXlVc2FnZRJtCh1jdXN0b21fY2VydGlmaWNhdGVfZXh0ZW5zaW9ucxgMIAMoCzJGLm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2V4dGVuc2lvbi52MS5DdXN0b21DZXJ0aWZpY2F0ZUV4dGVuc2lvbhJhChdjZXJ0aWZpY2F0ZV9hdXRob3JpdGllcxgNIAMoCzJALm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eRJHChFpc3N1YW5jZV9yZXF1ZXN0cxgOIAMoCzIsLm90cGtpLmNvbW1vbi5jb3JlLmlzc3Vlci52MS5Jc3N1YW5jZVJlcXVlc3QSUAoMY2VydGlmaWNhdGVzGA8gAygLMjoub3Rwa2kuY29tbW9uLmNvcmUuaXNzdWVkX2NlcnRpZmljYXRlLnYxLklzc3VlZENlcnRpZmljYXRlEncKImNlcnRpZmljYXRlX2F1dGhvcml0eV9jZXJ0aWZpY2F0ZXMYECADKAsySy5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZRJyChpjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfa2V5cxgRIAMoCzJOLm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlS2V5EkoKEXB1Ymxpc2hlcl9jb25maWdzGBIgAygLMi8ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZxJECg5jcmxfcHVibGlzaGVycxgTIAMoCzIsLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5DcmxQdWJsaXNoZXISVAoWY2VydGlmaWNhdGVfcHVibGlzaGVycxgUIAMoCzI0Lm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5DZXJ0aWZpY2F0ZVB1Ymxpc2hlciJsCg1JbXBvcnRPcHRpb25zEkoKEWNvbmZsaWN0X3N0cmF0ZWd5GAEgASgOMi8ub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuQ29uZmxpY3RTdHJhdGVneRIPCgdkcnlfcnVuGAIgASgIInoKEU1vZGVsSW1wb3J0UmVzdWx0Eg0KBW1vZGVsGAEgASgJEhAKCGluc2VydGVkGAIgASgDEg8KB3NraXBwZWQYAyABKAMSEAoIcmVwbGFjZWQYBCABKAMSDwoHZGVsZXRlZBgFIAEoAxIQCghtZXNzYWdlcxgGIAMoCSJhCgxJbXBvcnRSZXN1bHQSDwoHZHJ5X3J1bhgBIAEoCBJACgZtb2RlbHMYAiADKAsyMC5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5Nb2RlbEltcG9ydFJlc3VsdCqMAQoQQ29uZmxpY3RTdHJhdGVneRIhCh1DT05GTElDVF9TVFJBVEVHWV9VTlNQRUNJRklFRBAAEhsKF0NPTkZMSUNUX1NUUkFURUdZX0VSUk9SEAESGgoWQ09ORkxJQ1RfU1RSQVRFR1lfU0tJUBACEhwKGENPTkZMSUNUX1NUUkFURUdZX1VQU0VSVBADQssBCiFjb20ub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjFCDUltcG9ydGVyUHJvdG9QAaICBE9DQ0mqAh1PdHBraS5Db21tb24uQ29yZS5JbXBvcnRlci5WMcoCHU90cGtpXENvbW1vblxDb3JlXEltcG9ydGVyXFYx4gIpT3Rwa2lcQ29tbW9uXENvcmVcSW1wb3J0ZXJcVjFcR1BCTWV0YWRhdGHqAiFPdHBraTo6Q29tbW9uOjpDb3JlOjpJbXBvcnRlcjo6VjFiBnByb3RvMw", [file_otpki_common_api_query_v1_query, file_otpki_common_auth_v1_auth, file_otpki_common_core_certificate_authority_v1_certificate_authority, file_otpki_common_core_certificate_extension_v1_certificate_extension, file_otpki_common_core_certificate_profile_v1_certificate_profile, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_end_entity_profile_v1_end_entity_profile, file_otpki_common_core_enroller_v1_enroller, file_otpki_common_core_extended_key_usage_v1_extended_key_usage, file_otpki_common_core_issued_certificate_v1_issued_certificate, file_otpki_common_core_issuer_v1_issuer, file_otpki_common_core_key_v1_key, file_otpki_common_core_key_storage_config_v1_key_storage_config, file_otpki_common_core_publisher_v1_publisher, file_otpki_common_core_smtp_settings_v1_smtp_settings]);
 
 /**
  * Export Pagination options allow the user to specify either:
@@ -613,4 +613,237 @@ export type ExportDataValid = Message<"otpki.common.core.importer.v1.ExportData"
  */
 export const ExportDataSchema: GenMessage<ExportData, {jsonType: ExportDataJson, validType: ExportDataValid}> = /*@__PURE__*/
   messageDesc(file_otpki_common_core_importer_v1_importer, 1);
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportOptions
+ */
+export type ImportOptions = Message<"otpki.common.core.importer.v1.ImportOptions"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ConflictStrategy conflict_strategy = 1;
+   */
+  conflictStrategy: ConflictStrategy;
+
+  /**
+   * run in tx and rollback, return expected result to client
+   *
+   * @generated from field: bool dry_run = 2;
+   */
+  dryRun: boolean;
+};
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportOptions
+ */
+export type ImportOptionsJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ConflictStrategy conflict_strategy = 1;
+   */
+  conflictStrategy?: ConflictStrategyJson;
+
+  /**
+   * run in tx and rollback, return expected result to client
+   *
+   * @generated from field: bool dry_run = 2;
+   */
+  dryRun?: boolean;
+};
+
+export type ImportOptionsValid = ImportOptions;
+
+/**
+ * Describes the message otpki.common.core.importer.v1.ImportOptions.
+ * Use `create(ImportOptionsSchema)` to create a new message.
+ */
+export const ImportOptionsSchema: GenMessage<ImportOptions, {jsonType: ImportOptionsJson, validType: ImportOptionsValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_importer_v1_importer, 2);
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ModelImportResult
+ */
+export type ModelImportResult = Message<"otpki.common.core.importer.v1.ModelImportResult"> & {
+  /**
+   * model key
+   *
+   * @generated from field: string model = 1;
+   */
+  model: string;
+
+  /**
+   * what was inserted
+   *
+   * @generated from field: int64 inserted = 2;
+   */
+  inserted: bigint;
+
+  /**
+   * rows skipped because a conflicting row exists
+   *
+   * @generated from field: int64 skipped = 3;
+   */
+  skipped: bigint;
+
+  /**
+   * existing rows deleted and (re)inserted
+   *
+   * @generated from field: int64 replaced = 4;
+   */
+  replaced: bigint;
+
+  /**
+   * rows removed as a side effect, ie: cascade of an UPSERT delete
+   *
+   * @generated from field: int64 deleted = 5;
+   */
+  deleted: bigint;
+
+  /**
+   * info to provide user for operational context, ie: notes
+   *
+   * @generated from field: repeated string messages = 6;
+   */
+  messages: string[];
+};
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ModelImportResult
+ */
+export type ModelImportResultJson = {
+  /**
+   * model key
+   *
+   * @generated from field: string model = 1;
+   */
+  model?: string;
+
+  /**
+   * what was inserted
+   *
+   * @generated from field: int64 inserted = 2;
+   */
+  inserted?: string;
+
+  /**
+   * rows skipped because a conflicting row exists
+   *
+   * @generated from field: int64 skipped = 3;
+   */
+  skipped?: string;
+
+  /**
+   * existing rows deleted and (re)inserted
+   *
+   * @generated from field: int64 replaced = 4;
+   */
+  replaced?: string;
+
+  /**
+   * rows removed as a side effect, ie: cascade of an UPSERT delete
+   *
+   * @generated from field: int64 deleted = 5;
+   */
+  deleted?: string;
+
+  /**
+   * info to provide user for operational context, ie: notes
+   *
+   * @generated from field: repeated string messages = 6;
+   */
+  messages?: string[];
+};
+
+export type ModelImportResultValid = ModelImportResult;
+
+/**
+ * Describes the message otpki.common.core.importer.v1.ModelImportResult.
+ * Use `create(ModelImportResultSchema)` to create a new message.
+ */
+export const ModelImportResultSchema: GenMessage<ModelImportResult, {jsonType: ModelImportResultJson, validType: ModelImportResultValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_importer_v1_importer, 3);
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportResult
+ */
+export type ImportResult = Message<"otpki.common.core.importer.v1.ImportResult"> & {
+  /**
+   * @generated from field: bool dry_run = 1;
+   */
+  dryRun: boolean;
+
+  /**
+   * @generated from field: repeated otpki.common.core.importer.v1.ModelImportResult models = 2;
+   */
+  models: ModelImportResult[];
+};
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportResult
+ */
+export type ImportResultJson = {
+  /**
+   * @generated from field: bool dry_run = 1;
+   */
+  dryRun?: boolean;
+
+  /**
+   * @generated from field: repeated otpki.common.core.importer.v1.ModelImportResult models = 2;
+   */
+  models?: ModelImportResultJson[];
+};
+
+export type ImportResultValid = ImportResult;
+
+/**
+ * Describes the message otpki.common.core.importer.v1.ImportResult.
+ * Use `create(ImportResultSchema)` to create a new message.
+ */
+export const ImportResultSchema: GenMessage<ImportResult, {jsonType: ImportResultJson, validType: ImportResultValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_importer_v1_importer, 4);
+
+/**
+ * Controls import behavior when an incoming record already exists
+ *
+ * @generated from enum otpki.common.core.importer.v1.ConflictStrategy
+ */
+export enum ConflictStrategy {
+  /**
+   * defaults to CONFLICT_STRATEGY_ERROR
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * default
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_ERROR = 1;
+   */
+  ERROR = 1,
+
+  /**
+   * keep existing and skip imported
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_SKIP = 2;
+   */
+  SKIP = 2,
+
+  /**
+   * delete existing (cascaded), replace with imported
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_UPSERT = 3;
+   */
+  UPSERT = 3,
+}
+
+/**
+ * Controls import behavior when an incoming record already exists
+ *
+ * @generated from enum otpki.common.core.importer.v1.ConflictStrategy
+ */
+export type ConflictStrategyJson = "CONFLICT_STRATEGY_UNSPECIFIED" | "CONFLICT_STRATEGY_ERROR" | "CONFLICT_STRATEGY_SKIP" | "CONFLICT_STRATEGY_UPSERT";
+
+/**
+ * Describes the enum otpki.common.core.importer.v1.ConflictStrategy.
+ */
+export const ConflictStrategySchema: GenEnum<ConflictStrategy, ConflictStrategyJson> = /*@__PURE__*/
+  enumDesc(file_otpki_common_core_importer_v1_importer, 0);
 

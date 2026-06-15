@@ -1546,6 +1546,15 @@ components:
         - oid
         - name
       additionalProperties: false
+    otpki.common.core.importer.v1.ConflictStrategy:
+      type: string
+      title: ConflictStrategy
+      enum:
+        - CONFLICT_STRATEGY_UNSPECIFIED
+        - CONFLICT_STRATEGY_ERROR
+        - CONFLICT_STRATEGY_SKIP
+        - CONFLICT_STRATEGY_UPSERT
+      description: Controls import behavior when an incoming record already exists
     otpki.common.core.importer.v1.ExportData:
       type: object
       properties:
@@ -1728,6 +1737,74 @@ components:
          Specific page-queries of specific models to export  - or -
          export of everything.
          If any pagination data is set, only that data will be included for export.
+    otpki.common.core.importer.v1.ImportOptions:
+      type: object
+      properties:
+        conflictStrategy:
+          title: conflict_strategy
+          $ref: '#/components/schemas/otpki.common.core.importer.v1.ConflictStrategy'
+        dryRun:
+          type: boolean
+          title: dry_run
+          description: run in tx and rollback, return expected result to client
+      title: ImportOptions
+      additionalProperties: false
+    otpki.common.core.importer.v1.ImportResult:
+      type: object
+      properties:
+        dryRun:
+          type: boolean
+          title: dry_run
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.importer.v1.ModelImportResult'
+          title: models
+      title: ImportResult
+      additionalProperties: false
+    otpki.common.core.importer.v1.ModelImportResult:
+      type: object
+      properties:
+        model:
+          type: string
+          title: model
+          description: model key
+        inserted:
+          type:
+            - integer
+            - string
+          title: inserted
+          format: int64
+          description: what was inserted
+        skipped:
+          type:
+            - integer
+            - string
+          title: skipped
+          format: int64
+          description: rows skipped because a conflicting row exists
+        replaced:
+          type:
+            - integer
+            - string
+          title: replaced
+          format: int64
+          description: existing rows deleted and (re)inserted
+        deleted:
+          type:
+            - integer
+            - string
+          title: deleted
+          format: int64
+          description: 'rows removed as a side effect, ie: cascade of an UPSERT delete'
+        messages:
+          type: array
+          items:
+            type: string
+          title: messages
+          description: 'info to provide user for operational context, ie: notes'
+      title: ModelImportResult
+      additionalProperties: false
     otpki.common.core.issued_certificate.v1.IssuedCertificate:
       type: object
       properties:

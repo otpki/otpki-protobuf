@@ -114,6 +114,7 @@ func (x *ExportDataResponse) GetData() *v1.ExportData {
 type ImportDataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          *v1.ExportData         `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Options       *v1.ImportOptions      `protobuf:"bytes,2,opt,name=options,proto3" json:"options,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -155,8 +156,16 @@ func (x *ImportDataRequest) GetData() *v1.ExportData {
 	return nil
 }
 
+func (x *ImportDataRequest) GetOptions() *v1.ImportOptions {
+	if x != nil {
+		return x.Options
+	}
+	return nil
+}
+
 type ImportDataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Result        *v1.ImportResult       `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -189,6 +198,13 @@ func (x *ImportDataResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ImportDataResponse.ProtoReflect.Descriptor instead.
 func (*ImportDataResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_importer_v1_importer_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ImportDataResponse) GetResult() *v1.ImportResult {
+	if x != nil {
+		return x.Result
+	}
+	return nil
 }
 
 type ExportDataRawRequest struct {
@@ -282,6 +298,7 @@ func (x *ExportDataRawResponse) GetData() []byte {
 type ImportDataRawRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          []byte                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+	Options       *v1.ImportOptions      `protobuf:"bytes,2,opt,name=options,proto3" json:"options,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -323,8 +340,16 @@ func (x *ImportDataRawRequest) GetData() []byte {
 	return nil
 }
 
+func (x *ImportDataRawRequest) GetOptions() *v1.ImportOptions {
+	if x != nil {
+		return x.Options
+	}
+	return nil
+}
+
 type ImportDataRawResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Result        *v1.ImportResult       `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -359,6 +384,13 @@ func (*ImportDataRawResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_importer_v1_importer_proto_rawDescGZIP(), []int{7}
 }
 
+func (x *ImportDataRawResponse) GetResult() *v1.ImportResult {
+	if x != nil {
+		return x.Result
+	}
+	return nil
+}
+
 var File_otpki_public_importer_v1_importer_proto protoreflect.FileDescriptor
 
 const file_otpki_public_importer_v1_importer_proto_rawDesc = "" +
@@ -367,17 +399,21 @@ const file_otpki_public_importer_v1_importer_proto_rawDesc = "" +
 	"\x11ExportDataRequest\x12\\\n" +
 	"\x11export_pagination\x18\x01 \x01(\v2/.otpki.common.core.importer.v1.ExportPaginationR\x10exportPagination\"S\n" +
 	"\x12ExportDataResponse\x12=\n" +
-	"\x04data\x18\x01 \x01(\v2).otpki.common.core.importer.v1.ExportDataR\x04data\"R\n" +
+	"\x04data\x18\x01 \x01(\v2).otpki.common.core.importer.v1.ExportDataR\x04data\"\x9a\x01\n" +
 	"\x11ImportDataRequest\x12=\n" +
-	"\x04data\x18\x01 \x01(\v2).otpki.common.core.importer.v1.ExportDataR\x04data\"\x14\n" +
-	"\x12ImportDataResponse\"t\n" +
+	"\x04data\x18\x01 \x01(\v2).otpki.common.core.importer.v1.ExportDataR\x04data\x12F\n" +
+	"\aoptions\x18\x02 \x01(\v2,.otpki.common.core.importer.v1.ImportOptionsR\aoptions\"Y\n" +
+	"\x12ImportDataResponse\x12C\n" +
+	"\x06result\x18\x01 \x01(\v2+.otpki.common.core.importer.v1.ImportResultR\x06result\"t\n" +
 	"\x14ExportDataRawRequest\x12\\\n" +
 	"\x11export_pagination\x18\x01 \x01(\v2/.otpki.common.core.importer.v1.ExportPaginationR\x10exportPagination\"+\n" +
 	"\x15ExportDataRawResponse\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\fR\x04data\"*\n" +
+	"\x04data\x18\x01 \x01(\fR\x04data\"r\n" +
 	"\x14ImportDataRawRequest\x12\x12\n" +
-	"\x04data\x18\x01 \x01(\fR\x04data\"\x17\n" +
-	"\x15ImportDataRawResponse2\xab\x05\n" +
+	"\x04data\x18\x01 \x01(\fR\x04data\x12F\n" +
+	"\aoptions\x18\x02 \x01(\v2,.otpki.common.core.importer.v1.ImportOptionsR\aoptions\"\\\n" +
+	"\x15ImportDataRawResponse\x12C\n" +
+	"\x06result\x18\x01 \x01(\v2+.otpki.common.core.importer.v1.ImportResultR\x06result2\xab\x05\n" +
 	"\x0fImporterService\x12\xae\x01\n" +
 	"\n" +
 	"ExportData\x12+.otpki.public.importer.v1.ExportDataRequest\x1a,.otpki.public.importer.v1.ExportDataResponse\"E\x82\xd3\xe4\x93\x02?:\x11export_paginationZ\x15\x12\x13/v1/importer/export\x1a\x13/v1/importer/export\x12\x8a\x01\n" +
@@ -411,25 +447,31 @@ var file_otpki_public_importer_v1_importer_proto_goTypes = []any{
 	(*ImportDataRawResponse)(nil), // 7: otpki.public.importer.v1.ImportDataRawResponse
 	(*v1.ExportPagination)(nil),   // 8: otpki.common.core.importer.v1.ExportPagination
 	(*v1.ExportData)(nil),         // 9: otpki.common.core.importer.v1.ExportData
+	(*v1.ImportOptions)(nil),      // 10: otpki.common.core.importer.v1.ImportOptions
+	(*v1.ImportResult)(nil),       // 11: otpki.common.core.importer.v1.ImportResult
 }
 var file_otpki_public_importer_v1_importer_proto_depIdxs = []int32{
-	8, // 0: otpki.public.importer.v1.ExportDataRequest.export_pagination:type_name -> otpki.common.core.importer.v1.ExportPagination
-	9, // 1: otpki.public.importer.v1.ExportDataResponse.data:type_name -> otpki.common.core.importer.v1.ExportData
-	9, // 2: otpki.public.importer.v1.ImportDataRequest.data:type_name -> otpki.common.core.importer.v1.ExportData
-	8, // 3: otpki.public.importer.v1.ExportDataRawRequest.export_pagination:type_name -> otpki.common.core.importer.v1.ExportPagination
-	0, // 4: otpki.public.importer.v1.ImporterService.ExportData:input_type -> otpki.public.importer.v1.ExportDataRequest
-	2, // 5: otpki.public.importer.v1.ImporterService.ImportData:input_type -> otpki.public.importer.v1.ImportDataRequest
-	4, // 6: otpki.public.importer.v1.ImporterService.ExportDataRaw:input_type -> otpki.public.importer.v1.ExportDataRawRequest
-	6, // 7: otpki.public.importer.v1.ImporterService.ImportDataRaw:input_type -> otpki.public.importer.v1.ImportDataRawRequest
-	1, // 8: otpki.public.importer.v1.ImporterService.ExportData:output_type -> otpki.public.importer.v1.ExportDataResponse
-	3, // 9: otpki.public.importer.v1.ImporterService.ImportData:output_type -> otpki.public.importer.v1.ImportDataResponse
-	5, // 10: otpki.public.importer.v1.ImporterService.ExportDataRaw:output_type -> otpki.public.importer.v1.ExportDataRawResponse
-	7, // 11: otpki.public.importer.v1.ImporterService.ImportDataRaw:output_type -> otpki.public.importer.v1.ImportDataRawResponse
-	8, // [8:12] is the sub-list for method output_type
-	4, // [4:8] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	8,  // 0: otpki.public.importer.v1.ExportDataRequest.export_pagination:type_name -> otpki.common.core.importer.v1.ExportPagination
+	9,  // 1: otpki.public.importer.v1.ExportDataResponse.data:type_name -> otpki.common.core.importer.v1.ExportData
+	9,  // 2: otpki.public.importer.v1.ImportDataRequest.data:type_name -> otpki.common.core.importer.v1.ExportData
+	10, // 3: otpki.public.importer.v1.ImportDataRequest.options:type_name -> otpki.common.core.importer.v1.ImportOptions
+	11, // 4: otpki.public.importer.v1.ImportDataResponse.result:type_name -> otpki.common.core.importer.v1.ImportResult
+	8,  // 5: otpki.public.importer.v1.ExportDataRawRequest.export_pagination:type_name -> otpki.common.core.importer.v1.ExportPagination
+	10, // 6: otpki.public.importer.v1.ImportDataRawRequest.options:type_name -> otpki.common.core.importer.v1.ImportOptions
+	11, // 7: otpki.public.importer.v1.ImportDataRawResponse.result:type_name -> otpki.common.core.importer.v1.ImportResult
+	0,  // 8: otpki.public.importer.v1.ImporterService.ExportData:input_type -> otpki.public.importer.v1.ExportDataRequest
+	2,  // 9: otpki.public.importer.v1.ImporterService.ImportData:input_type -> otpki.public.importer.v1.ImportDataRequest
+	4,  // 10: otpki.public.importer.v1.ImporterService.ExportDataRaw:input_type -> otpki.public.importer.v1.ExportDataRawRequest
+	6,  // 11: otpki.public.importer.v1.ImporterService.ImportDataRaw:input_type -> otpki.public.importer.v1.ImportDataRawRequest
+	1,  // 12: otpki.public.importer.v1.ImporterService.ExportData:output_type -> otpki.public.importer.v1.ExportDataResponse
+	3,  // 13: otpki.public.importer.v1.ImporterService.ImportData:output_type -> otpki.public.importer.v1.ImportDataResponse
+	5,  // 14: otpki.public.importer.v1.ImporterService.ExportDataRaw:output_type -> otpki.public.importer.v1.ExportDataRawResponse
+	7,  // 15: otpki.public.importer.v1.ImporterService.ImportDataRaw:output_type -> otpki.public.importer.v1.ImportDataRawResponse
+	12, // [12:16] is the sub-list for method output_type
+	8,  // [8:12] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_importer_v1_importer_proto_init() }

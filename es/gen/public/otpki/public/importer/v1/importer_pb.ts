@@ -5,7 +5,7 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_api_annotations } from "../../../../google/api/annotations_pb.js";
-import type { ExportData, ExportDataJson, ExportDataValid, ExportPagination, ExportPaginationJson } from "../../../common/core/importer/v1/importer_pb.js";
+import type { ExportData, ExportDataJson, ExportDataValid, ExportPagination, ExportPaginationJson, ImportOptions, ImportOptionsJson, ImportOptionsValid, ImportResult, ImportResultJson } from "../../../common/core/importer/v1/importer_pb.js";
 import { file_otpki_common_core_importer_v1_importer } from "../../../common/core/importer/v1/importer_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/importer/v1/importer.proto.
  */
 export const file_otpki_public_importer_v1_importer: GenFile = /*@__PURE__*/
-  fileDesc("CidvdHBraS9wdWJsaWMvaW1wb3J0ZXIvdjEvaW1wb3J0ZXIucHJvdG8SGG90cGtpLnB1YmxpYy5pbXBvcnRlci52MSJfChFFeHBvcnREYXRhUmVxdWVzdBJKChFleHBvcnRfcGFnaW5hdGlvbhgBIAEoCzIvLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxLkV4cG9ydFBhZ2luYXRpb24iTQoSRXhwb3J0RGF0YVJlc3BvbnNlEjcKBGRhdGEYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5FeHBvcnREYXRhIkwKEUltcG9ydERhdGFSZXF1ZXN0EjcKBGRhdGEYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5FeHBvcnREYXRhIhQKEkltcG9ydERhdGFSZXNwb25zZSJiChRFeHBvcnREYXRhUmF3UmVxdWVzdBJKChFleHBvcnRfcGFnaW5hdGlvbhgBIAEoCzIvLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxLkV4cG9ydFBhZ2luYXRpb24iJQoVRXhwb3J0RGF0YVJhd1Jlc3BvbnNlEgwKBGRhdGEYASABKAwiJAoUSW1wb3J0RGF0YVJhd1JlcXVlc3QSDAoEZGF0YRgBIAEoDCIXChVJbXBvcnREYXRhUmF3UmVzcG9uc2UyqwUKD0ltcG9ydGVyU2VydmljZRKuAQoKRXhwb3J0RGF0YRIrLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmVxdWVzdBosLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmVzcG9uc2UiRYLT5JMCPzoRZXhwb3J0X3BhZ2luYXRpb25aFRITL3YxL2ltcG9ydGVyL2V4cG9ydBoTL3YxL2ltcG9ydGVyL2V4cG9ydBKKAQoKSW1wb3J0RGF0YRIrLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5JbXBvcnREYXRhUmVxdWVzdBosLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5JbXBvcnREYXRhUmVzcG9uc2UiIYLT5JMCGzoEZGF0YSITL3YxL2ltcG9ydGVyL2ltcG9ydBK/AQoNRXhwb3J0RGF0YVJhdxIuLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3UmVxdWVzdBovLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3UmVzcG9uc2UiTYLT5JMCRzoRZXhwb3J0X3BhZ2luYXRpb25aGRIXL3YxL2ltcG9ydGVyL2V4cG9ydC9yYXcaFy92MS9pbXBvcnRlci9leHBvcnQvcmF3EpcBCg1JbXBvcnREYXRhUmF3Ei4ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdSZXF1ZXN0Gi8ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdSZXNwb25zZSIlgtPkkwIfOgRkYXRhIhcvdjEvaW1wb3J0ZXIvaW1wb3J0L3Jhd0KyAQocY29tLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MUINSW1wb3J0ZXJQcm90b1ABogIDT1BJqgIYT3Rwa2kuUHVibGljLkltcG9ydGVyLlYxygIZT3Rwa2lcUHVibGljX1xJbXBvcnRlclxWMeICJU90cGtpXFB1YmxpY19cSW1wb3J0ZXJcVjFcR1BCTWV0YWRhdGHqAhtPdHBraTo6UHVibGljOjpJbXBvcnRlcjo6VjFiBnByb3RvMw", [file_google_api_annotations, file_otpki_common_core_importer_v1_importer]);
+  fileDesc("CidvdHBraS9wdWJsaWMvaW1wb3J0ZXIvdjEvaW1wb3J0ZXIucHJvdG8SGG90cGtpLnB1YmxpYy5pbXBvcnRlci52MSJfChFFeHBvcnREYXRhUmVxdWVzdBJKChFleHBvcnRfcGFnaW5hdGlvbhgBIAEoCzIvLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxLkV4cG9ydFBhZ2luYXRpb24iTQoSRXhwb3J0RGF0YVJlc3BvbnNlEjcKBGRhdGEYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5FeHBvcnREYXRhIosBChFJbXBvcnREYXRhUmVxdWVzdBI3CgRkYXRhGAEgASgLMikub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0RGF0YRI9CgdvcHRpb25zGAIgASgLMiwub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0T3B0aW9ucyJRChJJbXBvcnREYXRhUmVzcG9uc2USOwoGcmVzdWx0GAEgASgLMisub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0UmVzdWx0ImIKFEV4cG9ydERhdGFSYXdSZXF1ZXN0EkoKEWV4cG9ydF9wYWdpbmF0aW9uGAEgASgLMi8ub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0UGFnaW5hdGlvbiIlChVFeHBvcnREYXRhUmF3UmVzcG9uc2USDAoEZGF0YRgBIAEoDCJjChRJbXBvcnREYXRhUmF3UmVxdWVzdBIMCgRkYXRhGAEgASgMEj0KB29wdGlvbnMYAiABKAsyLC5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5JbXBvcnRPcHRpb25zIlQKFUltcG9ydERhdGFSYXdSZXNwb25zZRI7CgZyZXN1bHQYASABKAsyKy5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5JbXBvcnRSZXN1bHQyqwUKD0ltcG9ydGVyU2VydmljZRKuAQoKRXhwb3J0RGF0YRIrLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmVxdWVzdBosLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmVzcG9uc2UiRYLT5JMCPzoRZXhwb3J0X3BhZ2luYXRpb25aFRITL3YxL2ltcG9ydGVyL2V4cG9ydBoTL3YxL2ltcG9ydGVyL2V4cG9ydBKKAQoKSW1wb3J0RGF0YRIrLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5JbXBvcnREYXRhUmVxdWVzdBosLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5JbXBvcnREYXRhUmVzcG9uc2UiIYLT5JMCGzoEZGF0YSITL3YxL2ltcG9ydGVyL2ltcG9ydBK/AQoNRXhwb3J0RGF0YVJhdxIuLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3UmVxdWVzdBovLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3UmVzcG9uc2UiTYLT5JMCRzoRZXhwb3J0X3BhZ2luYXRpb25aGRIXL3YxL2ltcG9ydGVyL2V4cG9ydC9yYXcaFy92MS9pbXBvcnRlci9leHBvcnQvcmF3EpcBCg1JbXBvcnREYXRhUmF3Ei4ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdSZXF1ZXN0Gi8ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdSZXNwb25zZSIlgtPkkwIfOgRkYXRhIhcvdjEvaW1wb3J0ZXIvaW1wb3J0L3Jhd0KyAQocY29tLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MUINSW1wb3J0ZXJQcm90b1ABogIDT1BJqgIYT3Rwa2kuUHVibGljLkltcG9ydGVyLlYxygIZT3Rwa2lcUHVibGljX1xJbXBvcnRlclxWMeICJU90cGtpXFB1YmxpY19cSW1wb3J0ZXJcVjFcR1BCTWV0YWRhdGHqAhtPdHBraTo6UHVibGljOjpJbXBvcnRlcjo6VjFiBnByb3RvMw", [file_google_api_annotations, file_otpki_common_core_importer_v1_importer]);
 
 /**
  * @generated from message otpki.public.importer.v1.ExportDataRequest
@@ -89,6 +89,11 @@ export type ImportDataRequest = Message<"otpki.public.importer.v1.ImportDataRequ
    * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
    */
   data?: ExportData;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
 };
 
 /**
@@ -99,6 +104,11 @@ export type ImportDataRequestJson = {
    * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
    */
   data?: ExportDataJson;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
 };
 
 /**
@@ -109,6 +119,11 @@ export type ImportDataRequestValid = Message<"otpki.public.importer.v1.ImportDat
    * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
    */
   data?: ExportDataValid;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsValid;
 };
 
 /**
@@ -122,12 +137,20 @@ export const ImportDataRequestSchema: GenMessage<ImportDataRequest, {jsonType: I
  * @generated from message otpki.public.importer.v1.ImportDataResponse
  */
 export type ImportDataResponse = Message<"otpki.public.importer.v1.ImportDataResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
 };
 
 /**
  * @generated from message otpki.public.importer.v1.ImportDataResponse
  */
 export type ImportDataResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
 };
 
 export type ImportDataResponseValid = ImportDataResponse;
@@ -205,6 +228,11 @@ export type ImportDataRawRequest = Message<"otpki.public.importer.v1.ImportDataR
    * @generated from field: bytes data = 1;
    */
   data: Uint8Array;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
 };
 
 /**
@@ -215,6 +243,11 @@ export type ImportDataRawRequestJson = {
    * @generated from field: bytes data = 1;
    */
   data?: string;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
 };
 
 export type ImportDataRawRequestValid = ImportDataRawRequest;
@@ -230,12 +263,20 @@ export const ImportDataRawRequestSchema: GenMessage<ImportDataRawRequest, {jsonT
  * @generated from message otpki.public.importer.v1.ImportDataRawResponse
  */
 export type ImportDataRawResponse = Message<"otpki.public.importer.v1.ImportDataRawResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
 };
 
 /**
  * @generated from message otpki.public.importer.v1.ImportDataRawResponse
  */
 export type ImportDataRawResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
 };
 
 export type ImportDataRawResponseValid = ImportDataRawResponse;

@@ -13,8 +13,11 @@ message ExportDataResponse {
 
 message ImportDataRequest {
   otpki.common.core.importer.v1.ExportData data = 1;
+  otpki.common.core.importer.v1.ImportOptions options = 2;
 }
-message ImportDataResponse {}
+message ImportDataResponse {
+  otpki.common.core.importer.v1.ImportResult result = 1;
+}
 
 message ExportDataRawRequest {
   otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
@@ -25,8 +28,11 @@ message ExportDataRawResponse {
 
 message ImportDataRawRequest {
   bytes data = 1;
+  otpki.common.core.importer.v1.ImportOptions options = 2;
 }
-message ImportDataRawResponse {}
+message ImportDataRawResponse {
+  otpki.common.core.importer.v1.ImportResult result = 1;
+}
 
 service ImporterService {
   // The ExportData route supports export of all or partial subsets of

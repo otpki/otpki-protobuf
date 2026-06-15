@@ -2,7 +2,7 @@
 // @generated from file otpki/common/core/importer/v1/importer.proto (package otpki.common.core.importer.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { PaginationRequest, PaginationRequestJson } from "../../../api/query/v1/query_pb.js";
 import type { ApprovalProfile, ApprovalProfileJson, ApprovalProfileValid, Permission, PermissionJson, PermissionValid, Role, RoleJson, RoleValid } from "../../../auth/v1/auth_pb.js";
@@ -594,4 +594,233 @@ export declare type ExportDataValid = Message<"otpki.common.core.importer.v1.Exp
  * Use `create(ExportDataSchema)` to create a new message.
  */
 export declare const ExportDataSchema: GenMessage<ExportData, {jsonType: ExportDataJson, validType: ExportDataValid}>;
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportOptions
+ */
+export declare type ImportOptions = Message<"otpki.common.core.importer.v1.ImportOptions"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ConflictStrategy conflict_strategy = 1;
+   */
+  conflictStrategy: ConflictStrategy;
+
+  /**
+   * run in tx and rollback, return expected result to client
+   *
+   * @generated from field: bool dry_run = 2;
+   */
+  dryRun: boolean;
+};
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportOptions
+ */
+export declare type ImportOptionsJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ConflictStrategy conflict_strategy = 1;
+   */
+  conflictStrategy?: ConflictStrategyJson;
+
+  /**
+   * run in tx and rollback, return expected result to client
+   *
+   * @generated from field: bool dry_run = 2;
+   */
+  dryRun?: boolean;
+};
+
+export declare type ImportOptionsValid = ImportOptions;
+
+/**
+ * Describes the message otpki.common.core.importer.v1.ImportOptions.
+ * Use `create(ImportOptionsSchema)` to create a new message.
+ */
+export declare const ImportOptionsSchema: GenMessage<ImportOptions, {jsonType: ImportOptionsJson, validType: ImportOptionsValid}>;
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ModelImportResult
+ */
+export declare type ModelImportResult = Message<"otpki.common.core.importer.v1.ModelImportResult"> & {
+  /**
+   * model key
+   *
+   * @generated from field: string model = 1;
+   */
+  model: string;
+
+  /**
+   * what was inserted
+   *
+   * @generated from field: int64 inserted = 2;
+   */
+  inserted: bigint;
+
+  /**
+   * rows skipped because a conflicting row exists
+   *
+   * @generated from field: int64 skipped = 3;
+   */
+  skipped: bigint;
+
+  /**
+   * existing rows deleted and (re)inserted
+   *
+   * @generated from field: int64 replaced = 4;
+   */
+  replaced: bigint;
+
+  /**
+   * rows removed as a side effect, ie: cascade of an UPSERT delete
+   *
+   * @generated from field: int64 deleted = 5;
+   */
+  deleted: bigint;
+
+  /**
+   * info to provide user for operational context, ie: notes
+   *
+   * @generated from field: repeated string messages = 6;
+   */
+  messages: string[];
+};
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ModelImportResult
+ */
+export declare type ModelImportResultJson = {
+  /**
+   * model key
+   *
+   * @generated from field: string model = 1;
+   */
+  model?: string;
+
+  /**
+   * what was inserted
+   *
+   * @generated from field: int64 inserted = 2;
+   */
+  inserted?: string;
+
+  /**
+   * rows skipped because a conflicting row exists
+   *
+   * @generated from field: int64 skipped = 3;
+   */
+  skipped?: string;
+
+  /**
+   * existing rows deleted and (re)inserted
+   *
+   * @generated from field: int64 replaced = 4;
+   */
+  replaced?: string;
+
+  /**
+   * rows removed as a side effect, ie: cascade of an UPSERT delete
+   *
+   * @generated from field: int64 deleted = 5;
+   */
+  deleted?: string;
+
+  /**
+   * info to provide user for operational context, ie: notes
+   *
+   * @generated from field: repeated string messages = 6;
+   */
+  messages?: string[];
+};
+
+export declare type ModelImportResultValid = ModelImportResult;
+
+/**
+ * Describes the message otpki.common.core.importer.v1.ModelImportResult.
+ * Use `create(ModelImportResultSchema)` to create a new message.
+ */
+export declare const ModelImportResultSchema: GenMessage<ModelImportResult, {jsonType: ModelImportResultJson, validType: ModelImportResultValid}>;
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportResult
+ */
+export declare type ImportResult = Message<"otpki.common.core.importer.v1.ImportResult"> & {
+  /**
+   * @generated from field: bool dry_run = 1;
+   */
+  dryRun: boolean;
+
+  /**
+   * @generated from field: repeated otpki.common.core.importer.v1.ModelImportResult models = 2;
+   */
+  models: ModelImportResult[];
+};
+
+/**
+ * @generated from message otpki.common.core.importer.v1.ImportResult
+ */
+export declare type ImportResultJson = {
+  /**
+   * @generated from field: bool dry_run = 1;
+   */
+  dryRun?: boolean;
+
+  /**
+   * @generated from field: repeated otpki.common.core.importer.v1.ModelImportResult models = 2;
+   */
+  models?: ModelImportResultJson[];
+};
+
+export declare type ImportResultValid = ImportResult;
+
+/**
+ * Describes the message otpki.common.core.importer.v1.ImportResult.
+ * Use `create(ImportResultSchema)` to create a new message.
+ */
+export declare const ImportResultSchema: GenMessage<ImportResult, {jsonType: ImportResultJson, validType: ImportResultValid}>;
+
+/**
+ * Controls import behavior when an incoming record already exists
+ *
+ * @generated from enum otpki.common.core.importer.v1.ConflictStrategy
+ */
+export enum ConflictStrategy {
+  /**
+   * defaults to CONFLICT_STRATEGY_ERROR
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * default
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_ERROR = 1;
+   */
+  ERROR = 1,
+
+  /**
+   * keep existing and skip imported
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_SKIP = 2;
+   */
+  SKIP = 2,
+
+  /**
+   * delete existing (cascaded), replace with imported
+   *
+   * @generated from enum value: CONFLICT_STRATEGY_UPSERT = 3;
+   */
+  UPSERT = 3,
+}
+
+/**
+ * Controls import behavior when an incoming record already exists
+ *
+ * @generated from enum otpki.common.core.importer.v1.ConflictStrategy
+ */
+export declare type ConflictStrategyJson = "CONFLICT_STRATEGY_UNSPECIFIED" | "CONFLICT_STRATEGY_ERROR" | "CONFLICT_STRATEGY_SKIP" | "CONFLICT_STRATEGY_UPSERT";
+
+/**
+ * Describes the enum otpki.common.core.importer.v1.ConflictStrategy.
+ */
+export declare const ConflictStrategySchema: GenEnum<ConflictStrategy, ConflictStrategyJson>;
 

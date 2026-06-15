@@ -36,6 +36,59 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Controls import behavior when an incoming record already exists
+type ConflictStrategy int32
+
+const (
+	ConflictStrategy_CONFLICT_STRATEGY_UNSPECIFIED ConflictStrategy = 0 // defaults to CONFLICT_STRATEGY_ERROR
+	ConflictStrategy_CONFLICT_STRATEGY_ERROR       ConflictStrategy = 1 // default
+	ConflictStrategy_CONFLICT_STRATEGY_SKIP        ConflictStrategy = 2 // keep existing and skip imported
+	ConflictStrategy_CONFLICT_STRATEGY_UPSERT      ConflictStrategy = 3 // delete existing (cascaded), replace with imported
+)
+
+// Enum value maps for ConflictStrategy.
+var (
+	ConflictStrategy_name = map[int32]string{
+		0: "CONFLICT_STRATEGY_UNSPECIFIED",
+		1: "CONFLICT_STRATEGY_ERROR",
+		2: "CONFLICT_STRATEGY_SKIP",
+		3: "CONFLICT_STRATEGY_UPSERT",
+	}
+	ConflictStrategy_value = map[string]int32{
+		"CONFLICT_STRATEGY_UNSPECIFIED": 0,
+		"CONFLICT_STRATEGY_ERROR":       1,
+		"CONFLICT_STRATEGY_SKIP":        2,
+		"CONFLICT_STRATEGY_UPSERT":      3,
+	}
+)
+
+func (x ConflictStrategy) Enum() *ConflictStrategy {
+	p := new(ConflictStrategy)
+	*p = x
+	return p
+}
+
+func (x ConflictStrategy) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ConflictStrategy) Descriptor() protoreflect.EnumDescriptor {
+	return file_otpki_common_core_importer_v1_importer_proto_enumTypes[0].Descriptor()
+}
+
+func (ConflictStrategy) Type() protoreflect.EnumType {
+	return &file_otpki_common_core_importer_v1_importer_proto_enumTypes[0]
+}
+
+func (x ConflictStrategy) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ConflictStrategy.Descriptor instead.
+func (ConflictStrategy) EnumDescriptor() ([]byte, []int) {
+	return file_otpki_common_core_importer_v1_importer_proto_rawDescGZIP(), []int{0}
+}
+
 // Export Pagination options allow the user to specify either:
 // Specific page-queries of specific models to export  - or -
 // export of everything.
@@ -438,6 +491,194 @@ func (x *ExportData) GetCertificatePublishers() []*v114.CertificatePublisher {
 	return nil
 }
 
+type ImportOptions struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ConflictStrategy ConflictStrategy       `protobuf:"varint,1,opt,name=conflict_strategy,json=conflictStrategy,proto3,enum=otpki.common.core.importer.v1.ConflictStrategy" json:"conflict_strategy,omitempty"`
+	DryRun           bool                   `protobuf:"varint,2,opt,name=dry_run,json=dryRun,proto3" json:"dry_run,omitempty"` // run in tx and rollback, return expected result to client
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *ImportOptions) Reset() {
+	*x = ImportOptions{}
+	mi := &file_otpki_common_core_importer_v1_importer_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportOptions) ProtoMessage() {}
+
+func (x *ImportOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_importer_v1_importer_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportOptions.ProtoReflect.Descriptor instead.
+func (*ImportOptions) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_importer_v1_importer_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ImportOptions) GetConflictStrategy() ConflictStrategy {
+	if x != nil {
+		return x.ConflictStrategy
+	}
+	return ConflictStrategy_CONFLICT_STRATEGY_UNSPECIFIED
+}
+
+func (x *ImportOptions) GetDryRun() bool {
+	if x != nil {
+		return x.DryRun
+	}
+	return false
+}
+
+type ModelImportResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Model         string                 `protobuf:"bytes,1,opt,name=model,proto3" json:"model,omitempty"`        // model key
+	Inserted      int64                  `protobuf:"varint,2,opt,name=inserted,proto3" json:"inserted,omitempty"` // what was inserted
+	Skipped       int64                  `protobuf:"varint,3,opt,name=skipped,proto3" json:"skipped,omitempty"`   // rows skipped because a conflicting row exists
+	Replaced      int64                  `protobuf:"varint,4,opt,name=replaced,proto3" json:"replaced,omitempty"` // existing rows deleted and (re)inserted
+	Deleted       int64                  `protobuf:"varint,5,opt,name=deleted,proto3" json:"deleted,omitempty"`   // rows removed as a side effect, ie: cascade of an UPSERT delete
+	Messages      []string               `protobuf:"bytes,6,rep,name=messages,proto3" json:"messages,omitempty"`  // info to provide user for operational context, ie: notes
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ModelImportResult) Reset() {
+	*x = ModelImportResult{}
+	mi := &file_otpki_common_core_importer_v1_importer_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ModelImportResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ModelImportResult) ProtoMessage() {}
+
+func (x *ModelImportResult) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_importer_v1_importer_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ModelImportResult.ProtoReflect.Descriptor instead.
+func (*ModelImportResult) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_importer_v1_importer_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ModelImportResult) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *ModelImportResult) GetInserted() int64 {
+	if x != nil {
+		return x.Inserted
+	}
+	return 0
+}
+
+func (x *ModelImportResult) GetSkipped() int64 {
+	if x != nil {
+		return x.Skipped
+	}
+	return 0
+}
+
+func (x *ModelImportResult) GetReplaced() int64 {
+	if x != nil {
+		return x.Replaced
+	}
+	return 0
+}
+
+func (x *ModelImportResult) GetDeleted() int64 {
+	if x != nil {
+		return x.Deleted
+	}
+	return 0
+}
+
+func (x *ModelImportResult) GetMessages() []string {
+	if x != nil {
+		return x.Messages
+	}
+	return nil
+}
+
+type ImportResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DryRun        bool                   `protobuf:"varint,1,opt,name=dry_run,json=dryRun,proto3" json:"dry_run,omitempty"`
+	Models        []*ModelImportResult   `protobuf:"bytes,2,rep,name=models,proto3" json:"models,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ImportResult) Reset() {
+	*x = ImportResult{}
+	mi := &file_otpki_common_core_importer_v1_importer_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ImportResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImportResult) ProtoMessage() {}
+
+func (x *ImportResult) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_importer_v1_importer_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImportResult.ProtoReflect.Descriptor instead.
+func (*ImportResult) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_importer_v1_importer_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ImportResult) GetDryRun() bool {
+	if x != nil {
+		return x.DryRun
+	}
+	return false
+}
+
+func (x *ImportResult) GetModels() []*ModelImportResult {
+	if x != nil {
+		return x.Models
+	}
+	return nil
+}
+
 var File_otpki_common_core_importer_v1_importer_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_importer_v1_importer_proto_rawDesc = "" +
@@ -489,7 +730,25 @@ const file_otpki_common_core_importer_v1_importer_proto_rawDesc = "" +
 	"\x1acertificate_authority_keys\x18\x11 \x03(\v2N.otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKeyR\x18certificateAuthorityKeys\x12\\\n" +
 	"\x11publisher_configs\x18\x12 \x03(\v2/.otpki.common.core.publisher.v1.PublisherConfigR\x10publisherConfigs\x12S\n" +
 	"\x0ecrl_publishers\x18\x13 \x03(\v2,.otpki.common.core.publisher.v1.CrlPublisherR\rcrlPublishers\x12k\n" +
-	"\x16certificate_publishers\x18\x14 \x03(\v24.otpki.common.core.publisher.v1.CertificatePublisherR\x15certificatePublishersB\x99\x02\n" +
+	"\x16certificate_publishers\x18\x14 \x03(\v24.otpki.common.core.publisher.v1.CertificatePublisherR\x15certificatePublishers\"\x86\x01\n" +
+	"\rImportOptions\x12\\\n" +
+	"\x11conflict_strategy\x18\x01 \x01(\x0e2/.otpki.common.core.importer.v1.ConflictStrategyR\x10conflictStrategy\x12\x17\n" +
+	"\adry_run\x18\x02 \x01(\bR\x06dryRun\"\xb1\x01\n" +
+	"\x11ModelImportResult\x12\x14\n" +
+	"\x05model\x18\x01 \x01(\tR\x05model\x12\x1a\n" +
+	"\binserted\x18\x02 \x01(\x03R\binserted\x12\x18\n" +
+	"\askipped\x18\x03 \x01(\x03R\askipped\x12\x1a\n" +
+	"\breplaced\x18\x04 \x01(\x03R\breplaced\x12\x18\n" +
+	"\adeleted\x18\x05 \x01(\x03R\adeleted\x12\x1a\n" +
+	"\bmessages\x18\x06 \x03(\tR\bmessages\"q\n" +
+	"\fImportResult\x12\x17\n" +
+	"\adry_run\x18\x01 \x01(\bR\x06dryRun\x12H\n" +
+	"\x06models\x18\x02 \x03(\v20.otpki.common.core.importer.v1.ModelImportResultR\x06models*\x8c\x01\n" +
+	"\x10ConflictStrategy\x12!\n" +
+	"\x1dCONFLICT_STRATEGY_UNSPECIFIED\x10\x00\x12\x1b\n" +
+	"\x17CONFLICT_STRATEGY_ERROR\x10\x01\x12\x1a\n" +
+	"\x16CONFLICT_STRATEGY_SKIP\x10\x02\x12\x1c\n" +
+	"\x18CONFLICT_STRATEGY_UPSERT\x10\x03B\x99\x02\n" +
 	"!com.otpki.common.core.importer.v1B\rImporterProtoP\x01ZLgithub.com/otpki/otpki-protobuf/gen/otpki/common/core/importer/v1;importerv1\xa2\x02\x04OCCI\xaa\x02\x1dOtpki.Common.Core.Importer.V1\xca\x02\x1dOtpki\\Common\\Core\\Importer\\V1\xe2\x02)Otpki\\Common\\Core\\Importer\\V1\\GPBMetadata\xea\x02!Otpki::Common::Core::Importer::V1b\x06proto3"
 
 var (
@@ -504,78 +763,85 @@ func file_otpki_common_core_importer_v1_importer_proto_rawDescGZIP() []byte {
 	return file_otpki_common_core_importer_v1_importer_proto_rawDescData
 }
 
-var file_otpki_common_core_importer_v1_importer_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_otpki_common_core_importer_v1_importer_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_otpki_common_core_importer_v1_importer_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_otpki_common_core_importer_v1_importer_proto_goTypes = []any{
-	(*ExportPagination)(nil),                        // 0: otpki.common.core.importer.v1.ExportPagination
-	(*ExportData)(nil),                              // 1: otpki.common.core.importer.v1.ExportData
-	(*v1.PaginationRequest)(nil),                    // 2: otpki.common.api.query.v1.PaginationRequest
-	(*v11.Permission)(nil),                          // 3: otpki.common.auth.v1.Permission
-	(*v11.Role)(nil),                                // 4: otpki.common.auth.v1.Role
-	(*v11.ApprovalProfile)(nil),                     // 5: otpki.common.auth.v1.ApprovalProfile
-	(*v12.SMTPSettings)(nil),                        // 6: otpki.common.core.smtp_settings.v1.SMTPSettings
-	(*v13.EndEntityProfile)(nil),                    // 7: otpki.common.core.end_entity_profile.v1.EndEntityProfile
-	(*v14.EndEntity)(nil),                           // 8: otpki.common.core.end_entity.v1.EndEntity
-	(*v15.EnrollmentRequest)(nil),                   // 9: otpki.common.core.enroller.v1.EnrollmentRequest
-	(*v16.KeyStorageConfig)(nil),                    // 10: otpki.common.core.key_storage_config.v1.KeyStorageConfig
-	(*v17.Key)(nil),                                 // 11: otpki.common.core.key.v1.Key
-	(*v18.CertificateProfile)(nil),                  // 12: otpki.common.core.certificate_profile.v1.CertificateProfile
-	(*v19.CustomExtKeyUsage)(nil),                   // 13: otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
-	(*v110.CustomCertificateExtension)(nil),         // 14: otpki.common.core.certificate_extension.v1.CustomCertificateExtension
-	(*v111.CertificateAuthority)(nil),               // 15: otpki.common.core.certificate_authority.v1.CertificateAuthority
-	(*v112.IssuanceRequest)(nil),                    // 16: otpki.common.core.issuer.v1.IssuanceRequest
-	(*v113.IssuedCertificate)(nil),                  // 17: otpki.common.core.issued_certificate.v1.IssuedCertificate
-	(*v111.CertificateAuthorityCertificate)(nil),    // 18: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	(*v111.CertificateAuthorityCertificateKey)(nil), // 19: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
-	(*v114.PublisherConfig)(nil),                    // 20: otpki.common.core.publisher.v1.PublisherConfig
-	(*v114.CrlPublisher)(nil),                       // 21: otpki.common.core.publisher.v1.CrlPublisher
-	(*v114.CertificatePublisher)(nil),               // 22: otpki.common.core.publisher.v1.CertificatePublisher
+	(ConflictStrategy)(0),                           // 0: otpki.common.core.importer.v1.ConflictStrategy
+	(*ExportPagination)(nil),                        // 1: otpki.common.core.importer.v1.ExportPagination
+	(*ExportData)(nil),                              // 2: otpki.common.core.importer.v1.ExportData
+	(*ImportOptions)(nil),                           // 3: otpki.common.core.importer.v1.ImportOptions
+	(*ModelImportResult)(nil),                       // 4: otpki.common.core.importer.v1.ModelImportResult
+	(*ImportResult)(nil),                            // 5: otpki.common.core.importer.v1.ImportResult
+	(*v1.PaginationRequest)(nil),                    // 6: otpki.common.api.query.v1.PaginationRequest
+	(*v11.Permission)(nil),                          // 7: otpki.common.auth.v1.Permission
+	(*v11.Role)(nil),                                // 8: otpki.common.auth.v1.Role
+	(*v11.ApprovalProfile)(nil),                     // 9: otpki.common.auth.v1.ApprovalProfile
+	(*v12.SMTPSettings)(nil),                        // 10: otpki.common.core.smtp_settings.v1.SMTPSettings
+	(*v13.EndEntityProfile)(nil),                    // 11: otpki.common.core.end_entity_profile.v1.EndEntityProfile
+	(*v14.EndEntity)(nil),                           // 12: otpki.common.core.end_entity.v1.EndEntity
+	(*v15.EnrollmentRequest)(nil),                   // 13: otpki.common.core.enroller.v1.EnrollmentRequest
+	(*v16.KeyStorageConfig)(nil),                    // 14: otpki.common.core.key_storage_config.v1.KeyStorageConfig
+	(*v17.Key)(nil),                                 // 15: otpki.common.core.key.v1.Key
+	(*v18.CertificateProfile)(nil),                  // 16: otpki.common.core.certificate_profile.v1.CertificateProfile
+	(*v19.CustomExtKeyUsage)(nil),                   // 17: otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
+	(*v110.CustomCertificateExtension)(nil),         // 18: otpki.common.core.certificate_extension.v1.CustomCertificateExtension
+	(*v111.CertificateAuthority)(nil),               // 19: otpki.common.core.certificate_authority.v1.CertificateAuthority
+	(*v112.IssuanceRequest)(nil),                    // 20: otpki.common.core.issuer.v1.IssuanceRequest
+	(*v113.IssuedCertificate)(nil),                  // 21: otpki.common.core.issued_certificate.v1.IssuedCertificate
+	(*v111.CertificateAuthorityCertificate)(nil),    // 22: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	(*v111.CertificateAuthorityCertificateKey)(nil), // 23: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+	(*v114.PublisherConfig)(nil),                    // 24: otpki.common.core.publisher.v1.PublisherConfig
+	(*v114.CrlPublisher)(nil),                       // 25: otpki.common.core.publisher.v1.CrlPublisher
+	(*v114.CertificatePublisher)(nil),               // 26: otpki.common.core.publisher.v1.CertificatePublisher
 }
 var file_otpki_common_core_importer_v1_importer_proto_depIdxs = []int32{
-	2,  // 0: otpki.common.core.importer.v1.ExportPagination.permissions:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 1: otpki.common.core.importer.v1.ExportPagination.roles:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 2: otpki.common.core.importer.v1.ExportPagination.approval_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 3: otpki.common.core.importer.v1.ExportPagination.smtp_settings:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 4: otpki.common.core.importer.v1.ExportPagination.end_entity_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 5: otpki.common.core.importer.v1.ExportPagination.end_entities:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 6: otpki.common.core.importer.v1.ExportPagination.enrollment_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 7: otpki.common.core.importer.v1.ExportPagination.key_storage_configs:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 8: otpki.common.core.importer.v1.ExportPagination.keys:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 9: otpki.common.core.importer.v1.ExportPagination.certificate_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 10: otpki.common.core.importer.v1.ExportPagination.custom_ekus:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 11: otpki.common.core.importer.v1.ExportPagination.custom_certificate_extensions:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 12: otpki.common.core.importer.v1.ExportPagination.certificate_authorities:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 13: otpki.common.core.importer.v1.ExportPagination.issuance_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 14: otpki.common.core.importer.v1.ExportPagination.certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 15: otpki.common.core.importer.v1.ExportPagination.certificate_authority_certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 16: otpki.common.core.importer.v1.ExportPagination.certificate_authority_keys:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 17: otpki.common.core.importer.v1.ExportPagination.publisher_configs:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 18: otpki.common.core.importer.v1.ExportPagination.crl_publishers:type_name -> otpki.common.api.query.v1.PaginationRequest
-	2,  // 19: otpki.common.core.importer.v1.ExportPagination.certificate_publishers:type_name -> otpki.common.api.query.v1.PaginationRequest
-	3,  // 20: otpki.common.core.importer.v1.ExportData.permissions:type_name -> otpki.common.auth.v1.Permission
-	4,  // 21: otpki.common.core.importer.v1.ExportData.roles:type_name -> otpki.common.auth.v1.Role
-	5,  // 22: otpki.common.core.importer.v1.ExportData.approval_profiles:type_name -> otpki.common.auth.v1.ApprovalProfile
-	6,  // 23: otpki.common.core.importer.v1.ExportData.smtp_settings:type_name -> otpki.common.core.smtp_settings.v1.SMTPSettings
-	7,  // 24: otpki.common.core.importer.v1.ExportData.end_entity_profiles:type_name -> otpki.common.core.end_entity_profile.v1.EndEntityProfile
-	8,  // 25: otpki.common.core.importer.v1.ExportData.end_entities:type_name -> otpki.common.core.end_entity.v1.EndEntity
-	9,  // 26: otpki.common.core.importer.v1.ExportData.enrollment_requests:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	10, // 27: otpki.common.core.importer.v1.ExportData.key_storage_configs:type_name -> otpki.common.core.key_storage_config.v1.KeyStorageConfig
-	11, // 28: otpki.common.core.importer.v1.ExportData.keys:type_name -> otpki.common.core.key.v1.Key
-	12, // 29: otpki.common.core.importer.v1.ExportData.certificate_profiles:type_name -> otpki.common.core.certificate_profile.v1.CertificateProfile
-	13, // 30: otpki.common.core.importer.v1.ExportData.custom_ekus:type_name -> otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
-	14, // 31: otpki.common.core.importer.v1.ExportData.custom_certificate_extensions:type_name -> otpki.common.core.certificate_extension.v1.CustomCertificateExtension
-	15, // 32: otpki.common.core.importer.v1.ExportData.certificate_authorities:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	16, // 33: otpki.common.core.importer.v1.ExportData.issuance_requests:type_name -> otpki.common.core.issuer.v1.IssuanceRequest
-	17, // 34: otpki.common.core.importer.v1.ExportData.certificates:type_name -> otpki.common.core.issued_certificate.v1.IssuedCertificate
-	18, // 35: otpki.common.core.importer.v1.ExportData.certificate_authority_certificates:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	19, // 36: otpki.common.core.importer.v1.ExportData.certificate_authority_keys:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
-	20, // 37: otpki.common.core.importer.v1.ExportData.publisher_configs:type_name -> otpki.common.core.publisher.v1.PublisherConfig
-	21, // 38: otpki.common.core.importer.v1.ExportData.crl_publishers:type_name -> otpki.common.core.publisher.v1.CrlPublisher
-	22, // 39: otpki.common.core.importer.v1.ExportData.certificate_publishers:type_name -> otpki.common.core.publisher.v1.CertificatePublisher
-	40, // [40:40] is the sub-list for method output_type
-	40, // [40:40] is the sub-list for method input_type
-	40, // [40:40] is the sub-list for extension type_name
-	40, // [40:40] is the sub-list for extension extendee
-	0,  // [0:40] is the sub-list for field type_name
+	6,  // 0: otpki.common.core.importer.v1.ExportPagination.permissions:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 1: otpki.common.core.importer.v1.ExportPagination.roles:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 2: otpki.common.core.importer.v1.ExportPagination.approval_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 3: otpki.common.core.importer.v1.ExportPagination.smtp_settings:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 4: otpki.common.core.importer.v1.ExportPagination.end_entity_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 5: otpki.common.core.importer.v1.ExportPagination.end_entities:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 6: otpki.common.core.importer.v1.ExportPagination.enrollment_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 7: otpki.common.core.importer.v1.ExportPagination.key_storage_configs:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 8: otpki.common.core.importer.v1.ExportPagination.keys:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 9: otpki.common.core.importer.v1.ExportPagination.certificate_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 10: otpki.common.core.importer.v1.ExportPagination.custom_ekus:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 11: otpki.common.core.importer.v1.ExportPagination.custom_certificate_extensions:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 12: otpki.common.core.importer.v1.ExportPagination.certificate_authorities:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 13: otpki.common.core.importer.v1.ExportPagination.issuance_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 14: otpki.common.core.importer.v1.ExportPagination.certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 15: otpki.common.core.importer.v1.ExportPagination.certificate_authority_certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 16: otpki.common.core.importer.v1.ExportPagination.certificate_authority_keys:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 17: otpki.common.core.importer.v1.ExportPagination.publisher_configs:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 18: otpki.common.core.importer.v1.ExportPagination.crl_publishers:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 19: otpki.common.core.importer.v1.ExportPagination.certificate_publishers:type_name -> otpki.common.api.query.v1.PaginationRequest
+	7,  // 20: otpki.common.core.importer.v1.ExportData.permissions:type_name -> otpki.common.auth.v1.Permission
+	8,  // 21: otpki.common.core.importer.v1.ExportData.roles:type_name -> otpki.common.auth.v1.Role
+	9,  // 22: otpki.common.core.importer.v1.ExportData.approval_profiles:type_name -> otpki.common.auth.v1.ApprovalProfile
+	10, // 23: otpki.common.core.importer.v1.ExportData.smtp_settings:type_name -> otpki.common.core.smtp_settings.v1.SMTPSettings
+	11, // 24: otpki.common.core.importer.v1.ExportData.end_entity_profiles:type_name -> otpki.common.core.end_entity_profile.v1.EndEntityProfile
+	12, // 25: otpki.common.core.importer.v1.ExportData.end_entities:type_name -> otpki.common.core.end_entity.v1.EndEntity
+	13, // 26: otpki.common.core.importer.v1.ExportData.enrollment_requests:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
+	14, // 27: otpki.common.core.importer.v1.ExportData.key_storage_configs:type_name -> otpki.common.core.key_storage_config.v1.KeyStorageConfig
+	15, // 28: otpki.common.core.importer.v1.ExportData.keys:type_name -> otpki.common.core.key.v1.Key
+	16, // 29: otpki.common.core.importer.v1.ExportData.certificate_profiles:type_name -> otpki.common.core.certificate_profile.v1.CertificateProfile
+	17, // 30: otpki.common.core.importer.v1.ExportData.custom_ekus:type_name -> otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
+	18, // 31: otpki.common.core.importer.v1.ExportData.custom_certificate_extensions:type_name -> otpki.common.core.certificate_extension.v1.CustomCertificateExtension
+	19, // 32: otpki.common.core.importer.v1.ExportData.certificate_authorities:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	20, // 33: otpki.common.core.importer.v1.ExportData.issuance_requests:type_name -> otpki.common.core.issuer.v1.IssuanceRequest
+	21, // 34: otpki.common.core.importer.v1.ExportData.certificates:type_name -> otpki.common.core.issued_certificate.v1.IssuedCertificate
+	22, // 35: otpki.common.core.importer.v1.ExportData.certificate_authority_certificates:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	23, // 36: otpki.common.core.importer.v1.ExportData.certificate_authority_keys:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+	24, // 37: otpki.common.core.importer.v1.ExportData.publisher_configs:type_name -> otpki.common.core.publisher.v1.PublisherConfig
+	25, // 38: otpki.common.core.importer.v1.ExportData.crl_publishers:type_name -> otpki.common.core.publisher.v1.CrlPublisher
+	26, // 39: otpki.common.core.importer.v1.ExportData.certificate_publishers:type_name -> otpki.common.core.publisher.v1.CertificatePublisher
+	0,  // 40: otpki.common.core.importer.v1.ImportOptions.conflict_strategy:type_name -> otpki.common.core.importer.v1.ConflictStrategy
+	4,  // 41: otpki.common.core.importer.v1.ImportResult.models:type_name -> otpki.common.core.importer.v1.ModelImportResult
+	42, // [42:42] is the sub-list for method output_type
+	42, // [42:42] is the sub-list for method input_type
+	42, // [42:42] is the sub-list for extension type_name
+	42, // [42:42] is the sub-list for extension extendee
+	0,  // [0:42] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_core_importer_v1_importer_proto_init() }
@@ -588,13 +854,14 @@ func file_otpki_common_core_importer_v1_importer_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_core_importer_v1_importer_proto_rawDesc), len(file_otpki_common_core_importer_v1_importer_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   2,
+			NumEnums:      1,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_otpki_common_core_importer_v1_importer_proto_goTypes,
 		DependencyIndexes: file_otpki_common_core_importer_v1_importer_proto_depIdxs,
+		EnumInfos:         file_otpki_common_core_importer_v1_importer_proto_enumTypes,
 		MessageInfos:      file_otpki_common_core_importer_v1_importer_proto_msgTypes,
 	}.Build()
 	File_otpki_common_core_importer_v1_importer_proto = out.File
