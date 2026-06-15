@@ -8,7 +8,6 @@ import "otpki/common/core/certificate_extension/v1/certificate_extension.proto";
 import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
 import "otpki/common/core/end_entity_profile/v1/end_entity_profile.proto";
-import "otpki/common/core/enroller/v1/enroller.proto";
 import "otpki/common/core/extended_key_usage/v1/extended_key_usage.proto";
 import "otpki/common/core/issued_certificate/v1/issued_certificate.proto";
 import "otpki/common/core/issuer/v1/issuer.proto";
@@ -27,7 +26,6 @@ message ExportPagination {
 
   otpki.common.api.query.v1.PaginationRequest end_entity_profiles = 5;
   otpki.common.api.query.v1.PaginationRequest end_entities = 6;
-  otpki.common.api.query.v1.PaginationRequest enrollment_requests = 7;
 
   otpki.common.api.query.v1.PaginationRequest key_storage_configs = 8;
   otpki.common.api.query.v1.PaginationRequest keys = 9;
@@ -40,6 +38,7 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest certificate_authority_certificates = 16;
   otpki.common.api.query.v1.PaginationRequest certificate_authority_keys = 17;
   otpki.common.api.query.v1.PaginationRequest publishers = 18;
+  otpki.common.api.query.v1.PaginationRequest end_entity_issuance_requests = 19;
 }
 
 // The full message format for export and import routes.
@@ -55,7 +54,6 @@ message ExportData {
 
   repeated otpki.common.core.end_entity_profile.v1.EndEntityProfile end_entity_profiles = 5;
   repeated otpki.common.core.end_entity.v1.EndEntity end_entities = 6;
-  repeated otpki.common.core.enroller.v1.EnrollmentRequest enrollment_requests = 7;
 
   repeated otpki.common.core.key_storage_config.v1.KeyStorageConfig key_storage_configs = 8;
   repeated otpki.common.core.key.v1.Key keys = 9;
@@ -68,6 +66,7 @@ message ExportData {
   repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificates = 16;
   repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey certificate_authority_keys = 17;
   repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
+  repeated otpki.common.core.end_entity.v1.EndEntityIssuanceRequest end_entity_issuance_requests = 19;
 }
 
 // Controls import behavior when an incoming record already exists

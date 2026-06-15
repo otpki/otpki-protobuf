@@ -14,7 +14,6 @@ import (
 // EndEntityCertificateNative is the native typing representation of EndEntityCertificate
 type EndEntityCertificateNative struct {
 	EndEntityId         uuid.UUID
-	EnrollmentRequestId uuid.UUID
 	IssuedCertificateId uuid.UUID
 	Certificate         []byte
 	CertificateChain    [][]byte
@@ -37,10 +36,6 @@ func (n *EndEntityCertificateNative) ToProto() (*EndEntityCertificate, error) {
 	protoStruct.EndEntityId, err = convertUUIDToProto(n.EndEntityId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting EndEntityId: %w", err)
-	}
-	protoStruct.EnrollmentRequestId, err = convertUUIDToProto(n.EnrollmentRequestId)
-	if err != nil {
-		return nil, fmt.Errorf("error converting EnrollmentRequestId: %w", err)
 	}
 	protoStruct.IssuedCertificateId, err = convertUUIDToProto(n.IssuedCertificateId)
 	if err != nil {
@@ -75,10 +70,6 @@ func (p *EndEntityCertificate) ToNative() (*EndEntityCertificateNative, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting EndEntityIdNative: %w", err)
 	}
-	nativeStruct.EnrollmentRequestId, err = convertProtoToUUID(p.EnrollmentRequestId)
-	if err != nil {
-		return nil, fmt.Errorf("error converting EnrollmentRequestIdNative: %w", err)
-	}
 	nativeStruct.IssuedCertificateId, err = convertProtoToUUID(p.IssuedCertificateId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting IssuedCertificateIdNative: %w", err)
@@ -105,17 +96,6 @@ func (p *EndEntityCertificate) ToNative() (*EndEntityCertificateNative, error) {
 func (x *EndEntityCertificate) GetEndEntityIdUUID() uuid.UUID {
 	if x != nil {
 		value, err := convertProtoToUUID(x.EndEntityId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetEnrollmentRequestIdUUID returns EnrollmentRequestId as a UUID when possible.
-func (x *EndEntityCertificate) GetEnrollmentRequestIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.EnrollmentRequestId)
 		if err == nil {
 			return value
 		}

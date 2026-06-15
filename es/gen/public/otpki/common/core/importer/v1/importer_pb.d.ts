@@ -7,8 +7,7 @@ import type { Message } from "@bufbuild/protobuf";
 import type { PaginationRequest, PaginationRequestJson } from "../../../api/query/v1/query_pb.js";
 import type { ApprovalProfile, ApprovalProfileJson, ApprovalProfileValid, Permission, PermissionJson, PermissionValid, Role, RoleJson, RoleValid } from "../../../auth/v1/auth_pb.js";
 import type { EndEntityProfile, EndEntityProfileJson, EndEntityProfileValid } from "../../end_entity_profile/v1/end_entity_profile_pb.js";
-import type { EndEntity, EndEntityJson, EndEntityValid } from "../../end_entity/v1/end_entity_pb.js";
-import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid } from "../../enroller/v1/enroller_pb.js";
+import type { EndEntity, EndEntityIssuanceRequest, EndEntityIssuanceRequestJson, EndEntityIssuanceRequestValid, EndEntityJson, EndEntityValid } from "../../end_entity/v1/end_entity_pb.js";
 import type { KeyStorageConfig, KeyStorageConfigJson, KeyStorageConfigValid } from "../../key_storage_config/v1/key_storage_config_pb.js";
 import type { Key, KeyJson, KeyValid } from "../../key/v1/key_pb.js";
 import type { CertificateProfile, CertificateProfileJson, CertificateProfileValid } from "../../certificate_profile/v1/certificate_profile_pb.js";
@@ -57,11 +56,6 @@ export declare type ExportPagination = Message<"otpki.common.core.importer.v1.Ex
    * @generated from field: otpki.common.api.query.v1.PaginationRequest end_entities = 6;
    */
   endEntities?: PaginationRequest;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest enrollment_requests = 7;
-   */
-  enrollmentRequests?: PaginationRequest;
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest key_storage_configs = 8;
@@ -117,6 +111,11 @@ export declare type ExportPagination = Message<"otpki.common.core.importer.v1.Ex
    * @generated from field: otpki.common.api.query.v1.PaginationRequest publishers = 18;
    */
   publishers?: PaginationRequest;
+
+  /**
+   * @generated from field: otpki.common.api.query.v1.PaginationRequest end_entity_issuance_requests = 19;
+   */
+  endEntityIssuanceRequests?: PaginationRequest;
 };
 
 /**
@@ -152,11 +151,6 @@ export declare type ExportPaginationJson = {
    * @generated from field: otpki.common.api.query.v1.PaginationRequest end_entities = 6;
    */
   endEntities?: PaginationRequestJson;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest enrollment_requests = 7;
-   */
-  enrollmentRequests?: PaginationRequestJson;
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest key_storage_configs = 8;
@@ -212,6 +206,11 @@ export declare type ExportPaginationJson = {
    * @generated from field: otpki.common.api.query.v1.PaginationRequest publishers = 18;
    */
   publishers?: PaginationRequestJson;
+
+  /**
+   * @generated from field: otpki.common.api.query.v1.PaginationRequest end_entity_issuance_requests = 19;
+   */
+  endEntityIssuanceRequests?: PaginationRequestJson;
 };
 
 export declare type ExportPaginationValid = ExportPagination;
@@ -257,11 +256,6 @@ export declare type ExportData = Message<"otpki.common.core.importer.v1.ExportDa
    * @generated from field: repeated otpki.common.core.end_entity.v1.EndEntity end_entities = 6;
    */
   endEntities: EndEntity[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentRequest enrollment_requests = 7;
-   */
-  enrollmentRequests: EnrollmentRequest[];
 
   /**
    * @generated from field: repeated otpki.common.core.key_storage_config.v1.KeyStorageConfig key_storage_configs = 8;
@@ -317,6 +311,11 @@ export declare type ExportData = Message<"otpki.common.core.importer.v1.ExportDa
    * @generated from field: repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
    */
   publishers: Publisher[];
+
+  /**
+   * @generated from field: repeated otpki.common.core.end_entity.v1.EndEntityIssuanceRequest end_entity_issuance_requests = 19;
+   */
+  endEntityIssuanceRequests: EndEntityIssuanceRequest[];
 };
 
 /**
@@ -354,11 +353,6 @@ export declare type ExportDataJson = {
    * @generated from field: repeated otpki.common.core.end_entity.v1.EndEntity end_entities = 6;
    */
   endEntities?: EndEntityJson[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentRequest enrollment_requests = 7;
-   */
-  enrollmentRequests?: EnrollmentRequestJson[];
 
   /**
    * @generated from field: repeated otpki.common.core.key_storage_config.v1.KeyStorageConfig key_storage_configs = 8;
@@ -414,6 +408,11 @@ export declare type ExportDataJson = {
    * @generated from field: repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
    */
   publishers?: PublisherJson[];
+
+  /**
+   * @generated from field: repeated otpki.common.core.end_entity.v1.EndEntityIssuanceRequest end_entity_issuance_requests = 19;
+   */
+  endEntityIssuanceRequests?: EndEntityIssuanceRequestJson[];
 };
 
 /**
@@ -451,11 +450,6 @@ export declare type ExportDataValid = Message<"otpki.common.core.importer.v1.Exp
    * @generated from field: repeated otpki.common.core.end_entity.v1.EndEntity end_entities = 6;
    */
   endEntities: EndEntityValid[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.enroller.v1.EnrollmentRequest enrollment_requests = 7;
-   */
-  enrollmentRequests: EnrollmentRequestValid[];
 
   /**
    * @generated from field: repeated otpki.common.core.key_storage_config.v1.KeyStorageConfig key_storage_configs = 8;
@@ -511,6 +505,11 @@ export declare type ExportDataValid = Message<"otpki.common.core.importer.v1.Exp
    * @generated from field: repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
    */
   publishers: PublisherValid[];
+
+  /**
+   * @generated from field: repeated otpki.common.core.end_entity.v1.EndEntityIssuanceRequest end_entity_issuance_requests = 19;
+   */
+  endEntityIssuanceRequests: EndEntityIssuanceRequestValid[];
 };
 
 /**

@@ -5,21 +5,16 @@
 import { EnrollerService } from "./enroller_pb.js";
 
 /**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest
+ * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt
  */
-export const createEnrollmentRequest = EnrollerService.method.createEnrollmentRequest;
+export const createEnrollmentAttempt = EnrollerService.method.createEnrollmentAttempt;
 
 /**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity
+ * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity
  */
-export const createEnrollmentRequestForExistingEndEntity = EnrollerService.method.createEnrollmentRequestForExistingEndEntity;
+export const createEnrollmentAttemptForExistingEndEntity = EnrollerService.method.createEnrollmentAttemptForExistingEndEntity;
 
 /**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID
+ * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList
  */
-export const getEnrollmentByRequestID = EnrollerService.method.getEnrollmentByRequestID;
-
-/**
- * @generated from rpc otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList
- */
-export const getEnrollmentRequestList = EnrollerService.method.getEnrollmentRequestList;
+export const getEnrollmentAttemptList = EnrollerService.method.getEnrollmentAttemptList;

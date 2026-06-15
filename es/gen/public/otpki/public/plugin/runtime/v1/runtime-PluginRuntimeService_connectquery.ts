@@ -40,6 +40,11 @@ export const getEndEntityByLoginID = PluginRuntimeService.method.getEndEntityByL
 export const getEndEntity = PluginRuntimeService.method.getEndEntity;
 
 /**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity
+ */
+export const updateEndEntity = PluginRuntimeService.method.updateEndEntity;
+
+/**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey
  */
 export const getKey = PluginRuntimeService.method.getKey;
@@ -65,14 +70,9 @@ export const getCertificateAuthority = PluginRuntimeService.method.getCertificat
 export const getCertificateProfile = PluginRuntimeService.method.getCertificateProfile;
 
 /**
- * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt
  */
-export const createEnrollmentRequest = PluginRuntimeService.method.createEnrollmentRequest;
-
-/**
- * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID
- */
-export const getEnrollmentByRequestID = PluginRuntimeService.method.getEnrollmentByRequestID;
+export const createEnrollmentAttempt = PluginRuntimeService.method.createEnrollmentAttempt;
 
 /**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate

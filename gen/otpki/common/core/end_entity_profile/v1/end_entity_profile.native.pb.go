@@ -53,6 +53,7 @@ type EndEntityProfileNative struct {
 	NameConstraintsExcludedRequired  bool
 	UseCustomCertificateExts         bool
 	ApprovalProfileId                uuid.NullUUID
+	AllowedRequests                  int64
 }
 
 // ToProto converts a EndEntityProfileNative to a EndEntityProfile
@@ -139,6 +140,7 @@ func (n *EndEntityProfileNative) ToProto() (*EndEntityProfile, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
+	protoStruct.AllowedRequests = n.AllowedRequests
 	return protoStruct, nil
 }
 
@@ -226,6 +228,7 @@ func (p *EndEntityProfile) ToNative() (*EndEntityProfileNative, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
+	nativeStruct.AllowedRequests = p.AllowedRequests
 	return nativeStruct, nil
 }
 

@@ -61,17 +61,6 @@ func (x *GetCertificateProfileRequest) GetIdUUID() uuid.UUID {
 	return uuid.UUID{}
 }
 
-// GetEnrollmentRequestIdUUID returns EnrollmentRequestId as a UUID when possible.
-func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.EnrollmentRequestId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
 // GetEndEntityIdUUID returns EndEntityId as a UUID when possible.
 func (x *RevokeEndEntityCertificateRequest) GetEndEntityIdUUID() uuid.UUID {
 	if x != nil {

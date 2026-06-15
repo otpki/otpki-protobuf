@@ -366,6 +366,13 @@ components:
             - "null"
           title: approval_profile_id
           format: uuid
+        allowedRequests:
+          type:
+            - integer
+            - string
+          title: allowed_requests
+          minimum: 0
+          format: int64
       title: EndEntityProfile
       additionalProperties: false
     otpki.common.core.end_entity_profile.v1.EndEntityProfileSANAttribute:

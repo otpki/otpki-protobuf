@@ -1438,7 +1438,6 @@ components:
         - RESOURCE_APPROVAL_PROFILE
         - RESOURCE_WORK_ITEM
         - RESOURCE_ISSUANCE_REQUEST
-        - RESOURCE_ENROLLMENT_REQUEST
     otpki.common.auth.v1.Role:
       type: object
       properties:

@@ -10,7 +10,6 @@ import "otpki/common/x509/v1/x509.proto";
 message EndEntityCertificate {
   option (api.v1.generate_native) = true;
   string end_entity_id = 1 [(buf.validate.field).string.uuid = true];
-  string enrollment_request_id = 2 [(buf.validate.field).string.uuid = true];
   string issued_certificate_id = 3 [(buf.validate.field).string.uuid = true];
   bytes certificate = 4;
   repeated bytes certificate_chain = 5;

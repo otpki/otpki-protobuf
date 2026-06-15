@@ -18,6 +18,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
+	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -631,6 +632,94 @@ func (x *GetEndEntityResponse) GetEndEntity() *v1.EndEntity {
 	return nil
 }
 
+type UpdateEndEntityRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EndEntity     *v1.EndEntity          `protobuf:"bytes,1,opt,name=end_entity,json=endEntity,proto3" json:"end_entity,omitempty"`
+	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateEndEntityRequest) Reset() {
+	*x = UpdateEndEntityRequest{}
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateEndEntityRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateEndEntityRequest) ProtoMessage() {}
+
+func (x *UpdateEndEntityRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateEndEntityRequest.ProtoReflect.Descriptor instead.
+func (*UpdateEndEntityRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UpdateEndEntityRequest) GetEndEntity() *v1.EndEntity {
+	if x != nil {
+		return x.EndEntity
+	}
+	return nil
+}
+
+func (x *UpdateEndEntityRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.UpdateMask
+	}
+	return nil
+}
+
+type UpdateEndEntityResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateEndEntityResponse) Reset() {
+	*x = UpdateEndEntityResponse{}
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateEndEntityResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateEndEntityResponse) ProtoMessage() {}
+
+func (x *UpdateEndEntityResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateEndEntityResponse.ProtoReflect.Descriptor instead.
+func (*UpdateEndEntityResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{15}
+}
+
 type GetKeyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -640,7 +729,7 @@ type GetKeyRequest struct {
 
 func (x *GetKeyRequest) Reset() {
 	*x = GetKeyRequest{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[14]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -652,7 +741,7 @@ func (x *GetKeyRequest) String() string {
 func (*GetKeyRequest) ProtoMessage() {}
 
 func (x *GetKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[14]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -665,7 +754,7 @@ func (x *GetKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetKeyRequest.ProtoReflect.Descriptor instead.
 func (*GetKeyRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{14}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetKeyRequest) GetId() string {
@@ -685,7 +774,7 @@ type GetKeyResponse struct {
 
 func (x *GetKeyResponse) Reset() {
 	*x = GetKeyResponse{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[15]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -697,7 +786,7 @@ func (x *GetKeyResponse) String() string {
 func (*GetKeyResponse) ProtoMessage() {}
 
 func (x *GetKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[15]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -710,7 +799,7 @@ func (x *GetKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetKeyResponse.ProtoReflect.Descriptor instead.
 func (*GetKeyResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{15}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetKeyResponse) GetKey() *v11.Key {
@@ -735,7 +824,7 @@ type GetAllRootCertificateAuthorityCertificatesRequest struct {
 
 func (x *GetAllRootCertificateAuthorityCertificatesRequest) Reset() {
 	*x = GetAllRootCertificateAuthorityCertificatesRequest{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[16]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -747,7 +836,7 @@ func (x *GetAllRootCertificateAuthorityCertificatesRequest) String() string {
 func (*GetAllRootCertificateAuthorityCertificatesRequest) ProtoMessage() {}
 
 func (x *GetAllRootCertificateAuthorityCertificatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[16]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -760,7 +849,7 @@ func (x *GetAllRootCertificateAuthorityCertificatesRequest) ProtoReflect() proto
 
 // Deprecated: Use GetAllRootCertificateAuthorityCertificatesRequest.ProtoReflect.Descriptor instead.
 func (*GetAllRootCertificateAuthorityCertificatesRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{16}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{18}
 }
 
 type GetAllRootCertificateAuthorityCertificatesResponse struct {
@@ -772,7 +861,7 @@ type GetAllRootCertificateAuthorityCertificatesResponse struct {
 
 func (x *GetAllRootCertificateAuthorityCertificatesResponse) Reset() {
 	*x = GetAllRootCertificateAuthorityCertificatesResponse{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[17]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -784,7 +873,7 @@ func (x *GetAllRootCertificateAuthorityCertificatesResponse) String() string {
 func (*GetAllRootCertificateAuthorityCertificatesResponse) ProtoMessage() {}
 
 func (x *GetAllRootCertificateAuthorityCertificatesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[17]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -797,7 +886,7 @@ func (x *GetAllRootCertificateAuthorityCertificatesResponse) ProtoReflect() prot
 
 // Deprecated: Use GetAllRootCertificateAuthorityCertificatesResponse.ProtoReflect.Descriptor instead.
 func (*GetAllRootCertificateAuthorityCertificatesResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{17}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetAllRootCertificateAuthorityCertificatesResponse) GetCertificatesDer() [][]byte {
@@ -816,7 +905,7 @@ type GetLatestCertificateAuthorityCertificateRequest struct {
 
 func (x *GetLatestCertificateAuthorityCertificateRequest) Reset() {
 	*x = GetLatestCertificateAuthorityCertificateRequest{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[18]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -828,7 +917,7 @@ func (x *GetLatestCertificateAuthorityCertificateRequest) String() string {
 func (*GetLatestCertificateAuthorityCertificateRequest) ProtoMessage() {}
 
 func (x *GetLatestCertificateAuthorityCertificateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[18]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -841,7 +930,7 @@ func (x *GetLatestCertificateAuthorityCertificateRequest) ProtoReflect() protore
 
 // Deprecated: Use GetLatestCertificateAuthorityCertificateRequest.ProtoReflect.Descriptor instead.
 func (*GetLatestCertificateAuthorityCertificateRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{18}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GetLatestCertificateAuthorityCertificateRequest) GetCaId() string {
@@ -860,7 +949,7 @@ type GetLatestCertificateAuthorityCertificateResponse struct {
 
 func (x *GetLatestCertificateAuthorityCertificateResponse) Reset() {
 	*x = GetLatestCertificateAuthorityCertificateResponse{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[19]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -872,7 +961,7 @@ func (x *GetLatestCertificateAuthorityCertificateResponse) String() string {
 func (*GetLatestCertificateAuthorityCertificateResponse) ProtoMessage() {}
 
 func (x *GetLatestCertificateAuthorityCertificateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[19]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -885,7 +974,7 @@ func (x *GetLatestCertificateAuthorityCertificateResponse) ProtoReflect() protor
 
 // Deprecated: Use GetLatestCertificateAuthorityCertificateResponse.ProtoReflect.Descriptor instead.
 func (*GetLatestCertificateAuthorityCertificateResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{19}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetLatestCertificateAuthorityCertificateResponse) GetCertificateAuthorityCertificate() *v12.CertificateAuthorityCertificate {
@@ -904,7 +993,7 @@ type GetCertificateAuthorityRequest struct {
 
 func (x *GetCertificateAuthorityRequest) Reset() {
 	*x = GetCertificateAuthorityRequest{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[20]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -916,7 +1005,7 @@ func (x *GetCertificateAuthorityRequest) String() string {
 func (*GetCertificateAuthorityRequest) ProtoMessage() {}
 
 func (x *GetCertificateAuthorityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[20]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -929,7 +1018,7 @@ func (x *GetCertificateAuthorityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCertificateAuthorityRequest.ProtoReflect.Descriptor instead.
 func (*GetCertificateAuthorityRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{20}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetCertificateAuthorityRequest) GetCaId() string {
@@ -948,7 +1037,7 @@ type GetCertificateAuthorityResponse struct {
 
 func (x *GetCertificateAuthorityResponse) Reset() {
 	*x = GetCertificateAuthorityResponse{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[21]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -960,7 +1049,7 @@ func (x *GetCertificateAuthorityResponse) String() string {
 func (*GetCertificateAuthorityResponse) ProtoMessage() {}
 
 func (x *GetCertificateAuthorityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[21]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -973,7 +1062,7 @@ func (x *GetCertificateAuthorityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCertificateAuthorityResponse.ProtoReflect.Descriptor instead.
 func (*GetCertificateAuthorityResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{21}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *GetCertificateAuthorityResponse) GetCertificateAuthority() *v12.CertificateAuthority {
@@ -992,7 +1081,7 @@ type GetCertificateProfileRequest struct {
 
 func (x *GetCertificateProfileRequest) Reset() {
 	*x = GetCertificateProfileRequest{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[22]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1004,7 +1093,7 @@ func (x *GetCertificateProfileRequest) String() string {
 func (*GetCertificateProfileRequest) ProtoMessage() {}
 
 func (x *GetCertificateProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[22]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1017,7 +1106,7 @@ func (x *GetCertificateProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCertificateProfileRequest.ProtoReflect.Descriptor instead.
 func (*GetCertificateProfileRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{22}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetCertificateProfileRequest) GetId() string {
@@ -1036,7 +1125,7 @@ type GetCertificateProfileResponse struct {
 
 func (x *GetCertificateProfileResponse) Reset() {
 	*x = GetCertificateProfileResponse{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[23]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1048,7 +1137,7 @@ func (x *GetCertificateProfileResponse) String() string {
 func (*GetCertificateProfileResponse) ProtoMessage() {}
 
 func (x *GetCertificateProfileResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[23]
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1061,7 +1150,7 @@ func (x *GetCertificateProfileResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCertificateProfileResponse.ProtoReflect.Descriptor instead.
 func (*GetCertificateProfileResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{23}
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetCertificateProfileResponse) GetCertificateProfile() *v13.CertificateProfile {
@@ -1071,32 +1160,35 @@ func (x *GetCertificateProfileResponse) GetCertificateProfile() *v13.Certificate
 	return nil
 }
 
-type CreateEnrollmentRequestRequest struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequest *v14.EnrollmentRequest `protobuf:"bytes,1,opt,name=enrollment_request,json=enrollmentRequest,proto3" json:"enrollment_request,omitempty"`
-	SkipVerification  bool                   `protobuf:"varint,2,opt,name=skip_verification,json=skipVerification,proto3" json:"skip_verification,omitempty"`
-	AllowExisting     bool                   `protobuf:"varint,3,opt,name=allow_existing,json=allowExisting,proto3" json:"allow_existing,omitempty"`
-	RequireExisting   bool                   `protobuf:"varint,4,opt,name=require_existing,json=requireExisting,proto3" json:"require_existing,omitempty"`
-	CheckPassword     bool                   `protobuf:"varint,5,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+type CreateEnrollmentAttemptRequest struct {
+	state                       protoimpl.MessageState `protogen:"open.v1"`
+	EnrollmentAttempt           *v14.EnrollmentAttempt `protobuf:"bytes,1,opt,name=enrollment_attempt,json=enrollmentAttempt,proto3" json:"enrollment_attempt,omitempty"`
+	EndEntity                   *v1.EndEntity          `protobuf:"bytes,2,opt,name=end_entity,json=endEntity,proto3" json:"end_entity,omitempty"`
+	SkipVerification            bool                   `protobuf:"varint,3,opt,name=skip_verification,json=skipVerification,proto3" json:"skip_verification,omitempty"`
+	AllowExisting               bool                   `protobuf:"varint,4,opt,name=allow_existing,json=allowExisting,proto3" json:"allow_existing,omitempty"`
+	RequireExisting             bool                   `protobuf:"varint,5,opt,name=require_existing,json=requireExisting,proto3" json:"require_existing,omitempty"`
+	CheckPassword               bool                   `protobuf:"varint,6,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
+	AutoResetGeneratedEndEntity bool                   `protobuf:"varint,7,opt,name=auto_reset_generated_end_entity,json=autoResetGeneratedEndEntity,proto3" json:"auto_reset_generated_end_entity,omitempty"`
+	RequireImmediateIssuance    bool                   `protobuf:"varint,8,opt,name=require_immediate_issuance,json=requireImmediateIssuance,proto3" json:"require_immediate_issuance,omitempty"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
-func (x *CreateEnrollmentRequestRequest) Reset() {
-	*x = CreateEnrollmentRequestRequest{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[24]
+func (x *CreateEnrollmentAttemptRequest) Reset() {
+	*x = CreateEnrollmentAttemptRequest{}
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateEnrollmentRequestRequest) String() string {
+func (x *CreateEnrollmentAttemptRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateEnrollmentRequestRequest) ProtoMessage() {}
+func (*CreateEnrollmentAttemptRequest) ProtoMessage() {}
 
-func (x *CreateEnrollmentRequestRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[24]
+func (x *CreateEnrollmentAttemptRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1107,172 +1199,88 @@ func (x *CreateEnrollmentRequestRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateEnrollmentRequestRequest.ProtoReflect.Descriptor instead.
-func (*CreateEnrollmentRequestRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{24}
+// Deprecated: Use CreateEnrollmentAttemptRequest.ProtoReflect.Descriptor instead.
+func (*CreateEnrollmentAttemptRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *CreateEnrollmentRequestRequest) GetEnrollmentRequest() *v14.EnrollmentRequest {
+func (x *CreateEnrollmentAttemptRequest) GetEnrollmentAttempt() *v14.EnrollmentAttempt {
 	if x != nil {
-		return x.EnrollmentRequest
+		return x.EnrollmentAttempt
 	}
 	return nil
 }
 
-func (x *CreateEnrollmentRequestRequest) GetSkipVerification() bool {
+func (x *CreateEnrollmentAttemptRequest) GetEndEntity() *v1.EndEntity {
+	if x != nil {
+		return x.EndEntity
+	}
+	return nil
+}
+
+func (x *CreateEnrollmentAttemptRequest) GetSkipVerification() bool {
 	if x != nil {
 		return x.SkipVerification
 	}
 	return false
 }
 
-func (x *CreateEnrollmentRequestRequest) GetAllowExisting() bool {
+func (x *CreateEnrollmentAttemptRequest) GetAllowExisting() bool {
 	if x != nil {
 		return x.AllowExisting
 	}
 	return false
 }
 
-func (x *CreateEnrollmentRequestRequest) GetRequireExisting() bool {
+func (x *CreateEnrollmentAttemptRequest) GetRequireExisting() bool {
 	if x != nil {
 		return x.RequireExisting
 	}
 	return false
 }
 
-func (x *CreateEnrollmentRequestRequest) GetCheckPassword() bool {
+func (x *CreateEnrollmentAttemptRequest) GetCheckPassword() bool {
 	if x != nil {
 		return x.CheckPassword
 	}
 	return false
 }
 
-type CreateEnrollmentRequestResponse struct {
+func (x *CreateEnrollmentAttemptRequest) GetAutoResetGeneratedEndEntity() bool {
+	if x != nil {
+		return x.AutoResetGeneratedEndEntity
+	}
+	return false
+}
+
+func (x *CreateEnrollmentAttemptRequest) GetRequireImmediateIssuance() bool {
+	if x != nil {
+		return x.RequireImmediateIssuance
+	}
+	return false
+}
+
+type CreateEnrollmentAttemptResponse struct {
 	state              protoimpl.MessageState  `protogen:"open.v1"`
 	EnrollmentResponse *v14.EnrollmentResponse `protobuf:"bytes,1,opt,name=enrollment_response,json=enrollmentResponse,proto3" json:"enrollment_response,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
-func (x *CreateEnrollmentRequestResponse) Reset() {
-	*x = CreateEnrollmentRequestResponse{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[25]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateEnrollmentRequestResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateEnrollmentRequestResponse) ProtoMessage() {}
-
-func (x *CreateEnrollmentRequestResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[25]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateEnrollmentRequestResponse.ProtoReflect.Descriptor instead.
-func (*CreateEnrollmentRequestResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *CreateEnrollmentRequestResponse) GetEnrollmentResponse() *v14.EnrollmentResponse {
-	if x != nil {
-		return x.EnrollmentResponse
-	}
-	return nil
-}
-
-type GetEnrollmentByRequestIDRequest struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	EnrollmentRequestId string                 `protobuf:"bytes,1,opt,name=enrollment_request_id,json=enrollmentRequestId,proto3" json:"enrollment_request_id,omitempty"`
-	Password            string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	CheckPassword       bool                   `protobuf:"varint,3,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
-}
-
-func (x *GetEnrollmentByRequestIDRequest) Reset() {
-	*x = GetEnrollmentByRequestIDRequest{}
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[26]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetEnrollmentByRequestIDRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetEnrollmentByRequestIDRequest) ProtoMessage() {}
-
-func (x *GetEnrollmentByRequestIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[26]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetEnrollmentByRequestIDRequest.ProtoReflect.Descriptor instead.
-func (*GetEnrollmentByRequestIDRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{26}
-}
-
-func (x *GetEnrollmentByRequestIDRequest) GetEnrollmentRequestId() string {
-	if x != nil {
-		return x.EnrollmentRequestId
-	}
-	return ""
-}
-
-func (x *GetEnrollmentByRequestIDRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-func (x *GetEnrollmentByRequestIDRequest) GetCheckPassword() bool {
-	if x != nil {
-		return x.CheckPassword
-	}
-	return false
-}
-
-type GetEnrollmentByRequestIDResponse struct {
-	state              protoimpl.MessageState  `protogen:"open.v1"`
-	EnrollmentRequest  *v14.EnrollmentRequest  `protobuf:"bytes,1,opt,name=enrollment_request,json=enrollmentRequest,proto3" json:"enrollment_request,omitempty"`
-	EnrollmentResponse *v14.EnrollmentResponse `protobuf:"bytes,2,opt,name=enrollment_response,json=enrollmentResponse,proto3" json:"enrollment_response,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
-}
-
-func (x *GetEnrollmentByRequestIDResponse) Reset() {
-	*x = GetEnrollmentByRequestIDResponse{}
+func (x *CreateEnrollmentAttemptResponse) Reset() {
+	*x = CreateEnrollmentAttemptResponse{}
 	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetEnrollmentByRequestIDResponse) String() string {
+func (x *CreateEnrollmentAttemptResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetEnrollmentByRequestIDResponse) ProtoMessage() {}
+func (*CreateEnrollmentAttemptResponse) ProtoMessage() {}
 
-func (x *GetEnrollmentByRequestIDResponse) ProtoReflect() protoreflect.Message {
+func (x *CreateEnrollmentAttemptResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_public_plugin_runtime_v1_runtime_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1284,19 +1292,12 @@ func (x *GetEnrollmentByRequestIDResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetEnrollmentByRequestIDResponse.ProtoReflect.Descriptor instead.
-func (*GetEnrollmentByRequestIDResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateEnrollmentAttemptResponse.ProtoReflect.Descriptor instead.
+func (*CreateEnrollmentAttemptResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_plugin_runtime_v1_runtime_proto_rawDescGZIP(), []int{27}
 }
 
-func (x *GetEnrollmentByRequestIDResponse) GetEnrollmentRequest() *v14.EnrollmentRequest {
-	if x != nil {
-		return x.EnrollmentRequest
-	}
-	return nil
-}
-
-func (x *GetEnrollmentByRequestIDResponse) GetEnrollmentResponse() *v14.EnrollmentResponse {
+func (x *CreateEnrollmentAttemptResponse) GetEnrollmentResponse() *v14.EnrollmentResponse {
 	if x != nil {
 		return x.EnrollmentResponse
 	}
@@ -2532,7 +2533,7 @@ var File_otpki_public_plugin_runtime_v1_runtime_proto protoreflect.FileDescripto
 
 const file_otpki_public_plugin_runtime_v1_runtime_proto_rawDesc = "" +
 	"\n" +
-	",otpki/public/plugin/runtime/v1/runtime.proto\x12\x1eotpki.public.plugin.runtime.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1aFotpki/common/core/certificate_authority/v1/certificate_authority.proto\x1aBotpki/common/core/certificate_profile/v1/certificate_profile.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\x1aHotpki/common/core/end_entity_certificate/v1/end_entity_certificate.proto\x1a,otpki/common/core/enroller/v1/enroller.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x12\n" +
+	",otpki/public/plugin/runtime/v1/runtime.proto\x12\x1eotpki.public.plugin.runtime.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1aFotpki/common/core/certificate_authority/v1/certificate_authority.proto\x1aBotpki/common/core/certificate_profile/v1/certificate_profile.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\x1aHotpki/common/core/end_entity_certificate/v1/end_entity_certificate.proto\x1a,otpki/common/core/enroller/v1/enroller.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x12\n" +
 	"\x10GetConfigRequest\"4\n" +
 	"\x11GetConfigResponse\x12\x1f\n" +
 	"\vconfig_json\x18\x01 \x01(\fR\n" +
@@ -2561,7 +2562,13 @@ const file_otpki_public_plugin_runtime_v1_runtime_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"a\n" +
 	"\x14GetEndEntityResponse\x12I\n" +
 	"\n" +
-	"end_entity\x18\x01 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityR\tendEntity\",\n" +
+	"end_entity\x18\x01 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityR\tendEntity\"\xb0\x01\n" +
+	"\x16UpdateEndEntityRequest\x12Q\n" +
+	"\n" +
+	"end_entity\x18\x01 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityB\x06\xbaH\x03\xc8\x01\x01R\tendEntity\x12C\n" +
+	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskB\x06\xbaH\x03\xc8\x01\x01R\n" +
+	"updateMask\"\x19\n" +
+	"\x17UpdateEndEntityResponse\",\n" +
 	"\rGetKeyRequest\x12\x1b\n" +
 	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"g\n" +
 	"\x0eGetKeyResponse\x12/\n" +
@@ -2581,22 +2588,19 @@ const file_otpki_public_plugin_runtime_v1_runtime_proto_rawDesc = "" +
 	"\x1cGetCertificateProfileRequest\x12\x1b\n" +
 	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x8e\x01\n" +
 	"\x1dGetCertificateProfileResponse\x12m\n" +
-	"\x13certificate_profile\x18\x01 \x01(\v2<.otpki.common.core.certificate_profile.v1.CertificateProfileR\x12certificateProfile\"\xaf\x02\n" +
-	"\x1eCreateEnrollmentRequestRequest\x12g\n" +
-	"\x12enrollment_request\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentRequestB\x06\xbaH\x03\xc8\x01\x01R\x11enrollmentRequest\x12+\n" +
-	"\x11skip_verification\x18\x02 \x01(\bR\x10skipVerification\x12%\n" +
-	"\x0eallow_existing\x18\x03 \x01(\bR\rallowExisting\x12)\n" +
-	"\x10require_existing\x18\x04 \x01(\bR\x0frequireExisting\x12%\n" +
-	"\x0echeck_password\x18\x05 \x01(\bR\rcheckPassword\"\x85\x01\n" +
-	"\x1fCreateEnrollmentRequestResponse\x12b\n" +
-	"\x13enrollment_response\x18\x01 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xa5\x01\n" +
-	"\x1fGetEnrollmentByRequestIDRequest\x12?\n" +
-	"\x15enrollment_request_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13enrollmentRequestId\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12%\n" +
-	"\x0echeck_password\x18\x03 \x01(\bR\rcheckPassword\"\xe7\x01\n" +
-	" GetEnrollmentByRequestIDResponse\x12_\n" +
-	"\x12enrollment_request\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentRequestR\x11enrollmentRequest\x12b\n" +
-	"\x13enrollment_response\x18\x02 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xff\x01\n" +
+	"\x13certificate_profile\x18\x01 \x01(\v2<.otpki.common.core.certificate_profile.v1.CertificateProfileR\x12certificateProfile\"\xfe\x03\n" +
+	"\x1eCreateEnrollmentAttemptRequest\x12g\n" +
+	"\x12enrollment_attempt\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentAttemptB\x06\xbaH\x03\xc8\x01\x01R\x11enrollmentAttempt\x12I\n" +
+	"\n" +
+	"end_entity\x18\x02 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityR\tendEntity\x12+\n" +
+	"\x11skip_verification\x18\x03 \x01(\bR\x10skipVerification\x12%\n" +
+	"\x0eallow_existing\x18\x04 \x01(\bR\rallowExisting\x12)\n" +
+	"\x10require_existing\x18\x05 \x01(\bR\x0frequireExisting\x12%\n" +
+	"\x0echeck_password\x18\x06 \x01(\bR\rcheckPassword\x12D\n" +
+	"\x1fauto_reset_generated_end_entity\x18\a \x01(\bR\x1bautoResetGeneratedEndEntity\x12<\n" +
+	"\x1arequire_immediate_issuance\x18\b \x01(\bR\x18requireImmediateIssuance\"\x85\x01\n" +
+	"\x1fCreateEnrollmentAttemptResponse\x12b\n" +
+	"\x13enrollment_response\x18\x01 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xff\x01\n" +
 	"!RevokeEndEntityCertificateRequest\x12/\n" +
 	"\rend_entity_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\vendEntityId\x12?\n" +
 	"\x15issued_certificate_id\x18\x02 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x13issuedCertificateId\x12h\n" +
@@ -2677,7 +2681,7 @@ const file_otpki_public_plugin_runtime_v1_runtime_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12B\n" +
 	"\x05value\x18\x02 \x01(\v2,.otpki.public.plugin.runtime.v1.HeaderValuesR\x05value:\x028\x01\"4\n" +
 	"\x14AuthenticateResponse\x12\x1c\n" +
-	"\tprincipal\x18\x01 \x01(\fR\tprincipal2\xcc\x1c\n" +
+	"\tprincipal\x18\x01 \x01(\fR\tprincipal2\xb1\x1c\n" +
 	"\x14PluginRuntimeService\x12p\n" +
 	"\tGetConfig\x120.otpki.public.plugin.runtime.v1.GetConfigRequest\x1a1.otpki.public.plugin.runtime.v1.GetConfigResponse\x12v\n" +
 	"\vCreateNonce\x122.otpki.public.plugin.runtime.v1.CreateNonceRequest\x1a3.otpki.public.plugin.runtime.v1.CreateNonceResponse\x12m\n" +
@@ -2686,14 +2690,14 @@ const file_otpki_public_plugin_runtime_v1_runtime_proto_rawDesc = "" +
 	"CheckNonce\x121.otpki.public.plugin.runtime.v1.CheckNonceRequest\x1a2.otpki.public.plugin.runtime.v1.CheckNonceResponse\x12\x7f\n" +
 	"\x0eAddUniqueNonce\x125.otpki.public.plugin.runtime.v1.AddUniqueNonceRequest\x1a6.otpki.public.plugin.runtime.v1.AddUniqueNonceResponse\x12\x94\x01\n" +
 	"\x15GetEndEntityByLoginID\x12<.otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDRequest\x1a=.otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDResponse\x12y\n" +
-	"\fGetEndEntity\x123.otpki.public.plugin.runtime.v1.GetEndEntityRequest\x1a4.otpki.public.plugin.runtime.v1.GetEndEntityResponse\x12g\n" +
+	"\fGetEndEntity\x123.otpki.public.plugin.runtime.v1.GetEndEntityRequest\x1a4.otpki.public.plugin.runtime.v1.GetEndEntityResponse\x12\x82\x01\n" +
+	"\x0fUpdateEndEntity\x126.otpki.public.plugin.runtime.v1.UpdateEndEntityRequest\x1a7.otpki.public.plugin.runtime.v1.UpdateEndEntityResponse\x12g\n" +
 	"\x06GetKey\x12-.otpki.public.plugin.runtime.v1.GetKeyRequest\x1a..otpki.public.plugin.runtime.v1.GetKeyResponse\x12\xd3\x01\n" +
 	"*GetAllRootCertificateAuthorityCertificates\x12Q.otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesRequest\x1aR.otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesResponse\x12\xcd\x01\n" +
 	"(GetLatestCertificateAuthorityCertificate\x12O.otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateRequest\x1aP.otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse\x12\x9a\x01\n" +
 	"\x17GetCertificateAuthority\x12>.otpki.public.plugin.runtime.v1.GetCertificateAuthorityRequest\x1a?.otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse\x12\x94\x01\n" +
 	"\x15GetCertificateProfile\x12<.otpki.public.plugin.runtime.v1.GetCertificateProfileRequest\x1a=.otpki.public.plugin.runtime.v1.GetCertificateProfileResponse\x12\x9a\x01\n" +
-	"\x17CreateEnrollmentRequest\x12>.otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest\x1a?.otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse\x12\x9d\x01\n" +
-	"\x18GetEnrollmentByRequestID\x12?.otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest\x1a@.otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse\x12\xa3\x01\n" +
+	"\x17CreateEnrollmentAttempt\x12>.otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest\x1a?.otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse\x12\xa3\x01\n" +
 	"\x1aRevokeEndEntityCertificate\x12A.otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest\x1aB.otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateResponse\x12\xc4\x01\n" +
 	"%GetEndEntityCertificateBySerialNumber\x12L.otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberRequest\x1aM.otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberResponse\x12\x9d\x01\n" +
 	"\x18GetEndEntityCertificates\x12?.otpki.public.plugin.runtime.v1.GetEndEntityCertificatesRequest\x1a@.otpki.public.plugin.runtime.v1.GetEndEntityCertificatesResponse\x12\xc1\x01\n" +
@@ -2735,20 +2739,20 @@ var file_otpki_public_plugin_runtime_v1_runtime_proto_goTypes = []any{
 	(*GetEndEntityByLoginIDResponse)(nil),                      // 11: otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDResponse
 	(*GetEndEntityRequest)(nil),                                // 12: otpki.public.plugin.runtime.v1.GetEndEntityRequest
 	(*GetEndEntityResponse)(nil),                               // 13: otpki.public.plugin.runtime.v1.GetEndEntityResponse
-	(*GetKeyRequest)(nil),                                      // 14: otpki.public.plugin.runtime.v1.GetKeyRequest
-	(*GetKeyResponse)(nil),                                     // 15: otpki.public.plugin.runtime.v1.GetKeyResponse
-	(*GetAllRootCertificateAuthorityCertificatesRequest)(nil),  // 16: otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesRequest
-	(*GetAllRootCertificateAuthorityCertificatesResponse)(nil), // 17: otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesResponse
-	(*GetLatestCertificateAuthorityCertificateRequest)(nil),    // 18: otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateRequest
-	(*GetLatestCertificateAuthorityCertificateResponse)(nil),   // 19: otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse
-	(*GetCertificateAuthorityRequest)(nil),                     // 20: otpki.public.plugin.runtime.v1.GetCertificateAuthorityRequest
-	(*GetCertificateAuthorityResponse)(nil),                    // 21: otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse
-	(*GetCertificateProfileRequest)(nil),                       // 22: otpki.public.plugin.runtime.v1.GetCertificateProfileRequest
-	(*GetCertificateProfileResponse)(nil),                      // 23: otpki.public.plugin.runtime.v1.GetCertificateProfileResponse
-	(*CreateEnrollmentRequestRequest)(nil),                     // 24: otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
-	(*CreateEnrollmentRequestResponse)(nil),                    // 25: otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse
-	(*GetEnrollmentByRequestIDRequest)(nil),                    // 26: otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
-	(*GetEnrollmentByRequestIDResponse)(nil),                   // 27: otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse
+	(*UpdateEndEntityRequest)(nil),                             // 14: otpki.public.plugin.runtime.v1.UpdateEndEntityRequest
+	(*UpdateEndEntityResponse)(nil),                            // 15: otpki.public.plugin.runtime.v1.UpdateEndEntityResponse
+	(*GetKeyRequest)(nil),                                      // 16: otpki.public.plugin.runtime.v1.GetKeyRequest
+	(*GetKeyResponse)(nil),                                     // 17: otpki.public.plugin.runtime.v1.GetKeyResponse
+	(*GetAllRootCertificateAuthorityCertificatesRequest)(nil),  // 18: otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesRequest
+	(*GetAllRootCertificateAuthorityCertificatesResponse)(nil), // 19: otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesResponse
+	(*GetLatestCertificateAuthorityCertificateRequest)(nil),    // 20: otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateRequest
+	(*GetLatestCertificateAuthorityCertificateResponse)(nil),   // 21: otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse
+	(*GetCertificateAuthorityRequest)(nil),                     // 22: otpki.public.plugin.runtime.v1.GetCertificateAuthorityRequest
+	(*GetCertificateAuthorityResponse)(nil),                    // 23: otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse
+	(*GetCertificateProfileRequest)(nil),                       // 24: otpki.public.plugin.runtime.v1.GetCertificateProfileRequest
+	(*GetCertificateProfileResponse)(nil),                      // 25: otpki.public.plugin.runtime.v1.GetCertificateProfileResponse
+	(*CreateEnrollmentAttemptRequest)(nil),                     // 26: otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
+	(*CreateEnrollmentAttemptResponse)(nil),                    // 27: otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse
 	(*RevokeEndEntityCertificateRequest)(nil),                  // 28: otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest
 	(*RevokeEndEntityCertificateResponse)(nil),                 // 29: otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateResponse
 	(*GetEndEntityCertificateBySerialNumberRequest)(nil),       // 30: otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberRequest
@@ -2774,98 +2778,100 @@ var file_otpki_public_plugin_runtime_v1_runtime_proto_goTypes = []any{
 	(*AuthenticateResponse)(nil),                               // 50: otpki.public.plugin.runtime.v1.AuthenticateResponse
 	nil,                                                        // 51: otpki.public.plugin.runtime.v1.AuthenticateRequest.HeadersEntry
 	(*v1.EndEntity)(nil),                                       // 52: otpki.common.core.end_entity.v1.EndEntity
-	(*v11.Key)(nil),                                            // 53: otpki.common.core.key.v1.Key
-	(*v12.CertificateAuthorityCertificate)(nil),                // 54: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	(*v12.CertificateAuthority)(nil),                           // 55: otpki.common.core.certificate_authority.v1.CertificateAuthority
-	(*v13.CertificateProfile)(nil),                             // 56: otpki.common.core.certificate_profile.v1.CertificateProfile
-	(*v14.EnrollmentRequest)(nil),                              // 57: otpki.common.core.enroller.v1.EnrollmentRequest
-	(*v14.EnrollmentResponse)(nil),                             // 58: otpki.common.core.enroller.v1.EnrollmentResponse
-	(v15.RevocationReasonCode)(0),                              // 59: otpki.common.x509.v1.RevocationReasonCode
-	(*v16.EndEntityCertificate)(nil),                           // 60: otpki.common.core.end_entity_certificate.v1.EndEntityCertificate
-	(*timestamppb.Timestamp)(nil),                              // 61: google.protobuf.Timestamp
-	(v15.HashAlgorithm)(0),                                     // 62: otpki.common.x509.v1.HashAlgorithm
-	(*anypb.Any)(nil),                                          // 63: google.protobuf.Any
+	(*fieldmaskpb.FieldMask)(nil),                              // 53: google.protobuf.FieldMask
+	(*v11.Key)(nil),                                            // 54: otpki.common.core.key.v1.Key
+	(*v12.CertificateAuthorityCertificate)(nil),                // 55: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	(*v12.CertificateAuthority)(nil),                           // 56: otpki.common.core.certificate_authority.v1.CertificateAuthority
+	(*v13.CertificateProfile)(nil),                             // 57: otpki.common.core.certificate_profile.v1.CertificateProfile
+	(*v14.EnrollmentAttempt)(nil),                              // 58: otpki.common.core.enroller.v1.EnrollmentAttempt
+	(*v14.EnrollmentResponse)(nil),                             // 59: otpki.common.core.enroller.v1.EnrollmentResponse
+	(v15.RevocationReasonCode)(0),                              // 60: otpki.common.x509.v1.RevocationReasonCode
+	(*v16.EndEntityCertificate)(nil),                           // 61: otpki.common.core.end_entity_certificate.v1.EndEntityCertificate
+	(*timestamppb.Timestamp)(nil),                              // 62: google.protobuf.Timestamp
+	(v15.HashAlgorithm)(0),                                     // 63: otpki.common.x509.v1.HashAlgorithm
+	(*anypb.Any)(nil),                                          // 64: google.protobuf.Any
 }
 var file_otpki_public_plugin_runtime_v1_runtime_proto_depIdxs = []int32{
 	52, // 0: otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDResponse.end_entity:type_name -> otpki.common.core.end_entity.v1.EndEntity
 	52, // 1: otpki.public.plugin.runtime.v1.GetEndEntityResponse.end_entity:type_name -> otpki.common.core.end_entity.v1.EndEntity
-	53, // 2: otpki.public.plugin.runtime.v1.GetKeyResponse.key:type_name -> otpki.common.core.key.v1.Key
-	54, // 3: otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse.certificate_authority_certificate:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	55, // 4: otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	56, // 5: otpki.public.plugin.runtime.v1.GetCertificateProfileResponse.certificate_profile:type_name -> otpki.common.core.certificate_profile.v1.CertificateProfile
-	57, // 6: otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest.enrollment_request:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	58, // 7: otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
-	57, // 8: otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse.enrollment_request:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	58, // 9: otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
-	59, // 10: otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest.revocation_reason_code:type_name -> otpki.common.x509.v1.RevocationReasonCode
-	60, // 11: otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberResponse.end_entity_certificate:type_name -> otpki.common.core.end_entity_certificate.v1.EndEntityCertificate
-	60, // 12: otpki.public.plugin.runtime.v1.GetEndEntityCertificatesResponse.end_entity_certificates:type_name -> otpki.common.core.end_entity_certificate.v1.EndEntityCertificate
-	61, // 13: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.status_updated_at:type_name -> google.protobuf.Timestamp
-	61, // 14: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.not_before:type_name -> google.protobuf.Timestamp
-	61, // 15: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.not_after:type_name -> google.protobuf.Timestamp
-	61, // 16: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.revoked_at:type_name -> google.protobuf.Timestamp
-	61, // 17: otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest.after_updated_at:type_name -> google.protobuf.Timestamp
-	34, // 18: otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse.snapshots:type_name -> otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
-	62, // 19: otpki.public.plugin.runtime.v1.CertificateStatusCertID.hash_algorithm:type_name -> otpki.common.x509.v1.HashAlgorithm
-	37, // 20: otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest.cert_id:type_name -> otpki.public.plugin.runtime.v1.CertificateStatusCertID
-	34, // 21: otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse.snapshot:type_name -> otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
-	63, // 22: otpki.public.plugin.runtime.v1.SignKeyRequest.opts:type_name -> google.protobuf.Any
-	63, // 23: otpki.public.plugin.runtime.v1.DecryptKeyRequest.opts:type_name -> google.protobuf.Any
-	51, // 24: otpki.public.plugin.runtime.v1.AuthenticateRequest.headers:type_name -> otpki.public.plugin.runtime.v1.AuthenticateRequest.HeadersEntry
-	48, // 25: otpki.public.plugin.runtime.v1.AuthenticateRequest.HeadersEntry.value:type_name -> otpki.public.plugin.runtime.v1.HeaderValues
-	0,  // 26: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetConfig:input_type -> otpki.public.plugin.runtime.v1.GetConfigRequest
-	2,  // 27: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateNonce:input_type -> otpki.public.plugin.runtime.v1.CreateNonceRequest
-	4,  // 28: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddNonce:input_type -> otpki.public.plugin.runtime.v1.AddNonceRequest
-	6,  // 29: otpki.public.plugin.runtime.v1.PluginRuntimeService.CheckNonce:input_type -> otpki.public.plugin.runtime.v1.CheckNonceRequest
-	8,  // 30: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddUniqueNonce:input_type -> otpki.public.plugin.runtime.v1.AddUniqueNonceRequest
-	10, // 31: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityByLoginID:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDRequest
-	12, // 32: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntity:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityRequest
-	14, // 33: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey:input_type -> otpki.public.plugin.runtime.v1.GetKeyRequest
-	16, // 34: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetAllRootCertificateAuthorityCertificates:input_type -> otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesRequest
-	18, // 35: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetLatestCertificateAuthorityCertificate:input_type -> otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateRequest
-	20, // 36: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateAuthority:input_type -> otpki.public.plugin.runtime.v1.GetCertificateAuthorityRequest
-	22, // 37: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateProfile:input_type -> otpki.public.plugin.runtime.v1.GetCertificateProfileRequest
-	24, // 38: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest:input_type -> otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
-	26, // 39: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID:input_type -> otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
-	28, // 40: otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate:input_type -> otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest
-	30, // 41: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificateBySerialNumber:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberRequest
-	32, // 42: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificates:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificatesRequest
-	35, // 43: otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots:input_type -> otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest
-	38, // 44: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID:input_type -> otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
-	40, // 45: otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey:input_type -> otpki.public.plugin.runtime.v1.SignKeyRequest
-	42, // 46: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptKey:input_type -> otpki.public.plugin.runtime.v1.DecryptKeyRequest
-	44, // 47: otpki.public.plugin.runtime.v1.PluginRuntimeService.EncryptWithEnvironmentToken:input_type -> otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenRequest
-	46, // 48: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptWithEnvironmentToken:input_type -> otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenRequest
-	49, // 49: otpki.public.plugin.runtime.v1.PluginRuntimeService.Authenticate:input_type -> otpki.public.plugin.runtime.v1.AuthenticateRequest
-	1,  // 50: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetConfig:output_type -> otpki.public.plugin.runtime.v1.GetConfigResponse
-	3,  // 51: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateNonce:output_type -> otpki.public.plugin.runtime.v1.CreateNonceResponse
-	5,  // 52: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddNonce:output_type -> otpki.public.plugin.runtime.v1.AddNonceResponse
-	7,  // 53: otpki.public.plugin.runtime.v1.PluginRuntimeService.CheckNonce:output_type -> otpki.public.plugin.runtime.v1.CheckNonceResponse
-	9,  // 54: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddUniqueNonce:output_type -> otpki.public.plugin.runtime.v1.AddUniqueNonceResponse
-	11, // 55: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityByLoginID:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDResponse
-	13, // 56: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntity:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityResponse
-	15, // 57: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey:output_type -> otpki.public.plugin.runtime.v1.GetKeyResponse
-	17, // 58: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetAllRootCertificateAuthorityCertificates:output_type -> otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesResponse
-	19, // 59: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetLatestCertificateAuthorityCertificate:output_type -> otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse
-	21, // 60: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateAuthority:output_type -> otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse
-	23, // 61: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateProfile:output_type -> otpki.public.plugin.runtime.v1.GetCertificateProfileResponse
-	25, // 62: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest:output_type -> otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse
-	27, // 63: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID:output_type -> otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse
-	29, // 64: otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate:output_type -> otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateResponse
-	31, // 65: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificateBySerialNumber:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberResponse
-	33, // 66: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificates:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificatesResponse
-	36, // 67: otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots:output_type -> otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse
-	39, // 68: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID:output_type -> otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse
-	41, // 69: otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey:output_type -> otpki.public.plugin.runtime.v1.SignKeyResponse
-	43, // 70: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptKey:output_type -> otpki.public.plugin.runtime.v1.DecryptKeyResponse
-	45, // 71: otpki.public.plugin.runtime.v1.PluginRuntimeService.EncryptWithEnvironmentToken:output_type -> otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenResponse
-	47, // 72: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptWithEnvironmentToken:output_type -> otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenResponse
-	50, // 73: otpki.public.plugin.runtime.v1.PluginRuntimeService.Authenticate:output_type -> otpki.public.plugin.runtime.v1.AuthenticateResponse
-	50, // [50:74] is the sub-list for method output_type
-	26, // [26:50] is the sub-list for method input_type
-	26, // [26:26] is the sub-list for extension type_name
-	26, // [26:26] is the sub-list for extension extendee
-	0,  // [0:26] is the sub-list for field type_name
+	52, // 2: otpki.public.plugin.runtime.v1.UpdateEndEntityRequest.end_entity:type_name -> otpki.common.core.end_entity.v1.EndEntity
+	53, // 3: otpki.public.plugin.runtime.v1.UpdateEndEntityRequest.update_mask:type_name -> google.protobuf.FieldMask
+	54, // 4: otpki.public.plugin.runtime.v1.GetKeyResponse.key:type_name -> otpki.common.core.key.v1.Key
+	55, // 5: otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse.certificate_authority_certificate:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	56, // 6: otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	57, // 7: otpki.public.plugin.runtime.v1.GetCertificateProfileResponse.certificate_profile:type_name -> otpki.common.core.certificate_profile.v1.CertificateProfile
+	58, // 8: otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest.enrollment_attempt:type_name -> otpki.common.core.enroller.v1.EnrollmentAttempt
+	52, // 9: otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest.end_entity:type_name -> otpki.common.core.end_entity.v1.EndEntity
+	59, // 10: otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse.enrollment_response:type_name -> otpki.common.core.enroller.v1.EnrollmentResponse
+	60, // 11: otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest.revocation_reason_code:type_name -> otpki.common.x509.v1.RevocationReasonCode
+	61, // 12: otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberResponse.end_entity_certificate:type_name -> otpki.common.core.end_entity_certificate.v1.EndEntityCertificate
+	61, // 13: otpki.public.plugin.runtime.v1.GetEndEntityCertificatesResponse.end_entity_certificates:type_name -> otpki.common.core.end_entity_certificate.v1.EndEntityCertificate
+	62, // 14: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.status_updated_at:type_name -> google.protobuf.Timestamp
+	62, // 15: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.not_before:type_name -> google.protobuf.Timestamp
+	62, // 16: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.not_after:type_name -> google.protobuf.Timestamp
+	62, // 17: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.revoked_at:type_name -> google.protobuf.Timestamp
+	62, // 18: otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest.after_updated_at:type_name -> google.protobuf.Timestamp
+	34, // 19: otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse.snapshots:type_name -> otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
+	63, // 20: otpki.public.plugin.runtime.v1.CertificateStatusCertID.hash_algorithm:type_name -> otpki.common.x509.v1.HashAlgorithm
+	37, // 21: otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest.cert_id:type_name -> otpki.public.plugin.runtime.v1.CertificateStatusCertID
+	34, // 22: otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse.snapshot:type_name -> otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
+	64, // 23: otpki.public.plugin.runtime.v1.SignKeyRequest.opts:type_name -> google.protobuf.Any
+	64, // 24: otpki.public.plugin.runtime.v1.DecryptKeyRequest.opts:type_name -> google.protobuf.Any
+	51, // 25: otpki.public.plugin.runtime.v1.AuthenticateRequest.headers:type_name -> otpki.public.plugin.runtime.v1.AuthenticateRequest.HeadersEntry
+	48, // 26: otpki.public.plugin.runtime.v1.AuthenticateRequest.HeadersEntry.value:type_name -> otpki.public.plugin.runtime.v1.HeaderValues
+	0,  // 27: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetConfig:input_type -> otpki.public.plugin.runtime.v1.GetConfigRequest
+	2,  // 28: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateNonce:input_type -> otpki.public.plugin.runtime.v1.CreateNonceRequest
+	4,  // 29: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddNonce:input_type -> otpki.public.plugin.runtime.v1.AddNonceRequest
+	6,  // 30: otpki.public.plugin.runtime.v1.PluginRuntimeService.CheckNonce:input_type -> otpki.public.plugin.runtime.v1.CheckNonceRequest
+	8,  // 31: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddUniqueNonce:input_type -> otpki.public.plugin.runtime.v1.AddUniqueNonceRequest
+	10, // 32: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityByLoginID:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDRequest
+	12, // 33: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntity:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityRequest
+	14, // 34: otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity:input_type -> otpki.public.plugin.runtime.v1.UpdateEndEntityRequest
+	16, // 35: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey:input_type -> otpki.public.plugin.runtime.v1.GetKeyRequest
+	18, // 36: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetAllRootCertificateAuthorityCertificates:input_type -> otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesRequest
+	20, // 37: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetLatestCertificateAuthorityCertificate:input_type -> otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateRequest
+	22, // 38: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateAuthority:input_type -> otpki.public.plugin.runtime.v1.GetCertificateAuthorityRequest
+	24, // 39: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateProfile:input_type -> otpki.public.plugin.runtime.v1.GetCertificateProfileRequest
+	26, // 40: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt:input_type -> otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
+	28, // 41: otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate:input_type -> otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest
+	30, // 42: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificateBySerialNumber:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberRequest
+	32, // 43: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificates:input_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificatesRequest
+	35, // 44: otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots:input_type -> otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest
+	38, // 45: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID:input_type -> otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
+	40, // 46: otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey:input_type -> otpki.public.plugin.runtime.v1.SignKeyRequest
+	42, // 47: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptKey:input_type -> otpki.public.plugin.runtime.v1.DecryptKeyRequest
+	44, // 48: otpki.public.plugin.runtime.v1.PluginRuntimeService.EncryptWithEnvironmentToken:input_type -> otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenRequest
+	46, // 49: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptWithEnvironmentToken:input_type -> otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenRequest
+	49, // 50: otpki.public.plugin.runtime.v1.PluginRuntimeService.Authenticate:input_type -> otpki.public.plugin.runtime.v1.AuthenticateRequest
+	1,  // 51: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetConfig:output_type -> otpki.public.plugin.runtime.v1.GetConfigResponse
+	3,  // 52: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateNonce:output_type -> otpki.public.plugin.runtime.v1.CreateNonceResponse
+	5,  // 53: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddNonce:output_type -> otpki.public.plugin.runtime.v1.AddNonceResponse
+	7,  // 54: otpki.public.plugin.runtime.v1.PluginRuntimeService.CheckNonce:output_type -> otpki.public.plugin.runtime.v1.CheckNonceResponse
+	9,  // 55: otpki.public.plugin.runtime.v1.PluginRuntimeService.AddUniqueNonce:output_type -> otpki.public.plugin.runtime.v1.AddUniqueNonceResponse
+	11, // 56: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityByLoginID:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityByLoginIDResponse
+	13, // 57: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntity:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityResponse
+	15, // 58: otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity:output_type -> otpki.public.plugin.runtime.v1.UpdateEndEntityResponse
+	17, // 59: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey:output_type -> otpki.public.plugin.runtime.v1.GetKeyResponse
+	19, // 60: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetAllRootCertificateAuthorityCertificates:output_type -> otpki.public.plugin.runtime.v1.GetAllRootCertificateAuthorityCertificatesResponse
+	21, // 61: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetLatestCertificateAuthorityCertificate:output_type -> otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse
+	23, // 62: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateAuthority:output_type -> otpki.public.plugin.runtime.v1.GetCertificateAuthorityResponse
+	25, // 63: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateProfile:output_type -> otpki.public.plugin.runtime.v1.GetCertificateProfileResponse
+	27, // 64: otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt:output_type -> otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse
+	29, // 65: otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate:output_type -> otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateResponse
+	31, // 66: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificateBySerialNumber:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificateBySerialNumberResponse
+	33, // 67: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificates:output_type -> otpki.public.plugin.runtime.v1.GetEndEntityCertificatesResponse
+	36, // 68: otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots:output_type -> otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse
+	39, // 69: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID:output_type -> otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse
+	41, // 70: otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey:output_type -> otpki.public.plugin.runtime.v1.SignKeyResponse
+	43, // 71: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptKey:output_type -> otpki.public.plugin.runtime.v1.DecryptKeyResponse
+	45, // 72: otpki.public.plugin.runtime.v1.PluginRuntimeService.EncryptWithEnvironmentToken:output_type -> otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenResponse
+	47, // 73: otpki.public.plugin.runtime.v1.PluginRuntimeService.DecryptWithEnvironmentToken:output_type -> otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenResponse
+	50, // 74: otpki.public.plugin.runtime.v1.PluginRuntimeService.Authenticate:output_type -> otpki.public.plugin.runtime.v1.AuthenticateResponse
+	51, // [51:75] is the sub-list for method output_type
+	27, // [27:51] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_plugin_runtime_v1_runtime_proto_init() }

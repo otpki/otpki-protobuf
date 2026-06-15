@@ -35,65 +35,10 @@ var (
 	_ = metadata.Join
 )
 
-func request_EnrollerService_CreateEnrollmentRequest_0(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EnrollerService_CreateEnrollmentAttempt_0(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateEnrollmentRequestRequest
+		protoReq CreateEnrollmentAttemptRequest
 		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.EnrollmentRequest); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.CreateEnrollmentRequest(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_EnrollerService_CreateEnrollmentRequest_0(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateEnrollmentRequestRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.EnrollmentRequest); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.CreateEnrollmentRequest(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateEnrollmentRequestForExistingEndEntityRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.EnrollmentRequest); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.CreateEnrollmentRequestForExistingEndEntity(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateEnrollmentRequestForExistingEndEntityRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.EnrollmentRequest); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.CreateEnrollmentRequestForExistingEndEntity(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_EnrollerService_GetEnrollmentByRequestID_0(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetEnrollmentByRequestIDRequest
-		metadata runtime.ServerMetadata
-		err      error
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
@@ -101,42 +46,52 @@ func request_EnrollerService_GetEnrollmentByRequestID_0(ctx context.Context, mar
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	val, ok := pathParams["enrollment_request_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "enrollment_request_id")
-	}
-	protoReq.EnrollmentRequestId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "enrollment_request_id", err)
-	}
-	msg, err := client.GetEnrollmentByRequestID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateEnrollmentAttempt(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_EnrollerService_GetEnrollmentByRequestID_0(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EnrollerService_CreateEnrollmentAttempt_0(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetEnrollmentByRequestIDRequest
+		protoReq CreateEnrollmentAttemptRequest
 		metadata runtime.ServerMetadata
-		err      error
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	val, ok := pathParams["enrollment_request_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "enrollment_request_id")
-	}
-	protoReq.EnrollmentRequestId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "enrollment_request_id", err)
-	}
-	msg, err := server.GetEnrollmentByRequestID(ctx, &protoReq)
+	msg, err := server.CreateEnrollmentAttempt(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_EnrollerService_GetEnrollmentRequestList_0(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetEnrollmentRequestListRequest
+		protoReq CreateEnrollmentAttemptForExistingEndEntityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.CreateEnrollmentAttemptForExistingEndEntity(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateEnrollmentAttemptForExistingEndEntityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CreateEnrollmentAttemptForExistingEndEntity(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_EnrollerService_GetEnrollmentAttemptList_0(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetEnrollmentAttemptListRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
@@ -145,27 +100,27 @@ func request_EnrollerService_GetEnrollmentRequestList_0(ctx context.Context, mar
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.GetEnrollmentRequestList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetEnrollmentAttemptList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_EnrollerService_GetEnrollmentRequestList_0(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EnrollerService_GetEnrollmentAttemptList_0(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetEnrollmentRequestListRequest
+		protoReq GetEnrollmentAttemptListRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetEnrollmentRequestList(ctx, &protoReq)
+	msg, err := server.GetEnrollmentAttemptList(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_EnrollerService_GetEnrollmentRequestList_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+var filter_EnrollerService_GetEnrollmentAttemptList_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
-func request_EnrollerService_GetEnrollmentRequestList_1(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_EnrollerService_GetEnrollmentAttemptList_1(ctx context.Context, marshaler runtime.Marshaler, client EnrollerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetEnrollmentRequestListRequest
+		protoReq GetEnrollmentAttemptListRequest
 		metadata runtime.ServerMetadata
 	)
 	if req.Body != nil {
@@ -174,25 +129,25 @@ func request_EnrollerService_GetEnrollmentRequestList_1(ctx context.Context, mar
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EnrollerService_GetEnrollmentRequestList_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EnrollerService_GetEnrollmentAttemptList_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.GetEnrollmentRequestList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetEnrollmentAttemptList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_EnrollerService_GetEnrollmentRequestList_1(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_EnrollerService_GetEnrollmentAttemptList_1(ctx context.Context, marshaler runtime.Marshaler, server EnrollerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetEnrollmentRequestListRequest
+		protoReq GetEnrollmentAttemptListRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EnrollerService_GetEnrollmentRequestList_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_EnrollerService_GetEnrollmentAttemptList_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetEnrollmentRequestList(ctx, &protoReq)
+	msg, err := server.GetEnrollmentAttemptList(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -202,105 +157,85 @@ func local_request_EnrollerService_GetEnrollmentRequestList_1(ctx context.Contex
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterEnrollerServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterEnrollerServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server EnrollerServiceServer) error {
-	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentAttempt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequest", runtime.WithHTTPPathPattern("/v1/enrollment"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttempt", runtime.WithHTTPPathPattern("/v1/enrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EnrollerService_CreateEnrollmentRequest_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_EnrollerService_CreateEnrollmentAttempt_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_CreateEnrollmentRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_CreateEnrollmentAttempt_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequestForExistingEndEntity", runtime.WithHTTPPathPattern("/v1/enroll-existing"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttemptForExistingEndEntity", runtime.WithHTTPPathPattern("/v1/enroll-existing"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_EnrollerService_GetEnrollmentByRequestID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_EnrollerService_GetEnrollmentAttemptList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentByRequestID", runtime.WithHTTPPathPattern("/v1/enrollment/{enrollment_request_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentAttemptList", runtime.WithHTTPPathPattern("/v1/enrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EnrollerService_GetEnrollmentByRequestID_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_EnrollerService_GetEnrollmentAttemptList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_GetEnrollmentByRequestID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_GetEnrollmentAttemptList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPut, pattern_EnrollerService_GetEnrollmentRequestList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_EnrollerService_GetEnrollmentAttemptList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentRequestList", runtime.WithHTTPPathPattern("/v1/enrollment"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentAttemptList", runtime.WithHTTPPathPattern("/v1/enrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_EnrollerService_GetEnrollmentRequestList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_EnrollerService_GetEnrollmentAttemptList_1(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_GetEnrollmentRequestList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_EnrollerService_GetEnrollmentRequestList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentRequestList", runtime.WithHTTPPathPattern("/v1/enrollment"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_EnrollerService_GetEnrollmentRequestList_1(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_EnrollerService_GetEnrollmentRequestList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_GetEnrollmentAttemptList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -342,106 +277,87 @@ func RegisterEnrollerServiceHandler(ctx context.Context, mux *runtime.ServeMux, 
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "EnrollerServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterEnrollerServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client EnrollerServiceClient) error {
-	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentRequest_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentAttempt_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequest", runtime.WithHTTPPathPattern("/v1/enrollment"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttempt", runtime.WithHTTPPathPattern("/v1/enrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EnrollerService_CreateEnrollmentRequest_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EnrollerService_CreateEnrollmentAttempt_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_CreateEnrollmentRequest_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_CreateEnrollmentAttempt_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequestForExistingEndEntity", runtime.WithHTTPPathPattern("/v1/enroll-existing"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttemptForExistingEndEntity", runtime.WithHTTPPathPattern("/v1/enroll-existing"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_EnrollerService_GetEnrollmentByRequestID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_EnrollerService_GetEnrollmentAttemptList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentByRequestID", runtime.WithHTTPPathPattern("/v1/enrollment/{enrollment_request_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentAttemptList", runtime.WithHTTPPathPattern("/v1/enrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EnrollerService_GetEnrollmentByRequestID_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EnrollerService_GetEnrollmentAttemptList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_GetEnrollmentByRequestID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_GetEnrollmentAttemptList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPut, pattern_EnrollerService_GetEnrollmentRequestList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_EnrollerService_GetEnrollmentAttemptList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentRequestList", runtime.WithHTTPPathPattern("/v1/enrollment"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentAttemptList", runtime.WithHTTPPathPattern("/v1/enrollment"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_EnrollerService_GetEnrollmentRequestList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_EnrollerService_GetEnrollmentAttemptList_1(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_EnrollerService_GetEnrollmentRequestList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_EnrollerService_GetEnrollmentRequestList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentRequestList", runtime.WithHTTPPathPattern("/v1/enrollment"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_EnrollerService_GetEnrollmentRequestList_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_EnrollerService_GetEnrollmentRequestList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EnrollerService_GetEnrollmentAttemptList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	return nil
 }
 
 var (
-	pattern_EnrollerService_CreateEnrollmentRequest_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enrollment"}, ""))
-	pattern_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enroll-existing"}, ""))
-	pattern_EnrollerService_GetEnrollmentByRequestID_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "enrollment", "enrollment_request_id"}, ""))
-	pattern_EnrollerService_GetEnrollmentRequestList_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enrollment"}, ""))
-	pattern_EnrollerService_GetEnrollmentRequestList_1                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enrollment"}, ""))
+	pattern_EnrollerService_CreateEnrollmentAttempt_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enrollment"}, ""))
+	pattern_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enroll-existing"}, ""))
+	pattern_EnrollerService_GetEnrollmentAttemptList_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enrollment"}, ""))
+	pattern_EnrollerService_GetEnrollmentAttemptList_1                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "enrollment"}, ""))
 )
 
 var (
-	forward_EnrollerService_CreateEnrollmentRequest_0                     = runtime.ForwardResponseMessage
-	forward_EnrollerService_CreateEnrollmentRequestForExistingEndEntity_0 = runtime.ForwardResponseMessage
-	forward_EnrollerService_GetEnrollmentByRequestID_0                    = runtime.ForwardResponseMessage
-	forward_EnrollerService_GetEnrollmentRequestList_0                    = runtime.ForwardResponseMessage
-	forward_EnrollerService_GetEnrollmentRequestList_1                    = runtime.ForwardResponseMessage
+	forward_EnrollerService_CreateEnrollmentAttempt_0                     = runtime.ForwardResponseMessage
+	forward_EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_0 = runtime.ForwardResponseMessage
+	forward_EnrollerService_GetEnrollmentAttemptList_0                    = runtime.ForwardResponseMessage
+	forward_EnrollerService_GetEnrollmentAttemptList_1                    = runtime.ForwardResponseMessage
 )

@@ -19,20 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	EnrollerService_CreateEnrollmentRequest_FullMethodName                     = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequest"
-	EnrollerService_CreateEnrollmentRequestForExistingEndEntity_FullMethodName = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentRequestForExistingEndEntity"
-	EnrollerService_GetEnrollmentByRequestID_FullMethodName                    = "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentByRequestID"
-	EnrollerService_GetEnrollmentRequestList_FullMethodName                    = "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentRequestList"
+	EnrollerService_CreateEnrollmentAttempt_FullMethodName                     = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttempt"
+	EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_FullMethodName = "/otpki.public.enrollment.enroller.v1.EnrollerService/CreateEnrollmentAttemptForExistingEndEntity"
+	EnrollerService_GetEnrollmentAttemptList_FullMethodName                    = "/otpki.public.enrollment.enroller.v1.EnrollerService/GetEnrollmentAttemptList"
 )
 
 // EnrollerServiceClient is the client API for EnrollerService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnrollerServiceClient interface {
-	CreateEnrollmentRequest(ctx context.Context, in *CreateEnrollmentRequestRequest, opts ...grpc.CallOption) (*CreateEnrollmentRequestResponse, error)
-	CreateEnrollmentRequestForExistingEndEntity(ctx context.Context, in *CreateEnrollmentRequestForExistingEndEntityRequest, opts ...grpc.CallOption) (*CreateEnrollmentRequestForExistingEndEntityResponse, error)
-	GetEnrollmentByRequestID(ctx context.Context, in *GetEnrollmentByRequestIDRequest, opts ...grpc.CallOption) (*GetEnrollmentByRequestIDResponse, error)
-	GetEnrollmentRequestList(ctx context.Context, in *GetEnrollmentRequestListRequest, opts ...grpc.CallOption) (*GetEnrollmentRequestListResponse, error)
+	CreateEnrollmentAttempt(ctx context.Context, in *CreateEnrollmentAttemptRequest, opts ...grpc.CallOption) (*CreateEnrollmentAttemptResponse, error)
+	CreateEnrollmentAttemptForExistingEndEntity(ctx context.Context, in *CreateEnrollmentAttemptForExistingEndEntityRequest, opts ...grpc.CallOption) (*CreateEnrollmentAttemptForExistingEndEntityResponse, error)
+	GetEnrollmentAttemptList(ctx context.Context, in *GetEnrollmentAttemptListRequest, opts ...grpc.CallOption) (*GetEnrollmentAttemptListResponse, error)
 }
 
 type enrollerServiceClient struct {
@@ -43,40 +41,30 @@ func NewEnrollerServiceClient(cc grpc.ClientConnInterface) EnrollerServiceClient
 	return &enrollerServiceClient{cc}
 }
 
-func (c *enrollerServiceClient) CreateEnrollmentRequest(ctx context.Context, in *CreateEnrollmentRequestRequest, opts ...grpc.CallOption) (*CreateEnrollmentRequestResponse, error) {
+func (c *enrollerServiceClient) CreateEnrollmentAttempt(ctx context.Context, in *CreateEnrollmentAttemptRequest, opts ...grpc.CallOption) (*CreateEnrollmentAttemptResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateEnrollmentRequestResponse)
-	err := c.cc.Invoke(ctx, EnrollerService_CreateEnrollmentRequest_FullMethodName, in, out, cOpts...)
+	out := new(CreateEnrollmentAttemptResponse)
+	err := c.cc.Invoke(ctx, EnrollerService_CreateEnrollmentAttempt_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *enrollerServiceClient) CreateEnrollmentRequestForExistingEndEntity(ctx context.Context, in *CreateEnrollmentRequestForExistingEndEntityRequest, opts ...grpc.CallOption) (*CreateEnrollmentRequestForExistingEndEntityResponse, error) {
+func (c *enrollerServiceClient) CreateEnrollmentAttemptForExistingEndEntity(ctx context.Context, in *CreateEnrollmentAttemptForExistingEndEntityRequest, opts ...grpc.CallOption) (*CreateEnrollmentAttemptForExistingEndEntityResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateEnrollmentRequestForExistingEndEntityResponse)
-	err := c.cc.Invoke(ctx, EnrollerService_CreateEnrollmentRequestForExistingEndEntity_FullMethodName, in, out, cOpts...)
+	out := new(CreateEnrollmentAttemptForExistingEndEntityResponse)
+	err := c.cc.Invoke(ctx, EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *enrollerServiceClient) GetEnrollmentByRequestID(ctx context.Context, in *GetEnrollmentByRequestIDRequest, opts ...grpc.CallOption) (*GetEnrollmentByRequestIDResponse, error) {
+func (c *enrollerServiceClient) GetEnrollmentAttemptList(ctx context.Context, in *GetEnrollmentAttemptListRequest, opts ...grpc.CallOption) (*GetEnrollmentAttemptListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetEnrollmentByRequestIDResponse)
-	err := c.cc.Invoke(ctx, EnrollerService_GetEnrollmentByRequestID_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *enrollerServiceClient) GetEnrollmentRequestList(ctx context.Context, in *GetEnrollmentRequestListRequest, opts ...grpc.CallOption) (*GetEnrollmentRequestListResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetEnrollmentRequestListResponse)
-	err := c.cc.Invoke(ctx, EnrollerService_GetEnrollmentRequestList_FullMethodName, in, out, cOpts...)
+	out := new(GetEnrollmentAttemptListResponse)
+	err := c.cc.Invoke(ctx, EnrollerService_GetEnrollmentAttemptList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,10 +75,9 @@ func (c *enrollerServiceClient) GetEnrollmentRequestList(ctx context.Context, in
 // All implementations must embed UnimplementedEnrollerServiceServer
 // for forward compatibility.
 type EnrollerServiceServer interface {
-	CreateEnrollmentRequest(context.Context, *CreateEnrollmentRequestRequest) (*CreateEnrollmentRequestResponse, error)
-	CreateEnrollmentRequestForExistingEndEntity(context.Context, *CreateEnrollmentRequestForExistingEndEntityRequest) (*CreateEnrollmentRequestForExistingEndEntityResponse, error)
-	GetEnrollmentByRequestID(context.Context, *GetEnrollmentByRequestIDRequest) (*GetEnrollmentByRequestIDResponse, error)
-	GetEnrollmentRequestList(context.Context, *GetEnrollmentRequestListRequest) (*GetEnrollmentRequestListResponse, error)
+	CreateEnrollmentAttempt(context.Context, *CreateEnrollmentAttemptRequest) (*CreateEnrollmentAttemptResponse, error)
+	CreateEnrollmentAttemptForExistingEndEntity(context.Context, *CreateEnrollmentAttemptForExistingEndEntityRequest) (*CreateEnrollmentAttemptForExistingEndEntityResponse, error)
+	GetEnrollmentAttemptList(context.Context, *GetEnrollmentAttemptListRequest) (*GetEnrollmentAttemptListResponse, error)
 	mustEmbedUnimplementedEnrollerServiceServer()
 }
 
@@ -101,17 +88,14 @@ type EnrollerServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedEnrollerServiceServer struct{}
 
-func (UnimplementedEnrollerServiceServer) CreateEnrollmentRequest(context.Context, *CreateEnrollmentRequestRequest) (*CreateEnrollmentRequestResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateEnrollmentRequest not implemented")
+func (UnimplementedEnrollerServiceServer) CreateEnrollmentAttempt(context.Context, *CreateEnrollmentAttemptRequest) (*CreateEnrollmentAttemptResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateEnrollmentAttempt not implemented")
 }
-func (UnimplementedEnrollerServiceServer) CreateEnrollmentRequestForExistingEndEntity(context.Context, *CreateEnrollmentRequestForExistingEndEntityRequest) (*CreateEnrollmentRequestForExistingEndEntityResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateEnrollmentRequestForExistingEndEntity not implemented")
+func (UnimplementedEnrollerServiceServer) CreateEnrollmentAttemptForExistingEndEntity(context.Context, *CreateEnrollmentAttemptForExistingEndEntityRequest) (*CreateEnrollmentAttemptForExistingEndEntityResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateEnrollmentAttemptForExistingEndEntity not implemented")
 }
-func (UnimplementedEnrollerServiceServer) GetEnrollmentByRequestID(context.Context, *GetEnrollmentByRequestIDRequest) (*GetEnrollmentByRequestIDResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetEnrollmentByRequestID not implemented")
-}
-func (UnimplementedEnrollerServiceServer) GetEnrollmentRequestList(context.Context, *GetEnrollmentRequestListRequest) (*GetEnrollmentRequestListResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetEnrollmentRequestList not implemented")
+func (UnimplementedEnrollerServiceServer) GetEnrollmentAttemptList(context.Context, *GetEnrollmentAttemptListRequest) (*GetEnrollmentAttemptListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEnrollmentAttemptList not implemented")
 }
 func (UnimplementedEnrollerServiceServer) mustEmbedUnimplementedEnrollerServiceServer() {}
 func (UnimplementedEnrollerServiceServer) testEmbeddedByValue()                         {}
@@ -134,74 +118,56 @@ func RegisterEnrollerServiceServer(s grpc.ServiceRegistrar, srv EnrollerServiceS
 	s.RegisterService(&EnrollerService_ServiceDesc, srv)
 }
 
-func _EnrollerService_CreateEnrollmentRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateEnrollmentRequestRequest)
+func _EnrollerService_CreateEnrollmentAttempt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEnrollmentAttemptRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnrollerServiceServer).CreateEnrollmentRequest(ctx, in)
+		return srv.(EnrollerServiceServer).CreateEnrollmentAttempt(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: EnrollerService_CreateEnrollmentRequest_FullMethodName,
+		FullMethod: EnrollerService_CreateEnrollmentAttempt_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnrollerServiceServer).CreateEnrollmentRequest(ctx, req.(*CreateEnrollmentRequestRequest))
+		return srv.(EnrollerServiceServer).CreateEnrollmentAttempt(ctx, req.(*CreateEnrollmentAttemptRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnrollerService_CreateEnrollmentRequestForExistingEndEntity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateEnrollmentRequestForExistingEndEntityRequest)
+func _EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEnrollmentAttemptForExistingEndEntityRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnrollerServiceServer).CreateEnrollmentRequestForExistingEndEntity(ctx, in)
+		return srv.(EnrollerServiceServer).CreateEnrollmentAttemptForExistingEndEntity(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: EnrollerService_CreateEnrollmentRequestForExistingEndEntity_FullMethodName,
+		FullMethod: EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnrollerServiceServer).CreateEnrollmentRequestForExistingEndEntity(ctx, req.(*CreateEnrollmentRequestForExistingEndEntityRequest))
+		return srv.(EnrollerServiceServer).CreateEnrollmentAttemptForExistingEndEntity(ctx, req.(*CreateEnrollmentAttemptForExistingEndEntityRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnrollerService_GetEnrollmentByRequestID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEnrollmentByRequestIDRequest)
+func _EnrollerService_GetEnrollmentAttemptList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEnrollmentAttemptListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnrollerServiceServer).GetEnrollmentByRequestID(ctx, in)
+		return srv.(EnrollerServiceServer).GetEnrollmentAttemptList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: EnrollerService_GetEnrollmentByRequestID_FullMethodName,
+		FullMethod: EnrollerService_GetEnrollmentAttemptList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnrollerServiceServer).GetEnrollmentByRequestID(ctx, req.(*GetEnrollmentByRequestIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnrollerService_GetEnrollmentRequestList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEnrollmentRequestListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnrollerServiceServer).GetEnrollmentRequestList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnrollerService_GetEnrollmentRequestList_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnrollerServiceServer).GetEnrollmentRequestList(ctx, req.(*GetEnrollmentRequestListRequest))
+		return srv.(EnrollerServiceServer).GetEnrollmentAttemptList(ctx, req.(*GetEnrollmentAttemptListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -214,20 +180,16 @@ var EnrollerService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*EnrollerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateEnrollmentRequest",
-			Handler:    _EnrollerService_CreateEnrollmentRequest_Handler,
+			MethodName: "CreateEnrollmentAttempt",
+			Handler:    _EnrollerService_CreateEnrollmentAttempt_Handler,
 		},
 		{
-			MethodName: "CreateEnrollmentRequestForExistingEndEntity",
-			Handler:    _EnrollerService_CreateEnrollmentRequestForExistingEndEntity_Handler,
+			MethodName: "CreateEnrollmentAttemptForExistingEndEntity",
+			Handler:    _EnrollerService_CreateEnrollmentAttemptForExistingEndEntity_Handler,
 		},
 		{
-			MethodName: "GetEnrollmentByRequestID",
-			Handler:    _EnrollerService_GetEnrollmentByRequestID_Handler,
-		},
-		{
-			MethodName: "GetEnrollmentRequestList",
-			Handler:    _EnrollerService_GetEnrollmentRequestList_Handler,
+			MethodName: "GetEnrollmentAttemptList",
+			Handler:    _EnrollerService_GetEnrollmentAttemptList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

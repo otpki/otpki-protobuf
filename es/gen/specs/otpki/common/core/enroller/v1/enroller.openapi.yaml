@@ -331,6 +331,14 @@ components:
             format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
+        remainingRequests:
+          type:
+            - integer
+            - string
+          title: remaining_requests
+          minimum: 0
+          format: int64
+          readOnly: true
       title: EndEntity
       additionalProperties: false
     otpki.common.core.end_entity.v1.EndEntityStatus:
@@ -343,25 +351,13 @@ components:
         - END_ENTITY_STATUS_GENERATED
         - END_ENTITY_STATUS_REVOKED
         - END_ENTITY_STATUS_WAITING_FOR_APPROVAL
-    otpki.common.core.enroller.v1.EnrollmentDataType:
-      type: string
-      title: EnrollmentDataType
-      enum:
-        - ENROLLMENT_DATA_TYPE_UNSPECIFIED
-        - ENROLLMENT_DATA_TYPE_PKCS10
-        - ENROLLMENT_DATA_TYPE_CRMF
-    otpki.common.core.enroller.v1.EnrollmentRequest:
+    otpki.common.core.enroller.v1.EnrollmentAttempt:
       type: object
       properties:
-        id:
+        endEntityId:
           type: string
-          title: id
+          title: end_entity_id
           format: uuid
-          readOnly: true
-        status:
-          title: status
-          readOnly: true
-          $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntityStatus'
         data:
           type: string
           title: data
@@ -372,16 +368,6 @@ components:
         protocolUsed:
           title: protocol_used
           $ref: '#/components/schemas/otpki.common.core.issuer.v1.IssuingProtocol'
-        endEntityTemplate:
-          title: end_entity_template
-          $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
-        issuanceRequestId:
-          type:
-            - string
-            - "null"
-          title: issuance_request_id
-          format: uuid
-          description: extensible for more complex enrollment (key recovery??)
         createdAt:
           title: created_at
           description: not settable on creation
@@ -392,15 +378,18 @@ components:
           description: not settable on creation
           readOnly: true
           $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: EnrollmentRequest
+      title: EnrollmentAttempt
       additionalProperties: false
+    otpki.common.core.enroller.v1.EnrollmentDataType:
+      type: string
+      title: EnrollmentDataType
+      enum:
+        - ENROLLMENT_DATA_TYPE_UNSPECIFIED
+        - ENROLLMENT_DATA_TYPE_PKCS10
+        - ENROLLMENT_DATA_TYPE_CRMF
     otpki.common.core.enroller.v1.EnrollmentResponse:
       type: object
       properties:
-        enrollmentRequestId:
-          type: string
-          title: enrollment_request_id
-          format: uuid
         issuanceRequestId:
           type:
             - string
@@ -427,9 +416,9 @@ components:
         endEntity:
           title: end_entity
           description: |-
-            the status of the end entity is the status of the request
-             since end entities can only have 1 concurrent active request
-             a new request cannot be made if the end entity is in a pending state
+            the status of the end entity is the status of the active attempt
+             since end entities can only have 1 concurrent active attempt
+             a new attempt cannot be made if the end entity is in a pending state
           $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
       title: EnrollmentResponse
       additionalProperties: false

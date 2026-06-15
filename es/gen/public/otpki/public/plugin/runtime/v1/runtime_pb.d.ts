@@ -4,14 +4,14 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { EndEntity, EndEntityJson } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
+import type { EndEntity, EndEntityJson, EndEntityValid } from "../../../../common/core/end_entity/v1/end_entity_pb.js";
+import type { Any, AnyJson, FieldMask, FieldMaskJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import type { Key, KeyJson, KeyValid } from "../../../../common/core/key/v1/key_pb.js";
 import type { CertificateAuthority, CertificateAuthorityCertificate, CertificateAuthorityCertificateJson, CertificateAuthorityJson, CertificateAuthorityValid } from "../../../../common/core/certificate_authority/v1/certificate_authority_pb.js";
 import type { CertificateProfile, CertificateProfileJson } from "../../../../common/core/certificate_profile/v1/certificate_profile_pb.js";
-import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
+import type { EnrollmentAttempt, EnrollmentAttemptJson, EnrollmentAttemptValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
 import type { HashAlgorithm, HashAlgorithmJson, RevocationReasonCode, RevocationReasonCodeJson } from "../../../../common/x509/v1/x509_pb.js";
 import type { EndEntityCertificate, EndEntityCertificateJson } from "../../../../common/core/end_entity_certificate/v1/end_entity_certificate_pb.js";
-import type { Any, AnyJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file otpki/public/plugin/runtime/v1/runtime.proto.
@@ -435,6 +435,77 @@ export declare type GetEndEntityResponseValid = GetEndEntityResponse;
 export declare const GetEndEntityResponseSchema: GenMessage<GetEndEntityResponse, {jsonType: GetEndEntityResponseJson, validType: GetEndEntityResponseValid}>;
 
 /**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityRequest
+ */
+export declare type UpdateEndEntityRequest = Message<"otpki.public.plugin.runtime.v1.UpdateEndEntityRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity?: EndEntity;
+
+  /**
+   * @generated from field: google.protobuf.FieldMask update_mask = 2;
+   */
+  updateMask?: FieldMask;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityRequest
+ */
+export declare type UpdateEndEntityRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity?: EndEntityJson;
+
+  /**
+   * @generated from field: google.protobuf.FieldMask update_mask = 2;
+   */
+  updateMask?: FieldMaskJson;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityRequest
+ */
+export declare type UpdateEndEntityRequestValid = Message<"otpki.public.plugin.runtime.v1.UpdateEndEntityRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 1;
+   */
+  endEntity: EndEntityValid;
+
+  /**
+   * @generated from field: google.protobuf.FieldMask update_mask = 2;
+   */
+  updateMask: FieldMask;
+};
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.UpdateEndEntityRequest.
+ * Use `create(UpdateEndEntityRequestSchema)` to create a new message.
+ */
+export declare const UpdateEndEntityRequestSchema: GenMessage<UpdateEndEntityRequest, {jsonType: UpdateEndEntityRequestJson, validType: UpdateEndEntityRequestValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityResponse
+ */
+export declare type UpdateEndEntityResponse = Message<"otpki.public.plugin.runtime.v1.UpdateEndEntityResponse"> & {
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.UpdateEndEntityResponse
+ */
+export declare type UpdateEndEntityResponseJson = {
+};
+
+export declare type UpdateEndEntityResponseValid = UpdateEndEntityResponse;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.UpdateEndEntityResponse.
+ * Use `create(UpdateEndEntityResponseSchema)` to create a new message.
+ */
+export declare const UpdateEndEntityResponseSchema: GenMessage<UpdateEndEntityResponse, {jsonType: UpdateEndEntityResponseJson, validType: UpdateEndEntityResponseValid}>;
+
+/**
  * @generated from message otpki.public.plugin.runtime.v1.GetKeyRequest
  */
 export declare type GetKeyRequest = Message<"otpki.public.plugin.runtime.v1.GetKeyRequest"> & {
@@ -770,105 +841,150 @@ export declare type GetCertificateProfileResponseValid = GetCertificateProfileRe
 export declare const GetCertificateProfileResponseSchema: GenMessage<GetCertificateProfileResponse, {jsonType: GetCertificateProfileResponseJson, validType: GetCertificateProfileResponseValid}>;
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
  */
-export declare type CreateEnrollmentRequestRequest = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest"> & {
+export declare type CreateEnrollmentAttemptRequest = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequest;
+  enrollmentAttempt?: EnrollmentAttempt;
 
   /**
-   * @generated from field: bool skip_verification = 2;
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntity;
+
+  /**
+   * @generated from field: bool skip_verification = 3;
    */
   skipVerification: boolean;
 
   /**
-   * @generated from field: bool allow_existing = 3;
+   * @generated from field: bool allow_existing = 4;
    */
   allowExisting: boolean;
 
   /**
-   * @generated from field: bool require_existing = 4;
+   * @generated from field: bool require_existing = 5;
    */
   requireExisting: boolean;
 
   /**
-   * @generated from field: bool check_password = 5;
+   * @generated from field: bool check_password = 6;
    */
   checkPassword: boolean;
+
+  /**
+   * @generated from field: bool auto_reset_generated_end_entity = 7;
+   */
+  autoResetGeneratedEndEntity: boolean;
+
+  /**
+   * @generated from field: bool require_immediate_issuance = 8;
+   */
+  requireImmediateIssuance: boolean;
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
  */
-export declare type CreateEnrollmentRequestRequestJson = {
+export declare type CreateEnrollmentAttemptRequestJson = {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest?: EnrollmentRequestJson;
+  enrollmentAttempt?: EnrollmentAttemptJson;
 
   /**
-   * @generated from field: bool skip_verification = 2;
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityJson;
+
+  /**
+   * @generated from field: bool skip_verification = 3;
    */
   skipVerification?: boolean;
 
   /**
-   * @generated from field: bool allow_existing = 3;
+   * @generated from field: bool allow_existing = 4;
    */
   allowExisting?: boolean;
 
   /**
-   * @generated from field: bool require_existing = 4;
+   * @generated from field: bool require_existing = 5;
    */
   requireExisting?: boolean;
 
   /**
-   * @generated from field: bool check_password = 5;
+   * @generated from field: bool check_password = 6;
    */
   checkPassword?: boolean;
+
+  /**
+   * @generated from field: bool auto_reset_generated_end_entity = 7;
+   */
+  autoResetGeneratedEndEntity?: boolean;
+
+  /**
+   * @generated from field: bool require_immediate_issuance = 8;
+   */
+  requireImmediateIssuance?: boolean;
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest
  */
-export declare type CreateEnrollmentRequestRequestValid = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest"> & {
+export declare type CreateEnrollmentAttemptRequestValid = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest"> & {
   /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
+   * @generated from field: otpki.common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1;
    */
-  enrollmentRequest: EnrollmentRequestValid;
+  enrollmentAttempt: EnrollmentAttemptValid;
 
   /**
-   * @generated from field: bool skip_verification = 2;
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityValid;
+
+  /**
+   * @generated from field: bool skip_verification = 3;
    */
   skipVerification: boolean;
 
   /**
-   * @generated from field: bool allow_existing = 3;
+   * @generated from field: bool allow_existing = 4;
    */
   allowExisting: boolean;
 
   /**
-   * @generated from field: bool require_existing = 4;
+   * @generated from field: bool require_existing = 5;
    */
   requireExisting: boolean;
 
   /**
-   * @generated from field: bool check_password = 5;
+   * @generated from field: bool check_password = 6;
    */
   checkPassword: boolean;
+
+  /**
+   * @generated from field: bool auto_reset_generated_end_entity = 7;
+   */
+  autoResetGeneratedEndEntity: boolean;
+
+  /**
+   * @generated from field: bool require_immediate_issuance = 8;
+   */
+  requireImmediateIssuance: boolean;
 };
 
 /**
- * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestRequest.
- * Use `create(CreateEnrollmentRequestRequestSchema)` to create a new message.
+ * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptRequest.
+ * Use `create(CreateEnrollmentAttemptRequestSchema)` to create a new message.
  */
-export declare const CreateEnrollmentRequestRequestSchema: GenMessage<CreateEnrollmentRequestRequest, {jsonType: CreateEnrollmentRequestRequestJson, validType: CreateEnrollmentRequestRequestValid}>;
+export declare const CreateEnrollmentAttemptRequestSchema: GenMessage<CreateEnrollmentAttemptRequest, {jsonType: CreateEnrollmentAttemptRequestJson, validType: CreateEnrollmentAttemptRequestValid}>;
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse
  */
-export declare type CreateEnrollmentRequestResponse = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse"> & {
+export declare type CreateEnrollmentAttemptResponse = Message<"otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse"> & {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
@@ -876,126 +992,22 @@ export declare type CreateEnrollmentRequestResponse = Message<"otpki.public.plug
 };
 
 /**
- * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse
+ * @generated from message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse
  */
-export declare type CreateEnrollmentRequestResponseJson = {
+export declare type CreateEnrollmentAttemptResponseJson = {
   /**
    * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
    */
   enrollmentResponse?: EnrollmentResponseJson;
 };
 
-export declare type CreateEnrollmentRequestResponseValid = CreateEnrollmentRequestResponse;
+export declare type CreateEnrollmentAttemptResponseValid = CreateEnrollmentAttemptResponse;
 
 /**
- * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentRequestResponse.
- * Use `create(CreateEnrollmentRequestResponseSchema)` to create a new message.
+ * Describes the message otpki.public.plugin.runtime.v1.CreateEnrollmentAttemptResponse.
+ * Use `create(CreateEnrollmentAttemptResponseSchema)` to create a new message.
  */
-export declare const CreateEnrollmentRequestResponseSchema: GenMessage<CreateEnrollmentRequestResponse, {jsonType: CreateEnrollmentRequestResponseJson, validType: CreateEnrollmentRequestResponseValid}>;
-
-/**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
- */
-export declare type GetEnrollmentByRequestIDRequest = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest"> & {
-  /**
-   * @generated from field: string enrollment_request_id = 1;
-   */
-  enrollmentRequestId: string;
-
-  /**
-   * @generated from field: string password = 2;
-   */
-  password: string;
-
-  /**
-   * @generated from field: bool check_password = 3;
-   */
-  checkPassword: boolean;
-};
-
-/**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
- */
-export declare type GetEnrollmentByRequestIDRequestJson = {
-  /**
-   * @generated from field: string enrollment_request_id = 1;
-   */
-  enrollmentRequestId?: string;
-
-  /**
-   * @generated from field: string password = 2;
-   */
-  password?: string;
-
-  /**
-   * @generated from field: bool check_password = 3;
-   */
-  checkPassword?: boolean;
-};
-
-/**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest
- */
-export declare type GetEnrollmentByRequestIDRequestValid = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest"> & {
-  /**
-   * @generated from field: string enrollment_request_id = 1;
-   */
-  enrollmentRequestId: string;
-
-  /**
-   * @generated from field: string password = 2;
-   */
-  password: string;
-
-  /**
-   * @generated from field: bool check_password = 3;
-   */
-  checkPassword: boolean;
-};
-
-/**
- * Describes the message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDRequest.
- * Use `create(GetEnrollmentByRequestIDRequestSchema)` to create a new message.
- */
-export declare const GetEnrollmentByRequestIDRequestSchema: GenMessage<GetEnrollmentByRequestIDRequest, {jsonType: GetEnrollmentByRequestIDRequestJson, validType: GetEnrollmentByRequestIDRequestValid}>;
-
-/**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse
- */
-export declare type GetEnrollmentByRequestIDResponse = Message<"otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse"> & {
-  /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
-   */
-  enrollmentRequest?: EnrollmentRequest;
-
-  /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
-   */
-  enrollmentResponse?: EnrollmentResponse;
-};
-
-/**
- * @generated from message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse
- */
-export declare type GetEnrollmentByRequestIDResponseJson = {
-  /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentRequest enrollment_request = 1;
-   */
-  enrollmentRequest?: EnrollmentRequestJson;
-
-  /**
-   * @generated from field: otpki.common.core.enroller.v1.EnrollmentResponse enrollment_response = 2;
-   */
-  enrollmentResponse?: EnrollmentResponseJson;
-};
-
-export declare type GetEnrollmentByRequestIDResponseValid = GetEnrollmentByRequestIDResponse;
-
-/**
- * Describes the message otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse.
- * Use `create(GetEnrollmentByRequestIDResponseSchema)` to create a new message.
- */
-export declare const GetEnrollmentByRequestIDResponseSchema: GenMessage<GetEnrollmentByRequestIDResponse, {jsonType: GetEnrollmentByRequestIDResponseJson, validType: GetEnrollmentByRequestIDResponseValid}>;
+export declare const CreateEnrollmentAttemptResponseSchema: GenMessage<CreateEnrollmentAttemptResponse, {jsonType: CreateEnrollmentAttemptResponseJson, validType: CreateEnrollmentAttemptResponseValid}>;
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest
@@ -2080,6 +2092,14 @@ export declare const PluginRuntimeService: GenService<{
     output: typeof GetEndEntityResponseSchema;
   },
   /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity
+   */
+  updateEndEntity: {
+    methodKind: "unary";
+    input: typeof UpdateEndEntityRequestSchema;
+    output: typeof UpdateEndEntityResponseSchema;
+  },
+  /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey
    */
   getKey: {
@@ -2120,20 +2140,12 @@ export declare const PluginRuntimeService: GenService<{
     output: typeof GetCertificateProfileResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt
    */
-  createEnrollmentRequest: {
+  createEnrollmentAttempt: {
     methodKind: "unary";
-    input: typeof CreateEnrollmentRequestRequestSchema;
-    output: typeof CreateEnrollmentRequestResponseSchema;
-  },
-  /**
-   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID
-   */
-  getEnrollmentByRequestID: {
-    methodKind: "unary";
-    input: typeof GetEnrollmentByRequestIDRequestSchema;
-    output: typeof GetEnrollmentByRequestIDResponseSchema;
+    input: typeof CreateEnrollmentAttemptRequestSchema;
+    output: typeof CreateEnrollmentAttemptResponseSchema;
   },
   /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.RevokeEndEntityCertificate

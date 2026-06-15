@@ -9,18 +9,17 @@ package importerv1
 import (
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/api/query/v1"
 	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/auth/v1"
-	v110 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_authority/v1"
-	v19 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_extension/v1"
-	v17 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_profile/v1"
+	v19 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_authority/v1"
+	v18 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_extension/v1"
+	v16 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_profile/v1"
 	v13 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/end_entity/v1"
 	v12 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/end_entity_profile/v1"
-	v14 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/enroller/v1"
-	v18 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/extended_key_usage/v1"
-	v112 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/issued_certificate/v1"
-	v111 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/issuer/v1"
-	v16 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/key/v1"
-	v15 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/key_storage_config/v1"
-	v113 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/publisher/v1"
+	v17 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/extended_key_usage/v1"
+	v111 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/issued_certificate/v1"
+	v110 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/issuer/v1"
+	v15 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/key/v1"
+	v14 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/key_storage_config/v1"
+	v112 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/publisher/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -99,7 +98,6 @@ type ExportPagination struct {
 	ApprovalProfiles                 *v1.PaginationRequest  `protobuf:"bytes,3,opt,name=approval_profiles,json=approvalProfiles,proto3" json:"approval_profiles,omitempty"`
 	EndEntityProfiles                *v1.PaginationRequest  `protobuf:"bytes,5,opt,name=end_entity_profiles,json=endEntityProfiles,proto3" json:"end_entity_profiles,omitempty"`
 	EndEntities                      *v1.PaginationRequest  `protobuf:"bytes,6,opt,name=end_entities,json=endEntities,proto3" json:"end_entities,omitempty"`
-	EnrollmentRequests               *v1.PaginationRequest  `protobuf:"bytes,7,opt,name=enrollment_requests,json=enrollmentRequests,proto3" json:"enrollment_requests,omitempty"`
 	KeyStorageConfigs                *v1.PaginationRequest  `protobuf:"bytes,8,opt,name=key_storage_configs,json=keyStorageConfigs,proto3" json:"key_storage_configs,omitempty"`
 	Keys                             *v1.PaginationRequest  `protobuf:"bytes,9,opt,name=keys,proto3" json:"keys,omitempty"`
 	CertificateProfiles              *v1.PaginationRequest  `protobuf:"bytes,10,opt,name=certificate_profiles,json=certificateProfiles,proto3" json:"certificate_profiles,omitempty"`
@@ -111,6 +109,7 @@ type ExportPagination struct {
 	CertificateAuthorityCertificates *v1.PaginationRequest  `protobuf:"bytes,16,opt,name=certificate_authority_certificates,json=certificateAuthorityCertificates,proto3" json:"certificate_authority_certificates,omitempty"`
 	CertificateAuthorityKeys         *v1.PaginationRequest  `protobuf:"bytes,17,opt,name=certificate_authority_keys,json=certificateAuthorityKeys,proto3" json:"certificate_authority_keys,omitempty"`
 	Publishers                       *v1.PaginationRequest  `protobuf:"bytes,18,opt,name=publishers,proto3" json:"publishers,omitempty"`
+	EndEntityIssuanceRequests        *v1.PaginationRequest  `protobuf:"bytes,19,opt,name=end_entity_issuance_requests,json=endEntityIssuanceRequests,proto3" json:"end_entity_issuance_requests,omitempty"`
 	unknownFields                    protoimpl.UnknownFields
 	sizeCache                        protoimpl.SizeCache
 }
@@ -176,13 +175,6 @@ func (x *ExportPagination) GetEndEntityProfiles() *v1.PaginationRequest {
 func (x *ExportPagination) GetEndEntities() *v1.PaginationRequest {
 	if x != nil {
 		return x.EndEntities
-	}
-	return nil
-}
-
-func (x *ExportPagination) GetEnrollmentRequests() *v1.PaginationRequest {
-	if x != nil {
-		return x.EnrollmentRequests
 	}
 	return nil
 }
@@ -264,6 +256,13 @@ func (x *ExportPagination) GetPublishers() *v1.PaginationRequest {
 	return nil
 }
 
+func (x *ExportPagination) GetEndEntityIssuanceRequests() *v1.PaginationRequest {
+	if x != nil {
+		return x.EndEntityIssuanceRequests
+	}
+	return nil
+}
+
 // The full message format for export and import routes.
 // Export supports exporting of any arbitrary subset of data.
 // However import requires that database constraints are satisfied at the end of the
@@ -271,24 +270,24 @@ func (x *ExportPagination) GetPublishers() *v1.PaginationRequest {
 // Users should ensure that any crafted messages or subset exports include ID references
 // that will resolve either against existing entity IDs or data within the payload.
 type ExportData struct {
-	state                            protoimpl.MessageState                     `protogen:"open.v1"`
-	Permissions                      []*v11.Permission                          `protobuf:"bytes,1,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	Roles                            []*v11.Role                                `protobuf:"bytes,2,rep,name=roles,proto3" json:"roles,omitempty"`
-	ApprovalProfiles                 []*v11.ApprovalProfile                     `protobuf:"bytes,3,rep,name=approval_profiles,json=approvalProfiles,proto3" json:"approval_profiles,omitempty"`
-	EndEntityProfiles                []*v12.EndEntityProfile                    `protobuf:"bytes,5,rep,name=end_entity_profiles,json=endEntityProfiles,proto3" json:"end_entity_profiles,omitempty"`
-	EndEntities                      []*v13.EndEntity                           `protobuf:"bytes,6,rep,name=end_entities,json=endEntities,proto3" json:"end_entities,omitempty"`
-	EnrollmentRequests               []*v14.EnrollmentRequest                   `protobuf:"bytes,7,rep,name=enrollment_requests,json=enrollmentRequests,proto3" json:"enrollment_requests,omitempty"`
-	KeyStorageConfigs                []*v15.KeyStorageConfig                    `protobuf:"bytes,8,rep,name=key_storage_configs,json=keyStorageConfigs,proto3" json:"key_storage_configs,omitempty"`
-	Keys                             []*v16.Key                                 `protobuf:"bytes,9,rep,name=keys,proto3" json:"keys,omitempty"`
-	CertificateProfiles              []*v17.CertificateProfile                  `protobuf:"bytes,10,rep,name=certificate_profiles,json=certificateProfiles,proto3" json:"certificate_profiles,omitempty"`
-	CustomEkus                       []*v18.CustomExtKeyUsage                   `protobuf:"bytes,11,rep,name=custom_ekus,json=customEkus,proto3" json:"custom_ekus,omitempty"`
-	CustomCertificateExtensions      []*v19.CustomCertificateExtension          `protobuf:"bytes,12,rep,name=custom_certificate_extensions,json=customCertificateExtensions,proto3" json:"custom_certificate_extensions,omitempty"`
-	CertificateAuthorities           []*v110.CertificateAuthority               `protobuf:"bytes,13,rep,name=certificate_authorities,json=certificateAuthorities,proto3" json:"certificate_authorities,omitempty"`
-	IssuanceRequests                 []*v111.IssuanceRequest                    `protobuf:"bytes,14,rep,name=issuance_requests,json=issuanceRequests,proto3" json:"issuance_requests,omitempty"`
-	Certificates                     []*v112.IssuedCertificate                  `protobuf:"bytes,15,rep,name=certificates,proto3" json:"certificates,omitempty"`
-	CertificateAuthorityCertificates []*v110.CertificateAuthorityCertificate    `protobuf:"bytes,16,rep,name=certificate_authority_certificates,json=certificateAuthorityCertificates,proto3" json:"certificate_authority_certificates,omitempty"`
-	CertificateAuthorityKeys         []*v110.CertificateAuthorityCertificateKey `protobuf:"bytes,17,rep,name=certificate_authority_keys,json=certificateAuthorityKeys,proto3" json:"certificate_authority_keys,omitempty"`
-	Publishers                       []*v113.Publisher                          `protobuf:"bytes,18,rep,name=publishers,proto3" json:"publishers,omitempty"`
+	state                            protoimpl.MessageState                    `protogen:"open.v1"`
+	Permissions                      []*v11.Permission                         `protobuf:"bytes,1,rep,name=permissions,proto3" json:"permissions,omitempty"`
+	Roles                            []*v11.Role                               `protobuf:"bytes,2,rep,name=roles,proto3" json:"roles,omitempty"`
+	ApprovalProfiles                 []*v11.ApprovalProfile                    `protobuf:"bytes,3,rep,name=approval_profiles,json=approvalProfiles,proto3" json:"approval_profiles,omitempty"`
+	EndEntityProfiles                []*v12.EndEntityProfile                   `protobuf:"bytes,5,rep,name=end_entity_profiles,json=endEntityProfiles,proto3" json:"end_entity_profiles,omitempty"`
+	EndEntities                      []*v13.EndEntity                          `protobuf:"bytes,6,rep,name=end_entities,json=endEntities,proto3" json:"end_entities,omitempty"`
+	KeyStorageConfigs                []*v14.KeyStorageConfig                   `protobuf:"bytes,8,rep,name=key_storage_configs,json=keyStorageConfigs,proto3" json:"key_storage_configs,omitempty"`
+	Keys                             []*v15.Key                                `protobuf:"bytes,9,rep,name=keys,proto3" json:"keys,omitempty"`
+	CertificateProfiles              []*v16.CertificateProfile                 `protobuf:"bytes,10,rep,name=certificate_profiles,json=certificateProfiles,proto3" json:"certificate_profiles,omitempty"`
+	CustomEkus                       []*v17.CustomExtKeyUsage                  `protobuf:"bytes,11,rep,name=custom_ekus,json=customEkus,proto3" json:"custom_ekus,omitempty"`
+	CustomCertificateExtensions      []*v18.CustomCertificateExtension         `protobuf:"bytes,12,rep,name=custom_certificate_extensions,json=customCertificateExtensions,proto3" json:"custom_certificate_extensions,omitempty"`
+	CertificateAuthorities           []*v19.CertificateAuthority               `protobuf:"bytes,13,rep,name=certificate_authorities,json=certificateAuthorities,proto3" json:"certificate_authorities,omitempty"`
+	IssuanceRequests                 []*v110.IssuanceRequest                   `protobuf:"bytes,14,rep,name=issuance_requests,json=issuanceRequests,proto3" json:"issuance_requests,omitempty"`
+	Certificates                     []*v111.IssuedCertificate                 `protobuf:"bytes,15,rep,name=certificates,proto3" json:"certificates,omitempty"`
+	CertificateAuthorityCertificates []*v19.CertificateAuthorityCertificate    `protobuf:"bytes,16,rep,name=certificate_authority_certificates,json=certificateAuthorityCertificates,proto3" json:"certificate_authority_certificates,omitempty"`
+	CertificateAuthorityKeys         []*v19.CertificateAuthorityCertificateKey `protobuf:"bytes,17,rep,name=certificate_authority_keys,json=certificateAuthorityKeys,proto3" json:"certificate_authority_keys,omitempty"`
+	Publishers                       []*v112.Publisher                         `protobuf:"bytes,18,rep,name=publishers,proto3" json:"publishers,omitempty"`
+	EndEntityIssuanceRequests        []*v13.EndEntityIssuanceRequest           `protobuf:"bytes,19,rep,name=end_entity_issuance_requests,json=endEntityIssuanceRequests,proto3" json:"end_entity_issuance_requests,omitempty"`
 	unknownFields                    protoimpl.UnknownFields
 	sizeCache                        protoimpl.SizeCache
 }
@@ -358,86 +357,86 @@ func (x *ExportData) GetEndEntities() []*v13.EndEntity {
 	return nil
 }
 
-func (x *ExportData) GetEnrollmentRequests() []*v14.EnrollmentRequest {
-	if x != nil {
-		return x.EnrollmentRequests
-	}
-	return nil
-}
-
-func (x *ExportData) GetKeyStorageConfigs() []*v15.KeyStorageConfig {
+func (x *ExportData) GetKeyStorageConfigs() []*v14.KeyStorageConfig {
 	if x != nil {
 		return x.KeyStorageConfigs
 	}
 	return nil
 }
 
-func (x *ExportData) GetKeys() []*v16.Key {
+func (x *ExportData) GetKeys() []*v15.Key {
 	if x != nil {
 		return x.Keys
 	}
 	return nil
 }
 
-func (x *ExportData) GetCertificateProfiles() []*v17.CertificateProfile {
+func (x *ExportData) GetCertificateProfiles() []*v16.CertificateProfile {
 	if x != nil {
 		return x.CertificateProfiles
 	}
 	return nil
 }
 
-func (x *ExportData) GetCustomEkus() []*v18.CustomExtKeyUsage {
+func (x *ExportData) GetCustomEkus() []*v17.CustomExtKeyUsage {
 	if x != nil {
 		return x.CustomEkus
 	}
 	return nil
 }
 
-func (x *ExportData) GetCustomCertificateExtensions() []*v19.CustomCertificateExtension {
+func (x *ExportData) GetCustomCertificateExtensions() []*v18.CustomCertificateExtension {
 	if x != nil {
 		return x.CustomCertificateExtensions
 	}
 	return nil
 }
 
-func (x *ExportData) GetCertificateAuthorities() []*v110.CertificateAuthority {
+func (x *ExportData) GetCertificateAuthorities() []*v19.CertificateAuthority {
 	if x != nil {
 		return x.CertificateAuthorities
 	}
 	return nil
 }
 
-func (x *ExportData) GetIssuanceRequests() []*v111.IssuanceRequest {
+func (x *ExportData) GetIssuanceRequests() []*v110.IssuanceRequest {
 	if x != nil {
 		return x.IssuanceRequests
 	}
 	return nil
 }
 
-func (x *ExportData) GetCertificates() []*v112.IssuedCertificate {
+func (x *ExportData) GetCertificates() []*v111.IssuedCertificate {
 	if x != nil {
 		return x.Certificates
 	}
 	return nil
 }
 
-func (x *ExportData) GetCertificateAuthorityCertificates() []*v110.CertificateAuthorityCertificate {
+func (x *ExportData) GetCertificateAuthorityCertificates() []*v19.CertificateAuthorityCertificate {
 	if x != nil {
 		return x.CertificateAuthorityCertificates
 	}
 	return nil
 }
 
-func (x *ExportData) GetCertificateAuthorityKeys() []*v110.CertificateAuthorityCertificateKey {
+func (x *ExportData) GetCertificateAuthorityKeys() []*v19.CertificateAuthorityCertificateKey {
 	if x != nil {
 		return x.CertificateAuthorityKeys
 	}
 	return nil
 }
 
-func (x *ExportData) GetPublishers() []*v113.Publisher {
+func (x *ExportData) GetPublishers() []*v112.Publisher {
 	if x != nil {
 		return x.Publishers
+	}
+	return nil
+}
+
+func (x *ExportData) GetEndEntityIssuanceRequests() []*v13.EndEntityIssuanceRequest {
+	if x != nil {
+		return x.EndEntityIssuanceRequests
 	}
 	return nil
 }
@@ -634,14 +633,13 @@ var File_otpki_common_core_importer_v1_importer_proto protoreflect.FileDescripto
 
 const file_otpki_common_core_importer_v1_importer_proto_rawDesc = "" +
 	"\n" +
-	",otpki/common/core/importer/v1/importer.proto\x12\x1dotpki.common.core.importer.v1\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\x1aFotpki/common/core/certificate_authority/v1/certificate_authority.proto\x1aFotpki/common/core/certificate_extension/v1/certificate_extension.proto\x1aBotpki/common/core/certificate_profile/v1/certificate_profile.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\x1a@otpki/common/core/end_entity_profile/v1/end_entity_profile.proto\x1a,otpki/common/core/enroller/v1/enroller.proto\x1a@otpki/common/core/extended_key_usage/v1/extended_key_usage.proto\x1a@otpki/common/core/issued_certificate/v1/issued_certificate.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a@otpki/common/core/key_storage_config/v1/key_storage_config.proto\x1a.otpki/common/core/publisher/v1/publisher.proto\"\x9b\f\n" +
+	",otpki/common/core/importer/v1/importer.proto\x12\x1dotpki.common.core.importer.v1\x1a%otpki/common/api/query/v1/query.proto\x1a\x1fotpki/common/auth/v1/auth.proto\x1aFotpki/common/core/certificate_authority/v1/certificate_authority.proto\x1aFotpki/common/core/certificate_extension/v1/certificate_extension.proto\x1aBotpki/common/core/certificate_profile/v1/certificate_profile.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\x1a@otpki/common/core/end_entity_profile/v1/end_entity_profile.proto\x1a@otpki/common/core/extended_key_usage/v1/extended_key_usage.proto\x1a@otpki/common/core/issued_certificate/v1/issued_certificate.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a@otpki/common/core/key_storage_config/v1/key_storage_config.proto\x1a.otpki/common/core/publisher/v1/publisher.proto\"\xab\f\n" +
 	"\x10ExportPagination\x12N\n" +
 	"\vpermissions\x18\x01 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\vpermissions\x12B\n" +
 	"\x05roles\x18\x02 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x05roles\x12Y\n" +
 	"\x11approval_profiles\x18\x03 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x10approvalProfiles\x12\\\n" +
 	"\x13end_entity_profiles\x18\x05 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x11endEntityProfiles\x12O\n" +
-	"\fend_entities\x18\x06 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\vendEntities\x12]\n" +
-	"\x13enrollment_requests\x18\a \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x12enrollmentRequests\x12\\\n" +
+	"\fend_entities\x18\x06 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\vendEntities\x12\\\n" +
 	"\x13key_storage_configs\x18\b \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x11keyStorageConfigs\x12@\n" +
 	"\x04keys\x18\t \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x04keys\x12_\n" +
 	"\x14certificate_profiles\x18\n" +
@@ -656,15 +654,15 @@ const file_otpki_common_core_importer_v1_importer_proto_rawDesc = "" +
 	"\x1acertificate_authority_keys\x18\x11 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x18certificateAuthorityKeys\x12L\n" +
 	"\n" +
 	"publishers\x18\x12 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\n" +
-	"publishers\"\x98\r\n" +
+	"publishers\x12m\n" +
+	"\x1cend_entity_issuance_requests\x18\x13 \x01(\v2,.otpki.common.api.query.v1.PaginationRequestR\x19endEntityIssuanceRequests\"\xb1\r\n" +
 	"\n" +
 	"ExportData\x12B\n" +
 	"\vpermissions\x18\x01 \x03(\v2 .otpki.common.auth.v1.PermissionR\vpermissions\x120\n" +
 	"\x05roles\x18\x02 \x03(\v2\x1a.otpki.common.auth.v1.RoleR\x05roles\x12R\n" +
 	"\x11approval_profiles\x18\x03 \x03(\v2%.otpki.common.auth.v1.ApprovalProfileR\x10approvalProfiles\x12i\n" +
 	"\x13end_entity_profiles\x18\x05 \x03(\v29.otpki.common.core.end_entity_profile.v1.EndEntityProfileR\x11endEntityProfiles\x12M\n" +
-	"\fend_entities\x18\x06 \x03(\v2*.otpki.common.core.end_entity.v1.EndEntityR\vendEntities\x12a\n" +
-	"\x13enrollment_requests\x18\a \x03(\v20.otpki.common.core.enroller.v1.EnrollmentRequestR\x12enrollmentRequests\x12i\n" +
+	"\fend_entities\x18\x06 \x03(\v2*.otpki.common.core.end_entity.v1.EndEntityR\vendEntities\x12i\n" +
 	"\x13key_storage_configs\x18\b \x03(\v29.otpki.common.core.key_storage_config.v1.KeyStorageConfigR\x11keyStorageConfigs\x121\n" +
 	"\x04keys\x18\t \x03(\v2\x1d.otpki.common.core.key.v1.KeyR\x04keys\x12o\n" +
 	"\x14certificate_profiles\x18\n" +
@@ -679,7 +677,8 @@ const file_otpki_common_core_importer_v1_importer_proto_rawDesc = "" +
 	"\x1acertificate_authority_keys\x18\x11 \x03(\v2N.otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKeyR\x18certificateAuthorityKeys\x12I\n" +
 	"\n" +
 	"publishers\x18\x12 \x03(\v2).otpki.common.core.publisher.v1.PublisherR\n" +
-	"publishers\"\x86\x01\n" +
+	"publishers\x12z\n" +
+	"\x1cend_entity_issuance_requests\x18\x13 \x03(\v29.otpki.common.core.end_entity.v1.EndEntityIssuanceRequestR\x19endEntityIssuanceRequests\"\x86\x01\n" +
 	"\rImportOptions\x12\\\n" +
 	"\x11conflict_strategy\x18\x01 \x01(\x0e2/.otpki.common.core.importer.v1.ConflictStrategyR\x10conflictStrategy\x12\x17\n" +
 	"\adry_run\x18\x02 \x01(\bR\x06dryRun\"\xb1\x01\n" +
@@ -715,30 +714,30 @@ func file_otpki_common_core_importer_v1_importer_proto_rawDescGZIP() []byte {
 var file_otpki_common_core_importer_v1_importer_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_otpki_common_core_importer_v1_importer_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_otpki_common_core_importer_v1_importer_proto_goTypes = []any{
-	(ConflictStrategy)(0),                           // 0: otpki.common.core.importer.v1.ConflictStrategy
-	(*ExportPagination)(nil),                        // 1: otpki.common.core.importer.v1.ExportPagination
-	(*ExportData)(nil),                              // 2: otpki.common.core.importer.v1.ExportData
-	(*ImportOptions)(nil),                           // 3: otpki.common.core.importer.v1.ImportOptions
-	(*ModelImportResult)(nil),                       // 4: otpki.common.core.importer.v1.ModelImportResult
-	(*ImportResult)(nil),                            // 5: otpki.common.core.importer.v1.ImportResult
-	(*v1.PaginationRequest)(nil),                    // 6: otpki.common.api.query.v1.PaginationRequest
-	(*v11.Permission)(nil),                          // 7: otpki.common.auth.v1.Permission
-	(*v11.Role)(nil),                                // 8: otpki.common.auth.v1.Role
-	(*v11.ApprovalProfile)(nil),                     // 9: otpki.common.auth.v1.ApprovalProfile
-	(*v12.EndEntityProfile)(nil),                    // 10: otpki.common.core.end_entity_profile.v1.EndEntityProfile
-	(*v13.EndEntity)(nil),                           // 11: otpki.common.core.end_entity.v1.EndEntity
-	(*v14.EnrollmentRequest)(nil),                   // 12: otpki.common.core.enroller.v1.EnrollmentRequest
-	(*v15.KeyStorageConfig)(nil),                    // 13: otpki.common.core.key_storage_config.v1.KeyStorageConfig
-	(*v16.Key)(nil),                                 // 14: otpki.common.core.key.v1.Key
-	(*v17.CertificateProfile)(nil),                  // 15: otpki.common.core.certificate_profile.v1.CertificateProfile
-	(*v18.CustomExtKeyUsage)(nil),                   // 16: otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
-	(*v19.CustomCertificateExtension)(nil),          // 17: otpki.common.core.certificate_extension.v1.CustomCertificateExtension
-	(*v110.CertificateAuthority)(nil),               // 18: otpki.common.core.certificate_authority.v1.CertificateAuthority
-	(*v111.IssuanceRequest)(nil),                    // 19: otpki.common.core.issuer.v1.IssuanceRequest
-	(*v112.IssuedCertificate)(nil),                  // 20: otpki.common.core.issued_certificate.v1.IssuedCertificate
-	(*v110.CertificateAuthorityCertificate)(nil),    // 21: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	(*v110.CertificateAuthorityCertificateKey)(nil), // 22: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
-	(*v113.Publisher)(nil),                          // 23: otpki.common.core.publisher.v1.Publisher
+	(ConflictStrategy)(0),                          // 0: otpki.common.core.importer.v1.ConflictStrategy
+	(*ExportPagination)(nil),                       // 1: otpki.common.core.importer.v1.ExportPagination
+	(*ExportData)(nil),                             // 2: otpki.common.core.importer.v1.ExportData
+	(*ImportOptions)(nil),                          // 3: otpki.common.core.importer.v1.ImportOptions
+	(*ModelImportResult)(nil),                      // 4: otpki.common.core.importer.v1.ModelImportResult
+	(*ImportResult)(nil),                           // 5: otpki.common.core.importer.v1.ImportResult
+	(*v1.PaginationRequest)(nil),                   // 6: otpki.common.api.query.v1.PaginationRequest
+	(*v11.Permission)(nil),                         // 7: otpki.common.auth.v1.Permission
+	(*v11.Role)(nil),                               // 8: otpki.common.auth.v1.Role
+	(*v11.ApprovalProfile)(nil),                    // 9: otpki.common.auth.v1.ApprovalProfile
+	(*v12.EndEntityProfile)(nil),                   // 10: otpki.common.core.end_entity_profile.v1.EndEntityProfile
+	(*v13.EndEntity)(nil),                          // 11: otpki.common.core.end_entity.v1.EndEntity
+	(*v14.KeyStorageConfig)(nil),                   // 12: otpki.common.core.key_storage_config.v1.KeyStorageConfig
+	(*v15.Key)(nil),                                // 13: otpki.common.core.key.v1.Key
+	(*v16.CertificateProfile)(nil),                 // 14: otpki.common.core.certificate_profile.v1.CertificateProfile
+	(*v17.CustomExtKeyUsage)(nil),                  // 15: otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
+	(*v18.CustomCertificateExtension)(nil),         // 16: otpki.common.core.certificate_extension.v1.CustomCertificateExtension
+	(*v19.CertificateAuthority)(nil),               // 17: otpki.common.core.certificate_authority.v1.CertificateAuthority
+	(*v110.IssuanceRequest)(nil),                   // 18: otpki.common.core.issuer.v1.IssuanceRequest
+	(*v111.IssuedCertificate)(nil),                 // 19: otpki.common.core.issued_certificate.v1.IssuedCertificate
+	(*v19.CertificateAuthorityCertificate)(nil),    // 20: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	(*v19.CertificateAuthorityCertificateKey)(nil), // 21: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+	(*v112.Publisher)(nil),                         // 22: otpki.common.core.publisher.v1.Publisher
+	(*v13.EndEntityIssuanceRequest)(nil),           // 23: otpki.common.core.end_entity.v1.EndEntityIssuanceRequest
 }
 var file_otpki_common_core_importer_v1_importer_proto_depIdxs = []int32{
 	6,  // 0: otpki.common.core.importer.v1.ExportPagination.permissions:type_name -> otpki.common.api.query.v1.PaginationRequest
@@ -746,35 +745,35 @@ var file_otpki_common_core_importer_v1_importer_proto_depIdxs = []int32{
 	6,  // 2: otpki.common.core.importer.v1.ExportPagination.approval_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
 	6,  // 3: otpki.common.core.importer.v1.ExportPagination.end_entity_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
 	6,  // 4: otpki.common.core.importer.v1.ExportPagination.end_entities:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 5: otpki.common.core.importer.v1.ExportPagination.enrollment_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 6: otpki.common.core.importer.v1.ExportPagination.key_storage_configs:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 7: otpki.common.core.importer.v1.ExportPagination.keys:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 8: otpki.common.core.importer.v1.ExportPagination.certificate_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 9: otpki.common.core.importer.v1.ExportPagination.custom_ekus:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 10: otpki.common.core.importer.v1.ExportPagination.custom_certificate_extensions:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 11: otpki.common.core.importer.v1.ExportPagination.certificate_authorities:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 12: otpki.common.core.importer.v1.ExportPagination.issuance_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 13: otpki.common.core.importer.v1.ExportPagination.certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 14: otpki.common.core.importer.v1.ExportPagination.certificate_authority_certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 15: otpki.common.core.importer.v1.ExportPagination.certificate_authority_keys:type_name -> otpki.common.api.query.v1.PaginationRequest
-	6,  // 16: otpki.common.core.importer.v1.ExportPagination.publishers:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 5: otpki.common.core.importer.v1.ExportPagination.key_storage_configs:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 6: otpki.common.core.importer.v1.ExportPagination.keys:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 7: otpki.common.core.importer.v1.ExportPagination.certificate_profiles:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 8: otpki.common.core.importer.v1.ExportPagination.custom_ekus:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 9: otpki.common.core.importer.v1.ExportPagination.custom_certificate_extensions:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 10: otpki.common.core.importer.v1.ExportPagination.certificate_authorities:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 11: otpki.common.core.importer.v1.ExportPagination.issuance_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 12: otpki.common.core.importer.v1.ExportPagination.certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 13: otpki.common.core.importer.v1.ExportPagination.certificate_authority_certificates:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 14: otpki.common.core.importer.v1.ExportPagination.certificate_authority_keys:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 15: otpki.common.core.importer.v1.ExportPagination.publishers:type_name -> otpki.common.api.query.v1.PaginationRequest
+	6,  // 16: otpki.common.core.importer.v1.ExportPagination.end_entity_issuance_requests:type_name -> otpki.common.api.query.v1.PaginationRequest
 	7,  // 17: otpki.common.core.importer.v1.ExportData.permissions:type_name -> otpki.common.auth.v1.Permission
 	8,  // 18: otpki.common.core.importer.v1.ExportData.roles:type_name -> otpki.common.auth.v1.Role
 	9,  // 19: otpki.common.core.importer.v1.ExportData.approval_profiles:type_name -> otpki.common.auth.v1.ApprovalProfile
 	10, // 20: otpki.common.core.importer.v1.ExportData.end_entity_profiles:type_name -> otpki.common.core.end_entity_profile.v1.EndEntityProfile
 	11, // 21: otpki.common.core.importer.v1.ExportData.end_entities:type_name -> otpki.common.core.end_entity.v1.EndEntity
-	12, // 22: otpki.common.core.importer.v1.ExportData.enrollment_requests:type_name -> otpki.common.core.enroller.v1.EnrollmentRequest
-	13, // 23: otpki.common.core.importer.v1.ExportData.key_storage_configs:type_name -> otpki.common.core.key_storage_config.v1.KeyStorageConfig
-	14, // 24: otpki.common.core.importer.v1.ExportData.keys:type_name -> otpki.common.core.key.v1.Key
-	15, // 25: otpki.common.core.importer.v1.ExportData.certificate_profiles:type_name -> otpki.common.core.certificate_profile.v1.CertificateProfile
-	16, // 26: otpki.common.core.importer.v1.ExportData.custom_ekus:type_name -> otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
-	17, // 27: otpki.common.core.importer.v1.ExportData.custom_certificate_extensions:type_name -> otpki.common.core.certificate_extension.v1.CustomCertificateExtension
-	18, // 28: otpki.common.core.importer.v1.ExportData.certificate_authorities:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	19, // 29: otpki.common.core.importer.v1.ExportData.issuance_requests:type_name -> otpki.common.core.issuer.v1.IssuanceRequest
-	20, // 30: otpki.common.core.importer.v1.ExportData.certificates:type_name -> otpki.common.core.issued_certificate.v1.IssuedCertificate
-	21, // 31: otpki.common.core.importer.v1.ExportData.certificate_authority_certificates:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	22, // 32: otpki.common.core.importer.v1.ExportData.certificate_authority_keys:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
-	23, // 33: otpki.common.core.importer.v1.ExportData.publishers:type_name -> otpki.common.core.publisher.v1.Publisher
+	12, // 22: otpki.common.core.importer.v1.ExportData.key_storage_configs:type_name -> otpki.common.core.key_storage_config.v1.KeyStorageConfig
+	13, // 23: otpki.common.core.importer.v1.ExportData.keys:type_name -> otpki.common.core.key.v1.Key
+	14, // 24: otpki.common.core.importer.v1.ExportData.certificate_profiles:type_name -> otpki.common.core.certificate_profile.v1.CertificateProfile
+	15, // 25: otpki.common.core.importer.v1.ExportData.custom_ekus:type_name -> otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage
+	16, // 26: otpki.common.core.importer.v1.ExportData.custom_certificate_extensions:type_name -> otpki.common.core.certificate_extension.v1.CustomCertificateExtension
+	17, // 27: otpki.common.core.importer.v1.ExportData.certificate_authorities:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	18, // 28: otpki.common.core.importer.v1.ExportData.issuance_requests:type_name -> otpki.common.core.issuer.v1.IssuanceRequest
+	19, // 29: otpki.common.core.importer.v1.ExportData.certificates:type_name -> otpki.common.core.issued_certificate.v1.IssuedCertificate
+	20, // 30: otpki.common.core.importer.v1.ExportData.certificate_authority_certificates:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	21, // 31: otpki.common.core.importer.v1.ExportData.certificate_authority_keys:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+	22, // 32: otpki.common.core.importer.v1.ExportData.publishers:type_name -> otpki.common.core.publisher.v1.Publisher
+	23, // 33: otpki.common.core.importer.v1.ExportData.end_entity_issuance_requests:type_name -> otpki.common.core.end_entity.v1.EndEntityIssuanceRequest
 	0,  // 34: otpki.common.core.importer.v1.ImportOptions.conflict_strategy:type_name -> otpki.common.core.importer.v1.ConflictStrategy
 	4,  // 35: otpki.common.core.importer.v1.ImportResult.models:type_name -> otpki.common.core.importer.v1.ModelImportResult
 	36, // [36:36] is the sub-list for method output_type

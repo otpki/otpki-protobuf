@@ -54,6 +54,9 @@ const (
 	// PluginRuntimeServiceGetEndEntityProcedure is the fully-qualified name of the
 	// PluginRuntimeService's GetEndEntity RPC.
 	PluginRuntimeServiceGetEndEntityProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntity"
+	// PluginRuntimeServiceUpdateEndEntityProcedure is the fully-qualified name of the
+	// PluginRuntimeService's UpdateEndEntity RPC.
+	PluginRuntimeServiceUpdateEndEntityProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/UpdateEndEntity"
 	// PluginRuntimeServiceGetKeyProcedure is the fully-qualified name of the PluginRuntimeService's
 	// GetKey RPC.
 	PluginRuntimeServiceGetKeyProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetKey"
@@ -69,12 +72,9 @@ const (
 	// PluginRuntimeServiceGetCertificateProfileProcedure is the fully-qualified name of the
 	// PluginRuntimeService's GetCertificateProfile RPC.
 	PluginRuntimeServiceGetCertificateProfileProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetCertificateProfile"
-	// PluginRuntimeServiceCreateEnrollmentRequestProcedure is the fully-qualified name of the
-	// PluginRuntimeService's CreateEnrollmentRequest RPC.
-	PluginRuntimeServiceCreateEnrollmentRequestProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentRequest"
-	// PluginRuntimeServiceGetEnrollmentByRequestIDProcedure is the fully-qualified name of the
-	// PluginRuntimeService's GetEnrollmentByRequestID RPC.
-	PluginRuntimeServiceGetEnrollmentByRequestIDProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEnrollmentByRequestID"
+	// PluginRuntimeServiceCreateEnrollmentAttemptProcedure is the fully-qualified name of the
+	// PluginRuntimeService's CreateEnrollmentAttempt RPC.
+	PluginRuntimeServiceCreateEnrollmentAttemptProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/CreateEnrollmentAttempt"
 	// PluginRuntimeServiceRevokeEndEntityCertificateProcedure is the fully-qualified name of the
 	// PluginRuntimeService's RevokeEndEntityCertificate RPC.
 	PluginRuntimeServiceRevokeEndEntityCertificateProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/RevokeEndEntityCertificate"
@@ -117,13 +117,13 @@ type PluginRuntimeServiceClient interface {
 	AddUniqueNonce(context.Context, *connect.Request[v1.AddUniqueNonceRequest]) (*connect.Response[v1.AddUniqueNonceResponse], error)
 	GetEndEntityByLoginID(context.Context, *connect.Request[v1.GetEndEntityByLoginIDRequest]) (*connect.Response[v1.GetEndEntityByLoginIDResponse], error)
 	GetEndEntity(context.Context, *connect.Request[v1.GetEndEntityRequest]) (*connect.Response[v1.GetEndEntityResponse], error)
+	UpdateEndEntity(context.Context, *connect.Request[v1.UpdateEndEntityRequest]) (*connect.Response[v1.UpdateEndEntityResponse], error)
 	GetKey(context.Context, *connect.Request[v1.GetKeyRequest]) (*connect.Response[v1.GetKeyResponse], error)
 	GetAllRootCertificateAuthorityCertificates(context.Context, *connect.Request[v1.GetAllRootCertificateAuthorityCertificatesRequest]) (*connect.Response[v1.GetAllRootCertificateAuthorityCertificatesResponse], error)
 	GetLatestCertificateAuthorityCertificate(context.Context, *connect.Request[v1.GetLatestCertificateAuthorityCertificateRequest]) (*connect.Response[v1.GetLatestCertificateAuthorityCertificateResponse], error)
 	GetCertificateAuthority(context.Context, *connect.Request[v1.GetCertificateAuthorityRequest]) (*connect.Response[v1.GetCertificateAuthorityResponse], error)
 	GetCertificateProfile(context.Context, *connect.Request[v1.GetCertificateProfileRequest]) (*connect.Response[v1.GetCertificateProfileResponse], error)
-	CreateEnrollmentRequest(context.Context, *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error)
-	GetEnrollmentByRequestID(context.Context, *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error)
+	CreateEnrollmentAttempt(context.Context, *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error)
 	RevokeEndEntityCertificate(context.Context, *connect.Request[v1.RevokeEndEntityCertificateRequest]) (*connect.Response[v1.RevokeEndEntityCertificateResponse], error)
 	GetEndEntityCertificateBySerialNumber(context.Context, *connect.Request[v1.GetEndEntityCertificateBySerialNumberRequest]) (*connect.Response[v1.GetEndEntityCertificateBySerialNumberResponse], error)
 	GetEndEntityCertificates(context.Context, *connect.Request[v1.GetEndEntityCertificatesRequest]) (*connect.Response[v1.GetEndEntityCertificatesResponse], error)
@@ -190,6 +190,12 @@ func NewPluginRuntimeServiceClient(httpClient connect.HTTPClient, baseURL string
 			connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetEndEntity")),
 			connect.WithClientOptions(opts...),
 		),
+		updateEndEntity: connect.NewClient[v1.UpdateEndEntityRequest, v1.UpdateEndEntityResponse](
+			httpClient,
+			baseURL+PluginRuntimeServiceUpdateEndEntityProcedure,
+			connect.WithSchema(pluginRuntimeServiceMethods.ByName("UpdateEndEntity")),
+			connect.WithClientOptions(opts...),
+		),
 		getKey: connect.NewClient[v1.GetKeyRequest, v1.GetKeyResponse](
 			httpClient,
 			baseURL+PluginRuntimeServiceGetKeyProcedure,
@@ -220,16 +226,10 @@ func NewPluginRuntimeServiceClient(httpClient connect.HTTPClient, baseURL string
 			connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetCertificateProfile")),
 			connect.WithClientOptions(opts...),
 		),
-		createEnrollmentRequest: connect.NewClient[v1.CreateEnrollmentRequestRequest, v1.CreateEnrollmentRequestResponse](
+		createEnrollmentAttempt: connect.NewClient[v1.CreateEnrollmentAttemptRequest, v1.CreateEnrollmentAttemptResponse](
 			httpClient,
-			baseURL+PluginRuntimeServiceCreateEnrollmentRequestProcedure,
-			connect.WithSchema(pluginRuntimeServiceMethods.ByName("CreateEnrollmentRequest")),
-			connect.WithClientOptions(opts...),
-		),
-		getEnrollmentByRequestID: connect.NewClient[v1.GetEnrollmentByRequestIDRequest, v1.GetEnrollmentByRequestIDResponse](
-			httpClient,
-			baseURL+PluginRuntimeServiceGetEnrollmentByRequestIDProcedure,
-			connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetEnrollmentByRequestID")),
+			baseURL+PluginRuntimeServiceCreateEnrollmentAttemptProcedure,
+			connect.WithSchema(pluginRuntimeServiceMethods.ByName("CreateEnrollmentAttempt")),
 			connect.WithClientOptions(opts...),
 		),
 		revokeEndEntityCertificate: connect.NewClient[v1.RevokeEndEntityCertificateRequest, v1.RevokeEndEntityCertificateResponse](
@@ -304,13 +304,13 @@ type pluginRuntimeServiceClient struct {
 	addUniqueNonce                             *connect.Client[v1.AddUniqueNonceRequest, v1.AddUniqueNonceResponse]
 	getEndEntityByLoginID                      *connect.Client[v1.GetEndEntityByLoginIDRequest, v1.GetEndEntityByLoginIDResponse]
 	getEndEntity                               *connect.Client[v1.GetEndEntityRequest, v1.GetEndEntityResponse]
+	updateEndEntity                            *connect.Client[v1.UpdateEndEntityRequest, v1.UpdateEndEntityResponse]
 	getKey                                     *connect.Client[v1.GetKeyRequest, v1.GetKeyResponse]
 	getAllRootCertificateAuthorityCertificates *connect.Client[v1.GetAllRootCertificateAuthorityCertificatesRequest, v1.GetAllRootCertificateAuthorityCertificatesResponse]
 	getLatestCertificateAuthorityCertificate   *connect.Client[v1.GetLatestCertificateAuthorityCertificateRequest, v1.GetLatestCertificateAuthorityCertificateResponse]
 	getCertificateAuthority                    *connect.Client[v1.GetCertificateAuthorityRequest, v1.GetCertificateAuthorityResponse]
 	getCertificateProfile                      *connect.Client[v1.GetCertificateProfileRequest, v1.GetCertificateProfileResponse]
-	createEnrollmentRequest                    *connect.Client[v1.CreateEnrollmentRequestRequest, v1.CreateEnrollmentRequestResponse]
-	getEnrollmentByRequestID                   *connect.Client[v1.GetEnrollmentByRequestIDRequest, v1.GetEnrollmentByRequestIDResponse]
+	createEnrollmentAttempt                    *connect.Client[v1.CreateEnrollmentAttemptRequest, v1.CreateEnrollmentAttemptResponse]
 	revokeEndEntityCertificate                 *connect.Client[v1.RevokeEndEntityCertificateRequest, v1.RevokeEndEntityCertificateResponse]
 	getEndEntityCertificateBySerialNumber      *connect.Client[v1.GetEndEntityCertificateBySerialNumberRequest, v1.GetEndEntityCertificateBySerialNumberResponse]
 	getEndEntityCertificates                   *connect.Client[v1.GetEndEntityCertificatesRequest, v1.GetEndEntityCertificatesResponse]
@@ -359,6 +359,11 @@ func (c *pluginRuntimeServiceClient) GetEndEntity(ctx context.Context, req *conn
 	return c.getEndEntity.CallUnary(ctx, req)
 }
 
+// UpdateEndEntity calls otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity.
+func (c *pluginRuntimeServiceClient) UpdateEndEntity(ctx context.Context, req *connect.Request[v1.UpdateEndEntityRequest]) (*connect.Response[v1.UpdateEndEntityResponse], error) {
+	return c.updateEndEntity.CallUnary(ctx, req)
+}
+
 // GetKey calls otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey.
 func (c *pluginRuntimeServiceClient) GetKey(ctx context.Context, req *connect.Request[v1.GetKeyRequest]) (*connect.Response[v1.GetKeyResponse], error) {
 	return c.getKey.CallUnary(ctx, req)
@@ -388,16 +393,10 @@ func (c *pluginRuntimeServiceClient) GetCertificateProfile(ctx context.Context, 
 	return c.getCertificateProfile.CallUnary(ctx, req)
 }
 
-// CreateEnrollmentRequest calls
-// otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest.
-func (c *pluginRuntimeServiceClient) CreateEnrollmentRequest(ctx context.Context, req *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error) {
-	return c.createEnrollmentRequest.CallUnary(ctx, req)
-}
-
-// GetEnrollmentByRequestID calls
-// otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID.
-func (c *pluginRuntimeServiceClient) GetEnrollmentByRequestID(ctx context.Context, req *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error) {
-	return c.getEnrollmentByRequestID.CallUnary(ctx, req)
+// CreateEnrollmentAttempt calls
+// otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt.
+func (c *pluginRuntimeServiceClient) CreateEnrollmentAttempt(ctx context.Context, req *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error) {
+	return c.createEnrollmentAttempt.CallUnary(ctx, req)
 }
 
 // RevokeEndEntityCertificate calls
@@ -467,13 +466,13 @@ type PluginRuntimeServiceHandler interface {
 	AddUniqueNonce(context.Context, *connect.Request[v1.AddUniqueNonceRequest]) (*connect.Response[v1.AddUniqueNonceResponse], error)
 	GetEndEntityByLoginID(context.Context, *connect.Request[v1.GetEndEntityByLoginIDRequest]) (*connect.Response[v1.GetEndEntityByLoginIDResponse], error)
 	GetEndEntity(context.Context, *connect.Request[v1.GetEndEntityRequest]) (*connect.Response[v1.GetEndEntityResponse], error)
+	UpdateEndEntity(context.Context, *connect.Request[v1.UpdateEndEntityRequest]) (*connect.Response[v1.UpdateEndEntityResponse], error)
 	GetKey(context.Context, *connect.Request[v1.GetKeyRequest]) (*connect.Response[v1.GetKeyResponse], error)
 	GetAllRootCertificateAuthorityCertificates(context.Context, *connect.Request[v1.GetAllRootCertificateAuthorityCertificatesRequest]) (*connect.Response[v1.GetAllRootCertificateAuthorityCertificatesResponse], error)
 	GetLatestCertificateAuthorityCertificate(context.Context, *connect.Request[v1.GetLatestCertificateAuthorityCertificateRequest]) (*connect.Response[v1.GetLatestCertificateAuthorityCertificateResponse], error)
 	GetCertificateAuthority(context.Context, *connect.Request[v1.GetCertificateAuthorityRequest]) (*connect.Response[v1.GetCertificateAuthorityResponse], error)
 	GetCertificateProfile(context.Context, *connect.Request[v1.GetCertificateProfileRequest]) (*connect.Response[v1.GetCertificateProfileResponse], error)
-	CreateEnrollmentRequest(context.Context, *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error)
-	GetEnrollmentByRequestID(context.Context, *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error)
+	CreateEnrollmentAttempt(context.Context, *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error)
 	RevokeEndEntityCertificate(context.Context, *connect.Request[v1.RevokeEndEntityCertificateRequest]) (*connect.Response[v1.RevokeEndEntityCertificateResponse], error)
 	GetEndEntityCertificateBySerialNumber(context.Context, *connect.Request[v1.GetEndEntityCertificateBySerialNumberRequest]) (*connect.Response[v1.GetEndEntityCertificateBySerialNumberResponse], error)
 	GetEndEntityCertificates(context.Context, *connect.Request[v1.GetEndEntityCertificatesRequest]) (*connect.Response[v1.GetEndEntityCertificatesResponse], error)
@@ -535,6 +534,12 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 		connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetEndEntity")),
 		connect.WithHandlerOptions(opts...),
 	)
+	pluginRuntimeServiceUpdateEndEntityHandler := connect.NewUnaryHandler(
+		PluginRuntimeServiceUpdateEndEntityProcedure,
+		svc.UpdateEndEntity,
+		connect.WithSchema(pluginRuntimeServiceMethods.ByName("UpdateEndEntity")),
+		connect.WithHandlerOptions(opts...),
+	)
 	pluginRuntimeServiceGetKeyHandler := connect.NewUnaryHandler(
 		PluginRuntimeServiceGetKeyProcedure,
 		svc.GetKey,
@@ -565,16 +570,10 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 		connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetCertificateProfile")),
 		connect.WithHandlerOptions(opts...),
 	)
-	pluginRuntimeServiceCreateEnrollmentRequestHandler := connect.NewUnaryHandler(
-		PluginRuntimeServiceCreateEnrollmentRequestProcedure,
-		svc.CreateEnrollmentRequest,
-		connect.WithSchema(pluginRuntimeServiceMethods.ByName("CreateEnrollmentRequest")),
-		connect.WithHandlerOptions(opts...),
-	)
-	pluginRuntimeServiceGetEnrollmentByRequestIDHandler := connect.NewUnaryHandler(
-		PluginRuntimeServiceGetEnrollmentByRequestIDProcedure,
-		svc.GetEnrollmentByRequestID,
-		connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetEnrollmentByRequestID")),
+	pluginRuntimeServiceCreateEnrollmentAttemptHandler := connect.NewUnaryHandler(
+		PluginRuntimeServiceCreateEnrollmentAttemptProcedure,
+		svc.CreateEnrollmentAttempt,
+		connect.WithSchema(pluginRuntimeServiceMethods.ByName("CreateEnrollmentAttempt")),
 		connect.WithHandlerOptions(opts...),
 	)
 	pluginRuntimeServiceRevokeEndEntityCertificateHandler := connect.NewUnaryHandler(
@@ -653,6 +652,8 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 			pluginRuntimeServiceGetEndEntityByLoginIDHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceGetEndEntityProcedure:
 			pluginRuntimeServiceGetEndEntityHandler.ServeHTTP(w, r)
+		case PluginRuntimeServiceUpdateEndEntityProcedure:
+			pluginRuntimeServiceUpdateEndEntityHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceGetKeyProcedure:
 			pluginRuntimeServiceGetKeyHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceGetAllRootCertificateAuthorityCertificatesProcedure:
@@ -663,10 +664,8 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 			pluginRuntimeServiceGetCertificateAuthorityHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceGetCertificateProfileProcedure:
 			pluginRuntimeServiceGetCertificateProfileHandler.ServeHTTP(w, r)
-		case PluginRuntimeServiceCreateEnrollmentRequestProcedure:
-			pluginRuntimeServiceCreateEnrollmentRequestHandler.ServeHTTP(w, r)
-		case PluginRuntimeServiceGetEnrollmentByRequestIDProcedure:
-			pluginRuntimeServiceGetEnrollmentByRequestIDHandler.ServeHTTP(w, r)
+		case PluginRuntimeServiceCreateEnrollmentAttemptProcedure:
+			pluginRuntimeServiceCreateEnrollmentAttemptHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceRevokeEndEntityCertificateProcedure:
 			pluginRuntimeServiceRevokeEndEntityCertificateHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceGetEndEntityCertificateBySerialNumberProcedure:
@@ -724,6 +723,10 @@ func (UnimplementedPluginRuntimeServiceHandler) GetEndEntity(context.Context, *c
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntity is not implemented"))
 }
 
+func (UnimplementedPluginRuntimeServiceHandler) UpdateEndEntity(context.Context, *connect.Request[v1.UpdateEndEntityRequest]) (*connect.Response[v1.UpdateEndEntityResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.UpdateEndEntity is not implemented"))
+}
+
 func (UnimplementedPluginRuntimeServiceHandler) GetKey(context.Context, *connect.Request[v1.GetKeyRequest]) (*connect.Response[v1.GetKeyResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.GetKey is not implemented"))
 }
@@ -744,12 +747,8 @@ func (UnimplementedPluginRuntimeServiceHandler) GetCertificateProfile(context.Co
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.GetCertificateProfile is not implemented"))
 }
 
-func (UnimplementedPluginRuntimeServiceHandler) CreateEnrollmentRequest(context.Context, *connect.Request[v1.CreateEnrollmentRequestRequest]) (*connect.Response[v1.CreateEnrollmentRequestResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentRequest is not implemented"))
-}
-
-func (UnimplementedPluginRuntimeServiceHandler) GetEnrollmentByRequestID(context.Context, *connect.Request[v1.GetEnrollmentByRequestIDRequest]) (*connect.Response[v1.GetEnrollmentByRequestIDResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEnrollmentByRequestID is not implemented"))
+func (UnimplementedPluginRuntimeServiceHandler) CreateEnrollmentAttempt(context.Context, *connect.Request[v1.CreateEnrollmentAttemptRequest]) (*connect.Response[v1.CreateEnrollmentAttemptResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.CreateEnrollmentAttempt is not implemented"))
 }
 
 func (UnimplementedPluginRuntimeServiceHandler) RevokeEndEntityCertificate(context.Context, *connect.Request[v1.RevokeEndEntityCertificateRequest]) (*connect.Response[v1.RevokeEndEntityCertificateResponse], error) {

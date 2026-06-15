@@ -5,45 +5,35 @@ package enrollerv1
 import (
 	fmt "fmt"
 	uuid "github.com/google/uuid"
-	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/end_entity/v1"
-	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/issuer/v1"
+	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/issuer/v1"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
 )
 
-// EnrollmentRequestNative is the native typing representation of EnrollmentRequest
-type EnrollmentRequestNative struct {
-	Id                uuid.UUID
-	Status            v1.EndEntityStatus
-	Data              []byte
-	DataType          EnrollmentDataType
-	ProtocolUsed      v11.IssuingProtocol
-	EndEntityTemplate *v1.EndEntity
-	IssuanceRequestId uuid.NullUUID
-	CreatedAt         time.Time
-	UpdatedAt         time.Time
+// EnrollmentAttemptNative is the native typing representation of EnrollmentAttempt
+type EnrollmentAttemptNative struct {
+	EndEntityId  uuid.UUID
+	Data         []byte
+	DataType     EnrollmentDataType
+	ProtocolUsed v1.IssuingProtocol
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
 }
 
-// ToProto converts a EnrollmentRequestNative to a EnrollmentRequest
-func (n *EnrollmentRequestNative) ToProto() (*EnrollmentRequest, error) {
+// ToProto converts a EnrollmentAttemptNative to a EnrollmentAttempt
+func (n *EnrollmentAttemptNative) ToProto() (*EnrollmentAttempt, error) {
 	if n == nil {
 		return nil, nil
 	}
 	var err error
-	protoStruct := &EnrollmentRequest{}
-	protoStruct.Id, err = convertUUIDToProto(n.Id)
+	protoStruct := &EnrollmentAttempt{}
+	protoStruct.EndEntityId, err = convertUUIDToProto(n.EndEntityId)
 	if err != nil {
-		return nil, fmt.Errorf("error converting Id: %w", err)
+		return nil, fmt.Errorf("error converting EndEntityId: %w", err)
 	}
-	protoStruct.Status = n.Status
 	protoStruct.Data = n.Data
 	protoStruct.DataType = n.DataType
 	protoStruct.ProtocolUsed = n.ProtocolUsed
-	protoStruct.EndEntityTemplate = n.EndEntityTemplate
-	protoStruct.IssuanceRequestId, err = convertNullUUIDToProto(n.IssuanceRequestId)
-	if err != nil {
-		return nil, fmt.Errorf("error converting IssuanceRequestId: %w", err)
-	}
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -55,26 +45,20 @@ func (n *EnrollmentRequestNative) ToProto() (*EnrollmentRequest, error) {
 	return protoStruct, nil
 }
 
-// FromProto converts a EnrollmentRequest to a EnrollmentRequestNative
-func (p *EnrollmentRequest) ToNative() (*EnrollmentRequestNative, error) {
+// FromProto converts a EnrollmentAttempt to a EnrollmentAttemptNative
+func (p *EnrollmentAttempt) ToNative() (*EnrollmentAttemptNative, error) {
 	if p == nil {
 		return nil, nil
 	}
 	var err error
-	nativeStruct := &EnrollmentRequestNative{}
-	nativeStruct.Id, err = convertProtoToUUID(p.Id)
+	nativeStruct := &EnrollmentAttemptNative{}
+	nativeStruct.EndEntityId, err = convertProtoToUUID(p.EndEntityId)
 	if err != nil {
-		return nil, fmt.Errorf("error converting IdNative: %w", err)
+		return nil, fmt.Errorf("error converting EndEntityIdNative: %w", err)
 	}
-	nativeStruct.Status = p.Status
 	nativeStruct.Data = p.Data
 	nativeStruct.DataType = p.DataType
 	nativeStruct.ProtocolUsed = p.ProtocolUsed
-	nativeStruct.EndEntityTemplate = p.EndEntityTemplate
-	nativeStruct.IssuanceRequestId, err = convertProtoToNullUUID(p.IssuanceRequestId)
-	if err != nil {
-		return nil, fmt.Errorf("error converting IssuanceRequestIdNative: %w", err)
-	}
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)
@@ -86,32 +70,10 @@ func (p *EnrollmentRequest) ToNative() (*EnrollmentRequestNative, error) {
 	return nativeStruct, nil
 }
 
-// GetIdUUID returns Id as a UUID when possible.
-func (x *EnrollmentRequest) GetIdUUID() uuid.UUID {
+// GetEndEntityIdUUID returns EndEntityId as a UUID when possible.
+func (x *EnrollmentAttempt) GetEndEntityIdUUID() uuid.UUID {
 	if x != nil {
-		value, err := convertProtoToUUID(x.Id)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetIssuanceRequestIdUUID returns IssuanceRequestId as a UUID when possible.
-func (x *EnrollmentRequest) GetIssuanceRequestIdUUID() uuid.NullUUID {
-	if x != nil {
-		value, err := convertProtoToNullUUID(x.IssuanceRequestId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.NullUUID{}
-}
-
-// GetEnrollmentRequestIdUUID returns EnrollmentRequestId as a UUID when possible.
-func (x *EnrollmentResponse) GetEnrollmentRequestIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.EnrollmentRequestId)
+		value, err := convertProtoToUUID(x.EndEntityId)
 		if err == nil {
 			return value
 		}
@@ -142,18 +104,6 @@ func (x *EnrollmentResponse) GetCertificateIdUUID() uuid.NullUUID {
 }
 
 // Converter functions for native types
-
-// convertNullUUIDToProto comes from the converter package
-func convertNullUUIDToProto(id uuid.NullUUID) (*string, error) {
-	if !id.Valid {
-		return nil, nil
-	}
-	uuidVal, err := convertUUIDToProto(id.UUID)
-	if err != nil {
-		return nil, err
-	}
-	return &uuidVal, nil
-}
 
 // convertProtoToNullUUID comes from the converter package
 func convertProtoToNullUUID(id *string) (uuid.NullUUID, error) {

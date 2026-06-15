@@ -6,27 +6,27 @@ paths:
     post:
       tags:
         - otpki.public.enrollment.enroller.v1.EnrollerService
-      summary: CreateEnrollmentRequestForExistingEndEntity
-      operationId: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequestForExistingEndEntity
+      summary: CreateEnrollmentAttemptForExistingEndEntity
+      operationId: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttemptForExistingEndEntity
       requestBody:
         content:
           application/json:
             schema:
-              title: enrollment_request
-              $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentRequest'
+              $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest'
+        required: true
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse'
+                $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse'
   /v1/enrollment:
     get:
       tags:
         - otpki.public.enrollment.enroller.v1.EnrollerService
-      summary: GetEnrollmentRequestList
-      operationId: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentRequestList
+      summary: GetEnrollmentAttemptList
+      operationId: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentAttemptList
       parameters:
         - name: pagination.pageToken
           in: query
@@ -335,50 +335,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse'
+                $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse'
     post:
       tags:
         - otpki.public.enrollment.enroller.v1.EnrollerService
-      summary: CreateEnrollmentRequest
-      operationId: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentRequest
+      summary: CreateEnrollmentAttempt
+      operationId: otpki.public.enrollment.enroller.v1.EnrollerService.CreateEnrollmentAttempt
       requestBody:
         content:
           application/json:
             schema:
-              title: enrollment_request
-              $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentRequest'
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse'
-  /v1/enrollment/{enrollment_request_id}:
-    post:
-      tags:
-        - otpki.public.enrollment.enroller.v1.EnrollerService
-      summary: GetEnrollmentByRequestID
-      operationId: otpki.public.enrollment.enroller.v1.EnrollerService.GetEnrollmentByRequestID
-      parameters:
-        - name: enrollment_request_id
-          in: path
-          required: true
-          schema:
-            type: string
-            title: enrollment_request_id
-            format: uuid
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                password:
-                  type: string
-                  title: password
-              title: GetEnrollmentByRequestIDRequest
-              additionalProperties: false
+              $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest'
         required: true
       responses:
         "200":
@@ -386,7 +353,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse'
+                $ref: '#/components/schemas/otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse'
 components:
   schemas:
     google.protobuf.Duration:
@@ -1002,6 +969,14 @@ components:
             format: uuid
           title: custom_certificate_extension_ids
           uniqueItems: true
+        remainingRequests:
+          type:
+            - integer
+            - string
+          title: remaining_requests
+          minimum: 0
+          format: int64
+          readOnly: true
       title: EndEntity
       additionalProperties: false
     otpki.common.core.end_entity.v1.EndEntityStatus:
@@ -1014,25 +989,13 @@ components:
         - END_ENTITY_STATUS_GENERATED
         - END_ENTITY_STATUS_REVOKED
         - END_ENTITY_STATUS_WAITING_FOR_APPROVAL
-    otpki.common.core.enroller.v1.EnrollmentDataType:
-      type: string
-      title: EnrollmentDataType
-      enum:
-        - ENROLLMENT_DATA_TYPE_UNSPECIFIED
-        - ENROLLMENT_DATA_TYPE_PKCS10
-        - ENROLLMENT_DATA_TYPE_CRMF
-    otpki.common.core.enroller.v1.EnrollmentRequest:
+    otpki.common.core.enroller.v1.EnrollmentAttempt:
       type: object
       properties:
-        id:
+        endEntityId:
           type: string
-          title: id
+          title: end_entity_id
           format: uuid
-          readOnly: true
-        status:
-          title: status
-          readOnly: true
-          $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntityStatus'
         data:
           type: string
           title: data
@@ -1043,16 +1006,6 @@ components:
         protocolUsed:
           title: protocol_used
           $ref: '#/components/schemas/otpki.common.core.issuer.v1.IssuingProtocol'
-        endEntityTemplate:
-          title: end_entity_template
-          $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
-        issuanceRequestId:
-          type:
-            - string
-            - "null"
-          title: issuance_request_id
-          format: uuid
-          description: extensible for more complex enrollment (key recovery??)
         createdAt:
           title: created_at
           description: not settable on creation
@@ -1063,15 +1016,18 @@ components:
           description: not settable on creation
           readOnly: true
           $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: EnrollmentRequest
+      title: EnrollmentAttempt
       additionalProperties: false
+    otpki.common.core.enroller.v1.EnrollmentDataType:
+      type: string
+      title: EnrollmentDataType
+      enum:
+        - ENROLLMENT_DATA_TYPE_UNSPECIFIED
+        - ENROLLMENT_DATA_TYPE_PKCS10
+        - ENROLLMENT_DATA_TYPE_CRMF
     otpki.common.core.enroller.v1.EnrollmentResponse:
       type: object
       properties:
-        enrollmentRequestId:
-          type: string
-          title: enrollment_request_id
-          format: uuid
         issuanceRequestId:
           type:
             - string
@@ -1098,9 +1054,9 @@ components:
         endEntity:
           title: end_entity
           description: |-
-            the status of the end entity is the status of the request
-             since end entities can only have 1 concurrent active request
-             a new request cannot be made if the end entity is in a pending state
+            the status of the end entity is the status of the active attempt
+             since end entities can only have 1 concurrent active attempt
+             a new attempt cannot be made if the end entity is in a pending state
           $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
       title: EnrollmentResponse
       additionalProperties: false
@@ -1181,85 +1137,73 @@ components:
           description: oid only needed for SUBJECT_DN_ATTR_TYPE_OID
       title: SubjectDNAttribute
       additionalProperties: false
-    otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityRequest:
+    otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityRequest:
       type: object
       properties:
-        enrollmentRequest:
-          title: enrollment_request
-          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentRequest'
-      title: CreateEnrollmentRequestForExistingEndEntityRequest
-      additionalProperties: false
-    otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestForExistingEndEntityResponse:
-      type: object
-      properties:
-        enrollmentResponse:
-          title: enrollment_response
-          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentResponse'
-      title: CreateEnrollmentRequestForExistingEndEntityResponse
-      additionalProperties: false
-    otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestRequest:
-      type: object
-      properties:
-        enrollmentRequest:
-          title: enrollment_request
-          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentRequest'
-      title: CreateEnrollmentRequestRequest
-      required:
-        - enrollmentRequest
-      additionalProperties: false
-    otpki.public.enrollment.enroller.v1.CreateEnrollmentRequestResponse:
-      type: object
-      properties:
-        enrollmentResponse:
-          title: enrollment_response
-          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentResponse'
-      title: CreateEnrollmentRequestResponse
-      additionalProperties: false
-    otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDRequest:
-      type: object
-      properties:
-        enrollmentRequestId:
+        enrollmentAttempt:
+          title: enrollment_attempt
+          description: Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
+          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentAttempt'
+        loginId:
           type: string
-          title: enrollment_request_id
-          format: uuid
+          title: login_id
         password:
           type: string
           title: password
-      title: GetEnrollmentByRequestIDRequest
+      title: CreateEnrollmentAttemptForExistingEndEntityRequest
       required:
-        - enrollmentRequestId
+        - enrollmentAttempt
       additionalProperties: false
-    otpki.public.enrollment.enroller.v1.GetEnrollmentByRequestIDResponse:
+    otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptForExistingEndEntityResponse:
       type: object
       properties:
-        enrollmentRequest:
-          title: enrollment_request
-          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentRequest'
         enrollmentResponse:
           title: enrollment_response
           $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentResponse'
-      title: GetEnrollmentByRequestIDResponse
+      title: CreateEnrollmentAttemptForExistingEndEntityResponse
       additionalProperties: false
-    otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListRequest:
+    otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptRequest:
+      type: object
+      properties:
+        enrollmentAttempt:
+          title: enrollment_attempt
+          description: Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
+          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentAttempt'
+        endEntity:
+          title: end_entity
+          $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
+      title: CreateEnrollmentAttemptRequest
+      required:
+        - enrollmentAttempt
+      additionalProperties: false
+    otpki.public.enrollment.enroller.v1.CreateEnrollmentAttemptResponse:
+      type: object
+      properties:
+        enrollmentResponse:
+          title: enrollment_response
+          $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentResponse'
+      title: CreateEnrollmentAttemptResponse
+      additionalProperties: false
+    otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListRequest:
       type: object
       properties:
         pagination:
           title: pagination
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-      title: GetEnrollmentRequestListRequest
+      title: GetEnrollmentAttemptListRequest
       additionalProperties: false
-    otpki.public.enrollment.enroller.v1.GetEnrollmentRequestListResponse:
+    otpki.public.enrollment.enroller.v1.GetEnrollmentAttemptListResponse:
       type: object
       properties:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentRequest'
+            $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentAttempt'
           title: data
         pagination:
           title: pagination
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationResponse'
-      title: GetEnrollmentRequestListResponse
+      title: GetEnrollmentAttemptListResponse
       additionalProperties: false
 security: []
 tags:
