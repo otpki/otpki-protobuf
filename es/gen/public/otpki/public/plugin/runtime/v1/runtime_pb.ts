@@ -5,8 +5,8 @@
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb.js";
-import type { Any, AnyJson } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_any } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { CertificateAuthority, CertificateAuthorityCertificate, CertificateAuthorityCertificateJson, CertificateAuthorityJson, CertificateAuthorityValid } from "../../../../common/core/certificate_authority/v1/certificate_authority_pb.js";
 import { file_otpki_common_core_certificate_authority_v1_certificate_authority } from "../../../../common/core/certificate_authority/v1/certificate_authority_pb.js";
 import type { CertificateProfile, CertificateProfileJson } from "../../../../common/core/certificate_profile/v1/certificate_profile_pb.js";
@@ -19,7 +19,7 @@ import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid, 
 import { file_otpki_common_core_enroller_v1_enroller } from "../../../../common/core/enroller/v1/enroller_pb.js";
 import type { Key, KeyJson, KeyValid } from "../../../../common/core/key/v1/key_pb.js";
 import { file_otpki_common_core_key_v1_key } from "../../../../common/core/key/v1/key_pb.js";
-import type { RevocationReasonCode, RevocationReasonCodeJson } from "../../../../common/x509/v1/x509_pb.js";
+import type { HashAlgorithm, HashAlgorithmJson, RevocationReasonCode, RevocationReasonCodeJson } from "../../../../common/x509/v1/x509_pb.js";
 import { file_otpki_common_x509_v1_x509 } from "../../../../common/x509/v1/x509_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -27,7 +27,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/plugin/runtime/v1/runtime.proto.
  */
 export const file_otpki_public_plugin_runtime_v1_runtime: GenFile = /*@__PURE__*/
-  fileDesc("CixvdHBraS9wdWJsaWMvcGx1Z2luL3J1bnRpbWUvdjEvcnVudGltZS5wcm90bxIeb3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxIhIKEEdldENvbmZpZ1JlcXVlc3QiKAoRR2V0Q29uZmlnUmVzcG9uc2USEwoLY29uZmlnX2pzb24YASABKAwiFAoSQ3JlYXRlTm9uY2VSZXF1ZXN0IiQKE0NyZWF0ZU5vbmNlUmVzcG9uc2USDQoFbm9uY2UYASABKAkiKAoPQWRkTm9uY2VSZXF1ZXN0EhUKBW5vbmNlGAEgASgJQga6SAPIAQEiIQoQQWRkTm9uY2VSZXNwb25zZRINCgVub25jZRgBIAEoCSIqChFDaGVja05vbmNlUmVxdWVzdBIVCgVub25jZRgBIAEoCUIGukgDyAEBIiYKEkNoZWNrTm9uY2VSZXNwb25zZRIQCghpc192YWxpZBgBIAEoCCIuChVBZGRVbmlxdWVOb25jZVJlcXVlc3QSFQoFbm9uY2UYASABKAlCBrpIA8gBASIrChZBZGRVbmlxdWVOb25jZVJlc3BvbnNlEhEKCWlzX3VuaXF1ZRgBIAEoCCI4ChxHZXRFbmRFbnRpdHlCeUxvZ2luSURSZXF1ZXN0EhgKCGxvZ2luX2lkGAEgASgJQga6SAPIAQEiXwodR2V0RW5kRW50aXR5QnlMb2dpbklEUmVzcG9uc2USPgoKZW5kX2VudGl0eRgBIAEoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5Ii4KE0dldEVuZEVudGl0eVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIlYKFEdldEVuZEVudGl0eVJlc3BvbnNlEj4KCmVuZF9lbnRpdHkYASABKAsyKi5vdHBraS5jb21tb24uY29yZS5lbmRfZW50aXR5LnYxLkVuZEVudGl0eSIoCg1HZXRLZXlSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJUCg5HZXRLZXlSZXNwb25zZRIqCgNrZXkYASABKAsyHS5vdHBraS5jb21tb24uY29yZS5rZXkudjEuS2V5EhYKDnB1YmxpY19rZXlfZGVyGAIgASgMIjMKMUdldEFsbFJvb3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlc1JlcXVlc3QiTgoyR2V0QWxsUm9vdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVzcG9uc2USGAoQY2VydGlmaWNhdGVzX2RlchgBIAMoDCJNCi9HZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlUmVxdWVzdBIaCgVjYV9pZBgBIAEoCUILukgIyAEBcgOwAQEiqgEKMEdldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXNwb25zZRJ2CiFjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfY2VydGlmaWNhdGUYASABKAsySy5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZSI8Ch5HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlcXVlc3QSGgoFY2FfaWQYASABKAlCC7pICMgBAXIDsAEBIoIBCh9HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlEl8KFWNlcnRpZmljYXRlX2F1dGhvcml0eRgBIAEoCzJALm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eSI3ChxHZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJ6Ch1HZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXNwb25zZRJZChNjZXJ0aWZpY2F0ZV9wcm9maWxlGAEgASgLMjwub3Rwa2kuY29tbW9uLmNvcmUuY2VydGlmaWNhdGVfcHJvZmlsZS52MS5DZXJ0aWZpY2F0ZVByb2ZpbGUi2wEKHkNyZWF0ZUVucm9sbG1lbnRSZXF1ZXN0UmVxdWVzdBJUChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdEIGukgDyAEBEhkKEXNraXBfdmVyaWZpY2F0aW9uGAIgASgIEhYKDmFsbG93X2V4aXN0aW5nGAMgASgIEhgKEHJlcXVpcmVfZXhpc3RpbmcYBCABKAgSFgoOY2hlY2tfcGFzc3dvcmQYBSABKAgicQofQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXNwb25zZRJOChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIncKH0dldEVucm9sbG1lbnRCeVJlcXVlc3RJRFJlcXVlc3QSKgoVZW5yb2xsbWVudF9yZXF1ZXN0X2lkGAEgASgJQgu6SAjIAQFyA7ABARIQCghwYXNzd29yZBgCIAEoCRIWCg5jaGVja19wYXNzd29yZBgDIAEoCCLAAQogR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVzcG9uc2USTAoSZW5yb2xsbWVudF9yZXF1ZXN0GAEgASgLMjAub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlcXVlc3QSTgoTZW5yb2xsbWVudF9yZXNwb25zZRgCIAEoCzIxLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXNwb25zZSLHAQohUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBEioKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgCIAEoCUILukgIyAEBcgOwAQESUgoWcmV2b2NhdGlvbl9yZWFzb25fY29kZRgDIAEoDjIqLm90cGtpLmNvbW1vbi54NTA5LnYxLlJldm9jYXRpb25SZWFzb25Db2RlQga6SAPIAQEiJAoiUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXNwb25zZSJNCixHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBIdCg1zZXJpYWxfbnVtYmVyGAEgASgMQga6SAPIAQEikgEKLUdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXNwb25zZRJhChZlbmRfZW50aXR5X2NlcnRpZmljYXRlGAEgASgLMkEub3Rwa2kuY29tbW9uLmNvcmUuZW5kX2VudGl0eV9jZXJ0aWZpY2F0ZS52MS5FbmRFbnRpdHlDZXJ0aWZpY2F0ZSJFCh9HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBIoYBCiBHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRJiChdlbmRfZW50aXR5X2NlcnRpZmljYXRlcxgBIAMoCzJBLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUiaQoOU2lnbktleVJlcXVlc3QSGwoGa2V5X2lkGAEgASgJQgu6SAjIAQFyA7ABARIWCgZkaWdlc3QYAiABKAxCBrpIA8gBARIiCgRvcHRzGAMgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueSIkCg9TaWduS2V5UmVzcG9uc2USEQoJc2lnbmF0dXJlGAEgASgMInAKEURlY3J5cHRLZXlSZXF1ZXN0EhsKBmtleV9pZBgBIAEoCUILukgIyAEBcgOwAQESGgoKY2lwaGVydGV4dBgCIAEoDEIGukgDyAEBEiIKBG9wdHMYAyABKAsyFC5nb29nbGUucHJvdG9idWYuQW55IicKEkRlY3J5cHRLZXlSZXNwb25zZRIRCglwbGFpbnRleHQYASABKAwiOgoiRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBIUCgRkYXRhGAEgASgMQga6SAPIAQEiPQojRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVzcG9uc2USFgoOZW5jcnlwdGVkX2RhdGEYASABKAwiRAoiRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBIeCg5lbmNyeXB0ZWRfZGF0YRgBIAEoDEIGukgDyAEBIjgKI0RlY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlc3BvbnNlEhEKCXBsYWludGV4dBgBIAEoDCIeCgxIZWFkZXJWYWx1ZXMSDgoGdmFsdWVzGAEgAygJIsYBChNBdXRoZW50aWNhdGVSZXF1ZXN0ElEKB2hlYWRlcnMYASADKAsyQC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQXV0aGVudGljYXRlUmVxdWVzdC5IZWFkZXJzRW50cnkaXAoMSGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRI7CgV2YWx1ZRgCIAEoCzIsLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5IZWFkZXJWYWx1ZXM6AjgBIikKFEF1dGhlbnRpY2F0ZVJlc3BvbnNlEhEKCXByaW5jaXBhbBgBIAEoDDKyGQoUUGx1Z2luUnVudGltZVNlcnZpY2UScAoJR2V0Q29uZmlnEjAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENvbmZpZ1JlcXVlc3QaMS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q29uZmlnUmVzcG9uc2USdgoLQ3JlYXRlTm9uY2USMi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlTm9uY2VSZXF1ZXN0GjMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNyZWF0ZU5vbmNlUmVzcG9uc2USbQoIQWRkTm9uY2USLy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkTm9uY2VSZXF1ZXN0GjAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkFkZE5vbmNlUmVzcG9uc2UScwoKQ2hlY2tOb25jZRIxLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DaGVja05vbmNlUmVxdWVzdBoyLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DaGVja05vbmNlUmVzcG9uc2USfwoOQWRkVW5pcXVlTm9uY2USNS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkVW5pcXVlTm9uY2VSZXF1ZXN0GjYub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkFkZFVuaXF1ZU5vbmNlUmVzcG9uc2USlAEKFUdldEVuZEVudGl0eUJ5TG9naW5JRBI8Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlCeUxvZ2luSURSZXF1ZXN0Gj0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUJ5TG9naW5JRFJlc3BvbnNlEnkKDEdldEVuZEVudGl0eRIzLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlSZXF1ZXN0GjQub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eVJlc3BvbnNlEmcKBkdldEtleRItLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRLZXlSZXF1ZXN0Gi4ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEtleVJlc3BvbnNlEtMBCipHZXRBbGxSb290Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZXMSUS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0QWxsUm9vdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVxdWVzdBpSLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRBbGxSb290Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRLNAQooR2V0TGF0ZXN0Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZRJPLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlUmVxdWVzdBpQLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlUmVzcG9uc2USmgEKF0dldENlcnRpZmljYXRlQXV0aG9yaXR5Ej4ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENlcnRpZmljYXRlQXV0aG9yaXR5UmVxdWVzdBo/Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlEpQBChVHZXRDZXJ0aWZpY2F0ZVByb2ZpbGUSPC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q2VydGlmaWNhdGVQcm9maWxlUmVxdWVzdBo9Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXNwb25zZRKaAQoXQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3QSPi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXF1ZXN0Gj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNyZWF0ZUVucm9sbG1lbnRSZXF1ZXN0UmVzcG9uc2USnQEKGEdldEVucm9sbG1lbnRCeVJlcXVlc3RJRBI/Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbnJvbGxtZW50QnlSZXF1ZXN0SURSZXF1ZXN0GkAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVucm9sbG1lbnRCeVJlcXVlc3RJRFJlc3BvbnNlEqMBChpSZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZRJBLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5SZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZVJlcXVlc3QaQi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXNwb25zZRLEAQolR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVCeVNlcmlhbE51bWJlchJMLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBpNLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVzcG9uc2USnQEKGEdldEVuZEVudGl0eUNlcnRpZmljYXRlcxI/Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0GkAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlc1Jlc3BvbnNlEmoKB1NpZ25LZXkSLi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuU2lnbktleVJlcXVlc3QaLy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuU2lnbktleVJlc3BvbnNlEnMKCkRlY3J5cHRLZXkSMS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRGVjcnlwdEtleVJlcXVlc3QaMi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRGVjcnlwdEtleVJlc3BvbnNlEqYBChtFbmNyeXB0V2l0aEVudmlyb25tZW50VG9rZW4SQi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVxdWVzdBpDLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5FbmNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXNwb25zZRKmAQobRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuEkIub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkRlY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlcXVlc3QaQy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVzcG9uc2USeQoMQXV0aGVudGljYXRlEjMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkF1dGhlbnRpY2F0ZVJlcXVlc3QaNC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQXV0aGVudGljYXRlUmVzcG9uc2VC0QEKImNvbS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjFCDFJ1bnRpbWVQcm90b1ABogIET1BQUqoCHk90cGtpLlB1YmxpYy5QbHVnaW4uUnVudGltZS5WMcoCH090cGtpXFB1YmxpY19cUGx1Z2luXFJ1bnRpbWVcVjHiAitPdHBraVxQdWJsaWNfXFBsdWdpblxSdW50aW1lXFYxXEdQQk1ldGFkYXRh6gIiT3Rwa2k6OlB1YmxpYzo6UGx1Z2luOjpSdW50aW1lOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_any, file_otpki_common_core_certificate_authority_v1_certificate_authority, file_otpki_common_core_certificate_profile_v1_certificate_profile, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_end_entity_certificate_v1_end_entity_certificate, file_otpki_common_core_enroller_v1_enroller, file_otpki_common_core_key_v1_key, file_otpki_common_x509_v1_x509]);
+  fileDesc("CixvdHBraS9wdWJsaWMvcGx1Z2luL3J1bnRpbWUvdjEvcnVudGltZS5wcm90bxIeb3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxIhIKEEdldENvbmZpZ1JlcXVlc3QiKAoRR2V0Q29uZmlnUmVzcG9uc2USEwoLY29uZmlnX2pzb24YASABKAwiFAoSQ3JlYXRlTm9uY2VSZXF1ZXN0IiQKE0NyZWF0ZU5vbmNlUmVzcG9uc2USDQoFbm9uY2UYASABKAkiKAoPQWRkTm9uY2VSZXF1ZXN0EhUKBW5vbmNlGAEgASgJQga6SAPIAQEiIQoQQWRkTm9uY2VSZXNwb25zZRINCgVub25jZRgBIAEoCSIqChFDaGVja05vbmNlUmVxdWVzdBIVCgVub25jZRgBIAEoCUIGukgDyAEBIiYKEkNoZWNrTm9uY2VSZXNwb25zZRIQCghpc192YWxpZBgBIAEoCCIuChVBZGRVbmlxdWVOb25jZVJlcXVlc3QSFQoFbm9uY2UYASABKAlCBrpIA8gBASIrChZBZGRVbmlxdWVOb25jZVJlc3BvbnNlEhEKCWlzX3VuaXF1ZRgBIAEoCCI4ChxHZXRFbmRFbnRpdHlCeUxvZ2luSURSZXF1ZXN0EhgKCGxvZ2luX2lkGAEgASgJQga6SAPIAQEiXwodR2V0RW5kRW50aXR5QnlMb2dpbklEUmVzcG9uc2USPgoKZW5kX2VudGl0eRgBIAEoCzIqLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHkudjEuRW5kRW50aXR5Ii4KE0dldEVuZEVudGl0eVJlcXVlc3QSFwoCaWQYASABKAlCC7pICMgBAXIDsAEBIlYKFEdldEVuZEVudGl0eVJlc3BvbnNlEj4KCmVuZF9lbnRpdHkYASABKAsyKi5vdHBraS5jb21tb24uY29yZS5lbmRfZW50aXR5LnYxLkVuZEVudGl0eSIoCg1HZXRLZXlSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJUCg5HZXRLZXlSZXNwb25zZRIqCgNrZXkYASABKAsyHS5vdHBraS5jb21tb24uY29yZS5rZXkudjEuS2V5EhYKDnB1YmxpY19rZXlfZGVyGAIgASgMIjMKMUdldEFsbFJvb3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlc1JlcXVlc3QiTgoyR2V0QWxsUm9vdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVzUmVzcG9uc2USGAoQY2VydGlmaWNhdGVzX2RlchgBIAMoDCJNCi9HZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlUmVxdWVzdBIaCgVjYV9pZBgBIAEoCUILukgIyAEBcgOwAQEiqgEKMEdldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXNwb25zZRJ2CiFjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfY2VydGlmaWNhdGUYASABKAsySy5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEuQ2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZSI8Ch5HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlcXVlc3QSGgoFY2FfaWQYASABKAlCC7pICMgBAXIDsAEBIoIBCh9HZXRDZXJ0aWZpY2F0ZUF1dGhvcml0eVJlc3BvbnNlEl8KFWNlcnRpZmljYXRlX2F1dGhvcml0eRgBIAEoCzJALm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5DZXJ0aWZpY2F0ZUF1dGhvcml0eSI3ChxHZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASJ6Ch1HZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXNwb25zZRJZChNjZXJ0aWZpY2F0ZV9wcm9maWxlGAEgASgLMjwub3Rwa2kuY29tbW9uLmNvcmUuY2VydGlmaWNhdGVfcHJvZmlsZS52MS5DZXJ0aWZpY2F0ZVByb2ZpbGUi2wEKHkNyZWF0ZUVucm9sbG1lbnRSZXF1ZXN0UmVxdWVzdBJUChJlbnJvbGxtZW50X3JlcXVlc3QYASABKAsyMC5vdHBraS5jb21tb24uY29yZS5lbnJvbGxlci52MS5FbnJvbGxtZW50UmVxdWVzdEIGukgDyAEBEhkKEXNraXBfdmVyaWZpY2F0aW9uGAIgASgIEhYKDmFsbG93X2V4aXN0aW5nGAMgASgIEhgKEHJlcXVpcmVfZXhpc3RpbmcYBCABKAgSFgoOY2hlY2tfcGFzc3dvcmQYBSABKAgicQofQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXNwb25zZRJOChNlbnJvbGxtZW50X3Jlc3BvbnNlGAEgASgLMjEub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlc3BvbnNlIncKH0dldEVucm9sbG1lbnRCeVJlcXVlc3RJRFJlcXVlc3QSKgoVZW5yb2xsbWVudF9yZXF1ZXN0X2lkGAEgASgJQgu6SAjIAQFyA7ABARIQCghwYXNzd29yZBgCIAEoCRIWCg5jaGVja19wYXNzd29yZBgDIAEoCCLAAQogR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVzcG9uc2USTAoSZW5yb2xsbWVudF9yZXF1ZXN0GAEgASgLMjAub3Rwa2kuY29tbW9uLmNvcmUuZW5yb2xsZXIudjEuRW5yb2xsbWVudFJlcXVlc3QSTgoTZW5yb2xsbWVudF9yZXNwb25zZRgCIAEoCzIxLm90cGtpLmNvbW1vbi5jb3JlLmVucm9sbGVyLnYxLkVucm9sbG1lbnRSZXNwb25zZSLHAQohUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBEioKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgCIAEoCUILukgIyAEBcgOwAQESUgoWcmV2b2NhdGlvbl9yZWFzb25fY29kZRgDIAEoDjIqLm90cGtpLmNvbW1vbi54NTA5LnYxLlJldm9jYXRpb25SZWFzb25Db2RlQga6SAPIAQEiJAoiUmV2b2tlRW5kRW50aXR5Q2VydGlmaWNhdGVSZXNwb25zZSJNCixHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyUmVxdWVzdBIdCg1zZXJpYWxfbnVtYmVyGAEgASgMQga6SAPIAQEikgEKLUdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXNwb25zZRJhChZlbmRfZW50aXR5X2NlcnRpZmljYXRlGAEgASgLMkEub3Rwa2kuY29tbW9uLmNvcmUuZW5kX2VudGl0eV9jZXJ0aWZpY2F0ZS52MS5FbmRFbnRpdHlDZXJ0aWZpY2F0ZSJFCh9HZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0EiIKDWVuZF9lbnRpdHlfaWQYASABKAlCC7pICMgBAXIDsAEBIoYBCiBHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZXNSZXNwb25zZRJiChdlbmRfZW50aXR5X2NlcnRpZmljYXRlcxgBIAMoCzJBLm90cGtpLmNvbW1vbi5jb3JlLmVuZF9lbnRpdHlfY2VydGlmaWNhdGUudjEuRW5kRW50aXR5Q2VydGlmaWNhdGUi2wQKH0lzc3VlZENlcnRpZmljYXRlU3RhdHVzU25hcHNob3QSFgoOY2VydGlmaWNhdGVfaWQYASABKAkSNQoRc3RhdHVzX3VwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhcKD2NlcnRpZmljYXRlX2RlchgKIAEoDBIdChVjZXJ0aWZpY2F0ZV9jaGFpbl9kZXIYCyADKAwSFQoNc2VyaWFsX251bWJlchgMIAEoDBIuCgpub3RfYmVmb3JlGA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBItCglub3RfYWZ0ZXIYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEigKIGlzc3VpbmdfY2VydGlmaWNhdGVfYXV0aG9yaXR5X2lkGBQgASgJEh0KFWlzc3Vlcl9jZXJ0aWZpY2F0ZV9pZBgVIAEoCRIeChZpc3N1ZXJfY2VydGlmaWNhdGVfZGVyGBYgASgMEi4KCnJldm9rZWRfYXQYHiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiMKFnJldm9jYXRpb25fcmVhc29uX2NvZGUYHyABKAVIAIgBARIOCgZpbl9jcmwYICABKAgSFQoNcHJvdG9jb2xfdXNlZBgoIAEoBRIeChZjZXJ0aWZpY2F0ZV9wcm9maWxlX2lkGCkgASgJEhsKE2lzc3VhbmNlX3JlcXVlc3RfaWQYKiABKAlCGQoXX3Jldm9jYXRpb25fcmVhc29uX2NvZGUiswEKK0xpc3RJc3N1ZWRDZXJ0aWZpY2F0ZVN0YXR1c1NuYXBzaG90c1JlcXVlc3QSNAoQYWZ0ZXJfdXBkYXRlZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASHAoUYWZ0ZXJfY2VydGlmaWNhdGVfaWQYAiABKAkSDQoFbGltaXQYAyABKAUSIQoZY2VydGlmaWNhdGVfYXV0aG9yaXR5X2lkcxgEIAMoCSKCAQosTGlzdElzc3VlZENlcnRpZmljYXRlU3RhdHVzU25hcHNob3RzUmVzcG9uc2USUgoJc25hcHNob3RzGAEgAygLMj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLklzc3VlZENlcnRpZmljYXRlU3RhdHVzU25hcHNob3QioAEKF0NlcnRpZmljYXRlU3RhdHVzQ2VydElEEjsKDmhhc2hfYWxnb3JpdGhtGAEgASgOMiMub3Rwa2kuY29tbW9uLng1MDkudjEuSGFzaEFsZ29yaXRobRIYChBpc3N1ZXJfbmFtZV9oYXNoGAIgASgMEhcKD2lzc3Vlcl9rZXlfaGFzaBgDIAEoDBIVCg1zZXJpYWxfbnVtYmVyGAQgASgMIoUBCjFHZXRJc3N1ZWRDZXJ0aWZpY2F0ZVN0YXR1c1NuYXBzaG90QnlDZXJ0SURSZXF1ZXN0ElAKB2NlcnRfaWQYASABKAsyNy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ2VydGlmaWNhdGVTdGF0dXNDZXJ0SURCBrpIA8gBASKHAQoyR2V0SXNzdWVkQ2VydGlmaWNhdGVTdGF0dXNTbmFwc2hvdEJ5Q2VydElEUmVzcG9uc2USUQoIc25hcHNob3QYASABKAsyPy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuSXNzdWVkQ2VydGlmaWNhdGVTdGF0dXNTbmFwc2hvdCJpCg5TaWduS2V5UmVxdWVzdBIbCgZrZXlfaWQYASABKAlCC7pICMgBAXIDsAEBEhYKBmRpZ2VzdBgCIAEoDEIGukgDyAEBEiIKBG9wdHMYAyABKAsyFC5nb29nbGUucHJvdG9idWYuQW55IiQKD1NpZ25LZXlSZXNwb25zZRIRCglzaWduYXR1cmUYASABKAwicAoRRGVjcnlwdEtleVJlcXVlc3QSGwoGa2V5X2lkGAEgASgJQgu6SAjIAQFyA7ABARIaCgpjaXBoZXJ0ZXh0GAIgASgMQga6SAPIAQESIgoEb3B0cxgDIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkiJwoSRGVjcnlwdEtleVJlc3BvbnNlEhEKCXBsYWludGV4dBgBIAEoDCI6CiJFbmNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXF1ZXN0EhQKBGRhdGEYASABKAxCBrpIA8gBASI9CiNFbmNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXNwb25zZRIWCg5lbmNyeXB0ZWRfZGF0YRgBIAEoDCJECiJEZWNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXF1ZXN0Eh4KDmVuY3J5cHRlZF9kYXRhGAEgASgMQga6SAPIAQEiOAojRGVjcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVzcG9uc2USEQoJcGxhaW50ZXh0GAEgASgMIh4KDEhlYWRlclZhbHVlcxIOCgZ2YWx1ZXMYASADKAkixgEKE0F1dGhlbnRpY2F0ZVJlcXVlc3QSUQoHaGVhZGVycxgBIAMoCzJALm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5BdXRoZW50aWNhdGVSZXF1ZXN0LkhlYWRlcnNFbnRyeRpcCgxIZWFkZXJzRW50cnkSCwoDa2V5GAEgASgJEjsKBXZhbHVlGAIgASgLMiwub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkhlYWRlclZhbHVlczoCOAEiKQoUQXV0aGVudGljYXRlUmVzcG9uc2USEQoJcHJpbmNpcGFsGAEgASgMMswcChRQbHVnaW5SdW50aW1lU2VydmljZRJwCglHZXRDb25maWcSMC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q29uZmlnUmVxdWVzdBoxLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRDb25maWdSZXNwb25zZRJ2CgtDcmVhdGVOb25jZRIyLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DcmVhdGVOb25jZVJlcXVlc3QaMy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlTm9uY2VSZXNwb25zZRJtCghBZGROb25jZRIvLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5BZGROb25jZVJlcXVlc3QaMC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkTm9uY2VSZXNwb25zZRJzCgpDaGVja05vbmNlEjEub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNoZWNrTm9uY2VSZXF1ZXN0GjIub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkNoZWNrTm9uY2VSZXNwb25zZRJ/Cg5BZGRVbmlxdWVOb25jZRI1Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5BZGRVbmlxdWVOb25jZVJlcXVlc3QaNi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQWRkVW5pcXVlTm9uY2VSZXNwb25zZRKUAQoVR2V0RW5kRW50aXR5QnlMb2dpbklEEjwub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUJ5TG9naW5JRFJlcXVlc3QaPS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5kRW50aXR5QnlMb2dpbklEUmVzcG9uc2USeQoMR2V0RW5kRW50aXR5EjMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eVJlcXVlc3QaNC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5kRW50aXR5UmVzcG9uc2USZwoGR2V0S2V5Ei0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEtleVJlcXVlc3QaLi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0S2V5UmVzcG9uc2US0wEKKkdldEFsbFJvb3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlcxJRLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRBbGxSb290Q2VydGlmaWNhdGVBdXRob3JpdHlDZXJ0aWZpY2F0ZXNSZXF1ZXN0GlIub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEFsbFJvb3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlc1Jlc3BvbnNlEs0BCihHZXRMYXRlc3RDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlEk8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXF1ZXN0GlAub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldExhdGVzdENlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVSZXNwb25zZRKaAQoXR2V0Q2VydGlmaWNhdGVBdXRob3JpdHkSPi5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0Q2VydGlmaWNhdGVBdXRob3JpdHlSZXF1ZXN0Gj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENlcnRpZmljYXRlQXV0aG9yaXR5UmVzcG9uc2USlAEKFUdldENlcnRpZmljYXRlUHJvZmlsZRI8Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRDZXJ0aWZpY2F0ZVByb2ZpbGVSZXF1ZXN0Gj0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldENlcnRpZmljYXRlUHJvZmlsZVJlc3BvbnNlEpoBChdDcmVhdGVFbnJvbGxtZW50UmVxdWVzdBI+Lm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5DcmVhdGVFbnJvbGxtZW50UmVxdWVzdFJlcXVlc3QaPy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuQ3JlYXRlRW5yb2xsbWVudFJlcXVlc3RSZXNwb25zZRKdAQoYR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEEj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVucm9sbG1lbnRCeVJlcXVlc3RJRFJlcXVlc3QaQC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5yb2xsbWVudEJ5UmVxdWVzdElEUmVzcG9uc2USowEKGlJldm9rZUVuZEVudGl0eUNlcnRpZmljYXRlEkEub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLlJldm9rZUVuZEVudGl0eUNlcnRpZmljYXRlUmVxdWVzdBpCLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5SZXZva2VFbmRFbnRpdHlDZXJ0aWZpY2F0ZVJlc3BvbnNlEsQBCiVHZXRFbmRFbnRpdHlDZXJ0aWZpY2F0ZUJ5U2VyaWFsTnVtYmVyEkwub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXF1ZXN0Gk0ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlQnlTZXJpYWxOdW1iZXJSZXNwb25zZRKdAQoYR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVzEj8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkdldEVuZEVudGl0eUNlcnRpZmljYXRlc1JlcXVlc3QaQC5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0RW5kRW50aXR5Q2VydGlmaWNhdGVzUmVzcG9uc2USwQEKJExpc3RJc3N1ZWRDZXJ0aWZpY2F0ZVN0YXR1c1NuYXBzaG90cxJLLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5MaXN0SXNzdWVkQ2VydGlmaWNhdGVTdGF0dXNTbmFwc2hvdHNSZXF1ZXN0Gkwub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkxpc3RJc3N1ZWRDZXJ0aWZpY2F0ZVN0YXR1c1NuYXBzaG90c1Jlc3BvbnNlEtMBCipHZXRJc3N1ZWRDZXJ0aWZpY2F0ZVN0YXR1c1NuYXBzaG90QnlDZXJ0SUQSUS5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuR2V0SXNzdWVkQ2VydGlmaWNhdGVTdGF0dXNTbmFwc2hvdEJ5Q2VydElEUmVxdWVzdBpSLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5HZXRJc3N1ZWRDZXJ0aWZpY2F0ZVN0YXR1c1NuYXBzaG90QnlDZXJ0SURSZXNwb25zZRJqCgdTaWduS2V5Ei4ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLlNpZ25LZXlSZXF1ZXN0Gi8ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLlNpZ25LZXlSZXNwb25zZRJzCgpEZWNyeXB0S2V5EjEub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkRlY3J5cHRLZXlSZXF1ZXN0GjIub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkRlY3J5cHRLZXlSZXNwb25zZRKmAQobRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuEkIub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkVuY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlcXVlc3QaQy5vdHBraS5wdWJsaWMucGx1Z2luLnJ1bnRpbWUudjEuRW5jcnlwdFdpdGhFbnZpcm9ubWVudFRva2VuUmVzcG9uc2USpgEKG0RlY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlbhJCLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5EZWNyeXB0V2l0aEVudmlyb25tZW50VG9rZW5SZXF1ZXN0GkMub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkRlY3J5cHRXaXRoRW52aXJvbm1lbnRUb2tlblJlc3BvbnNlEnkKDEF1dGhlbnRpY2F0ZRIzLm90cGtpLnB1YmxpYy5wbHVnaW4ucnVudGltZS52MS5BdXRoZW50aWNhdGVSZXF1ZXN0GjQub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxLkF1dGhlbnRpY2F0ZVJlc3BvbnNlQtEBCiJjb20ub3Rwa2kucHVibGljLnBsdWdpbi5ydW50aW1lLnYxQgxSdW50aW1lUHJvdG9QAaICBE9QUFKqAh5PdHBraS5QdWJsaWMuUGx1Z2luLlJ1bnRpbWUuVjHKAh9PdHBraVxQdWJsaWNfXFBsdWdpblxSdW50aW1lXFYx4gIrT3Rwa2lcUHVibGljX1xQbHVnaW5cUnVudGltZVxWMVxHUEJNZXRhZGF0YeoCIk90cGtpOjpQdWJsaWM6OlBsdWdpbjo6UnVudGltZTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_timestamp, file_otpki_common_core_certificate_authority_v1_certificate_authority, file_otpki_common_core_certificate_profile_v1_certificate_profile, file_otpki_common_core_end_entity_v1_end_entity, file_otpki_common_core_end_entity_certificate_v1_end_entity_certificate, file_otpki_common_core_enroller_v1_enroller, file_otpki_common_core_key_v1_key, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.GetConfigRequest
@@ -1257,6 +1257,402 @@ export const GetEndEntityCertificatesResponseSchema: GenMessage<GetEndEntityCert
   messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 33);
 
 /**
+ * @generated from message otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
+ */
+export type IssuedCertificateStatusSnapshot = Message<"otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot"> & {
+  /**
+   * @generated from field: string certificate_id = 1;
+   */
+  certificateId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp status_updated_at = 2;
+   */
+  statusUpdatedAt?: Timestamp;
+
+  /**
+   * @generated from field: bytes certificate_der = 10;
+   */
+  certificateDer: Uint8Array;
+
+  /**
+   * @generated from field: repeated bytes certificate_chain_der = 11;
+   */
+  certificateChainDer: Uint8Array[];
+
+  /**
+   * @generated from field: bytes serial_number = 12;
+   */
+  serialNumber: Uint8Array;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_before = 13;
+   */
+  notBefore?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_after = 14;
+   */
+  notAfter?: Timestamp;
+
+  /**
+   * @generated from field: string issuing_certificate_authority_id = 20;
+   */
+  issuingCertificateAuthorityId: string;
+
+  /**
+   * @generated from field: string issuer_certificate_id = 21;
+   */
+  issuerCertificateId: string;
+
+  /**
+   * @generated from field: bytes issuer_certificate_der = 22;
+   */
+  issuerCertificateDer: Uint8Array;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp revoked_at = 30;
+   */
+  revokedAt?: Timestamp;
+
+  /**
+   * @generated from field: optional int32 revocation_reason_code = 31;
+   */
+  revocationReasonCode?: number;
+
+  /**
+   * @generated from field: bool in_crl = 32;
+   */
+  inCrl: boolean;
+
+  /**
+   * @generated from field: int32 protocol_used = 40;
+   */
+  protocolUsed: number;
+
+  /**
+   * @generated from field: string certificate_profile_id = 41;
+   */
+  certificateProfileId: string;
+
+  /**
+   * @generated from field: string issuance_request_id = 42;
+   */
+  issuanceRequestId: string;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
+ */
+export type IssuedCertificateStatusSnapshotJson = {
+  /**
+   * @generated from field: string certificate_id = 1;
+   */
+  certificateId?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp status_updated_at = 2;
+   */
+  statusUpdatedAt?: TimestampJson;
+
+  /**
+   * @generated from field: bytes certificate_der = 10;
+   */
+  certificateDer?: string;
+
+  /**
+   * @generated from field: repeated bytes certificate_chain_der = 11;
+   */
+  certificateChainDer?: string[];
+
+  /**
+   * @generated from field: bytes serial_number = 12;
+   */
+  serialNumber?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_before = 13;
+   */
+  notBefore?: TimestampJson;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_after = 14;
+   */
+  notAfter?: TimestampJson;
+
+  /**
+   * @generated from field: string issuing_certificate_authority_id = 20;
+   */
+  issuingCertificateAuthorityId?: string;
+
+  /**
+   * @generated from field: string issuer_certificate_id = 21;
+   */
+  issuerCertificateId?: string;
+
+  /**
+   * @generated from field: bytes issuer_certificate_der = 22;
+   */
+  issuerCertificateDer?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp revoked_at = 30;
+   */
+  revokedAt?: TimestampJson;
+
+  /**
+   * @generated from field: optional int32 revocation_reason_code = 31;
+   */
+  revocationReasonCode?: number;
+
+  /**
+   * @generated from field: bool in_crl = 32;
+   */
+  inCrl?: boolean;
+
+  /**
+   * @generated from field: int32 protocol_used = 40;
+   */
+  protocolUsed?: number;
+
+  /**
+   * @generated from field: string certificate_profile_id = 41;
+   */
+  certificateProfileId?: string;
+
+  /**
+   * @generated from field: string issuance_request_id = 42;
+   */
+  issuanceRequestId?: string;
+};
+
+export type IssuedCertificateStatusSnapshotValid = IssuedCertificateStatusSnapshot;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.
+ * Use `create(IssuedCertificateStatusSnapshotSchema)` to create a new message.
+ */
+export const IssuedCertificateStatusSnapshotSchema: GenMessage<IssuedCertificateStatusSnapshot, {jsonType: IssuedCertificateStatusSnapshotJson, validType: IssuedCertificateStatusSnapshotValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 34);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest
+ */
+export type ListIssuedCertificateStatusSnapshotsRequest = Message<"otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest"> & {
+  /**
+   * @generated from field: google.protobuf.Timestamp after_updated_at = 1;
+   */
+  afterUpdatedAt?: Timestamp;
+
+  /**
+   * @generated from field: string after_certificate_id = 2;
+   */
+  afterCertificateId: string;
+
+  /**
+   * @generated from field: int32 limit = 3;
+   */
+  limit: number;
+
+  /**
+   * Optional host-side scope. Empty means all certificate authorities.
+   *
+   * @generated from field: repeated string certificate_authority_ids = 4;
+   */
+  certificateAuthorityIds: string[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest
+ */
+export type ListIssuedCertificateStatusSnapshotsRequestJson = {
+  /**
+   * @generated from field: google.protobuf.Timestamp after_updated_at = 1;
+   */
+  afterUpdatedAt?: TimestampJson;
+
+  /**
+   * @generated from field: string after_certificate_id = 2;
+   */
+  afterCertificateId?: string;
+
+  /**
+   * @generated from field: int32 limit = 3;
+   */
+  limit?: number;
+
+  /**
+   * Optional host-side scope. Empty means all certificate authorities.
+   *
+   * @generated from field: repeated string certificate_authority_ids = 4;
+   */
+  certificateAuthorityIds?: string[];
+};
+
+export type ListIssuedCertificateStatusSnapshotsRequestValid = ListIssuedCertificateStatusSnapshotsRequest;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest.
+ * Use `create(ListIssuedCertificateStatusSnapshotsRequestSchema)` to create a new message.
+ */
+export const ListIssuedCertificateStatusSnapshotsRequestSchema: GenMessage<ListIssuedCertificateStatusSnapshotsRequest, {jsonType: ListIssuedCertificateStatusSnapshotsRequestJson, validType: ListIssuedCertificateStatusSnapshotsRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 35);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse
+ */
+export type ListIssuedCertificateStatusSnapshotsResponse = Message<"otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse"> & {
+  /**
+   * @generated from field: repeated otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshots = 1;
+   */
+  snapshots: IssuedCertificateStatusSnapshot[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse
+ */
+export type ListIssuedCertificateStatusSnapshotsResponseJson = {
+  /**
+   * @generated from field: repeated otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshots = 1;
+   */
+  snapshots?: IssuedCertificateStatusSnapshotJson[];
+};
+
+export type ListIssuedCertificateStatusSnapshotsResponseValid = ListIssuedCertificateStatusSnapshotsResponse;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse.
+ * Use `create(ListIssuedCertificateStatusSnapshotsResponseSchema)` to create a new message.
+ */
+export const ListIssuedCertificateStatusSnapshotsResponseSchema: GenMessage<ListIssuedCertificateStatusSnapshotsResponse, {jsonType: ListIssuedCertificateStatusSnapshotsResponseJson, validType: ListIssuedCertificateStatusSnapshotsResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 36);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CertificateStatusCertID
+ */
+export type CertificateStatusCertID = Message<"otpki.public.plugin.runtime.v1.CertificateStatusCertID"> & {
+  /**
+   * @generated from field: otpki.common.x509.v1.HashAlgorithm hash_algorithm = 1;
+   */
+  hashAlgorithm: HashAlgorithm;
+
+  /**
+   * @generated from field: bytes issuer_name_hash = 2;
+   */
+  issuerNameHash: Uint8Array;
+
+  /**
+   * @generated from field: bytes issuer_key_hash = 3;
+   */
+  issuerKeyHash: Uint8Array;
+
+  /**
+   * @generated from field: bytes serial_number = 4;
+   */
+  serialNumber: Uint8Array;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CertificateStatusCertID
+ */
+export type CertificateStatusCertIDJson = {
+  /**
+   * @generated from field: otpki.common.x509.v1.HashAlgorithm hash_algorithm = 1;
+   */
+  hashAlgorithm?: HashAlgorithmJson;
+
+  /**
+   * @generated from field: bytes issuer_name_hash = 2;
+   */
+  issuerNameHash?: string;
+
+  /**
+   * @generated from field: bytes issuer_key_hash = 3;
+   */
+  issuerKeyHash?: string;
+
+  /**
+   * @generated from field: bytes serial_number = 4;
+   */
+  serialNumber?: string;
+};
+
+export type CertificateStatusCertIDValid = CertificateStatusCertID;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.CertificateStatusCertID.
+ * Use `create(CertificateStatusCertIDSchema)` to create a new message.
+ */
+export const CertificateStatusCertIDSchema: GenMessage<CertificateStatusCertID, {jsonType: CertificateStatusCertIDJson, validType: CertificateStatusCertIDValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 37);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
+ */
+export type GetIssuedCertificateStatusSnapshotByCertIDRequest = Message<"otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest"> & {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.CertificateStatusCertID cert_id = 1;
+   */
+  certId?: CertificateStatusCertID;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
+ */
+export type GetIssuedCertificateStatusSnapshotByCertIDRequestJson = {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.CertificateStatusCertID cert_id = 1;
+   */
+  certId?: CertificateStatusCertIDJson;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
+ */
+export type GetIssuedCertificateStatusSnapshotByCertIDRequestValid = Message<"otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest"> & {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.CertificateStatusCertID cert_id = 1;
+   */
+  certId: CertificateStatusCertIDValid;
+};
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest.
+ * Use `create(GetIssuedCertificateStatusSnapshotByCertIDRequestSchema)` to create a new message.
+ */
+export const GetIssuedCertificateStatusSnapshotByCertIDRequestSchema: GenMessage<GetIssuedCertificateStatusSnapshotByCertIDRequest, {jsonType: GetIssuedCertificateStatusSnapshotByCertIDRequestJson, validType: GetIssuedCertificateStatusSnapshotByCertIDRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 38);
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse
+ */
+export type GetIssuedCertificateStatusSnapshotByCertIDResponse = Message<"otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse"> & {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshot = 1;
+   */
+  snapshot?: IssuedCertificateStatusSnapshot;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse
+ */
+export type GetIssuedCertificateStatusSnapshotByCertIDResponseJson = {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshot = 1;
+   */
+  snapshot?: IssuedCertificateStatusSnapshotJson;
+};
+
+export type GetIssuedCertificateStatusSnapshotByCertIDResponseValid = GetIssuedCertificateStatusSnapshotByCertIDResponse;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse.
+ * Use `create(GetIssuedCertificateStatusSnapshotByCertIDResponseSchema)` to create a new message.
+ */
+export const GetIssuedCertificateStatusSnapshotByCertIDResponseSchema: GenMessage<GetIssuedCertificateStatusSnapshotByCertIDResponse, {jsonType: GetIssuedCertificateStatusSnapshotByCertIDResponseJson, validType: GetIssuedCertificateStatusSnapshotByCertIDResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 39);
+
+/**
  * The optional Any payload should contain one of the public key option messages from
  * otpki.common.core.key.v1 when the underlying key type requires it.
  *
@@ -1330,7 +1726,7 @@ export type SignKeyRequestValid = Message<"otpki.public.plugin.runtime.v1.SignKe
  * Use `create(SignKeyRequestSchema)` to create a new message.
  */
 export const SignKeyRequestSchema: GenMessage<SignKeyRequest, {jsonType: SignKeyRequestJson, validType: SignKeyRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 34);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 40);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.SignKeyResponse
@@ -1359,7 +1755,7 @@ export type SignKeyResponseValid = SignKeyResponse;
  * Use `create(SignKeyResponseSchema)` to create a new message.
  */
 export const SignKeyResponseSchema: GenMessage<SignKeyResponse, {jsonType: SignKeyResponseJson, validType: SignKeyResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 35);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 41);
 
 /**
  * The optional Any payload should contain one of the public key option messages from
@@ -1435,7 +1831,7 @@ export type DecryptKeyRequestValid = Message<"otpki.public.plugin.runtime.v1.Dec
  * Use `create(DecryptKeyRequestSchema)` to create a new message.
  */
 export const DecryptKeyRequestSchema: GenMessage<DecryptKeyRequest, {jsonType: DecryptKeyRequestJson, validType: DecryptKeyRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 36);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 42);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.DecryptKeyResponse
@@ -1464,7 +1860,7 @@ export type DecryptKeyResponseValid = DecryptKeyResponse;
  * Use `create(DecryptKeyResponseSchema)` to create a new message.
  */
 export const DecryptKeyResponseSchema: GenMessage<DecryptKeyResponse, {jsonType: DecryptKeyResponseJson, validType: DecryptKeyResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 37);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 43);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenRequest
@@ -1501,7 +1897,7 @@ export type EncryptWithEnvironmentTokenRequestValid = Message<"otpki.public.plug
  * Use `create(EncryptWithEnvironmentTokenRequestSchema)` to create a new message.
  */
 export const EncryptWithEnvironmentTokenRequestSchema: GenMessage<EncryptWithEnvironmentTokenRequest, {jsonType: EncryptWithEnvironmentTokenRequestJson, validType: EncryptWithEnvironmentTokenRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 38);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 44);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.EncryptWithEnvironmentTokenResponse
@@ -1530,7 +1926,7 @@ export type EncryptWithEnvironmentTokenResponseValid = EncryptWithEnvironmentTok
  * Use `create(EncryptWithEnvironmentTokenResponseSchema)` to create a new message.
  */
 export const EncryptWithEnvironmentTokenResponseSchema: GenMessage<EncryptWithEnvironmentTokenResponse, {jsonType: EncryptWithEnvironmentTokenResponseJson, validType: EncryptWithEnvironmentTokenResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 39);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 45);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenRequest
@@ -1567,7 +1963,7 @@ export type DecryptWithEnvironmentTokenRequestValid = Message<"otpki.public.plug
  * Use `create(DecryptWithEnvironmentTokenRequestSchema)` to create a new message.
  */
 export const DecryptWithEnvironmentTokenRequestSchema: GenMessage<DecryptWithEnvironmentTokenRequest, {jsonType: DecryptWithEnvironmentTokenRequestJson, validType: DecryptWithEnvironmentTokenRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 40);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 46);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.DecryptWithEnvironmentTokenResponse
@@ -1596,7 +1992,7 @@ export type DecryptWithEnvironmentTokenResponseValid = DecryptWithEnvironmentTok
  * Use `create(DecryptWithEnvironmentTokenResponseSchema)` to create a new message.
  */
 export const DecryptWithEnvironmentTokenResponseSchema: GenMessage<DecryptWithEnvironmentTokenResponse, {jsonType: DecryptWithEnvironmentTokenResponseJson, validType: DecryptWithEnvironmentTokenResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 41);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 47);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.HeaderValues
@@ -1625,7 +2021,7 @@ export type HeaderValuesValid = HeaderValues;
  * Use `create(HeaderValuesSchema)` to create a new message.
  */
 export const HeaderValuesSchema: GenMessage<HeaderValues, {jsonType: HeaderValuesJson, validType: HeaderValuesValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 42);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 48);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.AuthenticateRequest
@@ -1654,7 +2050,7 @@ export type AuthenticateRequestValid = AuthenticateRequest;
  * Use `create(AuthenticateRequestSchema)` to create a new message.
  */
 export const AuthenticateRequestSchema: GenMessage<AuthenticateRequest, {jsonType: AuthenticateRequestJson, validType: AuthenticateRequestValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 43);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 49);
 
 /**
  * @generated from message otpki.public.plugin.runtime.v1.AuthenticateResponse
@@ -1683,7 +2079,7 @@ export type AuthenticateResponseValid = AuthenticateResponse;
  * Use `create(AuthenticateResponseSchema)` to create a new message.
  */
 export const AuthenticateResponseSchema: GenMessage<AuthenticateResponse, {jsonType: AuthenticateResponseJson, validType: AuthenticateResponseValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 44);
+  messageDesc(file_otpki_public_plugin_runtime_v1_runtime, 50);
 
 /**
  * @generated from service otpki.public.plugin.runtime.v1.PluginRuntimeService
@@ -1824,6 +2220,22 @@ export const PluginRuntimeService: GenService<{
     methodKind: "unary";
     input: typeof GetEndEntityCertificatesRequestSchema;
     output: typeof GetEndEntityCertificatesResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots
+   */
+  listIssuedCertificateStatusSnapshots: {
+    methodKind: "unary";
+    input: typeof ListIssuedCertificateStatusSnapshotsRequestSchema;
+    output: typeof ListIssuedCertificateStatusSnapshotsResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID
+   */
+  getIssuedCertificateStatusSnapshotByCertID: {
+    methodKind: "unary";
+    input: typeof GetIssuedCertificateStatusSnapshotByCertIDRequestSchema;
+    output: typeof GetIssuedCertificateStatusSnapshotByCertIDResponseSchema;
   },
   /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey

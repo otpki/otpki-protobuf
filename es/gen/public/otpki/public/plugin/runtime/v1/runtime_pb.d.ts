@@ -9,9 +9,9 @@ import type { Key, KeyJson, KeyValid } from "../../../../common/core/key/v1/key_
 import type { CertificateAuthority, CertificateAuthorityCertificate, CertificateAuthorityCertificateJson, CertificateAuthorityJson, CertificateAuthorityValid } from "../../../../common/core/certificate_authority/v1/certificate_authority_pb.js";
 import type { CertificateProfile, CertificateProfileJson } from "../../../../common/core/certificate_profile/v1/certificate_profile_pb.js";
 import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
-import type { RevocationReasonCode, RevocationReasonCodeJson } from "../../../../common/x509/v1/x509_pb.js";
+import type { HashAlgorithm, HashAlgorithmJson, RevocationReasonCode, RevocationReasonCodeJson } from "../../../../common/x509/v1/x509_pb.js";
 import type { EndEntityCertificate, EndEntityCertificateJson } from "../../../../common/core/end_entity_certificate/v1/end_entity_certificate_pb.js";
-import type { Any, AnyJson } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file otpki/public/plugin/runtime/v1/runtime.proto.
@@ -1212,6 +1212,396 @@ export declare type GetEndEntityCertificatesResponseValid = GetEndEntityCertific
 export declare const GetEndEntityCertificatesResponseSchema: GenMessage<GetEndEntityCertificatesResponse, {jsonType: GetEndEntityCertificatesResponseJson, validType: GetEndEntityCertificatesResponseValid}>;
 
 /**
+ * @generated from message otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
+ */
+export declare type IssuedCertificateStatusSnapshot = Message<"otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot"> & {
+  /**
+   * @generated from field: string certificate_id = 1;
+   */
+  certificateId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp status_updated_at = 2;
+   */
+  statusUpdatedAt?: Timestamp;
+
+  /**
+   * @generated from field: bytes certificate_der = 10;
+   */
+  certificateDer: Uint8Array;
+
+  /**
+   * @generated from field: repeated bytes certificate_chain_der = 11;
+   */
+  certificateChainDer: Uint8Array[];
+
+  /**
+   * @generated from field: bytes serial_number = 12;
+   */
+  serialNumber: Uint8Array;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_before = 13;
+   */
+  notBefore?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_after = 14;
+   */
+  notAfter?: Timestamp;
+
+  /**
+   * @generated from field: string issuing_certificate_authority_id = 20;
+   */
+  issuingCertificateAuthorityId: string;
+
+  /**
+   * @generated from field: string issuer_certificate_id = 21;
+   */
+  issuerCertificateId: string;
+
+  /**
+   * @generated from field: bytes issuer_certificate_der = 22;
+   */
+  issuerCertificateDer: Uint8Array;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp revoked_at = 30;
+   */
+  revokedAt?: Timestamp;
+
+  /**
+   * @generated from field: optional int32 revocation_reason_code = 31;
+   */
+  revocationReasonCode?: number;
+
+  /**
+   * @generated from field: bool in_crl = 32;
+   */
+  inCrl: boolean;
+
+  /**
+   * @generated from field: int32 protocol_used = 40;
+   */
+  protocolUsed: number;
+
+  /**
+   * @generated from field: string certificate_profile_id = 41;
+   */
+  certificateProfileId: string;
+
+  /**
+   * @generated from field: string issuance_request_id = 42;
+   */
+  issuanceRequestId: string;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
+ */
+export declare type IssuedCertificateStatusSnapshotJson = {
+  /**
+   * @generated from field: string certificate_id = 1;
+   */
+  certificateId?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp status_updated_at = 2;
+   */
+  statusUpdatedAt?: TimestampJson;
+
+  /**
+   * @generated from field: bytes certificate_der = 10;
+   */
+  certificateDer?: string;
+
+  /**
+   * @generated from field: repeated bytes certificate_chain_der = 11;
+   */
+  certificateChainDer?: string[];
+
+  /**
+   * @generated from field: bytes serial_number = 12;
+   */
+  serialNumber?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_before = 13;
+   */
+  notBefore?: TimestampJson;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp not_after = 14;
+   */
+  notAfter?: TimestampJson;
+
+  /**
+   * @generated from field: string issuing_certificate_authority_id = 20;
+   */
+  issuingCertificateAuthorityId?: string;
+
+  /**
+   * @generated from field: string issuer_certificate_id = 21;
+   */
+  issuerCertificateId?: string;
+
+  /**
+   * @generated from field: bytes issuer_certificate_der = 22;
+   */
+  issuerCertificateDer?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp revoked_at = 30;
+   */
+  revokedAt?: TimestampJson;
+
+  /**
+   * @generated from field: optional int32 revocation_reason_code = 31;
+   */
+  revocationReasonCode?: number;
+
+  /**
+   * @generated from field: bool in_crl = 32;
+   */
+  inCrl?: boolean;
+
+  /**
+   * @generated from field: int32 protocol_used = 40;
+   */
+  protocolUsed?: number;
+
+  /**
+   * @generated from field: string certificate_profile_id = 41;
+   */
+  certificateProfileId?: string;
+
+  /**
+   * @generated from field: string issuance_request_id = 42;
+   */
+  issuanceRequestId?: string;
+};
+
+export declare type IssuedCertificateStatusSnapshotValid = IssuedCertificateStatusSnapshot;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot.
+ * Use `create(IssuedCertificateStatusSnapshotSchema)` to create a new message.
+ */
+export declare const IssuedCertificateStatusSnapshotSchema: GenMessage<IssuedCertificateStatusSnapshot, {jsonType: IssuedCertificateStatusSnapshotJson, validType: IssuedCertificateStatusSnapshotValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest
+ */
+export declare type ListIssuedCertificateStatusSnapshotsRequest = Message<"otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest"> & {
+  /**
+   * @generated from field: google.protobuf.Timestamp after_updated_at = 1;
+   */
+  afterUpdatedAt?: Timestamp;
+
+  /**
+   * @generated from field: string after_certificate_id = 2;
+   */
+  afterCertificateId: string;
+
+  /**
+   * @generated from field: int32 limit = 3;
+   */
+  limit: number;
+
+  /**
+   * Optional host-side scope. Empty means all certificate authorities.
+   *
+   * @generated from field: repeated string certificate_authority_ids = 4;
+   */
+  certificateAuthorityIds: string[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest
+ */
+export declare type ListIssuedCertificateStatusSnapshotsRequestJson = {
+  /**
+   * @generated from field: google.protobuf.Timestamp after_updated_at = 1;
+   */
+  afterUpdatedAt?: TimestampJson;
+
+  /**
+   * @generated from field: string after_certificate_id = 2;
+   */
+  afterCertificateId?: string;
+
+  /**
+   * @generated from field: int32 limit = 3;
+   */
+  limit?: number;
+
+  /**
+   * Optional host-side scope. Empty means all certificate authorities.
+   *
+   * @generated from field: repeated string certificate_authority_ids = 4;
+   */
+  certificateAuthorityIds?: string[];
+};
+
+export declare type ListIssuedCertificateStatusSnapshotsRequestValid = ListIssuedCertificateStatusSnapshotsRequest;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest.
+ * Use `create(ListIssuedCertificateStatusSnapshotsRequestSchema)` to create a new message.
+ */
+export declare const ListIssuedCertificateStatusSnapshotsRequestSchema: GenMessage<ListIssuedCertificateStatusSnapshotsRequest, {jsonType: ListIssuedCertificateStatusSnapshotsRequestJson, validType: ListIssuedCertificateStatusSnapshotsRequestValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse
+ */
+export declare type ListIssuedCertificateStatusSnapshotsResponse = Message<"otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse"> & {
+  /**
+   * @generated from field: repeated otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshots = 1;
+   */
+  snapshots: IssuedCertificateStatusSnapshot[];
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse
+ */
+export declare type ListIssuedCertificateStatusSnapshotsResponseJson = {
+  /**
+   * @generated from field: repeated otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshots = 1;
+   */
+  snapshots?: IssuedCertificateStatusSnapshotJson[];
+};
+
+export declare type ListIssuedCertificateStatusSnapshotsResponseValid = ListIssuedCertificateStatusSnapshotsResponse;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse.
+ * Use `create(ListIssuedCertificateStatusSnapshotsResponseSchema)` to create a new message.
+ */
+export declare const ListIssuedCertificateStatusSnapshotsResponseSchema: GenMessage<ListIssuedCertificateStatusSnapshotsResponse, {jsonType: ListIssuedCertificateStatusSnapshotsResponseJson, validType: ListIssuedCertificateStatusSnapshotsResponseValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CertificateStatusCertID
+ */
+export declare type CertificateStatusCertID = Message<"otpki.public.plugin.runtime.v1.CertificateStatusCertID"> & {
+  /**
+   * @generated from field: otpki.common.x509.v1.HashAlgorithm hash_algorithm = 1;
+   */
+  hashAlgorithm: HashAlgorithm;
+
+  /**
+   * @generated from field: bytes issuer_name_hash = 2;
+   */
+  issuerNameHash: Uint8Array;
+
+  /**
+   * @generated from field: bytes issuer_key_hash = 3;
+   */
+  issuerKeyHash: Uint8Array;
+
+  /**
+   * @generated from field: bytes serial_number = 4;
+   */
+  serialNumber: Uint8Array;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.CertificateStatusCertID
+ */
+export declare type CertificateStatusCertIDJson = {
+  /**
+   * @generated from field: otpki.common.x509.v1.HashAlgorithm hash_algorithm = 1;
+   */
+  hashAlgorithm?: HashAlgorithmJson;
+
+  /**
+   * @generated from field: bytes issuer_name_hash = 2;
+   */
+  issuerNameHash?: string;
+
+  /**
+   * @generated from field: bytes issuer_key_hash = 3;
+   */
+  issuerKeyHash?: string;
+
+  /**
+   * @generated from field: bytes serial_number = 4;
+   */
+  serialNumber?: string;
+};
+
+export declare type CertificateStatusCertIDValid = CertificateStatusCertID;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.CertificateStatusCertID.
+ * Use `create(CertificateStatusCertIDSchema)` to create a new message.
+ */
+export declare const CertificateStatusCertIDSchema: GenMessage<CertificateStatusCertID, {jsonType: CertificateStatusCertIDJson, validType: CertificateStatusCertIDValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
+ */
+export declare type GetIssuedCertificateStatusSnapshotByCertIDRequest = Message<"otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest"> & {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.CertificateStatusCertID cert_id = 1;
+   */
+  certId?: CertificateStatusCertID;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
+ */
+export declare type GetIssuedCertificateStatusSnapshotByCertIDRequestJson = {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.CertificateStatusCertID cert_id = 1;
+   */
+  certId?: CertificateStatusCertIDJson;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest
+ */
+export declare type GetIssuedCertificateStatusSnapshotByCertIDRequestValid = Message<"otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest"> & {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.CertificateStatusCertID cert_id = 1;
+   */
+  certId: CertificateStatusCertIDValid;
+};
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest.
+ * Use `create(GetIssuedCertificateStatusSnapshotByCertIDRequestSchema)` to create a new message.
+ */
+export declare const GetIssuedCertificateStatusSnapshotByCertIDRequestSchema: GenMessage<GetIssuedCertificateStatusSnapshotByCertIDRequest, {jsonType: GetIssuedCertificateStatusSnapshotByCertIDRequestJson, validType: GetIssuedCertificateStatusSnapshotByCertIDRequestValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse
+ */
+export declare type GetIssuedCertificateStatusSnapshotByCertIDResponse = Message<"otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse"> & {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshot = 1;
+   */
+  snapshot?: IssuedCertificateStatusSnapshot;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse
+ */
+export declare type GetIssuedCertificateStatusSnapshotByCertIDResponseJson = {
+  /**
+   * @generated from field: otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot snapshot = 1;
+   */
+  snapshot?: IssuedCertificateStatusSnapshotJson;
+};
+
+export declare type GetIssuedCertificateStatusSnapshotByCertIDResponseValid = GetIssuedCertificateStatusSnapshotByCertIDResponse;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse.
+ * Use `create(GetIssuedCertificateStatusSnapshotByCertIDResponseSchema)` to create a new message.
+ */
+export declare const GetIssuedCertificateStatusSnapshotByCertIDResponseSchema: GenMessage<GetIssuedCertificateStatusSnapshotByCertIDResponse, {jsonType: GetIssuedCertificateStatusSnapshotByCertIDResponseJson, validType: GetIssuedCertificateStatusSnapshotByCertIDResponseValid}>;
+
+/**
  * The optional Any payload should contain one of the public key option messages from
  * otpki.common.core.key.v1 when the underlying key type requires it.
  *
@@ -1768,6 +2158,22 @@ export declare const PluginRuntimeService: GenService<{
     methodKind: "unary";
     input: typeof GetEndEntityCertificatesRequestSchema;
     output: typeof GetEndEntityCertificatesResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots
+   */
+  listIssuedCertificateStatusSnapshots: {
+    methodKind: "unary";
+    input: typeof ListIssuedCertificateStatusSnapshotsRequestSchema;
+    output: typeof ListIssuedCertificateStatusSnapshotsResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID
+   */
+  getIssuedCertificateStatusSnapshotByCertID: {
+    methodKind: "unary";
+    input: typeof GetIssuedCertificateStatusSnapshotByCertIDRequestSchema;
+    output: typeof GetIssuedCertificateStatusSnapshotByCertIDResponseSchema;
   },
   /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey

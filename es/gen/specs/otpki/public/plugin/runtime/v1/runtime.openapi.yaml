@@ -632,6 +632,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.GetEnrollmentByRequestIDResponse'
+  /otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID:
+    post:
+      tags:
+        - otpki.public.plugin.runtime.v1.PluginRuntimeService
+      summary: GetIssuedCertificateStatusSnapshotByCertID
+      operationId: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse'
   /otpki.public.plugin.runtime.v1.PluginRuntimeService/GetKey:
     post:
       tags:
@@ -702,6 +737,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.GetLatestCertificateAuthorityCertificateResponse'
+  /otpki.public.plugin.runtime.v1.PluginRuntimeService/ListIssuedCertificateStatusSnapshots:
+    post:
+      tags:
+        - otpki.public.plugin.runtime.v1.PluginRuntimeService
+      summary: ListIssuedCertificateStatusSnapshots
+      operationId: otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse'
   /otpki.public.plugin.runtime.v1.PluginRuntimeService/RevokeEndEntityCertificate:
     post:
       tags:
@@ -2139,6 +2209,32 @@ components:
           format: byte
       title: Extension
       additionalProperties: false
+    otpki.common.x509.v1.HashAlgorithm:
+      type: string
+      title: HashAlgorithm
+      enum:
+        - HASH_ALGORITHM_UNSPECIFIED
+        - HASH_ALGORITHM_MD4
+        - HASH_ALGORITHM_MD5
+        - HASH_ALGORITHM_SHA1
+        - HASH_ALGORITHM_SHA224
+        - HASH_ALGORITHM_SHA256
+        - HASH_ALGORITHM_SHA384
+        - HASH_ALGORITHM_SHA512
+        - HASH_ALGORITHM_MD5SHA1
+        - HASH_ALGORITHM_RIPEMD160
+        - HASH_ALGORITHM_SHA3_224
+        - HASH_ALGORITHM_SHA3_256
+        - HASH_ALGORITHM_SHA3_384
+        - HASH_ALGORITHM_SHA3_512
+        - HASH_ALGORITHM_SHA512_224
+        - HASH_ALGORITHM_SHA512_256
+        - HASH_ALGORITHM_BLAKE2S_256
+        - HASH_ALGORITHM_BLAKE2B_256
+        - HASH_ALGORITHM_BLAKE2B_384
+        - HASH_ALGORITHM_BLAKE2B_512
+        - HASH_ALGORITHM_SHAKE128
+        - HASH_ALGORITHM_SHAKE256
     otpki.common.x509.v1.KeyUsage:
       type: string
       title: KeyUsage
@@ -2346,6 +2442,26 @@ components:
           title: principal
           format: byte
       title: AuthenticateResponse
+      additionalProperties: false
+    otpki.public.plugin.runtime.v1.CertificateStatusCertID:
+      type: object
+      properties:
+        hashAlgorithm:
+          title: hash_algorithm
+          $ref: '#/components/schemas/otpki.common.x509.v1.HashAlgorithm'
+        issuerNameHash:
+          type: string
+          title: issuer_name_hash
+          format: byte
+        issuerKeyHash:
+          type: string
+          title: issuer_key_hash
+          format: byte
+        serialNumber:
+          type: string
+          title: serial_number
+          format: byte
+      title: CertificateStatusCertID
       additionalProperties: false
     otpki.public.plugin.runtime.v1.CheckNonceRequest:
       type: object
@@ -2649,6 +2765,24 @@ components:
           $ref: '#/components/schemas/otpki.common.core.enroller.v1.EnrollmentResponse'
       title: GetEnrollmentByRequestIDResponse
       additionalProperties: false
+    otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest:
+      type: object
+      properties:
+        certId:
+          title: cert_id
+          $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.CertificateStatusCertID'
+      title: GetIssuedCertificateStatusSnapshotByCertIDRequest
+      required:
+        - certId
+      additionalProperties: false
+    otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDResponse:
+      type: object
+      properties:
+        snapshot:
+          title: snapshot
+          $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot'
+      title: GetIssuedCertificateStatusSnapshotByCertIDResponse
+      additionalProperties: false
     otpki.public.plugin.runtime.v1.GetKeyRequest:
       type: object
       properties:
@@ -2700,6 +2834,100 @@ components:
             type: string
           title: values
       title: HeaderValues
+      additionalProperties: false
+    otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot:
+      type: object
+      properties:
+        certificateId:
+          type: string
+          title: certificate_id
+        statusUpdatedAt:
+          title: status_updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        certificateDer:
+          type: string
+          title: certificate_der
+          format: byte
+        certificateChainDer:
+          type: array
+          items:
+            type: string
+            format: byte
+          title: certificate_chain_der
+        serialNumber:
+          type: string
+          title: serial_number
+          format: byte
+        notBefore:
+          title: not_before
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        notAfter:
+          title: not_after
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        issuingCertificateAuthorityId:
+          type: string
+          title: issuing_certificate_authority_id
+        issuerCertificateId:
+          type: string
+          title: issuer_certificate_id
+        issuerCertificateDer:
+          type: string
+          title: issuer_certificate_der
+          format: byte
+        revokedAt:
+          title: revoked_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        revocationReasonCode:
+          type:
+            - integer
+            - "null"
+          title: revocation_reason_code
+          format: int32
+        inCrl:
+          type: boolean
+          title: in_crl
+        protocolUsed:
+          type: integer
+          title: protocol_used
+          format: int32
+        certificateProfileId:
+          type: string
+          title: certificate_profile_id
+        issuanceRequestId:
+          type: string
+          title: issuance_request_id
+      title: IssuedCertificateStatusSnapshot
+      additionalProperties: false
+    otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsRequest:
+      type: object
+      properties:
+        afterUpdatedAt:
+          title: after_updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        afterCertificateId:
+          type: string
+          title: after_certificate_id
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        certificateAuthorityIds:
+          type: array
+          items:
+            type: string
+          title: certificate_authority_ids
+          description: Optional host-side scope. Empty means all certificate authorities.
+      title: ListIssuedCertificateStatusSnapshotsRequest
+      additionalProperties: false
+    otpki.public.plugin.runtime.v1.ListIssuedCertificateStatusSnapshotsResponse:
+      type: object
+      properties:
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot'
+          title: snapshots
+      title: ListIssuedCertificateStatusSnapshotsResponse
       additionalProperties: false
     otpki.public.plugin.runtime.v1.RevokeEndEntityCertificateRequest:
       type: object

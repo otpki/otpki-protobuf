@@ -67,6 +67,32 @@ components:
           format: byte
       title: Extension
       additionalProperties: false
+    otpki.common.x509.v1.HashAlgorithm:
+      type: string
+      title: HashAlgorithm
+      enum:
+        - HASH_ALGORITHM_UNSPECIFIED
+        - HASH_ALGORITHM_MD4
+        - HASH_ALGORITHM_MD5
+        - HASH_ALGORITHM_SHA1
+        - HASH_ALGORITHM_SHA224
+        - HASH_ALGORITHM_SHA256
+        - HASH_ALGORITHM_SHA384
+        - HASH_ALGORITHM_SHA512
+        - HASH_ALGORITHM_MD5SHA1
+        - HASH_ALGORITHM_RIPEMD160
+        - HASH_ALGORITHM_SHA3_224
+        - HASH_ALGORITHM_SHA3_256
+        - HASH_ALGORITHM_SHA3_384
+        - HASH_ALGORITHM_SHA3_512
+        - HASH_ALGORITHM_SHA512_224
+        - HASH_ALGORITHM_SHA512_256
+        - HASH_ALGORITHM_BLAKE2S_256
+        - HASH_ALGORITHM_BLAKE2B_256
+        - HASH_ALGORITHM_BLAKE2B_384
+        - HASH_ALGORITHM_BLAKE2B_512
+        - HASH_ALGORITHM_SHAKE128
+        - HASH_ALGORITHM_SHAKE256
     otpki.common.x509.v1.KeyUsage:
       type: string
       title: KeyUsage

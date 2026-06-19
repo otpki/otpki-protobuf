@@ -508,6 +508,153 @@ func ConvertProtoToSignatureAlgorithmPointer(sigAlg *x509pb.SignatureAlgorithm) 
 	return &alg, nil
 }
 
+func ConvertSignatureAlgorithmSliceToProto(sigAlgs []x509.SignatureAlgorithm) ([]x509pb.SignatureAlgorithm, error) {
+	var results []x509pb.SignatureAlgorithm
+	for _, alg := range sigAlgs {
+		protoAlg, err := ConvertSignatureAlgorithmToProto(alg)
+		if err != nil {
+			return nil, fmt.Errorf("failed to Convert signature algorithm to proto: %w", err)
+		}
+		results = append(results, protoAlg)
+	}
+	return results, nil
+}
+
+func ConvertProtoToSignatureAlgorithmSlice(sigAlgs []x509pb.SignatureAlgorithm) ([]x509.SignatureAlgorithm, error) {
+	var results []x509.SignatureAlgorithm
+	for _, alg := range sigAlgs {
+		goAlg, err := ConvertProtoToSignatureAlgorithm(alg)
+		if err != nil {
+			return nil, fmt.Errorf("failed to Convert proto to signature algorithm: %w", err)
+		}
+		results = append(results, goAlg)
+	}
+	return results, nil
+}
+
+func ConvertHashToProto(h crypto.Hash) (x509pb.HashAlgorithm, error) {
+	switch h {
+	case crypto.MD4:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_MD4, nil
+	case crypto.MD5:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_MD5, nil
+	case crypto.SHA1:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA1, nil
+	case crypto.SHA224:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA224, nil
+	case crypto.SHA256:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA256, nil
+	case crypto.SHA384:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA384, nil
+	case crypto.SHA512:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA512, nil
+	case crypto.MD5SHA1:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_MD5SHA1, nil
+	case crypto.RIPEMD160:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_RIPEMD160, nil
+	case crypto.SHA3_224:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_224, nil
+	case crypto.SHA3_256:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_256, nil
+	case crypto.SHA3_384:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_384, nil
+	case crypto.SHA3_512:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_512, nil
+	case crypto.SHA512_224:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA512_224, nil
+	case crypto.SHA512_256:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHA512_256, nil
+	case crypto.BLAKE2s_256:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2S_256, nil
+	case crypto.BLAKE2b_256:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2B_256, nil
+	case crypto.BLAKE2b_384:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2B_384, nil
+	case crypto.BLAKE2b_512:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2B_512, nil
+	case crypto.SHAKE128:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHAKE128, nil
+	case crypto.SHAKE256:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_SHAKE256, nil
+	default:
+		return x509pb.HashAlgorithm_HASH_ALGORITHM_UNSPECIFIED,
+			fmt.Errorf("unsupported crypto.Hash: %v", h)
+	}
+}
+
+func ConvertProtoToHash(h x509pb.HashAlgorithm) (crypto.Hash, error) {
+	switch h {
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_MD4:
+		return crypto.MD4, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_MD5:
+		return crypto.MD5, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA1:
+		return crypto.SHA1, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA224:
+		return crypto.SHA224, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA256:
+		return crypto.SHA256, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA384:
+		return crypto.SHA384, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA512:
+		return crypto.SHA512, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_MD5SHA1:
+		return crypto.MD5SHA1, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_RIPEMD160:
+		return crypto.RIPEMD160, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_224:
+		return crypto.SHA3_224, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_256:
+		return crypto.SHA3_256, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_384:
+		return crypto.SHA3_384, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA3_512:
+		return crypto.SHA3_512, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA512_224:
+		return crypto.SHA512_224, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHA512_256:
+		return crypto.SHA512_256, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2S_256:
+		return crypto.BLAKE2s_256, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2B_256:
+		return crypto.BLAKE2b_256, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2B_384:
+		return crypto.BLAKE2b_384, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_BLAKE2B_512:
+		return crypto.BLAKE2b_512, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHAKE128:
+		return crypto.SHAKE128, nil
+	case x509pb.HashAlgorithm_HASH_ALGORITHM_SHAKE256:
+		return crypto.SHAKE256, nil
+	default:
+		return 0, fmt.Errorf("unsupported x509pb.HashAlgorithm: %v", h)
+	}
+}
+
+func ConvertHashSliceToProto(hashes []crypto.Hash) ([]x509pb.HashAlgorithm, error) {
+	var results []x509pb.HashAlgorithm
+	for _, hash := range hashes {
+		protoHash, err := ConvertHashToProto(hash)
+		if err != nil {
+			return nil, fmt.Errorf("failed to convert hash to proto: %w", err)
+		}
+		results = append(results, protoHash)
+	}
+	return results, nil
+}
+
+func ConvertProtoToHashSlice(hashes []x509pb.HashAlgorithm) ([]crypto.Hash, error) {
+	var results []crypto.Hash
+	for _, hash := range hashes {
+		goHash, err := ConvertProtoToHash(hash)
+		if err != nil {
+			return nil, fmt.Errorf("failed to convert proto to hash: %w", err)
+		}
+		results = append(results, goHash)
+	}
+	return results, nil
+}
+
 func ConvertExtKeyUsageSliceToProto(extKeyUsages []x509.ExtKeyUsage) ([]x509pb.ExtKeyUsage, error) {
 	var results []x509pb.ExtKeyUsage
 

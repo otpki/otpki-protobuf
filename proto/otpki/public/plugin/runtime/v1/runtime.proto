@@ -3,6 +3,7 @@ package otpki.public.plugin.runtime.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
@@ -176,6 +177,57 @@ message GetEndEntityCertificatesResponse {
   repeated common.core.end_entity_certificate.v1.EndEntityCertificate end_entity_certificates = 1;
 }
 
+message IssuedCertificateStatusSnapshot {
+  string certificate_id = 1;
+  google.protobuf.Timestamp status_updated_at = 2;
+
+  bytes certificate_der = 10;
+  repeated bytes certificate_chain_der = 11;
+  bytes serial_number = 12;
+  google.protobuf.Timestamp not_before = 13;
+  google.protobuf.Timestamp not_after = 14;
+
+  string issuing_certificate_authority_id = 20;
+  string issuer_certificate_id = 21;
+  bytes issuer_certificate_der = 22;
+
+  google.protobuf.Timestamp revoked_at = 30;
+  optional int32 revocation_reason_code = 31;
+  bool in_crl = 32;
+
+  int32 protocol_used = 40;
+  string certificate_profile_id = 41;
+  string issuance_request_id = 42;
+}
+
+message ListIssuedCertificateStatusSnapshotsRequest {
+  google.protobuf.Timestamp after_updated_at = 1;
+  string after_certificate_id = 2;
+  int32 limit = 3;
+
+  // Optional host-side scope. Empty means all certificate authorities.
+  repeated string certificate_authority_ids = 4;
+}
+
+message ListIssuedCertificateStatusSnapshotsResponse {
+  repeated IssuedCertificateStatusSnapshot snapshots = 1;
+}
+
+message CertificateStatusCertID {
+  common.x509.v1.HashAlgorithm hash_algorithm = 1;
+  bytes issuer_name_hash = 2;
+  bytes issuer_key_hash = 3;
+  bytes serial_number = 4;
+}
+
+message GetIssuedCertificateStatusSnapshotByCertIDRequest {
+  CertificateStatusCertID cert_id = 1 [(buf.validate.field).required = true];
+}
+
+message GetIssuedCertificateStatusSnapshotByCertIDResponse {
+  IssuedCertificateStatusSnapshot snapshot = 1;
+}
+
 // The optional Any payload should contain one of the public key option messages from
 // otpki.common.core.key.v1 when the underlying key type requires it.
 message SignKeyRequest {
@@ -252,6 +304,8 @@ service PluginRuntimeService {
   rpc RevokeEndEntityCertificate(RevokeEndEntityCertificateRequest) returns (RevokeEndEntityCertificateResponse);
   rpc GetEndEntityCertificateBySerialNumber(GetEndEntityCertificateBySerialNumberRequest) returns (GetEndEntityCertificateBySerialNumberResponse);
   rpc GetEndEntityCertificates(GetEndEntityCertificatesRequest) returns (GetEndEntityCertificatesResponse);
+  rpc ListIssuedCertificateStatusSnapshots(ListIssuedCertificateStatusSnapshotsRequest) returns (ListIssuedCertificateStatusSnapshotsResponse);
+  rpc GetIssuedCertificateStatusSnapshotByCertID(GetIssuedCertificateStatusSnapshotByCertIDRequest) returns (GetIssuedCertificateStatusSnapshotByCertIDResponse);
   rpc SignKey(SignKeyRequest) returns (SignKeyResponse);
   rpc DecryptKey(DecryptKeyRequest) returns (DecryptKeyResponse);
   rpc EncryptWithEnvironmentToken(EncryptWithEnvironmentTokenRequest) returns (EncryptWithEnvironmentTokenResponse);

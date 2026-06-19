@@ -36,6 +36,8 @@ const (
 	PluginRuntimeService_RevokeEndEntityCertificate_FullMethodName                 = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/RevokeEndEntityCertificate"
 	PluginRuntimeService_GetEndEntityCertificateBySerialNumber_FullMethodName      = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntityCertificateBySerialNumber"
 	PluginRuntimeService_GetEndEntityCertificates_FullMethodName                   = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntityCertificates"
+	PluginRuntimeService_ListIssuedCertificateStatusSnapshots_FullMethodName       = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/ListIssuedCertificateStatusSnapshots"
+	PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_FullMethodName = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID"
 	PluginRuntimeService_SignKey_FullMethodName                                    = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/SignKey"
 	PluginRuntimeService_DecryptKey_FullMethodName                                 = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/DecryptKey"
 	PluginRuntimeService_EncryptWithEnvironmentToken_FullMethodName                = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/EncryptWithEnvironmentToken"
@@ -64,6 +66,8 @@ type PluginRuntimeServiceClient interface {
 	RevokeEndEntityCertificate(ctx context.Context, in *RevokeEndEntityCertificateRequest, opts ...grpc.CallOption) (*RevokeEndEntityCertificateResponse, error)
 	GetEndEntityCertificateBySerialNumber(ctx context.Context, in *GetEndEntityCertificateBySerialNumberRequest, opts ...grpc.CallOption) (*GetEndEntityCertificateBySerialNumberResponse, error)
 	GetEndEntityCertificates(ctx context.Context, in *GetEndEntityCertificatesRequest, opts ...grpc.CallOption) (*GetEndEntityCertificatesResponse, error)
+	ListIssuedCertificateStatusSnapshots(ctx context.Context, in *ListIssuedCertificateStatusSnapshotsRequest, opts ...grpc.CallOption) (*ListIssuedCertificateStatusSnapshotsResponse, error)
+	GetIssuedCertificateStatusSnapshotByCertID(ctx context.Context, in *GetIssuedCertificateStatusSnapshotByCertIDRequest, opts ...grpc.CallOption) (*GetIssuedCertificateStatusSnapshotByCertIDResponse, error)
 	SignKey(ctx context.Context, in *SignKeyRequest, opts ...grpc.CallOption) (*SignKeyResponse, error)
 	DecryptKey(ctx context.Context, in *DecryptKeyRequest, opts ...grpc.CallOption) (*DecryptKeyResponse, error)
 	EncryptWithEnvironmentToken(ctx context.Context, in *EncryptWithEnvironmentTokenRequest, opts ...grpc.CallOption) (*EncryptWithEnvironmentTokenResponse, error)
@@ -249,6 +253,26 @@ func (c *pluginRuntimeServiceClient) GetEndEntityCertificates(ctx context.Contex
 	return out, nil
 }
 
+func (c *pluginRuntimeServiceClient) ListIssuedCertificateStatusSnapshots(ctx context.Context, in *ListIssuedCertificateStatusSnapshotsRequest, opts ...grpc.CallOption) (*ListIssuedCertificateStatusSnapshotsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListIssuedCertificateStatusSnapshotsResponse)
+	err := c.cc.Invoke(ctx, PluginRuntimeService_ListIssuedCertificateStatusSnapshots_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pluginRuntimeServiceClient) GetIssuedCertificateStatusSnapshotByCertID(ctx context.Context, in *GetIssuedCertificateStatusSnapshotByCertIDRequest, opts ...grpc.CallOption) (*GetIssuedCertificateStatusSnapshotByCertIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetIssuedCertificateStatusSnapshotByCertIDResponse)
+	err := c.cc.Invoke(ctx, PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *pluginRuntimeServiceClient) SignKey(ctx context.Context, in *SignKeyRequest, opts ...grpc.CallOption) (*SignKeyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SignKeyResponse)
@@ -320,6 +344,8 @@ type PluginRuntimeServiceServer interface {
 	RevokeEndEntityCertificate(context.Context, *RevokeEndEntityCertificateRequest) (*RevokeEndEntityCertificateResponse, error)
 	GetEndEntityCertificateBySerialNumber(context.Context, *GetEndEntityCertificateBySerialNumberRequest) (*GetEndEntityCertificateBySerialNumberResponse, error)
 	GetEndEntityCertificates(context.Context, *GetEndEntityCertificatesRequest) (*GetEndEntityCertificatesResponse, error)
+	ListIssuedCertificateStatusSnapshots(context.Context, *ListIssuedCertificateStatusSnapshotsRequest) (*ListIssuedCertificateStatusSnapshotsResponse, error)
+	GetIssuedCertificateStatusSnapshotByCertID(context.Context, *GetIssuedCertificateStatusSnapshotByCertIDRequest) (*GetIssuedCertificateStatusSnapshotByCertIDResponse, error)
 	SignKey(context.Context, *SignKeyRequest) (*SignKeyResponse, error)
 	DecryptKey(context.Context, *DecryptKeyRequest) (*DecryptKeyResponse, error)
 	EncryptWithEnvironmentToken(context.Context, *EncryptWithEnvironmentTokenRequest) (*EncryptWithEnvironmentTokenResponse, error)
@@ -385,6 +411,12 @@ func (UnimplementedPluginRuntimeServiceServer) GetEndEntityCertificateBySerialNu
 }
 func (UnimplementedPluginRuntimeServiceServer) GetEndEntityCertificates(context.Context, *GetEndEntityCertificatesRequest) (*GetEndEntityCertificatesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetEndEntityCertificates not implemented")
+}
+func (UnimplementedPluginRuntimeServiceServer) ListIssuedCertificateStatusSnapshots(context.Context, *ListIssuedCertificateStatusSnapshotsRequest) (*ListIssuedCertificateStatusSnapshotsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListIssuedCertificateStatusSnapshots not implemented")
+}
+func (UnimplementedPluginRuntimeServiceServer) GetIssuedCertificateStatusSnapshotByCertID(context.Context, *GetIssuedCertificateStatusSnapshotByCertIDRequest) (*GetIssuedCertificateStatusSnapshotByCertIDResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetIssuedCertificateStatusSnapshotByCertID not implemented")
 }
 func (UnimplementedPluginRuntimeServiceServer) SignKey(context.Context, *SignKeyRequest) (*SignKeyResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SignKey not implemented")
@@ -728,6 +760,42 @@ func _PluginRuntimeService_GetEndEntityCertificates_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PluginRuntimeService_ListIssuedCertificateStatusSnapshots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListIssuedCertificateStatusSnapshotsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginRuntimeServiceServer).ListIssuedCertificateStatusSnapshots(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginRuntimeService_ListIssuedCertificateStatusSnapshots_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginRuntimeServiceServer).ListIssuedCertificateStatusSnapshots(ctx, req.(*ListIssuedCertificateStatusSnapshotsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetIssuedCertificateStatusSnapshotByCertIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PluginRuntimeServiceServer).GetIssuedCertificateStatusSnapshotByCertID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PluginRuntimeServiceServer).GetIssuedCertificateStatusSnapshotByCertID(ctx, req.(*GetIssuedCertificateStatusSnapshotByCertIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PluginRuntimeService_SignKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SignKeyRequest)
 	if err := dec(in); err != nil {
@@ -892,6 +960,14 @@ var PluginRuntimeService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetEndEntityCertificates",
 			Handler:    _PluginRuntimeService_GetEndEntityCertificates_Handler,
+		},
+		{
+			MethodName: "ListIssuedCertificateStatusSnapshots",
+			Handler:    _PluginRuntimeService_ListIssuedCertificateStatusSnapshots_Handler,
+		},
+		{
+			MethodName: "GetIssuedCertificateStatusSnapshotByCertID",
+			Handler:    _PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_Handler,
 		},
 		{
 			MethodName: "SignKey",

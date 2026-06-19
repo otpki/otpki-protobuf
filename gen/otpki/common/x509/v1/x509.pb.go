@@ -199,6 +199,112 @@ func (SignatureAlgorithm) EnumDescriptor() ([]byte, []int) {
 	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{0}
 }
 
+type HashAlgorithm int32
+
+const (
+	HashAlgorithm_HASH_ALGORITHM_UNSPECIFIED HashAlgorithm = 0
+	HashAlgorithm_HASH_ALGORITHM_MD4         HashAlgorithm = 1
+	HashAlgorithm_HASH_ALGORITHM_MD5         HashAlgorithm = 2
+	HashAlgorithm_HASH_ALGORITHM_SHA1        HashAlgorithm = 3
+	HashAlgorithm_HASH_ALGORITHM_SHA224      HashAlgorithm = 4
+	HashAlgorithm_HASH_ALGORITHM_SHA256      HashAlgorithm = 5
+	HashAlgorithm_HASH_ALGORITHM_SHA384      HashAlgorithm = 6
+	HashAlgorithm_HASH_ALGORITHM_SHA512      HashAlgorithm = 7
+	HashAlgorithm_HASH_ALGORITHM_MD5SHA1     HashAlgorithm = 8
+	HashAlgorithm_HASH_ALGORITHM_RIPEMD160   HashAlgorithm = 9
+	HashAlgorithm_HASH_ALGORITHM_SHA3_224    HashAlgorithm = 10
+	HashAlgorithm_HASH_ALGORITHM_SHA3_256    HashAlgorithm = 11
+	HashAlgorithm_HASH_ALGORITHM_SHA3_384    HashAlgorithm = 12
+	HashAlgorithm_HASH_ALGORITHM_SHA3_512    HashAlgorithm = 13
+	HashAlgorithm_HASH_ALGORITHM_SHA512_224  HashAlgorithm = 14
+	HashAlgorithm_HASH_ALGORITHM_SHA512_256  HashAlgorithm = 15
+	HashAlgorithm_HASH_ALGORITHM_BLAKE2S_256 HashAlgorithm = 16
+	HashAlgorithm_HASH_ALGORITHM_BLAKE2B_256 HashAlgorithm = 17
+	HashAlgorithm_HASH_ALGORITHM_BLAKE2B_384 HashAlgorithm = 18
+	HashAlgorithm_HASH_ALGORITHM_BLAKE2B_512 HashAlgorithm = 19
+	HashAlgorithm_HASH_ALGORITHM_SHAKE128    HashAlgorithm = 20
+	HashAlgorithm_HASH_ALGORITHM_SHAKE256    HashAlgorithm = 21
+)
+
+// Enum value maps for HashAlgorithm.
+var (
+	HashAlgorithm_name = map[int32]string{
+		0:  "HASH_ALGORITHM_UNSPECIFIED",
+		1:  "HASH_ALGORITHM_MD4",
+		2:  "HASH_ALGORITHM_MD5",
+		3:  "HASH_ALGORITHM_SHA1",
+		4:  "HASH_ALGORITHM_SHA224",
+		5:  "HASH_ALGORITHM_SHA256",
+		6:  "HASH_ALGORITHM_SHA384",
+		7:  "HASH_ALGORITHM_SHA512",
+		8:  "HASH_ALGORITHM_MD5SHA1",
+		9:  "HASH_ALGORITHM_RIPEMD160",
+		10: "HASH_ALGORITHM_SHA3_224",
+		11: "HASH_ALGORITHM_SHA3_256",
+		12: "HASH_ALGORITHM_SHA3_384",
+		13: "HASH_ALGORITHM_SHA3_512",
+		14: "HASH_ALGORITHM_SHA512_224",
+		15: "HASH_ALGORITHM_SHA512_256",
+		16: "HASH_ALGORITHM_BLAKE2S_256",
+		17: "HASH_ALGORITHM_BLAKE2B_256",
+		18: "HASH_ALGORITHM_BLAKE2B_384",
+		19: "HASH_ALGORITHM_BLAKE2B_512",
+		20: "HASH_ALGORITHM_SHAKE128",
+		21: "HASH_ALGORITHM_SHAKE256",
+	}
+	HashAlgorithm_value = map[string]int32{
+		"HASH_ALGORITHM_UNSPECIFIED": 0,
+		"HASH_ALGORITHM_MD4":         1,
+		"HASH_ALGORITHM_MD5":         2,
+		"HASH_ALGORITHM_SHA1":        3,
+		"HASH_ALGORITHM_SHA224":      4,
+		"HASH_ALGORITHM_SHA256":      5,
+		"HASH_ALGORITHM_SHA384":      6,
+		"HASH_ALGORITHM_SHA512":      7,
+		"HASH_ALGORITHM_MD5SHA1":     8,
+		"HASH_ALGORITHM_RIPEMD160":   9,
+		"HASH_ALGORITHM_SHA3_224":    10,
+		"HASH_ALGORITHM_SHA3_256":    11,
+		"HASH_ALGORITHM_SHA3_384":    12,
+		"HASH_ALGORITHM_SHA3_512":    13,
+		"HASH_ALGORITHM_SHA512_224":  14,
+		"HASH_ALGORITHM_SHA512_256":  15,
+		"HASH_ALGORITHM_BLAKE2S_256": 16,
+		"HASH_ALGORITHM_BLAKE2B_256": 17,
+		"HASH_ALGORITHM_BLAKE2B_384": 18,
+		"HASH_ALGORITHM_BLAKE2B_512": 19,
+		"HASH_ALGORITHM_SHAKE128":    20,
+		"HASH_ALGORITHM_SHAKE256":    21,
+	}
+)
+
+func (x HashAlgorithm) Enum() *HashAlgorithm {
+	p := new(HashAlgorithm)
+	*p = x
+	return p
+}
+
+func (x HashAlgorithm) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (HashAlgorithm) Descriptor() protoreflect.EnumDescriptor {
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[1].Descriptor()
+}
+
+func (HashAlgorithm) Type() protoreflect.EnumType {
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[1]
+}
+
+func (x HashAlgorithm) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use HashAlgorithm.Descriptor instead.
+func (HashAlgorithm) EnumDescriptor() ([]byte, []int) {
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{1}
+}
+
 type KeyUsage int32
 
 const (
@@ -253,11 +359,11 @@ func (x KeyUsage) String() string {
 }
 
 func (KeyUsage) Descriptor() protoreflect.EnumDescriptor {
-	return file_otpki_common_x509_v1_x509_proto_enumTypes[1].Descriptor()
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[2].Descriptor()
 }
 
 func (KeyUsage) Type() protoreflect.EnumType {
-	return &file_otpki_common_x509_v1_x509_proto_enumTypes[1]
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[2]
 }
 
 func (x KeyUsage) Number() protoreflect.EnumNumber {
@@ -266,7 +372,7 @@ func (x KeyUsage) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use KeyUsage.Descriptor instead.
 func (KeyUsage) EnumDescriptor() ([]byte, []int) {
-	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{1}
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{2}
 }
 
 type ExtKeyUsage int32
@@ -335,11 +441,11 @@ func (x ExtKeyUsage) String() string {
 }
 
 func (ExtKeyUsage) Descriptor() protoreflect.EnumDescriptor {
-	return file_otpki_common_x509_v1_x509_proto_enumTypes[2].Descriptor()
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[3].Descriptor()
 }
 
 func (ExtKeyUsage) Type() protoreflect.EnumType {
-	return &file_otpki_common_x509_v1_x509_proto_enumTypes[2]
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[3]
 }
 
 func (x ExtKeyUsage) Number() protoreflect.EnumNumber {
@@ -348,7 +454,7 @@ func (x ExtKeyUsage) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExtKeyUsage.Descriptor instead.
 func (ExtKeyUsage) EnumDescriptor() ([]byte, []int) {
-	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{2}
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{3}
 }
 
 type RevocationReasonCode int32
@@ -405,11 +511,11 @@ func (x RevocationReasonCode) String() string {
 }
 
 func (RevocationReasonCode) Descriptor() protoreflect.EnumDescriptor {
-	return file_otpki_common_x509_v1_x509_proto_enumTypes[3].Descriptor()
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[4].Descriptor()
 }
 
 func (RevocationReasonCode) Type() protoreflect.EnumType {
-	return &file_otpki_common_x509_v1_x509_proto_enumTypes[3]
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[4]
 }
 
 func (x RevocationReasonCode) Number() protoreflect.EnumNumber {
@@ -418,7 +524,7 @@ func (x RevocationReasonCode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RevocationReasonCode.Descriptor instead.
 func (RevocationReasonCode) EnumDescriptor() ([]byte, []int) {
-	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{3}
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{4}
 }
 
 type SubjectDNAttrType int32
@@ -486,11 +592,11 @@ func (x SubjectDNAttrType) String() string {
 }
 
 func (SubjectDNAttrType) Descriptor() protoreflect.EnumDescriptor {
-	return file_otpki_common_x509_v1_x509_proto_enumTypes[4].Descriptor()
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[5].Descriptor()
 }
 
 func (SubjectDNAttrType) Type() protoreflect.EnumType {
-	return &file_otpki_common_x509_v1_x509_proto_enumTypes[4]
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[5]
 }
 
 func (x SubjectDNAttrType) Number() protoreflect.EnumNumber {
@@ -499,7 +605,7 @@ func (x SubjectDNAttrType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SubjectDNAttrType.Descriptor instead.
 func (SubjectDNAttrType) EnumDescriptor() ([]byte, []int) {
-	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{4}
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{5}
 }
 
 type SANAttrType int32
@@ -552,11 +658,11 @@ func (x SANAttrType) String() string {
 }
 
 func (SANAttrType) Descriptor() protoreflect.EnumDescriptor {
-	return file_otpki_common_x509_v1_x509_proto_enumTypes[5].Descriptor()
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[6].Descriptor()
 }
 
 func (SANAttrType) Type() protoreflect.EnumType {
-	return &file_otpki_common_x509_v1_x509_proto_enumTypes[5]
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[6]
 }
 
 func (x SANAttrType) Number() protoreflect.EnumNumber {
@@ -565,7 +671,7 @@ func (x SANAttrType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SANAttrType.Descriptor instead.
 func (SANAttrType) EnumDescriptor() ([]byte, []int) {
-	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{5}
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{6}
 }
 
 type DayOfWeek int32
@@ -616,11 +722,11 @@ func (x DayOfWeek) String() string {
 }
 
 func (DayOfWeek) Descriptor() protoreflect.EnumDescriptor {
-	return file_otpki_common_x509_v1_x509_proto_enumTypes[6].Descriptor()
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[7].Descriptor()
 }
 
 func (DayOfWeek) Type() protoreflect.EnumType {
-	return &file_otpki_common_x509_v1_x509_proto_enumTypes[6]
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[7]
 }
 
 func (x DayOfWeek) Number() protoreflect.EnumNumber {
@@ -629,7 +735,7 @@ func (x DayOfWeek) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use DayOfWeek.Descriptor instead.
 func (DayOfWeek) EnumDescriptor() ([]byte, []int) {
-	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{6}
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{7}
 }
 
 type ExpirationAdjustmentDirection int32
@@ -665,11 +771,11 @@ func (x ExpirationAdjustmentDirection) String() string {
 }
 
 func (ExpirationAdjustmentDirection) Descriptor() protoreflect.EnumDescriptor {
-	return file_otpki_common_x509_v1_x509_proto_enumTypes[7].Descriptor()
+	return file_otpki_common_x509_v1_x509_proto_enumTypes[8].Descriptor()
 }
 
 func (ExpirationAdjustmentDirection) Type() protoreflect.EnumType {
-	return &file_otpki_common_x509_v1_x509_proto_enumTypes[7]
+	return &file_otpki_common_x509_v1_x509_proto_enumTypes[8]
 }
 
 func (x ExpirationAdjustmentDirection) Number() protoreflect.EnumNumber {
@@ -678,7 +784,7 @@ func (x ExpirationAdjustmentDirection) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExpirationAdjustmentDirection.Descriptor instead.
 func (ExpirationAdjustmentDirection) EnumDescriptor() ([]byte, []int) {
-	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{7}
+	return file_otpki_common_x509_v1_x509_proto_rawDescGZIP(), []int{8}
 }
 
 type Extension struct {
@@ -1123,7 +1229,31 @@ const file_otpki_common_x509_v1_x509_proto_rawDesc = "" +
 	")SIGNATURE_ALGORITHM_SHAKE256_WITH_RSA_PSS\x10,\x12)\n" +
 	"%SIGNATURE_ALGORITHM_SHA3_256_WITH_RSA\x10-\x12)\n" +
 	"%SIGNATURE_ALGORITHM_SHA3_384_WITH_RSA\x10.\x12)\n" +
-	"%SIGNATURE_ALGORITHM_SHA3_512_WITH_RSA\x10/*\xb1\x02\n" +
+	"%SIGNATURE_ALGORITHM_SHA3_512_WITH_RSA\x10/*\x8a\x05\n" +
+	"\rHashAlgorithm\x12\x1e\n" +
+	"\x1aHASH_ALGORITHM_UNSPECIFIED\x10\x00\x12\x16\n" +
+	"\x12HASH_ALGORITHM_MD4\x10\x01\x12\x16\n" +
+	"\x12HASH_ALGORITHM_MD5\x10\x02\x12\x17\n" +
+	"\x13HASH_ALGORITHM_SHA1\x10\x03\x12\x19\n" +
+	"\x15HASH_ALGORITHM_SHA224\x10\x04\x12\x19\n" +
+	"\x15HASH_ALGORITHM_SHA256\x10\x05\x12\x19\n" +
+	"\x15HASH_ALGORITHM_SHA384\x10\x06\x12\x19\n" +
+	"\x15HASH_ALGORITHM_SHA512\x10\a\x12\x1a\n" +
+	"\x16HASH_ALGORITHM_MD5SHA1\x10\b\x12\x1c\n" +
+	"\x18HASH_ALGORITHM_RIPEMD160\x10\t\x12\x1b\n" +
+	"\x17HASH_ALGORITHM_SHA3_224\x10\n" +
+	"\x12\x1b\n" +
+	"\x17HASH_ALGORITHM_SHA3_256\x10\v\x12\x1b\n" +
+	"\x17HASH_ALGORITHM_SHA3_384\x10\f\x12\x1b\n" +
+	"\x17HASH_ALGORITHM_SHA3_512\x10\r\x12\x1d\n" +
+	"\x19HASH_ALGORITHM_SHA512_224\x10\x0e\x12\x1d\n" +
+	"\x19HASH_ALGORITHM_SHA512_256\x10\x0f\x12\x1e\n" +
+	"\x1aHASH_ALGORITHM_BLAKE2S_256\x10\x10\x12\x1e\n" +
+	"\x1aHASH_ALGORITHM_BLAKE2B_256\x10\x11\x12\x1e\n" +
+	"\x1aHASH_ALGORITHM_BLAKE2B_384\x10\x12\x12\x1e\n" +
+	"\x1aHASH_ALGORITHM_BLAKE2B_512\x10\x13\x12\x1b\n" +
+	"\x17HASH_ALGORITHM_SHAKE128\x10\x14\x12\x1b\n" +
+	"\x17HASH_ALGORITHM_SHAKE256\x10\x15*\xb1\x02\n" +
 	"\bKeyUsage\x12\x19\n" +
 	"\x15KEY_USAGE_UNSPECIFIED\x10\x00\x12\x1f\n" +
 	"\x1bKEY_USAGE_DIGITAL_SIGNATURE\x10\x01\x12 \n" +
@@ -1214,30 +1344,31 @@ func file_otpki_common_x509_v1_x509_proto_rawDescGZIP() []byte {
 	return file_otpki_common_x509_v1_x509_proto_rawDescData
 }
 
-var file_otpki_common_x509_v1_x509_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
+var file_otpki_common_x509_v1_x509_proto_enumTypes = make([]protoimpl.EnumInfo, 9)
 var file_otpki_common_x509_v1_x509_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_otpki_common_x509_v1_x509_proto_goTypes = []any{
 	(SignatureAlgorithm)(0),            // 0: otpki.common.x509.v1.SignatureAlgorithm
-	(KeyUsage)(0),                      // 1: otpki.common.x509.v1.KeyUsage
-	(ExtKeyUsage)(0),                   // 2: otpki.common.x509.v1.ExtKeyUsage
-	(RevocationReasonCode)(0),          // 3: otpki.common.x509.v1.RevocationReasonCode
-	(SubjectDNAttrType)(0),             // 4: otpki.common.x509.v1.SubjectDNAttrType
-	(SANAttrType)(0),                   // 5: otpki.common.x509.v1.SANAttrType
-	(DayOfWeek)(0),                     // 6: otpki.common.x509.v1.DayOfWeek
-	(ExpirationAdjustmentDirection)(0), // 7: otpki.common.x509.v1.ExpirationAdjustmentDirection
-	(*Extension)(nil),                  // 8: otpki.common.x509.v1.Extension
-	(*Name)(nil),                       // 9: otpki.common.x509.v1.Name
-	(*NameAttribute)(nil),              // 10: otpki.common.x509.v1.NameAttribute
-	(*SubjectDNAttribute)(nil),         // 11: otpki.common.x509.v1.SubjectDNAttribute
-	(*SANAttribute)(nil),               // 12: otpki.common.x509.v1.SANAttribute
-	(*anypb.Any)(nil),                  // 13: google.protobuf.Any
+	(HashAlgorithm)(0),                 // 1: otpki.common.x509.v1.HashAlgorithm
+	(KeyUsage)(0),                      // 2: otpki.common.x509.v1.KeyUsage
+	(ExtKeyUsage)(0),                   // 3: otpki.common.x509.v1.ExtKeyUsage
+	(RevocationReasonCode)(0),          // 4: otpki.common.x509.v1.RevocationReasonCode
+	(SubjectDNAttrType)(0),             // 5: otpki.common.x509.v1.SubjectDNAttrType
+	(SANAttrType)(0),                   // 6: otpki.common.x509.v1.SANAttrType
+	(DayOfWeek)(0),                     // 7: otpki.common.x509.v1.DayOfWeek
+	(ExpirationAdjustmentDirection)(0), // 8: otpki.common.x509.v1.ExpirationAdjustmentDirection
+	(*Extension)(nil),                  // 9: otpki.common.x509.v1.Extension
+	(*Name)(nil),                       // 10: otpki.common.x509.v1.Name
+	(*NameAttribute)(nil),              // 11: otpki.common.x509.v1.NameAttribute
+	(*SubjectDNAttribute)(nil),         // 12: otpki.common.x509.v1.SubjectDNAttribute
+	(*SANAttribute)(nil),               // 13: otpki.common.x509.v1.SANAttribute
+	(*anypb.Any)(nil),                  // 14: google.protobuf.Any
 }
 var file_otpki_common_x509_v1_x509_proto_depIdxs = []int32{
-	10, // 0: otpki.common.x509.v1.Name.names:type_name -> otpki.common.x509.v1.NameAttribute
-	10, // 1: otpki.common.x509.v1.Name.extra_names:type_name -> otpki.common.x509.v1.NameAttribute
-	13, // 2: otpki.common.x509.v1.NameAttribute.value:type_name -> google.protobuf.Any
-	4,  // 3: otpki.common.x509.v1.SubjectDNAttribute.attribute_type:type_name -> otpki.common.x509.v1.SubjectDNAttrType
-	5,  // 4: otpki.common.x509.v1.SANAttribute.attribute_type:type_name -> otpki.common.x509.v1.SANAttrType
+	11, // 0: otpki.common.x509.v1.Name.names:type_name -> otpki.common.x509.v1.NameAttribute
+	11, // 1: otpki.common.x509.v1.Name.extra_names:type_name -> otpki.common.x509.v1.NameAttribute
+	14, // 2: otpki.common.x509.v1.NameAttribute.value:type_name -> google.protobuf.Any
+	5,  // 3: otpki.common.x509.v1.SubjectDNAttribute.attribute_type:type_name -> otpki.common.x509.v1.SubjectDNAttrType
+	6,  // 4: otpki.common.x509.v1.SANAttribute.attribute_type:type_name -> otpki.common.x509.v1.SANAttrType
 	5,  // [5:5] is the sub-list for method output_type
 	5,  // [5:5] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
@@ -1255,7 +1386,7 @@ func file_otpki_common_x509_v1_x509_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_x509_v1_x509_proto_rawDesc), len(file_otpki_common_x509_v1_x509_proto_rawDesc)),
-			NumEnums:      8,
+			NumEnums:      9,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,

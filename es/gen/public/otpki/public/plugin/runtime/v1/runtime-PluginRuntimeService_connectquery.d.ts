@@ -73,6 +73,14 @@ export const getEndEntityCertificateBySerialNumber: typeof PluginRuntimeService[
  */
 export const getEndEntityCertificates: typeof PluginRuntimeService["method"]["getEndEntityCertificates"];
 /**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots
+ */
+export const listIssuedCertificateStatusSnapshots: typeof PluginRuntimeService["method"]["listIssuedCertificateStatusSnapshots"];
+/**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID
+ */
+export const getIssuedCertificateStatusSnapshotByCertID: typeof PluginRuntimeService["method"]["getIssuedCertificateStatusSnapshotByCertID"];
+/**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey
  */
 export const signKey: typeof PluginRuntimeService["method"]["signKey"];

@@ -494,6 +494,60 @@ func local_request_PluginRuntimeService_GetEndEntityCertificates_0(ctx context.C
 	return msg, metadata, err
 }
 
+func request_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListIssuedCertificateStatusSnapshotsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.ListIssuedCertificateStatusSnapshots(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListIssuedCertificateStatusSnapshotsRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.ListIssuedCertificateStatusSnapshots(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetIssuedCertificateStatusSnapshotByCertIDRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetIssuedCertificateStatusSnapshotByCertID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0(ctx context.Context, marshaler runtime.Marshaler, server PluginRuntimeServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetIssuedCertificateStatusSnapshotByCertIDRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.GetIssuedCertificateStatusSnapshotByCertID(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 func request_PluginRuntimeService_SignKey_0(ctx context.Context, marshaler runtime.Marshaler, client PluginRuntimeServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq SignKeyRequest
@@ -975,6 +1029,46 @@ func RegisterPluginRuntimeServiceHandlerServer(ctx context.Context, mux *runtime
 		}
 		forward_PluginRuntimeService_GetEndEntityCertificates_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/ListIssuedCertificateStatusSnapshots", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/ListIssuedCertificateStatusSnapshots"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_SignKey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1404,6 +1498,40 @@ func RegisterPluginRuntimeServiceHandlerClient(ctx context.Context, mux *runtime
 		}
 		forward_PluginRuntimeService_GetEndEntityCertificates_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/ListIssuedCertificateStatusSnapshots", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/ListIssuedCertificateStatusSnapshots"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID", runtime.WithHTTPPathPattern("/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_PluginRuntimeService_SignKey_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1510,6 +1638,8 @@ var (
 	pattern_PluginRuntimeService_RevokeEndEntityCertificate_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "RevokeEndEntityCertificate"}, ""))
 	pattern_PluginRuntimeService_GetEndEntityCertificateBySerialNumber_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEndEntityCertificateBySerialNumber"}, ""))
 	pattern_PluginRuntimeService_GetEndEntityCertificates_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetEndEntityCertificates"}, ""))
+	pattern_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "ListIssuedCertificateStatusSnapshots"}, ""))
+	pattern_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "GetIssuedCertificateStatusSnapshotByCertID"}, ""))
 	pattern_PluginRuntimeService_SignKey_0                                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "SignKey"}, ""))
 	pattern_PluginRuntimeService_DecryptKey_0                                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "DecryptKey"}, ""))
 	pattern_PluginRuntimeService_EncryptWithEnvironmentToken_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"otpki.public.plugin.runtime.v1.PluginRuntimeService", "EncryptWithEnvironmentToken"}, ""))
@@ -1535,6 +1665,8 @@ var (
 	forward_PluginRuntimeService_RevokeEndEntityCertificate_0                 = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetEndEntityCertificateBySerialNumber_0      = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_GetEndEntityCertificates_0                   = runtime.ForwardResponseMessage
+	forward_PluginRuntimeService_ListIssuedCertificateStatusSnapshots_0       = runtime.ForwardResponseMessage
+	forward_PluginRuntimeService_GetIssuedCertificateStatusSnapshotByCertID_0 = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_SignKey_0                                    = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_DecryptKey_0                                 = runtime.ForwardResponseMessage
 	forward_PluginRuntimeService_EncryptWithEnvironmentToken_0                = runtime.ForwardResponseMessage

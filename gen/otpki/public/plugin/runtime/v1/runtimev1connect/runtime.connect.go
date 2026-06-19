@@ -84,6 +84,12 @@ const (
 	// PluginRuntimeServiceGetEndEntityCertificatesProcedure is the fully-qualified name of the
 	// PluginRuntimeService's GetEndEntityCertificates RPC.
 	PluginRuntimeServiceGetEndEntityCertificatesProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetEndEntityCertificates"
+	// PluginRuntimeServiceListIssuedCertificateStatusSnapshotsProcedure is the fully-qualified name of
+	// the PluginRuntimeService's ListIssuedCertificateStatusSnapshots RPC.
+	PluginRuntimeServiceListIssuedCertificateStatusSnapshotsProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/ListIssuedCertificateStatusSnapshots"
+	// PluginRuntimeServiceGetIssuedCertificateStatusSnapshotByCertIDProcedure is the fully-qualified
+	// name of the PluginRuntimeService's GetIssuedCertificateStatusSnapshotByCertID RPC.
+	PluginRuntimeServiceGetIssuedCertificateStatusSnapshotByCertIDProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID"
 	// PluginRuntimeServiceSignKeyProcedure is the fully-qualified name of the PluginRuntimeService's
 	// SignKey RPC.
 	PluginRuntimeServiceSignKeyProcedure = "/otpki.public.plugin.runtime.v1.PluginRuntimeService/SignKey"
@@ -121,6 +127,8 @@ type PluginRuntimeServiceClient interface {
 	RevokeEndEntityCertificate(context.Context, *connect.Request[v1.RevokeEndEntityCertificateRequest]) (*connect.Response[v1.RevokeEndEntityCertificateResponse], error)
 	GetEndEntityCertificateBySerialNumber(context.Context, *connect.Request[v1.GetEndEntityCertificateBySerialNumberRequest]) (*connect.Response[v1.GetEndEntityCertificateBySerialNumberResponse], error)
 	GetEndEntityCertificates(context.Context, *connect.Request[v1.GetEndEntityCertificatesRequest]) (*connect.Response[v1.GetEndEntityCertificatesResponse], error)
+	ListIssuedCertificateStatusSnapshots(context.Context, *connect.Request[v1.ListIssuedCertificateStatusSnapshotsRequest]) (*connect.Response[v1.ListIssuedCertificateStatusSnapshotsResponse], error)
+	GetIssuedCertificateStatusSnapshotByCertID(context.Context, *connect.Request[v1.GetIssuedCertificateStatusSnapshotByCertIDRequest]) (*connect.Response[v1.GetIssuedCertificateStatusSnapshotByCertIDResponse], error)
 	SignKey(context.Context, *connect.Request[v1.SignKeyRequest]) (*connect.Response[v1.SignKeyResponse], error)
 	DecryptKey(context.Context, *connect.Request[v1.DecryptKeyRequest]) (*connect.Response[v1.DecryptKeyResponse], error)
 	EncryptWithEnvironmentToken(context.Context, *connect.Request[v1.EncryptWithEnvironmentTokenRequest]) (*connect.Response[v1.EncryptWithEnvironmentTokenResponse], error)
@@ -242,6 +250,18 @@ func NewPluginRuntimeServiceClient(httpClient connect.HTTPClient, baseURL string
 			connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetEndEntityCertificates")),
 			connect.WithClientOptions(opts...),
 		),
+		listIssuedCertificateStatusSnapshots: connect.NewClient[v1.ListIssuedCertificateStatusSnapshotsRequest, v1.ListIssuedCertificateStatusSnapshotsResponse](
+			httpClient,
+			baseURL+PluginRuntimeServiceListIssuedCertificateStatusSnapshotsProcedure,
+			connect.WithSchema(pluginRuntimeServiceMethods.ByName("ListIssuedCertificateStatusSnapshots")),
+			connect.WithClientOptions(opts...),
+		),
+		getIssuedCertificateStatusSnapshotByCertID: connect.NewClient[v1.GetIssuedCertificateStatusSnapshotByCertIDRequest, v1.GetIssuedCertificateStatusSnapshotByCertIDResponse](
+			httpClient,
+			baseURL+PluginRuntimeServiceGetIssuedCertificateStatusSnapshotByCertIDProcedure,
+			connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetIssuedCertificateStatusSnapshotByCertID")),
+			connect.WithClientOptions(opts...),
+		),
 		signKey: connect.NewClient[v1.SignKeyRequest, v1.SignKeyResponse](
 			httpClient,
 			baseURL+PluginRuntimeServiceSignKeyProcedure,
@@ -294,6 +314,8 @@ type pluginRuntimeServiceClient struct {
 	revokeEndEntityCertificate                 *connect.Client[v1.RevokeEndEntityCertificateRequest, v1.RevokeEndEntityCertificateResponse]
 	getEndEntityCertificateBySerialNumber      *connect.Client[v1.GetEndEntityCertificateBySerialNumberRequest, v1.GetEndEntityCertificateBySerialNumberResponse]
 	getEndEntityCertificates                   *connect.Client[v1.GetEndEntityCertificatesRequest, v1.GetEndEntityCertificatesResponse]
+	listIssuedCertificateStatusSnapshots       *connect.Client[v1.ListIssuedCertificateStatusSnapshotsRequest, v1.ListIssuedCertificateStatusSnapshotsResponse]
+	getIssuedCertificateStatusSnapshotByCertID *connect.Client[v1.GetIssuedCertificateStatusSnapshotByCertIDRequest, v1.GetIssuedCertificateStatusSnapshotByCertIDResponse]
 	signKey                                    *connect.Client[v1.SignKeyRequest, v1.SignKeyResponse]
 	decryptKey                                 *connect.Client[v1.DecryptKeyRequest, v1.DecryptKeyResponse]
 	encryptWithEnvironmentToken                *connect.Client[v1.EncryptWithEnvironmentTokenRequest, v1.EncryptWithEnvironmentTokenResponse]
@@ -396,6 +418,18 @@ func (c *pluginRuntimeServiceClient) GetEndEntityCertificates(ctx context.Contex
 	return c.getEndEntityCertificates.CallUnary(ctx, req)
 }
 
+// ListIssuedCertificateStatusSnapshots calls
+// otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots.
+func (c *pluginRuntimeServiceClient) ListIssuedCertificateStatusSnapshots(ctx context.Context, req *connect.Request[v1.ListIssuedCertificateStatusSnapshotsRequest]) (*connect.Response[v1.ListIssuedCertificateStatusSnapshotsResponse], error) {
+	return c.listIssuedCertificateStatusSnapshots.CallUnary(ctx, req)
+}
+
+// GetIssuedCertificateStatusSnapshotByCertID calls
+// otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID.
+func (c *pluginRuntimeServiceClient) GetIssuedCertificateStatusSnapshotByCertID(ctx context.Context, req *connect.Request[v1.GetIssuedCertificateStatusSnapshotByCertIDRequest]) (*connect.Response[v1.GetIssuedCertificateStatusSnapshotByCertIDResponse], error) {
+	return c.getIssuedCertificateStatusSnapshotByCertID.CallUnary(ctx, req)
+}
+
 // SignKey calls otpki.public.plugin.runtime.v1.PluginRuntimeService.SignKey.
 func (c *pluginRuntimeServiceClient) SignKey(ctx context.Context, req *connect.Request[v1.SignKeyRequest]) (*connect.Response[v1.SignKeyResponse], error) {
 	return c.signKey.CallUnary(ctx, req)
@@ -443,6 +477,8 @@ type PluginRuntimeServiceHandler interface {
 	RevokeEndEntityCertificate(context.Context, *connect.Request[v1.RevokeEndEntityCertificateRequest]) (*connect.Response[v1.RevokeEndEntityCertificateResponse], error)
 	GetEndEntityCertificateBySerialNumber(context.Context, *connect.Request[v1.GetEndEntityCertificateBySerialNumberRequest]) (*connect.Response[v1.GetEndEntityCertificateBySerialNumberResponse], error)
 	GetEndEntityCertificates(context.Context, *connect.Request[v1.GetEndEntityCertificatesRequest]) (*connect.Response[v1.GetEndEntityCertificatesResponse], error)
+	ListIssuedCertificateStatusSnapshots(context.Context, *connect.Request[v1.ListIssuedCertificateStatusSnapshotsRequest]) (*connect.Response[v1.ListIssuedCertificateStatusSnapshotsResponse], error)
+	GetIssuedCertificateStatusSnapshotByCertID(context.Context, *connect.Request[v1.GetIssuedCertificateStatusSnapshotByCertIDRequest]) (*connect.Response[v1.GetIssuedCertificateStatusSnapshotByCertIDResponse], error)
 	SignKey(context.Context, *connect.Request[v1.SignKeyRequest]) (*connect.Response[v1.SignKeyResponse], error)
 	DecryptKey(context.Context, *connect.Request[v1.DecryptKeyRequest]) (*connect.Response[v1.DecryptKeyResponse], error)
 	EncryptWithEnvironmentToken(context.Context, *connect.Request[v1.EncryptWithEnvironmentTokenRequest]) (*connect.Response[v1.EncryptWithEnvironmentTokenResponse], error)
@@ -559,6 +595,18 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 		connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetEndEntityCertificates")),
 		connect.WithHandlerOptions(opts...),
 	)
+	pluginRuntimeServiceListIssuedCertificateStatusSnapshotsHandler := connect.NewUnaryHandler(
+		PluginRuntimeServiceListIssuedCertificateStatusSnapshotsProcedure,
+		svc.ListIssuedCertificateStatusSnapshots,
+		connect.WithSchema(pluginRuntimeServiceMethods.ByName("ListIssuedCertificateStatusSnapshots")),
+		connect.WithHandlerOptions(opts...),
+	)
+	pluginRuntimeServiceGetIssuedCertificateStatusSnapshotByCertIDHandler := connect.NewUnaryHandler(
+		PluginRuntimeServiceGetIssuedCertificateStatusSnapshotByCertIDProcedure,
+		svc.GetIssuedCertificateStatusSnapshotByCertID,
+		connect.WithSchema(pluginRuntimeServiceMethods.ByName("GetIssuedCertificateStatusSnapshotByCertID")),
+		connect.WithHandlerOptions(opts...),
+	)
 	pluginRuntimeServiceSignKeyHandler := connect.NewUnaryHandler(
 		PluginRuntimeServiceSignKeyProcedure,
 		svc.SignKey,
@@ -625,6 +673,10 @@ func NewPluginRuntimeServiceHandler(svc PluginRuntimeServiceHandler, opts ...con
 			pluginRuntimeServiceGetEndEntityCertificateBySerialNumberHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceGetEndEntityCertificatesProcedure:
 			pluginRuntimeServiceGetEndEntityCertificatesHandler.ServeHTTP(w, r)
+		case PluginRuntimeServiceListIssuedCertificateStatusSnapshotsProcedure:
+			pluginRuntimeServiceListIssuedCertificateStatusSnapshotsHandler.ServeHTTP(w, r)
+		case PluginRuntimeServiceGetIssuedCertificateStatusSnapshotByCertIDProcedure:
+			pluginRuntimeServiceGetIssuedCertificateStatusSnapshotByCertIDHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceSignKeyProcedure:
 			pluginRuntimeServiceSignKeyHandler.ServeHTTP(w, r)
 		case PluginRuntimeServiceDecryptKeyProcedure:
@@ -710,6 +762,14 @@ func (UnimplementedPluginRuntimeServiceHandler) GetEndEntityCertificateBySerialN
 
 func (UnimplementedPluginRuntimeServiceHandler) GetEndEntityCertificates(context.Context, *connect.Request[v1.GetEndEntityCertificatesRequest]) (*connect.Response[v1.GetEndEntityCertificatesResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.GetEndEntityCertificates is not implemented"))
+}
+
+func (UnimplementedPluginRuntimeServiceHandler) ListIssuedCertificateStatusSnapshots(context.Context, *connect.Request[v1.ListIssuedCertificateStatusSnapshotsRequest]) (*connect.Response[v1.ListIssuedCertificateStatusSnapshotsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots is not implemented"))
+}
+
+func (UnimplementedPluginRuntimeServiceHandler) GetIssuedCertificateStatusSnapshotByCertID(context.Context, *connect.Request[v1.GetIssuedCertificateStatusSnapshotByCertIDRequest]) (*connect.Response[v1.GetIssuedCertificateStatusSnapshotByCertIDResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuedCertificateStatusSnapshotByCertID is not implemented"))
 }
 
 func (UnimplementedPluginRuntimeServiceHandler) SignKey(context.Context, *connect.Request[v1.SignKeyRequest]) (*connect.Response[v1.SignKeyResponse], error) {

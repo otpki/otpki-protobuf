@@ -112,6 +112,7 @@ const (
 	Resource_RESOURCE_SCEP_PROTOCOL_CONFIG      Resource = 204
 	Resource_RESOURCE_MSAE_CERTIFICATE_TEMPLATE Resource = 205
 	Resource_RESOURCE_CMP_PROTOCOL_CONFIG       Resource = 206
+	Resource_RESOURCE_OCSP_PROTOCOL_CONFIG      Resource = 207
 	// auth resources
 	Resource_RESOURCE_GROUP            Resource = 301
 	Resource_RESOURCE_ROLE             Resource = 302
@@ -147,6 +148,7 @@ var (
 		204: "RESOURCE_SCEP_PROTOCOL_CONFIG",
 		205: "RESOURCE_MSAE_CERTIFICATE_TEMPLATE",
 		206: "RESOURCE_CMP_PROTOCOL_CONFIG",
+		207: "RESOURCE_OCSP_PROTOCOL_CONFIG",
 		301: "RESOURCE_GROUP",
 		302: "RESOURCE_ROLE",
 		303: "RESOURCE_USER",
@@ -177,6 +179,7 @@ var (
 		"RESOURCE_SCEP_PROTOCOL_CONFIG":      204,
 		"RESOURCE_MSAE_CERTIFICATE_TEMPLATE": 205,
 		"RESOURCE_CMP_PROTOCOL_CONFIG":       206,
+		"RESOURCE_OCSP_PROTOCOL_CONFIG":      207,
 		"RESOURCE_GROUP":                     301,
 		"RESOURCE_ROLE":                      302,
 		"RESOURCE_USER":                      303,
@@ -1285,7 +1288,7 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\rACTION_UPDATE\x10\x03\x12\x11\n" +
 	"\rACTION_DELETE\x10\x04\x12\x11\n" +
 	"\fACTION_ISSUE\x10\xc9\x01\x12\x12\n" +
-	"\rACTION_REVOKE\x10\xca\x01*\xd0\x06\n" +
+	"\rACTION_REVOKE\x10\xca\x01*\xf4\x06\n" +
 	"\bResource\x12\x18\n" +
 	"\x14RESOURCE_UNSPECIFIED\x10\x00\x12\"\n" +
 	"\x1eRESOURCE_CERTIFICATE_AUTHORITY\x10e\x12\x18\n" +
@@ -1305,7 +1308,8 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\x1dRESOURCE_MSAE_PROTOCOL_CONFIG\x10\xcb\x01\x12\"\n" +
 	"\x1dRESOURCE_SCEP_PROTOCOL_CONFIG\x10\xcc\x01\x12'\n" +
 	"\"RESOURCE_MSAE_CERTIFICATE_TEMPLATE\x10\xcd\x01\x12!\n" +
-	"\x1cRESOURCE_CMP_PROTOCOL_CONFIG\x10\xce\x01\x12\x13\n" +
+	"\x1cRESOURCE_CMP_PROTOCOL_CONFIG\x10\xce\x01\x12\"\n" +
+	"\x1dRESOURCE_OCSP_PROTOCOL_CONFIG\x10\xcf\x01\x12\x13\n" +
 	"\x0eRESOURCE_GROUP\x10\xad\x02\x12\x12\n" +
 	"\rRESOURCE_ROLE\x10\xae\x02\x12\x12\n" +
 	"\rRESOURCE_USER\x10\xaf\x02\x12\x1b\n" +

@@ -593,6 +593,131 @@ export declare type SignatureAlgorithmJson = "SIGNATURE_ALGORITHM_UNSPECIFIED" |
 export declare const SignatureAlgorithmSchema: GenEnum<SignatureAlgorithm, SignatureAlgorithmJson>;
 
 /**
+ * @generated from enum otpki.common.x509.v1.HashAlgorithm
+ */
+export enum HashAlgorithm {
+  /**
+   * @generated from enum value: HASH_ALGORITHM_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_MD4 = 1;
+   */
+  MD4 = 1,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_MD5 = 2;
+   */
+  MD5 = 2,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA1 = 3;
+   */
+  SHA1 = 3,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA224 = 4;
+   */
+  SHA224 = 4,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA256 = 5;
+   */
+  SHA256 = 5,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA384 = 6;
+   */
+  SHA384 = 6,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA512 = 7;
+   */
+  SHA512 = 7,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_MD5SHA1 = 8;
+   */
+  MD5SHA1 = 8,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_RIPEMD160 = 9;
+   */
+  RIPEMD160 = 9,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA3_224 = 10;
+   */
+  SHA3_224 = 10,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA3_256 = 11;
+   */
+  SHA3_256 = 11,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA3_384 = 12;
+   */
+  SHA3_384 = 12,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA3_512 = 13;
+   */
+  SHA3_512 = 13,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA512_224 = 14;
+   */
+  SHA512_224 = 14,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHA512_256 = 15;
+   */
+  SHA512_256 = 15,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_BLAKE2S_256 = 16;
+   */
+  BLAKE2S_256 = 16,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_BLAKE2B_256 = 17;
+   */
+  BLAKE2B_256 = 17,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_BLAKE2B_384 = 18;
+   */
+  BLAKE2B_384 = 18,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_BLAKE2B_512 = 19;
+   */
+  BLAKE2B_512 = 19,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHAKE128 = 20;
+   */
+  SHAKE128 = 20,
+
+  /**
+   * @generated from enum value: HASH_ALGORITHM_SHAKE256 = 21;
+   */
+  SHAKE256 = 21,
+}
+
+/**
+ * @generated from enum otpki.common.x509.v1.HashAlgorithm
+ */
+export declare type HashAlgorithmJson = "HASH_ALGORITHM_UNSPECIFIED" | "HASH_ALGORITHM_MD4" | "HASH_ALGORITHM_MD5" | "HASH_ALGORITHM_SHA1" | "HASH_ALGORITHM_SHA224" | "HASH_ALGORITHM_SHA256" | "HASH_ALGORITHM_SHA384" | "HASH_ALGORITHM_SHA512" | "HASH_ALGORITHM_MD5SHA1" | "HASH_ALGORITHM_RIPEMD160" | "HASH_ALGORITHM_SHA3_224" | "HASH_ALGORITHM_SHA3_256" | "HASH_ALGORITHM_SHA3_384" | "HASH_ALGORITHM_SHA3_512" | "HASH_ALGORITHM_SHA512_224" | "HASH_ALGORITHM_SHA512_256" | "HASH_ALGORITHM_BLAKE2S_256" | "HASH_ALGORITHM_BLAKE2B_256" | "HASH_ALGORITHM_BLAKE2B_384" | "HASH_ALGORITHM_BLAKE2B_512" | "HASH_ALGORITHM_SHAKE128" | "HASH_ALGORITHM_SHAKE256";
+
+/**
+ * Describes the enum otpki.common.x509.v1.HashAlgorithm.
+ */
+export declare const HashAlgorithmSchema: GenEnum<HashAlgorithm, HashAlgorithmJson>;
+
+/**
  * @generated from enum otpki.common.x509.v1.KeyUsage
  */
 export enum KeyUsage {
