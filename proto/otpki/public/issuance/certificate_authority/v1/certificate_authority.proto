@@ -7,7 +7,7 @@ import "google/protobuf/field_mask.proto";
 import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/key/v1/key.proto";
-import "otpki/common/x509/v1/revocation_list.proto";
+import "otpki/common/core/revocation_list/v1/revocation_list.proto";
 
 message CreateCertificateAuthorityRequest {
   common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
@@ -136,7 +136,7 @@ message CreateRevocationListRequest {
 }
 
 message CreateRevocationListResponse {
-  common.x509.v1.RevocationList revocation_list = 1;
+  repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
 }
 
 service CertificateAuthorityService {

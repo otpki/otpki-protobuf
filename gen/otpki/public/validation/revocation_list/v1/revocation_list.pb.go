@@ -9,7 +9,7 @@ package revocation_listv1
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/api/v1"
-	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1"
+	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/revocation_list/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -26,94 +26,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetLatestRevocationListRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetLatestRevocationListRequest) Reset() {
-	*x = GetLatestRevocationListRequest{}
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetLatestRevocationListRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetLatestRevocationListRequest) ProtoMessage() {}
-
-func (x *GetLatestRevocationListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetLatestRevocationListRequest.ProtoReflect.Descriptor instead.
-func (*GetLatestRevocationListRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *GetLatestRevocationListRequest) GetCaId() string {
-	if x != nil {
-		return x.CaId
-	}
-	return ""
-}
-
-type GetLatestRevocationListResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	RevocationList *v1.RevocationList     `protobuf:"bytes,1,opt,name=revocation_list,json=revocationList,proto3" json:"revocation_list,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *GetLatestRevocationListResponse) Reset() {
-	*x = GetLatestRevocationListResponse{}
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetLatestRevocationListResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetLatestRevocationListResponse) ProtoMessage() {}
-
-func (x *GetLatestRevocationListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetLatestRevocationListResponse.ProtoReflect.Descriptor instead.
-func (*GetLatestRevocationListResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetLatestRevocationListResponse) GetRevocationList() *v1.RevocationList {
-	if x != nil {
-		return x.RevocationList
-	}
-	return nil
-}
-
 type GetRevocationListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -123,7 +35,7 @@ type GetRevocationListRequest struct {
 
 func (x *GetRevocationListRequest) Reset() {
 	*x = GetRevocationListRequest{}
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[2]
+	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -135,7 +47,7 @@ func (x *GetRevocationListRequest) String() string {
 func (*GetRevocationListRequest) ProtoMessage() {}
 
 func (x *GetRevocationListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[2]
+	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -148,7 +60,7 @@ func (x *GetRevocationListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRevocationListRequest.ProtoReflect.Descriptor instead.
 func (*GetRevocationListRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{2}
+	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetRevocationListRequest) GetId() string {
@@ -167,7 +79,7 @@ type GetRevocationListResponse struct {
 
 func (x *GetRevocationListResponse) Reset() {
 	*x = GetRevocationListResponse{}
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[3]
+	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -179,7 +91,7 @@ func (x *GetRevocationListResponse) String() string {
 func (*GetRevocationListResponse) ProtoMessage() {}
 
 func (x *GetRevocationListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[3]
+	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -192,7 +104,7 @@ func (x *GetRevocationListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRevocationListResponse.ProtoReflect.Descriptor instead.
 func (*GetRevocationListResponse) Descriptor() ([]byte, []int) {
-	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{3}
+	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetRevocationListResponse) GetRevocationList() *v1.RevocationList {
@@ -204,14 +116,15 @@ func (x *GetRevocationListResponse) GetRevocationList() *v1.RevocationList {
 
 type CRLDistributionPointRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Fingerprint   string                 `protobuf:"bytes,1,opt,name=fingerprint,proto3" json:"fingerprint,omitempty"`
+	CertHash      string                 `protobuf:"bytes,1,opt,name=cert_hash,json=certHash,proto3" json:"cert_hash,omitempty"`
+	PartId        string                 `protobuf:"bytes,2,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CRLDistributionPointRequest) Reset() {
 	*x = CRLDistributionPointRequest{}
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[4]
+	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -223,7 +136,7 @@ func (x *CRLDistributionPointRequest) String() string {
 func (*CRLDistributionPointRequest) ProtoMessage() {}
 
 func (x *CRLDistributionPointRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[4]
+	mi := &file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -236,12 +149,19 @@ func (x *CRLDistributionPointRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CRLDistributionPointRequest.ProtoReflect.Descriptor instead.
 func (*CRLDistributionPointRequest) Descriptor() ([]byte, []int) {
-	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{4}
+	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CRLDistributionPointRequest) GetFingerprint() string {
+func (x *CRLDistributionPointRequest) GetCertHash() string {
 	if x != nil {
-		return x.Fingerprint
+		return x.CertHash
+	}
+	return ""
+}
+
+func (x *CRLDistributionPointRequest) GetPartId() string {
+	if x != nil {
+		return x.PartId
 	}
 	return ""
 }
@@ -250,21 +170,17 @@ var File_otpki_public_validation_revocation_list_v1_revocation_list_proto protor
 
 const file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDesc = "" +
 	"\n" +
-	"@otpki/public/validation/revocation_list/v1/revocation_list.proto\x12*otpki.public.validation.revocation_list.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/httpbody.proto\x1a\"otpki/common/api/v1/httpbody.proto\x1a*otpki/common/x509/v1/revocation_list.proto\"?\n" +
-	"\x1eGetLatestRevocationListRequest\x12\x1d\n" +
-	"\x05ca_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\"p\n" +
-	"\x1fGetLatestRevocationListResponse\x12M\n" +
-	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationList\"4\n" +
+	"@otpki/public/validation/revocation_list/v1/revocation_list.proto\x12*otpki.public.validation.revocation_list.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/httpbody.proto\x1a'otpki/common/api/v1/auth_required.proto\x1a:otpki/common/core/revocation_list/v1/revocation_list.proto\"4\n" +
 	"\x18GetRevocationListRequest\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"j\n" +
-	"\x19GetRevocationListResponse\x12M\n" +
-	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationList\"?\n" +
-	"\x1bCRLDistributionPointRequest\x12 \n" +
-	"\vfingerprint\x18\x01 \x01(\tR\vfingerprint2\xb3\x05\n" +
-	"\x15RevocationListService\x12\xfd\x01\n" +
-	"\x17GetLatestRevocationList\x12J.otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest\x1aK.otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse\"I\x82\xd3\xe4\x93\x02@\x12>/v1/certificate-authorities/validation/{ca_id}/revocation-list\x90\x02\x01\x12\xc6\x01\n" +
-	"\x11GetRevocationList\x12D.otpki.public.validation.revocation_list.v1.GetRevocationListRequest\x1aE.otpki.public.validation.revocation_list.v1.GetRevocationListResponse\"$\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/revocation-lists/{id}\x90\x02\x01\x12\xd0\x01\n" +
-	"\x14CRLDistributionPoint\x12G.otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest\x1a\x14.google.api.HttpBody\"Y\x82\xd3\xe4\x93\x02P\x12N/v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl\x90\x02\x01B\xf2\x02\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"z\n" +
+	"\x19GetRevocationListResponse\x12]\n" +
+	"\x0frevocation_list\x18\x01 \x01(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x0erevocationList\"S\n" +
+	"\x1bCRLDistributionPointRequest\x12\x1b\n" +
+	"\tcert_hash\x18\x01 \x01(\tR\bcertHash\x12\x17\n" +
+	"\apart_id\x18\x02 \x01(\tR\x06partId2\xff\x02\n" +
+	"\x15RevocationListService\x12\xc6\x01\n" +
+	"\x11GetRevocationList\x12D.otpki.public.validation.revocation_list.v1.GetRevocationListRequest\x1aE.otpki.public.validation.revocation_list.v1.GetRevocationListResponse\"$\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/revocation-lists/{id}\x90\x02\x01\x12\x9c\x01\n" +
+	"\x14CRLDistributionPoint\x12G.otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest\x1a\x14.google.api.HttpBody\"%ص\x18\x00\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/validation/cdp.crl\x90\x02\x01B\xf2\x02\n" +
 	".com.otpki.public.validation.revocation_list.v1B\x13RevocationListProtoP\x01Z`github.com/otpki/otpki-protobuf/gen/otpki/public/validation/revocation_list/v1;revocation_listv1\xa2\x02\x04OPVR\xaa\x02)Otpki.Public.Validation.RevocationList.V1\xca\x02*Otpki\\Public_\\Validation\\RevocationList\\V1\xe2\x026Otpki\\Public_\\Validation\\RevocationList\\V1\\GPBMetadata\xea\x02-Otpki::Public::Validation::RevocationList::V1b\x06proto3"
 
 var (
@@ -279,30 +195,25 @@ func file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDe
 	return file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDescData
 }
 
-var file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_otpki_public_validation_revocation_list_v1_revocation_list_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_otpki_public_validation_revocation_list_v1_revocation_list_proto_goTypes = []any{
-	(*GetLatestRevocationListRequest)(nil),  // 0: otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest
-	(*GetLatestRevocationListResponse)(nil), // 1: otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse
-	(*GetRevocationListRequest)(nil),        // 2: otpki.public.validation.revocation_list.v1.GetRevocationListRequest
-	(*GetRevocationListResponse)(nil),       // 3: otpki.public.validation.revocation_list.v1.GetRevocationListResponse
-	(*CRLDistributionPointRequest)(nil),     // 4: otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest
-	(*v1.RevocationList)(nil),               // 5: otpki.common.x509.v1.RevocationList
-	(*httpbody.HttpBody)(nil),               // 6: google.api.HttpBody
+	(*GetRevocationListRequest)(nil),    // 0: otpki.public.validation.revocation_list.v1.GetRevocationListRequest
+	(*GetRevocationListResponse)(nil),   // 1: otpki.public.validation.revocation_list.v1.GetRevocationListResponse
+	(*CRLDistributionPointRequest)(nil), // 2: otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest
+	(*v1.RevocationList)(nil),           // 3: otpki.common.core.revocation_list.v1.RevocationList
+	(*httpbody.HttpBody)(nil),           // 4: google.api.HttpBody
 }
 var file_otpki_public_validation_revocation_list_v1_revocation_list_proto_depIdxs = []int32{
-	5, // 0: otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse.revocation_list:type_name -> otpki.common.x509.v1.RevocationList
-	5, // 1: otpki.public.validation.revocation_list.v1.GetRevocationListResponse.revocation_list:type_name -> otpki.common.x509.v1.RevocationList
-	0, // 2: otpki.public.validation.revocation_list.v1.RevocationListService.GetLatestRevocationList:input_type -> otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest
-	2, // 3: otpki.public.validation.revocation_list.v1.RevocationListService.GetRevocationList:input_type -> otpki.public.validation.revocation_list.v1.GetRevocationListRequest
-	4, // 4: otpki.public.validation.revocation_list.v1.RevocationListService.CRLDistributionPoint:input_type -> otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest
-	1, // 5: otpki.public.validation.revocation_list.v1.RevocationListService.GetLatestRevocationList:output_type -> otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse
-	3, // 6: otpki.public.validation.revocation_list.v1.RevocationListService.GetRevocationList:output_type -> otpki.public.validation.revocation_list.v1.GetRevocationListResponse
-	6, // 7: otpki.public.validation.revocation_list.v1.RevocationListService.CRLDistributionPoint:output_type -> google.api.HttpBody
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	3, // 0: otpki.public.validation.revocation_list.v1.GetRevocationListResponse.revocation_list:type_name -> otpki.common.core.revocation_list.v1.RevocationList
+	0, // 1: otpki.public.validation.revocation_list.v1.RevocationListService.GetRevocationList:input_type -> otpki.public.validation.revocation_list.v1.GetRevocationListRequest
+	2, // 2: otpki.public.validation.revocation_list.v1.RevocationListService.CRLDistributionPoint:input_type -> otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest
+	1, // 3: otpki.public.validation.revocation_list.v1.RevocationListService.GetRevocationList:output_type -> otpki.public.validation.revocation_list.v1.GetRevocationListResponse
+	4, // 4: otpki.public.validation.revocation_list.v1.RevocationListService.CRLDistributionPoint:output_type -> google.api.HttpBody
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_validation_revocation_list_v1_revocation_list_proto_init() }
@@ -316,7 +227,7 @@ func file_otpki_public_validation_revocation_list_v1_revocation_list_proto_init(
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDesc), len(file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

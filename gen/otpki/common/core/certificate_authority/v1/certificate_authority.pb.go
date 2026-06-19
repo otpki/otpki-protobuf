@@ -27,6 +27,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type PartitionMode int32
+
+const (
+	PartitionMode_PARTITION_MODE_UNSPECIFIED PartitionMode = 0
+	PartitionMode_PARTITION_MODE_FIXED       PartitionMode = 1
+	PartitionMode_PARTITION_MODE_MSCOMPAT    PartitionMode = 2
+)
+
+// Enum value maps for PartitionMode.
+var (
+	PartitionMode_name = map[int32]string{
+		0: "PARTITION_MODE_UNSPECIFIED",
+		1: "PARTITION_MODE_FIXED",
+		2: "PARTITION_MODE_MSCOMPAT",
+	}
+	PartitionMode_value = map[string]int32{
+		"PARTITION_MODE_UNSPECIFIED": 0,
+		"PARTITION_MODE_FIXED":       1,
+		"PARTITION_MODE_MSCOMPAT":    2,
+	}
+)
+
+func (x PartitionMode) Enum() *PartitionMode {
+	p := new(PartitionMode)
+	*p = x
+	return p
+}
+
+func (x PartitionMode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PartitionMode) Descriptor() protoreflect.EnumDescriptor {
+	return file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_enumTypes[0].Descriptor()
+}
+
+func (PartitionMode) Type() protoreflect.EnumType {
+	return &file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_enumTypes[0]
+}
+
+func (x PartitionMode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PartitionMode.Descriptor instead.
+func (PartitionMode) EnumDescriptor() ([]byte, []int) {
+	return file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDescGZIP(), []int{0}
+}
+
 type CertificateAuthority struct {
 	state                         protoimpl.MessageState  `protogen:"open.v1"`
 	Id                            string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
@@ -41,10 +90,13 @@ type CertificateAuthority struct {
 	CrlValidityPeriod      *durationpb.Duration `protobuf:"bytes,9,opt,name=crl_validity_period,json=crlValidityPeriod,proto3" json:"crl_validity_period,omitempty"`                   // validity period for crl, next update set to this update + this period
 	DeltaCrlValidityPeriod *durationpb.Duration `protobuf:"bytes,10,opt,name=delta_crl_validity_period,json=deltaCrlValidityPeriod,proto3" json:"delta_crl_validity_period,omitempty"` // validity period for delta crl. they are not generated if this is set to 0, should be smaller than crl_expire_period.
 	// Validation
-	CrlDistributionPointUris []string `protobuf:"bytes,11,rep,name=crl_distribution_point_uris,json=crlDistributionPointUris,proto3" json:"crl_distribution_point_uris,omitempty"`
-	OcspUris                 []string `protobuf:"bytes,12,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
-	IssuerUris               []string `protobuf:"bytes,13,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
-	ApprovalProfileId        *string  `protobuf:"bytes,14,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
+	CrlDistributionPointUris []string      `protobuf:"bytes,11,rep,name=crl_distribution_point_uris,json=crlDistributionPointUris,proto3" json:"crl_distribution_point_uris,omitempty"`
+	OcspUris                 []string      `protobuf:"bytes,12,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
+	IssuerUris               []string      `protobuf:"bytes,13,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
+	ApprovalProfileId        *string       `protobuf:"bytes,14,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
+	CrlPartitionMode         PartitionMode `protobuf:"varint,15,opt,name=crl_partition_mode,json=crlPartitionMode,proto3,enum=otpki.common.core.certificate_authority.v1.PartitionMode" json:"crl_partition_mode,omitempty"`
+	NumCrlPartitions         int64         `protobuf:"varint,16,opt,name=num_crl_partitions,json=numCrlPartitions,proto3" json:"num_crl_partitions,omitempty"`
+	CrlIncludeExpired        bool          `protobuf:"varint,17,opt,name=crl_include_expired,json=crlIncludeExpired,proto3" json:"crl_include_expired,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -179,6 +231,27 @@ func (x *CertificateAuthority) GetApprovalProfileId() string {
 		return *x.ApprovalProfileId
 	}
 	return ""
+}
+
+func (x *CertificateAuthority) GetCrlPartitionMode() PartitionMode {
+	if x != nil {
+		return x.CrlPartitionMode
+	}
+	return PartitionMode_PARTITION_MODE_UNSPECIFIED
+}
+
+func (x *CertificateAuthority) GetNumCrlPartitions() int64 {
+	if x != nil {
+		return x.NumCrlPartitions
+	}
+	return 0
+}
+
+func (x *CertificateAuthority) GetCrlIncludeExpired() bool {
+	if x != nil {
+		return x.CrlIncludeExpired
+	}
+	return false
 }
 
 func (x *CertificateAuthority) GetCreatedAt() *timestamppb.Timestamp {
@@ -343,7 +416,7 @@ var File_otpki_common_core_certificate_authority_v1_certificate_authority_proto 
 
 const file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDesc = "" +
 	"\n" +
-	"Fotpki/common/core/certificate_authority/v1/certificate_authority.proto\x12*otpki.common.core.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xd6\t\n" +
+	"Fotpki/common/core/certificate_authority/v1/certificate_authority.proto\x12*otpki.common.core.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xa6\v\n" +
 	"\x14CertificateAuthority\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -360,7 +433,10 @@ const file_otpki_common_core_certificate_authority_v1_certificate_authority_prot
 	"\tocsp_uris\x18\f \x03(\tR\bocspUris\x12\x1f\n" +
 	"\vissuer_uris\x18\r \x03(\tR\n" +
 	"issuerUris\x12=\n" +
-	"\x13approval_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01\x12V\n" +
+	"\x13approval_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01\x12g\n" +
+	"\x12crl_partition_mode\x18\x0f \x01(\x0e29.otpki.common.core.certificate_authority.v1.PartitionModeR\x10crlPartitionMode\x125\n" +
+	"\x12num_crl_partitions\x18\x10 \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x10numCrlPartitions\x12.\n" +
+	"\x13crl_include_expired\x18\x11 \x01(\bR\x11crlIncludeExpired\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
@@ -378,7 +454,11 @@ const file_otpki_common_core_certificate_authority_v1_certificate_authority_prot
 	"\"CertificateAuthorityCertificateKey\x124\n" +
 	"\x11ca_certificate_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x0fcaCertificateId\x12\x1f\n" +
 	"\x06key_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\x12'\n" +
-	"\x0falternative_key\x18\x03 \x01(\bR\x0ealternativeKeyB\xfc\x02\n" +
+	"\x0falternative_key\x18\x03 \x01(\bR\x0ealternativeKey*f\n" +
+	"\rPartitionMode\x12\x1e\n" +
+	"\x1aPARTITION_MODE_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14PARTITION_MODE_FIXED\x10\x01\x12\x1b\n" +
+	"\x17PARTITION_MODE_MSCOMPAT\x10\x02B\xfc\x02\n" +
 	".com.otpki.common.core.certificate_authority.v1B\x19CertificateAuthorityProtoP\x01Zfgithub.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_authority/v1;certificate_authorityv1\xa2\x02\x04OCCC\xaa\x02)Otpki.Common.Core.CertificateAuthority.V1\xca\x02)Otpki\\Common\\Core\\CertificateAuthority\\V1\xe2\x025Otpki\\Common\\Core\\CertificateAuthority\\V1\\GPBMetadata\xea\x02-Otpki::Common::Core::CertificateAuthority::V1b\x06proto3"
 
 var (
@@ -393,29 +473,32 @@ func file_otpki_common_core_certificate_authority_v1_certificate_authority_proto
 	return file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDescData
 }
 
+var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_goTypes = []any{
-	(*CertificateAuthority)(nil),               // 0: otpki.common.core.certificate_authority.v1.CertificateAuthority
-	(*CertificateAuthorityCertificate)(nil),    // 1: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	(*CertificateAuthorityCertificateKey)(nil), // 2: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
-	(v1.SignatureAlgorithm)(0),                 // 3: otpki.common.x509.v1.SignatureAlgorithm
-	(*v1.CertificateTemplate)(nil),             // 4: otpki.common.x509.v1.CertificateTemplate
-	(*durationpb.Duration)(nil),                // 5: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),              // 6: google.protobuf.Timestamp
+	(PartitionMode)(0),                         // 0: otpki.common.core.certificate_authority.v1.PartitionMode
+	(*CertificateAuthority)(nil),               // 1: otpki.common.core.certificate_authority.v1.CertificateAuthority
+	(*CertificateAuthorityCertificate)(nil),    // 2: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	(*CertificateAuthorityCertificateKey)(nil), // 3: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey
+	(v1.SignatureAlgorithm)(0),                 // 4: otpki.common.x509.v1.SignatureAlgorithm
+	(*v1.CertificateTemplate)(nil),             // 5: otpki.common.x509.v1.CertificateTemplate
+	(*durationpb.Duration)(nil),                // 6: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),              // 7: google.protobuf.Timestamp
 }
 var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_depIdxs = []int32{
-	3, // 0: otpki.common.core.certificate_authority.v1.CertificateAuthority.signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
-	3, // 1: otpki.common.core.certificate_authority.v1.CertificateAuthority.alternative_signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
-	4, // 2: otpki.common.core.certificate_authority.v1.CertificateAuthority.certificate_template:type_name -> otpki.common.x509.v1.CertificateTemplate
-	5, // 3: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_validity_period:type_name -> google.protobuf.Duration
-	5, // 4: otpki.common.core.certificate_authority.v1.CertificateAuthority.delta_crl_validity_period:type_name -> google.protobuf.Duration
-	6, // 5: otpki.common.core.certificate_authority.v1.CertificateAuthority.created_at:type_name -> google.protobuf.Timestamp
-	6, // 6: otpki.common.core.certificate_authority.v1.CertificateAuthority.updated_at:type_name -> google.protobuf.Timestamp
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	4, // 0: otpki.common.core.certificate_authority.v1.CertificateAuthority.signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
+	4, // 1: otpki.common.core.certificate_authority.v1.CertificateAuthority.alternative_signature_algorithm:type_name -> otpki.common.x509.v1.SignatureAlgorithm
+	5, // 2: otpki.common.core.certificate_authority.v1.CertificateAuthority.certificate_template:type_name -> otpki.common.x509.v1.CertificateTemplate
+	6, // 3: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_validity_period:type_name -> google.protobuf.Duration
+	6, // 4: otpki.common.core.certificate_authority.v1.CertificateAuthority.delta_crl_validity_period:type_name -> google.protobuf.Duration
+	0, // 5: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_partition_mode:type_name -> otpki.common.core.certificate_authority.v1.PartitionMode
+	7, // 6: otpki.common.core.certificate_authority.v1.CertificateAuthority.created_at:type_name -> google.protobuf.Timestamp
+	7, // 7: otpki.common.core.certificate_authority.v1.CertificateAuthority.updated_at:type_name -> google.protobuf.Timestamp
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_init() }
@@ -430,13 +513,14 @@ func file_otpki_common_core_certificate_authority_v1_certificate_authority_proto
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDesc), len(file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_goTypes,
 		DependencyIndexes: file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_depIdxs,
+		EnumInfos:         file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_enumTypes,
 		MessageInfos:      file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_msgTypes,
 	}.Build()
 	File_otpki_common_core_certificate_authority_v1_certificate_authority_proto = out.File

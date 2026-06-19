@@ -6,49 +6,35 @@ import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2
 import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb.js";
 import { file_google_api_annotations } from "../../../../../google/api/annotations_pb.js";
 import { file_google_api_httpbody } from "../../../../../google/api/httpbody_pb.js";
-import { file_otpki_common_api_v1_httpbody } from "../../../../common/api/v1/httpbody_pb.js";
-import { file_otpki_common_x509_v1_revocation_list } from "../../../../common/x509/v1/revocation_list_pb.js";
+import { file_otpki_common_api_v1_auth_required } from "../../../../common/api/v1/auth_required_pb.js";
+import { file_otpki_common_core_revocation_list_v1_revocation_list } from "../../../../common/core/revocation_list/v1/revocation_list_pb.js";
 
 /**
  * Describes the file otpki/public/validation/revocation_list/v1/revocation_list.proto.
  */
 export const file_otpki_public_validation_revocation_list_v1_revocation_list = /*@__PURE__*/
-  fileDesc("CkBvdHBraS9wdWJsaWMvdmFsaWRhdGlvbi9yZXZvY2F0aW9uX2xpc3QvdjEvcmV2b2NhdGlvbl9saXN0LnByb3RvEipvdHBraS5wdWJsaWMudmFsaWRhdGlvbi5yZXZvY2F0aW9uX2xpc3QudjEiOQoeR2V0TGF0ZXN0UmV2b2NhdGlvbkxpc3RSZXF1ZXN0EhcKBWNhX2lkGAEgASgJQgi6SAVyA7ABASJgCh9HZXRMYXRlc3RSZXZvY2F0aW9uTGlzdFJlc3BvbnNlEj0KD3Jldm9jYXRpb25fbGlzdBgBIAEoCzIkLm90cGtpLmNvbW1vbi54NTA5LnYxLlJldm9jYXRpb25MaXN0IjAKGEdldFJldm9jYXRpb25MaXN0UmVxdWVzdBIUCgJpZBgBIAEoCUIIukgFcgOwAQEiWgoZR2V0UmV2b2NhdGlvbkxpc3RSZXNwb25zZRI9Cg9yZXZvY2F0aW9uX2xpc3QYASABKAsyJC5vdHBraS5jb21tb24ueDUwOS52MS5SZXZvY2F0aW9uTGlzdCIyChtDUkxEaXN0cmlidXRpb25Qb2ludFJlcXVlc3QSEwoLZmluZ2VycHJpbnQYASABKAkyswUKFVJldm9jYXRpb25MaXN0U2VydmljZRL9AQoXR2V0TGF0ZXN0UmV2b2NhdGlvbkxpc3QSSi5vdHBraS5wdWJsaWMudmFsaWRhdGlvbi5yZXZvY2F0aW9uX2xpc3QudjEuR2V0TGF0ZXN0UmV2b2NhdGlvbkxpc3RSZXF1ZXN0Gksub3Rwa2kucHVibGljLnZhbGlkYXRpb24ucmV2b2NhdGlvbl9saXN0LnYxLkdldExhdGVzdFJldm9jYXRpb25MaXN0UmVzcG9uc2UiSZACAYLT5JMCQBI+L3YxL2NlcnRpZmljYXRlLWF1dGhvcml0aWVzL3ZhbGlkYXRpb24ve2NhX2lkfS9yZXZvY2F0aW9uLWxpc3QSxgEKEUdldFJldm9jYXRpb25MaXN0EkQub3Rwa2kucHVibGljLnZhbGlkYXRpb24ucmV2b2NhdGlvbl9saXN0LnYxLkdldFJldm9jYXRpb25MaXN0UmVxdWVzdBpFLm90cGtpLnB1YmxpYy52YWxpZGF0aW9uLnJldm9jYXRpb25fbGlzdC52MS5HZXRSZXZvY2F0aW9uTGlzdFJlc3BvbnNlIiSQAgGC0+STAhsSGS92MS9yZXZvY2F0aW9uLWxpc3RzL3tpZH0S0AEKFENSTERpc3RyaWJ1dGlvblBvaW50Ekcub3Rwa2kucHVibGljLnZhbGlkYXRpb24ucmV2b2NhdGlvbl9saXN0LnYxLkNSTERpc3RyaWJ1dGlvblBvaW50UmVxdWVzdBoULmdvb2dsZS5hcGkuSHR0cEJvZHkiWZACAYLT5JMCUBJOL3YxL2NlcnRpZmljYXRlLWF1dGhvcml0aWVzL3ZhbGlkYXRpb24vYnktZmluZ2VycHJpbnQve2ZpbmdlcnByaW50fS9sYXRlc3QuY3JsQpACCi5jb20ub3Rwa2kucHVibGljLnZhbGlkYXRpb24ucmV2b2NhdGlvbl9saXN0LnYxQhNSZXZvY2F0aW9uTGlzdFByb3RvUAGiAgRPUFZSqgIpT3Rwa2kuUHVibGljLlZhbGlkYXRpb24uUmV2b2NhdGlvbkxpc3QuVjHKAipPdHBraVxQdWJsaWNfXFZhbGlkYXRpb25cUmV2b2NhdGlvbkxpc3RcVjHiAjZPdHBraVxQdWJsaWNfXFZhbGlkYXRpb25cUmV2b2NhdGlvbkxpc3RcVjFcR1BCTWV0YWRhdGHqAi1PdHBraTo6UHVibGljOjpWYWxpZGF0aW9uOjpSZXZvY2F0aW9uTGlzdDo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_api_annotations, file_google_api_httpbody, file_otpki_common_api_v1_httpbody, file_otpki_common_x509_v1_revocation_list]);
-
-/**
- * Describes the message otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest.
- * Use `create(GetLatestRevocationListRequestSchema)` to create a new message.
- */
-export const GetLatestRevocationListRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 0);
-
-/**
- * Describes the message otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse.
- * Use `create(GetLatestRevocationListResponseSchema)` to create a new message.
- */
-export const GetLatestRevocationListResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 1);
+  fileDesc("CkBvdHBraS9wdWJsaWMvdmFsaWRhdGlvbi9yZXZvY2F0aW9uX2xpc3QvdjEvcmV2b2NhdGlvbl9saXN0LnByb3RvEipvdHBraS5wdWJsaWMudmFsaWRhdGlvbi5yZXZvY2F0aW9uX2xpc3QudjEiMAoYR2V0UmV2b2NhdGlvbkxpc3RSZXF1ZXN0EhQKAmlkGAEgASgJQgi6SAVyA7ABASJqChlHZXRSZXZvY2F0aW9uTGlzdFJlc3BvbnNlEk0KD3Jldm9jYXRpb25fbGlzdBgBIAEoCzI0Lm90cGtpLmNvbW1vbi5jb3JlLnJldm9jYXRpb25fbGlzdC52MS5SZXZvY2F0aW9uTGlzdCJBChtDUkxEaXN0cmlidXRpb25Qb2ludFJlcXVlc3QSEQoJY2VydF9oYXNoGAEgASgJEg8KB3BhcnRfaWQYAiABKAky/wIKFVJldm9jYXRpb25MaXN0U2VydmljZRLGAQoRR2V0UmV2b2NhdGlvbkxpc3QSRC5vdHBraS5wdWJsaWMudmFsaWRhdGlvbi5yZXZvY2F0aW9uX2xpc3QudjEuR2V0UmV2b2NhdGlvbkxpc3RSZXF1ZXN0GkUub3Rwa2kucHVibGljLnZhbGlkYXRpb24ucmV2b2NhdGlvbl9saXN0LnYxLkdldFJldm9jYXRpb25MaXN0UmVzcG9uc2UiJJACAYLT5JMCGxIZL3YxL3Jldm9jYXRpb24tbGlzdHMve2lkfRKcAQoUQ1JMRGlzdHJpYnV0aW9uUG9pbnQSRy5vdHBraS5wdWJsaWMudmFsaWRhdGlvbi5yZXZvY2F0aW9uX2xpc3QudjEuQ1JMRGlzdHJpYnV0aW9uUG9pbnRSZXF1ZXN0GhQuZ29vZ2xlLmFwaS5IdHRwQm9keSIlkAIB2LUYAILT5JMCGBIWL3YxL3ZhbGlkYXRpb24vY2RwLmNybEKQAgouY29tLm90cGtpLnB1YmxpYy52YWxpZGF0aW9uLnJldm9jYXRpb25fbGlzdC52MUITUmV2b2NhdGlvbkxpc3RQcm90b1ABogIET1BWUqoCKU90cGtpLlB1YmxpYy5WYWxpZGF0aW9uLlJldm9jYXRpb25MaXN0LlYxygIqT3Rwa2lcUHVibGljX1xWYWxpZGF0aW9uXFJldm9jYXRpb25MaXN0XFYx4gI2T3Rwa2lcUHVibGljX1xWYWxpZGF0aW9uXFJldm9jYXRpb25MaXN0XFYxXEdQQk1ldGFkYXRh6gItT3Rwa2k6OlB1YmxpYzo6VmFsaWRhdGlvbjo6UmV2b2NhdGlvbkxpc3Q6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_api_annotations, file_google_api_httpbody, file_otpki_common_api_v1_auth_required, file_otpki_common_core_revocation_list_v1_revocation_list]);
 
 /**
  * Describes the message otpki.public.validation.revocation_list.v1.GetRevocationListRequest.
  * Use `create(GetRevocationListRequestSchema)` to create a new message.
  */
 export const GetRevocationListRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 2);
+  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 0);
 
 /**
  * Describes the message otpki.public.validation.revocation_list.v1.GetRevocationListResponse.
  * Use `create(GetRevocationListResponseSchema)` to create a new message.
  */
 export const GetRevocationListResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 3);
+  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 1);
 
 /**
  * Describes the message otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest.
  * Use `create(CRLDistributionPointRequestSchema)` to create a new message.
  */
 export const CRLDistributionPointRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 4);
+  messageDesc(file_otpki_public_validation_revocation_list_v1_revocation_list, 2);
 
 /**
  * @generated from service otpki.public.validation.revocation_list.v1.RevocationListService

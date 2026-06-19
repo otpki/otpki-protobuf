@@ -45,6 +45,7 @@ type IssuedCertificate struct {
 	IssuedFromCertificateProfileId string                   `protobuf:"bytes,14,opt,name=issued_from_certificate_profile_id,json=issuedFromCertificateProfileId,proto3" json:"issued_from_certificate_profile_id,omitempty"`
 	IssuedFromIssuanceRequestId    string                   `protobuf:"bytes,15,opt,name=issued_from_issuance_request_id,json=issuedFromIssuanceRequestId,proto3" json:"issued_from_issuance_request_id,omitempty"`
 	ProtocolUsed                   v11.IssuingProtocol      `protobuf:"varint,16,opt,name=protocol_used,json=protocolUsed,proto3,enum=otpki.common.core.issuer.v1.IssuingProtocol" json:"protocol_used,omitempty"`
+	PartitionIdentifier            string                   `protobuf:"bytes,17,opt,name=partition_identifier,json=partitionIdentifier,proto3" json:"partition_identifier,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -195,6 +196,13 @@ func (x *IssuedCertificate) GetProtocolUsed() v11.IssuingProtocol {
 	return v11.IssuingProtocol(0)
 }
 
+func (x *IssuedCertificate) GetPartitionIdentifier() string {
+	if x != nil {
+		return x.PartitionIdentifier
+	}
+	return ""
+}
+
 func (x *IssuedCertificate) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -213,7 +221,7 @@ var File_otpki_common_core_issued_certificate_v1_issued_certificate_proto protor
 
 const file_otpki_common_core_issued_certificate_v1_issued_certificate_proto_rawDesc = "" +
 	"\n" +
-	"@otpki/common/core/issued_certificate/v1/issued_certificate.proto\x12'otpki.common.core.issued_certificate.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\x92\n" +
+	"@otpki/common/core/issued_certificate/v1/issued_certificate.proto\x12'otpki.common.core.issued_certificate.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a(otpki/common/core/issuer/v1/issuer.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xc5\n" +
 	"\n" +
 	"\x11IssuedCertificate\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
@@ -236,7 +244,8 @@ const file_otpki_common_core_issued_certificate_v1_issued_certificate_proto_rawD
 	"\x1bissued_by_ca_certificate_id\x18\r \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x02R\x17issuedByCaCertificateId\x88\x01\x01\x12T\n" +
 	"\"issued_from_certificate_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x1eissuedFromCertificateProfileId\x12N\n" +
 	"\x1fissued_from_issuance_request_id\x18\x0f \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x1bissuedFromIssuanceRequestId\x12Q\n" +
-	"\rprotocol_used\x18\x10 \x01(\x0e2,.otpki.common.core.issuer.v1.IssuingProtocolR\fprotocolUsed\x12V\n" +
+	"\rprotocol_used\x18\x10 \x01(\x0e2,.otpki.common.core.issuer.v1.IssuingProtocolR\fprotocolUsed\x121\n" +
+	"\x14partition_identifier\x18\x11 \x01(\tR\x13partitionIdentifier\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +

@@ -4,69 +4,13 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { RevocationList, RevocationListJson } from "../../../../common/x509/v1/revocation_list_pb.js";
+import type { RevocationList, RevocationListJson } from "../../../../common/core/revocation_list/v1/revocation_list_pb.js";
 import type { HttpBodySchema } from "../../../../../google/api/httpbody_pb.js";
 
 /**
  * Describes the file otpki/public/validation/revocation_list/v1/revocation_list.proto.
  */
 export declare const file_otpki_public_validation_revocation_list_v1_revocation_list: GenFile;
-
-/**
- * @generated from message otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest
- */
-export declare type GetLatestRevocationListRequest = Message<"otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest"> & {
-  /**
-   * @generated from field: string ca_id = 1;
-   */
-  caId: string;
-};
-
-/**
- * @generated from message otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest
- */
-export declare type GetLatestRevocationListRequestJson = {
-  /**
-   * @generated from field: string ca_id = 1;
-   */
-  caId?: string;
-};
-
-export declare type GetLatestRevocationListRequestValid = GetLatestRevocationListRequest;
-
-/**
- * Describes the message otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest.
- * Use `create(GetLatestRevocationListRequestSchema)` to create a new message.
- */
-export declare const GetLatestRevocationListRequestSchema: GenMessage<GetLatestRevocationListRequest, {jsonType: GetLatestRevocationListRequestJson, validType: GetLatestRevocationListRequestValid}>;
-
-/**
- * @generated from message otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse
- */
-export declare type GetLatestRevocationListResponse = Message<"otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse"> & {
-  /**
-   * @generated from field: otpki.common.x509.v1.RevocationList revocation_list = 1;
-   */
-  revocationList?: RevocationList;
-};
-
-/**
- * @generated from message otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse
- */
-export declare type GetLatestRevocationListResponseJson = {
-  /**
-   * @generated from field: otpki.common.x509.v1.RevocationList revocation_list = 1;
-   */
-  revocationList?: RevocationListJson;
-};
-
-export declare type GetLatestRevocationListResponseValid = GetLatestRevocationListResponse;
-
-/**
- * Describes the message otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse.
- * Use `create(GetLatestRevocationListResponseSchema)` to create a new message.
- */
-export declare const GetLatestRevocationListResponseSchema: GenMessage<GetLatestRevocationListResponse, {jsonType: GetLatestRevocationListResponseJson, validType: GetLatestRevocationListResponseValid}>;
 
 /**
  * @generated from message otpki.public.validation.revocation_list.v1.GetRevocationListRequest
@@ -101,7 +45,7 @@ export declare const GetRevocationListRequestSchema: GenMessage<GetRevocationLis
  */
 export declare type GetRevocationListResponse = Message<"otpki.public.validation.revocation_list.v1.GetRevocationListResponse"> & {
   /**
-   * @generated from field: otpki.common.x509.v1.RevocationList revocation_list = 1;
+   * @generated from field: otpki.common.core.revocation_list.v1.RevocationList revocation_list = 1;
    */
   revocationList?: RevocationList;
 };
@@ -111,7 +55,7 @@ export declare type GetRevocationListResponse = Message<"otpki.public.validation
  */
 export declare type GetRevocationListResponseJson = {
   /**
-   * @generated from field: otpki.common.x509.v1.RevocationList revocation_list = 1;
+   * @generated from field: otpki.common.core.revocation_list.v1.RevocationList revocation_list = 1;
    */
   revocationList?: RevocationListJson;
 };
@@ -129,9 +73,14 @@ export declare const GetRevocationListResponseSchema: GenMessage<GetRevocationLi
  */
 export declare type CRLDistributionPointRequest = Message<"otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest"> & {
   /**
-   * @generated from field: string fingerprint = 1;
+   * @generated from field: string cert_hash = 1;
    */
-  fingerprint: string;
+  certHash: string;
+
+  /**
+   * @generated from field: string part_id = 2;
+   */
+  partId: string;
 };
 
 /**
@@ -139,9 +88,14 @@ export declare type CRLDistributionPointRequest = Message<"otpki.public.validati
  */
 export declare type CRLDistributionPointRequestJson = {
   /**
-   * @generated from field: string fingerprint = 1;
+   * @generated from field: string cert_hash = 1;
    */
-  fingerprint?: string;
+  certHash?: string;
+
+  /**
+   * @generated from field: string part_id = 2;
+   */
+  partId?: string;
 };
 
 export declare type CRLDistributionPointRequestValid = CRLDistributionPointRequest;
@@ -156,14 +110,6 @@ export declare const CRLDistributionPointRequestSchema: GenMessage<CRLDistributi
  * @generated from service otpki.public.validation.revocation_list.v1.RevocationListService
  */
 export declare const RevocationListService: GenService<{
-  /**
-   * @generated from rpc otpki.public.validation.revocation_list.v1.RevocationListService.GetLatestRevocationList
-   */
-  getLatestRevocationList: {
-    methodKind: "unary";
-    input: typeof GetLatestRevocationListRequestSchema;
-    output: typeof GetLatestRevocationListResponseSchema;
-  },
   /**
    * @generated from rpc otpki.public.validation.revocation_list.v1.RevocationListService.GetRevocationList
    */

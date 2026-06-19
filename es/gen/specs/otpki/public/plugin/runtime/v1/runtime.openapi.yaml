@@ -1145,6 +1145,19 @@ components:
             - "null"
           title: approval_profile_id
           format: uuid
+        crlPartitionMode:
+          title: crl_partition_mode
+          $ref: '#/components/schemas/otpki.common.core.certificate_authority.v1.PartitionMode'
+        numCrlPartitions:
+          type:
+            - integer
+            - string
+          title: num_crl_partitions
+          minimum: 0
+          format: int64
+        crlIncludeExpired:
+          type: boolean
+          title: crl_include_expired
         createdAt:
           title: created_at
           description: not settable on creation
@@ -1189,6 +1202,13 @@ components:
           title: display_name
       title: CertificateAuthorityCertificate
       additionalProperties: false
+    otpki.common.core.certificate_authority.v1.PartitionMode:
+      type: string
+      title: PartitionMode
+      enum:
+        - PARTITION_MODE_UNSPECIFIED
+        - PARTITION_MODE_FIXED
+        - PARTITION_MODE_MSCOMPAT
     otpki.common.core.certificate_profile.v1.CertificateProfile:
       type: object
       properties:

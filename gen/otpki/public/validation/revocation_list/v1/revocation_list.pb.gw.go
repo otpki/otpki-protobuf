@@ -35,45 +35,6 @@ var (
 	_ = metadata.Join
 )
 
-func request_RevocationListService_GetLatestRevocationList_0(ctx context.Context, marshaler runtime.Marshaler, client RevocationListServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetLatestRevocationListRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	val, ok := pathParams["ca_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
-	}
-	protoReq.CaId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
-	}
-	msg, err := client.GetLatestRevocationList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_RevocationListService_GetLatestRevocationList_0(ctx context.Context, marshaler runtime.Marshaler, server RevocationListServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetLatestRevocationListRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["ca_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "ca_id")
-	}
-	protoReq.CaId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "ca_id", err)
-	}
-	msg, err := server.GetLatestRevocationList(ctx, &protoReq)
-	return msg, metadata, err
-}
-
 func request_RevocationListService_GetRevocationList_0(ctx context.Context, marshaler runtime.Marshaler, client RevocationListServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq GetRevocationListRequest
@@ -113,22 +74,21 @@ func local_request_RevocationListService_GetRevocationList_0(ctx context.Context
 	return msg, metadata, err
 }
 
+var filter_RevocationListService_CRLDistributionPoint_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
 func request_RevocationListService_CRLDistributionPoint_0(ctx context.Context, marshaler runtime.Marshaler, client RevocationListServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq CRLDistributionPointRequest
 		metadata runtime.ServerMetadata
-		err      error
 	)
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	val, ok := pathParams["fingerprint"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "fingerprint")
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	protoReq.Fingerprint, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "fingerprint", err)
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_RevocationListService_CRLDistributionPoint_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := client.CRLDistributionPoint(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -138,15 +98,12 @@ func local_request_RevocationListService_CRLDistributionPoint_0(ctx context.Cont
 	var (
 		protoReq CRLDistributionPointRequest
 		metadata runtime.ServerMetadata
-		err      error
 	)
-	val, ok := pathParams["fingerprint"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "fingerprint")
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	protoReq.Fingerprint, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "fingerprint", err)
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_RevocationListService_CRLDistributionPoint_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.CRLDistributionPoint(ctx, &protoReq)
 	return msg, metadata, err
@@ -158,26 +115,6 @@ func local_request_RevocationListService_CRLDistributionPoint_0(ctx context.Cont
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterRevocationListServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterRevocationListServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server RevocationListServiceServer) error {
-	mux.Handle(http.MethodGet, pattern_RevocationListService_GetLatestRevocationList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/{ca_id}/revocation-list"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_RevocationListService_GetLatestRevocationList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_RevocationListService_GetLatestRevocationList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodGet, pattern_RevocationListService_GetRevocationList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -204,7 +141,7 @@ func RegisterRevocationListServiceHandlerServer(ctx context.Context, mux *runtim
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/validation/cdp.crl"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -258,23 +195,6 @@ func RegisterRevocationListServiceHandler(ctx context.Context, mux *runtime.Serv
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "RevocationListServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterRevocationListServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client RevocationListServiceClient) error {
-	mux.Handle(http.MethodGet, pattern_RevocationListService_GetLatestRevocationList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/{ca_id}/revocation-list"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_RevocationListService_GetLatestRevocationList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_RevocationListService_GetLatestRevocationList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
 	mux.Handle(http.MethodGet, pattern_RevocationListService_GetRevocationList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -296,7 +216,7 @@ func RegisterRevocationListServiceHandlerClient(ctx context.Context, mux *runtim
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint", runtime.WithHTTPPathPattern("/v1/validation/cdp.crl"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -313,13 +233,11 @@ func RegisterRevocationListServiceHandlerClient(ctx context.Context, mux *runtim
 }
 
 var (
-	pattern_RevocationListService_GetLatestRevocationList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"v1", "certificate-authorities", "validation", "ca_id", "revocation-list"}, ""))
-	pattern_RevocationListService_GetRevocationList_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "revocation-lists", "id"}, ""))
-	pattern_RevocationListService_CRLDistributionPoint_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5}, []string{"v1", "certificate-authorities", "validation", "by-fingerprint", "fingerprint", "latest.crl"}, ""))
+	pattern_RevocationListService_GetRevocationList_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "revocation-lists", "id"}, ""))
+	pattern_RevocationListService_CRLDistributionPoint_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "validation", "cdp.crl"}, ""))
 )
 
 var (
-	forward_RevocationListService_GetLatestRevocationList_0 = runtime.ForwardResponseMessage
-	forward_RevocationListService_GetRevocationList_0       = runtime.ForwardResponseMessage
-	forward_RevocationListService_CRLDistributionPoint_0    = runtime.ForwardResponseMessage
+	forward_RevocationListService_GetRevocationList_0    = runtime.ForwardResponseMessage
+	forward_RevocationListService_CRLDistributionPoint_0 = runtime.ForwardResponseMessage
 )

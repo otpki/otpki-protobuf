@@ -4,6 +4,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
+import type { RevocationList, RevocationListJson } from "../../revocation_list/v1/revocation_list_pb.js";
 
 /**
  * Describes the file otpki/common/core/publisher/v1/payload.proto.
@@ -20,9 +21,9 @@ export declare type CrlPublishedPayload = Message<"otpki.common.core.publisher.v
   caId: string;
 
   /**
-   * @generated from field: bytes crl_der = 2;
+   * @generated from field: otpki.common.core.revocation_list.v1.RevocationList crl = 2;
    */
-  crlDer: Uint8Array;
+  crl?: RevocationList;
 };
 
 /**
@@ -35,9 +36,9 @@ export declare type CrlPublishedPayloadJson = {
   caId?: string;
 
   /**
-   * @generated from field: bytes crl_der = 2;
+   * @generated from field: otpki.common.core.revocation_list.v1.RevocationList crl = 2;
    */
-  crlDer?: string;
+  crl?: RevocationListJson;
 };
 
 export declare type CrlPublishedPayloadValid = CrlPublishedPayload;

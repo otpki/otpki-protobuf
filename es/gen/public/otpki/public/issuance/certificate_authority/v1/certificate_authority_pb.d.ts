@@ -8,7 +8,7 @@ import type { CertificateAuthority, CertificateAuthorityCertificate, Certificate
 import type { Key, KeyJson, KeyValid } from "../../../../common/core/key/v1/key_pb.js";
 import type { PaginationRequest, PaginationRequestJson, PaginationResponse, PaginationResponseJson, PaginationResponseValid } from "../../../../common/api/query/v1/query_pb.js";
 import type { FieldMask, FieldMaskJson } from "@bufbuild/protobuf/wkt";
-import type { RevocationList, RevocationListJson } from "../../../../common/x509/v1/revocation_list_pb.js";
+import type { RevocationList, RevocationListJson } from "../../../../common/core/revocation_list/v1/revocation_list_pb.js";
 
 /**
  * Describes the file otpki/public/issuance/certificate_authority/v1/certificate_authority.proto.
@@ -994,9 +994,9 @@ export declare const CreateRevocationListRequestSchema: GenMessage<CreateRevocat
  */
 export declare type CreateRevocationListResponse = Message<"otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse"> & {
   /**
-   * @generated from field: otpki.common.x509.v1.RevocationList revocation_list = 1;
+   * @generated from field: repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
    */
-  revocationList?: RevocationList;
+  revocationLists: RevocationList[];
 };
 
 /**
@@ -1004,9 +1004,9 @@ export declare type CreateRevocationListResponse = Message<"otpki.public.issuanc
  */
 export declare type CreateRevocationListResponseJson = {
   /**
-   * @generated from field: otpki.common.x509.v1.RevocationList revocation_list = 1;
+   * @generated from field: repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
    */
-  revocationList?: RevocationListJson;
+  revocationLists?: RevocationListJson[];
 };
 
 export declare type CreateRevocationListResponseValid = CreateRevocationListResponse;

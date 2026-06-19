@@ -31,9 +31,9 @@ import * as mod27 from './public/otpki/common/core/key_storage_config/v1/enum_pb
 import * as mod28 from './public/otpki/common/core/key_storage_config/v1/key_storage_config_pb.js';
 import * as mod29 from './public/otpki/common/core/publisher/v1/payload_pb.js';
 import * as mod30 from './public/otpki/common/core/publisher/v1/publisher_pb.js';
-import * as mod31 from './public/otpki/common/core/task_log/v1/task_log_pb.js';
-import * as mod32 from './public/otpki/common/x509/v1/certificate_template_pb.js';
-import * as mod33 from './public/otpki/common/x509/v1/revocation_list_pb.js';
+import * as mod31 from './public/otpki/common/core/revocation_list/v1/revocation_list_pb.js';
+import * as mod32 from './public/otpki/common/core/task_log/v1/task_log_pb.js';
+import * as mod33 from './public/otpki/common/x509/v1/certificate_template_pb.js';
 import * as mod34 from './public/otpki/common/x509/v1/x509_pb.js';
 import * as mod35 from './public/otpki/public/auth/approval_profile/v1/approval_profile_pb.js';
 import * as mod36 from './public/otpki/public/auth/group/v1/group_pb.js';

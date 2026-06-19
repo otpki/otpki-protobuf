@@ -2,8 +2,8 @@
 // @generated from file otpki/common/core/certificate_authority/v1/certificate_authority.proto (package otpki.common.core.certificate_authority.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb.js";
 import type { Duration, DurationJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_duration, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
@@ -19,7 +19,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/core/certificate_authority/v1/certificate_authority.proto.
  */
 export const file_otpki_common_core_certificate_authority_v1_certificate_authority: GenFile = /*@__PURE__*/
-  fileDesc("CkZvdHBraS9jb21tb24vY29yZS9jZXJ0aWZpY2F0ZV9hdXRob3JpdHkvdjEvY2VydGlmaWNhdGVfYXV0aG9yaXR5LnByb3RvEipvdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEi2QcKFENlcnRpZmljYXRlQXV0aG9yaXR5EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEgwKBG5hbWUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSGAoGa2V5X2lkGAQgASgJQgi6SAVyA7ABARIpChJhbHRlcm5hdGl2ZV9rZXlfaWQYBSABKAlCCLpIBXIDsAEBSACIAQESeQoTc2lnbmF0dXJlX2FsZ29yaXRobRgGIAEoDjIoLm90cGtpLmNvbW1vbi54NTA5LnYxLlNpZ25hdHVyZUFsZ29yaXRobUIyukgFggECEAGKtRgXeDUwOS5TaWduYXR1cmVBbGdvcml0aG2StRgLY3J5cHRvL3g1MDkShQEKH2FsdGVybmF0aXZlX3NpZ25hdHVyZV9hbGdvcml0aG0YByABKA4yKC5vdHBraS5jb21tb24ueDUwOS52MS5TaWduYXR1cmVBbGdvcml0aG1CMrpIBYIBAhABirUYF3g1MDkuU2lnbmF0dXJlQWxnb3JpdGhtkrUYC2NyeXB0by94NTA5EkcKFGNlcnRpZmljYXRlX3RlbXBsYXRlGAggASgLMikub3Rwa2kuY29tbW9uLng1MDkudjEuQ2VydGlmaWNhdGVUZW1wbGF0ZRJRChNjcmxfdmFsaWRpdHlfcGVyaW9kGAkgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQhmKtRgNdGltZS5EdXJhdGlvbpK1GAR0aW1lElcKGWRlbHRhX2NybF92YWxpZGl0eV9wZXJpb2QYCiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CGYq1GA10aW1lLkR1cmF0aW9ukrUYBHRpbWUSIwobY3JsX2Rpc3RyaWJ1dGlvbl9wb2ludF91cmlzGAsgAygJEhEKCW9jc3BfdXJpcxgMIAMoCRITCgtpc3N1ZXJfdXJpcxgNIAMoCRIqChNhcHByb3ZhbF9wcm9maWxlX2lkGA4gASgJQgi6SAVyA7ABAUgBiAEBEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYAUIVChNfYWx0ZXJuYXRpdmVfa2V5X2lkQhYKFF9hcHByb3ZhbF9wcm9maWxlX2lkIvEBCh9DZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlEhQKAmlkGAEgASgJQgi6SAVyA7ABARIqChhjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfaWQYAiABKAlCCLpIBXIDsAEBEhMKC2NlcnRpZmljYXRlGAMgASgMEhkKEWNlcnRpZmljYXRlX2NoYWluGAQgAygMEiwKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgFIAEoCUIIukgFcgOwAQFIAIgBARIUCgxkaXNwbGF5X25hbWUYBiABKAlCGAoWX2lzc3VlZF9jZXJ0aWZpY2F0ZV9pZCJ8CiJDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlS2V5EiMKEWNhX2NlcnRpZmljYXRlX2lkGAEgASgJQgi6SAVyA7ABARIYCgZrZXlfaWQYAiABKAlCCLpIBXIDsAEBEhcKD2FsdGVybmF0aXZlX2tleRgDIAEoCEKUAgouY29tLm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MUIZQ2VydGlmaWNhdGVBdXRob3JpdHlQcm90b1ABogIET0NDQ6oCKU90cGtpLkNvbW1vbi5Db3JlLkNlcnRpZmljYXRlQXV0aG9yaXR5LlYxygIpT3Rwa2lcQ29tbW9uXENvcmVcQ2VydGlmaWNhdGVBdXRob3JpdHlcVjHiAjVPdHBraVxDb21tb25cQ29yZVxDZXJ0aWZpY2F0ZUF1dGhvcml0eVxWMVxHUEJNZXRhZGF0YeoCLU90cGtpOjpDb21tb246OkNvcmU6OkNlcnRpZmljYXRlQXV0aG9yaXR5OjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_duration, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template, file_otpki_common_x509_v1_x509]);
+  fileDesc("CkZvdHBraS9jb21tb24vY29yZS9jZXJ0aWZpY2F0ZV9hdXRob3JpdHkvdjEvY2VydGlmaWNhdGVfYXV0aG9yaXR5LnByb3RvEipvdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEi8ggKFENlcnRpZmljYXRlQXV0aG9yaXR5EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEgwKBG5hbWUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSGAoGa2V5X2lkGAQgASgJQgi6SAVyA7ABARIpChJhbHRlcm5hdGl2ZV9rZXlfaWQYBSABKAlCCLpIBXIDsAEBSACIAQESeQoTc2lnbmF0dXJlX2FsZ29yaXRobRgGIAEoDjIoLm90cGtpLmNvbW1vbi54NTA5LnYxLlNpZ25hdHVyZUFsZ29yaXRobUIyukgFggECEAGKtRgXeDUwOS5TaWduYXR1cmVBbGdvcml0aG2StRgLY3J5cHRvL3g1MDkShQEKH2FsdGVybmF0aXZlX3NpZ25hdHVyZV9hbGdvcml0aG0YByABKA4yKC5vdHBraS5jb21tb24ueDUwOS52MS5TaWduYXR1cmVBbGdvcml0aG1CMrpIBYIBAhABirUYF3g1MDkuU2lnbmF0dXJlQWxnb3JpdGhtkrUYC2NyeXB0by94NTA5EkcKFGNlcnRpZmljYXRlX3RlbXBsYXRlGAggASgLMikub3Rwa2kuY29tbW9uLng1MDkudjEuQ2VydGlmaWNhdGVUZW1wbGF0ZRJRChNjcmxfdmFsaWRpdHlfcGVyaW9kGAkgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQhmKtRgNdGltZS5EdXJhdGlvbpK1GAR0aW1lElcKGWRlbHRhX2NybF92YWxpZGl0eV9wZXJpb2QYCiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CGYq1GA10aW1lLkR1cmF0aW9ukrUYBHRpbWUSIwobY3JsX2Rpc3RyaWJ1dGlvbl9wb2ludF91cmlzGAsgAygJEhEKCW9jc3BfdXJpcxgMIAMoCRITCgtpc3N1ZXJfdXJpcxgNIAMoCRIqChNhcHByb3ZhbF9wcm9maWxlX2lkGA4gASgJQgi6SAVyA7ABAUgBiAEBElUKEmNybF9wYXJ0aXRpb25fbW9kZRgPIAEoDjI5Lm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5QYXJ0aXRpb25Nb2RlEiMKEm51bV9jcmxfcGFydGl0aW9ucxgQIAEoA0IHukgEIgIoABIbChNjcmxfaW5jbHVkZV9leHBpcmVkGBEgASgIEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYAUIVChNfYWx0ZXJuYXRpdmVfa2V5X2lkQhYKFF9hcHByb3ZhbF9wcm9maWxlX2lkIvEBCh9DZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlEhQKAmlkGAEgASgJQgi6SAVyA7ABARIqChhjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfaWQYAiABKAlCCLpIBXIDsAEBEhMKC2NlcnRpZmljYXRlGAMgASgMEhkKEWNlcnRpZmljYXRlX2NoYWluGAQgAygMEiwKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgFIAEoCUIIukgFcgOwAQFIAIgBARIUCgxkaXNwbGF5X25hbWUYBiABKAlCGAoWX2lzc3VlZF9jZXJ0aWZpY2F0ZV9pZCJ8CiJDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlS2V5EiMKEWNhX2NlcnRpZmljYXRlX2lkGAEgASgJQgi6SAVyA7ABARIYCgZrZXlfaWQYAiABKAlCCLpIBXIDsAEBEhcKD2FsdGVybmF0aXZlX2tleRgDIAEoCCpmCg1QYXJ0aXRpb25Nb2RlEh4KGlBBUlRJVElPTl9NT0RFX1VOU1BFQ0lGSUVEEAASGAoUUEFSVElUSU9OX01PREVfRklYRUQQARIbChdQQVJUSVRJT05fTU9ERV9NU0NPTVBBVBACQpQCCi5jb20ub3Rwa2kuY29tbW9uLmNvcmUuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxQhlDZXJ0aWZpY2F0ZUF1dGhvcml0eVByb3RvUAGiAgRPQ0NDqgIpT3Rwa2kuQ29tbW9uLkNvcmUuQ2VydGlmaWNhdGVBdXRob3JpdHkuVjHKAilPdHBraVxDb21tb25cQ29yZVxDZXJ0aWZpY2F0ZUF1dGhvcml0eVxWMeICNU90cGtpXENvbW1vblxDb3JlXENlcnRpZmljYXRlQXV0aG9yaXR5XFYxXEdQQk1ldGFkYXRh6gItT3Rwa2k6OkNvbW1vbjo6Q29yZTo6Q2VydGlmaWNhdGVBdXRob3JpdHk6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_duration, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.common.core.certificate_authority.v1.CertificateAuthority
@@ -104,6 +104,21 @@ export type CertificateAuthority = Message<"otpki.common.core.certificate_author
    * @generated from field: optional string approval_profile_id = 14;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   */
+  crlPartitionMode: PartitionMode;
+
+  /**
+   * @generated from field: int64 num_crl_partitions = 16;
+   */
+  numCrlPartitions: bigint;
+
+  /**
+   * @generated from field: bool crl_include_expired = 17;
+   */
+  crlIncludeExpired: boolean;
 
   /**
    * not settable on creation
@@ -205,6 +220,21 @@ export type CertificateAuthorityJson = {
   approvalProfileId?: string;
 
   /**
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   */
+  crlPartitionMode?: PartitionModeJson;
+
+  /**
+   * @generated from field: int64 num_crl_partitions = 16;
+   */
+  numCrlPartitions?: string;
+
+  /**
+   * @generated from field: bool crl_include_expired = 17;
+   */
+  crlIncludeExpired?: boolean;
+
+  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -302,6 +332,21 @@ export type CertificateAuthorityValid = Message<"otpki.common.core.certificate_a
    * @generated from field: optional string approval_profile_id = 14;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   */
+  crlPartitionMode: PartitionMode;
+
+  /**
+   * @generated from field: int64 num_crl_partitions = 16;
+   */
+  numCrlPartitions: bigint;
+
+  /**
+   * @generated from field: bool crl_include_expired = 17;
+   */
+  crlIncludeExpired: boolean;
 
   /**
    * not settable on creation
@@ -452,4 +497,35 @@ export type CertificateAuthorityCertificateKeyValid = CertificateAuthorityCertif
  */
 export const CertificateAuthorityCertificateKeySchema: GenMessage<CertificateAuthorityCertificateKey, {jsonType: CertificateAuthorityCertificateKeyJson, validType: CertificateAuthorityCertificateKeyValid}> = /*@__PURE__*/
   messageDesc(file_otpki_common_core_certificate_authority_v1_certificate_authority, 2);
+
+/**
+ * @generated from enum otpki.common.core.certificate_authority.v1.PartitionMode
+ */
+export enum PartitionMode {
+  /**
+   * @generated from enum value: PARTITION_MODE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: PARTITION_MODE_FIXED = 1;
+   */
+  FIXED = 1,
+
+  /**
+   * @generated from enum value: PARTITION_MODE_MSCOMPAT = 2;
+   */
+  MSCOMPAT = 2,
+}
+
+/**
+ * @generated from enum otpki.common.core.certificate_authority.v1.PartitionMode
+ */
+export type PartitionModeJson = "PARTITION_MODE_UNSPECIFIED" | "PARTITION_MODE_FIXED" | "PARTITION_MODE_MSCOMPAT";
+
+/**
+ * Describes the enum otpki.common.core.certificate_authority.v1.PartitionMode.
+ */
+export const PartitionModeSchema: GenEnum<PartitionMode, PartitionModeJson> = /*@__PURE__*/
+  enumDesc(file_otpki_common_core_certificate_authority_v1_certificate_authority, 0);
 

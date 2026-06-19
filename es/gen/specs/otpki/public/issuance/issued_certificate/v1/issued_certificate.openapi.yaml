@@ -875,6 +875,9 @@ components:
         protocolUsed:
           title: protocol_used
           $ref: '#/components/schemas/otpki.common.core.issuer.v1.IssuingProtocol'
+        partitionIdentifier:
+          type: string
+          title: partition_identifier
         createdAt:
           title: created_at
           description: not settable on creation

@@ -5,13 +5,15 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb.js";
+import type { RevocationList, RevocationListJson } from "../../revocation_list/v1/revocation_list_pb.js";
+import { file_otpki_common_core_revocation_list_v1_revocation_list } from "../../revocation_list/v1/revocation_list_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file otpki/common/core/publisher/v1/payload.proto.
  */
 export const file_otpki_common_core_publisher_v1_payload: GenFile = /*@__PURE__*/
-  fileDesc("CixvdHBraS9jb21tb24vY29yZS9wdWJsaXNoZXIvdjEvcGF5bG9hZC5wcm90bxIeb3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxIkIKE0NybFB1Ymxpc2hlZFBheWxvYWQSGgoFY2FfaWQYASABKAlCC7pICNgBAXIDsAEBEg8KB2NybF9kZXIYAiABKAwinQEKFENlcnRQdWJsaXNoZWRQYXlsb2FkEhoKBWNhX2lkGAEgASgJQgu6SAjYAQFyA7ABARIrChZjZXJ0aWZpY2F0ZV9wcm9maWxlX2lkGAIgASgJQgu6SAjYAQFyA7ABARIjCg5jZXJ0aWZpY2F0ZV9pZBgDIAEoCUILukgI2AEBcgOwAQESFwoPY2VydGlmaWNhdGVfZGVyGAQgASgMIp0BChhDcmVkZW50aWFsc0lzc3VlZFBheWxvYWQSIgoNZW5kX2VudGl0eV9pZBgBIAEoCUILukgI2AEBcgOwAQESKgoVZW5kX2VudGl0eV9wcm9maWxlX2lkGAIgASgJQgu6SAjYAQFyA7ABARINCgVlbWFpbBgDIAEoCRIQCghsb2dpbl9pZBgEIAEoCRIQCghwYXNzd29yZBgFIAEoCULPAQoiY29tLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MUIMUGF5bG9hZFByb3RvUAGiAgRPQ0NQqgIeT3Rwa2kuQ29tbW9uLkNvcmUuUHVibGlzaGVyLlYxygIeT3Rwa2lcQ29tbW9uXENvcmVcUHVibGlzaGVyXFYx4gIqT3Rwa2lcQ29tbW9uXENvcmVcUHVibGlzaGVyXFYxXEdQQk1ldGFkYXRh6gIiT3Rwa2k6OkNvbW1vbjo6Q29yZTo6UHVibGlzaGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate]);
+  fileDesc("CixvdHBraS9jb21tb24vY29yZS9wdWJsaXNoZXIvdjEvcGF5bG9hZC5wcm90bxIeb3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxInQKE0NybFB1Ymxpc2hlZFBheWxvYWQSGgoFY2FfaWQYASABKAlCC7pICNgBAXIDsAEBEkEKA2NybBgCIAEoCzI0Lm90cGtpLmNvbW1vbi5jb3JlLnJldm9jYXRpb25fbGlzdC52MS5SZXZvY2F0aW9uTGlzdCKdAQoUQ2VydFB1Ymxpc2hlZFBheWxvYWQSGgoFY2FfaWQYASABKAlCC7pICNgBAXIDsAEBEisKFmNlcnRpZmljYXRlX3Byb2ZpbGVfaWQYAiABKAlCC7pICNgBAXIDsAEBEiMKDmNlcnRpZmljYXRlX2lkGAMgASgJQgu6SAjYAQFyA7ABARIXCg9jZXJ0aWZpY2F0ZV9kZXIYBCABKAwinQEKGENyZWRlbnRpYWxzSXNzdWVkUGF5bG9hZBIiCg1lbmRfZW50aXR5X2lkGAEgASgJQgu6SAjYAQFyA7ABARIqChVlbmRfZW50aXR5X3Byb2ZpbGVfaWQYAiABKAlCC7pICNgBAXIDsAEBEg0KBWVtYWlsGAMgASgJEhAKCGxvZ2luX2lkGAQgASgJEhAKCHBhc3N3b3JkGAUgASgJQs8BCiJjb20ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxQgxQYXlsb2FkUHJvdG9QAaICBE9DQ1CqAh5PdHBraS5Db21tb24uQ29yZS5QdWJsaXNoZXIuVjHKAh5PdHBraVxDb21tb25cQ29yZVxQdWJsaXNoZXJcVjHiAipPdHBraVxDb21tb25cQ29yZVxQdWJsaXNoZXJcVjFcR1BCTWV0YWRhdGHqAiJPdHBraTo6Q29tbW9uOjpDb3JlOjpQdWJsaXNoZXI6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_otpki_common_core_revocation_list_v1_revocation_list]);
 
 /**
  * @generated from message otpki.common.core.publisher.v1.CrlPublishedPayload
@@ -23,9 +25,9 @@ export type CrlPublishedPayload = Message<"otpki.common.core.publisher.v1.CrlPub
   caId: string;
 
   /**
-   * @generated from field: bytes crl_der = 2;
+   * @generated from field: otpki.common.core.revocation_list.v1.RevocationList crl = 2;
    */
-  crlDer: Uint8Array;
+  crl?: RevocationList;
 };
 
 /**
@@ -38,9 +40,9 @@ export type CrlPublishedPayloadJson = {
   caId?: string;
 
   /**
-   * @generated from field: bytes crl_der = 2;
+   * @generated from field: otpki.common.core.revocation_list.v1.RevocationList crl = 2;
    */
-  crlDer?: string;
+  crl?: RevocationListJson;
 };
 
 export type CrlPublishedPayloadValid = CrlPublishedPayload;

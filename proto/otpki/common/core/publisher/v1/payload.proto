@@ -3,13 +3,14 @@ syntax = "proto3";
 package otpki.common.core.publisher.v1;
 
 import "buf/validate/validate.proto";
+import "otpki/common/core/revocation_list/v1/revocation_list.proto";
 
 message CrlPublishedPayload {
   string ca_id = 1 [
     (buf.validate.field).string.uuid = true,
     (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
-  bytes crl_der = 2;
+  otpki.common.core.revocation_list.v1.RevocationList crl = 2;
 }
 
 message CertPublishedPayload {

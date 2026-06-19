@@ -2,50 +2,6 @@ openapi: 3.1.0
 info:
   title: otpki.public.validation.revocation_list.v1
 paths:
-  /v1/certificate-authorities/validation/by-fingerprint/{fingerprint}/latest.crl:
-    get:
-      tags:
-        - otpki.public.validation.revocation_list.v1.RevocationListService
-      summary: CRLDistributionPoint
-      description: |-
-        buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
-         buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
-      operationId: otpki.public.validation.revocation_list.v1.RevocationListService.CRLDistributionPoint
-      parameters:
-        - name: fingerprint
-          in: path
-          required: true
-          schema:
-            type: string
-            title: fingerprint
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/google.api.HttpBody'
-  /v1/certificate-authorities/validation/{ca_id}/revocation-list:
-    get:
-      tags:
-        - otpki.public.validation.revocation_list.v1.RevocationListService
-      summary: GetLatestRevocationList
-      operationId: otpki.public.validation.revocation_list.v1.RevocationListService.GetLatestRevocationList
-      parameters:
-        - name: ca_id
-          in: path
-          required: true
-          schema:
-            type: string
-            title: ca_id
-            format: uuid
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse'
   /v1/revocation-lists/{id}:
     get:
       tags:
@@ -67,6 +23,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.validation.revocation_list.v1.GetRevocationListResponse'
+  /v1/validation/cdp.crl:
+    get:
+      tags:
+        - otpki.public.validation.revocation_list.v1.RevocationListService
+      summary: CRLDistributionPoint
+      description: |-
+        buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+         buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+      operationId: otpki.public.validation.revocation_list.v1.RevocationListService.CRLDistributionPoint
+      parameters:
+        - name: certHash
+          in: query
+          schema:
+            type: string
+            title: cert_hash
+        - name: partId
+          in: query
+          schema:
+            type: string
+            title: part_id
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/google.api.HttpBody'
 components:
   schemas:
     google.api.HttpBody:
@@ -241,164 +224,34 @@ components:
          the Joda Time's [`ISODateTimeFormat.dateTime()`](
          http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
          ) to obtain a formatter capable of generating timestamps in this format.
-    otpki.common.x509.v1.Extension:
+    otpki.common.core.revocation_list.v1.RevocationList:
       type: object
       properties:
         id:
           type: string
           title: id
-          description: OID as string
-        critical:
-          type: boolean
-          title: critical
-        value:
-          type: string
-          title: value
-          format: byte
-      title: Extension
-      additionalProperties: false
-    otpki.common.x509.v1.Name:
-      type: object
-      properties:
-        country:
-          type: array
-          items:
-            type: string
-            minLength: 1
-          title: country
-          uniqueItems: true
-        organization:
-          type: array
-          items:
-            type: string
-            minLength: 1
-          title: organization
-          uniqueItems: true
-        organizationalUnit:
-          type: array
-          items:
-            type: string
-            minLength: 1
-          title: organizational_unit
-          uniqueItems: true
-        locality:
-          type: array
-          items:
-            type: string
-            minLength: 1
-          title: locality
-          uniqueItems: true
-        province:
-          type: array
-          items:
-            type: string
-            minLength: 1
-          title: province
-          uniqueItems: true
-        streetAddress:
-          type: array
-          items:
-            type: string
-            minLength: 1
-          title: street_address
-          uniqueItems: true
-        postalCode:
-          type: array
-          items:
-            type: string
-            minLength: 1
-          title: postal_code
-          uniqueItems: true
-        serialNumber:
-          type: string
-          title: serial_number
-        commonName:
-          type: string
-          title: common_name
-          minLength: 1
-        names:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.NameAttribute'
-          title: names
-          description: For additional name attributes
-        extraNames:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.NameAttribute'
-          title: extra_names
-      title: Name
-      additionalProperties: false
-      description: |-
-        TODO: replace this with SubjectDNAttribute
-         Name represents a distinguished name (DN)
-    otpki.common.x509.v1.NameAttribute:
-      type: object
-      properties:
-        type:
-          type: string
-          title: type
-          description: OID as string
-        value:
-          title: value
-          $ref: '#/components/schemas/google.protobuf.Any'
-      title: NameAttribute
-      additionalProperties: false
-      description: NameAttribute represents a name attribute that may not be covered by the standard fields
-    otpki.common.x509.v1.RevocationList:
-      type: object
-      properties:
+          format: uuid
+          description: not settable on creation
+          readOnly: true
         raw:
           type: string
           title: raw
           format: byte
           description: Raw contains the complete ASN.1 DER content of the CRL
-        rawTbsRevocationList:
+        caId:
           type: string
-          title: raw_tbs_revocation_list
-          format: byte
-          description: RawTBSRevocationList contains just the tbsCertList portion of the ASN.1 DER
-        rawIssuer:
+          title: ca_id
+          format: uuid
+        isDelta:
+          type: boolean
+          title: is_delta
+        partitionIdentifier:
           type: string
-          title: raw_issuer
-          format: byte
-          description: RawIssuer contains the DER encoded Issuer
-        issuer:
-          title: issuer
-          description: Issuer contains the DN of the issuing certificate
-          $ref: '#/components/schemas/otpki.common.x509.v1.Name'
-        authorityKeyId:
-          type: string
-          title: authority_key_id
-          format: byte
-          description: AuthorityKeyId is used to identify the public key associated with the issuing certificate
-        signature:
-          type: string
-          title: signature
-          format: byte
-          description: Signature data
-        signatureAlgorithm:
-          title: signature_algorithm
-          description: SignatureAlgorithm is used to determine the signature algorithm for signing
-          $ref: '#/components/schemas/otpki.common.x509.v1.SignatureAlgorithm'
-        revokedCertificateEntries:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.RevocationListEntry'
-          title: revoked_certificate_entries
-          description: RevokedCertificateEntries represents the revoked certificates sequence in the CRL
-        revokedCertificates:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.RevokedCertificate'
-          title: revoked_certificates
-          description: |-
-            Deprecated in favor of revoked_certificate_entries
-             Included for backward compatibility
+          title: partition_identifier
         number:
           type: string
           title: number
-          description: Number is a monotonically increasing sequence number for a given CRL scope and issuer Using string to represent big.Int
+          description: CRL Number is a monotonically increasing sequence number for a given CRL scope and issuer Using string to represent big.Int
         thisUpdate:
           title: this_update
           description: Update timestamps
@@ -406,151 +259,19 @@ components:
         nextUpdate:
           title: next_update
           $ref: '#/components/schemas/google.protobuf.Timestamp'
-        extensions:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
-          title: extensions
-          description: Extensions
-        extraExtensions:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
-          title: extra_extensions
       title: RevocationList
       additionalProperties: false
-      description: |-
-        TODO: no more proto revocation lists
-         RevocationList represents a Certificate Revocation List (CRL) as specified by RFC 5280
-    otpki.common.x509.v1.RevocationListEntry:
-      type: object
-      properties:
-        raw:
-          type: string
-          title: raw
-          format: byte
-          description: Raw contains the raw bytes of the revokedCertificates entry
-        serialNumber:
-          type: string
-          title: serial_number
-          description: SerialNumber represents the serial number of a revoked certificate Using string to represent big.Int
-        revocationTime:
-          title: revocation_time
-          description: RevocationTime represents the time at which the certificate was revoked
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        reasonCode:
-          type: integer
-          title: reason_code
-          format: int32
-          description: ReasonCode represents the reason for revocation (RFC 5280 Section 5.3.1)
-        extensions:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
-          title: extensions
-          description: Extensions
-        extraExtensions:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
-          title: extra_extensions
-      title: RevocationListEntry
-      additionalProperties: false
-      description: RevocationListEntry represents an entry in a CRL for a revoked certificate
-    otpki.common.x509.v1.RevokedCertificate:
-      type: object
-      properties:
-        serialNumber:
-          type: string
-          title: serial_number
-          description: SerialNumber represents the serial number of a revoked certificate Using string to represent big.Int
-        revocationTime:
-          title: revocation_time
-          description: RevocationTime represents the time at which the certificate was revoked
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        extensions:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.x509.v1.Extension'
-          title: extensions
-          description: Extensions
-      title: RevokedCertificate
-      additionalProperties: false
-      description: |-
-        RevokedCertificate is included for backward compatibility
-         This represents the older PKIX variant used in the deprecated field
-    otpki.common.x509.v1.SignatureAlgorithm:
-      type: string
-      title: SignatureAlgorithm
-      enum:
-        - SIGNATURE_ALGORITHM_UNSPECIFIED
-        - SIGNATURE_ALGORITHM_SHA1_WITH_RSA
-        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA
-        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA
-        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA1
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA256
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA384
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA512
-        - SIGNATURE_ALGORITHM_SHA256_WITH_RSA_PSS
-        - SIGNATURE_ALGORITHM_SHA384_WITH_RSA_PSS
-        - SIGNATURE_ALGORITHM_SHA512_WITH_RSA_PSS
-        - SIGNATURE_ALGORITHM_PURE_ED25519
-        - SIGNATURE_ALGORITHM_PURE_ED448
-        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM2
-        - SIGNATURE_ALGORITHM_PURE_EDDILITHIUM3
-        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_2
-        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_3
-        - SIGNATURE_ALGORITHM_PURE_DILITHIUM_5
-        - SIGNATURE_ALGORITHM_PURE_MLDSA_44
-        - SIGNATURE_ALGORITHM_PURE_MLDSA_65
-        - SIGNATURE_ALGORITHM_PURE_MLDSA_87
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128S
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128S
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA128F
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE128F
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192S
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192S
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA192F
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE192F
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256S
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256S
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHA256F
-        - SIGNATURE_ALGORITHM_SLHDSA_WITH_SHAKE256F
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE128
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHAKE256
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_256
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_384
-        - SIGNATURE_ALGORITHM_ECDSA_WITH_SHA3_512
-        - SIGNATURE_ALGORITHM_SHAKE128_WITH_RSA_PSS
-        - SIGNATURE_ALGORITHM_SHAKE256_WITH_RSA_PSS
-        - SIGNATURE_ALGORITHM_SHA3_256_WITH_RSA
-        - SIGNATURE_ALGORITHM_SHA3_384_WITH_RSA
-        - SIGNATURE_ALGORITHM_SHA3_512_WITH_RSA
+      description: RevocationList contains a Certificate Revocation List (CRL) as specified by RFC 5280 as raw DER bytes
     otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest:
       type: object
       properties:
-        fingerprint:
+        certHash:
           type: string
-          title: fingerprint
+          title: cert_hash
+        partId:
+          type: string
+          title: part_id
       title: CRLDistributionPointRequest
-      additionalProperties: false
-    otpki.public.validation.revocation_list.v1.GetLatestRevocationListRequest:
-      type: object
-      properties:
-        caId:
-          type: string
-          title: ca_id
-          format: uuid
-      title: GetLatestRevocationListRequest
-      additionalProperties: false
-    otpki.public.validation.revocation_list.v1.GetLatestRevocationListResponse:
-      type: object
-      properties:
-        revocationList:
-          title: revocation_list
-          $ref: '#/components/schemas/otpki.common.x509.v1.RevocationList'
-      title: GetLatestRevocationListResponse
       additionalProperties: false
     otpki.public.validation.revocation_list.v1.GetRevocationListRequest:
       type: object
@@ -566,7 +287,7 @@ components:
       properties:
         revocationList:
           title: revocation_list
-          $ref: '#/components/schemas/otpki.common.x509.v1.RevocationList'
+          $ref: '#/components/schemas/otpki.common.core.revocation_list.v1.RevocationList'
       title: GetRevocationListResponse
       additionalProperties: false
 security: []

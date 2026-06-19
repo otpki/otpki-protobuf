@@ -8,6 +8,7 @@ package publisherv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
+	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/revocation_list/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -25,7 +26,7 @@ const (
 type CrlPublishedPayload struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
-	CrlDer        []byte                 `protobuf:"bytes,2,opt,name=crl_der,json=crlDer,proto3" json:"crl_der,omitempty"`
+	Crl           *v1.RevocationList     `protobuf:"bytes,2,opt,name=crl,proto3" json:"crl,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -67,9 +68,9 @@ func (x *CrlPublishedPayload) GetCaId() string {
 	return ""
 }
 
-func (x *CrlPublishedPayload) GetCrlDer() []byte {
+func (x *CrlPublishedPayload) GetCrl() *v1.RevocationList {
 	if x != nil {
-		return x.CrlDer
+		return x.Crl
 	}
 	return nil
 }
@@ -222,10 +223,10 @@ var File_otpki_common_core_publisher_v1_payload_proto protoreflect.FileDescripto
 
 const file_otpki_common_core_publisher_v1_payload_proto_rawDesc = "" +
 	"\n" +
-	",otpki/common/core/publisher/v1/payload.proto\x12\x1eotpki.common.core.publisher.v1\x1a\x1bbuf/validate/validate.proto\"P\n" +
+	",otpki/common/core/publisher/v1/payload.proto\x12\x1eotpki.common.core.publisher.v1\x1a\x1bbuf/validate/validate.proto\x1a:otpki/common/core/revocation_list/v1/revocation_list.proto\"\x7f\n" +
 	"\x13CrlPublishedPayload\x12 \n" +
-	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xd8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12\x17\n" +
-	"\acrl_der\x18\x02 \x01(\fR\x06crlDer\"\xd8\x01\n" +
+	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xd8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12F\n" +
+	"\x03crl\x18\x02 \x01(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x03crl\"\xd8\x01\n" +
 	"\x14CertPublishedPayload\x12 \n" +
 	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xd8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12A\n" +
 	"\x16certificate_profile_id\x18\x02 \x01(\tB\v\xbaH\b\xd8\x01\x01r\x03\xb0\x01\x01R\x14certificateProfileId\x122\n" +
@@ -256,13 +257,15 @@ var file_otpki_common_core_publisher_v1_payload_proto_goTypes = []any{
 	(*CrlPublishedPayload)(nil),      // 0: otpki.common.core.publisher.v1.CrlPublishedPayload
 	(*CertPublishedPayload)(nil),     // 1: otpki.common.core.publisher.v1.CertPublishedPayload
 	(*CredentialsIssuedPayload)(nil), // 2: otpki.common.core.publisher.v1.CredentialsIssuedPayload
+	(*v1.RevocationList)(nil),        // 3: otpki.common.core.revocation_list.v1.RevocationList
 }
 var file_otpki_common_core_publisher_v1_payload_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	3, // 0: otpki.common.core.publisher.v1.CrlPublishedPayload.crl:type_name -> otpki.common.core.revocation_list.v1.RevocationList
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_core_publisher_v1_payload_proto_init() }

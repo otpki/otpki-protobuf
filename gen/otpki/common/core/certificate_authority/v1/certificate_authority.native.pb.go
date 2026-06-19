@@ -28,6 +28,9 @@ type CertificateAuthorityNative struct {
 	OcspUris                      []string
 	IssuerUris                    []string
 	ApprovalProfileId             uuid.NullUUID
+	CrlPartitionMode              PartitionMode
+	NumCrlPartitions              int64
+	CrlIncludeExpired             bool
 	CreatedAt                     time.Time
 	UpdatedAt                     time.Time
 }
@@ -77,6 +80,9 @@ func (n *CertificateAuthorityNative) ToProto() (*CertificateAuthority, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
+	protoStruct.CrlPartitionMode = n.CrlPartitionMode
+	protoStruct.NumCrlPartitions = n.NumCrlPartitions
+	protoStruct.CrlIncludeExpired = n.CrlIncludeExpired
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -133,6 +139,9 @@ func (p *CertificateAuthority) ToNative() (*CertificateAuthorityNative, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
+	nativeStruct.CrlPartitionMode = p.CrlPartitionMode
+	nativeStruct.NumCrlPartitions = p.NumCrlPartitions
+	nativeStruct.CrlIncludeExpired = p.CrlIncludeExpired
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)

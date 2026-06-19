@@ -5,10 +5,6 @@
 import { RevocationListService } from "./revocation_list_pb.js";
 
 /**
- * @generated from rpc otpki.public.validation.revocation_list.v1.RevocationListService.GetLatestRevocationList
- */
-export const getLatestRevocationList: typeof RevocationListService["method"]["getLatestRevocationList"];
-/**
  * @generated from rpc otpki.public.validation.revocation_list.v1.RevocationListService.GetRevocationList
  */
 export const getRevocationList: typeof RevocationListService["method"]["getRevocationList"];

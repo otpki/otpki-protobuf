@@ -29,6 +29,7 @@ type IssuedCertificateNative struct {
 	IssuedFromCertificateProfileId uuid.UUID
 	IssuedFromIssuanceRequestId    uuid.UUID
 	ProtocolUsed                   v11.IssuingProtocol
+	PartitionIdentifier            string
 	CreatedAt                      time.Time
 	UpdatedAt                      time.Time
 }
@@ -77,6 +78,7 @@ func (n *IssuedCertificateNative) ToProto() (*IssuedCertificate, error) {
 		return nil, fmt.Errorf("error converting IssuedFromIssuanceRequestId: %w", err)
 	}
 	protoStruct.ProtocolUsed = n.ProtocolUsed
+	protoStruct.PartitionIdentifier = n.PartitionIdentifier
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -132,6 +134,7 @@ func (p *IssuedCertificate) ToNative() (*IssuedCertificateNative, error) {
 		return nil, fmt.Errorf("error converting IssuedFromIssuanceRequestIdNative: %w", err)
 	}
 	nativeStruct.ProtocolUsed = p.ProtocolUsed
+	nativeStruct.PartitionIdentifier = p.PartitionIdentifier
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)

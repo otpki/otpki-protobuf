@@ -98,6 +98,11 @@ export declare type IssuedCertificate = Message<"otpki.common.core.issued_certif
   protocolUsed: IssuingProtocol;
 
   /**
+   * @generated from field: string partition_identifier = 17;
+   */
+  partitionIdentifier: string;
+
+  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -195,6 +200,11 @@ export declare type IssuedCertificateJson = {
    * @generated from field: otpki.common.core.issuer.v1.IssuingProtocol protocol_used = 16;
    */
   protocolUsed?: IssuingProtocolJson;
+
+  /**
+   * @generated from field: string partition_identifier = 17;
+   */
+  partitionIdentifier?: string;
 
   /**
    * not settable on creation

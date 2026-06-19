@@ -34,9 +34,6 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// RevocationListServiceGetLatestRevocationListProcedure is the fully-qualified name of the
-	// RevocationListService's GetLatestRevocationList RPC.
-	RevocationListServiceGetLatestRevocationListProcedure = "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList"
 	// RevocationListServiceGetRevocationListProcedure is the fully-qualified name of the
 	// RevocationListService's GetRevocationList RPC.
 	RevocationListServiceGetRevocationListProcedure = "/otpki.public.validation.revocation_list.v1.RevocationListService/GetRevocationList"
@@ -48,7 +45,6 @@ const (
 // RevocationListServiceClient is a client for the
 // otpki.public.validation.revocation_list.v1.RevocationListService service.
 type RevocationListServiceClient interface {
-	GetLatestRevocationList(context.Context, *connect.Request[v1.GetLatestRevocationListRequest]) (*connect.Response[v1.GetLatestRevocationListResponse], error)
 	GetRevocationList(context.Context, *connect.Request[v1.GetRevocationListRequest]) (*connect.Response[v1.GetRevocationListResponse], error)
 	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
@@ -67,13 +63,6 @@ func NewRevocationListServiceClient(httpClient connect.HTTPClient, baseURL strin
 	baseURL = strings.TrimRight(baseURL, "/")
 	revocationListServiceMethods := v1.File_otpki_public_validation_revocation_list_v1_revocation_list_proto.Services().ByName("RevocationListService").Methods()
 	return &revocationListServiceClient{
-		getLatestRevocationList: connect.NewClient[v1.GetLatestRevocationListRequest, v1.GetLatestRevocationListResponse](
-			httpClient,
-			baseURL+RevocationListServiceGetLatestRevocationListProcedure,
-			connect.WithSchema(revocationListServiceMethods.ByName("GetLatestRevocationList")),
-			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
-			connect.WithClientOptions(opts...),
-		),
 		getRevocationList: connect.NewClient[v1.GetRevocationListRequest, v1.GetRevocationListResponse](
 			httpClient,
 			baseURL+RevocationListServiceGetRevocationListProcedure,
@@ -93,15 +82,8 @@ func NewRevocationListServiceClient(httpClient connect.HTTPClient, baseURL strin
 
 // revocationListServiceClient implements RevocationListServiceClient.
 type revocationListServiceClient struct {
-	getLatestRevocationList *connect.Client[v1.GetLatestRevocationListRequest, v1.GetLatestRevocationListResponse]
-	getRevocationList       *connect.Client[v1.GetRevocationListRequest, v1.GetRevocationListResponse]
-	cRLDistributionPoint    *connect.Client[v1.CRLDistributionPointRequest, httpbody.HttpBody]
-}
-
-// GetLatestRevocationList calls
-// otpki.public.validation.revocation_list.v1.RevocationListService.GetLatestRevocationList.
-func (c *revocationListServiceClient) GetLatestRevocationList(ctx context.Context, req *connect.Request[v1.GetLatestRevocationListRequest]) (*connect.Response[v1.GetLatestRevocationListResponse], error) {
-	return c.getLatestRevocationList.CallUnary(ctx, req)
+	getRevocationList    *connect.Client[v1.GetRevocationListRequest, v1.GetRevocationListResponse]
+	cRLDistributionPoint *connect.Client[v1.CRLDistributionPointRequest, httpbody.HttpBody]
 }
 
 // GetRevocationList calls
@@ -119,7 +101,6 @@ func (c *revocationListServiceClient) CRLDistributionPoint(ctx context.Context, 
 // RevocationListServiceHandler is an implementation of the
 // otpki.public.validation.revocation_list.v1.RevocationListService service.
 type RevocationListServiceHandler interface {
-	GetLatestRevocationList(context.Context, *connect.Request[v1.GetLatestRevocationListRequest]) (*connect.Response[v1.GetLatestRevocationListResponse], error)
 	GetRevocationList(context.Context, *connect.Request[v1.GetRevocationListRequest]) (*connect.Response[v1.GetRevocationListResponse], error)
 	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
@@ -133,13 +114,6 @@ type RevocationListServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewRevocationListServiceHandler(svc RevocationListServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	revocationListServiceMethods := v1.File_otpki_public_validation_revocation_list_v1_revocation_list_proto.Services().ByName("RevocationListService").Methods()
-	revocationListServiceGetLatestRevocationListHandler := connect.NewUnaryHandler(
-		RevocationListServiceGetLatestRevocationListProcedure,
-		svc.GetLatestRevocationList,
-		connect.WithSchema(revocationListServiceMethods.ByName("GetLatestRevocationList")),
-		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
-		connect.WithHandlerOptions(opts...),
-	)
 	revocationListServiceGetRevocationListHandler := connect.NewUnaryHandler(
 		RevocationListServiceGetRevocationListProcedure,
 		svc.GetRevocationList,
@@ -156,8 +130,6 @@ func NewRevocationListServiceHandler(svc RevocationListServiceHandler, opts ...c
 	)
 	return "/otpki.public.validation.revocation_list.v1.RevocationListService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case RevocationListServiceGetLatestRevocationListProcedure:
-			revocationListServiceGetLatestRevocationListHandler.ServeHTTP(w, r)
 		case RevocationListServiceGetRevocationListProcedure:
 			revocationListServiceGetRevocationListHandler.ServeHTTP(w, r)
 		case RevocationListServiceCRLDistributionPointProcedure:
@@ -170,10 +142,6 @@ func NewRevocationListServiceHandler(svc RevocationListServiceHandler, opts ...c
 
 // UnimplementedRevocationListServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedRevocationListServiceHandler struct{}
-
-func (UnimplementedRevocationListServiceHandler) GetLatestRevocationList(context.Context, *connect.Request[v1.GetLatestRevocationListRequest]) (*connect.Response[v1.GetLatestRevocationListResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.validation.revocation_list.v1.RevocationListService.GetLatestRevocationList is not implemented"))
-}
 
 func (UnimplementedRevocationListServiceHandler) GetRevocationList(context.Context, *connect.Request[v1.GetRevocationListRequest]) (*connect.Response[v1.GetRevocationListResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.validation.revocation_list.v1.RevocationListService.GetRevocationList is not implemented"))

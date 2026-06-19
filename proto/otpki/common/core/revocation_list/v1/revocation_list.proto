@@ -1,0 +1,28 @@
+syntax = "proto3";
+package otpki.common.core.revocation_list.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+
+// RevocationList contains a Certificate Revocation List (CRL) as specified by RFC 5280 as raw DER bytes
+message RevocationList {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+
+  // Raw contains the complete ASN.1 DER content of the CRL
+  bytes raw = 2;
+
+  string ca_id = 3 [(buf.validate.field).string.uuid = true];
+  bool is_delta = 4;
+  string partition_identifier = 5;
+
+  // CRL Number is a monotonically increasing sequence number for a given CRL scope and issuer
+  string number = 11; // Using string to represent big.Int
+
+  // Update timestamps
+  google.protobuf.Timestamp this_update = 12;
+  google.protobuf.Timestamp next_update = 13;
+}

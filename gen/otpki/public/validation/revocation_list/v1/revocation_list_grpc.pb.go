@@ -20,16 +20,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RevocationListService_GetLatestRevocationList_FullMethodName = "/otpki.public.validation.revocation_list.v1.RevocationListService/GetLatestRevocationList"
-	RevocationListService_GetRevocationList_FullMethodName       = "/otpki.public.validation.revocation_list.v1.RevocationListService/GetRevocationList"
-	RevocationListService_CRLDistributionPoint_FullMethodName    = "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint"
+	RevocationListService_GetRevocationList_FullMethodName    = "/otpki.public.validation.revocation_list.v1.RevocationListService/GetRevocationList"
+	RevocationListService_CRLDistributionPoint_FullMethodName = "/otpki.public.validation.revocation_list.v1.RevocationListService/CRLDistributionPoint"
 )
 
 // RevocationListServiceClient is the client API for RevocationListService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RevocationListServiceClient interface {
-	GetLatestRevocationList(ctx context.Context, in *GetLatestRevocationListRequest, opts ...grpc.CallOption) (*GetLatestRevocationListResponse, error)
 	GetRevocationList(ctx context.Context, in *GetRevocationListRequest, opts ...grpc.CallOption) (*GetRevocationListResponse, error)
 	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
@@ -42,16 +40,6 @@ type revocationListServiceClient struct {
 
 func NewRevocationListServiceClient(cc grpc.ClientConnInterface) RevocationListServiceClient {
 	return &revocationListServiceClient{cc}
-}
-
-func (c *revocationListServiceClient) GetLatestRevocationList(ctx context.Context, in *GetLatestRevocationListRequest, opts ...grpc.CallOption) (*GetLatestRevocationListResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetLatestRevocationListResponse)
-	err := c.cc.Invoke(ctx, RevocationListService_GetLatestRevocationList_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *revocationListServiceClient) GetRevocationList(ctx context.Context, in *GetRevocationListRequest, opts ...grpc.CallOption) (*GetRevocationListResponse, error) {
@@ -78,7 +66,6 @@ func (c *revocationListServiceClient) CRLDistributionPoint(ctx context.Context, 
 // All implementations must embed UnimplementedRevocationListServiceServer
 // for forward compatibility.
 type RevocationListServiceServer interface {
-	GetLatestRevocationList(context.Context, *GetLatestRevocationListRequest) (*GetLatestRevocationListResponse, error)
 	GetRevocationList(context.Context, *GetRevocationListRequest) (*GetRevocationListResponse, error)
 	// buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
 	// buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
@@ -93,9 +80,6 @@ type RevocationListServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedRevocationListServiceServer struct{}
 
-func (UnimplementedRevocationListServiceServer) GetLatestRevocationList(context.Context, *GetLatestRevocationListRequest) (*GetLatestRevocationListResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetLatestRevocationList not implemented")
-}
 func (UnimplementedRevocationListServiceServer) GetRevocationList(context.Context, *GetRevocationListRequest) (*GetRevocationListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetRevocationList not implemented")
 }
@@ -121,24 +105,6 @@ func RegisterRevocationListServiceServer(s grpc.ServiceRegistrar, srv Revocation
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&RevocationListService_ServiceDesc, srv)
-}
-
-func _RevocationListService_GetLatestRevocationList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetLatestRevocationListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RevocationListServiceServer).GetLatestRevocationList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RevocationListService_GetLatestRevocationList_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RevocationListServiceServer).GetLatestRevocationList(ctx, req.(*GetLatestRevocationListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _RevocationListService_GetRevocationList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -184,10 +150,6 @@ var RevocationListService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "otpki.public.validation.revocation_list.v1.RevocationListService",
 	HandlerType: (*RevocationListServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetLatestRevocationList",
-			Handler:    _RevocationListService_GetLatestRevocationList_Handler,
-		},
 		{
 			MethodName: "GetRevocationList",
 			Handler:    _RevocationListService_GetRevocationList_Handler,

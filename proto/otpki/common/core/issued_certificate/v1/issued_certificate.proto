@@ -38,6 +38,7 @@ message IssuedCertificate {
   string issued_from_issuance_request_id = 15 [(buf.validate.field).string.uuid = true];
 
   issuer.v1.IssuingProtocol protocol_used = 16;
+  string partition_identifier = 17;
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [

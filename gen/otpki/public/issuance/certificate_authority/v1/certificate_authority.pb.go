@@ -11,7 +11,7 @@ import (
 	v12 "github.com/otpki/otpki-protobuf/gen/otpki/common/api/query/v1"
 	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/certificate_authority/v1"
 	v11 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/key/v1"
-	v13 "github.com/otpki/otpki-protobuf/gen/otpki/common/x509/v1"
+	v13 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/revocation_list/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1153,10 +1153,10 @@ func (x *CreateRevocationListRequest) GetIsDelta() bool {
 }
 
 type CreateRevocationListResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	RevocationList *v13.RevocationList    `protobuf:"bytes,1,opt,name=revocation_list,json=revocationList,proto3" json:"revocation_list,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	RevocationLists []*v13.RevocationList  `protobuf:"bytes,1,rep,name=revocation_lists,json=revocationLists,proto3" json:"revocation_lists,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *CreateRevocationListResponse) Reset() {
@@ -1189,9 +1189,9 @@ func (*CreateRevocationListResponse) Descriptor() ([]byte, []int) {
 	return file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDescGZIP(), []int{23}
 }
 
-func (x *CreateRevocationListResponse) GetRevocationList() *v13.RevocationList {
+func (x *CreateRevocationListResponse) GetRevocationLists() []*v13.RevocationList {
 	if x != nil {
-		return x.RevocationList
+		return x.RevocationLists
 	}
 	return nil
 }
@@ -1200,7 +1200,7 @@ var File_otpki_public_issuance_certificate_authority_v1_certificate_authority_pr
 
 const file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDesc = "" +
 	"\n" +
-	"Jotpki/public/issuance/certificate_authority/v1/certificate_authority.proto\x12.otpki.public.issuance.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aFotpki/common/core/certificate_authority/v1/certificate_authority.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a*otpki/common/x509/v1/revocation_list.proto\"\xa2\x01\n" +
+	"Jotpki/public/issuance/certificate_authority/v1/certificate_authority.proto\x12.otpki.public.issuance.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a google/protobuf/field_mask.proto\x1a%otpki/common/api/query/v1/query.proto\x1aFotpki/common/core/certificate_authority/v1/certificate_authority.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a:otpki/common/core/revocation_list/v1/revocation_list.proto\"\xa2\x01\n" +
 	"!CreateCertificateAuthorityRequest\x12}\n" +
 	"\x15certificate_authority\x18\x01 \x01(\v2@.otpki.common.core.certificate_authority.v1.CertificateAuthorityB\x06\xbaH\x03\xc8\x01\x01R\x14certificateAuthority\"X\n" +
 	"\"CreateCertificateAuthorityResponse\x12\x18\n" +
@@ -1269,9 +1269,9 @@ const file_otpki_public_issuance_certificate_authority_v1_certificate_authority_
 	"\"certificate_authority_certificates\x18\x01 \x03(\v2K.otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateR certificateAuthorityCertificates\"Z\n" +
 	"\x1bCreateRevocationListRequest\x12 \n" +
 	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12\x19\n" +
-	"\bis_delta\x18\x02 \x01(\bR\aisDelta\"m\n" +
-	"\x1cCreateRevocationListResponse\x12M\n" +
-	"\x0frevocation_list\x18\x01 \x01(\v2$.otpki.common.x509.v1.RevocationListR\x0erevocationList2\xf2\x19\n" +
+	"\bis_delta\x18\x02 \x01(\bR\aisDelta\"\x7f\n" +
+	"\x1cCreateRevocationListResponse\x12_\n" +
+	"\x10revocation_lists\x18\x01 \x03(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x0frevocationLists2\xf2\x19\n" +
 	"\x1bCertificateAuthorityService\x12\xff\x01\n" +
 	"\x1aCreateCertificateAuthority\x12Q.otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest\x1aR.otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityResponse\":\x82\xd3\xe4\x93\x024:\x15certificate_authority\"\x1b/v1/certificate-authorities\x12\xf2\x01\n" +
 	"\x1aImportCertificateAuthority\x12Q.otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest\x1aR.otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/certificate-authorities/import\x12\x88\x02\n" +
@@ -1332,7 +1332,7 @@ var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_pr
 	(*v12.PaginationResponse)(nil),                        // 27: otpki.common.api.query.v1.PaginationResponse
 	(*fieldmaskpb.FieldMask)(nil),                         // 28: google.protobuf.FieldMask
 	(*v1.CertificateAuthorityCertificate)(nil),            // 29: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	(*v13.RevocationList)(nil),                            // 30: otpki.common.x509.v1.RevocationList
+	(*v13.RevocationList)(nil),                            // 30: otpki.common.core.revocation_list.v1.RevocationList
 }
 var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_depIdxs = []int32{
 	24, // 0: otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
@@ -1347,7 +1347,7 @@ var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_pr
 	24, // 9: otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
 	28, // 10: otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest.update_mask:type_name -> google.protobuf.FieldMask
 	29, // 11: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesResponse.certificate_authority_certificates:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	30, // 12: otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse.revocation_list:type_name -> otpki.common.x509.v1.RevocationList
+	30, // 12: otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse.revocation_lists:type_name -> otpki.common.core.revocation_list.v1.RevocationList
 	0,  // 13: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest
 	2,  // 14: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest
 	4,  // 15: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityPKCS12:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Request

@@ -9,6 +9,12 @@ import "otpki/common/api/v1/native_type.proto";
 import "otpki/common/x509/v1/certificate_template.proto";
 import "otpki/common/x509/v1/x509.proto";
 
+enum PartitionMode {
+  PARTITION_MODE_UNSPECIFIED = 0;
+  PARTITION_MODE_FIXED = 1;
+  PARTITION_MODE_MSCOMPAT = 2;
+}
+
 message CertificateAuthority {
   option (api.v1.generate_native) = true;
   string id = 1 [
@@ -47,6 +53,10 @@ message CertificateAuthority {
   repeated string issuer_uris = 13;
 
   optional string approval_profile_id = 14 [(buf.validate.field).string.uuid = true];
+
+  PartitionMode crl_partition_mode = 15;
+  int64 num_crl_partitions = 16 [(buf.validate.field).int64.gte = 0];
+  bool crl_include_expired = 17;
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [

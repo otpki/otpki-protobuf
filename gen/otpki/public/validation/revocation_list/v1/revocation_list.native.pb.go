@@ -6,17 +6,6 @@ import (
 	uuid "github.com/google/uuid"
 )
 
-// GetCaIdUUID returns CaId as a UUID when possible.
-func (x *GetLatestRevocationListRequest) GetCaIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.CaId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
 // GetIdUUID returns Id as a UUID when possible.
 func (x *GetRevocationListRequest) GetIdUUID() uuid.UUID {
 	if x != nil {

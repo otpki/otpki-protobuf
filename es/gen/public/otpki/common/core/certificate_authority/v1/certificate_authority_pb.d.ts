@@ -2,7 +2,7 @@
 // @generated from file otpki/common/core/certificate_authority/v1/certificate_authority.proto (package otpki.common.core.certificate_authority.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { SignatureAlgorithm, SignatureAlgorithmJson } from "../../../x509/v1/x509_pb.js";
 import type { CertificateTemplate, CertificateTemplateJson, CertificateTemplateValid } from "../../../x509/v1/certificate_template_pb.js";
@@ -96,6 +96,21 @@ export declare type CertificateAuthority = Message<"otpki.common.core.certificat
    * @generated from field: optional string approval_profile_id = 14;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   */
+  crlPartitionMode: PartitionMode;
+
+  /**
+   * @generated from field: int64 num_crl_partitions = 16;
+   */
+  numCrlPartitions: bigint;
+
+  /**
+   * @generated from field: bool crl_include_expired = 17;
+   */
+  crlIncludeExpired: boolean;
 
   /**
    * not settable on creation
@@ -197,6 +212,21 @@ export declare type CertificateAuthorityJson = {
   approvalProfileId?: string;
 
   /**
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   */
+  crlPartitionMode?: PartitionModeJson;
+
+  /**
+   * @generated from field: int64 num_crl_partitions = 16;
+   */
+  numCrlPartitions?: string;
+
+  /**
+   * @generated from field: bool crl_include_expired = 17;
+   */
+  crlIncludeExpired?: boolean;
+
+  /**
    * not settable on creation
    *
    * @generated from field: google.protobuf.Timestamp created_at = 201;
@@ -294,6 +324,21 @@ export declare type CertificateAuthorityValid = Message<"otpki.common.core.certi
    * @generated from field: optional string approval_profile_id = 14;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   */
+  crlPartitionMode: PartitionMode;
+
+  /**
+   * @generated from field: int64 num_crl_partitions = 16;
+   */
+  numCrlPartitions: bigint;
+
+  /**
+   * @generated from field: bool crl_include_expired = 17;
+   */
+  crlIncludeExpired: boolean;
 
   /**
    * not settable on creation
@@ -441,4 +486,34 @@ export declare type CertificateAuthorityCertificateKeyValid = CertificateAuthori
  * Use `create(CertificateAuthorityCertificateKeySchema)` to create a new message.
  */
 export declare const CertificateAuthorityCertificateKeySchema: GenMessage<CertificateAuthorityCertificateKey, {jsonType: CertificateAuthorityCertificateKeyJson, validType: CertificateAuthorityCertificateKeyValid}>;
+
+/**
+ * @generated from enum otpki.common.core.certificate_authority.v1.PartitionMode
+ */
+export enum PartitionMode {
+  /**
+   * @generated from enum value: PARTITION_MODE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: PARTITION_MODE_FIXED = 1;
+   */
+  FIXED = 1,
+
+  /**
+   * @generated from enum value: PARTITION_MODE_MSCOMPAT = 2;
+   */
+  MSCOMPAT = 2,
+}
+
+/**
+ * @generated from enum otpki.common.core.certificate_authority.v1.PartitionMode
+ */
+export declare type PartitionModeJson = "PARTITION_MODE_UNSPECIFIED" | "PARTITION_MODE_FIXED" | "PARTITION_MODE_MSCOMPAT";
+
+/**
+ * Describes the enum otpki.common.core.certificate_authority.v1.PartitionMode.
+ */
+export declare const PartitionModeSchema: GenEnum<PartitionMode, PartitionModeJson>;
 
