@@ -2,9 +2,9 @@
 // @generated from file otpki/common/core/publisher/v1/publisher.proto (package otpki.common.core.publisher.v1, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, extDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb.js";
-import { file_google_protobuf_any, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any, file_google_protobuf_descriptor, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import { file_openapiv3_annotations } from "../../../../../openapiv3/annotations_pb.js";
 import { file_otpki_common_api_v1_native_type } from "../../../api/v1/native_type_pb.js";
 
@@ -12,62 +12,89 @@ import { file_otpki_common_api_v1_native_type } from "../../../api/v1/native_typ
  * Describes the file otpki/common/core/publisher/v1/publisher.proto.
  */
 export const file_otpki_common_core_publisher_v1_publisher = /*@__PURE__*/
-  fileDesc("Ci5vdHBraS9jb21tb24vY29yZS9wdWJsaXNoZXIvdjEvcHVibGlzaGVyLnByb3RvEh5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEi9wIKD1B1Ymxpc2hlckNvbmZpZxIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIYCgRuYW1lGAIgASgJQgq6SAfYAQFyAhADEhMKC2Rlc2NyaXB0aW9uGAMgASgJEk8KDnB1Ymxpc2hlcl90eXBlGAQgASgOMi0ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlclR5cGVCCLpIBYIBAhABEikKC2NvbmZpZ19kYXRhGAUgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEigwIKDENybFB1Ymxpc2hlchIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIXCgVjYV9pZBgCIAEoCUIIukgFcgOwAQESJQoTcHVibGlzaGVyX2NvbmZpZ19pZBgDIAEoCUIIukgFcgOwAQESSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lIv8CChRDZXJ0aWZpY2F0ZVB1Ymxpc2hlchIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIlChNwdWJsaXNoZXJfY29uZmlnX2lkGAIgASgJQgi6SAVyA7ABARIXCgVjYV9pZBgDIAEoCUIIukgFcgOwAQESKAoWY2VydGlmaWNhdGVfcHJvZmlsZV9pZBgEIAEoCUIIukgFcgOwAQESSAoRc3Vic2NyaWJlZF9ldmVudHMYBSADKA4yLS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuQ2VydEV2ZW50VHlwZRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUqdwoNUHVibGlzaGVyVHlwZRIeChpQVUJMSVNIRVJfVFlQRV9VTlNQRUNJRklFRBAAEhUKEVBVQkxJU0hFUl9UWVBFX1ZTEAESFwoTUFVCTElTSEVSX1RZUEVfSFRUUBACEhYKElBVQkxJU0hFUl9UWVBFX1NDUBADKl8KC1BraUFydGlmYWN0EhwKGFBLSV9BUlRJRkFDVF9VTlNQRUNJRklFRBAAEhQKEFBLSV9BUlRJRkFDVF9DUkwQARIcChhQS0lfQVJUSUZBQ1RfQ0VSVElGSUNBVEUQAipxCg1DZXJ0RXZlbnRUeXBlEh8KG0NFUlRfRVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEh4KGkNFUlRfRVZFTlRfVFlQRV9DRVJUX0lTU1VFEAESHwobQ0VSVF9FVkVOVF9UWVBFX0NFUlRfUkVWT0tFEAJC0QEKImNvbS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjFCDlB1Ymxpc2hlclByb3RvUAGiAgRPQ0NQqgIeT3Rwa2kuQ29tbW9uLkNvcmUuUHVibGlzaGVyLlYxygIeT3Rwa2lcQ29tbW9uXENvcmVcUHVibGlzaGVyXFYx4gIqT3Rwa2lcQ29tbW9uXENvcmVcUHVibGlzaGVyXFYxXEdQQk1ldGFkYXRh6gIiT3Rwa2k6OkNvbW1vbjo6Q29yZTo6UHVibGlzaGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type]);
+  fileDesc("Ci5vdHBraS9jb21tb24vY29yZS9wdWJsaXNoZXIvdjEvcHVibGlzaGVyLnByb3RvEh5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEivwMKCVB1Ymxpc2hlchIcCgJpZBgBIAEoCUIQukcCGAG6SAjYAQFyA7ABARIYCgRuYW1lGAIgASgJQgq6SAfYAQFyAhADEhMKC2Rlc2NyaXB0aW9uGAMgASgJElEKCXRyYW5zcG9ydBgEIAEoDjIyLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUcmFuc3BvcnRCCrpIB4IBBBABIAASJAoGY29uZmlnGAUgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueRJMCgh0cmlnZ2VycxgGIAMoCzIwLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUcmlnZ2VyQgi6SAWSAQIIARJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEiigEKEFB1Ymxpc2hlclRyaWdnZXISUAoFZXZlbnQYASABKA4yNS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyVHJpZ2dlckV2ZW50Qgq6SAeCAQQQASAAEiQKBmNvbmZpZxgCIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkiMgoQQ3JsVHJpZ2dlckNvbmZpZxIeCgVjYV9pZBgBIAEoCUIPukgIyAEBcgOwAQHQtRgBInMKEUNlcnRUcmlnZ2VyQ29uZmlnEh0KBWNhX2lkGAEgASgJQgy6SAVyA7ABAdC1GAFIABIuChZjZXJ0aWZpY2F0ZV9wcm9maWxlX2lkGAIgASgJQgy6SAVyA7ABAdC1GAJIAEIPCgZ0YXJnZXQSBbpIAggBIsYBChxQdWJsaXNoZXJUcmFuc3BvcnREZXNjcmlwdG9yEkUKCXRyYW5zcG9ydBgBIAEoDjIyLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUcmFuc3BvcnQSFwoPY29uZmlnX3R5cGVfdXJsGAIgASgJEkYKCHRyaWdnZXJzGAMgAygLMjQub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlclRyaWdnZXJTcGVjInUKFFB1Ymxpc2hlclRyaWdnZXJTcGVjEkQKBWV2ZW50GAEgASgOMjUub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlclRyaWdnZXJFdmVudBIXCg9jb25maWdfdHlwZV91cmwYAiABKAkqrgEKElB1Ymxpc2hlclRyYW5zcG9ydBIjCh9QVUJMSVNIRVJfVFJBTlNQT1JUX1VOU1BFQ0lGSUVEEAASGgoWUFVCTElTSEVSX1RSQU5TUE9SVF9WUxABEhwKGFBVQkxJU0hFUl9UUkFOU1BPUlRfSFRUUBACEhsKF1BVQkxJU0hFUl9UUkFOU1BPUlRfU0NQEAMSHAoYUFVCTElTSEVSX1RSQU5TUE9SVF9TTVRQEAQq6gEKFVB1Ymxpc2hlclRyaWdnZXJFdmVudBInCiNQVUJMSVNIRVJfVFJJR0dFUl9FVkVOVF9VTlNQRUNJRklFRBAAEicKI1BVQkxJU0hFUl9UUklHR0VSX0VWRU5UX0NFUlRfSVNTVUVEEAESKAokUFVCTElTSEVSX1RSSUdHRVJfRVZFTlRfQ0VSVF9SRVZPS0VEEAISKQolUFVCTElTSEVSX1RSSUdHRVJfRVZFTlRfQ1JMX1BVQkxJU0hFRBADEioKJlBVQkxJU0hFUl9UUklHR0VSX0VWRU5UX0VFX0NSRURFTlRJQUxTEAQq7QEKD1B1Ymxpc2hlckxvb2t1cBIgChxQVUJMSVNIRVJfTE9PS1VQX1VOU1BFQ0lGSUVEEAASKgomUFVCTElTSEVSX0xPT0tVUF9DRVJUSUZJQ0FURV9BVVRIT1JJVFkQARIoCiRQVUJMSVNIRVJfTE9PS1VQX0NFUlRJRklDQVRFX1BST0ZJTEUQAhIYChRQVUJMSVNIRVJfTE9PS1VQX0tFWRADEicKI1BVQkxJU0hFUl9MT09LVVBfRU5EX0VOVElUWV9QUk9GSUxFEAQSHwobUFVCTElTSEVSX0xPT0tVUF9FTkRfRU5USVRZEAU6awoGbG9va3VwEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjahgMgASgOMi8ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlckxvb2t1cFIGbG9va3VwiAEBQtEBCiJjb20ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxQg5QdWJsaXNoZXJQcm90b1ABogIET0NDUKoCHk90cGtpLkNvbW1vbi5Db3JlLlB1Ymxpc2hlci5WMcoCHk90cGtpXENvbW1vblxDb3JlXFB1Ymxpc2hlclxWMeICKk90cGtpXENvbW1vblxDb3JlXFB1Ymxpc2hlclxWMVxHUEJNZXRhZGF0YeoCIk90cGtpOjpDb21tb246OkNvcmU6OlB1Ymxpc2hlcjo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_descriptor, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type]);
 
 /**
- * Describes the message otpki.common.core.publisher.v1.PublisherConfig.
- * Use `create(PublisherConfigSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.Publisher.
+ * Use `create(PublisherSchema)` to create a new message.
  */
-export const PublisherConfigSchema = /*@__PURE__*/
+export const PublisherSchema = /*@__PURE__*/
   messageDesc(file_otpki_common_core_publisher_v1_publisher, 0);
 
 /**
- * Describes the message otpki.common.core.publisher.v1.CrlPublisher.
- * Use `create(CrlPublisherSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.PublisherTrigger.
+ * Use `create(PublisherTriggerSchema)` to create a new message.
  */
-export const CrlPublisherSchema = /*@__PURE__*/
+export const PublisherTriggerSchema = /*@__PURE__*/
   messageDesc(file_otpki_common_core_publisher_v1_publisher, 1);
 
 /**
- * Describes the message otpki.common.core.publisher.v1.CertificatePublisher.
- * Use `create(CertificatePublisherSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.CrlTriggerConfig.
+ * Use `create(CrlTriggerConfigSchema)` to create a new message.
  */
-export const CertificatePublisherSchema = /*@__PURE__*/
+export const CrlTriggerConfigSchema = /*@__PURE__*/
   messageDesc(file_otpki_common_core_publisher_v1_publisher, 2);
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.PublisherType.
+ * Describes the message otpki.common.core.publisher.v1.CertTriggerConfig.
+ * Use `create(CertTriggerConfigSchema)` to create a new message.
  */
-export const PublisherTypeSchema = /*@__PURE__*/
+export const CertTriggerConfigSchema = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_publisher_v1_publisher, 3);
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.PublisherTransportDescriptor.
+ * Use `create(PublisherTransportDescriptorSchema)` to create a new message.
+ */
+export const PublisherTransportDescriptorSchema = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_publisher_v1_publisher, 4);
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.PublisherTriggerSpec.
+ * Use `create(PublisherTriggerSpecSchema)` to create a new message.
+ */
+export const PublisherTriggerSpecSchema = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_publisher_v1_publisher, 5);
+
+/**
+ * Describes the enum otpki.common.core.publisher.v1.PublisherTransport.
+ */
+export const PublisherTransportSchema = /*@__PURE__*/
   enumDesc(file_otpki_common_core_publisher_v1_publisher, 0);
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PublisherType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTransport
  */
-export const PublisherType = /*@__PURE__*/
-  tsEnum(PublisherTypeSchema);
+export const PublisherTransport = /*@__PURE__*/
+  tsEnum(PublisherTransportSchema);
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.PkiArtifact.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherTriggerEvent.
  */
-export const PkiArtifactSchema = /*@__PURE__*/
+export const PublisherTriggerEventSchema = /*@__PURE__*/
   enumDesc(file_otpki_common_core_publisher_v1_publisher, 1);
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PkiArtifact
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTriggerEvent
  */
-export const PkiArtifact = /*@__PURE__*/
-  tsEnum(PkiArtifactSchema);
+export const PublisherTriggerEvent = /*@__PURE__*/
+  tsEnum(PublisherTriggerEventSchema);
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.CertEventType.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherLookup.
  */
-export const CertEventTypeSchema = /*@__PURE__*/
+export const PublisherLookupSchema = /*@__PURE__*/
   enumDesc(file_otpki_common_core_publisher_v1_publisher, 2);
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.CertEventType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherLookup
  */
-export const CertEventType = /*@__PURE__*/
-  tsEnum(CertEventTypeSchema);
+export const PublisherLookup = /*@__PURE__*/
+  tsEnum(PublisherLookupSchema);
+
+/**
+ * @generated from extension: optional otpki.common.core.publisher.v1.PublisherLookup lookup = 50010;
+ */
+export const lookup = /*@__PURE__*/
+  extDesc(file_otpki_common_core_publisher_v1_publisher, 0);
 

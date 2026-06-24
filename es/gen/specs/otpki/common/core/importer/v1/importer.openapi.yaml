@@ -472,7 +472,6 @@ components:
         - RESOURCE_CERTIFICATE_PROFILE
         - RESOURCE_END_ENTITY_PROFILE
         - RESOURCE_KEY_STORAGE_CONFIG
-        - RESOURCE_PUBLISHER_CONFIG
         - RESOURCE_PUBLISHER
         - RESOURCE_TASKLOG
         - RESOURCE_ACME_PROTOCOL_CONFIG
@@ -488,7 +487,6 @@ components:
         - RESOURCE_OIDC_PROVIDER
         - RESOURCE_APPROVAL_PROFILE
         - RESOURCE_WORK_ITEM
-        - RESOURCE_SMTP_SETTINGS
         - RESOURCE_ISSUANCE_REQUEST
         - RESOURCE_ENROLLMENT_REQUEST
     otpki.common.auth.v1.Role:
@@ -1290,17 +1288,6 @@ components:
           description: |
             if use_email == true and domain == "", it must be modifiable
             email_domain.isHostname // value must be a valid hostname
-        emailNotifications:
-          type: boolean
-          title: email_notifications
-          description: email notifications to the EE (login id + password on creation/rotation)
-        smtpSettingsId:
-          type:
-            - string
-            - "null"
-          title: smtp_settings_id
-          format: uuid
-          description: SMTP settings used to send email notifications
         subjectDnAttributes:
           type: array
           items:
@@ -1574,11 +1561,6 @@ components:
           items:
             $ref: '#/components/schemas/otpki.common.auth.v1.ApprovalProfile'
           title: approval_profiles
-        smtpSettings:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.smtp_settings.v1.SMTPSettings'
-          title: smtp_settings
         endEntityProfiles:
           type: array
           items:
@@ -1644,21 +1626,11 @@ components:
           items:
             $ref: '#/components/schemas/otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey'
           title: certificate_authority_keys
-        publisherConfigs:
+        publishers:
           type: array
           items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
-          title: publisher_configs
-        crlPublishers:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.CrlPublisher'
-          title: crl_publishers
-        certificatePublishers:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.CertificatePublisher'
-          title: certificate_publishers
+            $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
+          title: publishers
       title: ExportData
       additionalProperties: false
       description: |-
@@ -1679,9 +1651,6 @@ components:
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
         approvalProfiles:
           title: approval_profiles
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-        smtpSettings:
-          title: smtp_settings
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
         endEntityProfiles:
           title: end_entity_profiles
@@ -1722,14 +1691,8 @@ components:
         certificateAuthorityKeys:
           title: certificate_authority_keys
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-        publisherConfigs:
-          title: publisher_configs
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-        crlPublishers:
-          title: crl_publishers
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-        certificatePublishers:
-          title: certificate_publishers
+        publishers:
+          title: publishers
           $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
       title: ExportPagination
       additionalProperties: false
@@ -2251,85 +2214,7 @@ components:
           $ref: '#/components/schemas/google.protobuf.Timestamp'
       title: KeyStorageConfig
       additionalProperties: false
-    otpki.common.core.publisher.v1.CertEventType:
-      type: string
-      title: CertEventType
-      enum:
-        - CERT_EVENT_TYPE_UNSPECIFIED
-        - CERT_EVENT_TYPE_CERT_ISSUE
-        - CERT_EVENT_TYPE_CERT_REVOKE
-    otpki.common.core.publisher.v1.CertificatePublisher:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-          description: not settable on creation
-          readOnly: true
-        publisherConfigId:
-          type: string
-          title: publisher_config_id
-          format: uuid
-        caId:
-          type: string
-          title: ca_id
-          format: uuid
-          description: 'CHECK: at least one of these two must be set'
-        certificateProfileId:
-          type: string
-          title: certificate_profile_id
-          format: uuid
-          description: 'CHECK: at least one of these two must be set'
-        subscribedEvents:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.CertEventType'
-          title: subscribed_events
-        createdAt:
-          title: created_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        updatedAt:
-          title: updated_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: CertificatePublisher
-      additionalProperties: false
-      description: Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
-    otpki.common.core.publisher.v1.CrlPublisher:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-          description: not settable on creation
-          readOnly: true
-        caId:
-          type: string
-          title: ca_id
-          format: uuid
-        publisherConfigId:
-          type: string
-          title: publisher_config_id
-          format: uuid
-        createdAt:
-          title: created_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        updatedAt:
-          title: updated_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: CrlPublisher
-      additionalProperties: false
-      description: CRL Publisher can only subscribe to CAs on CRL generation events
-    otpki.common.core.publisher.v1.PublisherConfig:
+    otpki.common.core.publisher.v1.Publisher:
       type: object
       properties:
         id:
@@ -2345,12 +2230,21 @@ components:
         description:
           type: string
           title: description
-        publisherType:
-          title: publisher_type
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherType'
-        configData:
-          title: config_data
+        transport:
+          not:
+            enum:
+              - PUBLISHER_TRANSPORT_UNSPECIFIED
+          title: transport
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTransport'
+        config:
+          title: config
           $ref: '#/components/schemas/google.protobuf.Any'
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTrigger'
+          title: triggers
+          minItems: 1
         createdAt:
           title: created_at
           description: not settable on creation
@@ -2361,77 +2255,40 @@ components:
           description: not settable on creation
           readOnly: true
           $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: PublisherConfig
+      title: Publisher
       additionalProperties: false
-    otpki.common.core.publisher.v1.PublisherType:
+    otpki.common.core.publisher.v1.PublisherTransport:
       type: string
-      title: PublisherType
+      title: PublisherTransport
       enum:
-        - PUBLISHER_TYPE_UNSPECIFIED
-        - PUBLISHER_TYPE_VS
-        - PUBLISHER_TYPE_HTTP
-        - PUBLISHER_TYPE_SCP
-    otpki.common.core.smtp_settings.v1.SMTPEncryption:
-      type: string
-      title: SMTPEncryption
-      enum:
-        - SMTP_ENCRYPTION_UNSPECIFIED
-        - SMTP_ENCRYPTION_NONE
-        - SMTP_ENCRYPTION_STARTTLS
-        - SMTP_ENCRYPTION_SSL
-    otpki.common.core.smtp_settings.v1.SMTPSettings:
+        - PUBLISHER_TRANSPORT_UNSPECIFIED
+        - PUBLISHER_TRANSPORT_VS
+        - PUBLISHER_TRANSPORT_HTTP
+        - PUBLISHER_TRANSPORT_SCP
+        - PUBLISHER_TRANSPORT_SMTP
+    otpki.common.core.publisher.v1.PublisherTrigger:
       type: object
       properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-          readOnly: true
-        name:
-          type: string
-          title: name
-          minLength: 3
-        enabled:
-          type: boolean
-          title: enabled
-        fromAddress:
-          type: string
-          title: from_address
-          format: email
-        fromName:
-          type: string
-          title: from_name
-        host:
-          type: string
-          title: host
-        port:
-          type: string
-          title: port
-        username:
-          type: string
-          title: username
-        password:
-          type: string
-          title: password
-          description: encrypted
-        encryption:
-          title: encryption
-          $ref: '#/components/schemas/otpki.common.core.smtp_settings.v1.SMTPEncryption'
-        tlsInsecure:
-          type: boolean
-          title: tls_insecure
-          description: skip TLS verification of the SMTP server (the server name is always the host)
-        createdAt:
-          title: created_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        updatedAt:
-          title: updated_at
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: SMTPSettings
+        event:
+          not:
+            enum:
+              - PUBLISHER_TRIGGER_EVENT_UNSPECIFIED
+          title: event
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTriggerEvent'
+        config:
+          title: config
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: PublisherTrigger
       additionalProperties: false
+    otpki.common.core.publisher.v1.PublisherTriggerEvent:
+      type: string
+      title: PublisherTriggerEvent
+      enum:
+        - PUBLISHER_TRIGGER_EVENT_UNSPECIFIED
+        - PUBLISHER_TRIGGER_EVENT_CERT_ISSUED
+        - PUBLISHER_TRIGGER_EVENT_CERT_REVOKED
+        - PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED
+        - PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS
     otpki.common.x509.v1.CertificateTemplate:
       type: object
       properties:

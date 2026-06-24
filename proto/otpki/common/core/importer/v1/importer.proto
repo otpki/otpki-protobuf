@@ -15,7 +15,6 @@ import "otpki/common/core/issuer/v1/issuer.proto";
 import "otpki/common/core/key/v1/key.proto";
 import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
 import "otpki/common/core/publisher/v1/publisher.proto";
-import "otpki/common/core/smtp_settings/v1/smtp_settings.proto";
 
 // Export Pagination options allow the user to specify either:
 // Specific page-queries of specific models to export  - or -
@@ -26,7 +25,6 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest roles = 2;
   otpki.common.api.query.v1.PaginationRequest approval_profiles = 3;
 
-  otpki.common.api.query.v1.PaginationRequest smtp_settings = 4;
   otpki.common.api.query.v1.PaginationRequest end_entity_profiles = 5;
   otpki.common.api.query.v1.PaginationRequest end_entities = 6;
   otpki.common.api.query.v1.PaginationRequest enrollment_requests = 7;
@@ -41,9 +39,7 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest certificates = 15;
   otpki.common.api.query.v1.PaginationRequest certificate_authority_certificates = 16;
   otpki.common.api.query.v1.PaginationRequest certificate_authority_keys = 17;
-  otpki.common.api.query.v1.PaginationRequest publisher_configs = 18;
-  otpki.common.api.query.v1.PaginationRequest crl_publishers = 19;
-  otpki.common.api.query.v1.PaginationRequest certificate_publishers = 20;
+  otpki.common.api.query.v1.PaginationRequest publishers = 18;
 }
 
 // The full message format for export and import routes.
@@ -57,7 +53,6 @@ message ExportData {
   repeated otpki.common.auth.v1.Role roles = 2;
   repeated otpki.common.auth.v1.ApprovalProfile approval_profiles = 3;
 
-  repeated otpki.common.core.smtp_settings.v1.SMTPSettings smtp_settings = 4;
   repeated otpki.common.core.end_entity_profile.v1.EndEntityProfile end_entity_profiles = 5;
   repeated otpki.common.core.end_entity.v1.EndEntity end_entities = 6;
   repeated otpki.common.core.enroller.v1.EnrollmentRequest enrollment_requests = 7;
@@ -72,9 +67,7 @@ message ExportData {
   repeated otpki.common.core.issued_certificate.v1.IssuedCertificate certificates = 15;
   repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificates = 16;
   repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey certificate_authority_keys = 17;
-  repeated otpki.common.core.publisher.v1.PublisherConfig publisher_configs = 18;
-  repeated otpki.common.core.publisher.v1.CrlPublisher crl_publishers = 19;
-  repeated otpki.common.core.publisher.v1.CertificatePublisher certificate_publishers = 20;
+  repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
 }
 
 // Controls import behavior when an incoming record already exists

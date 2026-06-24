@@ -5,7 +5,6 @@
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../../../buf/validate/validate_pb.js";
-import type { PkiArtifact, PkiArtifactJson } from "../../../../../common/core/publisher/v1/publisher_pb.js";
 import { file_otpki_common_core_publisher_v1_publisher } from "../../../../../common/core/publisher/v1/publisher_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -13,9 +12,11 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/plugin/publisher/scp/v1/scp.proto.
  */
 export const file_otpki_public_plugin_publisher_scp_v1_scp: GenFile = /*@__PURE__*/
-  fileDesc("Ci5vdHBraS9wdWJsaWMvcGx1Z2luL3B1Ymxpc2hlci9zY3AvdjEvc2NwLnByb3RvEiRvdHBraS5wdWJsaWMucGx1Z2luLnB1Ymxpc2hlci5zY3AudjEi5QEKCVNjcENvbmZpZxIYCgZrZXlfaWQYASABKAlCCLpIBXIDsAEBEhAKCHVzZXJuYW1lGAIgASgJEgwKBGhvc3QYAyABKAkSDAoEcG9ydBgEIAEoAxJACgthbGxvd2VkX2ZvchgFIAMoDjIrLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5Qa2lBcnRpZmFjdBIqCiJjZXJ0aWZpY2F0ZV9wdWJsaXNoZXJfdGVtcGxhdGVfdXJsGAYgASgJEiIKGmNybF9wdWJsaXNoZXJfdGVtcGxhdGVfdXJsGAcgASgJQu0BCihjb20ub3Rwa2kucHVibGljLnBsdWdpbi5wdWJsaXNoZXIuc2NwLnYxQghTY3BQcm90b1ABogIFT1BQUFOqAiRPdHBraS5QdWJsaWMuUGx1Z2luLlB1Ymxpc2hlci5TY3AuVjHKAiVPdHBraVxQdWJsaWNfXFBsdWdpblxQdWJsaXNoZXJcU2NwXFYx4gIxT3Rwa2lcUHVibGljX1xQbHVnaW5cUHVibGlzaGVyXFNjcFxWMVxHUEJNZXRhZGF0YeoCKU90cGtpOjpQdWJsaWM6OlBsdWdpbjo6UHVibGlzaGVyOjpTY3A6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_otpki_common_core_publisher_v1_publisher]);
+  fileDesc("Ci5vdHBraS9wdWJsaWMvcGx1Z2luL3B1Ymxpc2hlci9zY3AvdjEvc2NwLnByb3RvEiRvdHBraS5wdWJsaWMucGx1Z2luLnB1Ymxpc2hlci5zY3AudjEidgoJU2NwQ29uZmlnEhwKBmtleV9pZBgBIAEoCUIMukgFcgOwAQHQtRgDEhkKCHVzZXJuYW1lGAIgASgJQge6SARyAhABEhUKBGhvc3QYAyABKAlCB7pIBHICEAESGQoEcG9ydBgEIAEoA0ILukgIIgYY//8DKAEioQEKFFNjcENlcnRUcmlnZ2VyQ29uZmlnEh0KBWNhX2lkGAEgASgJQgy6SAVyA7ABAdC1GAFIABIuChZjZXJ0aWZpY2F0ZV9wcm9maWxlX2lkGAIgASgJQgy6SAVyA7ABAdC1GAJIABIpChhjZXJ0aWZpY2F0ZV90ZW1wbGF0ZV91cmwYAyABKAlCB7pIBHICEAFCDwoGdGFyZ2V0EgW6SAIIASJYChNTY3BDcmxUcmlnZ2VyQ29uZmlnEh4KBWNhX2lkGAEgASgJQg+6SAjIAQFyA7ABAdC1GAESIQoQY3JsX3RlbXBsYXRlX3VybBgCIAEoCUIHukgEcgIQAULtAQooY29tLm90cGtpLnB1YmxpYy5wbHVnaW4ucHVibGlzaGVyLnNjcC52MUIIU2NwUHJvdG9QAaICBU9QUFBTqgIkT3Rwa2kuUHVibGljLlBsdWdpbi5QdWJsaXNoZXIuU2NwLlYxygIlT3Rwa2lcUHVibGljX1xQbHVnaW5cUHVibGlzaGVyXFNjcFxWMeICMU90cGtpXFB1YmxpY19cUGx1Z2luXFB1Ymxpc2hlclxTY3BcVjFcR1BCTWV0YWRhdGHqAilPdHBraTo6UHVibGljOjpQbHVnaW46OlB1Ymxpc2hlcjo6U2NwOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_otpki_common_core_publisher_v1_publisher]);
 
 /**
+ * Connection settings shared by every trigger that delivers over SSH/SCP
+ *
  * @generated from message otpki.public.plugin.publisher.scp.v1.ScpConfig
  */
 export type ScpConfig = Message<"otpki.public.plugin.publisher.scp.v1.ScpConfig"> & {
@@ -40,24 +41,11 @@ export type ScpConfig = Message<"otpki.public.plugin.publisher.scp.v1.ScpConfig"
    * @generated from field: int64 port = 4;
    */
   port: bigint;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PkiArtifact allowed_for = 5;
-   */
-  allowedFor: PkiArtifact[];
-
-  /**
-   * @generated from field: string certificate_publisher_template_url = 6;
-   */
-  certificatePublisherTemplateUrl: string;
-
-  /**
-   * @generated from field: string crl_publisher_template_url = 7;
-   */
-  crlPublisherTemplateUrl: string;
 };
 
 /**
+ * Connection settings shared by every trigger that delivers over SSH/SCP
+ *
  * @generated from message otpki.public.plugin.publisher.scp.v1.ScpConfig
  */
 export type ScpConfigJson = {
@@ -82,21 +70,6 @@ export type ScpConfigJson = {
    * @generated from field: int64 port = 4;
    */
   port?: string;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PkiArtifact allowed_for = 5;
-   */
-  allowedFor?: PkiArtifactJson[];
-
-  /**
-   * @generated from field: string certificate_publisher_template_url = 6;
-   */
-  certificatePublisherTemplateUrl?: string;
-
-  /**
-   * @generated from field: string crl_publisher_template_url = 7;
-   */
-  crlPublisherTemplateUrl?: string;
 };
 
 export type ScpConfigValid = ScpConfig;
@@ -107,4 +80,132 @@ export type ScpConfigValid = ScpConfig;
  */
 export const ScpConfigSchema: GenMessage<ScpConfig, {jsonType: ScpConfigJson, validType: ScpConfigValid}> = /*@__PURE__*/
   messageDesc(file_otpki_public_plugin_publisher_scp_v1_scp, 0);
+
+/**
+ * Per-trigger config for an SCP certificate (issuance or revocation) trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig
+ */
+export type ScpCertTriggerConfig = Message<"otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig"> & {
+  /**
+   * @generated from oneof otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig.target
+   */
+  target: {
+    /**
+     * @generated from field: string ca_id = 1;
+     */
+    value: string;
+    case: "caId";
+  } | {
+    /**
+     * @generated from field: string certificate_profile_id = 2;
+     */
+    value: string;
+    case: "certificateProfileId";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * Destination path template rendered with the published certificate's fields
+   *
+   * @generated from field: string certificate_template_url = 3;
+   */
+  certificateTemplateUrl: string;
+};
+
+/**
+ * Per-trigger config for an SCP certificate (issuance or revocation) trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig
+ */
+export type ScpCertTriggerConfigJson = {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId?: string;
+
+  /**
+   * @generated from field: string certificate_profile_id = 2;
+   */
+  certificateProfileId?: string;
+
+  /**
+   * Destination path template rendered with the published certificate's fields
+   *
+   * @generated from field: string certificate_template_url = 3;
+   */
+  certificateTemplateUrl?: string;
+};
+
+export type ScpCertTriggerConfigValid = ScpCertTriggerConfig;
+
+/**
+ * Describes the message otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig.
+ * Use `create(ScpCertTriggerConfigSchema)` to create a new message.
+ */
+export const ScpCertTriggerConfigSchema: GenMessage<ScpCertTriggerConfig, {jsonType: ScpCertTriggerConfigJson, validType: ScpCertTriggerConfigValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_publisher_scp_v1_scp, 1);
+
+/**
+ * Per-trigger config for an SCP CRL-publication trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig
+ */
+export type ScpCrlTriggerConfig = Message<"otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig"> & {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId: string;
+
+  /**
+   * Destination path template rendered with the published CRL's fields
+   *
+   * @generated from field: string crl_template_url = 2;
+   */
+  crlTemplateUrl: string;
+};
+
+/**
+ * Per-trigger config for an SCP CRL-publication trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig
+ */
+export type ScpCrlTriggerConfigJson = {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId?: string;
+
+  /**
+   * Destination path template rendered with the published CRL's fields
+   *
+   * @generated from field: string crl_template_url = 2;
+   */
+  crlTemplateUrl?: string;
+};
+
+/**
+ * Per-trigger config for an SCP CRL-publication trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig
+ */
+export type ScpCrlTriggerConfigValid = Message<"otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig"> & {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId: string;
+
+  /**
+   * Destination path template rendered with the published CRL's fields
+   *
+   * @generated from field: string crl_template_url = 2;
+   */
+  crlTemplateUrl: string;
+};
+
+/**
+ * Describes the message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig.
+ * Use `create(ScpCrlTriggerConfigSchema)` to create a new message.
+ */
+export const ScpCrlTriggerConfigSchema: GenMessage<ScpCrlTriggerConfig, {jsonType: ScpCrlTriggerConfigJson, validType: ScpCrlTriggerConfigValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_publisher_scp_v1_scp, 2);
 

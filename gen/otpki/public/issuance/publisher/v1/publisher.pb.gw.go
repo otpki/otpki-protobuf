@@ -35,292 +35,36 @@ var (
 	_ = metadata.Join
 )
 
-func request_PublisherService_CreateCrlPublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PublisherService_CreatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateCrlPublisherRequest
+		protoReq CreatePublisherRequest
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.CreateCrlPublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreatePublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PublisherService_CreateCrlPublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PublisherService_CreatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CreateCrlPublisherRequest
+		protoReq CreatePublisherRequest
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.CreateCrlPublisher(ctx, &protoReq)
+	msg, err := server.CreatePublisher(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PublisherService_DeleteCrlPublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PublisherService_GetPublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteCrlPublisherRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	val, ok := pathParams["publisher_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
-	}
-	protoReq.PublisherId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
-	}
-	msg, err := client.DeleteCrlPublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_DeleteCrlPublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq DeleteCrlPublisherRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["publisher_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
-	}
-	protoReq.PublisherId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
-	}
-	msg, err := server.DeleteCrlPublisher(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_PublisherService_GetCrlPublisherList_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCrlPublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.GetCrlPublisherList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_GetCrlPublisherList_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCrlPublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetCrlPublisherList(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-var filter_PublisherService_GetCrlPublisherList_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-
-func request_PublisherService_GetCrlPublisherList_1(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCrlPublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetCrlPublisherList_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.GetCrlPublisherList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_GetCrlPublisherList_1(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCrlPublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetCrlPublisherList_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetCrlPublisherList(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_PublisherService_CreateCertificatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateCertificatePublisherRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.CreateCertificatePublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_CreateCertificatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreateCertificatePublisherRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.CreateCertificatePublisher(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_PublisherService_DeleteCertificatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq DeleteCertificatePublisherRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	val, ok := pathParams["publisher_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
-	}
-	protoReq.PublisherId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
-	}
-	msg, err := client.DeleteCertificatePublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_DeleteCertificatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq DeleteCertificatePublisherRequest
-		metadata runtime.ServerMetadata
-		err      error
-	)
-	val, ok := pathParams["publisher_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher_id")
-	}
-	protoReq.PublisherId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher_id", err)
-	}
-	msg, err := server.DeleteCertificatePublisher(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_PublisherService_GetCertificatePublisherList_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCertificatePublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.GetCertificatePublisherList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_GetCertificatePublisherList_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCertificatePublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetCertificatePublisherList(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-var filter_PublisherService_GetCertificatePublisherList_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-
-func request_PublisherService_GetCertificatePublisherList_1(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCertificatePublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetCertificatePublisherList_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := client.GetCertificatePublisherList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_GetCertificatePublisherList_1(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetCertificatePublisherListRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetCertificatePublisherList_1); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.GetCertificatePublisherList(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_PublisherService_CreatePublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreatePublisherConfigRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	if req.Body != nil {
-		_, _ = io.Copy(io.Discard, req.Body)
-	}
-	msg, err := client.CreatePublisherConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-}
-
-func local_request_PublisherService_CreatePublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq CreatePublisherConfigRequest
-		metadata runtime.ServerMetadata
-	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
-	}
-	msg, err := server.CreatePublisherConfig(ctx, &protoReq)
-	return msg, metadata, err
-}
-
-func request_PublisherService_GetPublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var (
-		protoReq GetPublisherConfigRequest
+		protoReq GetPublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -335,13 +79,13 @@ func request_PublisherService_GetPublisherConfig_0(ctx context.Context, marshale
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-	msg, err := client.GetPublisherConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetPublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PublisherService_GetPublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PublisherService_GetPublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetPublisherConfigRequest
+		protoReq GetPublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -353,74 +97,74 @@ func local_request_PublisherService_GetPublisherConfig_0(ctx context.Context, ma
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-	msg, err := server.GetPublisherConfig(ctx, &protoReq)
+	msg, err := server.GetPublisher(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PublisherService_UpdatePublisherConfig_0 = &utilities.DoubleArray{Encoding: map[string]int{"config": 0, "id": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
+var filter_PublisherService_UpdatePublisher_0 = &utilities.DoubleArray{Encoding: map[string]int{"publisher": 0, "id": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
 
-func request_PublisherService_UpdatePublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PublisherService_UpdatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdatePublisherConfigRequest
+		protoReq UpdatePublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	val, ok := pathParams["config.id"]
+	val, ok := pathParams["publisher.id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "config.id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher.id")
 	}
-	err = runtime.PopulateFieldFromPath(&protoReq, "config.id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "publisher.id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "config.id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher.id", err)
 	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisherConfig_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisher_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.UpdatePublisherConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdatePublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PublisherService_UpdatePublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PublisherService_UpdatePublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdatePublisherConfigRequest
+		protoReq UpdatePublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	val, ok := pathParams["config.id"]
+	val, ok := pathParams["publisher.id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "config.id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher.id")
 	}
-	err = runtime.PopulateFieldFromPath(&protoReq, "config.id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "publisher.id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "config.id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher.id", err)
 	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisherConfig_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisher_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.UpdatePublisherConfig(ctx, &protoReq)
+	msg, err := server.UpdatePublisher(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PublisherService_UpdatePublisherConfig_1 = &utilities.DoubleArray{Encoding: map[string]int{"config": 0, "id": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
+var filter_PublisherService_UpdatePublisher_1 = &utilities.DoubleArray{Encoding: map[string]int{"publisher": 0, "id": 1}, Base: []int{1, 2, 1, 0, 0}, Check: []int{0, 1, 2, 3, 2}}
 
-func request_PublisherService_UpdatePublisherConfig_1(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PublisherService_UpdatePublisher_1(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdatePublisherConfigRequest
+		protoReq UpdatePublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -428,40 +172,40 @@ func request_PublisherService_UpdatePublisherConfig_1(ctx context.Context, marsh
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
 	if protoReq.UpdateMask == nil || len(protoReq.UpdateMask.GetPaths()) == 0 {
-		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.Config); err != nil {
+		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.Publisher); err != nil {
 			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 		} else {
 			protoReq.UpdateMask = fieldMask
 		}
 	}
-	val, ok := pathParams["config.id"]
+	val, ok := pathParams["publisher.id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "config.id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher.id")
 	}
-	err = runtime.PopulateFieldFromPath(&protoReq, "config.id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "publisher.id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "config.id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher.id", err)
 	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisherConfig_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisher_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.UpdatePublisherConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdatePublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PublisherService_UpdatePublisherConfig_1(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PublisherService_UpdatePublisher_1(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq UpdatePublisherConfigRequest
+		protoReq UpdatePublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -469,37 +213,37 @@ func local_request_PublisherService_UpdatePublisherConfig_1(ctx context.Context,
 	if berr != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if protoReq.UpdateMask == nil || len(protoReq.UpdateMask.GetPaths()) == 0 {
-		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.Config); err != nil {
+		if fieldMask, err := runtime.FieldMaskFromRequestBody(newReader(), protoReq.Publisher); err != nil {
 			return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 		} else {
 			protoReq.UpdateMask = fieldMask
 		}
 	}
-	val, ok := pathParams["config.id"]
+	val, ok := pathParams["publisher.id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "config.id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "publisher.id")
 	}
-	err = runtime.PopulateFieldFromPath(&protoReq, "config.id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "publisher.id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "config.id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "publisher.id", err)
 	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisherConfig_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_UpdatePublisher_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.UpdatePublisherConfig(ctx, &protoReq)
+	msg, err := server.UpdatePublisher(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PublisherService_DeletePublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PublisherService_DeletePublisher_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeletePublisherConfigRequest
+		protoReq DeletePublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -514,13 +258,13 @@ func request_PublisherService_DeletePublisherConfig_0(ctx context.Context, marsh
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-	msg, err := client.DeletePublisherConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeletePublisher(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PublisherService_DeletePublisherConfig_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PublisherService_DeletePublisher_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeletePublisherConfigRequest
+		protoReq DeletePublisherRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -532,13 +276,13 @@ func local_request_PublisherService_DeletePublisherConfig_0(ctx context.Context,
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-	msg, err := server.DeletePublisherConfig(ctx, &protoReq)
+	msg, err := server.DeletePublisher(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-func request_PublisherService_GetPublisherConfigList_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PublisherService_GetPublisherList_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetPublisherConfigListRequest
+		protoReq GetPublisherListRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
@@ -547,27 +291,27 @@ func request_PublisherService_GetPublisherConfigList_0(ctx context.Context, mars
 	if req.Body != nil {
 		_, _ = io.Copy(io.Discard, req.Body)
 	}
-	msg, err := client.GetPublisherConfigList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetPublisherList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PublisherService_GetPublisherConfigList_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PublisherService_GetPublisherList_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetPublisherConfigListRequest
+		protoReq GetPublisherListRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Pagination); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetPublisherConfigList(ctx, &protoReq)
+	msg, err := server.GetPublisherList(ctx, &protoReq)
 	return msg, metadata, err
 }
 
-var filter_PublisherService_GetPublisherConfigList_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+var filter_PublisherService_GetPublisherList_1 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
-func request_PublisherService_GetPublisherConfigList_1(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_PublisherService_GetPublisherList_1(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetPublisherConfigListRequest
+		protoReq GetPublisherListRequest
 		metadata runtime.ServerMetadata
 	)
 	if req.Body != nil {
@@ -576,25 +320,46 @@ func request_PublisherService_GetPublisherConfigList_1(ctx context.Context, mars
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetPublisherConfigList_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetPublisherList_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := client.GetPublisherConfigList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetPublisherList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
 
-func local_request_PublisherService_GetPublisherConfigList_1(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_PublisherService_GetPublisherList_1(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq GetPublisherConfigListRequest
+		protoReq GetPublisherListRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetPublisherConfigList_1); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_PublisherService_GetPublisherList_1); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	msg, err := server.GetPublisherConfigList(ctx, &protoReq)
+	msg, err := server.GetPublisherList(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_PublisherService_GetPublisherTransports_0(ctx context.Context, marshaler runtime.Marshaler, client PublisherServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetPublisherTransportsRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.GetPublisherTransports(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_PublisherService_GetPublisherTransports_0(ctx context.Context, marshaler runtime.Marshaler, server PublisherServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetPublisherTransportsRequest
+		metadata runtime.ServerMetadata
+	)
+	msg, err := server.GetPublisherTransports(ctx, &protoReq)
 	return msg, metadata, err
 }
 
@@ -603,7 +368,7 @@ func request_PublisherService_TestPublisherConnection_0(ctx context.Context, mar
 		protoReq TestPublisherConnectionRequest
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if req.Body != nil {
@@ -618,7 +383,7 @@ func local_request_PublisherService_TestPublisherConnection_0(ctx context.Contex
 		protoReq TestPublisherConnectionRequest
 		metadata runtime.ServerMetadata
 	)
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Config); err != nil && !errors.Is(err, io.EOF) {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq.Publisher); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	msg, err := server.TestPublisherConnection(ctx, &protoReq)
@@ -658,305 +423,165 @@ func local_request_PublisherService_TestPublisherPublish_0(ctx context.Context, 
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterPublisherServiceHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterPublisherServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server PublisherServiceServer) error {
-	mux.Handle(http.MethodPost, pattern_PublisherService_CreateCrlPublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PublisherService_CreatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreateCrlPublisher", runtime.WithHTTPPathPattern("/v1/publishers/crl"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisher", runtime.WithHTTPPathPattern("/v1/publishers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_CreateCrlPublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_CreatePublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_CreateCrlPublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_CreatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PublisherService_DeleteCrlPublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCrlPublisher", runtime.WithHTTPPathPattern("/v1/publishers/crl/{publisher_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisher", runtime.WithHTTPPathPattern("/v1/publishers/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_DeleteCrlPublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_GetPublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_DeleteCrlPublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_GetCrlPublisherList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_PublisherService_UpdatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCrlPublisherList", runtime.WithHTTPPathPattern("/v1/publishers/crl"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/{publisher.id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_GetCrlPublisherList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_UpdatePublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCrlPublisherList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_UpdatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetCrlPublisherList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_PublisherService_UpdatePublisher_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCrlPublisherList", runtime.WithHTTPPathPattern("/v1/publishers/crl"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/{publisher.id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_GetCrlPublisherList_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_UpdatePublisher_1(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCrlPublisherList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_UpdatePublisher_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PublisherService_CreateCertificatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PublisherService_DeletePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreateCertificatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/certificate"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisher", runtime.WithHTTPPathPattern("/v1/publishers/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_CreateCertificatePublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_DeletePublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_CreateCertificatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_DeletePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PublisherService_DeleteCertificatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_PublisherService_GetPublisherList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCertificatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/certificate/{publisher_id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherList", runtime.WithHTTPPathPattern("/v1/publishers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_DeleteCertificatePublisher_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_GetPublisherList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_DeleteCertificatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisherList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_GetCertificatePublisherList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCertificatePublisherList", runtime.WithHTTPPathPattern("/v1/publishers/certificate"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherList", runtime.WithHTTPPathPattern("/v1/publishers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_GetCertificatePublisherList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_GetPublisherList_1(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCertificatePublisherList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisherList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetCertificatePublisherList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherTransports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCertificatePublisherList", runtime.WithHTTPPathPattern("/v1/publishers/certificate"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherTransports", runtime.WithHTTPPathPattern("/v1/publisher-transports"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PublisherService_GetCertificatePublisherList_1(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PublisherService_GetPublisherTransports_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCertificatePublisherList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_PublisherService_CreatePublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PublisherService_CreatePublisherConfig_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_CreatePublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PublisherService_GetPublisherConfig_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_GetPublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_UpdatePublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{config.id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PublisherService_UpdatePublisherConfig_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_UpdatePublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPatch, pattern_PublisherService_UpdatePublisherConfig_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{config.id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PublisherService_UpdatePublisherConfig_1(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_UpdatePublisherConfig_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodDelete, pattern_PublisherService_DeletePublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PublisherService_DeletePublisherConfig_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_DeletePublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_GetPublisherConfigList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfigList", runtime.WithHTTPPathPattern("/v1/publishers/configs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PublisherService_GetPublisherConfigList_0(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_GetPublisherConfigList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherConfigList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfigList", runtime.WithHTTPPathPattern("/v1/publishers/configs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_PublisherService_GetPublisherConfigList_1(annotatedContext, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_GetPublisherConfigList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisherTransports_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PublisherService_TestPublisherConnection_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -964,7 +589,7 @@ func RegisterPublisherServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherConnection", runtime.WithHTTPPathPattern("/v1/publishers/configs/test"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherConnection", runtime.WithHTTPPathPattern("/v1/publishers/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -984,7 +609,7 @@ func RegisterPublisherServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherPublish", runtime.WithHTTPPathPattern("/v1/publishers/configs/test-publish"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherPublish", runtime.WithHTTPPathPattern("/v1/publishers/test-publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1038,266 +663,147 @@ func RegisterPublisherServiceHandler(ctx context.Context, mux *runtime.ServeMux,
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "PublisherServiceClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterPublisherServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client PublisherServiceClient) error {
-	mux.Handle(http.MethodPost, pattern_PublisherService_CreateCrlPublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_PublisherService_CreatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreateCrlPublisher", runtime.WithHTTPPathPattern("/v1/publishers/crl"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisher", runtime.WithHTTPPathPattern("/v1/publishers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_CreateCrlPublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_CreatePublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_CreateCrlPublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_CreatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PublisherService_DeleteCrlPublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCrlPublisher", runtime.WithHTTPPathPattern("/v1/publishers/crl/{publisher_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisher", runtime.WithHTTPPathPattern("/v1/publishers/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_DeleteCrlPublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_GetPublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_DeleteCrlPublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_GetCrlPublisherList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_PublisherService_UpdatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCrlPublisherList", runtime.WithHTTPPathPattern("/v1/publishers/crl"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/{publisher.id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_GetCrlPublisherList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_UpdatePublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCrlPublisherList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_UpdatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetCrlPublisherList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_PublisherService_UpdatePublisher_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCrlPublisherList", runtime.WithHTTPPathPattern("/v1/publishers/crl"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/{publisher.id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_GetCrlPublisherList_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_UpdatePublisher_1(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCrlPublisherList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_UpdatePublisher_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPost, pattern_PublisherService_CreateCertificatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_PublisherService_DeletePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreateCertificatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/certificate"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisher", runtime.WithHTTPPathPattern("/v1/publishers/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_CreateCertificatePublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_DeletePublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_CreateCertificatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_DeletePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodDelete, pattern_PublisherService_DeleteCertificatePublisher_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_PublisherService_GetPublisherList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCertificatePublisher", runtime.WithHTTPPathPattern("/v1/publishers/certificate/{publisher_id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherList", runtime.WithHTTPPathPattern("/v1/publishers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_DeleteCertificatePublisher_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_GetPublisherList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_DeleteCertificatePublisher_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisherList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_GetCertificatePublisherList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCertificatePublisherList", runtime.WithHTTPPathPattern("/v1/publishers/certificate"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherList", runtime.WithHTTPPathPattern("/v1/publishers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_GetCertificatePublisherList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_GetPublisherList_1(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCertificatePublisherList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisherList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetCertificatePublisherList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherTransports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetCertificatePublisherList", runtime.WithHTTPPathPattern("/v1/publishers/certificate"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherTransports", runtime.WithHTTPPathPattern("/v1/publisher-transports"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PublisherService_GetCertificatePublisherList_1(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PublisherService_GetPublisherTransports_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		forward_PublisherService_GetCertificatePublisherList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPost, pattern_PublisherService_CreatePublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PublisherService_CreatePublisherConfig_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_CreatePublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PublisherService_GetPublisherConfig_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_GetPublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_UpdatePublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{config.id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PublisherService_UpdatePublisherConfig_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_UpdatePublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPatch, pattern_PublisherService_UpdatePublisherConfig_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{config.id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PublisherService_UpdatePublisherConfig_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_UpdatePublisherConfig_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodDelete, pattern_PublisherService_DeletePublisherConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisherConfig", runtime.WithHTTPPathPattern("/v1/publishers/configs/{id}"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PublisherService_DeletePublisherConfig_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_DeletePublisherConfig_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodPut, pattern_PublisherService_GetPublisherConfigList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfigList", runtime.WithHTTPPathPattern("/v1/publishers/configs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PublisherService_GetPublisherConfigList_0(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_GetPublisherConfigList_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-	})
-	mux.Handle(http.MethodGet, pattern_PublisherService_GetPublisherConfigList_1, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfigList", runtime.WithHTTPPathPattern("/v1/publishers/configs"))
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_PublisherService_GetPublisherConfigList_1(annotatedContext, inboundMarshaler, client, req, pathParams)
-		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
-		if err != nil {
-			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		forward_PublisherService_GetPublisherConfigList_1(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_PublisherService_GetPublisherTransports_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 	mux.Handle(http.MethodPost, pattern_PublisherService_TestPublisherConnection_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherConnection", runtime.WithHTTPPathPattern("/v1/publishers/configs/test"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherConnection", runtime.WithHTTPPathPattern("/v1/publishers/test"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1314,7 +820,7 @@ func RegisterPublisherServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherPublish", runtime.WithHTTPPathPattern("/v1/publishers/configs/test-publish"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherPublish", runtime.WithHTTPPathPattern("/v1/publishers/test-publish"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1331,41 +837,27 @@ func RegisterPublisherServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 }
 
 var (
-	pattern_PublisherService_CreateCrlPublisher_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "crl"}, ""))
-	pattern_PublisherService_DeleteCrlPublisher_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "publishers", "crl", "publisher_id"}, ""))
-	pattern_PublisherService_GetCrlPublisherList_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "crl"}, ""))
-	pattern_PublisherService_GetCrlPublisherList_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "crl"}, ""))
-	pattern_PublisherService_CreateCertificatePublisher_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "certificate"}, ""))
-	pattern_PublisherService_DeleteCertificatePublisher_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "publishers", "certificate", "publisher_id"}, ""))
-	pattern_PublisherService_GetCertificatePublisherList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "certificate"}, ""))
-	pattern_PublisherService_GetCertificatePublisherList_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "certificate"}, ""))
-	pattern_PublisherService_CreatePublisherConfig_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "configs"}, ""))
-	pattern_PublisherService_GetPublisherConfig_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "publishers", "configs", "id"}, ""))
-	pattern_PublisherService_UpdatePublisherConfig_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "publishers", "configs", "config.id"}, ""))
-	pattern_PublisherService_UpdatePublisherConfig_1       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "publishers", "configs", "config.id"}, ""))
-	pattern_PublisherService_DeletePublisherConfig_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "publishers", "configs", "id"}, ""))
-	pattern_PublisherService_GetPublisherConfigList_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "configs"}, ""))
-	pattern_PublisherService_GetPublisherConfigList_1      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "configs"}, ""))
-	pattern_PublisherService_TestPublisherConnection_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1", "publishers", "configs", "test"}, ""))
-	pattern_PublisherService_TestPublisherPublish_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1", "publishers", "configs", "test-publish"}, ""))
+	pattern_PublisherService_CreatePublisher_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "publishers"}, ""))
+	pattern_PublisherService_GetPublisher_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "publishers", "id"}, ""))
+	pattern_PublisherService_UpdatePublisher_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "publishers", "publisher.id"}, ""))
+	pattern_PublisherService_UpdatePublisher_1         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "publishers", "publisher.id"}, ""))
+	pattern_PublisherService_DeletePublisher_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "publishers", "id"}, ""))
+	pattern_PublisherService_GetPublisherList_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "publishers"}, ""))
+	pattern_PublisherService_GetPublisherList_1        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "publishers"}, ""))
+	pattern_PublisherService_GetPublisherTransports_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "publisher-transports"}, ""))
+	pattern_PublisherService_TestPublisherConnection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "test"}, ""))
+	pattern_PublisherService_TestPublisherPublish_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "publishers", "test-publish"}, ""))
 )
 
 var (
-	forward_PublisherService_CreateCrlPublisher_0          = runtime.ForwardResponseMessage
-	forward_PublisherService_DeleteCrlPublisher_0          = runtime.ForwardResponseMessage
-	forward_PublisherService_GetCrlPublisherList_0         = runtime.ForwardResponseMessage
-	forward_PublisherService_GetCrlPublisherList_1         = runtime.ForwardResponseMessage
-	forward_PublisherService_CreateCertificatePublisher_0  = runtime.ForwardResponseMessage
-	forward_PublisherService_DeleteCertificatePublisher_0  = runtime.ForwardResponseMessage
-	forward_PublisherService_GetCertificatePublisherList_0 = runtime.ForwardResponseMessage
-	forward_PublisherService_GetCertificatePublisherList_1 = runtime.ForwardResponseMessage
-	forward_PublisherService_CreatePublisherConfig_0       = runtime.ForwardResponseMessage
-	forward_PublisherService_GetPublisherConfig_0          = runtime.ForwardResponseMessage
-	forward_PublisherService_UpdatePublisherConfig_0       = runtime.ForwardResponseMessage
-	forward_PublisherService_UpdatePublisherConfig_1       = runtime.ForwardResponseMessage
-	forward_PublisherService_DeletePublisherConfig_0       = runtime.ForwardResponseMessage
-	forward_PublisherService_GetPublisherConfigList_0      = runtime.ForwardResponseMessage
-	forward_PublisherService_GetPublisherConfigList_1      = runtime.ForwardResponseMessage
-	forward_PublisherService_TestPublisherConnection_0     = runtime.ForwardResponseMessage
-	forward_PublisherService_TestPublisherPublish_0        = runtime.ForwardResponseMessage
+	forward_PublisherService_CreatePublisher_0         = runtime.ForwardResponseMessage
+	forward_PublisherService_GetPublisher_0            = runtime.ForwardResponseMessage
+	forward_PublisherService_UpdatePublisher_0         = runtime.ForwardResponseMessage
+	forward_PublisherService_UpdatePublisher_1         = runtime.ForwardResponseMessage
+	forward_PublisherService_DeletePublisher_0         = runtime.ForwardResponseMessage
+	forward_PublisherService_GetPublisherList_0        = runtime.ForwardResponseMessage
+	forward_PublisherService_GetPublisherList_1        = runtime.ForwardResponseMessage
+	forward_PublisherService_GetPublisherTransports_0  = runtime.ForwardResponseMessage
+	forward_PublisherService_TestPublisherConnection_0 = runtime.ForwardResponseMessage
+	forward_PublisherService_TestPublisherPublish_0    = runtime.ForwardResponseMessage
 )

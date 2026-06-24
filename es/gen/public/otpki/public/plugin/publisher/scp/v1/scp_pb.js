@@ -10,7 +10,7 @@ import { file_otpki_common_core_publisher_v1_publisher } from "../../../../../co
  * Describes the file otpki/public/plugin/publisher/scp/v1/scp.proto.
  */
 export const file_otpki_public_plugin_publisher_scp_v1_scp = /*@__PURE__*/
-  fileDesc("Ci5vdHBraS9wdWJsaWMvcGx1Z2luL3B1Ymxpc2hlci9zY3AvdjEvc2NwLnByb3RvEiRvdHBraS5wdWJsaWMucGx1Z2luLnB1Ymxpc2hlci5zY3AudjEi5QEKCVNjcENvbmZpZxIYCgZrZXlfaWQYASABKAlCCLpIBXIDsAEBEhAKCHVzZXJuYW1lGAIgASgJEgwKBGhvc3QYAyABKAkSDAoEcG9ydBgEIAEoAxJACgthbGxvd2VkX2ZvchgFIAMoDjIrLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5Qa2lBcnRpZmFjdBIqCiJjZXJ0aWZpY2F0ZV9wdWJsaXNoZXJfdGVtcGxhdGVfdXJsGAYgASgJEiIKGmNybF9wdWJsaXNoZXJfdGVtcGxhdGVfdXJsGAcgASgJQu0BCihjb20ub3Rwa2kucHVibGljLnBsdWdpbi5wdWJsaXNoZXIuc2NwLnYxQghTY3BQcm90b1ABogIFT1BQUFOqAiRPdHBraS5QdWJsaWMuUGx1Z2luLlB1Ymxpc2hlci5TY3AuVjHKAiVPdHBraVxQdWJsaWNfXFBsdWdpblxQdWJsaXNoZXJcU2NwXFYx4gIxT3Rwa2lcUHVibGljX1xQbHVnaW5cUHVibGlzaGVyXFNjcFxWMVxHUEJNZXRhZGF0YeoCKU90cGtpOjpQdWJsaWM6OlBsdWdpbjo6UHVibGlzaGVyOjpTY3A6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_otpki_common_core_publisher_v1_publisher]);
+  fileDesc("Ci5vdHBraS9wdWJsaWMvcGx1Z2luL3B1Ymxpc2hlci9zY3AvdjEvc2NwLnByb3RvEiRvdHBraS5wdWJsaWMucGx1Z2luLnB1Ymxpc2hlci5zY3AudjEidgoJU2NwQ29uZmlnEhwKBmtleV9pZBgBIAEoCUIMukgFcgOwAQHQtRgDEhkKCHVzZXJuYW1lGAIgASgJQge6SARyAhABEhUKBGhvc3QYAyABKAlCB7pIBHICEAESGQoEcG9ydBgEIAEoA0ILukgIIgYY//8DKAEioQEKFFNjcENlcnRUcmlnZ2VyQ29uZmlnEh0KBWNhX2lkGAEgASgJQgy6SAVyA7ABAdC1GAFIABIuChZjZXJ0aWZpY2F0ZV9wcm9maWxlX2lkGAIgASgJQgy6SAVyA7ABAdC1GAJIABIpChhjZXJ0aWZpY2F0ZV90ZW1wbGF0ZV91cmwYAyABKAlCB7pIBHICEAFCDwoGdGFyZ2V0EgW6SAIIASJYChNTY3BDcmxUcmlnZ2VyQ29uZmlnEh4KBWNhX2lkGAEgASgJQg+6SAjIAQFyA7ABAdC1GAESIQoQY3JsX3RlbXBsYXRlX3VybBgCIAEoCUIHukgEcgIQAULtAQooY29tLm90cGtpLnB1YmxpYy5wbHVnaW4ucHVibGlzaGVyLnNjcC52MUIIU2NwUHJvdG9QAaICBU9QUFBTqgIkT3Rwa2kuUHVibGljLlBsdWdpbi5QdWJsaXNoZXIuU2NwLlYxygIlT3Rwa2lcUHVibGljX1xQbHVnaW5cUHVibGlzaGVyXFNjcFxWMeICMU90cGtpXFB1YmxpY19cUGx1Z2luXFB1Ymxpc2hlclxTY3BcVjFcR1BCTWV0YWRhdGHqAilPdHBraTo6UHVibGljOjpQbHVnaW46OlB1Ymxpc2hlcjo6U2NwOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_otpki_common_core_publisher_v1_publisher]);
 
 /**
  * Describes the message otpki.public.plugin.publisher.scp.v1.ScpConfig.
@@ -18,4 +18,18 @@ export const file_otpki_public_plugin_publisher_scp_v1_scp = /*@__PURE__*/
  */
 export const ScpConfigSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_plugin_publisher_scp_v1_scp, 0);
+
+/**
+ * Describes the message otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig.
+ * Use `create(ScpCertTriggerConfigSchema)` to create a new message.
+ */
+export const ScpCertTriggerConfigSchema = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_publisher_scp_v1_scp, 1);
+
+/**
+ * Describes the message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig.
+ * Use `create(ScpCrlTriggerConfigSchema)` to create a new message.
+ */
+export const ScpCrlTriggerConfigSchema = /*@__PURE__*/
+  messageDesc(file_otpki_public_plugin_publisher_scp_v1_scp, 2);
 

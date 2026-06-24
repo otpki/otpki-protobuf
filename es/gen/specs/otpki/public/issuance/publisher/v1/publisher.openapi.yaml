@@ -2,12 +2,25 @@ openapi: 3.1.0
 info:
   title: otpki.public.issuance.publisher.v1
 paths:
-  /v1/publishers/certificate:
+  /v1/publisher-transports:
     get:
       tags:
         - otpki.public.issuance.publisher.v1.PublisherService
-      summary: GetCertificatePublisherList
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.GetCertificatePublisherList
+      summary: GetPublisherTransports
+      operationId: otpki.public.issuance.publisher.v1.PublisherService.GetPublisherTransports
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.GetPublisherTransportsResponse'
+  /v1/publishers:
+    get:
+      tags:
+        - otpki.public.issuance.publisher.v1.PublisherService
+      summary: GetPublisherList
+      operationId: otpki.public.issuance.publisher.v1.PublisherService.GetPublisherList
       parameters:
         - name: pagination.pageToken
           in: query
@@ -316,382 +329,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.GetCertificatePublisherListResponse'
+                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.GetPublisherListResponse'
     post:
       tags:
         - otpki.public.issuance.publisher.v1.PublisherService
-      summary: CreateCertificatePublisher
-      description: Cert Publishers
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.CreateCertificatePublisher
+      summary: CreatePublisher
+      operationId: otpki.public.issuance.publisher.v1.PublisherService.CreatePublisher
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.CreateCertificatePublisherRequest'
-        required: true
+              title: publisher
+              $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.CreateCertificatePublisherResponse'
-  /v1/publishers/certificate/{publisher_id}:
-    delete:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: DeleteCertificatePublisher
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.DeleteCertificatePublisher
-      parameters:
-        - name: publisher_id
-          in: path
-          required: true
-          schema:
-            type: string
-            title: publisher_id
-            format: uuid
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.DeleteCertificatePublisherResponse'
-  /v1/publishers/configs:
-    get:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: GetPublisherConfigList
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfigList
-      parameters:
-        - name: pagination.pageToken
-          in: query
-          schema:
-            type: string
-            title: page_token
-        - name: pagination.pageSize
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: page_size
-            format: int64
-        - name: pagination.skip
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: skip
-            format: int64
-        - name: pagination.sort.column
-          in: query
-          schema:
-            type: string
-            title: column
-        - name: pagination.sort.order
-          in: query
-          schema:
-            title: order
-            $ref: '#/components/schemas/otpki.common.api.query.v1.SortOrder'
-        - name: pagination.sort.jsonPath
-          in: query
-          description: advanced sorting options (use only one)
-          schema:
-            type: string
-            title: json_path
-            description: advanced sorting options (use only one)
-        - name: pagination.sort.jsonText
-          in: query
-          schema:
-            type: string
-            title: json_text
-        - name: pagination.sort.jsonNumeric
-          in: query
-          schema:
-            type: string
-            title: json_numeric
-        - name: pagination.sort.arrayIndex
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: array_index
-            format: int64
-        - name: pagination.sort.arrayLength
-          in: query
-          schema:
-            type: boolean
-            title: array_length
-        - name: pagination.sort.arrayContains
-          in: query
-          schema:
-            type: string
-            title: array_contains
-        - name: pagination.filters.column
-          in: query
-          schema:
-            type: string
-            title: column
-        - name: pagination.filters.operator
-          in: query
-          schema:
-            title: operator
-            $ref: '#/components/schemas/otpki.common.api.query.v1.FilterOperator'
-        - name: pagination.filters.values.stringValue
-          in: query
-          schema:
-            type: string
-            title: string_value
-        - name: pagination.filters.values.intValue
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: int_value
-            format: int64
-        - name: pagination.filters.values.doubleValue
-          in: query
-          schema:
-            type: number
-            title: double_value
-            format: double
-        - name: pagination.filters.values.boolValue
-          in: query
-          schema:
-            type: boolean
-            title: bool_value
-        - name: pagination.filters.values.timestampValue
-          in: query
-          schema:
-            type: string
-            examples:
-              - "2023-01-15T01:30:15.01Z"
-              - "2024-12-25T12:00:00Z"
-            format: date-time
-            description: |-
-              A Timestamp represents a point in time independent of any time zone or local
-               calendar, encoded as a count of seconds and fractions of seconds at
-               nanosecond resolution. The count is relative to an epoch at UTC midnight on
-               January 1, 1970, in the proleptic Gregorian calendar which extends the
-               Gregorian calendar backwards to year one.
-
-               All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
-               second table is needed for interpretation, using a [24-hour linear
-               smear](https://developers.google.com/time/smear).
-
-               The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
-               restricting to that range, we ensure that we can convert to and from [RFC
-               3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
-
-               # Examples
-
-               Example 1: Compute Timestamp from POSIX `time()`.
-
-                   Timestamp timestamp;
-                   timestamp.set_seconds(time(NULL));
-                   timestamp.set_nanos(0);
-
-               Example 2: Compute Timestamp from POSIX `gettimeofday()`.
-
-                   struct timeval tv;
-                   gettimeofday(&tv, NULL);
-
-                   Timestamp timestamp;
-                   timestamp.set_seconds(tv.tv_sec);
-                   timestamp.set_nanos(tv.tv_usec * 1000);
-
-               Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
-
-                   FILETIME ft;
-                   GetSystemTimeAsFileTime(&ft);
-                   UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
-
-                   // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
-                   // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
-                   Timestamp timestamp;
-                   timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
-                   timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
-
-               Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
-
-                   long millis = System.currentTimeMillis();
-
-                   Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
-                       .setNanos((int) ((millis % 1000) * 1000000)).build();
-
-               Example 5: Compute Timestamp from Java `Instant.now()`.
-
-                   Instant now = Instant.now();
-
-                   Timestamp timestamp =
-                       Timestamp.newBuilder().setSeconds(now.getEpochSecond())
-                           .setNanos(now.getNano()).build();
-
-               Example 6: Compute Timestamp from current time in Python.
-
-                   timestamp = Timestamp()
-                   timestamp.GetCurrentTime()
-
-               # JSON Mapping
-
-               In JSON format, the Timestamp type is encoded as a string in the
-               [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
-               format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
-               where {year} is always expressed using four digits while {month}, {day},
-               {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
-               seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
-               are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
-               is required. A proto3 JSON serializer should always use UTC (as indicated by
-               "Z") when printing the Timestamp type and a proto3 JSON parser should be
-               able to accept both UTC and other timezones (as indicated by an offset).
-
-               For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
-               01:30 UTC on January 15, 2017.
-
-               In JavaScript, one can convert a Date object to this format using the
-               standard
-               [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
-               method. In Python, a standard `datetime.datetime` object can be converted
-               to this format using
-               [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
-               the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
-               the Joda Time's [`ISODateTimeFormat.dateTime()`](
-               http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
-               ) to obtain a formatter capable of generating timestamps in this format.
-        - name: pagination.filters.values.durationValue
-          in: query
-          schema:
-            type: string
-            format: duration
-            description: |-
-              A Duration represents a signed, fixed-length span of time represented
-               as a count of seconds and fractions of seconds at nanosecond
-               resolution. It is independent of any calendar and concepts like "day"
-               or "month". It is related to Timestamp in that the difference between
-               two Timestamp values is a Duration and it can be added or subtracted
-               from a Timestamp. Range is approximately +-10,000 years.
-
-               # Examples
-
-               Example 1: Compute Duration from two Timestamps in pseudo code.
-
-                   Timestamp start = ...;
-                   Timestamp end = ...;
-                   Duration duration = ...;
-
-                   duration.seconds = end.seconds - start.seconds;
-                   duration.nanos = end.nanos - start.nanos;
-
-                   if (duration.seconds < 0 && duration.nanos > 0) {
-                     duration.seconds += 1;
-                     duration.nanos -= 1000000000;
-                   } else if (duration.seconds > 0 && duration.nanos < 0) {
-                     duration.seconds -= 1;
-                     duration.nanos += 1000000000;
-                   }
-
-               Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
-
-                   Timestamp start = ...;
-                   Duration duration = ...;
-                   Timestamp end = ...;
-
-                   end.seconds = start.seconds + duration.seconds;
-                   end.nanos = start.nanos + duration.nanos;
-
-                   if (end.nanos < 0) {
-                     end.seconds -= 1;
-                     end.nanos += 1000000000;
-                   } else if (end.nanos >= 1000000000) {
-                     end.seconds += 1;
-                     end.nanos -= 1000000000;
-                   }
-
-               Example 3: Compute Duration from datetime.timedelta in Python.
-
-                   td = datetime.timedelta(days=3, minutes=10)
-                   duration = Duration()
-                   duration.FromTimedelta(td)
-
-               # JSON Mapping
-
-               In JSON format, the Duration type is encoded as a string rather than an
-               object, where the string ends in the suffix "s" (indicating seconds) and
-               is preceded by the number of seconds, with nanoseconds expressed as
-               fractional seconds. For example, 3 seconds with 0 nanoseconds should be
-               encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
-               be expressed in JSON format as "3.000000001s", and 3 seconds and 1
-               microsecond should be expressed in JSON format as "3.000001s".
-        - name: pagination.filters.values.bytesValue
-          in: query
-          schema:
-            type: string
-            title: bytes_value
-            format: byte
-        - name: pagination.filterGroups.operator
-          in: query
-          schema:
-            title: operator
-            $ref: '#/components/schemas/otpki.common.api.query.v1.LogicalOperator'
-        - name: pagination.withoutCount
-          in: query
-          schema:
-            type: boolean
-            title: without_count
-        - name: pagination.withCountEstimate
-          in: query
-          schema:
-            type: boolean
-            title: with_count_estimate
-        - name: pagination.withSoftDeleted
-          in: query
-          description: no longer have soft deletes
-          schema:
-            type: boolean
-            title: with_soft_deleted
-            description: no longer have soft deletes
-            deprecated: true
-        - name: pagination.withPaginationInfoOnly
-          in: query
-          schema:
-            type: boolean
-            title: with_pagination_info_only
-        - name: pagination.withTokenPagination
-          in: query
-          schema:
-            type: boolean
-            title: with_token_pagination
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.GetPublisherConfigListResponse'
-    post:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: CreatePublisherConfig
-      description: Publisher Configs
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.CreatePublisherConfig
-      requestBody:
-        content:
-          application/json:
-            schema:
-              title: config
-              $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.CreatePublisherConfigResponse'
-  /v1/publishers/configs/test:
+                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.CreatePublisherResponse'
+  /v1/publishers/test:
     post:
       tags:
         - otpki.public.issuance.publisher.v1.PublisherService
@@ -701,8 +358,8 @@ paths:
         content:
           application/json:
             schema:
-              title: config
-              $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
+              title: publisher
+              $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
       responses:
         "200":
           description: Success
@@ -710,7 +367,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.TestPublisherConnectionResponse'
-  /v1/publishers/configs/test-publish:
+  /v1/publishers/test-publish:
     post:
       tags:
         - otpki.public.issuance.publisher.v1.PublisherService
@@ -729,14 +386,55 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.TestPublisherPublishResponse'
-  /v1/publishers/configs/{config.id}:
+  /v1/publishers/{id}:
+    get:
+      tags:
+        - otpki.public.issuance.publisher.v1.PublisherService
+      summary: GetPublisher
+      operationId: otpki.public.issuance.publisher.v1.PublisherService.GetPublisher
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: id
+            format: uuid
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.GetPublisherResponse'
+    delete:
+      tags:
+        - otpki.public.issuance.publisher.v1.PublisherService
+      summary: DeletePublisher
+      operationId: otpki.public.issuance.publisher.v1.PublisherService.DeletePublisher
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: id
+            format: uuid
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.DeletePublisherResponse'
+  /v1/publishers/{publisher.id}:
     patch:
       tags:
         - otpki.public.issuance.publisher.v1.PublisherService
-      summary: UpdatePublisherConfig
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisherConfig
+      summary: UpdatePublisher
+      operationId: otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisher
       parameters:
-        - name: config.id
+        - name: publisher.id
           in: path
           required: true
           schema:
@@ -953,411 +651,15 @@ paths:
         content:
           application/json:
             schema:
-              title: config
-              $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
+              title: publisher
+              $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.UpdatePublisherConfigResponse'
-  /v1/publishers/configs/{id}:
-    get:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: GetPublisherConfig
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfig
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            title: id
-            format: uuid
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.GetPublisherConfigResponse'
-    delete:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: DeletePublisherConfig
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.DeletePublisherConfig
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            title: id
-            format: uuid
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.DeletePublisherConfigResponse'
-  /v1/publishers/crl:
-    get:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: GetCrlPublisherList
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.GetCrlPublisherList
-      parameters:
-        - name: pagination.pageToken
-          in: query
-          schema:
-            type: string
-            title: page_token
-        - name: pagination.pageSize
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: page_size
-            format: int64
-        - name: pagination.skip
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: skip
-            format: int64
-        - name: pagination.sort.column
-          in: query
-          schema:
-            type: string
-            title: column
-        - name: pagination.sort.order
-          in: query
-          schema:
-            title: order
-            $ref: '#/components/schemas/otpki.common.api.query.v1.SortOrder'
-        - name: pagination.sort.jsonPath
-          in: query
-          description: advanced sorting options (use only one)
-          schema:
-            type: string
-            title: json_path
-            description: advanced sorting options (use only one)
-        - name: pagination.sort.jsonText
-          in: query
-          schema:
-            type: string
-            title: json_text
-        - name: pagination.sort.jsonNumeric
-          in: query
-          schema:
-            type: string
-            title: json_numeric
-        - name: pagination.sort.arrayIndex
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: array_index
-            format: int64
-        - name: pagination.sort.arrayLength
-          in: query
-          schema:
-            type: boolean
-            title: array_length
-        - name: pagination.sort.arrayContains
-          in: query
-          schema:
-            type: string
-            title: array_contains
-        - name: pagination.filters.column
-          in: query
-          schema:
-            type: string
-            title: column
-        - name: pagination.filters.operator
-          in: query
-          schema:
-            title: operator
-            $ref: '#/components/schemas/otpki.common.api.query.v1.FilterOperator'
-        - name: pagination.filters.values.stringValue
-          in: query
-          schema:
-            type: string
-            title: string_value
-        - name: pagination.filters.values.intValue
-          in: query
-          schema:
-            type:
-              - integer
-              - string
-            title: int_value
-            format: int64
-        - name: pagination.filters.values.doubleValue
-          in: query
-          schema:
-            type: number
-            title: double_value
-            format: double
-        - name: pagination.filters.values.boolValue
-          in: query
-          schema:
-            type: boolean
-            title: bool_value
-        - name: pagination.filters.values.timestampValue
-          in: query
-          schema:
-            type: string
-            examples:
-              - "2023-01-15T01:30:15.01Z"
-              - "2024-12-25T12:00:00Z"
-            format: date-time
-            description: |-
-              A Timestamp represents a point in time independent of any time zone or local
-               calendar, encoded as a count of seconds and fractions of seconds at
-               nanosecond resolution. The count is relative to an epoch at UTC midnight on
-               January 1, 1970, in the proleptic Gregorian calendar which extends the
-               Gregorian calendar backwards to year one.
-
-               All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
-               second table is needed for interpretation, using a [24-hour linear
-               smear](https://developers.google.com/time/smear).
-
-               The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
-               restricting to that range, we ensure that we can convert to and from [RFC
-               3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
-
-               # Examples
-
-               Example 1: Compute Timestamp from POSIX `time()`.
-
-                   Timestamp timestamp;
-                   timestamp.set_seconds(time(NULL));
-                   timestamp.set_nanos(0);
-
-               Example 2: Compute Timestamp from POSIX `gettimeofday()`.
-
-                   struct timeval tv;
-                   gettimeofday(&tv, NULL);
-
-                   Timestamp timestamp;
-                   timestamp.set_seconds(tv.tv_sec);
-                   timestamp.set_nanos(tv.tv_usec * 1000);
-
-               Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
-
-                   FILETIME ft;
-                   GetSystemTimeAsFileTime(&ft);
-                   UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
-
-                   // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
-                   // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
-                   Timestamp timestamp;
-                   timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
-                   timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
-
-               Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
-
-                   long millis = System.currentTimeMillis();
-
-                   Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
-                       .setNanos((int) ((millis % 1000) * 1000000)).build();
-
-               Example 5: Compute Timestamp from Java `Instant.now()`.
-
-                   Instant now = Instant.now();
-
-                   Timestamp timestamp =
-                       Timestamp.newBuilder().setSeconds(now.getEpochSecond())
-                           .setNanos(now.getNano()).build();
-
-               Example 6: Compute Timestamp from current time in Python.
-
-                   timestamp = Timestamp()
-                   timestamp.GetCurrentTime()
-
-               # JSON Mapping
-
-               In JSON format, the Timestamp type is encoded as a string in the
-               [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
-               format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
-               where {year} is always expressed using four digits while {month}, {day},
-               {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
-               seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
-               are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
-               is required. A proto3 JSON serializer should always use UTC (as indicated by
-               "Z") when printing the Timestamp type and a proto3 JSON parser should be
-               able to accept both UTC and other timezones (as indicated by an offset).
-
-               For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
-               01:30 UTC on January 15, 2017.
-
-               In JavaScript, one can convert a Date object to this format using the
-               standard
-               [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
-               method. In Python, a standard `datetime.datetime` object can be converted
-               to this format using
-               [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
-               the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
-               the Joda Time's [`ISODateTimeFormat.dateTime()`](
-               http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
-               ) to obtain a formatter capable of generating timestamps in this format.
-        - name: pagination.filters.values.durationValue
-          in: query
-          schema:
-            type: string
-            format: duration
-            description: |-
-              A Duration represents a signed, fixed-length span of time represented
-               as a count of seconds and fractions of seconds at nanosecond
-               resolution. It is independent of any calendar and concepts like "day"
-               or "month". It is related to Timestamp in that the difference between
-               two Timestamp values is a Duration and it can be added or subtracted
-               from a Timestamp. Range is approximately +-10,000 years.
-
-               # Examples
-
-               Example 1: Compute Duration from two Timestamps in pseudo code.
-
-                   Timestamp start = ...;
-                   Timestamp end = ...;
-                   Duration duration = ...;
-
-                   duration.seconds = end.seconds - start.seconds;
-                   duration.nanos = end.nanos - start.nanos;
-
-                   if (duration.seconds < 0 && duration.nanos > 0) {
-                     duration.seconds += 1;
-                     duration.nanos -= 1000000000;
-                   } else if (duration.seconds > 0 && duration.nanos < 0) {
-                     duration.seconds -= 1;
-                     duration.nanos += 1000000000;
-                   }
-
-               Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
-
-                   Timestamp start = ...;
-                   Duration duration = ...;
-                   Timestamp end = ...;
-
-                   end.seconds = start.seconds + duration.seconds;
-                   end.nanos = start.nanos + duration.nanos;
-
-                   if (end.nanos < 0) {
-                     end.seconds -= 1;
-                     end.nanos += 1000000000;
-                   } else if (end.nanos >= 1000000000) {
-                     end.seconds += 1;
-                     end.nanos -= 1000000000;
-                   }
-
-               Example 3: Compute Duration from datetime.timedelta in Python.
-
-                   td = datetime.timedelta(days=3, minutes=10)
-                   duration = Duration()
-                   duration.FromTimedelta(td)
-
-               # JSON Mapping
-
-               In JSON format, the Duration type is encoded as a string rather than an
-               object, where the string ends in the suffix "s" (indicating seconds) and
-               is preceded by the number of seconds, with nanoseconds expressed as
-               fractional seconds. For example, 3 seconds with 0 nanoseconds should be
-               encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
-               be expressed in JSON format as "3.000000001s", and 3 seconds and 1
-               microsecond should be expressed in JSON format as "3.000001s".
-        - name: pagination.filters.values.bytesValue
-          in: query
-          schema:
-            type: string
-            title: bytes_value
-            format: byte
-        - name: pagination.filterGroups.operator
-          in: query
-          schema:
-            title: operator
-            $ref: '#/components/schemas/otpki.common.api.query.v1.LogicalOperator'
-        - name: pagination.withoutCount
-          in: query
-          schema:
-            type: boolean
-            title: without_count
-        - name: pagination.withCountEstimate
-          in: query
-          schema:
-            type: boolean
-            title: with_count_estimate
-        - name: pagination.withSoftDeleted
-          in: query
-          description: no longer have soft deletes
-          schema:
-            type: boolean
-            title: with_soft_deleted
-            description: no longer have soft deletes
-            deprecated: true
-        - name: pagination.withPaginationInfoOnly
-          in: query
-          schema:
-            type: boolean
-            title: with_pagination_info_only
-        - name: pagination.withTokenPagination
-          in: query
-          schema:
-            type: boolean
-            title: with_token_pagination
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.GetCrlPublisherListResponse'
-    post:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: CreateCrlPublisher
-      description: CRL Publishers
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.CreateCrlPublisher
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.CreateCrlPublisherRequest'
-        required: true
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.CreateCrlPublisherResponse'
-  /v1/publishers/crl/{publisher_id}:
-    delete:
-      tags:
-        - otpki.public.issuance.publisher.v1.PublisherService
-      summary: DeleteCrlPublisher
-      operationId: otpki.public.issuance.publisher.v1.PublisherService.DeleteCrlPublisher
-      parameters:
-        - name: publisher_id
-          in: path
-          required: true
-          schema:
-            type: string
-            title: publisher_id
-            format: uuid
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.DeleteCrlPublisherResponse'
+                $ref: '#/components/schemas/otpki.public.issuance.publisher.v1.UpdatePublisherResponse'
 components:
   schemas:
     google.protobuf.Any:
@@ -2016,92 +1318,7 @@ components:
         - SORT_ORDER_UNSPECIFIED
         - SORT_ORDER_DESC
         - SORT_ORDER_ASC
-    otpki.common.core.publisher.v1.CertEventType:
-      type: string
-      title: CertEventType
-      enum:
-        - CERT_EVENT_TYPE_UNSPECIFIED
-        - CERT_EVENT_TYPE_CERT_ISSUE
-        - CERT_EVENT_TYPE_CERT_REVOKE
-    otpki.common.core.publisher.v1.CertificatePublisher:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-          description: not settable on creation
-          readOnly: true
-        publisherConfigId:
-          type: string
-          title: publisher_config_id
-          format: uuid
-        caId:
-          type: string
-          title: ca_id
-          format: uuid
-          description: 'CHECK: at least one of these two must be set'
-        certificateProfileId:
-          type: string
-          title: certificate_profile_id
-          format: uuid
-          description: 'CHECK: at least one of these two must be set'
-        subscribedEvents:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.CertEventType'
-          title: subscribed_events
-        createdAt:
-          title: created_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        updatedAt:
-          title: updated_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: CertificatePublisher
-      additionalProperties: false
-      description: Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
-    otpki.common.core.publisher.v1.CrlPublisher:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-          description: not settable on creation
-          readOnly: true
-        caId:
-          type: string
-          title: ca_id
-          format: uuid
-        publisherConfigId:
-          type: string
-          title: publisher_config_id
-          format: uuid
-        createdAt:
-          title: created_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-        updatedAt:
-          title: updated_at
-          description: not settable on creation
-          readOnly: true
-          $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: CrlPublisher
-      additionalProperties: false
-      description: CRL Publisher can only subscribe to CAs on CRL generation events
-    otpki.common.core.publisher.v1.PkiArtifact:
-      type: string
-      title: PkiArtifact
-      enum:
-        - PKI_ARTIFACT_UNSPECIFIED
-        - PKI_ARTIFACT_CRL
-        - PKI_ARTIFACT_CERTIFICATE
-    otpki.common.core.publisher.v1.PublisherConfig:
+    otpki.common.core.publisher.v1.Publisher:
       type: object
       properties:
         id:
@@ -2117,12 +1334,21 @@ components:
         description:
           type: string
           title: description
-        publisherType:
-          title: publisher_type
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherType'
-        configData:
-          title: config_data
+        transport:
+          not:
+            enum:
+              - PUBLISHER_TRANSPORT_UNSPECIFIED
+          title: transport
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTransport'
+        config:
+          title: config
           $ref: '#/components/schemas/google.protobuf.Any'
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTrigger'
+          title: triggers
+          minItems: 1
         createdAt:
           title: created_at
           description: not settable on creation
@@ -2133,206 +1359,164 @@ components:
           description: not settable on creation
           readOnly: true
           $ref: '#/components/schemas/google.protobuf.Timestamp'
-      title: PublisherConfig
+      title: Publisher
       additionalProperties: false
-    otpki.common.core.publisher.v1.PublisherType:
+    otpki.common.core.publisher.v1.PublisherTransport:
       type: string
-      title: PublisherType
+      title: PublisherTransport
       enum:
-        - PUBLISHER_TYPE_UNSPECIFIED
-        - PUBLISHER_TYPE_VS
-        - PUBLISHER_TYPE_HTTP
-        - PUBLISHER_TYPE_SCP
-    otpki.public.issuance.publisher.v1.CreateCertificatePublisherRequest:
+        - PUBLISHER_TRANSPORT_UNSPECIFIED
+        - PUBLISHER_TRANSPORT_VS
+        - PUBLISHER_TRANSPORT_HTTP
+        - PUBLISHER_TRANSPORT_SCP
+        - PUBLISHER_TRANSPORT_SMTP
+    otpki.common.core.publisher.v1.PublisherTransportDescriptor:
+      type: object
+      properties:
+        transport:
+          title: transport
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTransport'
+        configTypeUrl:
+          type: string
+          title: config_type_url
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTriggerSpec'
+          title: triggers
+      title: PublisherTransportDescriptor
+      additionalProperties: false
+    otpki.common.core.publisher.v1.PublisherTrigger:
+      type: object
+      properties:
+        event:
+          not:
+            enum:
+              - PUBLISHER_TRIGGER_EVENT_UNSPECIFIED
+          title: event
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTriggerEvent'
+        config:
+          title: config
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: PublisherTrigger
+      additionalProperties: false
+    otpki.common.core.publisher.v1.PublisherTriggerEvent:
+      type: string
+      title: PublisherTriggerEvent
+      enum:
+        - PUBLISHER_TRIGGER_EVENT_UNSPECIFIED
+        - PUBLISHER_TRIGGER_EVENT_CERT_ISSUED
+        - PUBLISHER_TRIGGER_EVENT_CERT_REVOKED
+        - PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED
+        - PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS
+    otpki.common.core.publisher.v1.PublisherTriggerSpec:
+      type: object
+      properties:
+        event:
+          title: event
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTriggerEvent'
+        configTypeUrl:
+          type: string
+          title: config_type_url
+      title: PublisherTriggerSpec
+      additionalProperties: false
+    otpki.public.issuance.publisher.v1.CreatePublisherRequest:
       type: object
       properties:
         publisher:
           title: publisher
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.CertificatePublisher'
-      title: CreateCertificatePublisherRequest
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
+      title: CreatePublisherRequest
+      required:
+        - publisher
       additionalProperties: false
-      description: -- Certificate Publishers
-    otpki.public.issuance.publisher.v1.CreateCertificatePublisherResponse:
+    otpki.public.issuance.publisher.v1.CreatePublisherResponse:
       type: object
       properties:
         id:
           type: string
           title: id
           format: uuid
-      title: CreateCertificatePublisherResponse
+      title: CreatePublisherResponse
       additionalProperties: false
-    otpki.public.issuance.publisher.v1.CreateCrlPublisherRequest:
+    otpki.public.issuance.publisher.v1.DeletePublisherRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+          format: uuid
+      title: DeletePublisherRequest
+      required:
+        - id
+      additionalProperties: false
+    otpki.public.issuance.publisher.v1.DeletePublisherResponse:
+      type: object
+      title: DeletePublisherResponse
+      additionalProperties: false
+    otpki.public.issuance.publisher.v1.GetPublisherListRequest:
+      type: object
+      properties:
+        pagination:
+          title: pagination
+          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
+      title: GetPublisherListRequest
+      additionalProperties: false
+    otpki.public.issuance.publisher.v1.GetPublisherListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
+          title: data
+        pagination:
+          title: pagination
+          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationResponse'
+      title: GetPublisherListResponse
+      additionalProperties: false
+    otpki.public.issuance.publisher.v1.GetPublisherRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+          format: uuid
+      title: GetPublisherRequest
+      required:
+        - id
+      additionalProperties: false
+    otpki.public.issuance.publisher.v1.GetPublisherResponse:
       type: object
       properties:
         publisher:
           title: publisher
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.CrlPublisher'
-      title: CreateCrlPublisherRequest
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
+      title: GetPublisherResponse
       additionalProperties: false
-    otpki.public.issuance.publisher.v1.CreateCrlPublisherResponse:
+    otpki.public.issuance.publisher.v1.GetPublisherTransportsRequest:
+      type: object
+      title: GetPublisherTransportsRequest
+      additionalProperties: false
+    otpki.public.issuance.publisher.v1.GetPublisherTransportsResponse:
       type: object
       properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-      title: CreateCrlPublisherResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest:
-      type: object
-      properties:
-        config:
-          title: config
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
-      title: CreatePublisherConfigRequest
-      required:
-        - config
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.CreatePublisherConfigResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-      title: CreatePublisherConfigResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest:
-      type: object
-      properties:
-        publisherId:
-          type: string
-          title: publisher_id
-          format: uuid
-      title: DeleteCertificatePublisherRequest
-      required:
-        - publisherId
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.DeleteCertificatePublisherResponse:
-      type: object
-      title: DeleteCertificatePublisherResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest:
-      type: object
-      properties:
-        publisherId:
-          type: string
-          title: publisher_id
-          format: uuid
-      title: DeleteCrlPublisherRequest
-      required:
-        - publisherId
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.DeleteCrlPublisherResponse:
-      type: object
-      title: DeleteCrlPublisherResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-      title: DeletePublisherConfigRequest
-      required:
-        - id
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.DeletePublisherConfigResponse:
-      type: object
-      title: DeletePublisherConfigResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetCertificatePublisherListRequest:
-      type: object
-      properties:
-        pagination:
-          title: pagination
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-      title: GetCertificatePublisherListRequest
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetCertificatePublisherListResponse:
-      type: object
-      properties:
-        data:
+        transports:
           type: array
           items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.CertificatePublisher'
-          title: data
-        pagination:
-          title: pagination
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationResponse'
-      title: GetCertificatePublisherListResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetCrlPublisherListRequest:
-      type: object
-      properties:
-        pagination:
-          title: pagination
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-      title: GetCrlPublisherListRequest
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetCrlPublisherListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.CrlPublisher'
-          title: data
-        pagination:
-          title: pagination
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationResponse'
-      title: GetCrlPublisherListResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetPublisherConfigListRequest:
-      type: object
-      properties:
-        pagination:
-          title: pagination
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationRequest'
-      title: GetPublisherConfigListRequest
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetPublisherConfigListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
-          title: data
-        pagination:
-          title: pagination
-          $ref: '#/components/schemas/otpki.common.api.query.v1.PaginationResponse'
-      title: GetPublisherConfigListResponse
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetPublisherConfigRequest:
-      type: object
-      properties:
-        id:
-          type: string
-          title: id
-          format: uuid
-      title: GetPublisherConfigRequest
-      required:
-        - id
-      additionalProperties: false
-    otpki.public.issuance.publisher.v1.GetPublisherConfigResponse:
-      type: object
-      properties:
-        config:
-          title: config
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
-      title: GetPublisherConfigResponse
+            $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTransportDescriptor'
+          title: transports
+      title: GetPublisherTransportsResponse
       additionalProperties: false
     otpki.public.issuance.publisher.v1.TestPublisherConnectionRequest:
       type: object
       properties:
-        config:
-          title: config
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
+        publisher:
+          title: publisher
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
       title: TestPublisherConnectionRequest
       required:
-        - config
+        - publisher
       additionalProperties: false
     otpki.public.issuance.publisher.v1.TestPublisherConnectionResponse:
       type: object
@@ -2341,37 +1525,35 @@ components:
     otpki.public.issuance.publisher.v1.TestPublisherPublishRequest:
       type: object
       properties:
-        config:
-          title: config
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
-        artifact:
-          not:
-            enum:
-              - PKI_ARTIFACT_UNSPECIFIED
-          title: artifact
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PkiArtifact'
+        publisher:
+          title: publisher
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
+        triggerEvent:
+          title: trigger_event
+          description: Which trigger event to simulate
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherTriggerEvent'
       title: TestPublisherPublishRequest
       required:
-        - config
+        - publisher
       additionalProperties: false
     otpki.public.issuance.publisher.v1.TestPublisherPublishResponse:
       type: object
       title: TestPublisherPublishResponse
       additionalProperties: false
-    otpki.public.issuance.publisher.v1.UpdatePublisherConfigRequest:
+    otpki.public.issuance.publisher.v1.UpdatePublisherRequest:
       type: object
       properties:
-        config:
-          title: config
-          $ref: '#/components/schemas/otpki.common.core.publisher.v1.PublisherConfig'
+        publisher:
+          title: publisher
+          $ref: '#/components/schemas/otpki.common.core.publisher.v1.Publisher'
         updateMask:
           title: update_mask
           $ref: '#/components/schemas/google.protobuf.FieldMask'
-      title: UpdatePublisherConfigRequest
+      title: UpdatePublisherRequest
       additionalProperties: false
-    otpki.public.issuance.publisher.v1.UpdatePublisherConfigResponse:
+    otpki.public.issuance.publisher.v1.UpdatePublisherResponse:
       type: object
-      title: UpdatePublisherConfigResponse
+      title: UpdatePublisherResponse
       additionalProperties: false
 security: []
 tags:

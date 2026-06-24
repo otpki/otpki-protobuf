@@ -1,5 +1,7 @@
 # OTPKI Protobuf
 
+THIS IS A CHANGE FOR PURPOSE OF THE DEMO
+
 Protobuf definitions and generated code for OTPKI services.
 
 ## NPM Package Usage

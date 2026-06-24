@@ -13,189 +13,119 @@ import { file_otpki_common_core_publisher_v1_publisher } from "../../../../commo
  * Describes the file otpki/public/issuance/publisher/v1/publisher.proto.
  */
 export const file_otpki_public_issuance_publisher_v1_publisher = /*@__PURE__*/
-  fileDesc("CjJvdHBraS9wdWJsaWMvaXNzdWFuY2UvcHVibGlzaGVyL3YxL3B1Ymxpc2hlci5wcm90bxIib3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MSJnChxDcmVhdGVQdWJsaXNoZXJDb25maWdSZXF1ZXN0EkcKBmNvbmZpZxgBIAEoCzIvLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJDb25maWdCBrpIA8gBASI1Ch1DcmVhdGVQdWJsaXNoZXJDb25maWdSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiNAoZR2V0UHVibGlzaGVyQ29uZmlnUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiXQoaR2V0UHVibGlzaGVyQ29uZmlnUmVzcG9uc2USPwoGY29uZmlnGAEgASgLMi8ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZyKQAQocVXBkYXRlUHVibGlzaGVyQ29uZmlnUmVxdWVzdBI/CgZjb25maWcYASABKAsyLy5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyQ29uZmlnEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzayIfCh1VcGRhdGVQdWJsaXNoZXJDb25maWdSZXNwb25zZSI3ChxEZWxldGVQdWJsaXNoZXJDb25maWdSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASIfCh1EZWxldGVQdWJsaXNoZXJDb25maWdSZXNwb25zZSJhCh1HZXRQdWJsaXNoZXJDb25maWdMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKiAQoeR2V0UHVibGlzaGVyQ29uZmlnTGlzdFJlc3BvbnNlEj0KBGRhdGEYASADKAsyLy5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyQ29uZmlnEkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZSJpCh5UZXN0UHVibGlzaGVyQ29ubmVjdGlvblJlcXVlc3QSRwoGY29uZmlnGAEgASgLMi8ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlckNvbmZpZ0IGukgDyAEBIiEKH1Rlc3RQdWJsaXNoZXJDb25uZWN0aW9uUmVzcG9uc2UisQEKG1Rlc3RQdWJsaXNoZXJQdWJsaXNoUmVxdWVzdBJHCgZjb25maWcYASABKAsyLy5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyQ29uZmlnQga6SAPIAQESSQoIYXJ0aWZhY3QYAiABKA4yKy5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUGtpQXJ0aWZhY3RCCrpIB4IBBBABIAAiHgocVGVzdFB1Ymxpc2hlclB1Ymxpc2hSZXNwb25zZSJcChlDcmVhdGVDcmxQdWJsaXNoZXJSZXF1ZXN0Ej8KCXB1Ymxpc2hlchgBIAEoCzIsLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5DcmxQdWJsaXNoZXIiMgoaQ3JlYXRlQ3JsUHVibGlzaGVyUmVzcG9uc2USFAoCaWQYASABKAlCCLpIBXIDsAEBIj4KGURlbGV0ZUNybFB1Ymxpc2hlclJlcXVlc3QSIQoMcHVibGlzaGVyX2lkGAEgASgJQgu6SAjIAQFyA7ABASIcChpEZWxldGVDcmxQdWJsaXNoZXJSZXNwb25zZSJeChpHZXRDcmxQdWJsaXNoZXJMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKcAQobR2V0Q3JsUHVibGlzaGVyTGlzdFJlc3BvbnNlEjoKBGRhdGEYASADKAsyLC5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuQ3JsUHVibGlzaGVyEkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZSJsCiFDcmVhdGVDZXJ0aWZpY2F0ZVB1Ymxpc2hlclJlcXVlc3QSRwoJcHVibGlzaGVyGAEgASgLMjQub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLkNlcnRpZmljYXRlUHVibGlzaGVyIjoKIkNyZWF0ZUNlcnRpZmljYXRlUHVibGlzaGVyUmVzcG9uc2USFAoCaWQYASABKAlCCLpIBXIDsAEBIkYKIURlbGV0ZUNlcnRpZmljYXRlUHVibGlzaGVyUmVxdWVzdBIhCgxwdWJsaXNoZXJfaWQYASABKAlCC7pICMgBAXIDsAEBIiQKIkRlbGV0ZUNlcnRpZmljYXRlUHVibGlzaGVyUmVzcG9uc2UiZgoiR2V0Q2VydGlmaWNhdGVQdWJsaXNoZXJMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKsAQojR2V0Q2VydGlmaWNhdGVQdWJsaXNoZXJMaXN0UmVzcG9uc2USQgoEZGF0YRgBIAMoCzI0Lm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5DZXJ0aWZpY2F0ZVB1Ymxpc2hlchJBCgpwYWdpbmF0aW9uGAIgASgLMi0ub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVzcG9uc2Uy8BUKEFB1Ymxpc2hlclNlcnZpY2USsgEKEkNyZWF0ZUNybFB1Ymxpc2hlchI9Lm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuQ3JlYXRlQ3JsUHVibGlzaGVyUmVxdWVzdBo+Lm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuQ3JlYXRlQ3JsUHVibGlzaGVyUmVzcG9uc2UiHYLT5JMCFzoBKiISL3YxL3B1Ymxpc2hlcnMvY3JsEr4BChJEZWxldGVDcmxQdWJsaXNoZXISPS5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkRlbGV0ZUNybFB1Ymxpc2hlclJlcXVlc3QaPi5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkRlbGV0ZUNybFB1Ymxpc2hlclJlc3BvbnNlIimC0+STAiMqIS92MS9wdWJsaXNoZXJzL2NybC97cHVibGlzaGVyX2lkfRLXAQoTR2V0Q3JsUHVibGlzaGVyTGlzdBI+Lm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuR2V0Q3JsUHVibGlzaGVyTGlzdFJlcXVlc3QaPy5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldENybFB1Ymxpc2hlckxpc3RSZXNwb25zZSI/kAIBgtPkkwI2OgpwYWdpbmF0aW9uWhQSEi92MS9wdWJsaXNoZXJzL2NybBoSL3YxL3B1Ymxpc2hlcnMvY3JsEtIBChpDcmVhdGVDZXJ0aWZpY2F0ZVB1Ymxpc2hlchJFLm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuQ3JlYXRlQ2VydGlmaWNhdGVQdWJsaXNoZXJSZXF1ZXN0GkYub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DcmVhdGVDZXJ0aWZpY2F0ZVB1Ymxpc2hlclJlc3BvbnNlIiWC0+STAh86ASoiGi92MS9wdWJsaXNoZXJzL2NlcnRpZmljYXRlEt4BChpEZWxldGVDZXJ0aWZpY2F0ZVB1Ymxpc2hlchJFLm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuRGVsZXRlQ2VydGlmaWNhdGVQdWJsaXNoZXJSZXF1ZXN0GkYub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5EZWxldGVDZXJ0aWZpY2F0ZVB1Ymxpc2hlclJlc3BvbnNlIjGC0+STAisqKS92MS9wdWJsaXNoZXJzL2NlcnRpZmljYXRlL3twdWJsaXNoZXJfaWR9Ev8BChtHZXRDZXJ0aWZpY2F0ZVB1Ymxpc2hlckxpc3QSRi5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldENlcnRpZmljYXRlUHVibGlzaGVyTGlzdFJlcXVlc3QaRy5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldENlcnRpZmljYXRlUHVibGlzaGVyTGlzdFJlc3BvbnNlIk+QAgGC0+STAkY6CnBhZ2luYXRpb25aHBIaL3YxL3B1Ymxpc2hlcnMvY2VydGlmaWNhdGUaGi92MS9wdWJsaXNoZXJzL2NlcnRpZmljYXRlEsQBChVDcmVhdGVQdWJsaXNoZXJDb25maWcSQC5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkNyZWF0ZVB1Ymxpc2hlckNvbmZpZ1JlcXVlc3QaQS5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkNyZWF0ZVB1Ymxpc2hlckNvbmZpZ1Jlc3BvbnNlIiaC0+STAiA6BmNvbmZpZyIWL3YxL3B1Ymxpc2hlcnMvY29uZmlncxK7AQoSR2V0UHVibGlzaGVyQ29uZmlnEj0ub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5HZXRQdWJsaXNoZXJDb25maWdSZXF1ZXN0Gj4ub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5HZXRQdWJsaXNoZXJDb25maWdSZXNwb25zZSImkAIBgtPkkwIdEhsvdjEvcHVibGlzaGVycy9jb25maWdzL3tpZH0SgQIKFVVwZGF0ZVB1Ymxpc2hlckNvbmZpZxJALm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVXBkYXRlUHVibGlzaGVyQ29uZmlnUmVxdWVzdBpBLm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVXBkYXRlUHVibGlzaGVyQ29uZmlnUmVzcG9uc2UiY5ACAYLT5JMCWjoGY29uZmlnWiw6BmNvbmZpZzIiL3YxL3B1Ymxpc2hlcnMvY29uZmlncy97Y29uZmlnLmlkfRoiL3YxL3B1Ymxpc2hlcnMvY29uZmlncy97Y29uZmlnLmlkfRLBAQoVRGVsZXRlUHVibGlzaGVyQ29uZmlnEkAub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5EZWxldGVQdWJsaXNoZXJDb25maWdSZXF1ZXN0GkEub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5EZWxldGVQdWJsaXNoZXJDb25maWdSZXNwb25zZSIjgtPkkwIdKhsvdjEvcHVibGlzaGVycy9jb25maWdzL3tpZH0S6AEKFkdldFB1Ymxpc2hlckNvbmZpZ0xpc3QSQS5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldFB1Ymxpc2hlckNvbmZpZ0xpc3RSZXF1ZXN0GkIub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5HZXRQdWJsaXNoZXJDb25maWdMaXN0UmVzcG9uc2UiR5ACAYLT5JMCPjoKcGFnaW5hdGlvbloYEhYvdjEvcHVibGlzaGVycy9jb25maWdzGhYvdjEvcHVibGlzaGVycy9jb25maWdzEs8BChdUZXN0UHVibGlzaGVyQ29ubmVjdGlvbhJCLm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVGVzdFB1Ymxpc2hlckNvbm5lY3Rpb25SZXF1ZXN0GkMub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5UZXN0UHVibGlzaGVyQ29ubmVjdGlvblJlc3BvbnNlIiuC0+STAiU6BmNvbmZpZyIbL3YxL3B1Ymxpc2hlcnMvY29uZmlncy90ZXN0EskBChRUZXN0UHVibGlzaGVyUHVibGlzaBI/Lm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVGVzdFB1Ymxpc2hlclB1Ymxpc2hSZXF1ZXN0GkAub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5UZXN0UHVibGlzaGVyUHVibGlzaFJlc3BvbnNlIi6C0+STAig6ASoiIy92MS9wdWJsaXNoZXJzL2NvbmZpZ3MvdGVzdC1wdWJsaXNoQucBCiZjb20ub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MUIOUHVibGlzaGVyUHJvdG9QAaICBE9QSVCqAiJPdHBraS5QdWJsaWMuSXNzdWFuY2UuUHVibGlzaGVyLlYxygIjT3Rwa2lcUHVibGljX1xJc3N1YW5jZVxQdWJsaXNoZXJcVjHiAi9PdHBraVxQdWJsaWNfXElzc3VhbmNlXFB1Ymxpc2hlclxWMVxHUEJNZXRhZGF0YeoCJk90cGtpOjpQdWJsaWM6Oklzc3VhbmNlOjpQdWJsaXNoZXI6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_api_annotations, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_core_publisher_v1_publisher]);
+  fileDesc("CjJvdHBraS9wdWJsaWMvaXNzdWFuY2UvcHVibGlzaGVyL3YxL3B1Ymxpc2hlci5wcm90bxIib3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MSJeChZDcmVhdGVQdWJsaXNoZXJSZXF1ZXN0EkQKCXB1Ymxpc2hlchgBIAEoCzIpLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJCBrpIA8gBASIvChdDcmVhdGVQdWJsaXNoZXJSZXNwb25zZRIUCgJpZBgBIAEoCUIIukgFcgOwAQEiLgoTR2V0UHVibGlzaGVyUmVxdWVzdBIXCgJpZBgBIAEoCUILukgIyAEBcgOwAQEiVAoUR2V0UHVibGlzaGVyUmVzcG9uc2USPAoJcHVibGlzaGVyGAEgASgLMikub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlciKHAQoWVXBkYXRlUHVibGlzaGVyUmVxdWVzdBI8CglwdWJsaXNoZXIYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzayIZChdVcGRhdGVQdWJsaXNoZXJSZXNwb25zZSIxChZEZWxldGVQdWJsaXNoZXJSZXF1ZXN0EhcKAmlkGAEgASgJQgu6SAjIAQFyA7ABASIZChdEZWxldGVQdWJsaXNoZXJSZXNwb25zZSJbChdHZXRQdWJsaXNoZXJMaXN0UmVxdWVzdBJACgpwYWdpbmF0aW9uGAEgASgLMiwub3Rwa2kuY29tbW9uLmFwaS5xdWVyeS52MS5QYWdpbmF0aW9uUmVxdWVzdCKWAQoYR2V0UHVibGlzaGVyTGlzdFJlc3BvbnNlEjcKBGRhdGEYASADKAsyKS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyEkEKCnBhZ2luYXRpb24YAiABKAsyLS5vdHBraS5jb21tb24uYXBpLnF1ZXJ5LnYxLlBhZ2luYXRpb25SZXNwb25zZSIfCh1HZXRQdWJsaXNoZXJUcmFuc3BvcnRzUmVxdWVzdCJyCh5HZXRQdWJsaXNoZXJUcmFuc3BvcnRzUmVzcG9uc2USUAoKdHJhbnNwb3J0cxgBIAMoCzI8Lm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUcmFuc3BvcnREZXNjcmlwdG9yImYKHlRlc3RQdWJsaXNoZXJDb25uZWN0aW9uUmVxdWVzdBJECglwdWJsaXNoZXIYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyQga6SAPIAQEiIQofVGVzdFB1Ymxpc2hlckNvbm5lY3Rpb25SZXNwb25zZSK7AQobVGVzdFB1Ymxpc2hlclB1Ymxpc2hSZXF1ZXN0EkQKCXB1Ymxpc2hlchgBIAEoCzIpLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJCBrpIA8gBARJWCg10cmlnZ2VyX2V2ZW50GAIgASgOMjUub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlclRyaWdnZXJFdmVudEIIukgFggECEAEiHgocVGVzdFB1Ymxpc2hlclB1Ymxpc2hSZXNwb25zZTKfDAoQUHVibGlzaGVyU2VydmljZRKtAQoPQ3JlYXRlUHVibGlzaGVyEjoub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DcmVhdGVQdWJsaXNoZXJSZXF1ZXN0Gjsub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5DcmVhdGVQdWJsaXNoZXJSZXNwb25zZSIhgtPkkwIbOglwdWJsaXNoZXIiDi92MS9wdWJsaXNoZXJzEqEBCgxHZXRQdWJsaXNoZXISNy5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldFB1Ymxpc2hlclJlcXVlc3QaOC5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldFB1Ymxpc2hlclJlc3BvbnNlIh6QAgGC0+STAhUSEy92MS9wdWJsaXNoZXJzL3tpZH0S6wEKD1VwZGF0ZVB1Ymxpc2hlchI6Lm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVXBkYXRlUHVibGlzaGVyUmVxdWVzdBo7Lm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVXBkYXRlUHVibGlzaGVyUmVzcG9uc2UiX5ACAYLT5JMCVjoJcHVibGlzaGVyWio6CXB1Ymxpc2hlcjIdL3YxL3B1Ymxpc2hlcnMve3B1Ymxpc2hlci5pZH0aHS92MS9wdWJsaXNoZXJzL3twdWJsaXNoZXIuaWR9EqcBCg9EZWxldGVQdWJsaXNoZXISOi5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkRlbGV0ZVB1Ymxpc2hlclJlcXVlc3QaOy5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkRlbGV0ZVB1Ymxpc2hlclJlc3BvbnNlIhuC0+STAhUqEy92MS9wdWJsaXNoZXJzL3tpZH0SxgEKEEdldFB1Ymxpc2hlckxpc3QSOy5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldFB1Ymxpc2hlckxpc3RSZXF1ZXN0Gjwub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5HZXRQdWJsaXNoZXJMaXN0UmVzcG9uc2UiN5ACAYLT5JMCLjoKcGFnaW5hdGlvbloQEg4vdjEvcHVibGlzaGVycxoOL3YxL3B1Ymxpc2hlcnMSxAEKFkdldFB1Ymxpc2hlclRyYW5zcG9ydHMSQS5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLkdldFB1Ymxpc2hlclRyYW5zcG9ydHNSZXF1ZXN0GkIub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5HZXRQdWJsaXNoZXJUcmFuc3BvcnRzUmVzcG9uc2UiI5ACAYLT5JMCGhIYL3YxL3B1Ymxpc2hlci10cmFuc3BvcnRzEsoBChdUZXN0UHVibGlzaGVyQ29ubmVjdGlvbhJCLm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVGVzdFB1Ymxpc2hlckNvbm5lY3Rpb25SZXF1ZXN0GkMub3Rwa2kucHVibGljLmlzc3VhbmNlLnB1Ymxpc2hlci52MS5UZXN0UHVibGlzaGVyQ29ubmVjdGlvblJlc3BvbnNlIiaC0+STAiA6CXB1Ymxpc2hlciITL3YxL3B1Ymxpc2hlcnMvdGVzdBLBAQoUVGVzdFB1Ymxpc2hlclB1Ymxpc2gSPy5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxLlRlc3RQdWJsaXNoZXJQdWJsaXNoUmVxdWVzdBpALm90cGtpLnB1YmxpYy5pc3N1YW5jZS5wdWJsaXNoZXIudjEuVGVzdFB1Ymxpc2hlclB1Ymxpc2hSZXNwb25zZSImgtPkkwIgOgEqIhsvdjEvcHVibGlzaGVycy90ZXN0LXB1Ymxpc2hC5wEKJmNvbS5vdHBraS5wdWJsaWMuaXNzdWFuY2UucHVibGlzaGVyLnYxQg5QdWJsaXNoZXJQcm90b1ABogIET1BJUKoCIk90cGtpLlB1YmxpYy5Jc3N1YW5jZS5QdWJsaXNoZXIuVjHKAiNPdHBraVxQdWJsaWNfXElzc3VhbmNlXFB1Ymxpc2hlclxWMeICL090cGtpXFB1YmxpY19cSXNzdWFuY2VcUHVibGlzaGVyXFYxXEdQQk1ldGFkYXRh6gImT3Rwa2k6OlB1YmxpYzo6SXNzdWFuY2U6OlB1Ymxpc2hlcjo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_api_annotations, file_google_protobuf_field_mask, file_otpki_common_api_query_v1_query, file_otpki_common_core_publisher_v1_publisher]);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest.
- * Use `create(CreatePublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherRequest.
+ * Use `create(CreatePublisherRequestSchema)` to create a new message.
  */
-export const CreatePublisherConfigRequestSchema = /*@__PURE__*/
+export const CreatePublisherRequestSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 0);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherConfigResponse.
- * Use `create(CreatePublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherResponse.
+ * Use `create(CreatePublisherResponseSchema)` to create a new message.
  */
-export const CreatePublisherConfigResponseSchema = /*@__PURE__*/
+export const CreatePublisherResponseSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 1);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigRequest.
- * Use `create(GetPublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherRequest.
+ * Use `create(GetPublisherRequestSchema)` to create a new message.
  */
-export const GetPublisherConfigRequestSchema = /*@__PURE__*/
+export const GetPublisherRequestSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 2);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigResponse.
- * Use `create(GetPublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherResponse.
+ * Use `create(GetPublisherResponseSchema)` to create a new message.
  */
-export const GetPublisherConfigResponseSchema = /*@__PURE__*/
+export const GetPublisherResponseSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 3);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherConfigRequest.
- * Use `create(UpdatePublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherRequest.
+ * Use `create(UpdatePublisherRequestSchema)` to create a new message.
  */
-export const UpdatePublisherConfigRequestSchema = /*@__PURE__*/
+export const UpdatePublisherRequestSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 4);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherConfigResponse.
- * Use `create(UpdatePublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherResponse.
+ * Use `create(UpdatePublisherResponseSchema)` to create a new message.
  */
-export const UpdatePublisherConfigResponseSchema = /*@__PURE__*/
+export const UpdatePublisherResponseSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 5);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest.
- * Use `create(DeletePublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherRequest.
+ * Use `create(DeletePublisherRequestSchema)` to create a new message.
  */
-export const DeletePublisherConfigRequestSchema = /*@__PURE__*/
+export const DeletePublisherRequestSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 6);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherConfigResponse.
- * Use `create(DeletePublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherResponse.
+ * Use `create(DeletePublisherResponseSchema)` to create a new message.
  */
-export const DeletePublisherConfigResponseSchema = /*@__PURE__*/
+export const DeletePublisherResponseSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 7);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigListRequest.
- * Use `create(GetPublisherConfigListRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherListRequest.
+ * Use `create(GetPublisherListRequestSchema)` to create a new message.
  */
-export const GetPublisherConfigListRequestSchema = /*@__PURE__*/
+export const GetPublisherListRequestSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 8);
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigListResponse.
- * Use `create(GetPublisherConfigListResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherListResponse.
+ * Use `create(GetPublisherListResponseSchema)` to create a new message.
  */
-export const GetPublisherConfigListResponseSchema = /*@__PURE__*/
+export const GetPublisherListResponseSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 9);
+
+/**
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherTransportsRequest.
+ * Use `create(GetPublisherTransportsRequestSchema)` to create a new message.
+ */
+export const GetPublisherTransportsRequestSchema = /*@__PURE__*/
+  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 10);
+
+/**
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherTransportsResponse.
+ * Use `create(GetPublisherTransportsResponseSchema)` to create a new message.
+ */
+export const GetPublisherTransportsResponseSchema = /*@__PURE__*/
+  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 11);
 
 /**
  * Describes the message otpki.public.issuance.publisher.v1.TestPublisherConnectionRequest.
  * Use `create(TestPublisherConnectionRequestSchema)` to create a new message.
  */
 export const TestPublisherConnectionRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 10);
+  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 12);
 
 /**
  * Describes the message otpki.public.issuance.publisher.v1.TestPublisherConnectionResponse.
  * Use `create(TestPublisherConnectionResponseSchema)` to create a new message.
  */
 export const TestPublisherConnectionResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 11);
+  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 13);
 
 /**
  * Describes the message otpki.public.issuance.publisher.v1.TestPublisherPublishRequest.
  * Use `create(TestPublisherPublishRequestSchema)` to create a new message.
  */
 export const TestPublisherPublishRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 12);
+  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 14);
 
 /**
  * Describes the message otpki.public.issuance.publisher.v1.TestPublisherPublishResponse.
  * Use `create(TestPublisherPublishResponseSchema)` to create a new message.
  */
 export const TestPublisherPublishResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 13);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCrlPublisherRequest.
- * Use `create(CreateCrlPublisherRequestSchema)` to create a new message.
- */
-export const CreateCrlPublisherRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 14);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCrlPublisherResponse.
- * Use `create(CreateCrlPublisherResponseSchema)` to create a new message.
- */
-export const CreateCrlPublisherResponseSchema = /*@__PURE__*/
   messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 15);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest.
- * Use `create(DeleteCrlPublisherRequestSchema)` to create a new message.
- */
-export const DeleteCrlPublisherRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 16);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCrlPublisherResponse.
- * Use `create(DeleteCrlPublisherResponseSchema)` to create a new message.
- */
-export const DeleteCrlPublisherResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 17);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCrlPublisherListRequest.
- * Use `create(GetCrlPublisherListRequestSchema)` to create a new message.
- */
-export const GetCrlPublisherListRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 18);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCrlPublisherListResponse.
- * Use `create(GetCrlPublisherListResponseSchema)` to create a new message.
- */
-export const GetCrlPublisherListResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 19);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCertificatePublisherRequest.
- * Use `create(CreateCertificatePublisherRequestSchema)` to create a new message.
- */
-export const CreateCertificatePublisherRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 20);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCertificatePublisherResponse.
- * Use `create(CreateCertificatePublisherResponseSchema)` to create a new message.
- */
-export const CreateCertificatePublisherResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 21);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest.
- * Use `create(DeleteCertificatePublisherRequestSchema)` to create a new message.
- */
-export const DeleteCertificatePublisherRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 22);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherResponse.
- * Use `create(DeleteCertificatePublisherResponseSchema)` to create a new message.
- */
-export const DeleteCertificatePublisherResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 23);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCertificatePublisherListRequest.
- * Use `create(GetCertificatePublisherListRequestSchema)` to create a new message.
- */
-export const GetCertificatePublisherListRequestSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 24);
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCertificatePublisherListResponse.
- * Use `create(GetCertificatePublisherListResponseSchema)` to create a new message.
- */
-export const GetCertificatePublisherListResponseSchema = /*@__PURE__*/
-  messageDesc(file_otpki_public_issuance_publisher_v1_publisher, 25);
 
 /**
  * @generated from service otpki.public.issuance.publisher.v1.PublisherService

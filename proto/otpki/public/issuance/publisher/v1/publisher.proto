@@ -7,200 +7,122 @@ import "google/protobuf/field_mask.proto";
 import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/publisher/v1/publisher.proto";
 
-// -- Publisher Configs
+// -- Publishers
 
-message CreatePublisherConfigRequest {
-  common.core.publisher.v1.PublisherConfig config = 1 [(buf.validate.field).required = true];
+message CreatePublisherRequest {
+  common.core.publisher.v1.Publisher publisher = 1 [(buf.validate.field).required = true];
 }
 
-message CreatePublisherConfigResponse {
+message CreatePublisherResponse {
   string id = 1 [(buf.validate.field).string.uuid = true];
 }
 
-message GetPublisherConfigRequest {
+message GetPublisherRequest {
   string id = 1 [
     (buf.validate.field).string.uuid = true,
     (buf.validate.field).required = true
   ];
 }
 
-message GetPublisherConfigResponse {
-  common.core.publisher.v1.PublisherConfig config = 1;
+message GetPublisherResponse {
+  common.core.publisher.v1.Publisher publisher = 1;
 }
 
-message UpdatePublisherConfigRequest {
-  common.core.publisher.v1.PublisherConfig config = 1;
+message UpdatePublisherRequest {
+  common.core.publisher.v1.Publisher publisher = 1;
   google.protobuf.FieldMask update_mask = 2;
 }
 
-message UpdatePublisherConfigResponse {}
+message UpdatePublisherResponse {}
 
-message DeletePublisherConfigRequest {
+message DeletePublisherRequest {
   string id = 1 [
     (buf.validate.field).string.uuid = true,
     (buf.validate.field).required = true
   ];
 }
 
-message DeletePublisherConfigResponse {}
+message DeletePublisherResponse {}
 
-message GetPublisherConfigListRequest {
+message GetPublisherListRequest {
   common.api.query.v1.PaginationRequest pagination = 1;
 }
 
-message GetPublisherConfigListResponse {
-  repeated common.core.publisher.v1.PublisherConfig data = 1;
+message GetPublisherListResponse {
+  repeated common.core.publisher.v1.Publisher data = 1;
   common.api.query.v1.PaginationResponse pagination = 2;
 }
 
+// Transport meta
+
+message GetPublisherTransportsRequest {}
+
+message GetPublisherTransportsResponse {
+  repeated common.core.publisher.v1.PublisherTransportDescriptor transports = 1;
+}
+
+// -- Testing
+
 message TestPublisherConnectionRequest {
-  common.core.publisher.v1.PublisherConfig config = 1 [(buf.validate.field).required = true];
+  common.core.publisher.v1.Publisher publisher = 1 [(buf.validate.field).required = true];
 }
 
 message TestPublisherConnectionResponse {}
 
 message TestPublisherPublishRequest {
-  common.core.publisher.v1.PublisherConfig config = 1 [(buf.validate.field).required = true];
-  common.core.publisher.v1.PkiArtifact artifact = 2 [(buf.validate.field).enum = {
-    defined_only: true
-    not_in: [0]
-  }];
+  common.core.publisher.v1.Publisher publisher = 1 [(buf.validate.field).required = true];
+  // Which trigger event to simulate
+  common.core.publisher.v1.PublisherTriggerEvent trigger_event = 2 [(buf.validate.field).enum.defined_only = true];
 }
 
 message TestPublisherPublishResponse {}
 
-// -- CRL Publishers
-
-message CreateCrlPublisherRequest {
-  common.core.publisher.v1.CrlPublisher publisher = 1;
-}
-message CreateCrlPublisherResponse {
-  string id = 1 [(buf.validate.field).string.uuid = true];
-}
-
-message DeleteCrlPublisherRequest {
-  string publisher_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
-}
-message DeleteCrlPublisherResponse {}
-
-message GetCrlPublisherListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
-}
-
-message GetCrlPublisherListResponse {
-  repeated common.core.publisher.v1.CrlPublisher data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
-}
-
-// -- Certificate Publishers
-message CreateCertificatePublisherRequest {
-  common.core.publisher.v1.CertificatePublisher publisher = 1;
-}
-message CreateCertificatePublisherResponse {
-  string id = 1 [(buf.validate.field).string.uuid = true];
-}
-
-message DeleteCertificatePublisherRequest {
-  string publisher_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
-}
-message DeleteCertificatePublisherResponse {}
-
-message GetCertificatePublisherListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
-}
-
-message GetCertificatePublisherListResponse {
-  repeated common.core.publisher.v1.CertificatePublisher data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
-}
-
 service PublisherService {
-  // CRL Publishers
-  rpc CreateCrlPublisher(CreateCrlPublisherRequest) returns (CreateCrlPublisherResponse) {
+  rpc CreatePublisher(CreatePublisherRequest) returns (CreatePublisherResponse) {
     option (google.api.http) = {
-      post: "/v1/publishers/crl"
-      body: "*"
+      post: "/v1/publishers"
+      body: "publisher"
     };
   }
-  rpc DeleteCrlPublisher(DeleteCrlPublisherRequest) returns (DeleteCrlPublisherResponse) {
-    option (google.api.http) = {delete: "/v1/publishers/crl/{publisher_id}"};
+  rpc GetPublisher(GetPublisherRequest) returns (GetPublisherResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/publishers/{id}"};
   }
-  rpc GetCrlPublisherList(GetCrlPublisherListRequest) returns (GetCrlPublisherListResponse) {
+  rpc UpdatePublisher(UpdatePublisherRequest) returns (UpdatePublisherResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/publishers/crl"
-      body: "pagination"
-      additional_bindings: {get: "/v1/publishers/crl"}
-    };
-  }
-
-  // Cert Publishers
-  rpc CreateCertificatePublisher(CreateCertificatePublisherRequest) returns (CreateCertificatePublisherResponse) {
-    option (google.api.http) = {
-      post: "/v1/publishers/certificate"
-      body: "*"
-    };
-  }
-  rpc DeleteCertificatePublisher(DeleteCertificatePublisherRequest) returns (DeleteCertificatePublisherResponse) {
-    option (google.api.http) = {delete: "/v1/publishers/certificate/{publisher_id}"};
-  }
-  rpc GetCertificatePublisherList(GetCertificatePublisherListRequest) returns (GetCertificatePublisherListResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {
-      put: "/v1/publishers/certificate"
-      body: "pagination"
-      additional_bindings: {get: "/v1/publishers/certificate"}
-    };
-  }
-
-  // Publisher Configs
-  rpc CreatePublisherConfig(CreatePublisherConfigRequest) returns (CreatePublisherConfigResponse) {
-    option (google.api.http) = {
-      post: "/v1/publishers/configs"
-      body: "config"
-    };
-  }
-  rpc GetPublisherConfig(GetPublisherConfigRequest) returns (GetPublisherConfigResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/publishers/configs/{id}"};
-  }
-  rpc UpdatePublisherConfig(UpdatePublisherConfigRequest) returns (UpdatePublisherConfigResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {
-      put: "/v1/publishers/configs/{config.id}"
-      body: "config"
+      put: "/v1/publishers/{publisher.id}"
+      body: "publisher"
       additional_bindings: {
-        patch: "/v1/publishers/configs/{config.id}"
-        body: "config"
+        patch: "/v1/publishers/{publisher.id}"
+        body: "publisher"
       }
     };
   }
-  rpc DeletePublisherConfig(DeletePublisherConfigRequest) returns (DeletePublisherConfigResponse) {
-    option (google.api.http) = {delete: "/v1/publishers/configs/{id}"};
+  rpc DeletePublisher(DeletePublisherRequest) returns (DeletePublisherResponse) {
+    option (google.api.http) = {delete: "/v1/publishers/{id}"};
   }
-  rpc GetPublisherConfigList(GetPublisherConfigListRequest) returns (GetPublisherConfigListResponse) {
+  rpc GetPublisherList(GetPublisherListRequest) returns (GetPublisherListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/publishers/configs"
+      put: "/v1/publishers"
       body: "pagination"
-      additional_bindings: {get: "/v1/publishers/configs"}
+      additional_bindings: {get: "/v1/publishers"}
     };
+  }
+  rpc GetPublisherTransports(GetPublisherTransportsRequest) returns (GetPublisherTransportsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/publisher-transports"};
   }
   rpc TestPublisherConnection(TestPublisherConnectionRequest) returns (TestPublisherConnectionResponse) {
     option (google.api.http) = {
-      post: "/v1/publishers/configs/test"
-      body: "config"
+      post: "/v1/publishers/test"
+      body: "publisher"
     };
   }
   rpc TestPublisherPublish(TestPublisherPublishRequest) returns (TestPublisherPublishResponse) {
     option (google.api.http) = {
-      post: "/v1/publishers/configs/test-publish"
+      post: "/v1/publishers/test-publish"
       body: "*"
     };
   }

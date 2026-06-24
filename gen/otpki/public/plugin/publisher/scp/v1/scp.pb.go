@@ -8,7 +8,7 @@ package scpv1
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/publisher/v1"
+	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/core/publisher/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -23,17 +23,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Connection settings shared by every trigger that delivers over SSH/SCP
 type ScpConfig struct {
-	state                           protoimpl.MessageState `protogen:"open.v1"`
-	KeyId                           string                 `protobuf:"bytes,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"` // ssh key in keystore
-	Username                        string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Host                            string                 `protobuf:"bytes,3,opt,name=host,proto3" json:"host,omitempty"`
-	Port                            int64                  `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty"`
-	AllowedFor                      []v1.PkiArtifact       `protobuf:"varint,5,rep,packed,name=allowed_for,json=allowedFor,proto3,enum=otpki.common.core.publisher.v1.PkiArtifact" json:"allowed_for,omitempty"`
-	CertificatePublisherTemplateUrl string                 `protobuf:"bytes,6,opt,name=certificate_publisher_template_url,json=certificatePublisherTemplateUrl,proto3" json:"certificate_publisher_template_url,omitempty"`
-	CrlPublisherTemplateUrl         string                 `protobuf:"bytes,7,opt,name=crl_publisher_template_url,json=crlPublisherTemplateUrl,proto3" json:"crl_publisher_template_url,omitempty"`
-	unknownFields                   protoimpl.UnknownFields
-	sizeCache                       protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	KeyId         string                 `protobuf:"bytes,1,opt,name=key_id,json=keyId,proto3" json:"key_id,omitempty"` // ssh key in keystore
+	Username      string                 `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Host          string                 `protobuf:"bytes,3,opt,name=host,proto3" json:"host,omitempty"`
+	Port          int64                  `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ScpConfig) Reset() {
@@ -94,23 +92,148 @@ func (x *ScpConfig) GetPort() int64 {
 	return 0
 }
 
-func (x *ScpConfig) GetAllowedFor() []v1.PkiArtifact {
+// Per-trigger config for an SCP certificate (issuance or revocation) trigger
+type ScpCertTriggerConfig struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Target:
+	//
+	//	*ScpCertTriggerConfig_CaId
+	//	*ScpCertTriggerConfig_CertificateProfileId
+	Target isScpCertTriggerConfig_Target `protobuf_oneof:"target"`
+	// Destination path template rendered with the published certificate's fields
+	CertificateTemplateUrl string `protobuf:"bytes,3,opt,name=certificate_template_url,json=certificateTemplateUrl,proto3" json:"certificate_template_url,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
+}
+
+func (x *ScpCertTriggerConfig) Reset() {
+	*x = ScpCertTriggerConfig{}
+	mi := &file_otpki_public_plugin_publisher_scp_v1_scp_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ScpCertTriggerConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ScpCertTriggerConfig) ProtoMessage() {}
+
+func (x *ScpCertTriggerConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_publisher_scp_v1_scp_proto_msgTypes[1]
 	if x != nil {
-		return x.AllowedFor
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ScpCertTriggerConfig.ProtoReflect.Descriptor instead.
+func (*ScpCertTriggerConfig) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_publisher_scp_v1_scp_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ScpCertTriggerConfig) GetTarget() isScpCertTriggerConfig_Target {
+	if x != nil {
+		return x.Target
 	}
 	return nil
 }
 
-func (x *ScpConfig) GetCertificatePublisherTemplateUrl() string {
+func (x *ScpCertTriggerConfig) GetCaId() string {
 	if x != nil {
-		return x.CertificatePublisherTemplateUrl
+		if x, ok := x.Target.(*ScpCertTriggerConfig_CaId); ok {
+			return x.CaId
+		}
 	}
 	return ""
 }
 
-func (x *ScpConfig) GetCrlPublisherTemplateUrl() string {
+func (x *ScpCertTriggerConfig) GetCertificateProfileId() string {
 	if x != nil {
-		return x.CrlPublisherTemplateUrl
+		if x, ok := x.Target.(*ScpCertTriggerConfig_CertificateProfileId); ok {
+			return x.CertificateProfileId
+		}
+	}
+	return ""
+}
+
+func (x *ScpCertTriggerConfig) GetCertificateTemplateUrl() string {
+	if x != nil {
+		return x.CertificateTemplateUrl
+	}
+	return ""
+}
+
+type isScpCertTriggerConfig_Target interface {
+	isScpCertTriggerConfig_Target()
+}
+
+type ScpCertTriggerConfig_CaId struct {
+	CaId string `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3,oneof"`
+}
+
+type ScpCertTriggerConfig_CertificateProfileId struct {
+	CertificateProfileId string `protobuf:"bytes,2,opt,name=certificate_profile_id,json=certificateProfileId,proto3,oneof"`
+}
+
+func (*ScpCertTriggerConfig_CaId) isScpCertTriggerConfig_Target() {}
+
+func (*ScpCertTriggerConfig_CertificateProfileId) isScpCertTriggerConfig_Target() {}
+
+// Per-trigger config for an SCP CRL-publication trigger
+type ScpCrlTriggerConfig struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	CaId  string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	// Destination path template rendered with the published CRL's fields
+	CrlTemplateUrl string `protobuf:"bytes,2,opt,name=crl_template_url,json=crlTemplateUrl,proto3" json:"crl_template_url,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ScpCrlTriggerConfig) Reset() {
+	*x = ScpCrlTriggerConfig{}
+	mi := &file_otpki_public_plugin_publisher_scp_v1_scp_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ScpCrlTriggerConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ScpCrlTriggerConfig) ProtoMessage() {}
+
+func (x *ScpCrlTriggerConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_plugin_publisher_scp_v1_scp_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ScpCrlTriggerConfig.ProtoReflect.Descriptor instead.
+func (*ScpCrlTriggerConfig) Descriptor() ([]byte, []int) {
+	return file_otpki_public_plugin_publisher_scp_v1_scp_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ScpCrlTriggerConfig) GetCaId() string {
+	if x != nil {
+		return x.CaId
+	}
+	return ""
+}
+
+func (x *ScpCrlTriggerConfig) GetCrlTemplateUrl() string {
+	if x != nil {
+		return x.CrlTemplateUrl
 	}
 	return ""
 }
@@ -119,16 +242,20 @@ var File_otpki_public_plugin_publisher_scp_v1_scp_proto protoreflect.FileDescrip
 
 const file_otpki_public_plugin_publisher_scp_v1_scp_proto_rawDesc = "" +
 	"\n" +
-	".otpki/public/plugin/publisher/scp/v1/scp.proto\x12$otpki.public.plugin.publisher.scp.v1\x1a\x1bbuf/validate/validate.proto\x1a.otpki/common/core/publisher/v1/publisher.proto\"\xc8\x02\n" +
-	"\tScpConfig\x12\x1f\n" +
-	"\x06key_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x05keyId\x12\x1a\n" +
-	"\busername\x18\x02 \x01(\tR\busername\x12\x12\n" +
-	"\x04host\x18\x03 \x01(\tR\x04host\x12\x12\n" +
-	"\x04port\x18\x04 \x01(\x03R\x04port\x12L\n" +
-	"\vallowed_for\x18\x05 \x03(\x0e2+.otpki.common.core.publisher.v1.PkiArtifactR\n" +
-	"allowedFor\x12K\n" +
-	"\"certificate_publisher_template_url\x18\x06 \x01(\tR\x1fcertificatePublisherTemplateUrl\x12;\n" +
-	"\x1acrl_publisher_template_url\x18\a \x01(\tR\x17crlPublisherTemplateUrlB\xbd\x02\n" +
+	".otpki/public/plugin/publisher/scp/v1/scp.proto\x12$otpki.public.plugin.publisher.scp.v1\x1a\x1bbuf/validate/validate.proto\x1a.otpki/common/core/publisher/v1/publisher.proto\"\x93\x01\n" +
+	"\tScpConfig\x12#\n" +
+	"\x06key_id\x18\x01 \x01(\tB\f\xbaH\x05r\x03\xb0\x01\x01е\x18\x03R\x05keyId\x12#\n" +
+	"\busername\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\busername\x12\x1b\n" +
+	"\x04host\x18\x03 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x04host\x12\x1f\n" +
+	"\x04port\x18\x04 \x01(\x03B\v\xbaH\b\"\x06\x18\xff\xff\x03(\x01R\x04port\"\xd5\x01\n" +
+	"\x14ScpCertTriggerConfig\x12#\n" +
+	"\x05ca_id\x18\x01 \x01(\tB\f\xbaH\x05r\x03\xb0\x01\x01е\x18\x01H\x00R\x04caId\x12D\n" +
+	"\x16certificate_profile_id\x18\x02 \x01(\tB\f\xbaH\x05r\x03\xb0\x01\x01е\x18\x02H\x00R\x14certificateProfileId\x12A\n" +
+	"\x18certificate_template_url\x18\x03 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x16certificateTemplateUrlB\x0f\n" +
+	"\x06target\x12\x05\xbaH\x02\b\x01\"n\n" +
+	"\x13ScpCrlTriggerConfig\x12$\n" +
+	"\x05ca_id\x18\x01 \x01(\tB\x0f\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01е\x18\x01R\x04caId\x121\n" +
+	"\x10crl_template_url\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\x01R\x0ecrlTemplateUrlB\xbd\x02\n" +
 	"(com.otpki.public.plugin.publisher.scp.v1B\bScpProtoP\x01ZNgithub.com/otpki/otpki-protobuf/gen/otpki/public/plugin/publisher/scp/v1;scpv1\xa2\x02\x05OPPPS\xaa\x02$Otpki.Public.Plugin.Publisher.Scp.V1\xca\x02%Otpki\\Public_\\Plugin\\Publisher\\Scp\\V1\xe2\x021Otpki\\Public_\\Plugin\\Publisher\\Scp\\V1\\GPBMetadata\xea\x02)Otpki::Public::Plugin::Publisher::Scp::V1b\x06proto3"
 
 var (
@@ -143,18 +270,18 @@ func file_otpki_public_plugin_publisher_scp_v1_scp_proto_rawDescGZIP() []byte {
 	return file_otpki_public_plugin_publisher_scp_v1_scp_proto_rawDescData
 }
 
-var file_otpki_public_plugin_publisher_scp_v1_scp_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_otpki_public_plugin_publisher_scp_v1_scp_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_otpki_public_plugin_publisher_scp_v1_scp_proto_goTypes = []any{
-	(*ScpConfig)(nil),   // 0: otpki.public.plugin.publisher.scp.v1.ScpConfig
-	(v1.PkiArtifact)(0), // 1: otpki.common.core.publisher.v1.PkiArtifact
+	(*ScpConfig)(nil),            // 0: otpki.public.plugin.publisher.scp.v1.ScpConfig
+	(*ScpCertTriggerConfig)(nil), // 1: otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig
+	(*ScpCrlTriggerConfig)(nil),  // 2: otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig
 }
 var file_otpki_public_plugin_publisher_scp_v1_scp_proto_depIdxs = []int32{
-	1, // 0: otpki.public.plugin.publisher.scp.v1.ScpConfig.allowed_for:type_name -> otpki.common.core.publisher.v1.PkiArtifact
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_plugin_publisher_scp_v1_scp_proto_init() }
@@ -162,13 +289,17 @@ func file_otpki_public_plugin_publisher_scp_v1_scp_proto_init() {
 	if File_otpki_public_plugin_publisher_scp_v1_scp_proto != nil {
 		return
 	}
+	file_otpki_public_plugin_publisher_scp_v1_scp_proto_msgTypes[1].OneofWrappers = []any{
+		(*ScpCertTriggerConfig_CaId)(nil),
+		(*ScpCertTriggerConfig_CertificateProfileId)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_public_plugin_publisher_scp_v1_scp_proto_rawDesc), len(file_otpki_public_plugin_publisher_scp_v1_scp_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

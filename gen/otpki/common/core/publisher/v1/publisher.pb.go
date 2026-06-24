@@ -12,6 +12,7 @@ import (
 	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/api/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	descriptorpb "google.golang.org/protobuf/types/descriptorpb"
 	anypb "google.golang.org/protobuf/types/known/anypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
@@ -26,163 +27,183 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type PublisherType int32
+type PublisherTransport int32
 
 const (
-	PublisherType_PUBLISHER_TYPE_UNSPECIFIED PublisherType = 0
-	PublisherType_PUBLISHER_TYPE_VS          PublisherType = 1
-	PublisherType_PUBLISHER_TYPE_HTTP        PublisherType = 2
-	PublisherType_PUBLISHER_TYPE_SCP         PublisherType = 3
+	PublisherTransport_PUBLISHER_TRANSPORT_UNSPECIFIED PublisherTransport = 0
+	PublisherTransport_PUBLISHER_TRANSPORT_VS          PublisherTransport = 1
+	PublisherTransport_PUBLISHER_TRANSPORT_HTTP        PublisherTransport = 2
+	PublisherTransport_PUBLISHER_TRANSPORT_SCP         PublisherTransport = 3
+	PublisherTransport_PUBLISHER_TRANSPORT_SMTP        PublisherTransport = 4
 )
 
-// Enum value maps for PublisherType.
+// Enum value maps for PublisherTransport.
 var (
-	PublisherType_name = map[int32]string{
-		0: "PUBLISHER_TYPE_UNSPECIFIED",
-		1: "PUBLISHER_TYPE_VS",
-		2: "PUBLISHER_TYPE_HTTP",
-		3: "PUBLISHER_TYPE_SCP",
+	PublisherTransport_name = map[int32]string{
+		0: "PUBLISHER_TRANSPORT_UNSPECIFIED",
+		1: "PUBLISHER_TRANSPORT_VS",
+		2: "PUBLISHER_TRANSPORT_HTTP",
+		3: "PUBLISHER_TRANSPORT_SCP",
+		4: "PUBLISHER_TRANSPORT_SMTP",
 	}
-	PublisherType_value = map[string]int32{
-		"PUBLISHER_TYPE_UNSPECIFIED": 0,
-		"PUBLISHER_TYPE_VS":          1,
-		"PUBLISHER_TYPE_HTTP":        2,
-		"PUBLISHER_TYPE_SCP":         3,
+	PublisherTransport_value = map[string]int32{
+		"PUBLISHER_TRANSPORT_UNSPECIFIED": 0,
+		"PUBLISHER_TRANSPORT_VS":          1,
+		"PUBLISHER_TRANSPORT_HTTP":        2,
+		"PUBLISHER_TRANSPORT_SCP":         3,
+		"PUBLISHER_TRANSPORT_SMTP":        4,
 	}
 )
 
-func (x PublisherType) Enum() *PublisherType {
-	p := new(PublisherType)
+func (x PublisherTransport) Enum() *PublisherTransport {
+	p := new(PublisherTransport)
 	*p = x
 	return p
 }
 
-func (x PublisherType) String() string {
+func (x PublisherTransport) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (PublisherType) Descriptor() protoreflect.EnumDescriptor {
+func (PublisherTransport) Descriptor() protoreflect.EnumDescriptor {
 	return file_otpki_common_core_publisher_v1_publisher_proto_enumTypes[0].Descriptor()
 }
 
-func (PublisherType) Type() protoreflect.EnumType {
+func (PublisherTransport) Type() protoreflect.EnumType {
 	return &file_otpki_common_core_publisher_v1_publisher_proto_enumTypes[0]
 }
 
-func (x PublisherType) Number() protoreflect.EnumNumber {
+func (x PublisherTransport) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use PublisherType.Descriptor instead.
-func (PublisherType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use PublisherTransport.Descriptor instead.
+func (PublisherTransport) EnumDescriptor() ([]byte, []int) {
 	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{0}
 }
 
-type PkiArtifact int32
+type PublisherTriggerEvent int32
 
 const (
-	PkiArtifact_PKI_ARTIFACT_UNSPECIFIED PkiArtifact = 0
-	PkiArtifact_PKI_ARTIFACT_CRL         PkiArtifact = 1
-	PkiArtifact_PKI_ARTIFACT_CERTIFICATE PkiArtifact = 2
+	PublisherTriggerEvent_PUBLISHER_TRIGGER_EVENT_UNSPECIFIED    PublisherTriggerEvent = 0
+	PublisherTriggerEvent_PUBLISHER_TRIGGER_EVENT_CERT_ISSUED    PublisherTriggerEvent = 1
+	PublisherTriggerEvent_PUBLISHER_TRIGGER_EVENT_CERT_REVOKED   PublisherTriggerEvent = 2
+	PublisherTriggerEvent_PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED  PublisherTriggerEvent = 3
+	PublisherTriggerEvent_PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS PublisherTriggerEvent = 4
 )
 
-// Enum value maps for PkiArtifact.
+// Enum value maps for PublisherTriggerEvent.
 var (
-	PkiArtifact_name = map[int32]string{
-		0: "PKI_ARTIFACT_UNSPECIFIED",
-		1: "PKI_ARTIFACT_CRL",
-		2: "PKI_ARTIFACT_CERTIFICATE",
+	PublisherTriggerEvent_name = map[int32]string{
+		0: "PUBLISHER_TRIGGER_EVENT_UNSPECIFIED",
+		1: "PUBLISHER_TRIGGER_EVENT_CERT_ISSUED",
+		2: "PUBLISHER_TRIGGER_EVENT_CERT_REVOKED",
+		3: "PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED",
+		4: "PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS",
 	}
-	PkiArtifact_value = map[string]int32{
-		"PKI_ARTIFACT_UNSPECIFIED": 0,
-		"PKI_ARTIFACT_CRL":         1,
-		"PKI_ARTIFACT_CERTIFICATE": 2,
+	PublisherTriggerEvent_value = map[string]int32{
+		"PUBLISHER_TRIGGER_EVENT_UNSPECIFIED":    0,
+		"PUBLISHER_TRIGGER_EVENT_CERT_ISSUED":    1,
+		"PUBLISHER_TRIGGER_EVENT_CERT_REVOKED":   2,
+		"PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED":  3,
+		"PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS": 4,
 	}
 )
 
-func (x PkiArtifact) Enum() *PkiArtifact {
-	p := new(PkiArtifact)
+func (x PublisherTriggerEvent) Enum() *PublisherTriggerEvent {
+	p := new(PublisherTriggerEvent)
 	*p = x
 	return p
 }
 
-func (x PkiArtifact) String() string {
+func (x PublisherTriggerEvent) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (PkiArtifact) Descriptor() protoreflect.EnumDescriptor {
+func (PublisherTriggerEvent) Descriptor() protoreflect.EnumDescriptor {
 	return file_otpki_common_core_publisher_v1_publisher_proto_enumTypes[1].Descriptor()
 }
 
-func (PkiArtifact) Type() protoreflect.EnumType {
+func (PublisherTriggerEvent) Type() protoreflect.EnumType {
 	return &file_otpki_common_core_publisher_v1_publisher_proto_enumTypes[1]
 }
 
-func (x PkiArtifact) Number() protoreflect.EnumNumber {
+func (x PublisherTriggerEvent) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use PkiArtifact.Descriptor instead.
-func (PkiArtifact) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use PublisherTriggerEvent.Descriptor instead.
+func (PublisherTriggerEvent) EnumDescriptor() ([]byte, []int) {
 	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{1}
 }
 
-type CertEventType int32
+type PublisherLookup int32
 
 const (
-	CertEventType_CERT_EVENT_TYPE_UNSPECIFIED CertEventType = 0
-	CertEventType_CERT_EVENT_TYPE_CERT_ISSUE  CertEventType = 1
-	CertEventType_CERT_EVENT_TYPE_CERT_REVOKE CertEventType = 2
+	PublisherLookup_PUBLISHER_LOOKUP_UNSPECIFIED           PublisherLookup = 0
+	PublisherLookup_PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY PublisherLookup = 1
+	PublisherLookup_PUBLISHER_LOOKUP_CERTIFICATE_PROFILE   PublisherLookup = 2
+	PublisherLookup_PUBLISHER_LOOKUP_KEY                   PublisherLookup = 3
+	PublisherLookup_PUBLISHER_LOOKUP_END_ENTITY_PROFILE    PublisherLookup = 4
+	PublisherLookup_PUBLISHER_LOOKUP_END_ENTITY            PublisherLookup = 5
 )
 
-// Enum value maps for CertEventType.
+// Enum value maps for PublisherLookup.
 var (
-	CertEventType_name = map[int32]string{
-		0: "CERT_EVENT_TYPE_UNSPECIFIED",
-		1: "CERT_EVENT_TYPE_CERT_ISSUE",
-		2: "CERT_EVENT_TYPE_CERT_REVOKE",
+	PublisherLookup_name = map[int32]string{
+		0: "PUBLISHER_LOOKUP_UNSPECIFIED",
+		1: "PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY",
+		2: "PUBLISHER_LOOKUP_CERTIFICATE_PROFILE",
+		3: "PUBLISHER_LOOKUP_KEY",
+		4: "PUBLISHER_LOOKUP_END_ENTITY_PROFILE",
+		5: "PUBLISHER_LOOKUP_END_ENTITY",
 	}
-	CertEventType_value = map[string]int32{
-		"CERT_EVENT_TYPE_UNSPECIFIED": 0,
-		"CERT_EVENT_TYPE_CERT_ISSUE":  1,
-		"CERT_EVENT_TYPE_CERT_REVOKE": 2,
+	PublisherLookup_value = map[string]int32{
+		"PUBLISHER_LOOKUP_UNSPECIFIED":           0,
+		"PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY": 1,
+		"PUBLISHER_LOOKUP_CERTIFICATE_PROFILE":   2,
+		"PUBLISHER_LOOKUP_KEY":                   3,
+		"PUBLISHER_LOOKUP_END_ENTITY_PROFILE":    4,
+		"PUBLISHER_LOOKUP_END_ENTITY":            5,
 	}
 )
 
-func (x CertEventType) Enum() *CertEventType {
-	p := new(CertEventType)
+func (x PublisherLookup) Enum() *PublisherLookup {
+	p := new(PublisherLookup)
 	*p = x
 	return p
 }
 
-func (x CertEventType) String() string {
+func (x PublisherLookup) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (CertEventType) Descriptor() protoreflect.EnumDescriptor {
+func (PublisherLookup) Descriptor() protoreflect.EnumDescriptor {
 	return file_otpki_common_core_publisher_v1_publisher_proto_enumTypes[2].Descriptor()
 }
 
-func (CertEventType) Type() protoreflect.EnumType {
+func (PublisherLookup) Type() protoreflect.EnumType {
 	return &file_otpki_common_core_publisher_v1_publisher_proto_enumTypes[2]
 }
 
-func (x CertEventType) Number() protoreflect.EnumNumber {
+func (x PublisherLookup) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use CertEventType.Descriptor instead.
-func (CertEventType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use PublisherLookup.Descriptor instead.
+func (PublisherLookup) EnumDescriptor() ([]byte, []int) {
 	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{2}
 }
 
-type PublisherConfig struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	PublisherType PublisherType          `protobuf:"varint,4,opt,name=publisher_type,json=publisherType,proto3,enum=otpki.common.core.publisher.v1.PublisherType" json:"publisher_type,omitempty"`
-	ConfigData    *anypb.Any             `protobuf:"bytes,5,opt,name=config_data,json=configData,proto3" json:"config_data,omitempty"`
+type Publisher struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// not settable on creation
+	Id          string              `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name        string              `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description string              `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Transport   PublisherTransport  `protobuf:"varint,4,opt,name=transport,proto3,enum=otpki.common.core.publisher.v1.PublisherTransport" json:"transport,omitempty"`
+	Config      *anypb.Any          `protobuf:"bytes,5,opt,name=config,proto3" json:"config,omitempty"`
+	Triggers    []*PublisherTrigger `protobuf:"bytes,6,rep,name=triggers,proto3" json:"triggers,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -191,20 +212,20 @@ type PublisherConfig struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PublisherConfig) Reset() {
-	*x = PublisherConfig{}
+func (x *Publisher) Reset() {
+	*x = Publisher{}
 	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PublisherConfig) String() string {
+func (x *Publisher) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PublisherConfig) ProtoMessage() {}
+func (*Publisher) ProtoMessage() {}
 
-func (x *PublisherConfig) ProtoReflect() protoreflect.Message {
+func (x *Publisher) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -216,88 +237,89 @@ func (x *PublisherConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PublisherConfig.ProtoReflect.Descriptor instead.
-func (*PublisherConfig) Descriptor() ([]byte, []int) {
+// Deprecated: Use Publisher.ProtoReflect.Descriptor instead.
+func (*Publisher) Descriptor() ([]byte, []int) {
 	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PublisherConfig) GetId() string {
+func (x *Publisher) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *PublisherConfig) GetName() string {
+func (x *Publisher) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *PublisherConfig) GetDescription() string {
+func (x *Publisher) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *PublisherConfig) GetPublisherType() PublisherType {
+func (x *Publisher) GetTransport() PublisherTransport {
 	if x != nil {
-		return x.PublisherType
+		return x.Transport
 	}
-	return PublisherType_PUBLISHER_TYPE_UNSPECIFIED
+	return PublisherTransport_PUBLISHER_TRANSPORT_UNSPECIFIED
 }
 
-func (x *PublisherConfig) GetConfigData() *anypb.Any {
+func (x *Publisher) GetConfig() *anypb.Any {
 	if x != nil {
-		return x.ConfigData
+		return x.Config
 	}
 	return nil
 }
 
-func (x *PublisherConfig) GetCreatedAt() *timestamppb.Timestamp {
+func (x *Publisher) GetTriggers() []*PublisherTrigger {
+	if x != nil {
+		return x.Triggers
+	}
+	return nil
+}
+
+func (x *Publisher) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return nil
 }
 
-func (x *PublisherConfig) GetUpdatedAt() *timestamppb.Timestamp {
+func (x *Publisher) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
 	return nil
 }
 
-// CRL Publisher can only subscribe to CAs on CRL generation events
-type CrlPublisher struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
-	CaId              string                 `protobuf:"bytes,2,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
-	PublisherConfigId string                 `protobuf:"bytes,3,opt,name=publisher_config_id,json=publisherConfigId,proto3" json:"publisher_config_id,omitempty"`
-	// not settable on creation
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	// not settable on creation
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,202,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+type PublisherTrigger struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Event         PublisherTriggerEvent  `protobuf:"varint,1,opt,name=event,proto3,enum=otpki.common.core.publisher.v1.PublisherTriggerEvent" json:"event,omitempty"`
+	Config        *anypb.Any             `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CrlPublisher) Reset() {
-	*x = CrlPublisher{}
+func (x *PublisherTrigger) Reset() {
+	*x = PublisherTrigger{}
 	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CrlPublisher) String() string {
+func (x *PublisherTrigger) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CrlPublisher) ProtoMessage() {}
+func (*PublisherTrigger) ProtoMessage() {}
 
-func (x *CrlPublisher) ProtoReflect() protoreflect.Message {
+func (x *PublisherTrigger) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -309,76 +331,46 @@ func (x *CrlPublisher) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CrlPublisher.ProtoReflect.Descriptor instead.
-func (*CrlPublisher) Descriptor() ([]byte, []int) {
+// Deprecated: Use PublisherTrigger.ProtoReflect.Descriptor instead.
+func (*PublisherTrigger) Descriptor() ([]byte, []int) {
 	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CrlPublisher) GetId() string {
+func (x *PublisherTrigger) GetEvent() PublisherTriggerEvent {
 	if x != nil {
-		return x.Id
+		return x.Event
 	}
-	return ""
+	return PublisherTriggerEvent_PUBLISHER_TRIGGER_EVENT_UNSPECIFIED
 }
 
-func (x *CrlPublisher) GetCaId() string {
+func (x *PublisherTrigger) GetConfig() *anypb.Any {
 	if x != nil {
-		return x.CaId
-	}
-	return ""
-}
-
-func (x *CrlPublisher) GetPublisherConfigId() string {
-	if x != nil {
-		return x.PublisherConfigId
-	}
-	return ""
-}
-
-func (x *CrlPublisher) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
+		return x.Config
 	}
 	return nil
 }
 
-func (x *CrlPublisher) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-// Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
-type CertificatePublisher struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"` // not settable on creation
-	PublisherConfigId    string                 `protobuf:"bytes,2,opt,name=publisher_config_id,json=publisherConfigId,proto3" json:"publisher_config_id,omitempty"`
-	CaId                 string                 `protobuf:"bytes,3,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`                                                   // CHECK: at least one of these two must be set
-	CertificateProfileId string                 `protobuf:"bytes,4,opt,name=certificate_profile_id,json=certificateProfileId,proto3" json:"certificate_profile_id,omitempty"` // CHECK: at least one of these two must be set
-	SubscribedEvents     []CertEventType        `protobuf:"varint,5,rep,packed,name=subscribed_events,json=subscribedEvents,proto3,enum=otpki.common.core.publisher.v1.CertEventType" json:"subscribed_events,omitempty"`
-	// not settable on creation
-	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	// not settable on creation
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,202,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+type CrlTriggerConfig struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CertificatePublisher) Reset() {
-	*x = CertificatePublisher{}
+func (x *CrlTriggerConfig) Reset() {
+	*x = CrlTriggerConfig{}
 	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CertificatePublisher) String() string {
+func (x *CrlTriggerConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CertificatePublisher) ProtoMessage() {}
+func (*CrlTriggerConfig) ProtoMessage() {}
 
-func (x *CertificatePublisher) ProtoReflect() protoreflect.Message {
+func (x *CrlTriggerConfig) ProtoReflect() protoreflect.Message {
 	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -390,108 +382,284 @@ func (x *CertificatePublisher) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CertificatePublisher.ProtoReflect.Descriptor instead.
-func (*CertificatePublisher) Descriptor() ([]byte, []int) {
+// Deprecated: Use CrlTriggerConfig.ProtoReflect.Descriptor instead.
+func (*CrlTriggerConfig) Descriptor() ([]byte, []int) {
 	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CertificatePublisher) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *CertificatePublisher) GetPublisherConfigId() string {
-	if x != nil {
-		return x.PublisherConfigId
-	}
-	return ""
-}
-
-func (x *CertificatePublisher) GetCaId() string {
+func (x *CrlTriggerConfig) GetCaId() string {
 	if x != nil {
 		return x.CaId
 	}
 	return ""
 }
 
-func (x *CertificatePublisher) GetCertificateProfileId() string {
+type CertTriggerConfig struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Target:
+	//
+	//	*CertTriggerConfig_CaId
+	//	*CertTriggerConfig_CertificateProfileId
+	Target        isCertTriggerConfig_Target `protobuf_oneof:"target"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CertTriggerConfig) Reset() {
+	*x = CertTriggerConfig{}
+	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CertTriggerConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CertTriggerConfig) ProtoMessage() {}
+
+func (x *CertTriggerConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[3]
 	if x != nil {
-		return x.CertificateProfileId
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CertTriggerConfig.ProtoReflect.Descriptor instead.
+func (*CertTriggerConfig) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CertTriggerConfig) GetTarget() isCertTriggerConfig_Target {
+	if x != nil {
+		return x.Target
+	}
+	return nil
+}
+
+func (x *CertTriggerConfig) GetCaId() string {
+	if x != nil {
+		if x, ok := x.Target.(*CertTriggerConfig_CaId); ok {
+			return x.CaId
+		}
 	}
 	return ""
 }
 
-func (x *CertificatePublisher) GetSubscribedEvents() []CertEventType {
+func (x *CertTriggerConfig) GetCertificateProfileId() string {
 	if x != nil {
-		return x.SubscribedEvents
+		if x, ok := x.Target.(*CertTriggerConfig_CertificateProfileId); ok {
+			return x.CertificateProfileId
+		}
+	}
+	return ""
+}
+
+type isCertTriggerConfig_Target interface {
+	isCertTriggerConfig_Target()
+}
+
+type CertTriggerConfig_CaId struct {
+	CaId string `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3,oneof"`
+}
+
+type CertTriggerConfig_CertificateProfileId struct {
+	CertificateProfileId string `protobuf:"bytes,2,opt,name=certificate_profile_id,json=certificateProfileId,proto3,oneof"`
+}
+
+func (*CertTriggerConfig_CaId) isCertTriggerConfig_Target() {}
+
+func (*CertTriggerConfig_CertificateProfileId) isCertTriggerConfig_Target() {}
+
+type PublisherTransportDescriptor struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	Transport     PublisherTransport      `protobuf:"varint,1,opt,name=transport,proto3,enum=otpki.common.core.publisher.v1.PublisherTransport" json:"transport,omitempty"`
+	ConfigTypeUrl string                  `protobuf:"bytes,2,opt,name=config_type_url,json=configTypeUrl,proto3" json:"config_type_url,omitempty"`
+	Triggers      []*PublisherTriggerSpec `protobuf:"bytes,3,rep,name=triggers,proto3" json:"triggers,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PublisherTransportDescriptor) Reset() {
+	*x = PublisherTransportDescriptor{}
+	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PublisherTransportDescriptor) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublisherTransportDescriptor) ProtoMessage() {}
+
+func (x *PublisherTransportDescriptor) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublisherTransportDescriptor.ProtoReflect.Descriptor instead.
+func (*PublisherTransportDescriptor) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *PublisherTransportDescriptor) GetTransport() PublisherTransport {
+	if x != nil {
+		return x.Transport
+	}
+	return PublisherTransport_PUBLISHER_TRANSPORT_UNSPECIFIED
+}
+
+func (x *PublisherTransportDescriptor) GetConfigTypeUrl() string {
+	if x != nil {
+		return x.ConfigTypeUrl
+	}
+	return ""
+}
+
+func (x *PublisherTransportDescriptor) GetTriggers() []*PublisherTriggerSpec {
+	if x != nil {
+		return x.Triggers
 	}
 	return nil
 }
 
-func (x *CertificatePublisher) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
+type PublisherTriggerSpec struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Event         PublisherTriggerEvent  `protobuf:"varint,1,opt,name=event,proto3,enum=otpki.common.core.publisher.v1.PublisherTriggerEvent" json:"event,omitempty"`
+	ConfigTypeUrl string                 `protobuf:"bytes,2,opt,name=config_type_url,json=configTypeUrl,proto3" json:"config_type_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CertificatePublisher) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
+func (x *PublisherTriggerSpec) Reset() {
+	*x = PublisherTriggerSpec{}
+	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
+
+func (x *PublisherTriggerSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublisherTriggerSpec) ProtoMessage() {}
+
+func (x *PublisherTriggerSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublisherTriggerSpec.ProtoReflect.Descriptor instead.
+func (*PublisherTriggerSpec) Descriptor() ([]byte, []int) {
+	return file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *PublisherTriggerSpec) GetEvent() PublisherTriggerEvent {
+	if x != nil {
+		return x.Event
+	}
+	return PublisherTriggerEvent_PUBLISHER_TRIGGER_EVENT_UNSPECIFIED
+}
+
+func (x *PublisherTriggerSpec) GetConfigTypeUrl() string {
+	if x != nil {
+		return x.ConfigTypeUrl
+	}
+	return ""
+}
+
+var file_otpki_common_core_publisher_v1_publisher_proto_extTypes = []protoimpl.ExtensionInfo{
+	{
+		ExtendedType:  (*descriptorpb.FieldOptions)(nil),
+		ExtensionType: (*PublisherLookup)(nil),
+		Field:         50010,
+		Name:          "otpki.common.core.publisher.v1.lookup",
+		Tag:           "varint,50010,opt,name=lookup,enum=otpki.common.core.publisher.v1.PublisherLookup",
+		Filename:      "otpki/common/core/publisher/v1/publisher.proto",
+	},
+}
+
+// Extension fields to descriptorpb.FieldOptions.
+var (
+	// optional otpki.common.core.publisher.v1.PublisherLookup lookup = 50010;
+	E_Lookup = &file_otpki_common_core_publisher_v1_publisher_proto_extTypes[0]
+)
 
 var File_otpki_common_core_publisher_v1_publisher_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_publisher_v1_publisher_proto_rawDesc = "" +
 	"\n" +
-	".otpki/common/core/publisher/v1/publisher.proto\x12\x1eotpki.common.core.publisher.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\"\xbf\x03\n" +
-	"\x0fPublisherConfig\x12\x1d\n" +
-	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1e\n" +
+	".otpki/common/core/publisher/v1/publisher.proto\x12\x1eotpki.common.core.publisher.v1\x1a\x1bbuf/validate/validate.proto\x1a\x19google/protobuf/any.proto\x1a google/protobuf/descriptor.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\"\x89\x04\n" +
+	"\tPublisher\x12 \n" +
+	"\x02id\x18\x01 \x01(\tB\x10\xbaG\x02\x18\x01\xbaH\b\xd8\x01\x01r\x03\xb0\x01\x01R\x02id\x12\x1e\n" +
 	"\x04name\x18\x02 \x01(\tB\n" +
 	"\xbaH\a\xd8\x01\x01r\x02\x10\x03R\x04name\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\x12^\n" +
-	"\x0epublisher_type\x18\x04 \x01(\x0e2-.otpki.common.core.publisher.v1.PublisherTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\rpublisherType\x125\n" +
-	"\vconfig_data\x18\x05 \x01(\v2\x14.google.protobuf.AnyR\n" +
-	"configData\x12V\n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\\\n" +
+	"\ttransport\x18\x04 \x01(\x0e22.otpki.common.core.publisher.v1.PublisherTransportB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\ttransport\x12,\n" +
+	"\x06config\x18\x05 \x01(\v2\x14.google.protobuf.AnyR\x06config\x12V\n" +
+	"\btriggers\x18\x06 \x03(\v20.otpki.common.core.publisher.v1.PublisherTriggerB\b\xbaH\x05\x92\x01\x02\b\x01R\btriggers\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xb6\x02\n" +
-	"\fCrlPublisher\x12\x1d\n" +
-	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
-	"\x05ca_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\x128\n" +
-	"\x13publisher_config_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11publisherConfigId\x12V\n" +
-	"\n" +
-	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
-	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt\"\xda\x03\n" +
-	"\x14CertificatePublisher\x12\x1d\n" +
-	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x128\n" +
-	"\x13publisher_config_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11publisherConfigId\x12\x1d\n" +
-	"\x05ca_id\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\x12>\n" +
-	"\x16certificate_profile_id\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x14certificateProfileId\x12Z\n" +
-	"\x11subscribed_events\x18\x05 \x03(\x0e2-.otpki.common.core.publisher.v1.CertEventTypeR\x10subscribedEvents\x12V\n" +
-	"\n" +
-	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
-	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt*w\n" +
-	"\rPublisherType\x12\x1e\n" +
-	"\x1aPUBLISHER_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
-	"\x11PUBLISHER_TYPE_VS\x10\x01\x12\x17\n" +
-	"\x13PUBLISHER_TYPE_HTTP\x10\x02\x12\x16\n" +
-	"\x12PUBLISHER_TYPE_SCP\x10\x03*_\n" +
-	"\vPkiArtifact\x12\x1c\n" +
-	"\x18PKI_ARTIFACT_UNSPECIFIED\x10\x00\x12\x14\n" +
-	"\x10PKI_ARTIFACT_CRL\x10\x01\x12\x1c\n" +
-	"\x18PKI_ARTIFACT_CERTIFICATE\x10\x02*q\n" +
-	"\rCertEventType\x12\x1f\n" +
-	"\x1bCERT_EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x1e\n" +
-	"\x1aCERT_EVENT_TYPE_CERT_ISSUE\x10\x01\x12\x1f\n" +
-	"\x1bCERT_EVENT_TYPE_CERT_REVOKE\x10\x02B\xa1\x02\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\x99\x01\n" +
+	"\x10PublisherTrigger\x12W\n" +
+	"\x05event\x18\x01 \x01(\x0e25.otpki.common.core.publisher.v1.PublisherTriggerEventB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\x05event\x12,\n" +
+	"\x06config\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x06config\"8\n" +
+	"\x10CrlTriggerConfig\x12$\n" +
+	"\x05ca_id\x18\x01 \x01(\tB\x0f\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01е\x18\x01R\x04caId\"\x8f\x01\n" +
+	"\x11CertTriggerConfig\x12#\n" +
+	"\x05ca_id\x18\x01 \x01(\tB\f\xbaH\x05r\x03\xb0\x01\x01е\x18\x01H\x00R\x04caId\x12D\n" +
+	"\x16certificate_profile_id\x18\x02 \x01(\tB\f\xbaH\x05r\x03\xb0\x01\x01е\x18\x02H\x00R\x14certificateProfileIdB\x0f\n" +
+	"\x06target\x12\x05\xbaH\x02\b\x01\"\xea\x01\n" +
+	"\x1cPublisherTransportDescriptor\x12P\n" +
+	"\ttransport\x18\x01 \x01(\x0e22.otpki.common.core.publisher.v1.PublisherTransportR\ttransport\x12&\n" +
+	"\x0fconfig_type_url\x18\x02 \x01(\tR\rconfigTypeUrl\x12P\n" +
+	"\btriggers\x18\x03 \x03(\v24.otpki.common.core.publisher.v1.PublisherTriggerSpecR\btriggers\"\x8b\x01\n" +
+	"\x14PublisherTriggerSpec\x12K\n" +
+	"\x05event\x18\x01 \x01(\x0e25.otpki.common.core.publisher.v1.PublisherTriggerEventR\x05event\x12&\n" +
+	"\x0fconfig_type_url\x18\x02 \x01(\tR\rconfigTypeUrl*\xae\x01\n" +
+	"\x12PublisherTransport\x12#\n" +
+	"\x1fPUBLISHER_TRANSPORT_UNSPECIFIED\x10\x00\x12\x1a\n" +
+	"\x16PUBLISHER_TRANSPORT_VS\x10\x01\x12\x1c\n" +
+	"\x18PUBLISHER_TRANSPORT_HTTP\x10\x02\x12\x1b\n" +
+	"\x17PUBLISHER_TRANSPORT_SCP\x10\x03\x12\x1c\n" +
+	"\x18PUBLISHER_TRANSPORT_SMTP\x10\x04*\xea\x01\n" +
+	"\x15PublisherTriggerEvent\x12'\n" +
+	"#PUBLISHER_TRIGGER_EVENT_UNSPECIFIED\x10\x00\x12'\n" +
+	"#PUBLISHER_TRIGGER_EVENT_CERT_ISSUED\x10\x01\x12(\n" +
+	"$PUBLISHER_TRIGGER_EVENT_CERT_REVOKED\x10\x02\x12)\n" +
+	"%PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED\x10\x03\x12*\n" +
+	"&PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS\x10\x04*\xed\x01\n" +
+	"\x0fPublisherLookup\x12 \n" +
+	"\x1cPUBLISHER_LOOKUP_UNSPECIFIED\x10\x00\x12*\n" +
+	"&PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY\x10\x01\x12(\n" +
+	"$PUBLISHER_LOOKUP_CERTIFICATE_PROFILE\x10\x02\x12\x18\n" +
+	"\x14PUBLISHER_LOOKUP_KEY\x10\x03\x12'\n" +
+	"#PUBLISHER_LOOKUP_END_ENTITY_PROFILE\x10\x04\x12\x1f\n" +
+	"\x1bPUBLISHER_LOOKUP_END_ENTITY\x10\x05:k\n" +
+	"\x06lookup\x12\x1d.google.protobuf.FieldOptions\x18چ\x03 \x01(\x0e2/.otpki.common.core.publisher.v1.PublisherLookupR\x06lookup\x88\x01\x01B\xa1\x02\n" +
 	"\"com.otpki.common.core.publisher.v1B\x0ePublisherProtoP\x01ZNgithub.com/otpki/otpki-protobuf/gen/otpki/common/core/publisher/v1;publisherv1\xa2\x02\x04OCCP\xaa\x02\x1eOtpki.Common.Core.Publisher.V1\xca\x02\x1eOtpki\\Common\\Core\\Publisher\\V1\xe2\x02*Otpki\\Common\\Core\\Publisher\\V1\\GPBMetadata\xea\x02\"Otpki::Common::Core::Publisher::V1b\x06proto3"
 
 var (
@@ -507,32 +675,39 @@ func file_otpki_common_core_publisher_v1_publisher_proto_rawDescGZIP() []byte {
 }
 
 var file_otpki_common_core_publisher_v1_publisher_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_otpki_common_core_publisher_v1_publisher_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_otpki_common_core_publisher_v1_publisher_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_otpki_common_core_publisher_v1_publisher_proto_goTypes = []any{
-	(PublisherType)(0),            // 0: otpki.common.core.publisher.v1.PublisherType
-	(PkiArtifact)(0),              // 1: otpki.common.core.publisher.v1.PkiArtifact
-	(CertEventType)(0),            // 2: otpki.common.core.publisher.v1.CertEventType
-	(*PublisherConfig)(nil),       // 3: otpki.common.core.publisher.v1.PublisherConfig
-	(*CrlPublisher)(nil),          // 4: otpki.common.core.publisher.v1.CrlPublisher
-	(*CertificatePublisher)(nil),  // 5: otpki.common.core.publisher.v1.CertificatePublisher
-	(*anypb.Any)(nil),             // 6: google.protobuf.Any
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(PublisherTransport)(0),              // 0: otpki.common.core.publisher.v1.PublisherTransport
+	(PublisherTriggerEvent)(0),           // 1: otpki.common.core.publisher.v1.PublisherTriggerEvent
+	(PublisherLookup)(0),                 // 2: otpki.common.core.publisher.v1.PublisherLookup
+	(*Publisher)(nil),                    // 3: otpki.common.core.publisher.v1.Publisher
+	(*PublisherTrigger)(nil),             // 4: otpki.common.core.publisher.v1.PublisherTrigger
+	(*CrlTriggerConfig)(nil),             // 5: otpki.common.core.publisher.v1.CrlTriggerConfig
+	(*CertTriggerConfig)(nil),            // 6: otpki.common.core.publisher.v1.CertTriggerConfig
+	(*PublisherTransportDescriptor)(nil), // 7: otpki.common.core.publisher.v1.PublisherTransportDescriptor
+	(*PublisherTriggerSpec)(nil),         // 8: otpki.common.core.publisher.v1.PublisherTriggerSpec
+	(*anypb.Any)(nil),                    // 9: google.protobuf.Any
+	(*timestamppb.Timestamp)(nil),        // 10: google.protobuf.Timestamp
+	(*descriptorpb.FieldOptions)(nil),    // 11: google.protobuf.FieldOptions
 }
 var file_otpki_common_core_publisher_v1_publisher_proto_depIdxs = []int32{
-	0, // 0: otpki.common.core.publisher.v1.PublisherConfig.publisher_type:type_name -> otpki.common.core.publisher.v1.PublisherType
-	6, // 1: otpki.common.core.publisher.v1.PublisherConfig.config_data:type_name -> google.protobuf.Any
-	7, // 2: otpki.common.core.publisher.v1.PublisherConfig.created_at:type_name -> google.protobuf.Timestamp
-	7, // 3: otpki.common.core.publisher.v1.PublisherConfig.updated_at:type_name -> google.protobuf.Timestamp
-	7, // 4: otpki.common.core.publisher.v1.CrlPublisher.created_at:type_name -> google.protobuf.Timestamp
-	7, // 5: otpki.common.core.publisher.v1.CrlPublisher.updated_at:type_name -> google.protobuf.Timestamp
-	2, // 6: otpki.common.core.publisher.v1.CertificatePublisher.subscribed_events:type_name -> otpki.common.core.publisher.v1.CertEventType
-	7, // 7: otpki.common.core.publisher.v1.CertificatePublisher.created_at:type_name -> google.protobuf.Timestamp
-	7, // 8: otpki.common.core.publisher.v1.CertificatePublisher.updated_at:type_name -> google.protobuf.Timestamp
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	0,  // 0: otpki.common.core.publisher.v1.Publisher.transport:type_name -> otpki.common.core.publisher.v1.PublisherTransport
+	9,  // 1: otpki.common.core.publisher.v1.Publisher.config:type_name -> google.protobuf.Any
+	4,  // 2: otpki.common.core.publisher.v1.Publisher.triggers:type_name -> otpki.common.core.publisher.v1.PublisherTrigger
+	10, // 3: otpki.common.core.publisher.v1.Publisher.created_at:type_name -> google.protobuf.Timestamp
+	10, // 4: otpki.common.core.publisher.v1.Publisher.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 5: otpki.common.core.publisher.v1.PublisherTrigger.event:type_name -> otpki.common.core.publisher.v1.PublisherTriggerEvent
+	9,  // 6: otpki.common.core.publisher.v1.PublisherTrigger.config:type_name -> google.protobuf.Any
+	0,  // 7: otpki.common.core.publisher.v1.PublisherTransportDescriptor.transport:type_name -> otpki.common.core.publisher.v1.PublisherTransport
+	8,  // 8: otpki.common.core.publisher.v1.PublisherTransportDescriptor.triggers:type_name -> otpki.common.core.publisher.v1.PublisherTriggerSpec
+	1,  // 9: otpki.common.core.publisher.v1.PublisherTriggerSpec.event:type_name -> otpki.common.core.publisher.v1.PublisherTriggerEvent
+	11, // 10: otpki.common.core.publisher.v1.lookup:extendee -> google.protobuf.FieldOptions
+	2,  // 11: otpki.common.core.publisher.v1.lookup:type_name -> otpki.common.core.publisher.v1.PublisherLookup
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	11, // [11:12] is the sub-list for extension type_name
+	10, // [10:11] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_core_publisher_v1_publisher_proto_init() }
@@ -540,20 +715,25 @@ func file_otpki_common_core_publisher_v1_publisher_proto_init() {
 	if File_otpki_common_core_publisher_v1_publisher_proto != nil {
 		return
 	}
+	file_otpki_common_core_publisher_v1_publisher_proto_msgTypes[3].OneofWrappers = []any{
+		(*CertTriggerConfig_CaId)(nil),
+		(*CertTriggerConfig_CertificateProfileId)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_core_publisher_v1_publisher_proto_rawDesc), len(file_otpki_common_core_publisher_v1_publisher_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   3,
-			NumExtensions: 0,
+			NumMessages:   6,
+			NumExtensions: 1,
 			NumServices:   0,
 		},
 		GoTypes:           file_otpki_common_core_publisher_v1_publisher_proto_goTypes,
 		DependencyIndexes: file_otpki_common_core_publisher_v1_publisher_proto_depIdxs,
 		EnumInfos:         file_otpki_common_core_publisher_v1_publisher_proto_enumTypes,
 		MessageInfos:      file_otpki_common_core_publisher_v1_publisher_proto_msgTypes,
+		ExtensionInfos:    file_otpki_common_core_publisher_v1_publisher_proto_extTypes,
 	}.Build()
 	File_otpki_common_core_publisher_v1_publisher_proto = out.File
 	file_otpki_common_core_publisher_v1_publisher_proto_goTypes = nil

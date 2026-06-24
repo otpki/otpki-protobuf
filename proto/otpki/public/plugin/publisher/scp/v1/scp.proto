@@ -4,12 +4,44 @@ package otpki.public.plugin.publisher.scp.v1;
 import "buf/validate/validate.proto";
 import "otpki/common/core/publisher/v1/publisher.proto";
 
+// Connection settings shared by every trigger that delivers over SSH/SCP
 message ScpConfig {
-  string key_id = 1 [(buf.validate.field).string.uuid = true]; // ssh key in keystore
-  string username = 2;
-  string host = 3;
-  int64 port = 4;
-  repeated common.core.publisher.v1.PkiArtifact allowed_for = 5;
-  string certificate_publisher_template_url = 6;
-  string crl_publisher_template_url = 7;
+  string key_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (otpki.common.core.publisher.v1.lookup) = PUBLISHER_LOOKUP_KEY
+  ]; // ssh key in keystore
+  string username = 2 [(buf.validate.field).string.min_len = 1];
+  string host = 3 [(buf.validate.field).string.min_len = 1];
+  int64 port = 4 [(buf.validate.field).int64 = {
+    gte: 1
+    lte: 65535
+  }];
+}
+
+// Per-trigger config for an SCP certificate (issuance or revocation) trigger
+message ScpCertTriggerConfig {
+  oneof target {
+    option (buf.validate.oneof).required = true;
+    string ca_id = 1 [
+      (buf.validate.field).string.uuid = true,
+      (otpki.common.core.publisher.v1.lookup) = PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY
+    ];
+    string certificate_profile_id = 2 [
+      (buf.validate.field).string.uuid = true,
+      (otpki.common.core.publisher.v1.lookup) = PUBLISHER_LOOKUP_CERTIFICATE_PROFILE
+    ];
+  }
+  // Destination path template rendered with the published certificate's fields
+  string certificate_template_url = 3 [(buf.validate.field).string.min_len = 1];
+}
+
+// Per-trigger config for an SCP CRL-publication trigger
+message ScpCrlTriggerConfig {
+  string ca_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true,
+    (otpki.common.core.publisher.v1.lookup) = PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY
+  ];
+  // Destination path template rendered with the published CRL's fields
+  string crl_template_url = 2 [(buf.validate.field).string.min_len = 1];
 }

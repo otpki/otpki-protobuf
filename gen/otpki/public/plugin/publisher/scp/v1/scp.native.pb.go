@@ -17,6 +17,17 @@ func (x *ScpConfig) GetKeyIdUUID() uuid.UUID {
 	return uuid.UUID{}
 }
 
+// GetCaIdUUID returns CaId as a UUID when possible.
+func (x *ScpCrlTriggerConfig) GetCaIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CaId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
 
 // convertProtoToUUID comes from the converter package

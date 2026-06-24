@@ -11,12 +11,16 @@ import type { Message } from "@bufbuild/protobuf";
 export declare const file_otpki_public_plugin_publisher_vs_v1_vs: GenFile;
 
 /**
+ * VS publisher only supports CRL publishing
+ *
  * @generated from message otpki.public.plugin.publisher.vs.v1.VsConfig
  */
 export declare type VsConfig = Message<"otpki.public.plugin.publisher.vs.v1.VsConfig"> & {
 };
 
 /**
+ * VS publisher only supports CRL publishing
+ *
  * @generated from message otpki.public.plugin.publisher.vs.v1.VsConfig
  */
 export declare type VsConfigJson = {

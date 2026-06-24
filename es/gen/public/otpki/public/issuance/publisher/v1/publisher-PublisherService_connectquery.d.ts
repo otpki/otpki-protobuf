@@ -5,55 +5,29 @@
 import { PublisherService } from "./publisher_pb.js";
 
 /**
- * CRL Publishers
- *
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreateCrlPublisher
+ * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreatePublisher
  */
-export const createCrlPublisher: typeof PublisherService["method"]["createCrlPublisher"];
+export const createPublisher: typeof PublisherService["method"]["createPublisher"];
 /**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeleteCrlPublisher
+ * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisher
  */
-export const deleteCrlPublisher: typeof PublisherService["method"]["deleteCrlPublisher"];
+export const getPublisher: typeof PublisherService["method"]["getPublisher"];
 /**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetCrlPublisherList
+ * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisher
  */
-export const getCrlPublisherList: typeof PublisherService["method"]["getCrlPublisherList"];
+export const updatePublisher: typeof PublisherService["method"]["updatePublisher"];
 /**
- * Cert Publishers
- *
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreateCertificatePublisher
+ * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeletePublisher
  */
-export const createCertificatePublisher: typeof PublisherService["method"]["createCertificatePublisher"];
+export const deletePublisher: typeof PublisherService["method"]["deletePublisher"];
 /**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeleteCertificatePublisher
+ * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherList
  */
-export const deleteCertificatePublisher: typeof PublisherService["method"]["deleteCertificatePublisher"];
+export const getPublisherList: typeof PublisherService["method"]["getPublisherList"];
 /**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetCertificatePublisherList
+ * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherTransports
  */
-export const getCertificatePublisherList: typeof PublisherService["method"]["getCertificatePublisherList"];
-/**
- * Publisher Configs
- *
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreatePublisherConfig
- */
-export const createPublisherConfig: typeof PublisherService["method"]["createPublisherConfig"];
-/**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfig
- */
-export const getPublisherConfig: typeof PublisherService["method"]["getPublisherConfig"];
-/**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisherConfig
- */
-export const updatePublisherConfig: typeof PublisherService["method"]["updatePublisherConfig"];
-/**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeletePublisherConfig
- */
-export const deletePublisherConfig: typeof PublisherService["method"]["deletePublisherConfig"];
-/**
- * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfigList
- */
-export const getPublisherConfigList: typeof PublisherService["method"]["getPublisherConfigList"];
+export const getPublisherTransports: typeof PublisherService["method"]["getPublisherTransports"];
 /**
  * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.TestPublisherConnection
  */

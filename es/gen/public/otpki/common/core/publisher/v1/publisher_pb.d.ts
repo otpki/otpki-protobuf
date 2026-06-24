@@ -2,9 +2,9 @@
 // @generated from file otpki/common/core/publisher/v1/publisher.proto (package otpki.common.core.publisher.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { Any, AnyJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, FieldOptions, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file otpki/common/core/publisher/v1/publisher.proto.
@@ -12,9 +12,9 @@ import type { Any, AnyJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/
 export declare const file_otpki_common_core_publisher_v1_publisher: GenFile;
 
 /**
- * @generated from message otpki.common.core.publisher.v1.PublisherConfig
+ * @generated from message otpki.common.core.publisher.v1.Publisher
  */
-export declare type PublisherConfig = Message<"otpki.common.core.publisher.v1.PublisherConfig"> & {
+export declare type Publisher = Message<"otpki.common.core.publisher.v1.Publisher"> & {
   /**
    * not settable on creation
    *
@@ -33,14 +33,19 @@ export declare type PublisherConfig = Message<"otpki.common.core.publisher.v1.Pu
   description: string;
 
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherType publisher_type = 4;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 4;
    */
-  publisherType: PublisherType;
+  transport: PublisherTransport;
 
   /**
-   * @generated from field: google.protobuf.Any config_data = 5;
+   * @generated from field: google.protobuf.Any config = 5;
    */
-  configData?: Any;
+  config?: Any;
+
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTrigger triggers = 6;
+   */
+  triggers: PublisherTrigger[];
 
   /**
    * not settable on creation
@@ -58,9 +63,9 @@ export declare type PublisherConfig = Message<"otpki.common.core.publisher.v1.Pu
 };
 
 /**
- * @generated from message otpki.common.core.publisher.v1.PublisherConfig
+ * @generated from message otpki.common.core.publisher.v1.Publisher
  */
-export declare type PublisherConfigJson = {
+export declare type PublisherJson = {
   /**
    * not settable on creation
    *
@@ -79,98 +84,19 @@ export declare type PublisherConfigJson = {
   description?: string;
 
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherType publisher_type = 4;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 4;
    */
-  publisherType?: PublisherTypeJson;
+  transport?: PublisherTransportJson;
 
   /**
-   * @generated from field: google.protobuf.Any config_data = 5;
+   * @generated from field: google.protobuf.Any config = 5;
    */
-  configData?: AnyJson;
+  config?: AnyJson;
 
   /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTrigger triggers = 6;
    */
-  createdAt?: TimestampJson;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: TimestampJson;
-};
-
-export declare type PublisherConfigValid = PublisherConfig;
-
-/**
- * Describes the message otpki.common.core.publisher.v1.PublisherConfig.
- * Use `create(PublisherConfigSchema)` to create a new message.
- */
-export declare const PublisherConfigSchema: GenMessage<PublisherConfig, {jsonType: PublisherConfigJson, validType: PublisherConfigValid}>;
-
-/**
- * CRL Publisher can only subscribe to CAs on CRL generation events
- *
- * @generated from message otpki.common.core.publisher.v1.CrlPublisher
- */
-export declare type CrlPublisher = Message<"otpki.common.core.publisher.v1.CrlPublisher"> & {
-  /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * @generated from field: string ca_id = 2;
-   */
-  caId: string;
-
-  /**
-   * @generated from field: string publisher_config_id = 3;
-   */
-  publisherConfigId: string;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
-   */
-  createdAt?: Timestamp;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: Timestamp;
-};
-
-/**
- * CRL Publisher can only subscribe to CAs on CRL generation events
- *
- * @generated from message otpki.common.core.publisher.v1.CrlPublisher
- */
-export declare type CrlPublisherJson = {
-  /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
-   */
-  id?: string;
-
-  /**
-   * @generated from field: string ca_id = 2;
-   */
-  caId?: string;
-
-  /**
-   * @generated from field: string publisher_config_id = 3;
-   */
-  publisherConfigId?: string;
+  triggers?: PublisherTriggerJson[];
 
   /**
    * not settable on creation
@@ -187,218 +113,346 @@ export declare type CrlPublisherJson = {
   updatedAt?: TimestampJson;
 };
 
-export declare type CrlPublisherValid = CrlPublisher;
+export declare type PublisherValid = Publisher;
 
 /**
- * Describes the message otpki.common.core.publisher.v1.CrlPublisher.
- * Use `create(CrlPublisherSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.Publisher.
+ * Use `create(PublisherSchema)` to create a new message.
  */
-export declare const CrlPublisherSchema: GenMessage<CrlPublisher, {jsonType: CrlPublisherJson, validType: CrlPublisherValid}>;
+export declare const PublisherSchema: GenMessage<Publisher, {jsonType: PublisherJson, validType: PublisherValid}>;
 
 /**
- * Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
- *
- * @generated from message otpki.common.core.publisher.v1.CertificatePublisher
+ * @generated from message otpki.common.core.publisher.v1.PublisherTrigger
  */
-export declare type CertificatePublisher = Message<"otpki.common.core.publisher.v1.CertificatePublisher"> & {
+export declare type PublisherTrigger = Message<"otpki.common.core.publisher.v1.PublisherTrigger"> & {
   /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
    */
-  id: string;
+  event: PublisherTriggerEvent;
 
   /**
-   * @generated from field: string publisher_config_id = 2;
+   * @generated from field: google.protobuf.Any config = 2;
    */
-  publisherConfigId: string;
-
-  /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string ca_id = 3;
-   */
-  caId: string;
-
-  /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string certificate_profile_id = 4;
-   */
-  certificateProfileId: string;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertEventType subscribed_events = 5;
-   */
-  subscribedEvents: CertEventType[];
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
-   */
-  createdAt?: Timestamp;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: Timestamp;
+  config?: Any;
 };
 
 /**
- * Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
- *
- * @generated from message otpki.common.core.publisher.v1.CertificatePublisher
+ * @generated from message otpki.common.core.publisher.v1.PublisherTrigger
  */
-export declare type CertificatePublisherJson = {
+export declare type PublisherTriggerJson = {
   /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
    */
-  id?: string;
+  event?: PublisherTriggerEventJson;
 
   /**
-   * @generated from field: string publisher_config_id = 2;
+   * @generated from field: google.protobuf.Any config = 2;
    */
-  publisherConfigId?: string;
+  config?: AnyJson;
+};
 
+export declare type PublisherTriggerValid = PublisherTrigger;
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.PublisherTrigger.
+ * Use `create(PublisherTriggerSchema)` to create a new message.
+ */
+export declare const PublisherTriggerSchema: GenMessage<PublisherTrigger, {jsonType: PublisherTriggerJson, validType: PublisherTriggerValid}>;
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.CrlTriggerConfig
+ */
+export declare type CrlTriggerConfig = Message<"otpki.common.core.publisher.v1.CrlTriggerConfig"> & {
   /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string ca_id = 3;
+   * @generated from field: string ca_id = 1;
+   */
+  caId: string;
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.CrlTriggerConfig
+ */
+export declare type CrlTriggerConfigJson = {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId?: string;
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.CrlTriggerConfig
+ */
+export declare type CrlTriggerConfigValid = Message<"otpki.common.core.publisher.v1.CrlTriggerConfig"> & {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId: string;
+};
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.CrlTriggerConfig.
+ * Use `create(CrlTriggerConfigSchema)` to create a new message.
+ */
+export declare const CrlTriggerConfigSchema: GenMessage<CrlTriggerConfig, {jsonType: CrlTriggerConfigJson, validType: CrlTriggerConfigValid}>;
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.CertTriggerConfig
+ */
+export declare type CertTriggerConfig = Message<"otpki.common.core.publisher.v1.CertTriggerConfig"> & {
+  /**
+   * @generated from oneof otpki.common.core.publisher.v1.CertTriggerConfig.target
+   */
+  target: {
+    /**
+     * @generated from field: string ca_id = 1;
+     */
+    value: string;
+    case: "caId";
+  } | {
+    /**
+     * @generated from field: string certificate_profile_id = 2;
+     */
+    value: string;
+    case: "certificateProfileId";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.CertTriggerConfig
+ */
+export declare type CertTriggerConfigJson = {
+  /**
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
   /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string certificate_profile_id = 4;
+   * @generated from field: string certificate_profile_id = 2;
    */
   certificateProfileId?: string;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertEventType subscribed_events = 5;
-   */
-  subscribedEvents?: CertEventTypeJson[];
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
-   */
-  createdAt?: TimestampJson;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: TimestampJson;
 };
 
-export declare type CertificatePublisherValid = CertificatePublisher;
+export declare type CertTriggerConfigValid = CertTriggerConfig;
 
 /**
- * Describes the message otpki.common.core.publisher.v1.CertificatePublisher.
- * Use `create(CertificatePublisherSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.CertTriggerConfig.
+ * Use `create(CertTriggerConfigSchema)` to create a new message.
  */
-export declare const CertificatePublisherSchema: GenMessage<CertificatePublisher, {jsonType: CertificatePublisherJson, validType: CertificatePublisherValid}>;
+export declare const CertTriggerConfigSchema: GenMessage<CertTriggerConfig, {jsonType: CertTriggerConfigJson, validType: CertTriggerConfigValid}>;
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PublisherType
+ * @generated from message otpki.common.core.publisher.v1.PublisherTransportDescriptor
  */
-export enum PublisherType {
+export declare type PublisherTransportDescriptor = Message<"otpki.common.core.publisher.v1.PublisherTransportDescriptor"> & {
   /**
-   * @generated from enum value: PUBLISHER_TYPE_UNSPECIFIED = 0;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 1;
+   */
+  transport: PublisherTransport;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl: string;
+
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTriggerSpec triggers = 3;
+   */
+  triggers: PublisherTriggerSpec[];
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.PublisherTransportDescriptor
+ */
+export declare type PublisherTransportDescriptorJson = {
+  /**
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 1;
+   */
+  transport?: PublisherTransportJson;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl?: string;
+
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTriggerSpec triggers = 3;
+   */
+  triggers?: PublisherTriggerSpecJson[];
+};
+
+export declare type PublisherTransportDescriptorValid = PublisherTransportDescriptor;
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.PublisherTransportDescriptor.
+ * Use `create(PublisherTransportDescriptorSchema)` to create a new message.
+ */
+export declare const PublisherTransportDescriptorSchema: GenMessage<PublisherTransportDescriptor, {jsonType: PublisherTransportDescriptorJson, validType: PublisherTransportDescriptorValid}>;
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.PublisherTriggerSpec
+ */
+export declare type PublisherTriggerSpec = Message<"otpki.common.core.publisher.v1.PublisherTriggerSpec"> & {
+  /**
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
+   */
+  event: PublisherTriggerEvent;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl: string;
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.PublisherTriggerSpec
+ */
+export declare type PublisherTriggerSpecJson = {
+  /**
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
+   */
+  event?: PublisherTriggerEventJson;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl?: string;
+};
+
+export declare type PublisherTriggerSpecValid = PublisherTriggerSpec;
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.PublisherTriggerSpec.
+ * Use `create(PublisherTriggerSpecSchema)` to create a new message.
+ */
+export declare const PublisherTriggerSpecSchema: GenMessage<PublisherTriggerSpec, {jsonType: PublisherTriggerSpecJson, validType: PublisherTriggerSpecValid}>;
+
+/**
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTransport
+ */
+export enum PublisherTransport {
+  /**
+   * @generated from enum value: PUBLISHER_TRANSPORT_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: PUBLISHER_TYPE_VS = 1;
+   * @generated from enum value: PUBLISHER_TRANSPORT_VS = 1;
    */
   VS = 1,
 
   /**
-   * @generated from enum value: PUBLISHER_TYPE_HTTP = 2;
+   * @generated from enum value: PUBLISHER_TRANSPORT_HTTP = 2;
    */
   HTTP = 2,
 
   /**
-   * @generated from enum value: PUBLISHER_TYPE_SCP = 3;
+   * @generated from enum value: PUBLISHER_TRANSPORT_SCP = 3;
    */
   SCP = 3,
+
+  /**
+   * @generated from enum value: PUBLISHER_TRANSPORT_SMTP = 4;
+   */
+  SMTP = 4,
 }
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PublisherType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTransport
  */
-export declare type PublisherTypeJson = "PUBLISHER_TYPE_UNSPECIFIED" | "PUBLISHER_TYPE_VS" | "PUBLISHER_TYPE_HTTP" | "PUBLISHER_TYPE_SCP";
+export declare type PublisherTransportJson = "PUBLISHER_TRANSPORT_UNSPECIFIED" | "PUBLISHER_TRANSPORT_VS" | "PUBLISHER_TRANSPORT_HTTP" | "PUBLISHER_TRANSPORT_SCP" | "PUBLISHER_TRANSPORT_SMTP";
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.PublisherType.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherTransport.
  */
-export declare const PublisherTypeSchema: GenEnum<PublisherType, PublisherTypeJson>;
+export declare const PublisherTransportSchema: GenEnum<PublisherTransport, PublisherTransportJson>;
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PkiArtifact
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTriggerEvent
  */
-export enum PkiArtifact {
+export enum PublisherTriggerEvent {
   /**
-   * @generated from enum value: PKI_ARTIFACT_UNSPECIFIED = 0;
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: PKI_ARTIFACT_CRL = 1;
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_CERT_ISSUED = 1;
    */
-  CRL = 1,
+  CERT_ISSUED = 1,
 
   /**
-   * @generated from enum value: PKI_ARTIFACT_CERTIFICATE = 2;
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_CERT_REVOKED = 2;
    */
-  CERTIFICATE = 2,
+  CERT_REVOKED = 2,
+
+  /**
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED = 3;
+   */
+  CRL_PUBLISHED = 3,
+
+  /**
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS = 4;
+   */
+  EE_CREDENTIALS = 4,
 }
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PkiArtifact
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTriggerEvent
  */
-export declare type PkiArtifactJson = "PKI_ARTIFACT_UNSPECIFIED" | "PKI_ARTIFACT_CRL" | "PKI_ARTIFACT_CERTIFICATE";
+export declare type PublisherTriggerEventJson = "PUBLISHER_TRIGGER_EVENT_UNSPECIFIED" | "PUBLISHER_TRIGGER_EVENT_CERT_ISSUED" | "PUBLISHER_TRIGGER_EVENT_CERT_REVOKED" | "PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED" | "PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS";
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.PkiArtifact.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherTriggerEvent.
  */
-export declare const PkiArtifactSchema: GenEnum<PkiArtifact, PkiArtifactJson>;
+export declare const PublisherTriggerEventSchema: GenEnum<PublisherTriggerEvent, PublisherTriggerEventJson>;
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.CertEventType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherLookup
  */
-export enum CertEventType {
+export enum PublisherLookup {
   /**
-   * @generated from enum value: CERT_EVENT_TYPE_UNSPECIFIED = 0;
+   * @generated from enum value: PUBLISHER_LOOKUP_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: CERT_EVENT_TYPE_CERT_ISSUE = 1;
+   * @generated from enum value: PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY = 1;
    */
-  CERT_ISSUE = 1,
+  CERTIFICATE_AUTHORITY = 1,
 
   /**
-   * @generated from enum value: CERT_EVENT_TYPE_CERT_REVOKE = 2;
+   * @generated from enum value: PUBLISHER_LOOKUP_CERTIFICATE_PROFILE = 2;
    */
-  CERT_REVOKE = 2,
+  CERTIFICATE_PROFILE = 2,
+
+  /**
+   * @generated from enum value: PUBLISHER_LOOKUP_KEY = 3;
+   */
+  KEY = 3,
+
+  /**
+   * @generated from enum value: PUBLISHER_LOOKUP_END_ENTITY_PROFILE = 4;
+   */
+  END_ENTITY_PROFILE = 4,
+
+  /**
+   * @generated from enum value: PUBLISHER_LOOKUP_END_ENTITY = 5;
+   */
+  END_ENTITY = 5,
 }
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.CertEventType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherLookup
  */
-export declare type CertEventTypeJson = "CERT_EVENT_TYPE_UNSPECIFIED" | "CERT_EVENT_TYPE_CERT_ISSUE" | "CERT_EVENT_TYPE_CERT_REVOKE";
+export declare type PublisherLookupJson = "PUBLISHER_LOOKUP_UNSPECIFIED" | "PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY" | "PUBLISHER_LOOKUP_CERTIFICATE_PROFILE" | "PUBLISHER_LOOKUP_KEY" | "PUBLISHER_LOOKUP_END_ENTITY_PROFILE" | "PUBLISHER_LOOKUP_END_ENTITY";
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.CertEventType.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherLookup.
  */
-export declare const CertEventTypeSchema: GenEnum<CertEventType, CertEventTypeJson>;
+export declare const PublisherLookupSchema: GenEnum<PublisherLookup, PublisherLookupJson>;
+
+/**
+ * @generated from extension: optional otpki.common.core.publisher.v1.PublisherLookup lookup = 50010;
+ */
+export declare const lookup: GenExtension<FieldOptions, PublisherLookup>;
 

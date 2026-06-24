@@ -7,7 +7,7 @@ import (
 )
 
 // GetIdUUID returns Id as a UUID when possible.
-func (x *CreatePublisherConfigResponse) GetIdUUID() uuid.UUID {
+func (x *CreatePublisherResponse) GetIdUUID() uuid.UUID {
 	if x != nil {
 		value, err := convertProtoToUUID(x.Id)
 		if err == nil {
@@ -18,7 +18,7 @@ func (x *CreatePublisherConfigResponse) GetIdUUID() uuid.UUID {
 }
 
 // GetIdUUID returns Id as a UUID when possible.
-func (x *GetPublisherConfigRequest) GetIdUUID() uuid.UUID {
+func (x *GetPublisherRequest) GetIdUUID() uuid.UUID {
 	if x != nil {
 		value, err := convertProtoToUUID(x.Id)
 		if err == nil {
@@ -29,53 +29,9 @@ func (x *GetPublisherConfigRequest) GetIdUUID() uuid.UUID {
 }
 
 // GetIdUUID returns Id as a UUID when possible.
-func (x *DeletePublisherConfigRequest) GetIdUUID() uuid.UUID {
+func (x *DeletePublisherRequest) GetIdUUID() uuid.UUID {
 	if x != nil {
 		value, err := convertProtoToUUID(x.Id)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetIdUUID returns Id as a UUID when possible.
-func (x *CreateCrlPublisherResponse) GetIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.Id)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetPublisherIdUUID returns PublisherId as a UUID when possible.
-func (x *DeleteCrlPublisherRequest) GetPublisherIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.PublisherId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetIdUUID returns Id as a UUID when possible.
-func (x *CreateCertificatePublisherResponse) GetIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.Id)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetPublisherIdUUID returns PublisherId as a UUID when possible.
-func (x *DeleteCertificatePublisherRequest) GetPublisherIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.PublisherId)
 		if err == nil {
 			return value
 		}

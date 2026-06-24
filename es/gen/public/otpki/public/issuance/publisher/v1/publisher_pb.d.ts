@@ -4,7 +4,7 @@
 
 import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { CertificatePublisher, CertificatePublisherJson, CrlPublisher, CrlPublisherJson, PkiArtifact, PkiArtifactJson, PublisherConfig, PublisherConfigJson, PublisherConfigValid } from "../../../../common/core/publisher/v1/publisher_pb.js";
+import type { Publisher, PublisherJson, PublisherTransportDescriptor, PublisherTransportDescriptorJson, PublisherTriggerEvent, PublisherTriggerEventJson, PublisherValid } from "../../../../common/core/publisher/v1/publisher_pb.js";
 import type { FieldMask, FieldMaskJson } from "@bufbuild/protobuf/wkt";
 import type { PaginationRequest, PaginationRequestJson, PaginationResponse, PaginationResponseJson } from "../../../../common/api/query/v1/query_pb.js";
 
@@ -14,45 +14,45 @@ import type { PaginationRequest, PaginationRequestJson, PaginationResponse, Pagi
 export declare const file_otpki_public_issuance_publisher_v1_publisher: GenFile;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherRequest
  */
-export declare type CreatePublisherConfigRequest = Message<"otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest"> & {
+export declare type CreatePublisherRequest = Message<"otpki.public.issuance.publisher.v1.CreatePublisherRequest"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfig;
+  publisher?: Publisher;
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherRequest
  */
-export declare type CreatePublisherConfigRequestJson = {
+export declare type CreatePublisherRequestJson = {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfigJson;
+  publisher?: PublisherJson;
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherRequest
  */
-export declare type CreatePublisherConfigRequestValid = Message<"otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest"> & {
+export declare type CreatePublisherRequestValid = Message<"otpki.public.issuance.publisher.v1.CreatePublisherRequest"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config: PublisherConfigValid;
+  publisher: PublisherValid;
 };
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherConfigRequest.
- * Use `create(CreatePublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherRequest.
+ * Use `create(CreatePublisherRequestSchema)` to create a new message.
  */
-export declare const CreatePublisherConfigRequestSchema: GenMessage<CreatePublisherConfigRequest, {jsonType: CreatePublisherConfigRequestJson, validType: CreatePublisherConfigRequestValid}>;
+export declare const CreatePublisherRequestSchema: GenMessage<CreatePublisherRequest, {jsonType: CreatePublisherRequestJson, validType: CreatePublisherRequestValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherResponse
  */
-export declare type CreatePublisherConfigResponse = Message<"otpki.public.issuance.publisher.v1.CreatePublisherConfigResponse"> & {
+export declare type CreatePublisherResponse = Message<"otpki.public.issuance.publisher.v1.CreatePublisherResponse"> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -60,27 +60,27 @@ export declare type CreatePublisherConfigResponse = Message<"otpki.public.issuan
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.CreatePublisherResponse
  */
-export declare type CreatePublisherConfigResponseJson = {
+export declare type CreatePublisherResponseJson = {
   /**
    * @generated from field: string id = 1;
    */
   id?: string;
 };
 
-export declare type CreatePublisherConfigResponseValid = CreatePublisherConfigResponse;
+export declare type CreatePublisherResponseValid = CreatePublisherResponse;
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherConfigResponse.
- * Use `create(CreatePublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.CreatePublisherResponse.
+ * Use `create(CreatePublisherResponseSchema)` to create a new message.
  */
-export declare const CreatePublisherConfigResponseSchema: GenMessage<CreatePublisherConfigResponse, {jsonType: CreatePublisherConfigResponseJson, validType: CreatePublisherConfigResponseValid}>;
+export declare const CreatePublisherResponseSchema: GenMessage<CreatePublisherResponse, {jsonType: CreatePublisherResponseJson, validType: CreatePublisherResponseValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherRequest
  */
-export declare type GetPublisherConfigRequest = Message<"otpki.public.issuance.publisher.v1.GetPublisherConfigRequest"> & {
+export declare type GetPublisherRequest = Message<"otpki.public.issuance.publisher.v1.GetPublisherRequest"> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -88,9 +88,9 @@ export declare type GetPublisherConfigRequest = Message<"otpki.public.issuance.p
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherRequest
  */
-export declare type GetPublisherConfigRequestJson = {
+export declare type GetPublisherRequestJson = {
   /**
    * @generated from field: string id = 1;
    */
@@ -98,9 +98,9 @@ export declare type GetPublisherConfigRequestJson = {
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherRequest
  */
-export declare type GetPublisherConfigRequestValid = Message<"otpki.public.issuance.publisher.v1.GetPublisherConfigRequest"> & {
+export declare type GetPublisherRequestValid = Message<"otpki.public.issuance.publisher.v1.GetPublisherRequest"> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -108,47 +108,47 @@ export declare type GetPublisherConfigRequestValid = Message<"otpki.public.issua
 };
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigRequest.
- * Use `create(GetPublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherRequest.
+ * Use `create(GetPublisherRequestSchema)` to create a new message.
  */
-export declare const GetPublisherConfigRequestSchema: GenMessage<GetPublisherConfigRequest, {jsonType: GetPublisherConfigRequestJson, validType: GetPublisherConfigRequestValid}>;
+export declare const GetPublisherRequestSchema: GenMessage<GetPublisherRequest, {jsonType: GetPublisherRequestJson, validType: GetPublisherRequestValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherResponse
  */
-export declare type GetPublisherConfigResponse = Message<"otpki.public.issuance.publisher.v1.GetPublisherConfigResponse"> & {
+export declare type GetPublisherResponse = Message<"otpki.public.issuance.publisher.v1.GetPublisherResponse"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfig;
+  publisher?: Publisher;
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherResponse
  */
-export declare type GetPublisherConfigResponseJson = {
+export declare type GetPublisherResponseJson = {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfigJson;
+  publisher?: PublisherJson;
 };
 
-export declare type GetPublisherConfigResponseValid = GetPublisherConfigResponse;
+export declare type GetPublisherResponseValid = GetPublisherResponse;
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigResponse.
- * Use `create(GetPublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherResponse.
+ * Use `create(GetPublisherResponseSchema)` to create a new message.
  */
-export declare const GetPublisherConfigResponseSchema: GenMessage<GetPublisherConfigResponse, {jsonType: GetPublisherConfigResponseJson, validType: GetPublisherConfigResponseValid}>;
+export declare const GetPublisherResponseSchema: GenMessage<GetPublisherResponse, {jsonType: GetPublisherResponseJson, validType: GetPublisherResponseValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherRequest
  */
-export declare type UpdatePublisherConfigRequest = Message<"otpki.public.issuance.publisher.v1.UpdatePublisherConfigRequest"> & {
+export declare type UpdatePublisherRequest = Message<"otpki.public.issuance.publisher.v1.UpdatePublisherRequest"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfig;
+  publisher?: Publisher;
 
   /**
    * @generated from field: google.protobuf.FieldMask update_mask = 2;
@@ -157,13 +157,13 @@ export declare type UpdatePublisherConfigRequest = Message<"otpki.public.issuanc
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherRequest
  */
-export declare type UpdatePublisherConfigRequestJson = {
+export declare type UpdatePublisherRequestJson = {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfigJson;
+  publisher?: PublisherJson;
 
   /**
    * @generated from field: google.protobuf.FieldMask update_mask = 2;
@@ -171,38 +171,38 @@ export declare type UpdatePublisherConfigRequestJson = {
   updateMask?: FieldMaskJson;
 };
 
-export declare type UpdatePublisherConfigRequestValid = UpdatePublisherConfigRequest;
+export declare type UpdatePublisherRequestValid = UpdatePublisherRequest;
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherConfigRequest.
- * Use `create(UpdatePublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherRequest.
+ * Use `create(UpdatePublisherRequestSchema)` to create a new message.
  */
-export declare const UpdatePublisherConfigRequestSchema: GenMessage<UpdatePublisherConfigRequest, {jsonType: UpdatePublisherConfigRequestJson, validType: UpdatePublisherConfigRequestValid}>;
+export declare const UpdatePublisherRequestSchema: GenMessage<UpdatePublisherRequest, {jsonType: UpdatePublisherRequestJson, validType: UpdatePublisherRequestValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherResponse
  */
-export declare type UpdatePublisherConfigResponse = Message<"otpki.public.issuance.publisher.v1.UpdatePublisherConfigResponse"> & {
+export declare type UpdatePublisherResponse = Message<"otpki.public.issuance.publisher.v1.UpdatePublisherResponse"> & {
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.UpdatePublisherResponse
  */
-export declare type UpdatePublisherConfigResponseJson = {
+export declare type UpdatePublisherResponseJson = {
 };
 
-export declare type UpdatePublisherConfigResponseValid = UpdatePublisherConfigResponse;
+export declare type UpdatePublisherResponseValid = UpdatePublisherResponse;
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherConfigResponse.
- * Use `create(UpdatePublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.UpdatePublisherResponse.
+ * Use `create(UpdatePublisherResponseSchema)` to create a new message.
  */
-export declare const UpdatePublisherConfigResponseSchema: GenMessage<UpdatePublisherConfigResponse, {jsonType: UpdatePublisherConfigResponseJson, validType: UpdatePublisherConfigResponseValid}>;
+export declare const UpdatePublisherResponseSchema: GenMessage<UpdatePublisherResponse, {jsonType: UpdatePublisherResponseJson, validType: UpdatePublisherResponseValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherRequest
  */
-export declare type DeletePublisherConfigRequest = Message<"otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest"> & {
+export declare type DeletePublisherRequest = Message<"otpki.public.issuance.publisher.v1.DeletePublisherRequest"> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -210,9 +210,9 @@ export declare type DeletePublisherConfigRequest = Message<"otpki.public.issuanc
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherRequest
  */
-export declare type DeletePublisherConfigRequestJson = {
+export declare type DeletePublisherRequestJson = {
   /**
    * @generated from field: string id = 1;
    */
@@ -220,9 +220,9 @@ export declare type DeletePublisherConfigRequestJson = {
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest
+ * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherRequest
  */
-export declare type DeletePublisherConfigRequestValid = Message<"otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest"> & {
+export declare type DeletePublisherRequestValid = Message<"otpki.public.issuance.publisher.v1.DeletePublisherRequest"> & {
   /**
    * @generated from field: string id = 1;
    */
@@ -230,35 +230,35 @@ export declare type DeletePublisherConfigRequestValid = Message<"otpki.public.is
 };
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherConfigRequest.
- * Use `create(DeletePublisherConfigRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherRequest.
+ * Use `create(DeletePublisherRequestSchema)` to create a new message.
  */
-export declare const DeletePublisherConfigRequestSchema: GenMessage<DeletePublisherConfigRequest, {jsonType: DeletePublisherConfigRequestJson, validType: DeletePublisherConfigRequestValid}>;
+export declare const DeletePublisherRequestSchema: GenMessage<DeletePublisherRequest, {jsonType: DeletePublisherRequestJson, validType: DeletePublisherRequestValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherResponse
  */
-export declare type DeletePublisherConfigResponse = Message<"otpki.public.issuance.publisher.v1.DeletePublisherConfigResponse"> & {
+export declare type DeletePublisherResponse = Message<"otpki.public.issuance.publisher.v1.DeletePublisherResponse"> & {
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherConfigResponse
+ * @generated from message otpki.public.issuance.publisher.v1.DeletePublisherResponse
  */
-export declare type DeletePublisherConfigResponseJson = {
+export declare type DeletePublisherResponseJson = {
 };
 
-export declare type DeletePublisherConfigResponseValid = DeletePublisherConfigResponse;
+export declare type DeletePublisherResponseValid = DeletePublisherResponse;
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherConfigResponse.
- * Use `create(DeletePublisherConfigResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.DeletePublisherResponse.
+ * Use `create(DeletePublisherResponseSchema)` to create a new message.
  */
-export declare const DeletePublisherConfigResponseSchema: GenMessage<DeletePublisherConfigResponse, {jsonType: DeletePublisherConfigResponseJson, validType: DeletePublisherConfigResponseValid}>;
+export declare const DeletePublisherResponseSchema: GenMessage<DeletePublisherResponse, {jsonType: DeletePublisherResponseJson, validType: DeletePublisherResponseValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigListRequest
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherListRequest
  */
-export declare type GetPublisherConfigListRequest = Message<"otpki.public.issuance.publisher.v1.GetPublisherConfigListRequest"> & {
+export declare type GetPublisherListRequest = Message<"otpki.public.issuance.publisher.v1.GetPublisherListRequest"> & {
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
    */
@@ -266,31 +266,31 @@ export declare type GetPublisherConfigListRequest = Message<"otpki.public.issuan
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigListRequest
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherListRequest
  */
-export declare type GetPublisherConfigListRequestJson = {
+export declare type GetPublisherListRequestJson = {
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
    */
   pagination?: PaginationRequestJson;
 };
 
-export declare type GetPublisherConfigListRequestValid = GetPublisherConfigListRequest;
+export declare type GetPublisherListRequestValid = GetPublisherListRequest;
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigListRequest.
- * Use `create(GetPublisherConfigListRequestSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherListRequest.
+ * Use `create(GetPublisherListRequestSchema)` to create a new message.
  */
-export declare const GetPublisherConfigListRequestSchema: GenMessage<GetPublisherConfigListRequest, {jsonType: GetPublisherConfigListRequestJson, validType: GetPublisherConfigListRequestValid}>;
+export declare const GetPublisherListRequestSchema: GenMessage<GetPublisherListRequest, {jsonType: GetPublisherListRequestJson, validType: GetPublisherListRequestValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigListResponse
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherListResponse
  */
-export declare type GetPublisherConfigListResponse = Message<"otpki.public.issuance.publisher.v1.GetPublisherConfigListResponse"> & {
+export declare type GetPublisherListResponse = Message<"otpki.public.issuance.publisher.v1.GetPublisherListResponse"> & {
   /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherConfig data = 1;
+   * @generated from field: repeated otpki.common.core.publisher.v1.Publisher data = 1;
    */
-  data: PublisherConfig[];
+  data: Publisher[];
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
@@ -299,13 +299,13 @@ export declare type GetPublisherConfigListResponse = Message<"otpki.public.issua
 };
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.GetPublisherConfigListResponse
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherListResponse
  */
-export declare type GetPublisherConfigListResponseJson = {
+export declare type GetPublisherListResponseJson = {
   /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherConfig data = 1;
+   * @generated from field: repeated otpki.common.core.publisher.v1.Publisher data = 1;
    */
-  data?: PublisherConfigJson[];
+  data?: PublisherJson[];
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
@@ -313,22 +313,70 @@ export declare type GetPublisherConfigListResponseJson = {
   pagination?: PaginationResponseJson;
 };
 
-export declare type GetPublisherConfigListResponseValid = GetPublisherConfigListResponse;
+export declare type GetPublisherListResponseValid = GetPublisherListResponse;
 
 /**
- * Describes the message otpki.public.issuance.publisher.v1.GetPublisherConfigListResponse.
- * Use `create(GetPublisherConfigListResponseSchema)` to create a new message.
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherListResponse.
+ * Use `create(GetPublisherListResponseSchema)` to create a new message.
  */
-export declare const GetPublisherConfigListResponseSchema: GenMessage<GetPublisherConfigListResponse, {jsonType: GetPublisherConfigListResponseJson, validType: GetPublisherConfigListResponseValid}>;
+export declare const GetPublisherListResponseSchema: GenMessage<GetPublisherListResponse, {jsonType: GetPublisherListResponseJson, validType: GetPublisherListResponseValid}>;
+
+/**
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherTransportsRequest
+ */
+export declare type GetPublisherTransportsRequest = Message<"otpki.public.issuance.publisher.v1.GetPublisherTransportsRequest"> & {
+};
+
+/**
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherTransportsRequest
+ */
+export declare type GetPublisherTransportsRequestJson = {
+};
+
+export declare type GetPublisherTransportsRequestValid = GetPublisherTransportsRequest;
+
+/**
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherTransportsRequest.
+ * Use `create(GetPublisherTransportsRequestSchema)` to create a new message.
+ */
+export declare const GetPublisherTransportsRequestSchema: GenMessage<GetPublisherTransportsRequest, {jsonType: GetPublisherTransportsRequestJson, validType: GetPublisherTransportsRequestValid}>;
+
+/**
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherTransportsResponse
+ */
+export declare type GetPublisherTransportsResponse = Message<"otpki.public.issuance.publisher.v1.GetPublisherTransportsResponse"> & {
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTransportDescriptor transports = 1;
+   */
+  transports: PublisherTransportDescriptor[];
+};
+
+/**
+ * @generated from message otpki.public.issuance.publisher.v1.GetPublisherTransportsResponse
+ */
+export declare type GetPublisherTransportsResponseJson = {
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTransportDescriptor transports = 1;
+   */
+  transports?: PublisherTransportDescriptorJson[];
+};
+
+export declare type GetPublisherTransportsResponseValid = GetPublisherTransportsResponse;
+
+/**
+ * Describes the message otpki.public.issuance.publisher.v1.GetPublisherTransportsResponse.
+ * Use `create(GetPublisherTransportsResponseSchema)` to create a new message.
+ */
+export declare const GetPublisherTransportsResponseSchema: GenMessage<GetPublisherTransportsResponse, {jsonType: GetPublisherTransportsResponseJson, validType: GetPublisherTransportsResponseValid}>;
 
 /**
  * @generated from message otpki.public.issuance.publisher.v1.TestPublisherConnectionRequest
  */
 export declare type TestPublisherConnectionRequest = Message<"otpki.public.issuance.publisher.v1.TestPublisherConnectionRequest"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfig;
+  publisher?: Publisher;
 };
 
 /**
@@ -336,9 +384,9 @@ export declare type TestPublisherConnectionRequest = Message<"otpki.public.issua
  */
 export declare type TestPublisherConnectionRequestJson = {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfigJson;
+  publisher?: PublisherJson;
 };
 
 /**
@@ -346,9 +394,9 @@ export declare type TestPublisherConnectionRequestJson = {
  */
 export declare type TestPublisherConnectionRequestValid = Message<"otpki.public.issuance.publisher.v1.TestPublisherConnectionRequest"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config: PublisherConfigValid;
+  publisher: PublisherValid;
 };
 
 /**
@@ -382,14 +430,16 @@ export declare const TestPublisherConnectionResponseSchema: GenMessage<TestPubli
  */
 export declare type TestPublisherPublishRequest = Message<"otpki.public.issuance.publisher.v1.TestPublisherPublishRequest"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfig;
+  publisher?: Publisher;
 
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PkiArtifact artifact = 2;
+   * Which trigger event to simulate
+   *
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent trigger_event = 2;
    */
-  artifact: PkiArtifact;
+  triggerEvent: PublisherTriggerEvent;
 };
 
 /**
@@ -397,14 +447,16 @@ export declare type TestPublisherPublishRequest = Message<"otpki.public.issuance
  */
 export declare type TestPublisherPublishRequestJson = {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config?: PublisherConfigJson;
+  publisher?: PublisherJson;
 
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PkiArtifact artifact = 2;
+   * Which trigger event to simulate
+   *
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent trigger_event = 2;
    */
-  artifact?: PkiArtifactJson;
+  triggerEvent?: PublisherTriggerEventJson;
 };
 
 /**
@@ -412,14 +464,16 @@ export declare type TestPublisherPublishRequestJson = {
  */
 export declare type TestPublisherPublishRequestValid = Message<"otpki.public.issuance.publisher.v1.TestPublisherPublishRequest"> & {
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherConfig config = 1;
+   * @generated from field: otpki.common.core.publisher.v1.Publisher publisher = 1;
    */
-  config: PublisherConfigValid;
+  publisher: PublisherValid;
 
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PkiArtifact artifact = 2;
+   * Which trigger event to simulate
+   *
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent trigger_event = 2;
    */
-  artifact: PkiArtifact;
+  triggerEvent: PublisherTriggerEvent;
 };
 
 /**
@@ -449,462 +503,56 @@ export declare type TestPublisherPublishResponseValid = TestPublisherPublishResp
 export declare const TestPublisherPublishResponseSchema: GenMessage<TestPublisherPublishResponse, {jsonType: TestPublisherPublishResponseJson, validType: TestPublisherPublishResponseValid}>;
 
 /**
- * @generated from message otpki.public.issuance.publisher.v1.CreateCrlPublisherRequest
- */
-export declare type CreateCrlPublisherRequest = Message<"otpki.public.issuance.publisher.v1.CreateCrlPublisherRequest"> & {
-  /**
-   * @generated from field: otpki.common.core.publisher.v1.CrlPublisher publisher = 1;
-   */
-  publisher?: CrlPublisher;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.CreateCrlPublisherRequest
- */
-export declare type CreateCrlPublisherRequestJson = {
-  /**
-   * @generated from field: otpki.common.core.publisher.v1.CrlPublisher publisher = 1;
-   */
-  publisher?: CrlPublisherJson;
-};
-
-export declare type CreateCrlPublisherRequestValid = CreateCrlPublisherRequest;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCrlPublisherRequest.
- * Use `create(CreateCrlPublisherRequestSchema)` to create a new message.
- */
-export declare const CreateCrlPublisherRequestSchema: GenMessage<CreateCrlPublisherRequest, {jsonType: CreateCrlPublisherRequestJson, validType: CreateCrlPublisherRequestValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.CreateCrlPublisherResponse
- */
-export declare type CreateCrlPublisherResponse = Message<"otpki.public.issuance.publisher.v1.CreateCrlPublisherResponse"> & {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id: string;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.CreateCrlPublisherResponse
- */
-export declare type CreateCrlPublisherResponseJson = {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id?: string;
-};
-
-export declare type CreateCrlPublisherResponseValid = CreateCrlPublisherResponse;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCrlPublisherResponse.
- * Use `create(CreateCrlPublisherResponseSchema)` to create a new message.
- */
-export declare const CreateCrlPublisherResponseSchema: GenMessage<CreateCrlPublisherResponse, {jsonType: CreateCrlPublisherResponseJson, validType: CreateCrlPublisherResponseValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest
- */
-export declare type DeleteCrlPublisherRequest = Message<"otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest"> & {
-  /**
-   * @generated from field: string publisher_id = 1;
-   */
-  publisherId: string;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest
- */
-export declare type DeleteCrlPublisherRequestJson = {
-  /**
-   * @generated from field: string publisher_id = 1;
-   */
-  publisherId?: string;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest
- */
-export declare type DeleteCrlPublisherRequestValid = Message<"otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest"> & {
-  /**
-   * @generated from field: string publisher_id = 1;
-   */
-  publisherId: string;
-};
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCrlPublisherRequest.
- * Use `create(DeleteCrlPublisherRequestSchema)` to create a new message.
- */
-export declare const DeleteCrlPublisherRequestSchema: GenMessage<DeleteCrlPublisherRequest, {jsonType: DeleteCrlPublisherRequestJson, validType: DeleteCrlPublisherRequestValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCrlPublisherResponse
- */
-export declare type DeleteCrlPublisherResponse = Message<"otpki.public.issuance.publisher.v1.DeleteCrlPublisherResponse"> & {
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCrlPublisherResponse
- */
-export declare type DeleteCrlPublisherResponseJson = {
-};
-
-export declare type DeleteCrlPublisherResponseValid = DeleteCrlPublisherResponse;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCrlPublisherResponse.
- * Use `create(DeleteCrlPublisherResponseSchema)` to create a new message.
- */
-export declare const DeleteCrlPublisherResponseSchema: GenMessage<DeleteCrlPublisherResponse, {jsonType: DeleteCrlPublisherResponseJson, validType: DeleteCrlPublisherResponseValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCrlPublisherListRequest
- */
-export declare type GetCrlPublisherListRequest = Message<"otpki.public.issuance.publisher.v1.GetCrlPublisherListRequest"> & {
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
-   */
-  pagination?: PaginationRequest;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCrlPublisherListRequest
- */
-export declare type GetCrlPublisherListRequestJson = {
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
-   */
-  pagination?: PaginationRequestJson;
-};
-
-export declare type GetCrlPublisherListRequestValid = GetCrlPublisherListRequest;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCrlPublisherListRequest.
- * Use `create(GetCrlPublisherListRequestSchema)` to create a new message.
- */
-export declare const GetCrlPublisherListRequestSchema: GenMessage<GetCrlPublisherListRequest, {jsonType: GetCrlPublisherListRequestJson, validType: GetCrlPublisherListRequestValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCrlPublisherListResponse
- */
-export declare type GetCrlPublisherListResponse = Message<"otpki.public.issuance.publisher.v1.GetCrlPublisherListResponse"> & {
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CrlPublisher data = 1;
-   */
-  data: CrlPublisher[];
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
-   */
-  pagination?: PaginationResponse;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCrlPublisherListResponse
- */
-export declare type GetCrlPublisherListResponseJson = {
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CrlPublisher data = 1;
-   */
-  data?: CrlPublisherJson[];
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
-   */
-  pagination?: PaginationResponseJson;
-};
-
-export declare type GetCrlPublisherListResponseValid = GetCrlPublisherListResponse;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCrlPublisherListResponse.
- * Use `create(GetCrlPublisherListResponseSchema)` to create a new message.
- */
-export declare const GetCrlPublisherListResponseSchema: GenMessage<GetCrlPublisherListResponse, {jsonType: GetCrlPublisherListResponseJson, validType: GetCrlPublisherListResponseValid}>;
-
-/**
- * -- Certificate Publishers
- *
- * @generated from message otpki.public.issuance.publisher.v1.CreateCertificatePublisherRequest
- */
-export declare type CreateCertificatePublisherRequest = Message<"otpki.public.issuance.publisher.v1.CreateCertificatePublisherRequest"> & {
-  /**
-   * @generated from field: otpki.common.core.publisher.v1.CertificatePublisher publisher = 1;
-   */
-  publisher?: CertificatePublisher;
-};
-
-/**
- * -- Certificate Publishers
- *
- * @generated from message otpki.public.issuance.publisher.v1.CreateCertificatePublisherRequest
- */
-export declare type CreateCertificatePublisherRequestJson = {
-  /**
-   * @generated from field: otpki.common.core.publisher.v1.CertificatePublisher publisher = 1;
-   */
-  publisher?: CertificatePublisherJson;
-};
-
-export declare type CreateCertificatePublisherRequestValid = CreateCertificatePublisherRequest;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCertificatePublisherRequest.
- * Use `create(CreateCertificatePublisherRequestSchema)` to create a new message.
- */
-export declare const CreateCertificatePublisherRequestSchema: GenMessage<CreateCertificatePublisherRequest, {jsonType: CreateCertificatePublisherRequestJson, validType: CreateCertificatePublisherRequestValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.CreateCertificatePublisherResponse
- */
-export declare type CreateCertificatePublisherResponse = Message<"otpki.public.issuance.publisher.v1.CreateCertificatePublisherResponse"> & {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id: string;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.CreateCertificatePublisherResponse
- */
-export declare type CreateCertificatePublisherResponseJson = {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id?: string;
-};
-
-export declare type CreateCertificatePublisherResponseValid = CreateCertificatePublisherResponse;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.CreateCertificatePublisherResponse.
- * Use `create(CreateCertificatePublisherResponseSchema)` to create a new message.
- */
-export declare const CreateCertificatePublisherResponseSchema: GenMessage<CreateCertificatePublisherResponse, {jsonType: CreateCertificatePublisherResponseJson, validType: CreateCertificatePublisherResponseValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest
- */
-export declare type DeleteCertificatePublisherRequest = Message<"otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest"> & {
-  /**
-   * @generated from field: string publisher_id = 1;
-   */
-  publisherId: string;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest
- */
-export declare type DeleteCertificatePublisherRequestJson = {
-  /**
-   * @generated from field: string publisher_id = 1;
-   */
-  publisherId?: string;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest
- */
-export declare type DeleteCertificatePublisherRequestValid = Message<"otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest"> & {
-  /**
-   * @generated from field: string publisher_id = 1;
-   */
-  publisherId: string;
-};
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherRequest.
- * Use `create(DeleteCertificatePublisherRequestSchema)` to create a new message.
- */
-export declare const DeleteCertificatePublisherRequestSchema: GenMessage<DeleteCertificatePublisherRequest, {jsonType: DeleteCertificatePublisherRequestJson, validType: DeleteCertificatePublisherRequestValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherResponse
- */
-export declare type DeleteCertificatePublisherResponse = Message<"otpki.public.issuance.publisher.v1.DeleteCertificatePublisherResponse"> & {
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherResponse
- */
-export declare type DeleteCertificatePublisherResponseJson = {
-};
-
-export declare type DeleteCertificatePublisherResponseValid = DeleteCertificatePublisherResponse;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.DeleteCertificatePublisherResponse.
- * Use `create(DeleteCertificatePublisherResponseSchema)` to create a new message.
- */
-export declare const DeleteCertificatePublisherResponseSchema: GenMessage<DeleteCertificatePublisherResponse, {jsonType: DeleteCertificatePublisherResponseJson, validType: DeleteCertificatePublisherResponseValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCertificatePublisherListRequest
- */
-export declare type GetCertificatePublisherListRequest = Message<"otpki.public.issuance.publisher.v1.GetCertificatePublisherListRequest"> & {
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
-   */
-  pagination?: PaginationRequest;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCertificatePublisherListRequest
- */
-export declare type GetCertificatePublisherListRequestJson = {
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest pagination = 1;
-   */
-  pagination?: PaginationRequestJson;
-};
-
-export declare type GetCertificatePublisherListRequestValid = GetCertificatePublisherListRequest;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCertificatePublisherListRequest.
- * Use `create(GetCertificatePublisherListRequestSchema)` to create a new message.
- */
-export declare const GetCertificatePublisherListRequestSchema: GenMessage<GetCertificatePublisherListRequest, {jsonType: GetCertificatePublisherListRequestJson, validType: GetCertificatePublisherListRequestValid}>;
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCertificatePublisherListResponse
- */
-export declare type GetCertificatePublisherListResponse = Message<"otpki.public.issuance.publisher.v1.GetCertificatePublisherListResponse"> & {
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertificatePublisher data = 1;
-   */
-  data: CertificatePublisher[];
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
-   */
-  pagination?: PaginationResponse;
-};
-
-/**
- * @generated from message otpki.public.issuance.publisher.v1.GetCertificatePublisherListResponse
- */
-export declare type GetCertificatePublisherListResponseJson = {
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertificatePublisher data = 1;
-   */
-  data?: CertificatePublisherJson[];
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationResponse pagination = 2;
-   */
-  pagination?: PaginationResponseJson;
-};
-
-export declare type GetCertificatePublisherListResponseValid = GetCertificatePublisherListResponse;
-
-/**
- * Describes the message otpki.public.issuance.publisher.v1.GetCertificatePublisherListResponse.
- * Use `create(GetCertificatePublisherListResponseSchema)` to create a new message.
- */
-export declare const GetCertificatePublisherListResponseSchema: GenMessage<GetCertificatePublisherListResponse, {jsonType: GetCertificatePublisherListResponseJson, validType: GetCertificatePublisherListResponseValid}>;
-
-/**
  * @generated from service otpki.public.issuance.publisher.v1.PublisherService
  */
 export declare const PublisherService: GenService<{
   /**
-   * CRL Publishers
-   *
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreateCrlPublisher
+   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreatePublisher
    */
-  createCrlPublisher: {
+  createPublisher: {
     methodKind: "unary";
-    input: typeof CreateCrlPublisherRequestSchema;
-    output: typeof CreateCrlPublisherResponseSchema;
+    input: typeof CreatePublisherRequestSchema;
+    output: typeof CreatePublisherResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeleteCrlPublisher
+   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisher
    */
-  deleteCrlPublisher: {
+  getPublisher: {
     methodKind: "unary";
-    input: typeof DeleteCrlPublisherRequestSchema;
-    output: typeof DeleteCrlPublisherResponseSchema;
+    input: typeof GetPublisherRequestSchema;
+    output: typeof GetPublisherResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetCrlPublisherList
+   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisher
    */
-  getCrlPublisherList: {
+  updatePublisher: {
     methodKind: "unary";
-    input: typeof GetCrlPublisherListRequestSchema;
-    output: typeof GetCrlPublisherListResponseSchema;
+    input: typeof UpdatePublisherRequestSchema;
+    output: typeof UpdatePublisherResponseSchema;
   },
   /**
-   * Cert Publishers
-   *
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreateCertificatePublisher
+   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeletePublisher
    */
-  createCertificatePublisher: {
+  deletePublisher: {
     methodKind: "unary";
-    input: typeof CreateCertificatePublisherRequestSchema;
-    output: typeof CreateCertificatePublisherResponseSchema;
+    input: typeof DeletePublisherRequestSchema;
+    output: typeof DeletePublisherResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeleteCertificatePublisher
+   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherList
    */
-  deleteCertificatePublisher: {
+  getPublisherList: {
     methodKind: "unary";
-    input: typeof DeleteCertificatePublisherRequestSchema;
-    output: typeof DeleteCertificatePublisherResponseSchema;
+    input: typeof GetPublisherListRequestSchema;
+    output: typeof GetPublisherListResponseSchema;
   },
   /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetCertificatePublisherList
+   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherTransports
    */
-  getCertificatePublisherList: {
+  getPublisherTransports: {
     methodKind: "unary";
-    input: typeof GetCertificatePublisherListRequestSchema;
-    output: typeof GetCertificatePublisherListResponseSchema;
-  },
-  /**
-   * Publisher Configs
-   *
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.CreatePublisherConfig
-   */
-  createPublisherConfig: {
-    methodKind: "unary";
-    input: typeof CreatePublisherConfigRequestSchema;
-    output: typeof CreatePublisherConfigResponseSchema;
-  },
-  /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfig
-   */
-  getPublisherConfig: {
-    methodKind: "unary";
-    input: typeof GetPublisherConfigRequestSchema;
-    output: typeof GetPublisherConfigResponseSchema;
-  },
-  /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisherConfig
-   */
-  updatePublisherConfig: {
-    methodKind: "unary";
-    input: typeof UpdatePublisherConfigRequestSchema;
-    output: typeof UpdatePublisherConfigResponseSchema;
-  },
-  /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.DeletePublisherConfig
-   */
-  deletePublisherConfig: {
-    methodKind: "unary";
-    input: typeof DeletePublisherConfigRequestSchema;
-    output: typeof DeletePublisherConfigResponseSchema;
-  },
-  /**
-   * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfigList
-   */
-  getPublisherConfigList: {
-    methodKind: "unary";
-    input: typeof GetPublisherConfigListRequestSchema;
-    output: typeof GetPublisherConfigListResponseSchema;
+    input: typeof GetPublisherTransportsRequestSchema;
+    output: typeof GetPublisherTransportsResponseSchema;
   },
   /**
    * @generated from rpc otpki.public.issuance.publisher.v1.PublisherService.TestPublisherConnection

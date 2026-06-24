@@ -30,48 +30,47 @@ import * as mod26 from './public/otpki/common/core/key_storage_config/v1/activat
 import * as mod27 from './public/otpki/common/core/key_storage_config/v1/enum_pb.js';
 import * as mod28 from './public/otpki/common/core/key_storage_config/v1/key_storage_config_pb.js';
 import * as mod29 from './public/otpki/common/core/publisher/v1/publisher_pb.js';
-import * as mod30 from './public/otpki/common/core/smtp_settings/v1/smtp_settings_pb.js';
-import * as mod31 from './public/otpki/common/core/task_log/v1/task_log_pb.js';
-import * as mod32 from './public/otpki/common/x509/v1/certificate_template_pb.js';
-import * as mod33 from './public/otpki/common/x509/v1/revocation_list_pb.js';
-import * as mod34 from './public/otpki/common/x509/v1/x509_pb.js';
-import * as mod35 from './public/otpki/public/auth/approval_profile/v1/approval_profile_pb.js';
-import * as mod36 from './public/otpki/public/auth/group/v1/group_pb.js';
-import * as mod37 from './public/otpki/public/auth/oidc_provider/v1/oidc_provider_pb.js';
-import * as mod38 from './public/otpki/public/auth/resource/v1/resource_pb.js';
-import * as mod39 from './public/otpki/public/auth/role/v1/role_pb.js';
-import * as mod40 from './public/otpki/public/auth/user/v1/user_pb.js';
-import * as mod41 from './public/otpki/public/auth/work_item/v1/work_item_pb.js';
-import * as mod42 from './public/otpki/public/enrollment/enroller/v1/enroller_pb.js';
-import * as mod43 from './public/otpki/public/importer/v1/importer_pb.js';
-import * as mod44 from './public/otpki/public/issuance/certificate_authority/v1/certificate_authority_pb.js';
-import * as mod45 from './public/otpki/public/issuance/certificate_extension/v1/certificate_extension_pb.js';
-import * as mod46 from './public/otpki/public/issuance/certificate_profile/v1/certificate_profile_pb.js';
-import * as mod47 from './public/otpki/public/issuance/end_entity/v1/end_entity_pb.js';
-import * as mod48 from './public/otpki/public/issuance/end_entity_certificate/v1/end_entity_certificate_pb.js';
-import * as mod49 from './public/otpki/public/issuance/end_entity_profile/v1/end_entity_profile_pb.js';
-import * as mod50 from './public/otpki/public/issuance/extended_key_usage/v1/extended_key_usage_pb.js';
-import * as mod51 from './public/otpki/public/issuance/issued_certificate/v1/issued_certificate_pb.js';
-import * as mod52 from './public/otpki/public/issuance/issuer/v1/issuer_pb.js';
-import * as mod53 from './public/otpki/public/issuance/key/v1/key_pb.js';
-import * as mod54 from './public/otpki/public/issuance/key_storage_config/v1/key_storage_config_pb.js';
-import * as mod55 from './public/otpki/public/issuance/metrics/v1/metrics_pb.js';
-import * as mod56 from './public/otpki/public/issuance/publisher/v1/publisher_pb.js';
-import * as mod57 from './public/otpki/public/issuance/secret_share/v1/secret_share_pb.js';
-import * as mod58 from './public/otpki/public/issuance/smtp_settings/v1/smtp_settings_pb.js';
-import * as mod59 from './public/otpki/public/issuance/task_log/v1/task_log_pb.js';
-import * as mod60 from './public/otpki/public/plugin/key_driver/awskms/v1/awskms_pb.js';
-import * as mod61 from './public/otpki/public/plugin/key_driver/pkcs11proxy/v1/pkcs11proxy_pb.js';
-import * as mod62 from './public/otpki/public/plugin/key_driver/softdbkms/v1/softdbkms_pb.js';
-import * as mod63 from './public/otpki/public/plugin/key_driver/v1/plugin_pb.js';
-import * as mod64 from './public/otpki/public/plugin/publisher/http/v1/http_pb.js';
-import * as mod65 from './public/otpki/public/plugin/publisher/scp/v1/scp_pb.js';
-import * as mod66 from './public/otpki/public/plugin/publisher/vs/v1/vs_pb.js';
-import * as mod67 from './public/otpki/public/plugin/runtime/v1/manifest_pb.js';
-import * as mod68 from './public/otpki/public/plugin/runtime/v1/plugin_pb.js';
-import * as mod69 from './public/otpki/public/plugin/runtime/v1/runtime_pb.js';
-import * as mod70 from './public/otpki/public/validation/revocation_list/v1/revocation_list_pb.js';
-import * as mod71 from './public/otpki/public/version/v1/version_pb.js';
+import * as mod30 from './public/otpki/common/core/task_log/v1/task_log_pb.js';
+import * as mod31 from './public/otpki/common/x509/v1/certificate_template_pb.js';
+import * as mod32 from './public/otpki/common/x509/v1/revocation_list_pb.js';
+import * as mod33 from './public/otpki/common/x509/v1/x509_pb.js';
+import * as mod34 from './public/otpki/public/auth/approval_profile/v1/approval_profile_pb.js';
+import * as mod35 from './public/otpki/public/auth/group/v1/group_pb.js';
+import * as mod36 from './public/otpki/public/auth/oidc_provider/v1/oidc_provider_pb.js';
+import * as mod37 from './public/otpki/public/auth/resource/v1/resource_pb.js';
+import * as mod38 from './public/otpki/public/auth/role/v1/role_pb.js';
+import * as mod39 from './public/otpki/public/auth/user/v1/user_pb.js';
+import * as mod40 from './public/otpki/public/auth/work_item/v1/work_item_pb.js';
+import * as mod41 from './public/otpki/public/enrollment/enroller/v1/enroller_pb.js';
+import * as mod42 from './public/otpki/public/importer/v1/importer_pb.js';
+import * as mod43 from './public/otpki/public/issuance/certificate_authority/v1/certificate_authority_pb.js';
+import * as mod44 from './public/otpki/public/issuance/certificate_extension/v1/certificate_extension_pb.js';
+import * as mod45 from './public/otpki/public/issuance/certificate_profile/v1/certificate_profile_pb.js';
+import * as mod46 from './public/otpki/public/issuance/end_entity/v1/end_entity_pb.js';
+import * as mod47 from './public/otpki/public/issuance/end_entity_certificate/v1/end_entity_certificate_pb.js';
+import * as mod48 from './public/otpki/public/issuance/end_entity_profile/v1/end_entity_profile_pb.js';
+import * as mod49 from './public/otpki/public/issuance/extended_key_usage/v1/extended_key_usage_pb.js';
+import * as mod50 from './public/otpki/public/issuance/issued_certificate/v1/issued_certificate_pb.js';
+import * as mod51 from './public/otpki/public/issuance/issuer/v1/issuer_pb.js';
+import * as mod52 from './public/otpki/public/issuance/key/v1/key_pb.js';
+import * as mod53 from './public/otpki/public/issuance/key_storage_config/v1/key_storage_config_pb.js';
+import * as mod54 from './public/otpki/public/issuance/metrics/v1/metrics_pb.js';
+import * as mod55 from './public/otpki/public/issuance/publisher/v1/publisher_pb.js';
+import * as mod56 from './public/otpki/public/issuance/secret_share/v1/secret_share_pb.js';
+import * as mod57 from './public/otpki/public/issuance/task_log/v1/task_log_pb.js';
+import * as mod58 from './public/otpki/public/plugin/key_driver/awskms/v1/awskms_pb.js';
+import * as mod59 from './public/otpki/public/plugin/key_driver/pkcs11proxy/v1/pkcs11proxy_pb.js';
+import * as mod60 from './public/otpki/public/plugin/key_driver/softdbkms/v1/softdbkms_pb.js';
+import * as mod61 from './public/otpki/public/plugin/key_driver/v1/plugin_pb.js';
+import * as mod62 from './public/otpki/public/plugin/publisher/http/v1/http_pb.js';
+import * as mod63 from './public/otpki/public/plugin/publisher/scp/v1/scp_pb.js';
+import * as mod64 from './public/otpki/public/plugin/publisher/smtp/v1/smtp_pb.js';
+import * as mod65 from './public/otpki/public/plugin/publisher/vs/v1/vs_pb.js';
+import * as mod66 from './public/otpki/public/plugin/runtime/v1/manifest_pb.js';
+import * as mod67 from './public/otpki/public/plugin/runtime/v1/plugin_pb.js';
+import * as mod68 from './public/otpki/public/plugin/runtime/v1/runtime_pb.js';
+import * as mod69 from './public/otpki/public/validation/revocation_list/v1/revocation_list_pb.js';
+import * as mod70 from './public/otpki/public/version/v1/version_pb.js';
 
 const fileDescs = [
   ...Object.entries(mod0).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
@@ -144,8 +143,7 @@ const fileDescs = [
   ...Object.entries(mod67).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
   ...Object.entries(mod68).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
   ...Object.entries(mod69).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
-  ...Object.entries(mod70).filter(([k]) => k.startsWith('file_')).map(([, v]) => v),
-  ...Object.entries(mod71).filter(([k]) => k.startsWith('file_')).map(([, v]) => v)
+  ...Object.entries(mod70).filter(([k]) => k.startsWith('file_')).map(([, v]) => v)
 ];
 
 export const registry = createRegistry(...fileDescs);

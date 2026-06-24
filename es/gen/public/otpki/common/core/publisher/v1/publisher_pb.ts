@@ -2,11 +2,11 @@
 // @generated from file otpki/common/core/publisher/v1/publisher.proto (package otpki.common.core.publisher.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../../../../buf/validate/validate_pb.js";
-import type { Any, AnyJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_any, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, FieldOptions, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any, file_google_protobuf_descriptor, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import { file_openapiv3_annotations } from "../../../../../openapiv3/annotations_pb.js";
 import { file_otpki_common_api_v1_native_type } from "../../../api/v1/native_type_pb.js";
 import type { Message } from "@bufbuild/protobuf";
@@ -15,12 +15,12 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/core/publisher/v1/publisher.proto.
  */
 export const file_otpki_common_core_publisher_v1_publisher: GenFile = /*@__PURE__*/
-  fileDesc("Ci5vdHBraS9jb21tb24vY29yZS9wdWJsaXNoZXIvdjEvcHVibGlzaGVyLnByb3RvEh5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEi9wIKD1B1Ymxpc2hlckNvbmZpZxIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIYCgRuYW1lGAIgASgJQgq6SAfYAQFyAhADEhMKC2Rlc2NyaXB0aW9uGAMgASgJEk8KDnB1Ymxpc2hlcl90eXBlGAQgASgOMi0ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlclR5cGVCCLpIBYIBAhABEikKC2NvbmZpZ19kYXRhGAUgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEigwIKDENybFB1Ymxpc2hlchIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIXCgVjYV9pZBgCIAEoCUIIukgFcgOwAQESJQoTcHVibGlzaGVyX2NvbmZpZ19pZBgDIAEoCUIIukgFcgOwAQESSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lIv8CChRDZXJ0aWZpY2F0ZVB1Ymxpc2hlchIZCgJpZBgBIAEoCUINukcCGAG6SAVyA7ABARIlChNwdWJsaXNoZXJfY29uZmlnX2lkGAIgASgJQgi6SAVyA7ABARIXCgVjYV9pZBgDIAEoCUIIukgFcgOwAQESKAoWY2VydGlmaWNhdGVfcHJvZmlsZV9pZBgEIAEoCUIIukgFcgOwAQESSAoRc3Vic2NyaWJlZF9ldmVudHMYBSADKA4yLS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuQ2VydEV2ZW50VHlwZRJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUqdwoNUHVibGlzaGVyVHlwZRIeChpQVUJMSVNIRVJfVFlQRV9VTlNQRUNJRklFRBAAEhUKEVBVQkxJU0hFUl9UWVBFX1ZTEAESFwoTUFVCTElTSEVSX1RZUEVfSFRUUBACEhYKElBVQkxJU0hFUl9UWVBFX1NDUBADKl8KC1BraUFydGlmYWN0EhwKGFBLSV9BUlRJRkFDVF9VTlNQRUNJRklFRBAAEhQKEFBLSV9BUlRJRkFDVF9DUkwQARIcChhQS0lfQVJUSUZBQ1RfQ0VSVElGSUNBVEUQAipxCg1DZXJ0RXZlbnRUeXBlEh8KG0NFUlRfRVZFTlRfVFlQRV9VTlNQRUNJRklFRBAAEh4KGkNFUlRfRVZFTlRfVFlQRV9DRVJUX0lTU1VFEAESHwobQ0VSVF9FVkVOVF9UWVBFX0NFUlRfUkVWT0tFEAJC0QEKImNvbS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjFCDlB1Ymxpc2hlclByb3RvUAGiAgRPQ0NQqgIeT3Rwa2kuQ29tbW9uLkNvcmUuUHVibGlzaGVyLlYxygIeT3Rwa2lcQ29tbW9uXENvcmVcUHVibGlzaGVyXFYx4gIqT3Rwa2lcQ29tbW9uXENvcmVcUHVibGlzaGVyXFYxXEdQQk1ldGFkYXRh6gIiT3Rwa2k6OkNvbW1vbjo6Q29yZTo6UHVibGlzaGVyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type]);
+  fileDesc("Ci5vdHBraS9jb21tb24vY29yZS9wdWJsaXNoZXIvdjEvcHVibGlzaGVyLnByb3RvEh5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEivwMKCVB1Ymxpc2hlchIcCgJpZBgBIAEoCUIQukcCGAG6SAjYAQFyA7ABARIYCgRuYW1lGAIgASgJQgq6SAfYAQFyAhADEhMKC2Rlc2NyaXB0aW9uGAMgASgJElEKCXRyYW5zcG9ydBgEIAEoDjIyLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUcmFuc3BvcnRCCrpIB4IBBBABIAASJAoGY29uZmlnGAUgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueRJMCgh0cmlnZ2VycxgGIAMoCzIwLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUcmlnZ2VyQgi6SAWSAQIIARJLCgpjcmVhdGVkX2F0GMkBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lEksKCnVwZGF0ZWRfYXQYygEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWU6BJi1GAEiigEKEFB1Ymxpc2hlclRyaWdnZXISUAoFZXZlbnQYASABKA4yNS5vdHBraS5jb21tb24uY29yZS5wdWJsaXNoZXIudjEuUHVibGlzaGVyVHJpZ2dlckV2ZW50Qgq6SAeCAQQQASAAEiQKBmNvbmZpZxgCIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkiMgoQQ3JsVHJpZ2dlckNvbmZpZxIeCgVjYV9pZBgBIAEoCUIPukgIyAEBcgOwAQHQtRgBInMKEUNlcnRUcmlnZ2VyQ29uZmlnEh0KBWNhX2lkGAEgASgJQgy6SAVyA7ABAdC1GAFIABIuChZjZXJ0aWZpY2F0ZV9wcm9maWxlX2lkGAIgASgJQgy6SAVyA7ABAdC1GAJIAEIPCgZ0YXJnZXQSBbpIAggBIsYBChxQdWJsaXNoZXJUcmFuc3BvcnREZXNjcmlwdG9yEkUKCXRyYW5zcG9ydBgBIAEoDjIyLm90cGtpLmNvbW1vbi5jb3JlLnB1Ymxpc2hlci52MS5QdWJsaXNoZXJUcmFuc3BvcnQSFwoPY29uZmlnX3R5cGVfdXJsGAIgASgJEkYKCHRyaWdnZXJzGAMgAygLMjQub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlclRyaWdnZXJTcGVjInUKFFB1Ymxpc2hlclRyaWdnZXJTcGVjEkQKBWV2ZW50GAEgASgOMjUub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlclRyaWdnZXJFdmVudBIXCg9jb25maWdfdHlwZV91cmwYAiABKAkqrgEKElB1Ymxpc2hlclRyYW5zcG9ydBIjCh9QVUJMSVNIRVJfVFJBTlNQT1JUX1VOU1BFQ0lGSUVEEAASGgoWUFVCTElTSEVSX1RSQU5TUE9SVF9WUxABEhwKGFBVQkxJU0hFUl9UUkFOU1BPUlRfSFRUUBACEhsKF1BVQkxJU0hFUl9UUkFOU1BPUlRfU0NQEAMSHAoYUFVCTElTSEVSX1RSQU5TUE9SVF9TTVRQEAQq6gEKFVB1Ymxpc2hlclRyaWdnZXJFdmVudBInCiNQVUJMSVNIRVJfVFJJR0dFUl9FVkVOVF9VTlNQRUNJRklFRBAAEicKI1BVQkxJU0hFUl9UUklHR0VSX0VWRU5UX0NFUlRfSVNTVUVEEAESKAokUFVCTElTSEVSX1RSSUdHRVJfRVZFTlRfQ0VSVF9SRVZPS0VEEAISKQolUFVCTElTSEVSX1RSSUdHRVJfRVZFTlRfQ1JMX1BVQkxJU0hFRBADEioKJlBVQkxJU0hFUl9UUklHR0VSX0VWRU5UX0VFX0NSRURFTlRJQUxTEAQq7QEKD1B1Ymxpc2hlckxvb2t1cBIgChxQVUJMSVNIRVJfTE9PS1VQX1VOU1BFQ0lGSUVEEAASKgomUFVCTElTSEVSX0xPT0tVUF9DRVJUSUZJQ0FURV9BVVRIT1JJVFkQARIoCiRQVUJMSVNIRVJfTE9PS1VQX0NFUlRJRklDQVRFX1BST0ZJTEUQAhIYChRQVUJMSVNIRVJfTE9PS1VQX0tFWRADEicKI1BVQkxJU0hFUl9MT09LVVBfRU5EX0VOVElUWV9QUk9GSUxFEAQSHwobUFVCTElTSEVSX0xPT0tVUF9FTkRfRU5USVRZEAU6awoGbG9va3VwEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjahgMgASgOMi8ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxLlB1Ymxpc2hlckxvb2t1cFIGbG9va3VwiAEBQtEBCiJjb20ub3Rwa2kuY29tbW9uLmNvcmUucHVibGlzaGVyLnYxQg5QdWJsaXNoZXJQcm90b1ABogIET0NDUKoCHk90cGtpLkNvbW1vbi5Db3JlLlB1Ymxpc2hlci5WMcoCHk90cGtpXENvbW1vblxDb3JlXFB1Ymxpc2hlclxWMeICKk90cGtpXENvbW1vblxDb3JlXFB1Ymxpc2hlclxWMVxHUEJNZXRhZGF0YeoCIk90cGtpOjpDb21tb246OkNvcmU6OlB1Ymxpc2hlcjo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_any, file_google_protobuf_descriptor, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type]);
 
 /**
- * @generated from message otpki.common.core.publisher.v1.PublisherConfig
+ * @generated from message otpki.common.core.publisher.v1.Publisher
  */
-export type PublisherConfig = Message<"otpki.common.core.publisher.v1.PublisherConfig"> & {
+export type Publisher = Message<"otpki.common.core.publisher.v1.Publisher"> & {
   /**
    * not settable on creation
    *
@@ -39,14 +39,19 @@ export type PublisherConfig = Message<"otpki.common.core.publisher.v1.PublisherC
   description: string;
 
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherType publisher_type = 4;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 4;
    */
-  publisherType: PublisherType;
+  transport: PublisherTransport;
 
   /**
-   * @generated from field: google.protobuf.Any config_data = 5;
+   * @generated from field: google.protobuf.Any config = 5;
    */
-  configData?: Any;
+  config?: Any;
+
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTrigger triggers = 6;
+   */
+  triggers: PublisherTrigger[];
 
   /**
    * not settable on creation
@@ -64,9 +69,9 @@ export type PublisherConfig = Message<"otpki.common.core.publisher.v1.PublisherC
 };
 
 /**
- * @generated from message otpki.common.core.publisher.v1.PublisherConfig
+ * @generated from message otpki.common.core.publisher.v1.Publisher
  */
-export type PublisherConfigJson = {
+export type PublisherJson = {
   /**
    * not settable on creation
    *
@@ -85,14 +90,19 @@ export type PublisherConfigJson = {
   description?: string;
 
   /**
-   * @generated from field: otpki.common.core.publisher.v1.PublisherType publisher_type = 4;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 4;
    */
-  publisherType?: PublisherTypeJson;
+  transport?: PublisherTransportJson;
 
   /**
-   * @generated from field: google.protobuf.Any config_data = 5;
+   * @generated from field: google.protobuf.Any config = 5;
    */
-  configData?: AnyJson;
+  config?: AnyJson;
+
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTrigger triggers = 6;
+   */
+  triggers?: PublisherTriggerJson[];
 
   /**
    * not settable on creation
@@ -109,308 +119,356 @@ export type PublisherConfigJson = {
   updatedAt?: TimestampJson;
 };
 
-export type PublisherConfigValid = PublisherConfig;
+export type PublisherValid = Publisher;
 
 /**
- * Describes the message otpki.common.core.publisher.v1.PublisherConfig.
- * Use `create(PublisherConfigSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.Publisher.
+ * Use `create(PublisherSchema)` to create a new message.
  */
-export const PublisherConfigSchema: GenMessage<PublisherConfig, {jsonType: PublisherConfigJson, validType: PublisherConfigValid}> = /*@__PURE__*/
+export const PublisherSchema: GenMessage<Publisher, {jsonType: PublisherJson, validType: PublisherValid}> = /*@__PURE__*/
   messageDesc(file_otpki_common_core_publisher_v1_publisher, 0);
 
 /**
- * CRL Publisher can only subscribe to CAs on CRL generation events
- *
- * @generated from message otpki.common.core.publisher.v1.CrlPublisher
+ * @generated from message otpki.common.core.publisher.v1.PublisherTrigger
  */
-export type CrlPublisher = Message<"otpki.common.core.publisher.v1.CrlPublisher"> & {
+export type PublisherTrigger = Message<"otpki.common.core.publisher.v1.PublisherTrigger"> & {
   /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
    */
-  id: string;
+  event: PublisherTriggerEvent;
 
   /**
-   * @generated from field: string ca_id = 2;
+   * @generated from field: google.protobuf.Any config = 2;
    */
-  caId: string;
-
-  /**
-   * @generated from field: string publisher_config_id = 3;
-   */
-  publisherConfigId: string;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
-   */
-  createdAt?: Timestamp;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: Timestamp;
+  config?: Any;
 };
 
 /**
- * CRL Publisher can only subscribe to CAs on CRL generation events
- *
- * @generated from message otpki.common.core.publisher.v1.CrlPublisher
+ * @generated from message otpki.common.core.publisher.v1.PublisherTrigger
  */
-export type CrlPublisherJson = {
+export type PublisherTriggerJson = {
   /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
    */
-  id?: string;
+  event?: PublisherTriggerEventJson;
 
   /**
-   * @generated from field: string ca_id = 2;
+   * @generated from field: google.protobuf.Any config = 2;
    */
-  caId?: string;
-
-  /**
-   * @generated from field: string publisher_config_id = 3;
-   */
-  publisherConfigId?: string;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
-   */
-  createdAt?: TimestampJson;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: TimestampJson;
+  config?: AnyJson;
 };
 
-export type CrlPublisherValid = CrlPublisher;
+export type PublisherTriggerValid = PublisherTrigger;
 
 /**
- * Describes the message otpki.common.core.publisher.v1.CrlPublisher.
- * Use `create(CrlPublisherSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.PublisherTrigger.
+ * Use `create(PublisherTriggerSchema)` to create a new message.
  */
-export const CrlPublisherSchema: GenMessage<CrlPublisher, {jsonType: CrlPublisherJson, validType: CrlPublisherValid}> = /*@__PURE__*/
+export const PublisherTriggerSchema: GenMessage<PublisherTrigger, {jsonType: PublisherTriggerJson, validType: PublisherTriggerValid}> = /*@__PURE__*/
   messageDesc(file_otpki_common_core_publisher_v1_publisher, 1);
 
 /**
- * Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
- *
- * @generated from message otpki.common.core.publisher.v1.CertificatePublisher
+ * @generated from message otpki.common.core.publisher.v1.CrlTriggerConfig
  */
-export type CertificatePublisher = Message<"otpki.common.core.publisher.v1.CertificatePublisher"> & {
+export type CrlTriggerConfig = Message<"otpki.common.core.publisher.v1.CrlTriggerConfig"> & {
   /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * @generated from field: string publisher_config_id = 2;
-   */
-  publisherConfigId: string;
-
-  /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string ca_id = 3;
+   * @generated from field: string ca_id = 1;
    */
   caId: string;
-
-  /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string certificate_profile_id = 4;
-   */
-  certificateProfileId: string;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertEventType subscribed_events = 5;
-   */
-  subscribedEvents: CertEventType[];
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
-   */
-  createdAt?: Timestamp;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: Timestamp;
 };
 
 /**
- * Cert Publishers can subscribe to a CA, Cert profile, or both, for any or all Cert Events
- *
- * @generated from message otpki.common.core.publisher.v1.CertificatePublisher
+ * @generated from message otpki.common.core.publisher.v1.CrlTriggerConfig
  */
-export type CertificatePublisherJson = {
+export type CrlTriggerConfigJson = {
   /**
-   * not settable on creation
-   *
-   * @generated from field: string id = 1;
+   * @generated from field: string ca_id = 1;
    */
-  id?: string;
+  caId?: string;
+};
 
+/**
+ * @generated from message otpki.common.core.publisher.v1.CrlTriggerConfig
+ */
+export type CrlTriggerConfigValid = Message<"otpki.common.core.publisher.v1.CrlTriggerConfig"> & {
   /**
-   * @generated from field: string publisher_config_id = 2;
+   * @generated from field: string ca_id = 1;
    */
-  publisherConfigId?: string;
+  caId: string;
+};
 
+/**
+ * Describes the message otpki.common.core.publisher.v1.CrlTriggerConfig.
+ * Use `create(CrlTriggerConfigSchema)` to create a new message.
+ */
+export const CrlTriggerConfigSchema: GenMessage<CrlTriggerConfig, {jsonType: CrlTriggerConfigJson, validType: CrlTriggerConfigValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_publisher_v1_publisher, 2);
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.CertTriggerConfig
+ */
+export type CertTriggerConfig = Message<"otpki.common.core.publisher.v1.CertTriggerConfig"> & {
   /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string ca_id = 3;
+   * @generated from oneof otpki.common.core.publisher.v1.CertTriggerConfig.target
+   */
+  target: {
+    /**
+     * @generated from field: string ca_id = 1;
+     */
+    value: string;
+    case: "caId";
+  } | {
+    /**
+     * @generated from field: string certificate_profile_id = 2;
+     */
+    value: string;
+    case: "certificateProfileId";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.CertTriggerConfig
+ */
+export type CertTriggerConfigJson = {
+  /**
+   * @generated from field: string ca_id = 1;
    */
   caId?: string;
 
   /**
-   * CHECK: at least one of these two must be set
-   *
-   * @generated from field: string certificate_profile_id = 4;
+   * @generated from field: string certificate_profile_id = 2;
    */
   certificateProfileId?: string;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertEventType subscribed_events = 5;
-   */
-  subscribedEvents?: CertEventTypeJson[];
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp created_at = 201;
-   */
-  createdAt?: TimestampJson;
-
-  /**
-   * not settable on creation
-   *
-   * @generated from field: google.protobuf.Timestamp updated_at = 202;
-   */
-  updatedAt?: TimestampJson;
 };
 
-export type CertificatePublisherValid = CertificatePublisher;
+export type CertTriggerConfigValid = CertTriggerConfig;
 
 /**
- * Describes the message otpki.common.core.publisher.v1.CertificatePublisher.
- * Use `create(CertificatePublisherSchema)` to create a new message.
+ * Describes the message otpki.common.core.publisher.v1.CertTriggerConfig.
+ * Use `create(CertTriggerConfigSchema)` to create a new message.
  */
-export const CertificatePublisherSchema: GenMessage<CertificatePublisher, {jsonType: CertificatePublisherJson, validType: CertificatePublisherValid}> = /*@__PURE__*/
-  messageDesc(file_otpki_common_core_publisher_v1_publisher, 2);
+export const CertTriggerConfigSchema: GenMessage<CertTriggerConfig, {jsonType: CertTriggerConfigJson, validType: CertTriggerConfigValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_publisher_v1_publisher, 3);
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PublisherType
+ * @generated from message otpki.common.core.publisher.v1.PublisherTransportDescriptor
  */
-export enum PublisherType {
+export type PublisherTransportDescriptor = Message<"otpki.common.core.publisher.v1.PublisherTransportDescriptor"> & {
   /**
-   * @generated from enum value: PUBLISHER_TYPE_UNSPECIFIED = 0;
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 1;
+   */
+  transport: PublisherTransport;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl: string;
+
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTriggerSpec triggers = 3;
+   */
+  triggers: PublisherTriggerSpec[];
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.PublisherTransportDescriptor
+ */
+export type PublisherTransportDescriptorJson = {
+  /**
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTransport transport = 1;
+   */
+  transport?: PublisherTransportJson;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl?: string;
+
+  /**
+   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherTriggerSpec triggers = 3;
+   */
+  triggers?: PublisherTriggerSpecJson[];
+};
+
+export type PublisherTransportDescriptorValid = PublisherTransportDescriptor;
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.PublisherTransportDescriptor.
+ * Use `create(PublisherTransportDescriptorSchema)` to create a new message.
+ */
+export const PublisherTransportDescriptorSchema: GenMessage<PublisherTransportDescriptor, {jsonType: PublisherTransportDescriptorJson, validType: PublisherTransportDescriptorValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_publisher_v1_publisher, 4);
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.PublisherTriggerSpec
+ */
+export type PublisherTriggerSpec = Message<"otpki.common.core.publisher.v1.PublisherTriggerSpec"> & {
+  /**
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
+   */
+  event: PublisherTriggerEvent;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl: string;
+};
+
+/**
+ * @generated from message otpki.common.core.publisher.v1.PublisherTriggerSpec
+ */
+export type PublisherTriggerSpecJson = {
+  /**
+   * @generated from field: otpki.common.core.publisher.v1.PublisherTriggerEvent event = 1;
+   */
+  event?: PublisherTriggerEventJson;
+
+  /**
+   * @generated from field: string config_type_url = 2;
+   */
+  configTypeUrl?: string;
+};
+
+export type PublisherTriggerSpecValid = PublisherTriggerSpec;
+
+/**
+ * Describes the message otpki.common.core.publisher.v1.PublisherTriggerSpec.
+ * Use `create(PublisherTriggerSpecSchema)` to create a new message.
+ */
+export const PublisherTriggerSpecSchema: GenMessage<PublisherTriggerSpec, {jsonType: PublisherTriggerSpecJson, validType: PublisherTriggerSpecValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_common_core_publisher_v1_publisher, 5);
+
+/**
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTransport
+ */
+export enum PublisherTransport {
+  /**
+   * @generated from enum value: PUBLISHER_TRANSPORT_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: PUBLISHER_TYPE_VS = 1;
+   * @generated from enum value: PUBLISHER_TRANSPORT_VS = 1;
    */
   VS = 1,
 
   /**
-   * @generated from enum value: PUBLISHER_TYPE_HTTP = 2;
+   * @generated from enum value: PUBLISHER_TRANSPORT_HTTP = 2;
    */
   HTTP = 2,
 
   /**
-   * @generated from enum value: PUBLISHER_TYPE_SCP = 3;
+   * @generated from enum value: PUBLISHER_TRANSPORT_SCP = 3;
    */
   SCP = 3,
+
+  /**
+   * @generated from enum value: PUBLISHER_TRANSPORT_SMTP = 4;
+   */
+  SMTP = 4,
 }
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PublisherType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTransport
  */
-export type PublisherTypeJson = "PUBLISHER_TYPE_UNSPECIFIED" | "PUBLISHER_TYPE_VS" | "PUBLISHER_TYPE_HTTP" | "PUBLISHER_TYPE_SCP";
+export type PublisherTransportJson = "PUBLISHER_TRANSPORT_UNSPECIFIED" | "PUBLISHER_TRANSPORT_VS" | "PUBLISHER_TRANSPORT_HTTP" | "PUBLISHER_TRANSPORT_SCP" | "PUBLISHER_TRANSPORT_SMTP";
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.PublisherType.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherTransport.
  */
-export const PublisherTypeSchema: GenEnum<PublisherType, PublisherTypeJson> = /*@__PURE__*/
+export const PublisherTransportSchema: GenEnum<PublisherTransport, PublisherTransportJson> = /*@__PURE__*/
   enumDesc(file_otpki_common_core_publisher_v1_publisher, 0);
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PkiArtifact
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTriggerEvent
  */
-export enum PkiArtifact {
+export enum PublisherTriggerEvent {
   /**
-   * @generated from enum value: PKI_ARTIFACT_UNSPECIFIED = 0;
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: PKI_ARTIFACT_CRL = 1;
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_CERT_ISSUED = 1;
    */
-  CRL = 1,
+  CERT_ISSUED = 1,
 
   /**
-   * @generated from enum value: PKI_ARTIFACT_CERTIFICATE = 2;
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_CERT_REVOKED = 2;
    */
-  CERTIFICATE = 2,
+  CERT_REVOKED = 2,
+
+  /**
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED = 3;
+   */
+  CRL_PUBLISHED = 3,
+
+  /**
+   * @generated from enum value: PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS = 4;
+   */
+  EE_CREDENTIALS = 4,
 }
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.PkiArtifact
+ * @generated from enum otpki.common.core.publisher.v1.PublisherTriggerEvent
  */
-export type PkiArtifactJson = "PKI_ARTIFACT_UNSPECIFIED" | "PKI_ARTIFACT_CRL" | "PKI_ARTIFACT_CERTIFICATE";
+export type PublisherTriggerEventJson = "PUBLISHER_TRIGGER_EVENT_UNSPECIFIED" | "PUBLISHER_TRIGGER_EVENT_CERT_ISSUED" | "PUBLISHER_TRIGGER_EVENT_CERT_REVOKED" | "PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED" | "PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS";
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.PkiArtifact.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherTriggerEvent.
  */
-export const PkiArtifactSchema: GenEnum<PkiArtifact, PkiArtifactJson> = /*@__PURE__*/
+export const PublisherTriggerEventSchema: GenEnum<PublisherTriggerEvent, PublisherTriggerEventJson> = /*@__PURE__*/
   enumDesc(file_otpki_common_core_publisher_v1_publisher, 1);
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.CertEventType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherLookup
  */
-export enum CertEventType {
+export enum PublisherLookup {
   /**
-   * @generated from enum value: CERT_EVENT_TYPE_UNSPECIFIED = 0;
+   * @generated from enum value: PUBLISHER_LOOKUP_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: CERT_EVENT_TYPE_CERT_ISSUE = 1;
+   * @generated from enum value: PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY = 1;
    */
-  CERT_ISSUE = 1,
+  CERTIFICATE_AUTHORITY = 1,
 
   /**
-   * @generated from enum value: CERT_EVENT_TYPE_CERT_REVOKE = 2;
+   * @generated from enum value: PUBLISHER_LOOKUP_CERTIFICATE_PROFILE = 2;
    */
-  CERT_REVOKE = 2,
+  CERTIFICATE_PROFILE = 2,
+
+  /**
+   * @generated from enum value: PUBLISHER_LOOKUP_KEY = 3;
+   */
+  KEY = 3,
+
+  /**
+   * @generated from enum value: PUBLISHER_LOOKUP_END_ENTITY_PROFILE = 4;
+   */
+  END_ENTITY_PROFILE = 4,
+
+  /**
+   * @generated from enum value: PUBLISHER_LOOKUP_END_ENTITY = 5;
+   */
+  END_ENTITY = 5,
 }
 
 /**
- * @generated from enum otpki.common.core.publisher.v1.CertEventType
+ * @generated from enum otpki.common.core.publisher.v1.PublisherLookup
  */
-export type CertEventTypeJson = "CERT_EVENT_TYPE_UNSPECIFIED" | "CERT_EVENT_TYPE_CERT_ISSUE" | "CERT_EVENT_TYPE_CERT_REVOKE";
+export type PublisherLookupJson = "PUBLISHER_LOOKUP_UNSPECIFIED" | "PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY" | "PUBLISHER_LOOKUP_CERTIFICATE_PROFILE" | "PUBLISHER_LOOKUP_KEY" | "PUBLISHER_LOOKUP_END_ENTITY_PROFILE" | "PUBLISHER_LOOKUP_END_ENTITY";
 
 /**
- * Describes the enum otpki.common.core.publisher.v1.CertEventType.
+ * Describes the enum otpki.common.core.publisher.v1.PublisherLookup.
  */
-export const CertEventTypeSchema: GenEnum<CertEventType, CertEventTypeJson> = /*@__PURE__*/
+export const PublisherLookupSchema: GenEnum<PublisherLookup, PublisherLookupJson> = /*@__PURE__*/
   enumDesc(file_otpki_common_core_publisher_v1_publisher, 2);
+
+/**
+ * @generated from extension: optional otpki.common.core.publisher.v1.PublisherLookup lookup = 50010;
+ */
+export const lookup: GenExtension<FieldOptions, PublisherLookup> = /*@__PURE__*/
+  extDesc(file_otpki_common_core_publisher_v1_publisher, 0);
 

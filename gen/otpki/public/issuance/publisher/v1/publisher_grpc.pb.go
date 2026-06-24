@@ -19,39 +19,26 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PublisherService_CreateCrlPublisher_FullMethodName          = "/otpki.public.issuance.publisher.v1.PublisherService/CreateCrlPublisher"
-	PublisherService_DeleteCrlPublisher_FullMethodName          = "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCrlPublisher"
-	PublisherService_GetCrlPublisherList_FullMethodName         = "/otpki.public.issuance.publisher.v1.PublisherService/GetCrlPublisherList"
-	PublisherService_CreateCertificatePublisher_FullMethodName  = "/otpki.public.issuance.publisher.v1.PublisherService/CreateCertificatePublisher"
-	PublisherService_DeleteCertificatePublisher_FullMethodName  = "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCertificatePublisher"
-	PublisherService_GetCertificatePublisherList_FullMethodName = "/otpki.public.issuance.publisher.v1.PublisherService/GetCertificatePublisherList"
-	PublisherService_CreatePublisherConfig_FullMethodName       = "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisherConfig"
-	PublisherService_GetPublisherConfig_FullMethodName          = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfig"
-	PublisherService_UpdatePublisherConfig_FullMethodName       = "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisherConfig"
-	PublisherService_DeletePublisherConfig_FullMethodName       = "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisherConfig"
-	PublisherService_GetPublisherConfigList_FullMethodName      = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfigList"
-	PublisherService_TestPublisherConnection_FullMethodName     = "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherConnection"
-	PublisherService_TestPublisherPublish_FullMethodName        = "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherPublish"
+	PublisherService_CreatePublisher_FullMethodName         = "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisher"
+	PublisherService_GetPublisher_FullMethodName            = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisher"
+	PublisherService_UpdatePublisher_FullMethodName         = "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisher"
+	PublisherService_DeletePublisher_FullMethodName         = "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisher"
+	PublisherService_GetPublisherList_FullMethodName        = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherList"
+	PublisherService_GetPublisherTransports_FullMethodName  = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherTransports"
+	PublisherService_TestPublisherConnection_FullMethodName = "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherConnection"
+	PublisherService_TestPublisherPublish_FullMethodName    = "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherPublish"
 )
 
 // PublisherServiceClient is the client API for PublisherService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PublisherServiceClient interface {
-	// CRL Publishers
-	CreateCrlPublisher(ctx context.Context, in *CreateCrlPublisherRequest, opts ...grpc.CallOption) (*CreateCrlPublisherResponse, error)
-	DeleteCrlPublisher(ctx context.Context, in *DeleteCrlPublisherRequest, opts ...grpc.CallOption) (*DeleteCrlPublisherResponse, error)
-	GetCrlPublisherList(ctx context.Context, in *GetCrlPublisherListRequest, opts ...grpc.CallOption) (*GetCrlPublisherListResponse, error)
-	// Cert Publishers
-	CreateCertificatePublisher(ctx context.Context, in *CreateCertificatePublisherRequest, opts ...grpc.CallOption) (*CreateCertificatePublisherResponse, error)
-	DeleteCertificatePublisher(ctx context.Context, in *DeleteCertificatePublisherRequest, opts ...grpc.CallOption) (*DeleteCertificatePublisherResponse, error)
-	GetCertificatePublisherList(ctx context.Context, in *GetCertificatePublisherListRequest, opts ...grpc.CallOption) (*GetCertificatePublisherListResponse, error)
-	// Publisher Configs
-	CreatePublisherConfig(ctx context.Context, in *CreatePublisherConfigRequest, opts ...grpc.CallOption) (*CreatePublisherConfigResponse, error)
-	GetPublisherConfig(ctx context.Context, in *GetPublisherConfigRequest, opts ...grpc.CallOption) (*GetPublisherConfigResponse, error)
-	UpdatePublisherConfig(ctx context.Context, in *UpdatePublisherConfigRequest, opts ...grpc.CallOption) (*UpdatePublisherConfigResponse, error)
-	DeletePublisherConfig(ctx context.Context, in *DeletePublisherConfigRequest, opts ...grpc.CallOption) (*DeletePublisherConfigResponse, error)
-	GetPublisherConfigList(ctx context.Context, in *GetPublisherConfigListRequest, opts ...grpc.CallOption) (*GetPublisherConfigListResponse, error)
+	CreatePublisher(ctx context.Context, in *CreatePublisherRequest, opts ...grpc.CallOption) (*CreatePublisherResponse, error)
+	GetPublisher(ctx context.Context, in *GetPublisherRequest, opts ...grpc.CallOption) (*GetPublisherResponse, error)
+	UpdatePublisher(ctx context.Context, in *UpdatePublisherRequest, opts ...grpc.CallOption) (*UpdatePublisherResponse, error)
+	DeletePublisher(ctx context.Context, in *DeletePublisherRequest, opts ...grpc.CallOption) (*DeletePublisherResponse, error)
+	GetPublisherList(ctx context.Context, in *GetPublisherListRequest, opts ...grpc.CallOption) (*GetPublisherListResponse, error)
+	GetPublisherTransports(ctx context.Context, in *GetPublisherTransportsRequest, opts ...grpc.CallOption) (*GetPublisherTransportsResponse, error)
 	TestPublisherConnection(ctx context.Context, in *TestPublisherConnectionRequest, opts ...grpc.CallOption) (*TestPublisherConnectionResponse, error)
 	TestPublisherPublish(ctx context.Context, in *TestPublisherPublishRequest, opts ...grpc.CallOption) (*TestPublisherPublishResponse, error)
 }
@@ -64,110 +51,60 @@ func NewPublisherServiceClient(cc grpc.ClientConnInterface) PublisherServiceClie
 	return &publisherServiceClient{cc}
 }
 
-func (c *publisherServiceClient) CreateCrlPublisher(ctx context.Context, in *CreateCrlPublisherRequest, opts ...grpc.CallOption) (*CreateCrlPublisherResponse, error) {
+func (c *publisherServiceClient) CreatePublisher(ctx context.Context, in *CreatePublisherRequest, opts ...grpc.CallOption) (*CreatePublisherResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateCrlPublisherResponse)
-	err := c.cc.Invoke(ctx, PublisherService_CreateCrlPublisher_FullMethodName, in, out, cOpts...)
+	out := new(CreatePublisherResponse)
+	err := c.cc.Invoke(ctx, PublisherService_CreatePublisher_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *publisherServiceClient) DeleteCrlPublisher(ctx context.Context, in *DeleteCrlPublisherRequest, opts ...grpc.CallOption) (*DeleteCrlPublisherResponse, error) {
+func (c *publisherServiceClient) GetPublisher(ctx context.Context, in *GetPublisherRequest, opts ...grpc.CallOption) (*GetPublisherResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteCrlPublisherResponse)
-	err := c.cc.Invoke(ctx, PublisherService_DeleteCrlPublisher_FullMethodName, in, out, cOpts...)
+	out := new(GetPublisherResponse)
+	err := c.cc.Invoke(ctx, PublisherService_GetPublisher_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *publisherServiceClient) GetCrlPublisherList(ctx context.Context, in *GetCrlPublisherListRequest, opts ...grpc.CallOption) (*GetCrlPublisherListResponse, error) {
+func (c *publisherServiceClient) UpdatePublisher(ctx context.Context, in *UpdatePublisherRequest, opts ...grpc.CallOption) (*UpdatePublisherResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCrlPublisherListResponse)
-	err := c.cc.Invoke(ctx, PublisherService_GetCrlPublisherList_FullMethodName, in, out, cOpts...)
+	out := new(UpdatePublisherResponse)
+	err := c.cc.Invoke(ctx, PublisherService_UpdatePublisher_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *publisherServiceClient) CreateCertificatePublisher(ctx context.Context, in *CreateCertificatePublisherRequest, opts ...grpc.CallOption) (*CreateCertificatePublisherResponse, error) {
+func (c *publisherServiceClient) DeletePublisher(ctx context.Context, in *DeletePublisherRequest, opts ...grpc.CallOption) (*DeletePublisherResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateCertificatePublisherResponse)
-	err := c.cc.Invoke(ctx, PublisherService_CreateCertificatePublisher_FullMethodName, in, out, cOpts...)
+	out := new(DeletePublisherResponse)
+	err := c.cc.Invoke(ctx, PublisherService_DeletePublisher_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *publisherServiceClient) DeleteCertificatePublisher(ctx context.Context, in *DeleteCertificatePublisherRequest, opts ...grpc.CallOption) (*DeleteCertificatePublisherResponse, error) {
+func (c *publisherServiceClient) GetPublisherList(ctx context.Context, in *GetPublisherListRequest, opts ...grpc.CallOption) (*GetPublisherListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteCertificatePublisherResponse)
-	err := c.cc.Invoke(ctx, PublisherService_DeleteCertificatePublisher_FullMethodName, in, out, cOpts...)
+	out := new(GetPublisherListResponse)
+	err := c.cc.Invoke(ctx, PublisherService_GetPublisherList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *publisherServiceClient) GetCertificatePublisherList(ctx context.Context, in *GetCertificatePublisherListRequest, opts ...grpc.CallOption) (*GetCertificatePublisherListResponse, error) {
+func (c *publisherServiceClient) GetPublisherTransports(ctx context.Context, in *GetPublisherTransportsRequest, opts ...grpc.CallOption) (*GetPublisherTransportsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCertificatePublisherListResponse)
-	err := c.cc.Invoke(ctx, PublisherService_GetCertificatePublisherList_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publisherServiceClient) CreatePublisherConfig(ctx context.Context, in *CreatePublisherConfigRequest, opts ...grpc.CallOption) (*CreatePublisherConfigResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreatePublisherConfigResponse)
-	err := c.cc.Invoke(ctx, PublisherService_CreatePublisherConfig_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publisherServiceClient) GetPublisherConfig(ctx context.Context, in *GetPublisherConfigRequest, opts ...grpc.CallOption) (*GetPublisherConfigResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPublisherConfigResponse)
-	err := c.cc.Invoke(ctx, PublisherService_GetPublisherConfig_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publisherServiceClient) UpdatePublisherConfig(ctx context.Context, in *UpdatePublisherConfigRequest, opts ...grpc.CallOption) (*UpdatePublisherConfigResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdatePublisherConfigResponse)
-	err := c.cc.Invoke(ctx, PublisherService_UpdatePublisherConfig_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publisherServiceClient) DeletePublisherConfig(ctx context.Context, in *DeletePublisherConfigRequest, opts ...grpc.CallOption) (*DeletePublisherConfigResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeletePublisherConfigResponse)
-	err := c.cc.Invoke(ctx, PublisherService_DeletePublisherConfig_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *publisherServiceClient) GetPublisherConfigList(ctx context.Context, in *GetPublisherConfigListRequest, opts ...grpc.CallOption) (*GetPublisherConfigListResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPublisherConfigListResponse)
-	err := c.cc.Invoke(ctx, PublisherService_GetPublisherConfigList_FullMethodName, in, out, cOpts...)
+	out := new(GetPublisherTransportsResponse)
+	err := c.cc.Invoke(ctx, PublisherService_GetPublisherTransports_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -198,20 +135,12 @@ func (c *publisherServiceClient) TestPublisherPublish(ctx context.Context, in *T
 // All implementations must embed UnimplementedPublisherServiceServer
 // for forward compatibility.
 type PublisherServiceServer interface {
-	// CRL Publishers
-	CreateCrlPublisher(context.Context, *CreateCrlPublisherRequest) (*CreateCrlPublisherResponse, error)
-	DeleteCrlPublisher(context.Context, *DeleteCrlPublisherRequest) (*DeleteCrlPublisherResponse, error)
-	GetCrlPublisherList(context.Context, *GetCrlPublisherListRequest) (*GetCrlPublisherListResponse, error)
-	// Cert Publishers
-	CreateCertificatePublisher(context.Context, *CreateCertificatePublisherRequest) (*CreateCertificatePublisherResponse, error)
-	DeleteCertificatePublisher(context.Context, *DeleteCertificatePublisherRequest) (*DeleteCertificatePublisherResponse, error)
-	GetCertificatePublisherList(context.Context, *GetCertificatePublisherListRequest) (*GetCertificatePublisherListResponse, error)
-	// Publisher Configs
-	CreatePublisherConfig(context.Context, *CreatePublisherConfigRequest) (*CreatePublisherConfigResponse, error)
-	GetPublisherConfig(context.Context, *GetPublisherConfigRequest) (*GetPublisherConfigResponse, error)
-	UpdatePublisherConfig(context.Context, *UpdatePublisherConfigRequest) (*UpdatePublisherConfigResponse, error)
-	DeletePublisherConfig(context.Context, *DeletePublisherConfigRequest) (*DeletePublisherConfigResponse, error)
-	GetPublisherConfigList(context.Context, *GetPublisherConfigListRequest) (*GetPublisherConfigListResponse, error)
+	CreatePublisher(context.Context, *CreatePublisherRequest) (*CreatePublisherResponse, error)
+	GetPublisher(context.Context, *GetPublisherRequest) (*GetPublisherResponse, error)
+	UpdatePublisher(context.Context, *UpdatePublisherRequest) (*UpdatePublisherResponse, error)
+	DeletePublisher(context.Context, *DeletePublisherRequest) (*DeletePublisherResponse, error)
+	GetPublisherList(context.Context, *GetPublisherListRequest) (*GetPublisherListResponse, error)
+	GetPublisherTransports(context.Context, *GetPublisherTransportsRequest) (*GetPublisherTransportsResponse, error)
 	TestPublisherConnection(context.Context, *TestPublisherConnectionRequest) (*TestPublisherConnectionResponse, error)
 	TestPublisherPublish(context.Context, *TestPublisherPublishRequest) (*TestPublisherPublishResponse, error)
 	mustEmbedUnimplementedPublisherServiceServer()
@@ -224,38 +153,23 @@ type PublisherServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPublisherServiceServer struct{}
 
-func (UnimplementedPublisherServiceServer) CreateCrlPublisher(context.Context, *CreateCrlPublisherRequest) (*CreateCrlPublisherResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateCrlPublisher not implemented")
+func (UnimplementedPublisherServiceServer) CreatePublisher(context.Context, *CreatePublisherRequest) (*CreatePublisherResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreatePublisher not implemented")
 }
-func (UnimplementedPublisherServiceServer) DeleteCrlPublisher(context.Context, *DeleteCrlPublisherRequest) (*DeleteCrlPublisherResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method DeleteCrlPublisher not implemented")
+func (UnimplementedPublisherServiceServer) GetPublisher(context.Context, *GetPublisherRequest) (*GetPublisherResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPublisher not implemented")
 }
-func (UnimplementedPublisherServiceServer) GetCrlPublisherList(context.Context, *GetCrlPublisherListRequest) (*GetCrlPublisherListResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetCrlPublisherList not implemented")
+func (UnimplementedPublisherServiceServer) UpdatePublisher(context.Context, *UpdatePublisherRequest) (*UpdatePublisherResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdatePublisher not implemented")
 }
-func (UnimplementedPublisherServiceServer) CreateCertificatePublisher(context.Context, *CreateCertificatePublisherRequest) (*CreateCertificatePublisherResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateCertificatePublisher not implemented")
+func (UnimplementedPublisherServiceServer) DeletePublisher(context.Context, *DeletePublisherRequest) (*DeletePublisherResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeletePublisher not implemented")
 }
-func (UnimplementedPublisherServiceServer) DeleteCertificatePublisher(context.Context, *DeleteCertificatePublisherRequest) (*DeleteCertificatePublisherResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method DeleteCertificatePublisher not implemented")
+func (UnimplementedPublisherServiceServer) GetPublisherList(context.Context, *GetPublisherListRequest) (*GetPublisherListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPublisherList not implemented")
 }
-func (UnimplementedPublisherServiceServer) GetCertificatePublisherList(context.Context, *GetCertificatePublisherListRequest) (*GetCertificatePublisherListResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetCertificatePublisherList not implemented")
-}
-func (UnimplementedPublisherServiceServer) CreatePublisherConfig(context.Context, *CreatePublisherConfigRequest) (*CreatePublisherConfigResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreatePublisherConfig not implemented")
-}
-func (UnimplementedPublisherServiceServer) GetPublisherConfig(context.Context, *GetPublisherConfigRequest) (*GetPublisherConfigResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetPublisherConfig not implemented")
-}
-func (UnimplementedPublisherServiceServer) UpdatePublisherConfig(context.Context, *UpdatePublisherConfigRequest) (*UpdatePublisherConfigResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method UpdatePublisherConfig not implemented")
-}
-func (UnimplementedPublisherServiceServer) DeletePublisherConfig(context.Context, *DeletePublisherConfigRequest) (*DeletePublisherConfigResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method DeletePublisherConfig not implemented")
-}
-func (UnimplementedPublisherServiceServer) GetPublisherConfigList(context.Context, *GetPublisherConfigListRequest) (*GetPublisherConfigListResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetPublisherConfigList not implemented")
+func (UnimplementedPublisherServiceServer) GetPublisherTransports(context.Context, *GetPublisherTransportsRequest) (*GetPublisherTransportsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPublisherTransports not implemented")
 }
 func (UnimplementedPublisherServiceServer) TestPublisherConnection(context.Context, *TestPublisherConnectionRequest) (*TestPublisherConnectionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method TestPublisherConnection not implemented")
@@ -284,200 +198,110 @@ func RegisterPublisherServiceServer(s grpc.ServiceRegistrar, srv PublisherServic
 	s.RegisterService(&PublisherService_ServiceDesc, srv)
 }
 
-func _PublisherService_CreateCrlPublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCrlPublisherRequest)
+func _PublisherService_CreatePublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePublisherRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PublisherServiceServer).CreateCrlPublisher(ctx, in)
+		return srv.(PublisherServiceServer).CreatePublisher(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PublisherService_CreateCrlPublisher_FullMethodName,
+		FullMethod: PublisherService_CreatePublisher_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).CreateCrlPublisher(ctx, req.(*CreateCrlPublisherRequest))
+		return srv.(PublisherServiceServer).CreatePublisher(ctx, req.(*CreatePublisherRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PublisherService_DeleteCrlPublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCrlPublisherRequest)
+func _PublisherService_GetPublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPublisherRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PublisherServiceServer).DeleteCrlPublisher(ctx, in)
+		return srv.(PublisherServiceServer).GetPublisher(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PublisherService_DeleteCrlPublisher_FullMethodName,
+		FullMethod: PublisherService_GetPublisher_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).DeleteCrlPublisher(ctx, req.(*DeleteCrlPublisherRequest))
+		return srv.(PublisherServiceServer).GetPublisher(ctx, req.(*GetPublisherRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PublisherService_GetCrlPublisherList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCrlPublisherListRequest)
+func _PublisherService_UpdatePublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePublisherRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PublisherServiceServer).GetCrlPublisherList(ctx, in)
+		return srv.(PublisherServiceServer).UpdatePublisher(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PublisherService_GetCrlPublisherList_FullMethodName,
+		FullMethod: PublisherService_UpdatePublisher_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).GetCrlPublisherList(ctx, req.(*GetCrlPublisherListRequest))
+		return srv.(PublisherServiceServer).UpdatePublisher(ctx, req.(*UpdatePublisherRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PublisherService_CreateCertificatePublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCertificatePublisherRequest)
+func _PublisherService_DeletePublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeletePublisherRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PublisherServiceServer).CreateCertificatePublisher(ctx, in)
+		return srv.(PublisherServiceServer).DeletePublisher(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PublisherService_CreateCertificatePublisher_FullMethodName,
+		FullMethod: PublisherService_DeletePublisher_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).CreateCertificatePublisher(ctx, req.(*CreateCertificatePublisherRequest))
+		return srv.(PublisherServiceServer).DeletePublisher(ctx, req.(*DeletePublisherRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PublisherService_DeleteCertificatePublisher_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteCertificatePublisherRequest)
+func _PublisherService_GetPublisherList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPublisherListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PublisherServiceServer).DeleteCertificatePublisher(ctx, in)
+		return srv.(PublisherServiceServer).GetPublisherList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PublisherService_DeleteCertificatePublisher_FullMethodName,
+		FullMethod: PublisherService_GetPublisherList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).DeleteCertificatePublisher(ctx, req.(*DeleteCertificatePublisherRequest))
+		return srv.(PublisherServiceServer).GetPublisherList(ctx, req.(*GetPublisherListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PublisherService_GetCertificatePublisherList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCertificatePublisherListRequest)
+func _PublisherService_GetPublisherTransports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPublisherTransportsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PublisherServiceServer).GetCertificatePublisherList(ctx, in)
+		return srv.(PublisherServiceServer).GetPublisherTransports(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PublisherService_GetCertificatePublisherList_FullMethodName,
+		FullMethod: PublisherService_GetPublisherTransports_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).GetCertificatePublisherList(ctx, req.(*GetCertificatePublisherListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublisherService_CreatePublisherConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePublisherConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublisherServiceServer).CreatePublisherConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublisherService_CreatePublisherConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).CreatePublisherConfig(ctx, req.(*CreatePublisherConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublisherService_GetPublisherConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPublisherConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublisherServiceServer).GetPublisherConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublisherService_GetPublisherConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).GetPublisherConfig(ctx, req.(*GetPublisherConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublisherService_UpdatePublisherConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePublisherConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublisherServiceServer).UpdatePublisherConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublisherService_UpdatePublisherConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).UpdatePublisherConfig(ctx, req.(*UpdatePublisherConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublisherService_DeletePublisherConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePublisherConfigRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublisherServiceServer).DeletePublisherConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublisherService_DeletePublisherConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).DeletePublisherConfig(ctx, req.(*DeletePublisherConfigRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PublisherService_GetPublisherConfigList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPublisherConfigListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PublisherServiceServer).GetPublisherConfigList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PublisherService_GetPublisherConfigList_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PublisherServiceServer).GetPublisherConfigList(ctx, req.(*GetPublisherConfigListRequest))
+		return srv.(PublisherServiceServer).GetPublisherTransports(ctx, req.(*GetPublisherTransportsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -526,48 +350,28 @@ var PublisherService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PublisherServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateCrlPublisher",
-			Handler:    _PublisherService_CreateCrlPublisher_Handler,
+			MethodName: "CreatePublisher",
+			Handler:    _PublisherService_CreatePublisher_Handler,
 		},
 		{
-			MethodName: "DeleteCrlPublisher",
-			Handler:    _PublisherService_DeleteCrlPublisher_Handler,
+			MethodName: "GetPublisher",
+			Handler:    _PublisherService_GetPublisher_Handler,
 		},
 		{
-			MethodName: "GetCrlPublisherList",
-			Handler:    _PublisherService_GetCrlPublisherList_Handler,
+			MethodName: "UpdatePublisher",
+			Handler:    _PublisherService_UpdatePublisher_Handler,
 		},
 		{
-			MethodName: "CreateCertificatePublisher",
-			Handler:    _PublisherService_CreateCertificatePublisher_Handler,
+			MethodName: "DeletePublisher",
+			Handler:    _PublisherService_DeletePublisher_Handler,
 		},
 		{
-			MethodName: "DeleteCertificatePublisher",
-			Handler:    _PublisherService_DeleteCertificatePublisher_Handler,
+			MethodName: "GetPublisherList",
+			Handler:    _PublisherService_GetPublisherList_Handler,
 		},
 		{
-			MethodName: "GetCertificatePublisherList",
-			Handler:    _PublisherService_GetCertificatePublisherList_Handler,
-		},
-		{
-			MethodName: "CreatePublisherConfig",
-			Handler:    _PublisherService_CreatePublisherConfig_Handler,
-		},
-		{
-			MethodName: "GetPublisherConfig",
-			Handler:    _PublisherService_GetPublisherConfig_Handler,
-		},
-		{
-			MethodName: "UpdatePublisherConfig",
-			Handler:    _PublisherService_UpdatePublisherConfig_Handler,
-		},
-		{
-			MethodName: "DeletePublisherConfig",
-			Handler:    _PublisherService_DeletePublisherConfig_Handler,
-		},
-		{
-			MethodName: "GetPublisherConfigList",
-			Handler:    _PublisherService_GetPublisherConfigList_Handler,
+			MethodName: "GetPublisherTransports",
+			Handler:    _PublisherService_GetPublisherTransports_Handler,
 		},
 		{
 			MethodName: "TestPublisherConnection",

@@ -13,12 +13,16 @@ export const file_otpki_public_plugin_publisher_vs_v1_vs: GenFile = /*@__PURE__*
   fileDesc("CixvdHBraS9wdWJsaWMvcGx1Z2luL3B1Ymxpc2hlci92cy92MS92cy5wcm90bxIjb3Rwa2kucHVibGljLnBsdWdpbi5wdWJsaXNoZXIudnMudjEiCgoIVnNDb25maWdC5wEKJ2NvbS5vdHBraS5wdWJsaWMucGx1Z2luLnB1Ymxpc2hlci52cy52MUIHVnNQcm90b1ABogIFT1BQUFaqAiNPdHBraS5QdWJsaWMuUGx1Z2luLlB1Ymxpc2hlci5Wcy5WMcoCJE90cGtpXFB1YmxpY19cUGx1Z2luXFB1Ymxpc2hlclxWc1xWMeICME90cGtpXFB1YmxpY19cUGx1Z2luXFB1Ymxpc2hlclxWc1xWMVxHUEJNZXRhZGF0YeoCKE90cGtpOjpQdWJsaWM6OlBsdWdpbjo6UHVibGlzaGVyOjpWczo6VjFiBnByb3RvMw");
 
 /**
+ * VS publisher only supports CRL publishing
+ *
  * @generated from message otpki.public.plugin.publisher.vs.v1.VsConfig
  */
 export type VsConfig = Message<"otpki.public.plugin.publisher.vs.v1.VsConfig"> & {
 };
 
 /**
+ * VS publisher only supports CRL publishing
+ *
  * @generated from message otpki.public.plugin.publisher.vs.v1.VsConfig
  */
 export type VsConfigJson = {

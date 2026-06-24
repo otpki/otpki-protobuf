@@ -10,32 +10,34 @@ import (
 	time "time"
 )
 
-// PublisherConfigNative is the native typing representation of PublisherConfig
-type PublisherConfigNative struct {
-	Id            uuid.UUID
-	Name          string
-	Description   string
-	PublisherType PublisherType
-	ConfigData    *anypb.Any
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
+// PublisherNative is the native typing representation of Publisher
+type PublisherNative struct {
+	Id          uuid.UUID
+	Name        string
+	Description string
+	Transport   PublisherTransport
+	Config      *anypb.Any
+	Triggers    []*PublisherTrigger
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }
 
-// ToProto converts a PublisherConfigNative to a PublisherConfig
-func (n *PublisherConfigNative) ToProto() (*PublisherConfig, error) {
+// ToProto converts a PublisherNative to a Publisher
+func (n *PublisherNative) ToProto() (*Publisher, error) {
 	if n == nil {
 		return nil, nil
 	}
 	var err error
-	protoStruct := &PublisherConfig{}
+	protoStruct := &Publisher{}
 	protoStruct.Id, err = convertUUIDToProto(n.Id)
 	if err != nil {
 		return nil, fmt.Errorf("error converting Id: %w", err)
 	}
 	protoStruct.Name = n.Name
 	protoStruct.Description = n.Description
-	protoStruct.PublisherType = n.PublisherType
-	protoStruct.ConfigData = n.ConfigData
+	protoStruct.Transport = n.Transport
+	protoStruct.Config = n.Config
+	protoStruct.Triggers = n.Triggers
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -47,21 +49,22 @@ func (n *PublisherConfigNative) ToProto() (*PublisherConfig, error) {
 	return protoStruct, nil
 }
 
-// FromProto converts a PublisherConfig to a PublisherConfigNative
-func (p *PublisherConfig) ToNative() (*PublisherConfigNative, error) {
+// FromProto converts a Publisher to a PublisherNative
+func (p *Publisher) ToNative() (*PublisherNative, error) {
 	if p == nil {
 		return nil, nil
 	}
 	var err error
-	nativeStruct := &PublisherConfigNative{}
+	nativeStruct := &PublisherNative{}
 	nativeStruct.Id, err = convertProtoToUUID(p.Id)
 	if err != nil {
 		return nil, fmt.Errorf("error converting IdNative: %w", err)
 	}
 	nativeStruct.Name = p.Name
 	nativeStruct.Description = p.Description
-	nativeStruct.PublisherType = p.PublisherType
-	nativeStruct.ConfigData = p.ConfigData
+	nativeStruct.Transport = p.Transport
+	nativeStruct.Config = p.Config
+	nativeStruct.Triggers = p.Triggers
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)
@@ -74,18 +77,7 @@ func (p *PublisherConfig) ToNative() (*PublisherConfigNative, error) {
 }
 
 // GetIdUUID returns Id as a UUID when possible.
-func (x *PublisherConfig) GetIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.Id)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetIdUUID returns Id as a UUID when possible.
-func (x *CrlPublisher) GetIdUUID() uuid.UUID {
+func (x *Publisher) GetIdUUID() uuid.UUID {
 	if x != nil {
 		value, err := convertProtoToUUID(x.Id)
 		if err == nil {
@@ -96,64 +88,9 @@ func (x *CrlPublisher) GetIdUUID() uuid.UUID {
 }
 
 // GetCaIdUUID returns CaId as a UUID when possible.
-func (x *CrlPublisher) GetCaIdUUID() uuid.UUID {
+func (x *CrlTriggerConfig) GetCaIdUUID() uuid.UUID {
 	if x != nil {
 		value, err := convertProtoToUUID(x.CaId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetPublisherConfigIdUUID returns PublisherConfigId as a UUID when possible.
-func (x *CrlPublisher) GetPublisherConfigIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.PublisherConfigId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetIdUUID returns Id as a UUID when possible.
-func (x *CertificatePublisher) GetIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.Id)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetPublisherConfigIdUUID returns PublisherConfigId as a UUID when possible.
-func (x *CertificatePublisher) GetPublisherConfigIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.PublisherConfigId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetCaIdUUID returns CaId as a UUID when possible.
-func (x *CertificatePublisher) GetCaIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.CaId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.UUID{}
-}
-
-// GetCertificateProfileIdUUID returns CertificateProfileId as a UUID when possible.
-func (x *CertificatePublisher) GetCertificateProfileIdUUID() uuid.UUID {
-	if x != nil {
-		value, err := convertProtoToUUID(x.CertificateProfileId)
 		if err == nil {
 			return value
 		}

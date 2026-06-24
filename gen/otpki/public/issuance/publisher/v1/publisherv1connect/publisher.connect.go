@@ -33,39 +33,24 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// PublisherServiceCreateCrlPublisherProcedure is the fully-qualified name of the PublisherService's
-	// CreateCrlPublisher RPC.
-	PublisherServiceCreateCrlPublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/CreateCrlPublisher"
-	// PublisherServiceDeleteCrlPublisherProcedure is the fully-qualified name of the PublisherService's
-	// DeleteCrlPublisher RPC.
-	PublisherServiceDeleteCrlPublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCrlPublisher"
-	// PublisherServiceGetCrlPublisherListProcedure is the fully-qualified name of the
-	// PublisherService's GetCrlPublisherList RPC.
-	PublisherServiceGetCrlPublisherListProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/GetCrlPublisherList"
-	// PublisherServiceCreateCertificatePublisherProcedure is the fully-qualified name of the
-	// PublisherService's CreateCertificatePublisher RPC.
-	PublisherServiceCreateCertificatePublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/CreateCertificatePublisher"
-	// PublisherServiceDeleteCertificatePublisherProcedure is the fully-qualified name of the
-	// PublisherService's DeleteCertificatePublisher RPC.
-	PublisherServiceDeleteCertificatePublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/DeleteCertificatePublisher"
-	// PublisherServiceGetCertificatePublisherListProcedure is the fully-qualified name of the
-	// PublisherService's GetCertificatePublisherList RPC.
-	PublisherServiceGetCertificatePublisherListProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/GetCertificatePublisherList"
-	// PublisherServiceCreatePublisherConfigProcedure is the fully-qualified name of the
-	// PublisherService's CreatePublisherConfig RPC.
-	PublisherServiceCreatePublisherConfigProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisherConfig"
-	// PublisherServiceGetPublisherConfigProcedure is the fully-qualified name of the PublisherService's
-	// GetPublisherConfig RPC.
-	PublisherServiceGetPublisherConfigProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfig"
-	// PublisherServiceUpdatePublisherConfigProcedure is the fully-qualified name of the
-	// PublisherService's UpdatePublisherConfig RPC.
-	PublisherServiceUpdatePublisherConfigProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisherConfig"
-	// PublisherServiceDeletePublisherConfigProcedure is the fully-qualified name of the
-	// PublisherService's DeletePublisherConfig RPC.
-	PublisherServiceDeletePublisherConfigProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisherConfig"
-	// PublisherServiceGetPublisherConfigListProcedure is the fully-qualified name of the
-	// PublisherService's GetPublisherConfigList RPC.
-	PublisherServiceGetPublisherConfigListProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherConfigList"
+	// PublisherServiceCreatePublisherProcedure is the fully-qualified name of the PublisherService's
+	// CreatePublisher RPC.
+	PublisherServiceCreatePublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/CreatePublisher"
+	// PublisherServiceGetPublisherProcedure is the fully-qualified name of the PublisherService's
+	// GetPublisher RPC.
+	PublisherServiceGetPublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisher"
+	// PublisherServiceUpdatePublisherProcedure is the fully-qualified name of the PublisherService's
+	// UpdatePublisher RPC.
+	PublisherServiceUpdatePublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/UpdatePublisher"
+	// PublisherServiceDeletePublisherProcedure is the fully-qualified name of the PublisherService's
+	// DeletePublisher RPC.
+	PublisherServiceDeletePublisherProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/DeletePublisher"
+	// PublisherServiceGetPublisherListProcedure is the fully-qualified name of the PublisherService's
+	// GetPublisherList RPC.
+	PublisherServiceGetPublisherListProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherList"
+	// PublisherServiceGetPublisherTransportsProcedure is the fully-qualified name of the
+	// PublisherService's GetPublisherTransports RPC.
+	PublisherServiceGetPublisherTransportsProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/GetPublisherTransports"
 	// PublisherServiceTestPublisherConnectionProcedure is the fully-qualified name of the
 	// PublisherService's TestPublisherConnection RPC.
 	PublisherServiceTestPublisherConnectionProcedure = "/otpki.public.issuance.publisher.v1.PublisherService/TestPublisherConnection"
@@ -77,20 +62,12 @@ const (
 // PublisherServiceClient is a client for the otpki.public.issuance.publisher.v1.PublisherService
 // service.
 type PublisherServiceClient interface {
-	// CRL Publishers
-	CreateCrlPublisher(context.Context, *connect.Request[v1.CreateCrlPublisherRequest]) (*connect.Response[v1.CreateCrlPublisherResponse], error)
-	DeleteCrlPublisher(context.Context, *connect.Request[v1.DeleteCrlPublisherRequest]) (*connect.Response[v1.DeleteCrlPublisherResponse], error)
-	GetCrlPublisherList(context.Context, *connect.Request[v1.GetCrlPublisherListRequest]) (*connect.Response[v1.GetCrlPublisherListResponse], error)
-	// Cert Publishers
-	CreateCertificatePublisher(context.Context, *connect.Request[v1.CreateCertificatePublisherRequest]) (*connect.Response[v1.CreateCertificatePublisherResponse], error)
-	DeleteCertificatePublisher(context.Context, *connect.Request[v1.DeleteCertificatePublisherRequest]) (*connect.Response[v1.DeleteCertificatePublisherResponse], error)
-	GetCertificatePublisherList(context.Context, *connect.Request[v1.GetCertificatePublisherListRequest]) (*connect.Response[v1.GetCertificatePublisherListResponse], error)
-	// Publisher Configs
-	CreatePublisherConfig(context.Context, *connect.Request[v1.CreatePublisherConfigRequest]) (*connect.Response[v1.CreatePublisherConfigResponse], error)
-	GetPublisherConfig(context.Context, *connect.Request[v1.GetPublisherConfigRequest]) (*connect.Response[v1.GetPublisherConfigResponse], error)
-	UpdatePublisherConfig(context.Context, *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error)
-	DeletePublisherConfig(context.Context, *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error)
-	GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error)
+	CreatePublisher(context.Context, *connect.Request[v1.CreatePublisherRequest]) (*connect.Response[v1.CreatePublisherResponse], error)
+	GetPublisher(context.Context, *connect.Request[v1.GetPublisherRequest]) (*connect.Response[v1.GetPublisherResponse], error)
+	UpdatePublisher(context.Context, *connect.Request[v1.UpdatePublisherRequest]) (*connect.Response[v1.UpdatePublisherResponse], error)
+	DeletePublisher(context.Context, *connect.Request[v1.DeletePublisherRequest]) (*connect.Response[v1.DeletePublisherResponse], error)
+	GetPublisherList(context.Context, *connect.Request[v1.GetPublisherListRequest]) (*connect.Response[v1.GetPublisherListResponse], error)
+	GetPublisherTransports(context.Context, *connect.Request[v1.GetPublisherTransportsRequest]) (*connect.Response[v1.GetPublisherTransportsResponse], error)
 	TestPublisherConnection(context.Context, *connect.Request[v1.TestPublisherConnectionRequest]) (*connect.Response[v1.TestPublisherConnectionResponse], error)
 	TestPublisherPublish(context.Context, *connect.Request[v1.TestPublisherPublishRequest]) (*connect.Response[v1.TestPublisherPublishResponse], error)
 }
@@ -107,74 +84,43 @@ func NewPublisherServiceClient(httpClient connect.HTTPClient, baseURL string, op
 	baseURL = strings.TrimRight(baseURL, "/")
 	publisherServiceMethods := v1.File_otpki_public_issuance_publisher_v1_publisher_proto.Services().ByName("PublisherService").Methods()
 	return &publisherServiceClient{
-		createCrlPublisher: connect.NewClient[v1.CreateCrlPublisherRequest, v1.CreateCrlPublisherResponse](
+		createPublisher: connect.NewClient[v1.CreatePublisherRequest, v1.CreatePublisherResponse](
 			httpClient,
-			baseURL+PublisherServiceCreateCrlPublisherProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("CreateCrlPublisher")),
+			baseURL+PublisherServiceCreatePublisherProcedure,
+			connect.WithSchema(publisherServiceMethods.ByName("CreatePublisher")),
 			connect.WithClientOptions(opts...),
 		),
-		deleteCrlPublisher: connect.NewClient[v1.DeleteCrlPublisherRequest, v1.DeleteCrlPublisherResponse](
+		getPublisher: connect.NewClient[v1.GetPublisherRequest, v1.GetPublisherResponse](
 			httpClient,
-			baseURL+PublisherServiceDeleteCrlPublisherProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("DeleteCrlPublisher")),
-			connect.WithClientOptions(opts...),
-		),
-		getCrlPublisherList: connect.NewClient[v1.GetCrlPublisherListRequest, v1.GetCrlPublisherListResponse](
-			httpClient,
-			baseURL+PublisherServiceGetCrlPublisherListProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("GetCrlPublisherList")),
+			baseURL+PublisherServiceGetPublisherProcedure,
+			connect.WithSchema(publisherServiceMethods.ByName("GetPublisher")),
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
-		createCertificatePublisher: connect.NewClient[v1.CreateCertificatePublisherRequest, v1.CreateCertificatePublisherResponse](
+		updatePublisher: connect.NewClient[v1.UpdatePublisherRequest, v1.UpdatePublisherResponse](
 			httpClient,
-			baseURL+PublisherServiceCreateCertificatePublisherProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("CreateCertificatePublisher")),
-			connect.WithClientOptions(opts...),
-		),
-		deleteCertificatePublisher: connect.NewClient[v1.DeleteCertificatePublisherRequest, v1.DeleteCertificatePublisherResponse](
-			httpClient,
-			baseURL+PublisherServiceDeleteCertificatePublisherProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("DeleteCertificatePublisher")),
-			connect.WithClientOptions(opts...),
-		),
-		getCertificatePublisherList: connect.NewClient[v1.GetCertificatePublisherListRequest, v1.GetCertificatePublisherListResponse](
-			httpClient,
-			baseURL+PublisherServiceGetCertificatePublisherListProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("GetCertificatePublisherList")),
+			baseURL+PublisherServiceUpdatePublisherProcedure,
+			connect.WithSchema(publisherServiceMethods.ByName("UpdatePublisher")),
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
-		createPublisherConfig: connect.NewClient[v1.CreatePublisherConfigRequest, v1.CreatePublisherConfigResponse](
+		deletePublisher: connect.NewClient[v1.DeletePublisherRequest, v1.DeletePublisherResponse](
 			httpClient,
-			baseURL+PublisherServiceCreatePublisherConfigProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("CreatePublisherConfig")),
+			baseURL+PublisherServiceDeletePublisherProcedure,
+			connect.WithSchema(publisherServiceMethods.ByName("DeletePublisher")),
 			connect.WithClientOptions(opts...),
 		),
-		getPublisherConfig: connect.NewClient[v1.GetPublisherConfigRequest, v1.GetPublisherConfigResponse](
+		getPublisherList: connect.NewClient[v1.GetPublisherListRequest, v1.GetPublisherListResponse](
 			httpClient,
-			baseURL+PublisherServiceGetPublisherConfigProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("GetPublisherConfig")),
+			baseURL+PublisherServiceGetPublisherListProcedure,
+			connect.WithSchema(publisherServiceMethods.ByName("GetPublisherList")),
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
-		updatePublisherConfig: connect.NewClient[v1.UpdatePublisherConfigRequest, v1.UpdatePublisherConfigResponse](
+		getPublisherTransports: connect.NewClient[v1.GetPublisherTransportsRequest, v1.GetPublisherTransportsResponse](
 			httpClient,
-			baseURL+PublisherServiceUpdatePublisherConfigProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("UpdatePublisherConfig")),
-			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
-			connect.WithClientOptions(opts...),
-		),
-		deletePublisherConfig: connect.NewClient[v1.DeletePublisherConfigRequest, v1.DeletePublisherConfigResponse](
-			httpClient,
-			baseURL+PublisherServiceDeletePublisherConfigProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("DeletePublisherConfig")),
-			connect.WithClientOptions(opts...),
-		),
-		getPublisherConfigList: connect.NewClient[v1.GetPublisherConfigListRequest, v1.GetPublisherConfigListResponse](
-			httpClient,
-			baseURL+PublisherServiceGetPublisherConfigListProcedure,
-			connect.WithSchema(publisherServiceMethods.ByName("GetPublisherConfigList")),
+			baseURL+PublisherServiceGetPublisherTransportsProcedure,
+			connect.WithSchema(publisherServiceMethods.ByName("GetPublisherTransports")),
 			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 			connect.WithClientOptions(opts...),
 		),
@@ -195,82 +141,45 @@ func NewPublisherServiceClient(httpClient connect.HTTPClient, baseURL string, op
 
 // publisherServiceClient implements PublisherServiceClient.
 type publisherServiceClient struct {
-	createCrlPublisher          *connect.Client[v1.CreateCrlPublisherRequest, v1.CreateCrlPublisherResponse]
-	deleteCrlPublisher          *connect.Client[v1.DeleteCrlPublisherRequest, v1.DeleteCrlPublisherResponse]
-	getCrlPublisherList         *connect.Client[v1.GetCrlPublisherListRequest, v1.GetCrlPublisherListResponse]
-	createCertificatePublisher  *connect.Client[v1.CreateCertificatePublisherRequest, v1.CreateCertificatePublisherResponse]
-	deleteCertificatePublisher  *connect.Client[v1.DeleteCertificatePublisherRequest, v1.DeleteCertificatePublisherResponse]
-	getCertificatePublisherList *connect.Client[v1.GetCertificatePublisherListRequest, v1.GetCertificatePublisherListResponse]
-	createPublisherConfig       *connect.Client[v1.CreatePublisherConfigRequest, v1.CreatePublisherConfigResponse]
-	getPublisherConfig          *connect.Client[v1.GetPublisherConfigRequest, v1.GetPublisherConfigResponse]
-	updatePublisherConfig       *connect.Client[v1.UpdatePublisherConfigRequest, v1.UpdatePublisherConfigResponse]
-	deletePublisherConfig       *connect.Client[v1.DeletePublisherConfigRequest, v1.DeletePublisherConfigResponse]
-	getPublisherConfigList      *connect.Client[v1.GetPublisherConfigListRequest, v1.GetPublisherConfigListResponse]
-	testPublisherConnection     *connect.Client[v1.TestPublisherConnectionRequest, v1.TestPublisherConnectionResponse]
-	testPublisherPublish        *connect.Client[v1.TestPublisherPublishRequest, v1.TestPublisherPublishResponse]
+	createPublisher         *connect.Client[v1.CreatePublisherRequest, v1.CreatePublisherResponse]
+	getPublisher            *connect.Client[v1.GetPublisherRequest, v1.GetPublisherResponse]
+	updatePublisher         *connect.Client[v1.UpdatePublisherRequest, v1.UpdatePublisherResponse]
+	deletePublisher         *connect.Client[v1.DeletePublisherRequest, v1.DeletePublisherResponse]
+	getPublisherList        *connect.Client[v1.GetPublisherListRequest, v1.GetPublisherListResponse]
+	getPublisherTransports  *connect.Client[v1.GetPublisherTransportsRequest, v1.GetPublisherTransportsResponse]
+	testPublisherConnection *connect.Client[v1.TestPublisherConnectionRequest, v1.TestPublisherConnectionResponse]
+	testPublisherPublish    *connect.Client[v1.TestPublisherPublishRequest, v1.TestPublisherPublishResponse]
 }
 
-// CreateCrlPublisher calls otpki.public.issuance.publisher.v1.PublisherService.CreateCrlPublisher.
-func (c *publisherServiceClient) CreateCrlPublisher(ctx context.Context, req *connect.Request[v1.CreateCrlPublisherRequest]) (*connect.Response[v1.CreateCrlPublisherResponse], error) {
-	return c.createCrlPublisher.CallUnary(ctx, req)
+// CreatePublisher calls otpki.public.issuance.publisher.v1.PublisherService.CreatePublisher.
+func (c *publisherServiceClient) CreatePublisher(ctx context.Context, req *connect.Request[v1.CreatePublisherRequest]) (*connect.Response[v1.CreatePublisherResponse], error) {
+	return c.createPublisher.CallUnary(ctx, req)
 }
 
-// DeleteCrlPublisher calls otpki.public.issuance.publisher.v1.PublisherService.DeleteCrlPublisher.
-func (c *publisherServiceClient) DeleteCrlPublisher(ctx context.Context, req *connect.Request[v1.DeleteCrlPublisherRequest]) (*connect.Response[v1.DeleteCrlPublisherResponse], error) {
-	return c.deleteCrlPublisher.CallUnary(ctx, req)
+// GetPublisher calls otpki.public.issuance.publisher.v1.PublisherService.GetPublisher.
+func (c *publisherServiceClient) GetPublisher(ctx context.Context, req *connect.Request[v1.GetPublisherRequest]) (*connect.Response[v1.GetPublisherResponse], error) {
+	return c.getPublisher.CallUnary(ctx, req)
 }
 
-// GetCrlPublisherList calls
-// otpki.public.issuance.publisher.v1.PublisherService.GetCrlPublisherList.
-func (c *publisherServiceClient) GetCrlPublisherList(ctx context.Context, req *connect.Request[v1.GetCrlPublisherListRequest]) (*connect.Response[v1.GetCrlPublisherListResponse], error) {
-	return c.getCrlPublisherList.CallUnary(ctx, req)
+// UpdatePublisher calls otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisher.
+func (c *publisherServiceClient) UpdatePublisher(ctx context.Context, req *connect.Request[v1.UpdatePublisherRequest]) (*connect.Response[v1.UpdatePublisherResponse], error) {
+	return c.updatePublisher.CallUnary(ctx, req)
 }
 
-// CreateCertificatePublisher calls
-// otpki.public.issuance.publisher.v1.PublisherService.CreateCertificatePublisher.
-func (c *publisherServiceClient) CreateCertificatePublisher(ctx context.Context, req *connect.Request[v1.CreateCertificatePublisherRequest]) (*connect.Response[v1.CreateCertificatePublisherResponse], error) {
-	return c.createCertificatePublisher.CallUnary(ctx, req)
+// DeletePublisher calls otpki.public.issuance.publisher.v1.PublisherService.DeletePublisher.
+func (c *publisherServiceClient) DeletePublisher(ctx context.Context, req *connect.Request[v1.DeletePublisherRequest]) (*connect.Response[v1.DeletePublisherResponse], error) {
+	return c.deletePublisher.CallUnary(ctx, req)
 }
 
-// DeleteCertificatePublisher calls
-// otpki.public.issuance.publisher.v1.PublisherService.DeleteCertificatePublisher.
-func (c *publisherServiceClient) DeleteCertificatePublisher(ctx context.Context, req *connect.Request[v1.DeleteCertificatePublisherRequest]) (*connect.Response[v1.DeleteCertificatePublisherResponse], error) {
-	return c.deleteCertificatePublisher.CallUnary(ctx, req)
+// GetPublisherList calls otpki.public.issuance.publisher.v1.PublisherService.GetPublisherList.
+func (c *publisherServiceClient) GetPublisherList(ctx context.Context, req *connect.Request[v1.GetPublisherListRequest]) (*connect.Response[v1.GetPublisherListResponse], error) {
+	return c.getPublisherList.CallUnary(ctx, req)
 }
 
-// GetCertificatePublisherList calls
-// otpki.public.issuance.publisher.v1.PublisherService.GetCertificatePublisherList.
-func (c *publisherServiceClient) GetCertificatePublisherList(ctx context.Context, req *connect.Request[v1.GetCertificatePublisherListRequest]) (*connect.Response[v1.GetCertificatePublisherListResponse], error) {
-	return c.getCertificatePublisherList.CallUnary(ctx, req)
-}
-
-// CreatePublisherConfig calls
-// otpki.public.issuance.publisher.v1.PublisherService.CreatePublisherConfig.
-func (c *publisherServiceClient) CreatePublisherConfig(ctx context.Context, req *connect.Request[v1.CreatePublisherConfigRequest]) (*connect.Response[v1.CreatePublisherConfigResponse], error) {
-	return c.createPublisherConfig.CallUnary(ctx, req)
-}
-
-// GetPublisherConfig calls otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfig.
-func (c *publisherServiceClient) GetPublisherConfig(ctx context.Context, req *connect.Request[v1.GetPublisherConfigRequest]) (*connect.Response[v1.GetPublisherConfigResponse], error) {
-	return c.getPublisherConfig.CallUnary(ctx, req)
-}
-
-// UpdatePublisherConfig calls
-// otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisherConfig.
-func (c *publisherServiceClient) UpdatePublisherConfig(ctx context.Context, req *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error) {
-	return c.updatePublisherConfig.CallUnary(ctx, req)
-}
-
-// DeletePublisherConfig calls
-// otpki.public.issuance.publisher.v1.PublisherService.DeletePublisherConfig.
-func (c *publisherServiceClient) DeletePublisherConfig(ctx context.Context, req *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error) {
-	return c.deletePublisherConfig.CallUnary(ctx, req)
-}
-
-// GetPublisherConfigList calls
-// otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfigList.
-func (c *publisherServiceClient) GetPublisherConfigList(ctx context.Context, req *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error) {
-	return c.getPublisherConfigList.CallUnary(ctx, req)
+// GetPublisherTransports calls
+// otpki.public.issuance.publisher.v1.PublisherService.GetPublisherTransports.
+func (c *publisherServiceClient) GetPublisherTransports(ctx context.Context, req *connect.Request[v1.GetPublisherTransportsRequest]) (*connect.Response[v1.GetPublisherTransportsResponse], error) {
+	return c.getPublisherTransports.CallUnary(ctx, req)
 }
 
 // TestPublisherConnection calls
@@ -288,20 +197,12 @@ func (c *publisherServiceClient) TestPublisherPublish(ctx context.Context, req *
 // PublisherServiceHandler is an implementation of the
 // otpki.public.issuance.publisher.v1.PublisherService service.
 type PublisherServiceHandler interface {
-	// CRL Publishers
-	CreateCrlPublisher(context.Context, *connect.Request[v1.CreateCrlPublisherRequest]) (*connect.Response[v1.CreateCrlPublisherResponse], error)
-	DeleteCrlPublisher(context.Context, *connect.Request[v1.DeleteCrlPublisherRequest]) (*connect.Response[v1.DeleteCrlPublisherResponse], error)
-	GetCrlPublisherList(context.Context, *connect.Request[v1.GetCrlPublisherListRequest]) (*connect.Response[v1.GetCrlPublisherListResponse], error)
-	// Cert Publishers
-	CreateCertificatePublisher(context.Context, *connect.Request[v1.CreateCertificatePublisherRequest]) (*connect.Response[v1.CreateCertificatePublisherResponse], error)
-	DeleteCertificatePublisher(context.Context, *connect.Request[v1.DeleteCertificatePublisherRequest]) (*connect.Response[v1.DeleteCertificatePublisherResponse], error)
-	GetCertificatePublisherList(context.Context, *connect.Request[v1.GetCertificatePublisherListRequest]) (*connect.Response[v1.GetCertificatePublisherListResponse], error)
-	// Publisher Configs
-	CreatePublisherConfig(context.Context, *connect.Request[v1.CreatePublisherConfigRequest]) (*connect.Response[v1.CreatePublisherConfigResponse], error)
-	GetPublisherConfig(context.Context, *connect.Request[v1.GetPublisherConfigRequest]) (*connect.Response[v1.GetPublisherConfigResponse], error)
-	UpdatePublisherConfig(context.Context, *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error)
-	DeletePublisherConfig(context.Context, *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error)
-	GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error)
+	CreatePublisher(context.Context, *connect.Request[v1.CreatePublisherRequest]) (*connect.Response[v1.CreatePublisherResponse], error)
+	GetPublisher(context.Context, *connect.Request[v1.GetPublisherRequest]) (*connect.Response[v1.GetPublisherResponse], error)
+	UpdatePublisher(context.Context, *connect.Request[v1.UpdatePublisherRequest]) (*connect.Response[v1.UpdatePublisherResponse], error)
+	DeletePublisher(context.Context, *connect.Request[v1.DeletePublisherRequest]) (*connect.Response[v1.DeletePublisherResponse], error)
+	GetPublisherList(context.Context, *connect.Request[v1.GetPublisherListRequest]) (*connect.Response[v1.GetPublisherListResponse], error)
+	GetPublisherTransports(context.Context, *connect.Request[v1.GetPublisherTransportsRequest]) (*connect.Response[v1.GetPublisherTransportsResponse], error)
 	TestPublisherConnection(context.Context, *connect.Request[v1.TestPublisherConnectionRequest]) (*connect.Response[v1.TestPublisherConnectionResponse], error)
 	TestPublisherPublish(context.Context, *connect.Request[v1.TestPublisherPublishRequest]) (*connect.Response[v1.TestPublisherPublishResponse], error)
 }
@@ -313,74 +214,43 @@ type PublisherServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewPublisherServiceHandler(svc PublisherServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	publisherServiceMethods := v1.File_otpki_public_issuance_publisher_v1_publisher_proto.Services().ByName("PublisherService").Methods()
-	publisherServiceCreateCrlPublisherHandler := connect.NewUnaryHandler(
-		PublisherServiceCreateCrlPublisherProcedure,
-		svc.CreateCrlPublisher,
-		connect.WithSchema(publisherServiceMethods.ByName("CreateCrlPublisher")),
+	publisherServiceCreatePublisherHandler := connect.NewUnaryHandler(
+		PublisherServiceCreatePublisherProcedure,
+		svc.CreatePublisher,
+		connect.WithSchema(publisherServiceMethods.ByName("CreatePublisher")),
 		connect.WithHandlerOptions(opts...),
 	)
-	publisherServiceDeleteCrlPublisherHandler := connect.NewUnaryHandler(
-		PublisherServiceDeleteCrlPublisherProcedure,
-		svc.DeleteCrlPublisher,
-		connect.WithSchema(publisherServiceMethods.ByName("DeleteCrlPublisher")),
-		connect.WithHandlerOptions(opts...),
-	)
-	publisherServiceGetCrlPublisherListHandler := connect.NewUnaryHandler(
-		PublisherServiceGetCrlPublisherListProcedure,
-		svc.GetCrlPublisherList,
-		connect.WithSchema(publisherServiceMethods.ByName("GetCrlPublisherList")),
+	publisherServiceGetPublisherHandler := connect.NewUnaryHandler(
+		PublisherServiceGetPublisherProcedure,
+		svc.GetPublisher,
+		connect.WithSchema(publisherServiceMethods.ByName("GetPublisher")),
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
-	publisherServiceCreateCertificatePublisherHandler := connect.NewUnaryHandler(
-		PublisherServiceCreateCertificatePublisherProcedure,
-		svc.CreateCertificatePublisher,
-		connect.WithSchema(publisherServiceMethods.ByName("CreateCertificatePublisher")),
-		connect.WithHandlerOptions(opts...),
-	)
-	publisherServiceDeleteCertificatePublisherHandler := connect.NewUnaryHandler(
-		PublisherServiceDeleteCertificatePublisherProcedure,
-		svc.DeleteCertificatePublisher,
-		connect.WithSchema(publisherServiceMethods.ByName("DeleteCertificatePublisher")),
-		connect.WithHandlerOptions(opts...),
-	)
-	publisherServiceGetCertificatePublisherListHandler := connect.NewUnaryHandler(
-		PublisherServiceGetCertificatePublisherListProcedure,
-		svc.GetCertificatePublisherList,
-		connect.WithSchema(publisherServiceMethods.ByName("GetCertificatePublisherList")),
+	publisherServiceUpdatePublisherHandler := connect.NewUnaryHandler(
+		PublisherServiceUpdatePublisherProcedure,
+		svc.UpdatePublisher,
+		connect.WithSchema(publisherServiceMethods.ByName("UpdatePublisher")),
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
-	publisherServiceCreatePublisherConfigHandler := connect.NewUnaryHandler(
-		PublisherServiceCreatePublisherConfigProcedure,
-		svc.CreatePublisherConfig,
-		connect.WithSchema(publisherServiceMethods.ByName("CreatePublisherConfig")),
+	publisherServiceDeletePublisherHandler := connect.NewUnaryHandler(
+		PublisherServiceDeletePublisherProcedure,
+		svc.DeletePublisher,
+		connect.WithSchema(publisherServiceMethods.ByName("DeletePublisher")),
 		connect.WithHandlerOptions(opts...),
 	)
-	publisherServiceGetPublisherConfigHandler := connect.NewUnaryHandler(
-		PublisherServiceGetPublisherConfigProcedure,
-		svc.GetPublisherConfig,
-		connect.WithSchema(publisherServiceMethods.ByName("GetPublisherConfig")),
+	publisherServiceGetPublisherListHandler := connect.NewUnaryHandler(
+		PublisherServiceGetPublisherListProcedure,
+		svc.GetPublisherList,
+		connect.WithSchema(publisherServiceMethods.ByName("GetPublisherList")),
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
-	publisherServiceUpdatePublisherConfigHandler := connect.NewUnaryHandler(
-		PublisherServiceUpdatePublisherConfigProcedure,
-		svc.UpdatePublisherConfig,
-		connect.WithSchema(publisherServiceMethods.ByName("UpdatePublisherConfig")),
-		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
-		connect.WithHandlerOptions(opts...),
-	)
-	publisherServiceDeletePublisherConfigHandler := connect.NewUnaryHandler(
-		PublisherServiceDeletePublisherConfigProcedure,
-		svc.DeletePublisherConfig,
-		connect.WithSchema(publisherServiceMethods.ByName("DeletePublisherConfig")),
-		connect.WithHandlerOptions(opts...),
-	)
-	publisherServiceGetPublisherConfigListHandler := connect.NewUnaryHandler(
-		PublisherServiceGetPublisherConfigListProcedure,
-		svc.GetPublisherConfigList,
-		connect.WithSchema(publisherServiceMethods.ByName("GetPublisherConfigList")),
+	publisherServiceGetPublisherTransportsHandler := connect.NewUnaryHandler(
+		PublisherServiceGetPublisherTransportsProcedure,
+		svc.GetPublisherTransports,
+		connect.WithSchema(publisherServiceMethods.ByName("GetPublisherTransports")),
 		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
 		connect.WithHandlerOptions(opts...),
 	)
@@ -398,28 +268,18 @@ func NewPublisherServiceHandler(svc PublisherServiceHandler, opts ...connect.Han
 	)
 	return "/otpki.public.issuance.publisher.v1.PublisherService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case PublisherServiceCreateCrlPublisherProcedure:
-			publisherServiceCreateCrlPublisherHandler.ServeHTTP(w, r)
-		case PublisherServiceDeleteCrlPublisherProcedure:
-			publisherServiceDeleteCrlPublisherHandler.ServeHTTP(w, r)
-		case PublisherServiceGetCrlPublisherListProcedure:
-			publisherServiceGetCrlPublisherListHandler.ServeHTTP(w, r)
-		case PublisherServiceCreateCertificatePublisherProcedure:
-			publisherServiceCreateCertificatePublisherHandler.ServeHTTP(w, r)
-		case PublisherServiceDeleteCertificatePublisherProcedure:
-			publisherServiceDeleteCertificatePublisherHandler.ServeHTTP(w, r)
-		case PublisherServiceGetCertificatePublisherListProcedure:
-			publisherServiceGetCertificatePublisherListHandler.ServeHTTP(w, r)
-		case PublisherServiceCreatePublisherConfigProcedure:
-			publisherServiceCreatePublisherConfigHandler.ServeHTTP(w, r)
-		case PublisherServiceGetPublisherConfigProcedure:
-			publisherServiceGetPublisherConfigHandler.ServeHTTP(w, r)
-		case PublisherServiceUpdatePublisherConfigProcedure:
-			publisherServiceUpdatePublisherConfigHandler.ServeHTTP(w, r)
-		case PublisherServiceDeletePublisherConfigProcedure:
-			publisherServiceDeletePublisherConfigHandler.ServeHTTP(w, r)
-		case PublisherServiceGetPublisherConfigListProcedure:
-			publisherServiceGetPublisherConfigListHandler.ServeHTTP(w, r)
+		case PublisherServiceCreatePublisherProcedure:
+			publisherServiceCreatePublisherHandler.ServeHTTP(w, r)
+		case PublisherServiceGetPublisherProcedure:
+			publisherServiceGetPublisherHandler.ServeHTTP(w, r)
+		case PublisherServiceUpdatePublisherProcedure:
+			publisherServiceUpdatePublisherHandler.ServeHTTP(w, r)
+		case PublisherServiceDeletePublisherProcedure:
+			publisherServiceDeletePublisherHandler.ServeHTTP(w, r)
+		case PublisherServiceGetPublisherListProcedure:
+			publisherServiceGetPublisherListHandler.ServeHTTP(w, r)
+		case PublisherServiceGetPublisherTransportsProcedure:
+			publisherServiceGetPublisherTransportsHandler.ServeHTTP(w, r)
 		case PublisherServiceTestPublisherConnectionProcedure:
 			publisherServiceTestPublisherConnectionHandler.ServeHTTP(w, r)
 		case PublisherServiceTestPublisherPublishProcedure:
@@ -433,48 +293,28 @@ func NewPublisherServiceHandler(svc PublisherServiceHandler, opts ...connect.Han
 // UnimplementedPublisherServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedPublisherServiceHandler struct{}
 
-func (UnimplementedPublisherServiceHandler) CreateCrlPublisher(context.Context, *connect.Request[v1.CreateCrlPublisherRequest]) (*connect.Response[v1.CreateCrlPublisherResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.CreateCrlPublisher is not implemented"))
+func (UnimplementedPublisherServiceHandler) CreatePublisher(context.Context, *connect.Request[v1.CreatePublisherRequest]) (*connect.Response[v1.CreatePublisherResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.CreatePublisher is not implemented"))
 }
 
-func (UnimplementedPublisherServiceHandler) DeleteCrlPublisher(context.Context, *connect.Request[v1.DeleteCrlPublisherRequest]) (*connect.Response[v1.DeleteCrlPublisherResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.DeleteCrlPublisher is not implemented"))
+func (UnimplementedPublisherServiceHandler) GetPublisher(context.Context, *connect.Request[v1.GetPublisherRequest]) (*connect.Response[v1.GetPublisherResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.GetPublisher is not implemented"))
 }
 
-func (UnimplementedPublisherServiceHandler) GetCrlPublisherList(context.Context, *connect.Request[v1.GetCrlPublisherListRequest]) (*connect.Response[v1.GetCrlPublisherListResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.GetCrlPublisherList is not implemented"))
+func (UnimplementedPublisherServiceHandler) UpdatePublisher(context.Context, *connect.Request[v1.UpdatePublisherRequest]) (*connect.Response[v1.UpdatePublisherResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisher is not implemented"))
 }
 
-func (UnimplementedPublisherServiceHandler) CreateCertificatePublisher(context.Context, *connect.Request[v1.CreateCertificatePublisherRequest]) (*connect.Response[v1.CreateCertificatePublisherResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.CreateCertificatePublisher is not implemented"))
+func (UnimplementedPublisherServiceHandler) DeletePublisher(context.Context, *connect.Request[v1.DeletePublisherRequest]) (*connect.Response[v1.DeletePublisherResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.DeletePublisher is not implemented"))
 }
 
-func (UnimplementedPublisherServiceHandler) DeleteCertificatePublisher(context.Context, *connect.Request[v1.DeleteCertificatePublisherRequest]) (*connect.Response[v1.DeleteCertificatePublisherResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.DeleteCertificatePublisher is not implemented"))
+func (UnimplementedPublisherServiceHandler) GetPublisherList(context.Context, *connect.Request[v1.GetPublisherListRequest]) (*connect.Response[v1.GetPublisherListResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.GetPublisherList is not implemented"))
 }
 
-func (UnimplementedPublisherServiceHandler) GetCertificatePublisherList(context.Context, *connect.Request[v1.GetCertificatePublisherListRequest]) (*connect.Response[v1.GetCertificatePublisherListResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.GetCertificatePublisherList is not implemented"))
-}
-
-func (UnimplementedPublisherServiceHandler) CreatePublisherConfig(context.Context, *connect.Request[v1.CreatePublisherConfigRequest]) (*connect.Response[v1.CreatePublisherConfigResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.CreatePublisherConfig is not implemented"))
-}
-
-func (UnimplementedPublisherServiceHandler) GetPublisherConfig(context.Context, *connect.Request[v1.GetPublisherConfigRequest]) (*connect.Response[v1.GetPublisherConfigResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfig is not implemented"))
-}
-
-func (UnimplementedPublisherServiceHandler) UpdatePublisherConfig(context.Context, *connect.Request[v1.UpdatePublisherConfigRequest]) (*connect.Response[v1.UpdatePublisherConfigResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.UpdatePublisherConfig is not implemented"))
-}
-
-func (UnimplementedPublisherServiceHandler) DeletePublisherConfig(context.Context, *connect.Request[v1.DeletePublisherConfigRequest]) (*connect.Response[v1.DeletePublisherConfigResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.DeletePublisherConfig is not implemented"))
-}
-
-func (UnimplementedPublisherServiceHandler) GetPublisherConfigList(context.Context, *connect.Request[v1.GetPublisherConfigListRequest]) (*connect.Response[v1.GetPublisherConfigListResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.GetPublisherConfigList is not implemented"))
+func (UnimplementedPublisherServiceHandler) GetPublisherTransports(context.Context, *connect.Request[v1.GetPublisherTransportsRequest]) (*connect.Response[v1.GetPublisherTransportsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.publisher.v1.PublisherService.GetPublisherTransports is not implemented"))
 }
 
 func (UnimplementedPublisherServiceHandler) TestPublisherConnection(context.Context, *connect.Request[v1.TestPublisherConnectionRequest]) (*connect.Response[v1.TestPublisherConnectionResponse], error) {

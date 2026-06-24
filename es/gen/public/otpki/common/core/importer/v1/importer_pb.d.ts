@@ -6,7 +6,6 @@ import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2"
 import type { Message } from "@bufbuild/protobuf";
 import type { PaginationRequest, PaginationRequestJson } from "../../../api/query/v1/query_pb.js";
 import type { ApprovalProfile, ApprovalProfileJson, ApprovalProfileValid, Permission, PermissionJson, PermissionValid, Role, RoleJson, RoleValid } from "../../../auth/v1/auth_pb.js";
-import type { SMTPSettings, SMTPSettingsJson, SMTPSettingsValid } from "../../smtp_settings/v1/smtp_settings_pb.js";
 import type { EndEntityProfile, EndEntityProfileJson, EndEntityProfileValid } from "../../end_entity_profile/v1/end_entity_profile_pb.js";
 import type { EndEntity, EndEntityJson, EndEntityValid } from "../../end_entity/v1/end_entity_pb.js";
 import type { EnrollmentRequest, EnrollmentRequestJson, EnrollmentRequestValid } from "../../enroller/v1/enroller_pb.js";
@@ -18,7 +17,7 @@ import type { CustomCertificateExtension, CustomCertificateExtensionJson, Custom
 import type { CertificateAuthority, CertificateAuthorityCertificate, CertificateAuthorityCertificateJson, CertificateAuthorityCertificateKey, CertificateAuthorityCertificateKeyJson, CertificateAuthorityCertificateKeyValid, CertificateAuthorityCertificateValid, CertificateAuthorityJson, CertificateAuthorityValid } from "../../certificate_authority/v1/certificate_authority_pb.js";
 import type { IssuanceRequest, IssuanceRequestJson, IssuanceRequestValid } from "../../issuer/v1/issuer_pb.js";
 import type { IssuedCertificate, IssuedCertificateJson, IssuedCertificateValid } from "../../issued_certificate/v1/issued_certificate_pb.js";
-import type { CertificatePublisher, CertificatePublisherJson, CertificatePublisherValid, CrlPublisher, CrlPublisherJson, CrlPublisherValid, PublisherConfig, PublisherConfigJson, PublisherConfigValid } from "../../publisher/v1/publisher_pb.js";
+import type { Publisher, PublisherJson, PublisherValid } from "../../publisher/v1/publisher_pb.js";
 
 /**
  * Describes the file otpki/common/core/importer/v1/importer.proto.
@@ -48,11 +47,6 @@ export declare type ExportPagination = Message<"otpki.common.core.importer.v1.Ex
    * @generated from field: otpki.common.api.query.v1.PaginationRequest approval_profiles = 3;
    */
   approvalProfiles?: PaginationRequest;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest smtp_settings = 4;
-   */
-  smtpSettings?: PaginationRequest;
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest end_entity_profiles = 5;
@@ -120,19 +114,9 @@ export declare type ExportPagination = Message<"otpki.common.core.importer.v1.Ex
   certificateAuthorityKeys?: PaginationRequest;
 
   /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest publisher_configs = 18;
+   * @generated from field: otpki.common.api.query.v1.PaginationRequest publishers = 18;
    */
-  publisherConfigs?: PaginationRequest;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest crl_publishers = 19;
-   */
-  crlPublishers?: PaginationRequest;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest certificate_publishers = 20;
-   */
-  certificatePublishers?: PaginationRequest;
+  publishers?: PaginationRequest;
 };
 
 /**
@@ -158,11 +142,6 @@ export declare type ExportPaginationJson = {
    * @generated from field: otpki.common.api.query.v1.PaginationRequest approval_profiles = 3;
    */
   approvalProfiles?: PaginationRequestJson;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest smtp_settings = 4;
-   */
-  smtpSettings?: PaginationRequestJson;
 
   /**
    * @generated from field: otpki.common.api.query.v1.PaginationRequest end_entity_profiles = 5;
@@ -230,19 +209,9 @@ export declare type ExportPaginationJson = {
   certificateAuthorityKeys?: PaginationRequestJson;
 
   /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest publisher_configs = 18;
+   * @generated from field: otpki.common.api.query.v1.PaginationRequest publishers = 18;
    */
-  publisherConfigs?: PaginationRequestJson;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest crl_publishers = 19;
-   */
-  crlPublishers?: PaginationRequestJson;
-
-  /**
-   * @generated from field: otpki.common.api.query.v1.PaginationRequest certificate_publishers = 20;
-   */
-  certificatePublishers?: PaginationRequestJson;
+  publishers?: PaginationRequestJson;
 };
 
 export declare type ExportPaginationValid = ExportPagination;
@@ -278,11 +247,6 @@ export declare type ExportData = Message<"otpki.common.core.importer.v1.ExportDa
    * @generated from field: repeated otpki.common.auth.v1.ApprovalProfile approval_profiles = 3;
    */
   approvalProfiles: ApprovalProfile[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.smtp_settings.v1.SMTPSettings smtp_settings = 4;
-   */
-  smtpSettings: SMTPSettings[];
 
   /**
    * @generated from field: repeated otpki.common.core.end_entity_profile.v1.EndEntityProfile end_entity_profiles = 5;
@@ -350,19 +314,9 @@ export declare type ExportData = Message<"otpki.common.core.importer.v1.ExportDa
   certificateAuthorityKeys: CertificateAuthorityCertificateKey[];
 
   /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherConfig publisher_configs = 18;
+   * @generated from field: repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
    */
-  publisherConfigs: PublisherConfig[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CrlPublisher crl_publishers = 19;
-   */
-  crlPublishers: CrlPublisher[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertificatePublisher certificate_publishers = 20;
-   */
-  certificatePublishers: CertificatePublisher[];
+  publishers: Publisher[];
 };
 
 /**
@@ -390,11 +344,6 @@ export declare type ExportDataJson = {
    * @generated from field: repeated otpki.common.auth.v1.ApprovalProfile approval_profiles = 3;
    */
   approvalProfiles?: ApprovalProfileJson[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.smtp_settings.v1.SMTPSettings smtp_settings = 4;
-   */
-  smtpSettings?: SMTPSettingsJson[];
 
   /**
    * @generated from field: repeated otpki.common.core.end_entity_profile.v1.EndEntityProfile end_entity_profiles = 5;
@@ -462,19 +411,9 @@ export declare type ExportDataJson = {
   certificateAuthorityKeys?: CertificateAuthorityCertificateKeyJson[];
 
   /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherConfig publisher_configs = 18;
+   * @generated from field: repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
    */
-  publisherConfigs?: PublisherConfigJson[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CrlPublisher crl_publishers = 19;
-   */
-  crlPublishers?: CrlPublisherJson[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertificatePublisher certificate_publishers = 20;
-   */
-  certificatePublishers?: CertificatePublisherJson[];
+  publishers?: PublisherJson[];
 };
 
 /**
@@ -502,11 +441,6 @@ export declare type ExportDataValid = Message<"otpki.common.core.importer.v1.Exp
    * @generated from field: repeated otpki.common.auth.v1.ApprovalProfile approval_profiles = 3;
    */
   approvalProfiles: ApprovalProfileValid[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.smtp_settings.v1.SMTPSettings smtp_settings = 4;
-   */
-  smtpSettings: SMTPSettingsValid[];
 
   /**
    * @generated from field: repeated otpki.common.core.end_entity_profile.v1.EndEntityProfile end_entity_profiles = 5;
@@ -574,19 +508,9 @@ export declare type ExportDataValid = Message<"otpki.common.core.importer.v1.Exp
   certificateAuthorityKeys: CertificateAuthorityCertificateKeyValid[];
 
   /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PublisherConfig publisher_configs = 18;
+   * @generated from field: repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
    */
-  publisherConfigs: PublisherConfigValid[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CrlPublisher crl_publishers = 19;
-   */
-  crlPublishers: CrlPublisherValid[];
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.CertificatePublisher certificate_publishers = 20;
-   */
-  certificatePublishers: CertificatePublisherValid[];
+  publishers: PublisherValid[];
 };
 
 /**

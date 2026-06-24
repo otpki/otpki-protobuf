@@ -1,4 +1,5 @@
 syntax = "proto3";
 package otpki.public.plugin.publisher.vs.v1;
 
+// VS publisher only supports CRL publishing
 message VsConfig {}

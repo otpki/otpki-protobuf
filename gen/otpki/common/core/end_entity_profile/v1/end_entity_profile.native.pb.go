@@ -33,8 +33,6 @@ type EndEntityProfileNative struct {
 	EmailRequired                    bool
 	EmailDomainModifiable            bool
 	EmailDomain                      string
-	EmailNotifications               bool
-	SmtpSettingsId                   uuid.NullUUID
 	SubjectDnAttributes              []*EndEntityProfileSubjectDNAttribute
 	SubjectAlternativeNameAttributes []*EndEntityProfileSANAttribute
 	AvailableCertificateProfileIds   []uuid.UUID
@@ -94,11 +92,6 @@ func (n *EndEntityProfileNative) ToProto() (*EndEntityProfile, error) {
 	protoStruct.EmailRequired = n.EmailRequired
 	protoStruct.EmailDomainModifiable = n.EmailDomainModifiable
 	protoStruct.EmailDomain = n.EmailDomain
-	protoStruct.EmailNotifications = n.EmailNotifications
-	protoStruct.SmtpSettingsId, err = convertNullUUIDToProto(n.SmtpSettingsId)
-	if err != nil {
-		return nil, fmt.Errorf("error converting SmtpSettingsId: %w", err)
-	}
 	protoStruct.SubjectDnAttributes = n.SubjectDnAttributes
 	protoStruct.SubjectAlternativeNameAttributes = n.SubjectAlternativeNameAttributes
 	protoStruct.AvailableCertificateProfileIds, err = convertUUIDSliceToProto(n.AvailableCertificateProfileIds)
@@ -186,11 +179,6 @@ func (p *EndEntityProfile) ToNative() (*EndEntityProfileNative, error) {
 	nativeStruct.EmailRequired = p.EmailRequired
 	nativeStruct.EmailDomainModifiable = p.EmailDomainModifiable
 	nativeStruct.EmailDomain = p.EmailDomain
-	nativeStruct.EmailNotifications = p.EmailNotifications
-	nativeStruct.SmtpSettingsId, err = convertProtoToNullUUID(p.SmtpSettingsId)
-	if err != nil {
-		return nil, fmt.Errorf("error converting SmtpSettingsIdNative: %w", err)
-	}
 	nativeStruct.SubjectDnAttributes = p.SubjectDnAttributes
 	nativeStruct.SubjectAlternativeNameAttributes = p.SubjectAlternativeNameAttributes
 	nativeStruct.AvailableCertificateProfileIds, err = convertProtoToUUIDSlice(p.AvailableCertificateProfileIds)
@@ -250,17 +238,6 @@ func (x *EndEntityProfile) GetIdUUID() uuid.UUID {
 		}
 	}
 	return uuid.UUID{}
-}
-
-// GetSmtpSettingsIdUUID returns SmtpSettingsId as a UUID when possible.
-func (x *EndEntityProfile) GetSmtpSettingsIdUUID() uuid.NullUUID {
-	if x != nil {
-		value, err := convertProtoToNullUUID(x.SmtpSettingsId)
-		if err == nil {
-			return value
-		}
-	}
-	return uuid.NullUUID{}
 }
 
 // GetAvailableCertificateProfileIdsUUID returns AvailableCertificateProfileIds as a UUID when possible.

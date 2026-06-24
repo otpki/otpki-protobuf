@@ -206,6 +206,9 @@ func generateMessageCode(g *protogen.GeneratedFile, message *protogen.Message) (
 	var neededConverters []string
 
 	for _, field := range message.Fields {
+		if field.Oneof != nil && !field.Oneof.Desc.IsSynthetic() {
+			continue
+		}
 		if fieldIsUUID(field) {
 			getterInfo, converterFuncName, err := getUUIDGetterInfo(g, field)
 			if err != nil {

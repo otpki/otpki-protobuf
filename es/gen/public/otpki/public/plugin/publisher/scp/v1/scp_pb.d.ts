@@ -4,7 +4,6 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { PkiArtifact, PkiArtifactJson } from "../../../../../common/core/publisher/v1/publisher_pb.js";
 
 /**
  * Describes the file otpki/public/plugin/publisher/scp/v1/scp.proto.
@@ -12,6 +11,8 @@ import type { PkiArtifact, PkiArtifactJson } from "../../../../../common/core/pu
 export declare const file_otpki_public_plugin_publisher_scp_v1_scp: GenFile;
 
 /**
+ * Connection settings shared by every trigger that delivers over SSH/SCP
+ *
  * @generated from message otpki.public.plugin.publisher.scp.v1.ScpConfig
  */
 export declare type ScpConfig = Message<"otpki.public.plugin.publisher.scp.v1.ScpConfig"> & {
@@ -36,24 +37,11 @@ export declare type ScpConfig = Message<"otpki.public.plugin.publisher.scp.v1.Sc
    * @generated from field: int64 port = 4;
    */
   port: bigint;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PkiArtifact allowed_for = 5;
-   */
-  allowedFor: PkiArtifact[];
-
-  /**
-   * @generated from field: string certificate_publisher_template_url = 6;
-   */
-  certificatePublisherTemplateUrl: string;
-
-  /**
-   * @generated from field: string crl_publisher_template_url = 7;
-   */
-  crlPublisherTemplateUrl: string;
 };
 
 /**
+ * Connection settings shared by every trigger that delivers over SSH/SCP
+ *
  * @generated from message otpki.public.plugin.publisher.scp.v1.ScpConfig
  */
 export declare type ScpConfigJson = {
@@ -78,21 +66,6 @@ export declare type ScpConfigJson = {
    * @generated from field: int64 port = 4;
    */
   port?: string;
-
-  /**
-   * @generated from field: repeated otpki.common.core.publisher.v1.PkiArtifact allowed_for = 5;
-   */
-  allowedFor?: PkiArtifactJson[];
-
-  /**
-   * @generated from field: string certificate_publisher_template_url = 6;
-   */
-  certificatePublisherTemplateUrl?: string;
-
-  /**
-   * @generated from field: string crl_publisher_template_url = 7;
-   */
-  crlPublisherTemplateUrl?: string;
 };
 
 export declare type ScpConfigValid = ScpConfig;
@@ -102,4 +75,130 @@ export declare type ScpConfigValid = ScpConfig;
  * Use `create(ScpConfigSchema)` to create a new message.
  */
 export declare const ScpConfigSchema: GenMessage<ScpConfig, {jsonType: ScpConfigJson, validType: ScpConfigValid}>;
+
+/**
+ * Per-trigger config for an SCP certificate (issuance or revocation) trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig
+ */
+export declare type ScpCertTriggerConfig = Message<"otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig"> & {
+  /**
+   * @generated from oneof otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig.target
+   */
+  target: {
+    /**
+     * @generated from field: string ca_id = 1;
+     */
+    value: string;
+    case: "caId";
+  } | {
+    /**
+     * @generated from field: string certificate_profile_id = 2;
+     */
+    value: string;
+    case: "certificateProfileId";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * Destination path template rendered with the published certificate's fields
+   *
+   * @generated from field: string certificate_template_url = 3;
+   */
+  certificateTemplateUrl: string;
+};
+
+/**
+ * Per-trigger config for an SCP certificate (issuance or revocation) trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig
+ */
+export declare type ScpCertTriggerConfigJson = {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId?: string;
+
+  /**
+   * @generated from field: string certificate_profile_id = 2;
+   */
+  certificateProfileId?: string;
+
+  /**
+   * Destination path template rendered with the published certificate's fields
+   *
+   * @generated from field: string certificate_template_url = 3;
+   */
+  certificateTemplateUrl?: string;
+};
+
+export declare type ScpCertTriggerConfigValid = ScpCertTriggerConfig;
+
+/**
+ * Describes the message otpki.public.plugin.publisher.scp.v1.ScpCertTriggerConfig.
+ * Use `create(ScpCertTriggerConfigSchema)` to create a new message.
+ */
+export declare const ScpCertTriggerConfigSchema: GenMessage<ScpCertTriggerConfig, {jsonType: ScpCertTriggerConfigJson, validType: ScpCertTriggerConfigValid}>;
+
+/**
+ * Per-trigger config for an SCP CRL-publication trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig
+ */
+export declare type ScpCrlTriggerConfig = Message<"otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig"> & {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId: string;
+
+  /**
+   * Destination path template rendered with the published CRL's fields
+   *
+   * @generated from field: string crl_template_url = 2;
+   */
+  crlTemplateUrl: string;
+};
+
+/**
+ * Per-trigger config for an SCP CRL-publication trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig
+ */
+export declare type ScpCrlTriggerConfigJson = {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId?: string;
+
+  /**
+   * Destination path template rendered with the published CRL's fields
+   *
+   * @generated from field: string crl_template_url = 2;
+   */
+  crlTemplateUrl?: string;
+};
+
+/**
+ * Per-trigger config for an SCP CRL-publication trigger
+ *
+ * @generated from message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig
+ */
+export declare type ScpCrlTriggerConfigValid = Message<"otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig"> & {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId: string;
+
+  /**
+   * Destination path template rendered with the published CRL's fields
+   *
+   * @generated from field: string crl_template_url = 2;
+   */
+  crlTemplateUrl: string;
+};
+
+/**
+ * Describes the message otpki.public.plugin.publisher.scp.v1.ScpCrlTriggerConfig.
+ * Use `create(ScpCrlTriggerConfigSchema)` to create a new message.
+ */
+export declare const ScpCrlTriggerConfigSchema: GenMessage<ScpCrlTriggerConfig, {jsonType: ScpCrlTriggerConfigJson, validType: ScpCrlTriggerConfigValid}>;
 

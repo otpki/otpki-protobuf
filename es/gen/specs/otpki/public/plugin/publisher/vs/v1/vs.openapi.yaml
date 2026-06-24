@@ -8,4 +8,5 @@ components:
       type: object
       title: VsConfig
       additionalProperties: false
+      description: VS publisher only supports CRL publishing
 security: []
