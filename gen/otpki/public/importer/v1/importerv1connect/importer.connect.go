@@ -45,6 +45,18 @@ const (
 	// ImporterServiceImportDataRawProcedure is the fully-qualified name of the ImporterService's
 	// ImportDataRaw RPC.
 	ImporterServiceImportDataRawProcedure = "/otpki.public.importer.v1.ImporterService/ImportDataRaw"
+	// ImporterServiceExportDataStreamProcedure is the fully-qualified name of the ImporterService's
+	// ExportDataStream RPC.
+	ImporterServiceExportDataStreamProcedure = "/otpki.public.importer.v1.ImporterService/ExportDataStream"
+	// ImporterServiceExportDataRawStreamProcedure is the fully-qualified name of the ImporterService's
+	// ExportDataRawStream RPC.
+	ImporterServiceExportDataRawStreamProcedure = "/otpki.public.importer.v1.ImporterService/ExportDataRawStream"
+	// ImporterServiceImportDataStreamProcedure is the fully-qualified name of the ImporterService's
+	// ImportDataStream RPC.
+	ImporterServiceImportDataStreamProcedure = "/otpki.public.importer.v1.ImporterService/ImportDataStream"
+	// ImporterServiceImportDataRawStreamProcedure is the fully-qualified name of the ImporterService's
+	// ImportDataRawStream RPC.
+	ImporterServiceImportDataRawStreamProcedure = "/otpki.public.importer.v1.ImporterService/ImportDataRawStream"
 )
 
 // ImporterServiceClient is a client for the otpki.public.importer.v1.ImporterService service.
@@ -62,6 +74,10 @@ type ImporterServiceClient interface {
 	ImportData(context.Context, *connect.Request[v1.ImportDataRequest]) (*connect.Response[v1.ImportDataResponse], error)
 	ExportDataRaw(context.Context, *connect.Request[v1.ExportDataRawRequest]) (*connect.Response[v1.ExportDataRawResponse], error)
 	ImportDataRaw(context.Context, *connect.Request[v1.ImportDataRawRequest]) (*connect.Response[v1.ImportDataRawResponse], error)
+	ExportDataStream(context.Context, *connect.Request[v1.ExportDataStreamRequest]) (*connect.ServerStreamForClient[v1.ExportDataStreamResponse], error)
+	ExportDataRawStream(context.Context, *connect.Request[v1.ExportDataRawStreamRequest]) (*connect.ServerStreamForClient[v1.ExportDataRawStreamResponse], error)
+	ImportDataStream(context.Context) *connect.ClientStreamForClient[v1.ImportDataStreamRequest, v1.ImportDataStreamResponse]
+	ImportDataRawStream(context.Context) *connect.ClientStreamForClient[v1.ImportDataRawStreamRequest, v1.ImportDataRawStreamResponse]
 }
 
 // NewImporterServiceClient constructs a client for the otpki.public.importer.v1.ImporterService
@@ -99,15 +115,43 @@ func NewImporterServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(importerServiceMethods.ByName("ImportDataRaw")),
 			connect.WithClientOptions(opts...),
 		),
+		exportDataStream: connect.NewClient[v1.ExportDataStreamRequest, v1.ExportDataStreamResponse](
+			httpClient,
+			baseURL+ImporterServiceExportDataStreamProcedure,
+			connect.WithSchema(importerServiceMethods.ByName("ExportDataStream")),
+			connect.WithClientOptions(opts...),
+		),
+		exportDataRawStream: connect.NewClient[v1.ExportDataRawStreamRequest, v1.ExportDataRawStreamResponse](
+			httpClient,
+			baseURL+ImporterServiceExportDataRawStreamProcedure,
+			connect.WithSchema(importerServiceMethods.ByName("ExportDataRawStream")),
+			connect.WithClientOptions(opts...),
+		),
+		importDataStream: connect.NewClient[v1.ImportDataStreamRequest, v1.ImportDataStreamResponse](
+			httpClient,
+			baseURL+ImporterServiceImportDataStreamProcedure,
+			connect.WithSchema(importerServiceMethods.ByName("ImportDataStream")),
+			connect.WithClientOptions(opts...),
+		),
+		importDataRawStream: connect.NewClient[v1.ImportDataRawStreamRequest, v1.ImportDataRawStreamResponse](
+			httpClient,
+			baseURL+ImporterServiceImportDataRawStreamProcedure,
+			connect.WithSchema(importerServiceMethods.ByName("ImportDataRawStream")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // importerServiceClient implements ImporterServiceClient.
 type importerServiceClient struct {
-	exportData    *connect.Client[v1.ExportDataRequest, v1.ExportDataResponse]
-	importData    *connect.Client[v1.ImportDataRequest, v1.ImportDataResponse]
-	exportDataRaw *connect.Client[v1.ExportDataRawRequest, v1.ExportDataRawResponse]
-	importDataRaw *connect.Client[v1.ImportDataRawRequest, v1.ImportDataRawResponse]
+	exportData          *connect.Client[v1.ExportDataRequest, v1.ExportDataResponse]
+	importData          *connect.Client[v1.ImportDataRequest, v1.ImportDataResponse]
+	exportDataRaw       *connect.Client[v1.ExportDataRawRequest, v1.ExportDataRawResponse]
+	importDataRaw       *connect.Client[v1.ImportDataRawRequest, v1.ImportDataRawResponse]
+	exportDataStream    *connect.Client[v1.ExportDataStreamRequest, v1.ExportDataStreamResponse]
+	exportDataRawStream *connect.Client[v1.ExportDataRawStreamRequest, v1.ExportDataRawStreamResponse]
+	importDataStream    *connect.Client[v1.ImportDataStreamRequest, v1.ImportDataStreamResponse]
+	importDataRawStream *connect.Client[v1.ImportDataRawStreamRequest, v1.ImportDataRawStreamResponse]
 }
 
 // ExportData calls otpki.public.importer.v1.ImporterService.ExportData.
@@ -130,6 +174,26 @@ func (c *importerServiceClient) ImportDataRaw(ctx context.Context, req *connect.
 	return c.importDataRaw.CallUnary(ctx, req)
 }
 
+// ExportDataStream calls otpki.public.importer.v1.ImporterService.ExportDataStream.
+func (c *importerServiceClient) ExportDataStream(ctx context.Context, req *connect.Request[v1.ExportDataStreamRequest]) (*connect.ServerStreamForClient[v1.ExportDataStreamResponse], error) {
+	return c.exportDataStream.CallServerStream(ctx, req)
+}
+
+// ExportDataRawStream calls otpki.public.importer.v1.ImporterService.ExportDataRawStream.
+func (c *importerServiceClient) ExportDataRawStream(ctx context.Context, req *connect.Request[v1.ExportDataRawStreamRequest]) (*connect.ServerStreamForClient[v1.ExportDataRawStreamResponse], error) {
+	return c.exportDataRawStream.CallServerStream(ctx, req)
+}
+
+// ImportDataStream calls otpki.public.importer.v1.ImporterService.ImportDataStream.
+func (c *importerServiceClient) ImportDataStream(ctx context.Context) *connect.ClientStreamForClient[v1.ImportDataStreamRequest, v1.ImportDataStreamResponse] {
+	return c.importDataStream.CallClientStream(ctx)
+}
+
+// ImportDataRawStream calls otpki.public.importer.v1.ImporterService.ImportDataRawStream.
+func (c *importerServiceClient) ImportDataRawStream(ctx context.Context) *connect.ClientStreamForClient[v1.ImportDataRawStreamRequest, v1.ImportDataRawStreamResponse] {
+	return c.importDataRawStream.CallClientStream(ctx)
+}
+
 // ImporterServiceHandler is an implementation of the otpki.public.importer.v1.ImporterService
 // service.
 type ImporterServiceHandler interface {
@@ -146,6 +210,10 @@ type ImporterServiceHandler interface {
 	ImportData(context.Context, *connect.Request[v1.ImportDataRequest]) (*connect.Response[v1.ImportDataResponse], error)
 	ExportDataRaw(context.Context, *connect.Request[v1.ExportDataRawRequest]) (*connect.Response[v1.ExportDataRawResponse], error)
 	ImportDataRaw(context.Context, *connect.Request[v1.ImportDataRawRequest]) (*connect.Response[v1.ImportDataRawResponse], error)
+	ExportDataStream(context.Context, *connect.Request[v1.ExportDataStreamRequest], *connect.ServerStream[v1.ExportDataStreamResponse]) error
+	ExportDataRawStream(context.Context, *connect.Request[v1.ExportDataRawStreamRequest], *connect.ServerStream[v1.ExportDataRawStreamResponse]) error
+	ImportDataStream(context.Context, *connect.ClientStream[v1.ImportDataStreamRequest]) (*connect.Response[v1.ImportDataStreamResponse], error)
+	ImportDataRawStream(context.Context, *connect.ClientStream[v1.ImportDataRawStreamRequest]) (*connect.Response[v1.ImportDataRawStreamResponse], error)
 }
 
 // NewImporterServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -179,6 +247,30 @@ func NewImporterServiceHandler(svc ImporterServiceHandler, opts ...connect.Handl
 		connect.WithSchema(importerServiceMethods.ByName("ImportDataRaw")),
 		connect.WithHandlerOptions(opts...),
 	)
+	importerServiceExportDataStreamHandler := connect.NewServerStreamHandler(
+		ImporterServiceExportDataStreamProcedure,
+		svc.ExportDataStream,
+		connect.WithSchema(importerServiceMethods.ByName("ExportDataStream")),
+		connect.WithHandlerOptions(opts...),
+	)
+	importerServiceExportDataRawStreamHandler := connect.NewServerStreamHandler(
+		ImporterServiceExportDataRawStreamProcedure,
+		svc.ExportDataRawStream,
+		connect.WithSchema(importerServiceMethods.ByName("ExportDataRawStream")),
+		connect.WithHandlerOptions(opts...),
+	)
+	importerServiceImportDataStreamHandler := connect.NewClientStreamHandler(
+		ImporterServiceImportDataStreamProcedure,
+		svc.ImportDataStream,
+		connect.WithSchema(importerServiceMethods.ByName("ImportDataStream")),
+		connect.WithHandlerOptions(opts...),
+	)
+	importerServiceImportDataRawStreamHandler := connect.NewClientStreamHandler(
+		ImporterServiceImportDataRawStreamProcedure,
+		svc.ImportDataRawStream,
+		connect.WithSchema(importerServiceMethods.ByName("ImportDataRawStream")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/otpki.public.importer.v1.ImporterService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ImporterServiceExportDataProcedure:
@@ -189,6 +281,14 @@ func NewImporterServiceHandler(svc ImporterServiceHandler, opts ...connect.Handl
 			importerServiceExportDataRawHandler.ServeHTTP(w, r)
 		case ImporterServiceImportDataRawProcedure:
 			importerServiceImportDataRawHandler.ServeHTTP(w, r)
+		case ImporterServiceExportDataStreamProcedure:
+			importerServiceExportDataStreamHandler.ServeHTTP(w, r)
+		case ImporterServiceExportDataRawStreamProcedure:
+			importerServiceExportDataRawStreamHandler.ServeHTTP(w, r)
+		case ImporterServiceImportDataStreamProcedure:
+			importerServiceImportDataStreamHandler.ServeHTTP(w, r)
+		case ImporterServiceImportDataRawStreamProcedure:
+			importerServiceImportDataRawStreamHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -212,4 +312,20 @@ func (UnimplementedImporterServiceHandler) ExportDataRaw(context.Context, *conne
 
 func (UnimplementedImporterServiceHandler) ImportDataRaw(context.Context, *connect.Request[v1.ImportDataRawRequest]) (*connect.Response[v1.ImportDataRawResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.importer.v1.ImporterService.ImportDataRaw is not implemented"))
+}
+
+func (UnimplementedImporterServiceHandler) ExportDataStream(context.Context, *connect.Request[v1.ExportDataStreamRequest], *connect.ServerStream[v1.ExportDataStreamResponse]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.importer.v1.ImporterService.ExportDataStream is not implemented"))
+}
+
+func (UnimplementedImporterServiceHandler) ExportDataRawStream(context.Context, *connect.Request[v1.ExportDataRawStreamRequest], *connect.ServerStream[v1.ExportDataRawStreamResponse]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.importer.v1.ImporterService.ExportDataRawStream is not implemented"))
+}
+
+func (UnimplementedImporterServiceHandler) ImportDataStream(context.Context, *connect.ClientStream[v1.ImportDataStreamRequest]) (*connect.Response[v1.ImportDataStreamResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.importer.v1.ImporterService.ImportDataStream is not implemented"))
+}
+
+func (UnimplementedImporterServiceHandler) ImportDataRawStream(context.Context, *connect.ClientStream[v1.ImportDataRawStreamRequest]) (*connect.Response[v1.ImportDataRawStreamResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.importer.v1.ImporterService.ImportDataRawStream is not implemented"))
 }

@@ -19,10 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ImporterService_ExportData_FullMethodName    = "/otpki.public.importer.v1.ImporterService/ExportData"
-	ImporterService_ImportData_FullMethodName    = "/otpki.public.importer.v1.ImporterService/ImportData"
-	ImporterService_ExportDataRaw_FullMethodName = "/otpki.public.importer.v1.ImporterService/ExportDataRaw"
-	ImporterService_ImportDataRaw_FullMethodName = "/otpki.public.importer.v1.ImporterService/ImportDataRaw"
+	ImporterService_ExportData_FullMethodName          = "/otpki.public.importer.v1.ImporterService/ExportData"
+	ImporterService_ImportData_FullMethodName          = "/otpki.public.importer.v1.ImporterService/ImportData"
+	ImporterService_ExportDataRaw_FullMethodName       = "/otpki.public.importer.v1.ImporterService/ExportDataRaw"
+	ImporterService_ImportDataRaw_FullMethodName       = "/otpki.public.importer.v1.ImporterService/ImportDataRaw"
+	ImporterService_ExportDataStream_FullMethodName    = "/otpki.public.importer.v1.ImporterService/ExportDataStream"
+	ImporterService_ExportDataRawStream_FullMethodName = "/otpki.public.importer.v1.ImporterService/ExportDataRawStream"
+	ImporterService_ImportDataStream_FullMethodName    = "/otpki.public.importer.v1.ImporterService/ImportDataStream"
+	ImporterService_ImportDataRawStream_FullMethodName = "/otpki.public.importer.v1.ImporterService/ImportDataRawStream"
 )
 
 // ImporterServiceClient is the client API for ImporterService service.
@@ -42,6 +46,10 @@ type ImporterServiceClient interface {
 	ImportData(ctx context.Context, in *ImportDataRequest, opts ...grpc.CallOption) (*ImportDataResponse, error)
 	ExportDataRaw(ctx context.Context, in *ExportDataRawRequest, opts ...grpc.CallOption) (*ExportDataRawResponse, error)
 	ImportDataRaw(ctx context.Context, in *ImportDataRawRequest, opts ...grpc.CallOption) (*ImportDataRawResponse, error)
+	ExportDataStream(ctx context.Context, in *ExportDataStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportDataStreamResponse], error)
+	ExportDataRawStream(ctx context.Context, in *ExportDataRawStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportDataRawStreamResponse], error)
+	ImportDataStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ImportDataStreamRequest, ImportDataStreamResponse], error)
+	ImportDataRawStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ImportDataRawStreamRequest, ImportDataRawStreamResponse], error)
 }
 
 type importerServiceClient struct {
@@ -92,6 +100,70 @@ func (c *importerServiceClient) ImportDataRaw(ctx context.Context, in *ImportDat
 	return out, nil
 }
 
+func (c *importerServiceClient) ExportDataStream(ctx context.Context, in *ExportDataStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportDataStreamResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ImporterService_ServiceDesc.Streams[0], ImporterService_ExportDataStream_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ExportDataStreamRequest, ExportDataStreamResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ExportDataStreamClient = grpc.ServerStreamingClient[ExportDataStreamResponse]
+
+func (c *importerServiceClient) ExportDataRawStream(ctx context.Context, in *ExportDataRawStreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ExportDataRawStreamResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ImporterService_ServiceDesc.Streams[1], ImporterService_ExportDataRawStream_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ExportDataRawStreamRequest, ExportDataRawStreamResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ExportDataRawStreamClient = grpc.ServerStreamingClient[ExportDataRawStreamResponse]
+
+func (c *importerServiceClient) ImportDataStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ImportDataStreamRequest, ImportDataStreamResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ImporterService_ServiceDesc.Streams[2], ImporterService_ImportDataStream_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ImportDataStreamRequest, ImportDataStreamResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ImportDataStreamClient = grpc.ClientStreamingClient[ImportDataStreamRequest, ImportDataStreamResponse]
+
+func (c *importerServiceClient) ImportDataRawStream(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[ImportDataRawStreamRequest, ImportDataRawStreamResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ImporterService_ServiceDesc.Streams[3], ImporterService_ImportDataRawStream_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[ImportDataRawStreamRequest, ImportDataRawStreamResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ImportDataRawStreamClient = grpc.ClientStreamingClient[ImportDataRawStreamRequest, ImportDataRawStreamResponse]
+
 // ImporterServiceServer is the server API for ImporterService service.
 // All implementations must embed UnimplementedImporterServiceServer
 // for forward compatibility.
@@ -109,6 +181,10 @@ type ImporterServiceServer interface {
 	ImportData(context.Context, *ImportDataRequest) (*ImportDataResponse, error)
 	ExportDataRaw(context.Context, *ExportDataRawRequest) (*ExportDataRawResponse, error)
 	ImportDataRaw(context.Context, *ImportDataRawRequest) (*ImportDataRawResponse, error)
+	ExportDataStream(*ExportDataStreamRequest, grpc.ServerStreamingServer[ExportDataStreamResponse]) error
+	ExportDataRawStream(*ExportDataRawStreamRequest, grpc.ServerStreamingServer[ExportDataRawStreamResponse]) error
+	ImportDataStream(grpc.ClientStreamingServer[ImportDataStreamRequest, ImportDataStreamResponse]) error
+	ImportDataRawStream(grpc.ClientStreamingServer[ImportDataRawStreamRequest, ImportDataRawStreamResponse]) error
 	mustEmbedUnimplementedImporterServiceServer()
 }
 
@@ -130,6 +206,18 @@ func (UnimplementedImporterServiceServer) ExportDataRaw(context.Context, *Export
 }
 func (UnimplementedImporterServiceServer) ImportDataRaw(context.Context, *ImportDataRawRequest) (*ImportDataRawResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ImportDataRaw not implemented")
+}
+func (UnimplementedImporterServiceServer) ExportDataStream(*ExportDataStreamRequest, grpc.ServerStreamingServer[ExportDataStreamResponse]) error {
+	return status.Error(codes.Unimplemented, "method ExportDataStream not implemented")
+}
+func (UnimplementedImporterServiceServer) ExportDataRawStream(*ExportDataRawStreamRequest, grpc.ServerStreamingServer[ExportDataRawStreamResponse]) error {
+	return status.Error(codes.Unimplemented, "method ExportDataRawStream not implemented")
+}
+func (UnimplementedImporterServiceServer) ImportDataStream(grpc.ClientStreamingServer[ImportDataStreamRequest, ImportDataStreamResponse]) error {
+	return status.Error(codes.Unimplemented, "method ImportDataStream not implemented")
+}
+func (UnimplementedImporterServiceServer) ImportDataRawStream(grpc.ClientStreamingServer[ImportDataRawStreamRequest, ImportDataRawStreamResponse]) error {
+	return status.Error(codes.Unimplemented, "method ImportDataRawStream not implemented")
 }
 func (UnimplementedImporterServiceServer) mustEmbedUnimplementedImporterServiceServer() {}
 func (UnimplementedImporterServiceServer) testEmbeddedByValue()                         {}
@@ -224,6 +312,42 @@ func _ImporterService_ImportDataRaw_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ImporterService_ExportDataStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ExportDataStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ImporterServiceServer).ExportDataStream(m, &grpc.GenericServerStream[ExportDataStreamRequest, ExportDataStreamResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ExportDataStreamServer = grpc.ServerStreamingServer[ExportDataStreamResponse]
+
+func _ImporterService_ExportDataRawStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ExportDataRawStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ImporterServiceServer).ExportDataRawStream(m, &grpc.GenericServerStream[ExportDataRawStreamRequest, ExportDataRawStreamResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ExportDataRawStreamServer = grpc.ServerStreamingServer[ExportDataRawStreamResponse]
+
+func _ImporterService_ImportDataStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ImporterServiceServer).ImportDataStream(&grpc.GenericServerStream[ImportDataStreamRequest, ImportDataStreamResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ImportDataStreamServer = grpc.ClientStreamingServer[ImportDataStreamRequest, ImportDataStreamResponse]
+
+func _ImporterService_ImportDataRawStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ImporterServiceServer).ImportDataRawStream(&grpc.GenericServerStream[ImportDataRawStreamRequest, ImportDataRawStreamResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ImporterService_ImportDataRawStreamServer = grpc.ClientStreamingServer[ImportDataRawStreamRequest, ImportDataRawStreamResponse]
+
 // ImporterService_ServiceDesc is the grpc.ServiceDesc for ImporterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -248,6 +372,27 @@ var ImporterService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ImporterService_ImportDataRaw_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ExportDataStream",
+			Handler:       _ImporterService_ExportDataStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ExportDataRawStream",
+			Handler:       _ImporterService_ExportDataRawStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ImportDataStream",
+			Handler:       _ImporterService_ImportDataStream_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "ImportDataRawStream",
+			Handler:       _ImporterService_ImportDataRawStream_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "otpki/public/importer/v1/importer.proto",
 }

@@ -277,6 +277,291 @@ export declare type ImportDataRawResponseValid = ImportDataRawResponse;
 export declare const ImportDataRawResponseSchema: GenMessage<ImportDataRawResponse, {jsonType: ImportDataRawResponseJson, validType: ImportDataRawResponseValid}>;
 
 /**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamRequest
+ */
+export declare type ExportDataStreamRequest = Message<"otpki.public.importer.v1.ExportDataStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPagination;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize: bigint;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamRequest
+ */
+export declare type ExportDataStreamRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPaginationJson;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize?: string;
+};
+
+export declare type ExportDataStreamRequestValid = ExportDataStreamRequest;
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataStreamRequest.
+ * Use `create(ExportDataStreamRequestSchema)` to create a new message.
+ */
+export declare const ExportDataStreamRequestSchema: GenMessage<ExportDataStreamRequest, {jsonType: ExportDataStreamRequestJson, validType: ExportDataStreamRequestValid}>;
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamResponse
+ */
+export declare type ExportDataStreamResponse = Message<"otpki.public.importer.v1.ExportDataStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportData;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamResponse
+ */
+export declare type ExportDataStreamResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataJson;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamResponse
+ */
+export declare type ExportDataStreamResponseValid = Message<"otpki.public.importer.v1.ExportDataStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataValid;
+};
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataStreamResponse.
+ * Use `create(ExportDataStreamResponseSchema)` to create a new message.
+ */
+export declare const ExportDataStreamResponseSchema: GenMessage<ExportDataStreamResponse, {jsonType: ExportDataStreamResponseJson, validType: ExportDataStreamResponseValid}>;
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamRequest
+ */
+export declare type ImportDataStreamRequest = Message<"otpki.public.importer.v1.ImportDataStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportData;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamRequest
+ */
+export declare type ImportDataStreamRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataJson;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamRequest
+ */
+export declare type ImportDataStreamRequestValid = Message<"otpki.public.importer.v1.ImportDataStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataValid;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsValid;
+};
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataStreamRequest.
+ * Use `create(ImportDataStreamRequestSchema)` to create a new message.
+ */
+export declare const ImportDataStreamRequestSchema: GenMessage<ImportDataStreamRequest, {jsonType: ImportDataStreamRequestJson, validType: ImportDataStreamRequestValid}>;
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamResponse
+ */
+export declare type ImportDataStreamResponse = Message<"otpki.public.importer.v1.ImportDataStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamResponse
+ */
+export declare type ImportDataStreamResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
+};
+
+export declare type ImportDataStreamResponseValid = ImportDataStreamResponse;
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataStreamResponse.
+ * Use `create(ImportDataStreamResponseSchema)` to create a new message.
+ */
+export declare const ImportDataStreamResponseSchema: GenMessage<ImportDataStreamResponse, {jsonType: ImportDataStreamResponseJson, validType: ImportDataStreamResponseValid}>;
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamRequest
+ */
+export declare type ExportDataRawStreamRequest = Message<"otpki.public.importer.v1.ExportDataRawStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPagination;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize: bigint;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamRequest
+ */
+export declare type ExportDataRawStreamRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPaginationJson;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize?: string;
+};
+
+export declare type ExportDataRawStreamRequestValid = ExportDataRawStreamRequest;
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataRawStreamRequest.
+ * Use `create(ExportDataRawStreamRequestSchema)` to create a new message.
+ */
+export declare const ExportDataRawStreamRequestSchema: GenMessage<ExportDataRawStreamRequest, {jsonType: ExportDataRawStreamRequestJson, validType: ExportDataRawStreamRequestValid}>;
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamResponse
+ */
+export declare type ExportDataRawStreamResponse = Message<"otpki.public.importer.v1.ExportDataRawStreamResponse"> & {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data: Uint8Array;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamResponse
+ */
+export declare type ExportDataRawStreamResponseJson = {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data?: string;
+};
+
+export declare type ExportDataRawStreamResponseValid = ExportDataRawStreamResponse;
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataRawStreamResponse.
+ * Use `create(ExportDataRawStreamResponseSchema)` to create a new message.
+ */
+export declare const ExportDataRawStreamResponseSchema: GenMessage<ExportDataRawStreamResponse, {jsonType: ExportDataRawStreamResponseJson, validType: ExportDataRawStreamResponseValid}>;
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamRequest
+ */
+export declare type ImportDataRawStreamRequest = Message<"otpki.public.importer.v1.ImportDataRawStreamRequest"> & {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data: Uint8Array;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamRequest
+ */
+export declare type ImportDataRawStreamRequestJson = {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data?: string;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
+};
+
+export declare type ImportDataRawStreamRequestValid = ImportDataRawStreamRequest;
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataRawStreamRequest.
+ * Use `create(ImportDataRawStreamRequestSchema)` to create a new message.
+ */
+export declare const ImportDataRawStreamRequestSchema: GenMessage<ImportDataRawStreamRequest, {jsonType: ImportDataRawStreamRequestJson, validType: ImportDataRawStreamRequestValid}>;
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamResponse
+ */
+export declare type ImportDataRawStreamResponse = Message<"otpki.public.importer.v1.ImportDataRawStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamResponse
+ */
+export declare type ImportDataRawStreamResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
+};
+
+export declare type ImportDataRawStreamResponseValid = ImportDataRawStreamResponse;
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataRawStreamResponse.
+ * Use `create(ImportDataRawStreamResponseSchema)` to create a new message.
+ */
+export declare const ImportDataRawStreamResponseSchema: GenMessage<ImportDataRawStreamResponse, {jsonType: ImportDataRawStreamResponseJson, validType: ImportDataRawStreamResponseValid}>;
+
+/**
  * @generated from service otpki.public.importer.v1.ImporterService
  */
 export declare const ImporterService: GenService<{
@@ -322,6 +607,38 @@ export declare const ImporterService: GenService<{
     methodKind: "unary";
     input: typeof ImportDataRawRequestSchema;
     output: typeof ImportDataRawResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ExportDataStream
+   */
+  exportDataStream: {
+    methodKind: "server_streaming";
+    input: typeof ExportDataStreamRequestSchema;
+    output: typeof ExportDataStreamResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ExportDataRawStream
+   */
+  exportDataRawStream: {
+    methodKind: "server_streaming";
+    input: typeof ExportDataRawStreamRequestSchema;
+    output: typeof ExportDataRawStreamResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ImportDataStream
+   */
+  importDataStream: {
+    methodKind: "client_streaming";
+    input: typeof ImportDataStreamRequestSchema;
+    output: typeof ImportDataStreamResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ImportDataRawStream
+   */
+  importDataRawStream: {
+    methodKind: "client_streaming";
+    input: typeof ImportDataRawStreamRequestSchema;
+    output: typeof ImportDataRawStreamResponseSchema;
   },
 }>;
 

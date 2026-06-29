@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/public/importer/v1/importer.proto.
  */
 export const file_otpki_public_importer_v1_importer: GenFile = /*@__PURE__*/
-  fileDesc("CidvdHBraS9wdWJsaWMvaW1wb3J0ZXIvdjEvaW1wb3J0ZXIucHJvdG8SGG90cGtpLnB1YmxpYy5pbXBvcnRlci52MSJfChFFeHBvcnREYXRhUmVxdWVzdBJKChFleHBvcnRfcGFnaW5hdGlvbhgBIAEoCzIvLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxLkV4cG9ydFBhZ2luYXRpb24iTQoSRXhwb3J0RGF0YVJlc3BvbnNlEjcKBGRhdGEYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5FeHBvcnREYXRhIosBChFJbXBvcnREYXRhUmVxdWVzdBI3CgRkYXRhGAEgASgLMikub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0RGF0YRI9CgdvcHRpb25zGAIgASgLMiwub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0T3B0aW9ucyJRChJJbXBvcnREYXRhUmVzcG9uc2USOwoGcmVzdWx0GAEgASgLMisub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0UmVzdWx0ImIKFEV4cG9ydERhdGFSYXdSZXF1ZXN0EkoKEWV4cG9ydF9wYWdpbmF0aW9uGAEgASgLMi8ub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0UGFnaW5hdGlvbiIlChVFeHBvcnREYXRhUmF3UmVzcG9uc2USDAoEZGF0YRgBIAEoDCJjChRJbXBvcnREYXRhUmF3UmVxdWVzdBIMCgRkYXRhGAEgASgMEj0KB29wdGlvbnMYAiABKAsyLC5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5JbXBvcnRPcHRpb25zIlQKFUltcG9ydERhdGFSYXdSZXNwb25zZRI7CgZyZXN1bHQYASABKAsyKy5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5JbXBvcnRSZXN1bHQyqwUKD0ltcG9ydGVyU2VydmljZRKuAQoKRXhwb3J0RGF0YRIrLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmVxdWVzdBosLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmVzcG9uc2UiRYLT5JMCPzoRZXhwb3J0X3BhZ2luYXRpb25aFRITL3YxL2ltcG9ydGVyL2V4cG9ydBoTL3YxL2ltcG9ydGVyL2V4cG9ydBKKAQoKSW1wb3J0RGF0YRIrLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5JbXBvcnREYXRhUmVxdWVzdBosLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5JbXBvcnREYXRhUmVzcG9uc2UiIYLT5JMCGzoEZGF0YSITL3YxL2ltcG9ydGVyL2ltcG9ydBK/AQoNRXhwb3J0RGF0YVJhdxIuLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3UmVxdWVzdBovLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3UmVzcG9uc2UiTYLT5JMCRzoRZXhwb3J0X3BhZ2luYXRpb25aGRIXL3YxL2ltcG9ydGVyL2V4cG9ydC9yYXcaFy92MS9pbXBvcnRlci9leHBvcnQvcmF3EpcBCg1JbXBvcnREYXRhUmF3Ei4ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdSZXF1ZXN0Gi8ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdSZXNwb25zZSIlgtPkkwIfOgRkYXRhIhcvdjEvaW1wb3J0ZXIvaW1wb3J0L3Jhd0KyAQocY29tLm90cGtpLnB1YmxpYy5pbXBvcnRlci52MUINSW1wb3J0ZXJQcm90b1ABogIDT1BJqgIYT3Rwa2kuUHVibGljLkltcG9ydGVyLlYxygIZT3Rwa2lcUHVibGljX1xJbXBvcnRlclxWMeICJU90cGtpXFB1YmxpY19cSW1wb3J0ZXJcVjFcR1BCTWV0YWRhdGHqAhtPdHBraTo6UHVibGljOjpJbXBvcnRlcjo6VjFiBnByb3RvMw", [file_google_api_annotations, file_otpki_common_core_importer_v1_importer]);
+  fileDesc("CidvdHBraS9wdWJsaWMvaW1wb3J0ZXIvdjEvaW1wb3J0ZXIucHJvdG8SGG90cGtpLnB1YmxpYy5pbXBvcnRlci52MSJfChFFeHBvcnREYXRhUmVxdWVzdBJKChFleHBvcnRfcGFnaW5hdGlvbhgBIAEoCzIvLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxLkV4cG9ydFBhZ2luYXRpb24iTQoSRXhwb3J0RGF0YVJlc3BvbnNlEjcKBGRhdGEYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5FeHBvcnREYXRhIosBChFJbXBvcnREYXRhUmVxdWVzdBI3CgRkYXRhGAEgASgLMikub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0RGF0YRI9CgdvcHRpb25zGAIgASgLMiwub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0T3B0aW9ucyJRChJJbXBvcnREYXRhUmVzcG9uc2USOwoGcmVzdWx0GAEgASgLMisub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0UmVzdWx0ImIKFEV4cG9ydERhdGFSYXdSZXF1ZXN0EkoKEWV4cG9ydF9wYWdpbmF0aW9uGAEgASgLMi8ub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0UGFnaW5hdGlvbiIlChVFeHBvcnREYXRhUmF3UmVzcG9uc2USDAoEZGF0YRgBIAEoDCJjChRJbXBvcnREYXRhUmF3UmVxdWVzdBIMCgRkYXRhGAEgASgMEj0KB29wdGlvbnMYAiABKAsyLC5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5JbXBvcnRPcHRpb25zIlQKFUltcG9ydERhdGFSYXdSZXNwb25zZRI7CgZyZXN1bHQYASABKAsyKy5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5JbXBvcnRSZXN1bHQieQoXRXhwb3J0RGF0YVN0cmVhbVJlcXVlc3QSSgoRZXhwb3J0X3BhZ2luYXRpb24YASABKAsyLy5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5FeHBvcnRQYWdpbmF0aW9uEhIKCmNodW5rX3NpemUYAiABKAQiUwoYRXhwb3J0RGF0YVN0cmVhbVJlc3BvbnNlEjcKBGRhdGEYASABKAsyKS5vdHBraS5jb21tb24uY29yZS5pbXBvcnRlci52MS5FeHBvcnREYXRhIpEBChdJbXBvcnREYXRhU3RyZWFtUmVxdWVzdBI3CgRkYXRhGAEgASgLMikub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0RGF0YRI9CgdvcHRpb25zGAIgASgLMiwub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0T3B0aW9ucyJXChhJbXBvcnREYXRhU3RyZWFtUmVzcG9uc2USOwoGcmVzdWx0GAEgASgLMisub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuSW1wb3J0UmVzdWx0InwKGkV4cG9ydERhdGFSYXdTdHJlYW1SZXF1ZXN0EkoKEWV4cG9ydF9wYWdpbmF0aW9uGAEgASgLMi8ub3Rwa2kuY29tbW9uLmNvcmUuaW1wb3J0ZXIudjEuRXhwb3J0UGFnaW5hdGlvbhISCgpjaHVua19zaXplGAIgASgEIisKG0V4cG9ydERhdGFSYXdTdHJlYW1SZXNwb25zZRIMCgRkYXRhGAEgASgMImkKGkltcG9ydERhdGFSYXdTdHJlYW1SZXF1ZXN0EgwKBGRhdGEYASABKAwSPQoHb3B0aW9ucxgCIAEoCzIsLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxLkltcG9ydE9wdGlvbnMiWgobSW1wb3J0RGF0YVJhd1N0cmVhbVJlc3BvbnNlEjsKBnJlc3VsdBgBIAEoCzIrLm90cGtpLmNvbW1vbi5jb3JlLmltcG9ydGVyLnYxLkltcG9ydFJlc3VsdDLmCgoPSW1wb3J0ZXJTZXJ2aWNlEq4BCgpFeHBvcnREYXRhEisub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkV4cG9ydERhdGFSZXF1ZXN0Giwub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkV4cG9ydERhdGFSZXNwb25zZSJFgtPkkwI/OhFleHBvcnRfcGFnaW5hdGlvbloVEhMvdjEvaW1wb3J0ZXIvZXhwb3J0GhMvdjEvaW1wb3J0ZXIvZXhwb3J0EooBCgpJbXBvcnREYXRhEisub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSZXF1ZXN0Giwub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSZXNwb25zZSIhgtPkkwIbOgRkYXRhIhMvdjEvaW1wb3J0ZXIvaW1wb3J0Er8BCg1FeHBvcnREYXRhUmF3Ei4ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkV4cG9ydERhdGFSYXdSZXF1ZXN0Gi8ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkV4cG9ydERhdGFSYXdSZXNwb25zZSJNgtPkkwJHOhFleHBvcnRfcGFnaW5hdGlvbloZEhcvdjEvaW1wb3J0ZXIvZXhwb3J0L3JhdxoXL3YxL2ltcG9ydGVyL2V4cG9ydC9yYXcSlwEKDUltcG9ydERhdGFSYXcSLi5vdHBraS5wdWJsaWMuaW1wb3J0ZXIudjEuSW1wb3J0RGF0YVJhd1JlcXVlc3QaLy5vdHBraS5wdWJsaWMuaW1wb3J0ZXIudjEuSW1wb3J0RGF0YVJhd1Jlc3BvbnNlIiWC0+STAh86BGRhdGEiFy92MS9pbXBvcnRlci9pbXBvcnQvcmF3EtABChBFeHBvcnREYXRhU3RyZWFtEjEub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkV4cG9ydERhdGFTdHJlYW1SZXF1ZXN0GjIub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkV4cG9ydERhdGFTdHJlYW1SZXNwb25zZSJTgtPkkwJNOhFleHBvcnRfcGFnaW5hdGlvblocEhovdjEvaW1wb3J0ZXIvZXhwb3J0L3N0cmVhbRoaL3YxL2ltcG9ydGVyL2V4cG9ydC9zdHJlYW0wARLhAQoTRXhwb3J0RGF0YVJhd1N0cmVhbRI0Lm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3U3RyZWFtUmVxdWVzdBo1Lm90cGtpLnB1YmxpYy5pbXBvcnRlci52MS5FeHBvcnREYXRhUmF3U3RyZWFtUmVzcG9uc2UiW4LT5JMCVToRZXhwb3J0X3BhZ2luYXRpb25aIBIeL3YxL2ltcG9ydGVyL2V4cG9ydC9yYXcvc3RyZWFtGh4vdjEvaW1wb3J0ZXIvZXhwb3J0L3Jhdy9zdHJlYW0wARJ7ChBJbXBvcnREYXRhU3RyZWFtEjEub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFTdHJlYW1SZXF1ZXN0GjIub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFTdHJlYW1SZXNwb25zZSgBEoQBChNJbXBvcnREYXRhUmF3U3RyZWFtEjQub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdTdHJlYW1SZXF1ZXN0GjUub3Rwa2kucHVibGljLmltcG9ydGVyLnYxLkltcG9ydERhdGFSYXdTdHJlYW1SZXNwb25zZSgBQrIBChxjb20ub3Rwa2kucHVibGljLmltcG9ydGVyLnYxQg1JbXBvcnRlclByb3RvUAGiAgNPUEmqAhhPdHBraS5QdWJsaWMuSW1wb3J0ZXIuVjHKAhlPdHBraVxQdWJsaWNfXEltcG9ydGVyXFYx4gIlT3Rwa2lcUHVibGljX1xJbXBvcnRlclxWMVxHUEJNZXRhZGF0YeoCG090cGtpOjpQdWJsaWM6OkltcG9ydGVyOjpWMWIGcHJvdG8z", [file_google_api_annotations, file_otpki_common_core_importer_v1_importer]);
 
 /**
  * @generated from message otpki.public.importer.v1.ExportDataRequest
@@ -289,6 +289,299 @@ export const ImportDataRawResponseSchema: GenMessage<ImportDataRawResponse, {jso
   messageDesc(file_otpki_public_importer_v1_importer, 7);
 
 /**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamRequest
+ */
+export type ExportDataStreamRequest = Message<"otpki.public.importer.v1.ExportDataStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPagination;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize: bigint;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamRequest
+ */
+export type ExportDataStreamRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPaginationJson;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize?: string;
+};
+
+export type ExportDataStreamRequestValid = ExportDataStreamRequest;
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataStreamRequest.
+ * Use `create(ExportDataStreamRequestSchema)` to create a new message.
+ */
+export const ExportDataStreamRequestSchema: GenMessage<ExportDataStreamRequest, {jsonType: ExportDataStreamRequestJson, validType: ExportDataStreamRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 8);
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamResponse
+ */
+export type ExportDataStreamResponse = Message<"otpki.public.importer.v1.ExportDataStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportData;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamResponse
+ */
+export type ExportDataStreamResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataJson;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataStreamResponse
+ */
+export type ExportDataStreamResponseValid = Message<"otpki.public.importer.v1.ExportDataStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataValid;
+};
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataStreamResponse.
+ * Use `create(ExportDataStreamResponseSchema)` to create a new message.
+ */
+export const ExportDataStreamResponseSchema: GenMessage<ExportDataStreamResponse, {jsonType: ExportDataStreamResponseJson, validType: ExportDataStreamResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 9);
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamRequest
+ */
+export type ImportDataStreamRequest = Message<"otpki.public.importer.v1.ImportDataStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportData;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamRequest
+ */
+export type ImportDataStreamRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataJson;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamRequest
+ */
+export type ImportDataStreamRequestValid = Message<"otpki.public.importer.v1.ImportDataStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportData data = 1;
+   */
+  data?: ExportDataValid;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsValid;
+};
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataStreamRequest.
+ * Use `create(ImportDataStreamRequestSchema)` to create a new message.
+ */
+export const ImportDataStreamRequestSchema: GenMessage<ImportDataStreamRequest, {jsonType: ImportDataStreamRequestJson, validType: ImportDataStreamRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 10);
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamResponse
+ */
+export type ImportDataStreamResponse = Message<"otpki.public.importer.v1.ImportDataStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataStreamResponse
+ */
+export type ImportDataStreamResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
+};
+
+export type ImportDataStreamResponseValid = ImportDataStreamResponse;
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataStreamResponse.
+ * Use `create(ImportDataStreamResponseSchema)` to create a new message.
+ */
+export const ImportDataStreamResponseSchema: GenMessage<ImportDataStreamResponse, {jsonType: ImportDataStreamResponseJson, validType: ImportDataStreamResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 11);
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamRequest
+ */
+export type ExportDataRawStreamRequest = Message<"otpki.public.importer.v1.ExportDataRawStreamRequest"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPagination;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize: bigint;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamRequest
+ */
+export type ExportDataRawStreamRequestJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+   */
+  exportPagination?: ExportPaginationJson;
+
+  /**
+   * @generated from field: uint64 chunk_size = 2;
+   */
+  chunkSize?: string;
+};
+
+export type ExportDataRawStreamRequestValid = ExportDataRawStreamRequest;
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataRawStreamRequest.
+ * Use `create(ExportDataRawStreamRequestSchema)` to create a new message.
+ */
+export const ExportDataRawStreamRequestSchema: GenMessage<ExportDataRawStreamRequest, {jsonType: ExportDataRawStreamRequestJson, validType: ExportDataRawStreamRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 12);
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamResponse
+ */
+export type ExportDataRawStreamResponse = Message<"otpki.public.importer.v1.ExportDataRawStreamResponse"> & {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data: Uint8Array;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ExportDataRawStreamResponse
+ */
+export type ExportDataRawStreamResponseJson = {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data?: string;
+};
+
+export type ExportDataRawStreamResponseValid = ExportDataRawStreamResponse;
+
+/**
+ * Describes the message otpki.public.importer.v1.ExportDataRawStreamResponse.
+ * Use `create(ExportDataRawStreamResponseSchema)` to create a new message.
+ */
+export const ExportDataRawStreamResponseSchema: GenMessage<ExportDataRawStreamResponse, {jsonType: ExportDataRawStreamResponseJson, validType: ExportDataRawStreamResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 13);
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamRequest
+ */
+export type ImportDataRawStreamRequest = Message<"otpki.public.importer.v1.ImportDataRawStreamRequest"> & {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data: Uint8Array;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptions;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamRequest
+ */
+export type ImportDataRawStreamRequestJson = {
+  /**
+   * @generated from field: bytes data = 1;
+   */
+  data?: string;
+
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportOptions options = 2;
+   */
+  options?: ImportOptionsJson;
+};
+
+export type ImportDataRawStreamRequestValid = ImportDataRawStreamRequest;
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataRawStreamRequest.
+ * Use `create(ImportDataRawStreamRequestSchema)` to create a new message.
+ */
+export const ImportDataRawStreamRequestSchema: GenMessage<ImportDataRawStreamRequest, {jsonType: ImportDataRawStreamRequestJson, validType: ImportDataRawStreamRequestValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 14);
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamResponse
+ */
+export type ImportDataRawStreamResponse = Message<"otpki.public.importer.v1.ImportDataRawStreamResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResult;
+};
+
+/**
+ * @generated from message otpki.public.importer.v1.ImportDataRawStreamResponse
+ */
+export type ImportDataRawStreamResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.importer.v1.ImportResult result = 1;
+   */
+  result?: ImportResultJson;
+};
+
+export type ImportDataRawStreamResponseValid = ImportDataRawStreamResponse;
+
+/**
+ * Describes the message otpki.public.importer.v1.ImportDataRawStreamResponse.
+ * Use `create(ImportDataRawStreamResponseSchema)` to create a new message.
+ */
+export const ImportDataRawStreamResponseSchema: GenMessage<ImportDataRawStreamResponse, {jsonType: ImportDataRawStreamResponseJson, validType: ImportDataRawStreamResponseValid}> = /*@__PURE__*/
+  messageDesc(file_otpki_public_importer_v1_importer, 15);
+
+/**
  * @generated from service otpki.public.importer.v1.ImporterService
  */
 export const ImporterService: GenService<{
@@ -334,6 +627,38 @@ export const ImporterService: GenService<{
     methodKind: "unary";
     input: typeof ImportDataRawRequestSchema;
     output: typeof ImportDataRawResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ExportDataStream
+   */
+  exportDataStream: {
+    methodKind: "server_streaming";
+    input: typeof ExportDataStreamRequestSchema;
+    output: typeof ExportDataStreamResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ExportDataRawStream
+   */
+  exportDataRawStream: {
+    methodKind: "server_streaming";
+    input: typeof ExportDataRawStreamRequestSchema;
+    output: typeof ExportDataRawStreamResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ImportDataStream
+   */
+  importDataStream: {
+    methodKind: "client_streaming";
+    input: typeof ImportDataStreamRequestSchema;
+    output: typeof ImportDataStreamResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.importer.v1.ImporterService.ImportDataRawStream
+   */
+  importDataRawStream: {
+    methodKind: "client_streaming";
+    input: typeof ImportDataRawStreamRequestSchema;
+    output: typeof ImportDataRawStreamResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_otpki_public_importer_v1_importer, 0);

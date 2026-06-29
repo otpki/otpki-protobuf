@@ -34,6 +34,42 @@ message ImportDataRawResponse {
   otpki.common.core.importer.v1.ImportResult result = 1;
 }
 
+message ExportDataStreamRequest {
+  otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+  uint64 chunk_size = 2;
+}
+
+message ExportDataStreamResponse {
+  otpki.common.core.importer.v1.ExportData data = 1;
+}
+
+message ImportDataStreamRequest {
+  otpki.common.core.importer.v1.ExportData data = 1;
+  otpki.common.core.importer.v1.ImportOptions options = 2;
+}
+
+message ImportDataStreamResponse {
+  otpki.common.core.importer.v1.ImportResult result = 1;
+}
+
+message ExportDataRawStreamRequest {
+  otpki.common.core.importer.v1.ExportPagination export_pagination = 1;
+  uint64 chunk_size = 2;
+}
+
+message ExportDataRawStreamResponse {
+  bytes data = 1;
+}
+
+message ImportDataRawStreamRequest {
+  bytes data = 1;
+  otpki.common.core.importer.v1.ImportOptions options = 2;
+}
+
+message ImportDataRawStreamResponse {
+  otpki.common.core.importer.v1.ImportResult result = 1;
+}
+
 service ImporterService {
   // The ExportData route supports export of all or partial subsets of
   // otpki system data.
@@ -70,4 +106,20 @@ service ImporterService {
       body: "data"
     };
   }
+  rpc ExportDataStream(ExportDataStreamRequest) returns (stream ExportDataStreamResponse) {
+    option (google.api.http) = {
+      put: "/v1/importer/export/stream"
+      body: "export_pagination"
+      additional_bindings: {get: "/v1/importer/export/stream"}
+    };
+  }
+  rpc ExportDataRawStream(ExportDataRawStreamRequest) returns (stream ExportDataRawStreamResponse) {
+    option (google.api.http) = {
+      put: "/v1/importer/export/raw/stream"
+      body: "export_pagination"
+      additional_bindings: {get: "/v1/importer/export/raw/stream"}
+    };
+  }
+  rpc ImportDataStream(stream ImportDataStreamRequest) returns (ImportDataStreamResponse);
+  rpc ImportDataRawStream(stream ImportDataRawStreamRequest) returns (ImportDataRawStreamResponse);
 }
