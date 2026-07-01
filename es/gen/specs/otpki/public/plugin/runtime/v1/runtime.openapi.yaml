@@ -2670,6 +2670,12 @@ components:
         checkPassword:
           type: boolean
           title: check_password
+        autoResetGeneratedEndEntity:
+          type: boolean
+          title: auto_reset_generated_end_entity
+        requireImmediateIssuance:
+          type: boolean
+          title: require_immediate_issuance
       title: CreateEnrollmentAttemptRequest
       required:
         - enrollmentAttempt

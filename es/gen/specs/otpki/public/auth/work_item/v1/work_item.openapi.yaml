@@ -907,6 +907,14 @@ components:
             $ref: '#/components/schemas/otpki.common.auth.v1.WorkItemApproval'
           title: approvals
           readOnly: true
+        pendingData:
+          type: string
+          title: pending_data
+          format: byte
+          description: |-
+            Optional to-be-applied mutation payload associated with this work item.
+             The payload is encoded as resource-specific protobuf bytes and decoded
+             deterministically from resource_type.
         createdAt:
           title: created_at
           description: not settable on creation

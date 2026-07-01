@@ -47,6 +47,7 @@ type MessageInfo struct {
 	StructName  string
 	Fields      []FieldInfo
 	UUIDGetters []UUIDGetterInfo
+	NeedsErr    bool
 }
 
 var structTmpl = template.Must(template.New("").Parse(`
@@ -62,7 +63,9 @@ func (n *{{.StructName}}Native) ToProto() (*{{.StructName}}, error) {
 	if n == nil {
 		return nil, nil
 	}
+	{{- if .NeedsErr}}
 	var err error
+	{{- end}}
 	protoStruct := &{{.StructName}}{}
 	{{- range .Fields}}
 	{{- if .ConverterInfo.NeedsConverter}}
@@ -82,7 +85,9 @@ func (p *{{.StructName}}) ToNative() (*{{.StructName}}Native, error) {
 	if p == nil {
 		return nil, nil
 	}
+	{{- if .NeedsErr}}
 	var err error
+	{{- end}}
 	nativeStruct := &{{.StructName}}Native{}
 	{{- range .Fields}}
 	{{- if .ConverterInfo.NeedsConverter}}
@@ -227,6 +232,7 @@ func generateMessageCode(g *protogen.GeneratedFile, message *protogen.Message) (
 			// get converter info
 			convInfo, toProtoFuncName, toNativeFuncName := getFieldConverterInfo(g, field)
 			if convInfo.NeedsConverter {
+				msgInfo.NeedsErr = true
 				neededConverters = append(neededConverters, toProtoFuncName)
 				neededConverters = append(neededConverters, toNativeFuncName)
 			}

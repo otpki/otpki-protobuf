@@ -144,6 +144,8 @@ message CreateEnrollmentAttemptRequest {
   bool allow_existing = 4;
   bool require_existing = 5;
   bool check_password = 6;
+  bool auto_reset_generated_end_entity = 7;
+  bool require_immediate_issuance = 8;
 }
 
 message CreateEnrollmentAttemptResponse {

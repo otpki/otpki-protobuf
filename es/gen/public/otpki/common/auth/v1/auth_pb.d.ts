@@ -4,7 +4,8 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { Duration, DurationJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import type { Duration, DurationJson, FieldMask, FieldMaskJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import type { EndEntity, EndEntityJson, EndEntityValid } from "../../core/end_entity/v1/end_entity_pb.js";
 
 /**
  * Describes the file otpki/common/auth/v1/auth.proto.
@@ -766,6 +767,90 @@ export declare type OIDCProviderValid = OIDCProvider;
 export declare const OIDCProviderSchema: GenMessage<OIDCProvider, {jsonType: OIDCProviderJson, validType: OIDCProviderValid}>;
 
 /**
+ * @generated from message otpki.common.auth.v1.EndEntityMutation
+ */
+export declare type EndEntityMutation = Message<"otpki.common.auth.v1.EndEntityMutation"> & {
+  /**
+   * @generated from field: otpki.common.auth.v1.EndEntityMutationOperation operation = 1;
+   */
+  operation: EndEntityMutationOperation;
+
+  /**
+   * Desired EE state to apply once approval completes. For updates this may be a
+   * partial EE and should be interpreted using update_mask.
+   *
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntity;
+
+  /**
+   * Empty for create mutations. For update mutations this identifies which EE
+   * fields from end_entity should be applied.
+   *
+   * @generated from field: google.protobuf.FieldMask update_mask = 3;
+   */
+  updateMask?: FieldMask;
+};
+
+/**
+ * @generated from message otpki.common.auth.v1.EndEntityMutation
+ */
+export declare type EndEntityMutationJson = {
+  /**
+   * @generated from field: otpki.common.auth.v1.EndEntityMutationOperation operation = 1;
+   */
+  operation?: EndEntityMutationOperationJson;
+
+  /**
+   * Desired EE state to apply once approval completes. For updates this may be a
+   * partial EE and should be interpreted using update_mask.
+   *
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity?: EndEntityJson;
+
+  /**
+   * Empty for create mutations. For update mutations this identifies which EE
+   * fields from end_entity should be applied.
+   *
+   * @generated from field: google.protobuf.FieldMask update_mask = 3;
+   */
+  updateMask?: FieldMaskJson;
+};
+
+/**
+ * @generated from message otpki.common.auth.v1.EndEntityMutation
+ */
+export declare type EndEntityMutationValid = Message<"otpki.common.auth.v1.EndEntityMutation"> & {
+  /**
+   * @generated from field: otpki.common.auth.v1.EndEntityMutationOperation operation = 1;
+   */
+  operation: EndEntityMutationOperation;
+
+  /**
+   * Desired EE state to apply once approval completes. For updates this may be a
+   * partial EE and should be interpreted using update_mask.
+   *
+   * @generated from field: otpki.common.core.end_entity.v1.EndEntity end_entity = 2;
+   */
+  endEntity: EndEntityValid;
+
+  /**
+   * Empty for create mutations. For update mutations this identifies which EE
+   * fields from end_entity should be applied.
+   *
+   * @generated from field: google.protobuf.FieldMask update_mask = 3;
+   */
+  updateMask?: FieldMask;
+};
+
+/**
+ * Describes the message otpki.common.auth.v1.EndEntityMutation.
+ * Use `create(EndEntityMutationSchema)` to create a new message.
+ */
+export declare const EndEntityMutationSchema: GenMessage<EndEntityMutation, {jsonType: EndEntityMutationJson, validType: EndEntityMutationValid}>;
+
+/**
  * @generated from message otpki.common.auth.v1.WorkItem
  */
 export declare type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
@@ -803,6 +888,15 @@ export declare type WorkItem = Message<"otpki.common.auth.v1.WorkItem"> & {
    * @generated from field: repeated otpki.common.auth.v1.WorkItemApproval approvals = 7;
    */
   approvals: WorkItemApproval[];
+
+  /**
+   * Optional to-be-applied mutation payload associated with this work item.
+   * The payload is encoded as resource-specific protobuf bytes and decoded
+   * deterministically from resource_type.
+   *
+   * @generated from field: bytes pending_data = 8;
+   */
+  pendingData: Uint8Array;
 
   /**
    * not settable on creation
@@ -855,6 +949,15 @@ export declare type WorkItemJson = {
    * @generated from field: repeated otpki.common.auth.v1.WorkItemApproval approvals = 7;
    */
   approvals?: WorkItemApprovalJson[];
+
+  /**
+   * Optional to-be-applied mutation payload associated with this work item.
+   * The payload is encoded as resource-specific protobuf bytes and decoded
+   * deterministically from resource_type.
+   *
+   * @generated from field: bytes pending_data = 8;
+   */
+  pendingData?: string;
 
   /**
    * not settable on creation
@@ -1171,4 +1274,34 @@ export declare type WorkItemStatusJson = "WORK_ITEM_STATUS_UNSPECIFIED" | "WORK_
  * Describes the enum otpki.common.auth.v1.WorkItemStatus.
  */
 export declare const WorkItemStatusSchema: GenEnum<WorkItemStatus, WorkItemStatusJson>;
+
+/**
+ * @generated from enum otpki.common.auth.v1.EndEntityMutationOperation
+ */
+export enum EndEntityMutationOperation {
+  /**
+   * @generated from enum value: END_ENTITY_MUTATION_OPERATION_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: END_ENTITY_MUTATION_OPERATION_CREATE = 1;
+   */
+  CREATE = 1,
+
+  /**
+   * @generated from enum value: END_ENTITY_MUTATION_OPERATION_UPDATE = 2;
+   */
+  UPDATE = 2,
+}
+
+/**
+ * @generated from enum otpki.common.auth.v1.EndEntityMutationOperation
+ */
+export declare type EndEntityMutationOperationJson = "END_ENTITY_MUTATION_OPERATION_UNSPECIFIED" | "END_ENTITY_MUTATION_OPERATION_CREATE" | "END_ENTITY_MUTATION_OPERATION_UPDATE";
+
+/**
+ * Describes the enum otpki.common.auth.v1.EndEntityMutationOperation.
+ */
+export declare const EndEntityMutationOperationSchema: GenEnum<EndEntityMutationOperation, EndEntityMutationOperationJson>;
 

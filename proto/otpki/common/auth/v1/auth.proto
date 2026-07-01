@@ -3,9 +3,11 @@ package otpki.common.auth.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/core/end_entity/v1/end_entity.proto";
 
 enum Action {
   ACTION_UNSPECIFIED = 0;
@@ -255,6 +257,24 @@ enum WorkItemStatus {
   WORK_ITEM_STATUS_REJECTED = 3;
 }
 
+enum EndEntityMutationOperation {
+  END_ENTITY_MUTATION_OPERATION_UNSPECIFIED = 0;
+  END_ENTITY_MUTATION_OPERATION_CREATE = 1;
+  END_ENTITY_MUTATION_OPERATION_UPDATE = 2;
+}
+
+message EndEntityMutation {
+  option (api.v1.generate_native) = true;
+
+  EndEntityMutationOperation operation = 1;
+  // Desired EE state to apply once approval completes. For updates this may be a
+  // partial EE and should be interpreted using update_mask.
+  otpki.common.core.end_entity.v1.EndEntity end_entity = 2 [(buf.validate.field).required = true];
+  // Empty for create mutations. For update mutations this identifies which EE
+  // fields from end_entity should be applied.
+  google.protobuf.FieldMask update_mask = 3;
+}
+
 message WorkItem {
   option (api.v1.generate_native) = true;
   string id = 1 [
@@ -267,6 +287,10 @@ message WorkItem {
   string description = 5;
   WorkItemStatus status = 6;
   repeated WorkItemApproval approvals = 7 [(openapi.v3.property).read_only = true];
+  // Optional to-be-applied mutation payload associated with this work item.
+  // The payload is encoded as resource-specific protobuf bytes and decoded
+  // deterministically from resource_type.
+  bytes pending_data = 8;
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,

@@ -1251,13 +1251,15 @@ type CreateEnrollmentAttemptRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	EnrollmentAttempt *v14.EnrollmentAttempt `protobuf:"bytes,1,opt,name=enrollment_attempt,json=enrollmentAttempt,proto3" json:"enrollment_attempt,omitempty"`
 	// Exactly one of enrollment_attempt.end_entity_id or end_entity should be set.
-	EndEntity        *v1.EndEntity `protobuf:"bytes,2,opt,name=end_entity,json=endEntity,proto3" json:"end_entity,omitempty"`
-	SkipVerification bool          `protobuf:"varint,3,opt,name=skip_verification,json=skipVerification,proto3" json:"skip_verification,omitempty"`
-	AllowExisting    bool          `protobuf:"varint,4,opt,name=allow_existing,json=allowExisting,proto3" json:"allow_existing,omitempty"`
-	RequireExisting  bool          `protobuf:"varint,5,opt,name=require_existing,json=requireExisting,proto3" json:"require_existing,omitempty"`
-	CheckPassword    bool          `protobuf:"varint,6,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	EndEntity                   *v1.EndEntity `protobuf:"bytes,2,opt,name=end_entity,json=endEntity,proto3" json:"end_entity,omitempty"`
+	SkipVerification            bool          `protobuf:"varint,3,opt,name=skip_verification,json=skipVerification,proto3" json:"skip_verification,omitempty"`
+	AllowExisting               bool          `protobuf:"varint,4,opt,name=allow_existing,json=allowExisting,proto3" json:"allow_existing,omitempty"`
+	RequireExisting             bool          `protobuf:"varint,5,opt,name=require_existing,json=requireExisting,proto3" json:"require_existing,omitempty"`
+	CheckPassword               bool          `protobuf:"varint,6,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
+	AutoResetGeneratedEndEntity bool          `protobuf:"varint,7,opt,name=auto_reset_generated_end_entity,json=autoResetGeneratedEndEntity,proto3" json:"auto_reset_generated_end_entity,omitempty"`
+	RequireImmediateIssuance    bool          `protobuf:"varint,8,opt,name=require_immediate_issuance,json=requireImmediateIssuance,proto3" json:"require_immediate_issuance,omitempty"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *CreateEnrollmentAttemptRequest) Reset() {
@@ -1328,6 +1330,20 @@ func (x *CreateEnrollmentAttemptRequest) GetRequireExisting() bool {
 func (x *CreateEnrollmentAttemptRequest) GetCheckPassword() bool {
 	if x != nil {
 		return x.CheckPassword
+	}
+	return false
+}
+
+func (x *CreateEnrollmentAttemptRequest) GetAutoResetGeneratedEndEntity() bool {
+	if x != nil {
+		return x.AutoResetGeneratedEndEntity
+	}
+	return false
+}
+
+func (x *CreateEnrollmentAttemptRequest) GetRequireImmediateIssuance() bool {
+	if x != nil {
+		return x.RequireImmediateIssuance
 	}
 	return false
 }
@@ -2344,7 +2360,7 @@ const file_otpki_public_plugin_runtime_v1_runtime_proto_rawDesc = "" +
 	"\x1cGetCertificateProfileRequest\x12\x1b\n" +
 	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\"\x8e\x01\n" +
 	"\x1dGetCertificateProfileResponse\x12m\n" +
-	"\x13certificate_profile\x18\x01 \x01(\v2<.otpki.common.core.certificate_profile.v1.CertificateProfileR\x12certificateProfile\"\xfa\x02\n" +
+	"\x13certificate_profile\x18\x01 \x01(\v2<.otpki.common.core.certificate_profile.v1.CertificateProfileR\x12certificateProfile\"\xfe\x03\n" +
 	"\x1eCreateEnrollmentAttemptRequest\x12g\n" +
 	"\x12enrollment_attempt\x18\x01 \x01(\v20.otpki.common.core.enroller.v1.EnrollmentAttemptB\x06\xbaH\x03\xc8\x01\x01R\x11enrollmentAttempt\x12I\n" +
 	"\n" +
@@ -2352,7 +2368,9 @@ const file_otpki_public_plugin_runtime_v1_runtime_proto_rawDesc = "" +
 	"\x11skip_verification\x18\x03 \x01(\bR\x10skipVerification\x12%\n" +
 	"\x0eallow_existing\x18\x04 \x01(\bR\rallowExisting\x12)\n" +
 	"\x10require_existing\x18\x05 \x01(\bR\x0frequireExisting\x12%\n" +
-	"\x0echeck_password\x18\x06 \x01(\bR\rcheckPassword\"\x85\x01\n" +
+	"\x0echeck_password\x18\x06 \x01(\bR\rcheckPassword\x12D\n" +
+	"\x1fauto_reset_generated_end_entity\x18\a \x01(\bR\x1bautoResetGeneratedEndEntity\x12<\n" +
+	"\x1arequire_immediate_issuance\x18\b \x01(\bR\x18requireImmediateIssuance\"\x85\x01\n" +
 	"\x1fCreateEnrollmentAttemptResponse\x12b\n" +
 	"\x13enrollment_response\x18\x01 \x01(\v21.otpki.common.core.enroller.v1.EnrollmentResponseR\x12enrollmentResponse\"\xa5\x01\n" +
 	"\x1fGetEnrollmentAttemptByIDRequest\x12?\n" +

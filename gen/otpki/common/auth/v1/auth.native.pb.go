@@ -5,7 +5,9 @@ package authv1
 import (
 	fmt "fmt"
 	uuid "github.com/google/uuid"
+	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/end_entity/v1"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	time "time"
 )
@@ -546,6 +548,37 @@ func (x *OIDCProvider) GetIdUUID() uuid.UUID {
 	return uuid.UUID{}
 }
 
+// EndEntityMutationNative is the native typing representation of EndEntityMutation
+type EndEntityMutationNative struct {
+	Operation  EndEntityMutationOperation
+	EndEntity  *v1.EndEntity
+	UpdateMask *fieldmaskpb.FieldMask
+}
+
+// ToProto converts a EndEntityMutationNative to a EndEntityMutation
+func (n *EndEntityMutationNative) ToProto() (*EndEntityMutation, error) {
+	if n == nil {
+		return nil, nil
+	}
+	protoStruct := &EndEntityMutation{}
+	protoStruct.Operation = n.Operation
+	protoStruct.EndEntity = n.EndEntity
+	protoStruct.UpdateMask = n.UpdateMask
+	return protoStruct, nil
+}
+
+// FromProto converts a EndEntityMutation to a EndEntityMutationNative
+func (p *EndEntityMutation) ToNative() (*EndEntityMutationNative, error) {
+	if p == nil {
+		return nil, nil
+	}
+	nativeStruct := &EndEntityMutationNative{}
+	nativeStruct.Operation = p.Operation
+	nativeStruct.EndEntity = p.EndEntity
+	nativeStruct.UpdateMask = p.UpdateMask
+	return nativeStruct, nil
+}
+
 // WorkItemNative is the native typing representation of WorkItem
 type WorkItemNative struct {
 	Id                uuid.UUID
@@ -555,6 +588,7 @@ type WorkItemNative struct {
 	Description       string
 	Status            WorkItemStatus
 	Approvals         []*WorkItemApproval
+	PendingData       []byte
 	CreatedAt         time.Time
 	UpdatedAt         time.Time
 }
@@ -582,6 +616,7 @@ func (n *WorkItemNative) ToProto() (*WorkItem, error) {
 	protoStruct.Description = n.Description
 	protoStruct.Status = n.Status
 	protoStruct.Approvals = n.Approvals
+	protoStruct.PendingData = n.PendingData
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -616,6 +651,7 @@ func (p *WorkItem) ToNative() (*WorkItemNative, error) {
 	nativeStruct.Description = p.Description
 	nativeStruct.Status = p.Status
 	nativeStruct.Approvals = p.Approvals
+	nativeStruct.PendingData = p.PendingData
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)

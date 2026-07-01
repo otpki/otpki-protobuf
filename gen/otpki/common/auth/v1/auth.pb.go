@@ -10,9 +10,11 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "github.com/google/gnostic/openapiv3"
 	_ "github.com/otpki/otpki-protobuf/gen/otpki/common/api/v1"
+	v1 "github.com/otpki/otpki-protobuf/gen/otpki/common/core/end_entity/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -263,6 +265,55 @@ func (x WorkItemStatus) Number() protoreflect.EnumNumber {
 // Deprecated: Use WorkItemStatus.Descriptor instead.
 func (WorkItemStatus) EnumDescriptor() ([]byte, []int) {
 	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{2}
+}
+
+type EndEntityMutationOperation int32
+
+const (
+	EndEntityMutationOperation_END_ENTITY_MUTATION_OPERATION_UNSPECIFIED EndEntityMutationOperation = 0
+	EndEntityMutationOperation_END_ENTITY_MUTATION_OPERATION_CREATE      EndEntityMutationOperation = 1
+	EndEntityMutationOperation_END_ENTITY_MUTATION_OPERATION_UPDATE      EndEntityMutationOperation = 2
+)
+
+// Enum value maps for EndEntityMutationOperation.
+var (
+	EndEntityMutationOperation_name = map[int32]string{
+		0: "END_ENTITY_MUTATION_OPERATION_UNSPECIFIED",
+		1: "END_ENTITY_MUTATION_OPERATION_CREATE",
+		2: "END_ENTITY_MUTATION_OPERATION_UPDATE",
+	}
+	EndEntityMutationOperation_value = map[string]int32{
+		"END_ENTITY_MUTATION_OPERATION_UNSPECIFIED": 0,
+		"END_ENTITY_MUTATION_OPERATION_CREATE":      1,
+		"END_ENTITY_MUTATION_OPERATION_UPDATE":      2,
+	}
+)
+
+func (x EndEntityMutationOperation) Enum() *EndEntityMutationOperation {
+	p := new(EndEntityMutationOperation)
+	*p = x
+	return p
+}
+
+func (x EndEntityMutationOperation) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (EndEntityMutationOperation) Descriptor() protoreflect.EnumDescriptor {
+	return file_otpki_common_auth_v1_auth_proto_enumTypes[3].Descriptor()
+}
+
+func (EndEntityMutationOperation) Type() protoreflect.EnumType {
+	return &file_otpki_common_auth_v1_auth_proto_enumTypes[3]
+}
+
+func (x EndEntityMutationOperation) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use EndEntityMutationOperation.Descriptor instead.
+func (EndEntityMutationOperation) EnumDescriptor() ([]byte, []int) {
+	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{3}
 }
 
 type ResourceActions struct {
@@ -996,6 +1047,70 @@ func (x *OIDCProvider) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type EndEntityMutation struct {
+	state     protoimpl.MessageState     `protogen:"open.v1"`
+	Operation EndEntityMutationOperation `protobuf:"varint,1,opt,name=operation,proto3,enum=otpki.common.auth.v1.EndEntityMutationOperation" json:"operation,omitempty"`
+	// Desired EE state to apply once approval completes. For updates this may be a
+	// partial EE and should be interpreted using update_mask.
+	EndEntity *v1.EndEntity `protobuf:"bytes,2,opt,name=end_entity,json=endEntity,proto3" json:"end_entity,omitempty"`
+	// Empty for create mutations. For update mutations this identifies which EE
+	// fields from end_entity should be applied.
+	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,3,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EndEntityMutation) Reset() {
+	*x = EndEntityMutation{}
+	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EndEntityMutation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EndEntityMutation) ProtoMessage() {}
+
+func (x *EndEntityMutation) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EndEntityMutation.ProtoReflect.Descriptor instead.
+func (*EndEntityMutation) Descriptor() ([]byte, []int) {
+	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *EndEntityMutation) GetOperation() EndEntityMutationOperation {
+	if x != nil {
+		return x.Operation
+	}
+	return EndEntityMutationOperation_END_ENTITY_MUTATION_OPERATION_UNSPECIFIED
+}
+
+func (x *EndEntityMutation) GetEndEntity() *v1.EndEntity {
+	if x != nil {
+		return x.EndEntity
+	}
+	return nil
+}
+
+func (x *EndEntityMutation) GetUpdateMask() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.UpdateMask
+	}
+	return nil
+}
+
 type WorkItem struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1005,6 +1120,10 @@ type WorkItem struct {
 	Description       string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
 	Status            WorkItemStatus         `protobuf:"varint,6,opt,name=status,proto3,enum=otpki.common.auth.v1.WorkItemStatus" json:"status,omitempty"`
 	Approvals         []*WorkItemApproval    `protobuf:"bytes,7,rep,name=approvals,proto3" json:"approvals,omitempty"`
+	// Optional to-be-applied mutation payload associated with this work item.
+	// The payload is encoded as resource-specific protobuf bytes and decoded
+	// deterministically from resource_type.
+	PendingData []byte `protobuf:"bytes,8,opt,name=pending_data,json=pendingData,proto3" json:"pending_data,omitempty"`
 	// not settable on creation
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,202,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
@@ -1014,7 +1133,7 @@ type WorkItem struct {
 
 func (x *WorkItem) Reset() {
 	*x = WorkItem{}
-	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[7]
+	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1026,7 +1145,7 @@ func (x *WorkItem) String() string {
 func (*WorkItem) ProtoMessage() {}
 
 func (x *WorkItem) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[7]
+	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1039,7 +1158,7 @@ func (x *WorkItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkItem.ProtoReflect.Descriptor instead.
 func (*WorkItem) Descriptor() ([]byte, []int) {
-	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{7}
+	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *WorkItem) GetId() string {
@@ -1091,6 +1210,13 @@ func (x *WorkItem) GetApprovals() []*WorkItemApproval {
 	return nil
 }
 
+func (x *WorkItem) GetPendingData() []byte {
+	if x != nil {
+		return x.PendingData
+	}
+	return nil
+}
+
 func (x *WorkItem) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -1116,7 +1242,7 @@ type WorkItemApproval struct {
 
 func (x *WorkItemApproval) Reset() {
 	*x = WorkItemApproval{}
-	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[8]
+	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1128,7 +1254,7 @@ func (x *WorkItemApproval) String() string {
 func (*WorkItemApproval) ProtoMessage() {}
 
 func (x *WorkItemApproval) ProtoReflect() protoreflect.Message {
-	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[8]
+	mi := &file_otpki_common_auth_v1_auth_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1141,7 +1267,7 @@ func (x *WorkItemApproval) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkItemApproval.ProtoReflect.Descriptor instead.
 func (*WorkItemApproval) Descriptor() ([]byte, []int) {
-	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{8}
+	return file_otpki_common_auth_v1_auth_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *WorkItemApproval) GetUserId() string {
@@ -1169,7 +1295,7 @@ var File_otpki_common_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x1fotpki/common/auth/v1/auth.proto\x12\x14otpki.common.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\"\x85\x01\n" +
+	"\x1fotpki/common/auth/v1/auth.proto\x12\x14otpki.common.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a0otpki/common/core/end_entity/v1/end_entity.proto\"\x85\x01\n" +
 	"\x0fResourceActions\x12:\n" +
 	"\bresource\x18\x01 \x01(\x0e2\x1e.otpki.common.auth.v1.ResourceR\bresource\x126\n" +
 	"\aactions\x18\x02 \x03(\x0e2\x1c.otpki.common.auth.v1.ActionR\aactions\"\x9b\x02\n" +
@@ -1256,7 +1382,13 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
-	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xb6\x04\n" +
+	"updated_at\x18\xca\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tupdatedAt:\x04\x98\xb5\x18\x01\"\xf9\x01\n" +
+	"\x11EndEntityMutation\x12N\n" +
+	"\toperation\x18\x01 \x01(\x0e20.otpki.common.auth.v1.EndEntityMutationOperationR\toperation\x12Q\n" +
+	"\n" +
+	"end_entity\x18\x02 \x01(\v2*.otpki.common.core.end_entity.v1.EndEntityB\x06\xbaH\x03\xc8\x01\x01R\tendEntity\x12;\n" +
+	"\vupdate_mask\x18\x03 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
+	"updateMask:\x04\x98\xb5\x18\x01\"\xd9\x04\n" +
 	"\bWorkItem\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x128\n" +
 	"\x13approval_profile_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x11approvalProfileId\x12C\n" +
@@ -1265,7 +1397,8 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"resourceId\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12<\n" +
 	"\x06status\x18\x06 \x01(\x0e2$.otpki.common.auth.v1.WorkItemStatusR\x06status\x12K\n" +
-	"\tapprovals\x18\a \x03(\v2&.otpki.common.auth.v1.WorkItemApprovalB\x05\xbaG\x02\x18\x01R\tapprovals\x12V\n" +
+	"\tapprovals\x18\a \x03(\v2&.otpki.common.auth.v1.WorkItemApprovalB\x05\xbaG\x02\x18\x01R\tapprovals\x12!\n" +
+	"\fpending_data\x18\b \x01(\fR\vpendingData\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
@@ -1315,7 +1448,11 @@ const file_otpki_common_auth_v1_auth_proto_rawDesc = "" +
 	"\x1cWORK_ITEM_STATUS_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18WORK_ITEM_STATUS_PENDING\x10\x01\x12\x1d\n" +
 	"\x19WORK_ITEM_STATUS_APPROVED\x10\x02\x12\x1d\n" +
-	"\x19WORK_ITEM_STATUS_REJECTED\x10\x03B\xd9\x01\n" +
+	"\x19WORK_ITEM_STATUS_REJECTED\x10\x03*\x9f\x01\n" +
+	"\x1aEndEntityMutationOperation\x12-\n" +
+	")END_ENTITY_MUTATION_OPERATION_UNSPECIFIED\x10\x00\x12(\n" +
+	"$END_ENTITY_MUTATION_OPERATION_CREATE\x10\x01\x12(\n" +
+	"$END_ENTITY_MUTATION_OPERATION_UPDATE\x10\x02B\xd9\x01\n" +
 	"\x18com.otpki.common.auth.v1B\tAuthProtoP\x01Z?github.com/otpki/otpki-protobuf/gen/otpki/common/auth/v1;authv1\xa2\x02\x03OCA\xaa\x02\x14Otpki.Common.Auth.V1\xca\x02\x14Otpki\\Common\\Auth\\V1\xe2\x02 Otpki\\Common\\Auth\\V1\\GPBMetadata\xea\x02\x17Otpki::Common::Auth::V1b\x06proto3"
 
 var (
@@ -1330,53 +1467,60 @@ func file_otpki_common_auth_v1_auth_proto_rawDescGZIP() []byte {
 	return file_otpki_common_auth_v1_auth_proto_rawDescData
 }
 
-var file_otpki_common_auth_v1_auth_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_otpki_common_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_otpki_common_auth_v1_auth_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_otpki_common_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_otpki_common_auth_v1_auth_proto_goTypes = []any{
-	(Action)(0),                   // 0: otpki.common.auth.v1.Action
-	(Resource)(0),                 // 1: otpki.common.auth.v1.Resource
-	(WorkItemStatus)(0),           // 2: otpki.common.auth.v1.WorkItemStatus
-	(*ResourceActions)(nil),       // 3: otpki.common.auth.v1.ResourceActions
-	(*Group)(nil),                 // 4: otpki.common.auth.v1.Group
-	(*Role)(nil),                  // 5: otpki.common.auth.v1.Role
-	(*Permission)(nil),            // 6: otpki.common.auth.v1.Permission
-	(*User)(nil),                  // 7: otpki.common.auth.v1.User
-	(*ApprovalProfile)(nil),       // 8: otpki.common.auth.v1.ApprovalProfile
-	(*OIDCProvider)(nil),          // 9: otpki.common.auth.v1.OIDCProvider
-	(*WorkItem)(nil),              // 10: otpki.common.auth.v1.WorkItem
-	(*WorkItemApproval)(nil),      // 11: otpki.common.auth.v1.WorkItemApproval
-	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),   // 13: google.protobuf.Duration
+	(Action)(0),                     // 0: otpki.common.auth.v1.Action
+	(Resource)(0),                   // 1: otpki.common.auth.v1.Resource
+	(WorkItemStatus)(0),             // 2: otpki.common.auth.v1.WorkItemStatus
+	(EndEntityMutationOperation)(0), // 3: otpki.common.auth.v1.EndEntityMutationOperation
+	(*ResourceActions)(nil),         // 4: otpki.common.auth.v1.ResourceActions
+	(*Group)(nil),                   // 5: otpki.common.auth.v1.Group
+	(*Role)(nil),                    // 6: otpki.common.auth.v1.Role
+	(*Permission)(nil),              // 7: otpki.common.auth.v1.Permission
+	(*User)(nil),                    // 8: otpki.common.auth.v1.User
+	(*ApprovalProfile)(nil),         // 9: otpki.common.auth.v1.ApprovalProfile
+	(*OIDCProvider)(nil),            // 10: otpki.common.auth.v1.OIDCProvider
+	(*EndEntityMutation)(nil),       // 11: otpki.common.auth.v1.EndEntityMutation
+	(*WorkItem)(nil),                // 12: otpki.common.auth.v1.WorkItem
+	(*WorkItemApproval)(nil),        // 13: otpki.common.auth.v1.WorkItemApproval
+	(*timestamppb.Timestamp)(nil),   // 14: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),     // 15: google.protobuf.Duration
+	(*v1.EndEntity)(nil),            // 16: otpki.common.core.end_entity.v1.EndEntity
+	(*fieldmaskpb.FieldMask)(nil),   // 17: google.protobuf.FieldMask
 }
 var file_otpki_common_auth_v1_auth_proto_depIdxs = []int32{
 	1,  // 0: otpki.common.auth.v1.ResourceActions.resource:type_name -> otpki.common.auth.v1.Resource
 	0,  // 1: otpki.common.auth.v1.ResourceActions.actions:type_name -> otpki.common.auth.v1.Action
-	12, // 2: otpki.common.auth.v1.Group.created_at:type_name -> google.protobuf.Timestamp
-	12, // 3: otpki.common.auth.v1.Group.updated_at:type_name -> google.protobuf.Timestamp
-	12, // 4: otpki.common.auth.v1.Role.created_at:type_name -> google.protobuf.Timestamp
-	12, // 5: otpki.common.auth.v1.Role.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 2: otpki.common.auth.v1.Group.created_at:type_name -> google.protobuf.Timestamp
+	14, // 3: otpki.common.auth.v1.Group.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 4: otpki.common.auth.v1.Role.created_at:type_name -> google.protobuf.Timestamp
+	14, // 5: otpki.common.auth.v1.Role.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 6: otpki.common.auth.v1.Permission.resource_type:type_name -> otpki.common.auth.v1.Resource
 	0,  // 7: otpki.common.auth.v1.Permission.action_type:type_name -> otpki.common.auth.v1.Action
-	12, // 8: otpki.common.auth.v1.User.created_at:type_name -> google.protobuf.Timestamp
-	12, // 9: otpki.common.auth.v1.User.updated_at:type_name -> google.protobuf.Timestamp
-	12, // 10: otpki.common.auth.v1.ApprovalProfile.created_at:type_name -> google.protobuf.Timestamp
-	12, // 11: otpki.common.auth.v1.ApprovalProfile.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 12: otpki.common.auth.v1.OIDCProvider.max_skew:type_name -> google.protobuf.Duration
-	13, // 13: otpki.common.auth.v1.OIDCProvider.session_max_inactive:type_name -> google.protobuf.Duration
-	13, // 14: otpki.common.auth.v1.OIDCProvider.session_max_length:type_name -> google.protobuf.Duration
-	12, // 15: otpki.common.auth.v1.OIDCProvider.created_at:type_name -> google.protobuf.Timestamp
-	12, // 16: otpki.common.auth.v1.OIDCProvider.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 17: otpki.common.auth.v1.WorkItem.resource_type:type_name -> otpki.common.auth.v1.Resource
-	2,  // 18: otpki.common.auth.v1.WorkItem.status:type_name -> otpki.common.auth.v1.WorkItemStatus
-	11, // 19: otpki.common.auth.v1.WorkItem.approvals:type_name -> otpki.common.auth.v1.WorkItemApproval
-	12, // 20: otpki.common.auth.v1.WorkItem.created_at:type_name -> google.protobuf.Timestamp
-	12, // 21: otpki.common.auth.v1.WorkItem.updated_at:type_name -> google.protobuf.Timestamp
-	12, // 22: otpki.common.auth.v1.WorkItemApproval.created_at:type_name -> google.protobuf.Timestamp
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	14, // 8: otpki.common.auth.v1.User.created_at:type_name -> google.protobuf.Timestamp
+	14, // 9: otpki.common.auth.v1.User.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 10: otpki.common.auth.v1.ApprovalProfile.created_at:type_name -> google.protobuf.Timestamp
+	14, // 11: otpki.common.auth.v1.ApprovalProfile.updated_at:type_name -> google.protobuf.Timestamp
+	15, // 12: otpki.common.auth.v1.OIDCProvider.max_skew:type_name -> google.protobuf.Duration
+	15, // 13: otpki.common.auth.v1.OIDCProvider.session_max_inactive:type_name -> google.protobuf.Duration
+	15, // 14: otpki.common.auth.v1.OIDCProvider.session_max_length:type_name -> google.protobuf.Duration
+	14, // 15: otpki.common.auth.v1.OIDCProvider.created_at:type_name -> google.protobuf.Timestamp
+	14, // 16: otpki.common.auth.v1.OIDCProvider.updated_at:type_name -> google.protobuf.Timestamp
+	3,  // 17: otpki.common.auth.v1.EndEntityMutation.operation:type_name -> otpki.common.auth.v1.EndEntityMutationOperation
+	16, // 18: otpki.common.auth.v1.EndEntityMutation.end_entity:type_name -> otpki.common.core.end_entity.v1.EndEntity
+	17, // 19: otpki.common.auth.v1.EndEntityMutation.update_mask:type_name -> google.protobuf.FieldMask
+	1,  // 20: otpki.common.auth.v1.WorkItem.resource_type:type_name -> otpki.common.auth.v1.Resource
+	2,  // 21: otpki.common.auth.v1.WorkItem.status:type_name -> otpki.common.auth.v1.WorkItemStatus
+	13, // 22: otpki.common.auth.v1.WorkItem.approvals:type_name -> otpki.common.auth.v1.WorkItemApproval
+	14, // 23: otpki.common.auth.v1.WorkItem.created_at:type_name -> google.protobuf.Timestamp
+	14, // 24: otpki.common.auth.v1.WorkItem.updated_at:type_name -> google.protobuf.Timestamp
+	14, // 25: otpki.common.auth.v1.WorkItemApproval.created_at:type_name -> google.protobuf.Timestamp
+	26, // [26:26] is the sub-list for method output_type
+	26, // [26:26] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_auth_v1_auth_proto_init() }
@@ -1390,8 +1534,8 @@ func file_otpki_common_auth_v1_auth_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_common_auth_v1_auth_proto_rawDesc), len(file_otpki_common_auth_v1_auth_proto_rawDesc)),
-			NumEnums:      3,
-			NumMessages:   9,
+			NumEnums:      4,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

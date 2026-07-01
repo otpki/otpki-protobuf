@@ -934,6 +934,16 @@ export declare type CreateEnrollmentAttemptRequest = Message<"otpki.public.plugi
    * @generated from field: bool check_password = 6;
    */
   checkPassword: boolean;
+
+  /**
+   * @generated from field: bool auto_reset_generated_end_entity = 7;
+   */
+  autoResetGeneratedEndEntity: boolean;
+
+  /**
+   * @generated from field: bool require_immediate_issuance = 8;
+   */
+  requireImmediateIssuance: boolean;
 };
 
 /**
@@ -971,6 +981,16 @@ export declare type CreateEnrollmentAttemptRequestJson = {
    * @generated from field: bool check_password = 6;
    */
   checkPassword?: boolean;
+
+  /**
+   * @generated from field: bool auto_reset_generated_end_entity = 7;
+   */
+  autoResetGeneratedEndEntity?: boolean;
+
+  /**
+   * @generated from field: bool require_immediate_issuance = 8;
+   */
+  requireImmediateIssuance?: boolean;
 };
 
 /**
@@ -1008,6 +1028,16 @@ export declare type CreateEnrollmentAttemptRequestValid = Message<"otpki.public.
    * @generated from field: bool check_password = 6;
    */
   checkPassword: boolean;
+
+  /**
+   * @generated from field: bool auto_reset_generated_end_entity = 7;
+   */
+  autoResetGeneratedEndEntity: boolean;
+
+  /**
+   * @generated from field: bool require_immediate_issuance = 8;
+   */
+  requireImmediateIssuance: boolean;
 };
 
 /**
