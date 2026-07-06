@@ -537,11 +537,12 @@ func (x *PublisherTransportDescriptor) GetTriggers() []*PublisherTriggerSpec {
 }
 
 type PublisherTriggerSpec struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Event         PublisherTriggerEvent  `protobuf:"varint,1,opt,name=event,proto3,enum=otpki.common.core.publisher.v1.PublisherTriggerEvent" json:"event,omitempty"`
-	ConfigTypeUrl string                 `protobuf:"bytes,2,opt,name=config_type_url,json=configTypeUrl,proto3" json:"config_type_url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Event          PublisherTriggerEvent  `protobuf:"varint,1,opt,name=event,proto3,enum=otpki.common.core.publisher.v1.PublisherTriggerEvent" json:"event,omitempty"`
+	ConfigTypeUrl  string                 `protobuf:"bytes,2,opt,name=config_type_url,json=configTypeUrl,proto3" json:"config_type_url,omitempty"`
+	PayloadTypeUrl string                 `protobuf:"bytes,3,opt,name=payload_type_url,json=payloadTypeUrl,proto3" json:"payload_type_url,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *PublisherTriggerSpec) Reset() {
@@ -584,6 +585,13 @@ func (x *PublisherTriggerSpec) GetEvent() PublisherTriggerEvent {
 func (x *PublisherTriggerSpec) GetConfigTypeUrl() string {
 	if x != nil {
 		return x.ConfigTypeUrl
+	}
+	return ""
+}
+
+func (x *PublisherTriggerSpec) GetPayloadTypeUrl() string {
+	if x != nil {
+		return x.PayloadTypeUrl
 	}
 	return ""
 }
@@ -636,10 +644,11 @@ const file_otpki_common_core_publisher_v1_publisher_proto_rawDesc = "" +
 	"\x1cPublisherTransportDescriptor\x12P\n" +
 	"\ttransport\x18\x01 \x01(\x0e22.otpki.common.core.publisher.v1.PublisherTransportR\ttransport\x12&\n" +
 	"\x0fconfig_type_url\x18\x02 \x01(\tR\rconfigTypeUrl\x12P\n" +
-	"\btriggers\x18\x03 \x03(\v24.otpki.common.core.publisher.v1.PublisherTriggerSpecR\btriggers\"\x8b\x01\n" +
+	"\btriggers\x18\x03 \x03(\v24.otpki.common.core.publisher.v1.PublisherTriggerSpecR\btriggers\"\xb5\x01\n" +
 	"\x14PublisherTriggerSpec\x12K\n" +
 	"\x05event\x18\x01 \x01(\x0e25.otpki.common.core.publisher.v1.PublisherTriggerEventR\x05event\x12&\n" +
-	"\x0fconfig_type_url\x18\x02 \x01(\tR\rconfigTypeUrl*\xae\x01\n" +
+	"\x0fconfig_type_url\x18\x02 \x01(\tR\rconfigTypeUrl\x12(\n" +
+	"\x10payload_type_url\x18\x03 \x01(\tR\x0epayloadTypeUrl*\xae\x01\n" +
 	"\x12PublisherTransport\x12#\n" +
 	"\x1fPUBLISHER_TRANSPORT_UNSPECIFIED\x10\x00\x12\x1a\n" +
 	"\x16PUBLISHER_TRANSPORT_VS\x10\x01\x12\x1c\n" +

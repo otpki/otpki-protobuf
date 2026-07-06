@@ -301,6 +301,11 @@ export declare type PublisherTriggerSpec = Message<"otpki.common.core.publisher.
    * @generated from field: string config_type_url = 2;
    */
   configTypeUrl: string;
+
+  /**
+   * @generated from field: string payload_type_url = 3;
+   */
+  payloadTypeUrl: string;
 };
 
 /**
@@ -316,6 +321,11 @@ export declare type PublisherTriggerSpecJson = {
    * @generated from field: string config_type_url = 2;
    */
   configTypeUrl?: string;
+
+  /**
+   * @generated from field: string payload_type_url = 3;
+   */
+  payloadTypeUrl?: string;
 };
 
 export declare type PublisherTriggerSpecValid = PublisherTriggerSpec;

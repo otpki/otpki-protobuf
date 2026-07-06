@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package otpki.common.core.publisher.v1;
+
+import "buf/validate/validate.proto";
+
+message CrlPublishedPayload {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  bytes crl_der = 2;
+}
+
+message CertPublishedPayload {
+  string ca_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string certificate_profile_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string certificate_id = 3 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  bytes certificate_der = 4;
+}
+
+message CredentialsIssuedPayload {
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string end_entity_profile_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+  ];
+  string email = 3;
+  string login_id = 4;
+  string password = 5;
+}

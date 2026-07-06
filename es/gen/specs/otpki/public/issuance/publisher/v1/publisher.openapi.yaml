@@ -1418,6 +1418,9 @@ components:
         configTypeUrl:
           type: string
           title: config_type_url
+        payloadTypeUrl:
+          type: string
+          title: payload_type_url
       title: PublisherTriggerSpec
       additionalProperties: false
     otpki.public.issuance.publisher.v1.CreatePublisherRequest:

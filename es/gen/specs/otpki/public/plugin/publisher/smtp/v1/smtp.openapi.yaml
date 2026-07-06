@@ -20,8 +20,7 @@ components:
               type: string
               title: subject
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 caId:
                   type: string
                   title: ca_id
@@ -29,8 +28,7 @@ components:
               title: ca_id
               required:
                 - caId
-            - type: object
-              properties:
+            - properties:
                 certificateProfileId:
                   type: string
                   title: certificate_profile_id
@@ -77,8 +75,7 @@ components:
     otpki.public.plugin.publisher.smtp.v1.SmtpCredentialsTriggerConfig:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             endEntityId:
               type: string
               title: end_entity_id
@@ -86,8 +83,7 @@ components:
           title: end_entity_id
           required:
             - endEntityId
-        - type: object
-          properties:
+        - properties:
             endEntityProfileId:
               type: string
               title: end_entity_profile_id

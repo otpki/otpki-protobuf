@@ -115,4 +115,5 @@ message PublisherTransportDescriptor {
 message PublisherTriggerSpec {
   PublisherTriggerEvent event = 1;
   string config_type_url = 2;
+  string payload_type_url = 3;
 }

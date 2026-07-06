@@ -17,16 +17,14 @@ components:
     openapi.v3.AdditionalPropertiesItem:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             boolean:
               type: boolean
               title: boolean
           title: boolean
           required:
             - boolean
-        - type: object
-          properties:
+        - properties:
             schemaOrReference:
               title: schema_or_reference
               $ref: '#/components/schemas/openapi.v3.SchemaOrReference'
@@ -49,16 +47,14 @@ components:
     openapi.v3.AnyOrExpression:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             any:
               title: any
               $ref: '#/components/schemas/openapi.v3.Any'
           title: any
           required:
             - any
-        - type: object
-          properties:
+        - properties:
             expression:
               title: expression
               $ref: '#/components/schemas/openapi.v3.Expression'
@@ -86,16 +82,14 @@ components:
     openapi.v3.CallbackOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             callback:
               title: callback
               $ref: '#/components/schemas/openapi.v3.Callback'
           title: callback
           required:
             - callback
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
@@ -175,16 +169,14 @@ components:
     openapi.v3.DefaultType:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             boolean:
               type: boolean
               title: boolean
           title: boolean
           required:
             - boolean
-        - type: object
-          properties:
+        - properties:
             number:
               type: number
               title: number
@@ -192,8 +184,7 @@ components:
           title: number
           required:
             - number
-        - type: object
-          properties:
+        - properties:
             string:
               type: string
               title: string
@@ -320,16 +311,14 @@ components:
     openapi.v3.ExampleOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             example:
               title: example
               $ref: '#/components/schemas/openapi.v3.Example'
           title: example
           required:
             - example
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
@@ -422,16 +411,14 @@ components:
     openapi.v3.HeaderOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             header:
               title: header
               $ref: '#/components/schemas/openapi.v3.Header'
           title: header
           required:
             - header
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
@@ -541,16 +528,14 @@ components:
     openapi.v3.LinkOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             link:
               title: link
               $ref: '#/components/schemas/openapi.v3.Link'
           title: link
           required:
             - link
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
@@ -990,16 +975,14 @@ components:
     openapi.v3.ParameterOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             parameter:
               title: parameter
               $ref: '#/components/schemas/openapi.v3.Parameter'
           title: parameter
           required:
             - parameter
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
@@ -1146,16 +1129,14 @@ components:
     openapi.v3.RequestBodyOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
           title: reference
           required:
             - reference
-        - type: object
-          properties:
+        - properties:
             requestBody:
               title: request_body
               $ref: '#/components/schemas/openapi.v3.RequestBody'
@@ -1190,16 +1171,14 @@ components:
     openapi.v3.ResponseOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
           title: reference
           required:
             - reference
-        - type: object
-          properties:
+        - properties:
             response:
               title: response
               $ref: '#/components/schemas/openapi.v3.Response'
@@ -1387,16 +1366,14 @@ components:
     openapi.v3.SchemaOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
           title: reference
           required:
             - reference
-        - type: object
-          properties:
+        - properties:
             schema:
               title: schema
               $ref: '#/components/schemas/openapi.v3.Schema'
@@ -1464,16 +1441,14 @@ components:
     openapi.v3.SecuritySchemeOrReference:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             reference:
               title: reference
               $ref: '#/components/schemas/openapi.v3.Reference'
           title: reference
           required:
             - reference
-        - type: object
-          properties:
+        - properties:
             securityScheme:
               title: security_scheme
               $ref: '#/components/schemas/openapi.v3.SecurityScheme'
@@ -1547,16 +1522,14 @@ components:
     openapi.v3.SpecificationExtension:
       type: object
       oneOf:
-        - type: object
-          properties:
+        - properties:
             boolean:
               type: boolean
               title: boolean
           title: boolean
           required:
             - boolean
-        - type: object
-          properties:
+        - properties:
             number:
               type: number
               title: number
@@ -1564,8 +1537,7 @@ components:
           title: number
           required:
             - number
-        - type: object
-          properties:
+        - properties:
             string:
               type: string
               title: string

@@ -1,0 +1,63 @@
+openapi: 3.1.0
+info:
+  title: otpki.common.core.publisher.v1
+paths: {}
+components:
+  schemas:
+    otpki.common.core.publisher.v1.CertPublishedPayload:
+      type: object
+      properties:
+        caId:
+          type: string
+          title: ca_id
+          format: uuid
+        certificateProfileId:
+          type: string
+          title: certificate_profile_id
+          format: uuid
+        certificateId:
+          type: string
+          title: certificate_id
+          format: uuid
+        certificateDer:
+          type: string
+          title: certificate_der
+          format: byte
+      title: CertPublishedPayload
+      additionalProperties: false
+    otpki.common.core.publisher.v1.CredentialsIssuedPayload:
+      type: object
+      properties:
+        endEntityId:
+          type: string
+          title: end_entity_id
+          format: uuid
+        endEntityProfileId:
+          type: string
+          title: end_entity_profile_id
+          format: uuid
+        email:
+          type: string
+          title: email
+        loginId:
+          type: string
+          title: login_id
+        password:
+          type: string
+          title: password
+      title: CredentialsIssuedPayload
+      additionalProperties: false
+    otpki.common.core.publisher.v1.CrlPublishedPayload:
+      type: object
+      properties:
+        caId:
+          type: string
+          title: ca_id
+          format: uuid
+        crlDer:
+          type: string
+          title: crl_der
+          format: byte
+      title: CrlPublishedPayload
+      additionalProperties: false
+security: []

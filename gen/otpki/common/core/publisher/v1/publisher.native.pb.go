@@ -108,14 +108,6 @@ func convertProtoToTime(t *timestamppb.Timestamp) (time.Time, error) {
 	return t.AsTime(), nil
 }
 
-// convertProtoToUUID comes from the converter package
-func convertProtoToUUID(id string) (uuid.UUID, error) {
-	if len(id) == 0 {
-		return uuid.Nil, nil
-	}
-	return uuid.Parse(id)
-}
-
 // convertTimeToProto comes from the converter package
 func convertTimeToProto(t time.Time) (*timestamppb.Timestamp, error) {
 	return timestamppb.New(t), nil

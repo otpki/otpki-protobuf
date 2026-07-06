@@ -282,8 +282,7 @@ components:
                  }
                  ```
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 ip:
                   type: boolean
                   title: ip
@@ -300,8 +299,7 @@ components:
               title: ip
               required:
                 - ip
-            - type: object
-              properties:
+            - properties:
                 ipv4:
                   type: boolean
                   title: ipv4
@@ -318,8 +316,7 @@ components:
               title: ipv4
               required:
                 - ipv4
-            - type: object
-              properties:
+            - properties:
                 ipv6:
                   type: boolean
                   title: ipv6
@@ -335,8 +332,7 @@ components:
               title: ipv6
               required:
                 - ipv6
-            - type: object
-              properties:
+            - properties:
                 uuid:
                   type: boolean
                   title: uuid
@@ -364,8 +360,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type: number
                   title: gt
@@ -392,8 +387,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type: number
                   title: gte
@@ -421,8 +415,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type: number
                   title: lt
@@ -441,8 +434,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type: number
                   title: lte
@@ -548,8 +540,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   title: gt
                   description: |-
@@ -575,8 +566,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   title: gte
                   description: |-
@@ -603,8 +593,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   title: lt
                   description: |-
@@ -622,8 +611,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   title: lte
                   description: |-
@@ -981,8 +969,7 @@ components:
                 `value_type` specifies map value type of this field. This is useful if you want to display a
                  value inside unknown fields through wire data.
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 boolKey:
                   type: boolean
                   title: bool_key
@@ -990,8 +977,7 @@ components:
               title: bool_key
               required:
                 - boolKey
-            - type: object
-              properties:
+            - properties:
                 index:
                   type:
                     - integer
@@ -1002,8 +988,7 @@ components:
               title: index
               required:
                 - index
-            - type: object
-              properties:
+            - properties:
                 intKey:
                   type:
                     - integer
@@ -1014,8 +999,7 @@ components:
               title: int_key
               required:
                 - intKey
-            - type: object
-              properties:
+            - properties:
                 stringKey:
                   type: string
                   title: string_key
@@ -1023,8 +1007,7 @@ components:
               title: string_key
               required:
                 - stringKey
-            - type: object
-              properties:
+            - properties:
                 uintKey:
                   type:
                     - integer
@@ -1169,8 +1152,7 @@ components:
                  }
                  ```
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 any:
                   title: any
                   description: Well-Known Field Types
@@ -1178,40 +1160,35 @@ components:
               title: any
               required:
                 - any
-            - type: object
-              properties:
+            - properties:
                 bool:
                   title: bool
                   $ref: '#/components/schemas/buf.validate.BoolRules'
               title: bool
               required:
                 - bool
-            - type: object
-              properties:
+            - properties:
                 bytes:
                   title: bytes
                   $ref: '#/components/schemas/buf.validate.BytesRules'
               title: bytes
               required:
                 - bytes
-            - type: object
-              properties:
+            - properties:
                 double:
                   title: double
                   $ref: '#/components/schemas/buf.validate.DoubleRules'
               title: double
               required:
                 - double
-            - type: object
-              properties:
+            - properties:
                 duration:
                   title: duration
                   $ref: '#/components/schemas/buf.validate.DurationRules'
               title: duration
               required:
                 - duration
-            - type: object
-              properties:
+            - properties:
                 enum:
                   title: enum
                   description: Complex Field Types
@@ -1219,32 +1196,28 @@ components:
               title: enum
               required:
                 - enum
-            - type: object
-              properties:
+            - properties:
                 fieldMask:
                   title: field_mask
                   $ref: '#/components/schemas/buf.validate.FieldMaskRules'
               title: field_mask
               required:
                 - fieldMask
-            - type: object
-              properties:
+            - properties:
                 fixed32:
                   title: fixed32
                   $ref: '#/components/schemas/buf.validate.Fixed32Rules'
               title: fixed32
               required:
                 - fixed32
-            - type: object
-              properties:
+            - properties:
                 fixed64:
                   title: fixed64
                   $ref: '#/components/schemas/buf.validate.Fixed64Rules'
               title: fixed64
               required:
                 - fixed64
-            - type: object
-              properties:
+            - properties:
                 float:
                   title: float
                   description: Scalar Field Types
@@ -1252,96 +1225,84 @@ components:
               title: float
               required:
                 - float
-            - type: object
-              properties:
+            - properties:
                 int32:
                   title: int32
                   $ref: '#/components/schemas/buf.validate.Int32Rules'
               title: int32
               required:
                 - int32
-            - type: object
-              properties:
+            - properties:
                 int64:
                   title: int64
                   $ref: '#/components/schemas/buf.validate.Int64Rules'
               title: int64
               required:
                 - int64
-            - type: object
-              properties:
+            - properties:
                 map:
                   title: map
                   $ref: '#/components/schemas/buf.validate.MapRules'
               title: map
               required:
                 - map
-            - type: object
-              properties:
+            - properties:
                 repeated:
                   title: repeated
                   $ref: '#/components/schemas/buf.validate.RepeatedRules'
               title: repeated
               required:
                 - repeated
-            - type: object
-              properties:
+            - properties:
                 sfixed32:
                   title: sfixed32
                   $ref: '#/components/schemas/buf.validate.SFixed32Rules'
               title: sfixed32
               required:
                 - sfixed32
-            - type: object
-              properties:
+            - properties:
                 sfixed64:
                   title: sfixed64
                   $ref: '#/components/schemas/buf.validate.SFixed64Rules'
               title: sfixed64
               required:
                 - sfixed64
-            - type: object
-              properties:
+            - properties:
                 sint32:
                   title: sint32
                   $ref: '#/components/schemas/buf.validate.SInt32Rules'
               title: sint32
               required:
                 - sint32
-            - type: object
-              properties:
+            - properties:
                 sint64:
                   title: sint64
                   $ref: '#/components/schemas/buf.validate.SInt64Rules'
               title: sint64
               required:
                 - sint64
-            - type: object
-              properties:
+            - properties:
                 string:
                   title: string
                   $ref: '#/components/schemas/buf.validate.StringRules'
               title: string
               required:
                 - string
-            - type: object
-              properties:
+            - properties:
                 timestamp:
                   title: timestamp
                   $ref: '#/components/schemas/buf.validate.TimestampRules'
               title: timestamp
               required:
                 - timestamp
-            - type: object
-              properties:
+            - properties:
                 uint32:
                   title: uint32
                   $ref: '#/components/schemas/buf.validate.UInt32Rules'
               title: uint32
               required:
                 - uint32
-            - type: object
-              properties:
+            - properties:
                 uint64:
                   title: uint64
                   $ref: '#/components/schemas/buf.validate.UInt64Rules'
@@ -1357,8 +1318,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type: integer
                   title: gt
@@ -1384,8 +1344,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type: integer
                   title: gte
@@ -1412,8 +1371,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type: integer
                   title: lt
@@ -1431,8 +1389,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type: integer
                   title: lte
@@ -1523,8 +1480,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type:
                     - integer
@@ -1553,8 +1509,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type:
                     - integer
@@ -1584,8 +1539,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type:
                     - integer
@@ -1606,8 +1560,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type:
                     - integer
@@ -1712,8 +1665,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type: number
                   title: gt
@@ -1740,8 +1692,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type: number
                   title: gte
@@ -1769,8 +1720,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type: number
                   title: lt
@@ -1789,8 +1739,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type: number
                   title: lte
@@ -1906,8 +1855,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type: integer
                   title: gt
@@ -1934,8 +1882,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type: integer
                   title: gte
@@ -1963,8 +1910,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type: integer
                   title: lt
@@ -1983,8 +1929,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type: integer
                   title: lte
@@ -2082,8 +2027,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type:
                     - integer
@@ -2112,8 +2056,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type:
                     - integer
@@ -2143,8 +2086,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type:
                     - integer
@@ -2165,8 +2107,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type:
                     - integer
@@ -2669,8 +2610,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type: integer
                   title: gt
@@ -2697,8 +2637,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type: integer
                   title: gte
@@ -2726,8 +2665,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type: integer
                   title: lt
@@ -2746,8 +2684,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type: integer
                   title: lte
@@ -2843,8 +2780,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type:
                     - integer
@@ -2873,8 +2809,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type:
                     - integer
@@ -2904,8 +2839,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type:
                     - integer
@@ -2926,8 +2860,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type:
                     - integer
@@ -3032,8 +2965,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type: integer
                   title: gt
@@ -3060,8 +2992,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type: integer
                   title: gte
@@ -3089,8 +3020,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type: integer
                   title: lt
@@ -3109,8 +3039,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type: integer
                   title: lte
@@ -3206,8 +3135,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type:
                     - integer
@@ -3236,8 +3164,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type:
                     - integer
@@ -3267,8 +3194,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type:
                     - integer
@@ -3289,8 +3215,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type:
                     - integer
@@ -3672,8 +3597,7 @@ components:
                  }
                  ```
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 address:
                   type: boolean
                   title: address
@@ -3692,8 +3616,7 @@ components:
               title: address
               required:
                 - address
-            - type: object
-              properties:
+            - properties:
                 email:
                   type: boolean
                   title: email
@@ -3717,8 +3640,7 @@ components:
               title: email
               required:
                 - email
-            - type: object
-              properties:
+            - properties:
                 hostAndPort:
                   type: boolean
                   title: host_and_port
@@ -3736,8 +3658,7 @@ components:
               title: host_and_port
               required:
                 - hostAndPort
-            - type: object
-              properties:
+            - properties:
                 hostname:
                   type: boolean
                   title: hostname
@@ -3764,8 +3685,7 @@ components:
               title: hostname
               required:
                 - hostname
-            - type: object
-              properties:
+            - properties:
                 ip:
                   type: boolean
                   title: ip
@@ -3791,8 +3711,7 @@ components:
               title: ip
               required:
                 - ip
-            - type: object
-              properties:
+            - properties:
                 ipPrefix:
                   type: boolean
                   title: ip_prefix
@@ -3816,8 +3735,7 @@ components:
               title: ip_prefix
               required:
                 - ipPrefix
-            - type: object
-              properties:
+            - properties:
                 ipWithPrefixlen:
                   type: boolean
                   title: ip_with_prefixlen
@@ -3836,8 +3754,7 @@ components:
               title: ip_with_prefixlen
               required:
                 - ipWithPrefixlen
-            - type: object
-              properties:
+            - properties:
                 ipv4:
                   type: boolean
                   title: ipv4
@@ -3855,8 +3772,7 @@ components:
               title: ipv4
               required:
                 - ipv4
-            - type: object
-              properties:
+            - properties:
                 ipv4Prefix:
                   type: boolean
                   title: ipv4_prefix
@@ -3880,8 +3796,7 @@ components:
               title: ipv4_prefix
               required:
                 - ipv4Prefix
-            - type: object
-              properties:
+            - properties:
                 ipv4WithPrefixlen:
                   type: boolean
                   title: ipv4_with_prefixlen
@@ -3900,8 +3815,7 @@ components:
               title: ipv4_with_prefixlen
               required:
                 - ipv4WithPrefixlen
-            - type: object
-              properties:
+            - properties:
                 ipv6:
                   type: boolean
                   title: ipv6
@@ -3919,8 +3833,7 @@ components:
               title: ipv6
               required:
                 - ipv6
-            - type: object
-              properties:
+            - properties:
                 ipv6Prefix:
                   type: boolean
                   title: ipv6_prefix
@@ -3944,8 +3857,7 @@ components:
               title: ipv6_prefix
               required:
                 - ipv6Prefix
-            - type: object
-              properties:
+            - properties:
                 ipv6WithPrefixlen:
                   type: boolean
                   title: ipv6_with_prefixlen
@@ -3964,8 +3876,7 @@ components:
               title: ipv6_with_prefixlen
               required:
                 - ipv6WithPrefixlen
-            - type: object
-              properties:
+            - properties:
                 protobufDotFqn:
                   type: boolean
                   title: protobuf_dot_fqn
@@ -3998,8 +3909,7 @@ components:
               title: protobuf_dot_fqn
               required:
                 - protobufDotFqn
-            - type: object
-              properties:
+            - properties:
                 protobufFqn:
                   type: boolean
                   title: protobuf_fqn
@@ -4030,8 +3940,7 @@ components:
               title: protobuf_fqn
               required:
                 - protobufFqn
-            - type: object
-              properties:
+            - properties:
                 tuuid:
                   type: boolean
                   title: tuuid
@@ -4050,8 +3959,7 @@ components:
               title: tuuid
               required:
                 - tuuid
-            - type: object
-              properties:
+            - properties:
                 ulid:
                   type: boolean
                   title: ulid
@@ -4069,8 +3977,7 @@ components:
               title: ulid
               required:
                 - ulid
-            - type: object
-              properties:
+            - properties:
                 uri:
                   type: boolean
                   title: uri
@@ -4092,8 +3999,7 @@ components:
               title: uri
               required:
                 - uri
-            - type: object
-              properties:
+            - properties:
                 uriRef:
                   type: boolean
                   title: uri_ref
@@ -4118,8 +4024,7 @@ components:
               title: uri_ref
               required:
                 - uriRef
-            - type: object
-              properties:
+            - properties:
                 uuid:
                   type: boolean
                   title: uuid
@@ -4137,8 +4042,7 @@ components:
               title: uuid
               required:
                 - uuid
-            - type: object
-              properties:
+            - properties:
                 wellKnownRegex:
                   title: well_known_regex
                   description: |-
@@ -4175,8 +4079,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   title: gt
                   description: |-
@@ -4202,8 +4105,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gtNow:
                   type: boolean
                   title: gt_now
@@ -4219,8 +4121,7 @@ components:
               title: gt_now
               required:
                 - gtNow
-            - type: object
-              properties:
+            - properties:
                 gte:
                   title: gte
                   description: |-
@@ -4247,8 +4148,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   title: lt
                   description: |-
@@ -4264,8 +4164,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 ltNow:
                   type: boolean
                   title: lt_now
@@ -4281,8 +4180,7 @@ components:
               title: lt_now
               required:
                 - ltNow
-            - type: object
-              properties:
+            - properties:
                 lte:
                   title: lte
                   description: |-
@@ -4352,8 +4250,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type: integer
                   title: gt
@@ -4379,8 +4276,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type: integer
                   title: gte
@@ -4407,8 +4303,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type: integer
                   title: lt
@@ -4426,8 +4321,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type: integer
                   title: lte
@@ -4520,8 +4414,7 @@ components:
       type: object
       allOf:
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 gt:
                   type:
                     - integer
@@ -4550,8 +4443,7 @@ components:
               title: gt
               required:
                 - gt
-            - type: object
-              properties:
+            - properties:
                 gte:
                   type:
                     - integer
@@ -4581,8 +4473,7 @@ components:
               required:
                 - gte
         - oneOf:
-            - type: object
-              properties:
+            - properties:
                 lt:
                   type:
                     - integer
@@ -4603,8 +4494,7 @@ components:
               title: lt
               required:
                 - lt
-            - type: object
-              properties:
+            - properties:
                 lte:
                   type:
                     - integer
