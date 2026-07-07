@@ -88,7 +88,8 @@ components:
                  not contain an `additional_bindings` field themselves (that is,
                  the nesting may only be one level deep).
         - oneOf:
-            - properties:
+            - type: object
+              properties:
                 custom:
                   title: custom
                   description: |-
@@ -100,7 +101,8 @@ components:
               title: custom
               required:
                 - custom
-            - properties:
+            - type: object
+              properties:
                 delete:
                   type: string
                   title: delete
@@ -108,7 +110,8 @@ components:
               title: delete
               required:
                 - delete
-            - properties:
+            - type: object
+              properties:
                 get:
                   type: string
                   title: get
@@ -118,7 +121,8 @@ components:
               title: get
               required:
                 - get
-            - properties:
+            - type: object
+              properties:
                 patch:
                   type: string
                   title: patch
@@ -126,7 +130,8 @@ components:
               title: patch
               required:
                 - patch
-            - properties:
+            - type: object
+              properties:
                 post:
                   type: string
                   title: post
@@ -134,7 +139,8 @@ components:
               title: post
               required:
                 - post
-            - properties:
+            - type: object
+              properties:
                 put:
                   type: string
                   title: put

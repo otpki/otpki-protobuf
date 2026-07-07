@@ -14,7 +14,8 @@ components:
               minLength: 1
               description: Destination path template rendered with the published certificate's fields
         - oneOf:
-            - properties:
+            - type: object
+              properties:
                 caId:
                   type: string
                   title: ca_id
@@ -22,7 +23,8 @@ components:
               title: ca_id
               required:
                 - caId
-            - properties:
+            - type: object
+              properties:
                 certificateProfileId:
                   type: string
                   title: certificate_profile_id

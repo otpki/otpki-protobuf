@@ -113,7 +113,8 @@ components:
     otpki.common.core.publisher.v1.CertTriggerConfig:
       type: object
       oneOf:
-        - properties:
+        - type: object
+          properties:
             caId:
               type: string
               title: ca_id
@@ -121,7 +122,8 @@ components:
           title: ca_id
           required:
             - caId
-        - properties:
+        - type: object
+          properties:
             certificateProfileId:
               type: string
               title: certificate_profile_id
