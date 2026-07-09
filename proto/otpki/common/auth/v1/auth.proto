@@ -144,15 +144,11 @@ message User {
   string oidc_subject = 11 [(openapi.v3.property).read_only = true];
   repeated string groups = 12 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uuid: true}
-    }
+    items: {string: {uuid: true}}
   }];
   repeated string roles = 13 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uuid: true}
-    }
+    items: {string: {uuid: true}}
   }];
 
   // not settable on creation
@@ -179,21 +175,15 @@ message ApprovalProfile {
   int32 num_approvals_required = 4 [(buf.validate.field).int32.gte = 1];
   repeated string approver_role_ids = 5 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uuid: true}
-    }
+    items: {string: {uuid: true}}
   }];
   repeated string approver_group_ids = 6 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uuid: true}
-    }
+    items: {string: {uuid: true}}
   }];
   repeated string approver_user_ids = 7 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uuid: true}
-    }
+    items: {string: {uuid: true}}
   }];
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
