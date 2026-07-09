@@ -576,6 +576,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.issuance.certificate_authority.v1.RenewCertificateAuthorityResponse'
+  /v1/certificate-authorities/{ca_id}/revocation-lists:
+    get:
+      tags:
+        - otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService
+      summary: GetCurrentRevocationLists
+      operationId: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists
+      parameters:
+        - name: ca_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: ca_id
+            format: uuid
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse'
   /v1/certificate-authorities/{certificate_authority.id}:
     patch:
       tags:
@@ -2254,6 +2275,25 @@ components:
           title: certificate_authority
           $ref: '#/components/schemas/otpki.common.core.certificate_authority.v1.CertificateAuthority'
       title: GetCertificateAuthorityResponse
+      additionalProperties: false
+    otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest:
+      type: object
+      properties:
+        caId:
+          type: string
+          title: ca_id
+          format: uuid
+      title: GetCurrentRevocationListsRequest
+      additionalProperties: false
+    otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse:
+      type: object
+      properties:
+        revocationLists:
+          type: array
+          items:
+            $ref: '#/components/schemas/otpki.common.core.revocation_list.v1.RevocationList'
+          title: revocation_lists
+      title: GetCurrentRevocationListsResponse
       additionalProperties: false
     otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityCertificateRequest:
       type: object

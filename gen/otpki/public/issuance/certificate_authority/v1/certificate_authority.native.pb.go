@@ -160,6 +160,17 @@ func (x *CreateRevocationListRequest) GetCaIdUUID() uuid.UUID {
 	return uuid.UUID{}
 }
 
+// GetCaIdUUID returns CaId as a UUID when possible.
+func (x *GetCurrentRevocationListsRequest) GetCaIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.CaId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // Converter functions for native types
 
 // convertProtoToNullUUID comes from the converter package

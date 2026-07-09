@@ -1018,6 +1018,62 @@ export declare type CreateRevocationListResponseValid = CreateRevocationListResp
 export declare const CreateRevocationListResponseSchema: GenMessage<CreateRevocationListResponse, {jsonType: CreateRevocationListResponseJson, validType: CreateRevocationListResponseValid}>;
 
 /**
+ * @generated from message otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest
+ */
+export declare type GetCurrentRevocationListsRequest = Message<"otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest"> & {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId: string;
+};
+
+/**
+ * @generated from message otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest
+ */
+export declare type GetCurrentRevocationListsRequestJson = {
+  /**
+   * @generated from field: string ca_id = 1;
+   */
+  caId?: string;
+};
+
+export declare type GetCurrentRevocationListsRequestValid = GetCurrentRevocationListsRequest;
+
+/**
+ * Describes the message otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest.
+ * Use `create(GetCurrentRevocationListsRequestSchema)` to create a new message.
+ */
+export declare const GetCurrentRevocationListsRequestSchema: GenMessage<GetCurrentRevocationListsRequest, {jsonType: GetCurrentRevocationListsRequestJson, validType: GetCurrentRevocationListsRequestValid}>;
+
+/**
+ * @generated from message otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse
+ */
+export declare type GetCurrentRevocationListsResponse = Message<"otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse"> & {
+  /**
+   * @generated from field: repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
+   */
+  revocationLists: RevocationList[];
+};
+
+/**
+ * @generated from message otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse
+ */
+export declare type GetCurrentRevocationListsResponseJson = {
+  /**
+   * @generated from field: repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
+   */
+  revocationLists?: RevocationListJson[];
+};
+
+export declare type GetCurrentRevocationListsResponseValid = GetCurrentRevocationListsResponse;
+
+/**
+ * Describes the message otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse.
+ * Use `create(GetCurrentRevocationListsResponseSchema)` to create a new message.
+ */
+export declare const GetCurrentRevocationListsResponseSchema: GenMessage<GetCurrentRevocationListsResponse, {jsonType: GetCurrentRevocationListsResponseJson, validType: GetCurrentRevocationListsResponseValid}>;
+
+/**
  * @generated from service otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService
  */
 export declare const CertificateAuthorityService: GenService<{
@@ -1116,6 +1172,14 @@ export declare const CertificateAuthorityService: GenService<{
     methodKind: "unary";
     input: typeof CreateRevocationListRequestSchema;
     output: typeof CreateRevocationListResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists
+   */
+  getCurrentRevocationLists: {
+    methodKind: "unary";
+    input: typeof GetCurrentRevocationListsRequestSchema;
+    output: typeof GetCurrentRevocationListsResponseSchema;
   },
 }>;
 

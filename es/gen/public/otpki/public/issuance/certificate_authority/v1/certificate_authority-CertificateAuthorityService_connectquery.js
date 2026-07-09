@@ -63,3 +63,8 @@ export const getCertificateAuthorityCertificates = CertificateAuthorityService.m
  * @generated from rpc otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateRevocationList
  */
 export const createRevocationList = CertificateAuthorityService.method.createRevocationList;
+
+/**
+ * @generated from rpc otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists
+ */
+export const getCurrentRevocationLists = CertificateAuthorityService.method.getCurrentRevocationLists;

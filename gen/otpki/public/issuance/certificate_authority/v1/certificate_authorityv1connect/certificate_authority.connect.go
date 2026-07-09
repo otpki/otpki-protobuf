@@ -70,6 +70,9 @@ const (
 	// CertificateAuthorityServiceCreateRevocationListProcedure is the fully-qualified name of the
 	// CertificateAuthorityService's CreateRevocationList RPC.
 	CertificateAuthorityServiceCreateRevocationListProcedure = "/otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService/CreateRevocationList"
+	// CertificateAuthorityServiceGetCurrentRevocationListsProcedure is the fully-qualified name of the
+	// CertificateAuthorityService's GetCurrentRevocationLists RPC.
+	CertificateAuthorityServiceGetCurrentRevocationListsProcedure = "/otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService/GetCurrentRevocationLists"
 )
 
 // CertificateAuthorityServiceClient is a client for the
@@ -87,6 +90,7 @@ type CertificateAuthorityServiceClient interface {
 	DeleteCertificateAuthority(context.Context, *connect.Request[v1.DeleteCertificateAuthorityRequest]) (*connect.Response[v1.DeleteCertificateAuthorityResponse], error)
 	GetCertificateAuthorityCertificates(context.Context, *connect.Request[v1.GetCertificateAuthorityCertificatesRequest]) (*connect.Response[v1.GetCertificateAuthorityCertificatesResponse], error)
 	CreateRevocationList(context.Context, *connect.Request[v1.CreateRevocationListRequest]) (*connect.Response[v1.CreateRevocationListResponse], error)
+	GetCurrentRevocationLists(context.Context, *connect.Request[v1.GetCurrentRevocationListsRequest]) (*connect.Response[v1.GetCurrentRevocationListsResponse], error)
 }
 
 // NewCertificateAuthorityServiceClient constructs a client for the
@@ -177,6 +181,13 @@ func NewCertificateAuthorityServiceClient(httpClient connect.HTTPClient, baseURL
 			connect.WithSchema(certificateAuthorityServiceMethods.ByName("CreateRevocationList")),
 			connect.WithClientOptions(opts...),
 		),
+		getCurrentRevocationLists: connect.NewClient[v1.GetCurrentRevocationListsRequest, v1.GetCurrentRevocationListsResponse](
+			httpClient,
+			baseURL+CertificateAuthorityServiceGetCurrentRevocationListsProcedure,
+			connect.WithSchema(certificateAuthorityServiceMethods.ByName("GetCurrentRevocationLists")),
+			connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -194,6 +205,7 @@ type certificateAuthorityServiceClient struct {
 	deleteCertificateAuthority            *connect.Client[v1.DeleteCertificateAuthorityRequest, v1.DeleteCertificateAuthorityResponse]
 	getCertificateAuthorityCertificates   *connect.Client[v1.GetCertificateAuthorityCertificatesRequest, v1.GetCertificateAuthorityCertificatesResponse]
 	createRevocationList                  *connect.Client[v1.CreateRevocationListRequest, v1.CreateRevocationListResponse]
+	getCurrentRevocationLists             *connect.Client[v1.GetCurrentRevocationListsRequest, v1.GetCurrentRevocationListsResponse]
 }
 
 // CreateCertificateAuthority calls
@@ -268,6 +280,12 @@ func (c *certificateAuthorityServiceClient) CreateRevocationList(ctx context.Con
 	return c.createRevocationList.CallUnary(ctx, req)
 }
 
+// GetCurrentRevocationLists calls
+// otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists.
+func (c *certificateAuthorityServiceClient) GetCurrentRevocationLists(ctx context.Context, req *connect.Request[v1.GetCurrentRevocationListsRequest]) (*connect.Response[v1.GetCurrentRevocationListsResponse], error) {
+	return c.getCurrentRevocationLists.CallUnary(ctx, req)
+}
+
 // CertificateAuthorityServiceHandler is an implementation of the
 // otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService service.
 type CertificateAuthorityServiceHandler interface {
@@ -283,6 +301,7 @@ type CertificateAuthorityServiceHandler interface {
 	DeleteCertificateAuthority(context.Context, *connect.Request[v1.DeleteCertificateAuthorityRequest]) (*connect.Response[v1.DeleteCertificateAuthorityResponse], error)
 	GetCertificateAuthorityCertificates(context.Context, *connect.Request[v1.GetCertificateAuthorityCertificatesRequest]) (*connect.Response[v1.GetCertificateAuthorityCertificatesResponse], error)
 	CreateRevocationList(context.Context, *connect.Request[v1.CreateRevocationListRequest]) (*connect.Response[v1.CreateRevocationListResponse], error)
+	GetCurrentRevocationLists(context.Context, *connect.Request[v1.GetCurrentRevocationListsRequest]) (*connect.Response[v1.GetCurrentRevocationListsResponse], error)
 }
 
 // NewCertificateAuthorityServiceHandler builds an HTTP handler from the service implementation. It
@@ -368,6 +387,13 @@ func NewCertificateAuthorityServiceHandler(svc CertificateAuthorityServiceHandle
 		connect.WithSchema(certificateAuthorityServiceMethods.ByName("CreateRevocationList")),
 		connect.WithHandlerOptions(opts...),
 	)
+	certificateAuthorityServiceGetCurrentRevocationListsHandler := connect.NewUnaryHandler(
+		CertificateAuthorityServiceGetCurrentRevocationListsProcedure,
+		svc.GetCurrentRevocationLists,
+		connect.WithSchema(certificateAuthorityServiceMethods.ByName("GetCurrentRevocationLists")),
+		connect.WithIdempotency(connect.IdempotencyNoSideEffects),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case CertificateAuthorityServiceCreateCertificateAuthorityProcedure:
@@ -394,6 +420,8 @@ func NewCertificateAuthorityServiceHandler(svc CertificateAuthorityServiceHandle
 			certificateAuthorityServiceGetCertificateAuthorityCertificatesHandler.ServeHTTP(w, r)
 		case CertificateAuthorityServiceCreateRevocationListProcedure:
 			certificateAuthorityServiceCreateRevocationListHandler.ServeHTTP(w, r)
+		case CertificateAuthorityServiceGetCurrentRevocationListsProcedure:
+			certificateAuthorityServiceGetCurrentRevocationListsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -449,4 +477,8 @@ func (UnimplementedCertificateAuthorityServiceHandler) GetCertificateAuthorityCe
 
 func (UnimplementedCertificateAuthorityServiceHandler) CreateRevocationList(context.Context, *connect.Request[v1.CreateRevocationListRequest]) (*connect.Response[v1.CreateRevocationListResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateRevocationList is not implemented"))
+}
+
+func (UnimplementedCertificateAuthorityServiceHandler) GetCurrentRevocationLists(context.Context, *connect.Request[v1.GetCurrentRevocationListsRequest]) (*connect.Response[v1.GetCurrentRevocationListsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists is not implemented"))
 }

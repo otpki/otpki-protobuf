@@ -1196,6 +1196,94 @@ func (x *CreateRevocationListResponse) GetRevocationLists() []*v13.RevocationLis
 	return nil
 }
 
+type GetCurrentRevocationListsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CaId          string                 `protobuf:"bytes,1,opt,name=ca_id,json=caId,proto3" json:"ca_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCurrentRevocationListsRequest) Reset() {
+	*x = GetCurrentRevocationListsRequest{}
+	mi := &file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCurrentRevocationListsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCurrentRevocationListsRequest) ProtoMessage() {}
+
+func (x *GetCurrentRevocationListsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCurrentRevocationListsRequest.ProtoReflect.Descriptor instead.
+func (*GetCurrentRevocationListsRequest) Descriptor() ([]byte, []int) {
+	return file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetCurrentRevocationListsRequest) GetCaId() string {
+	if x != nil {
+		return x.CaId
+	}
+	return ""
+}
+
+type GetCurrentRevocationListsResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	RevocationLists []*v13.RevocationList  `protobuf:"bytes,1,rep,name=revocation_lists,json=revocationLists,proto3" json:"revocation_lists,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetCurrentRevocationListsResponse) Reset() {
+	*x = GetCurrentRevocationListsResponse{}
+	mi := &file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCurrentRevocationListsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCurrentRevocationListsResponse) ProtoMessage() {}
+
+func (x *GetCurrentRevocationListsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCurrentRevocationListsResponse.ProtoReflect.Descriptor instead.
+func (*GetCurrentRevocationListsResponse) Descriptor() ([]byte, []int) {
+	return file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *GetCurrentRevocationListsResponse) GetRevocationLists() []*v13.RevocationList {
+	if x != nil {
+		return x.RevocationLists
+	}
+	return nil
+}
+
 var File_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto protoreflect.FileDescriptor
 
 const file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDesc = "" +
@@ -1271,7 +1359,11 @@ const file_otpki_public_issuance_certificate_authority_v1_certificate_authority_
 	"\x05ca_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x04caId\x12\x19\n" +
 	"\bis_delta\x18\x02 \x01(\bR\aisDelta\"\x7f\n" +
 	"\x1cCreateRevocationListResponse\x12_\n" +
-	"\x10revocation_lists\x18\x01 \x03(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x0frevocationLists2\xf2\x19\n" +
+	"\x10revocation_lists\x18\x01 \x03(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x0frevocationLists\"A\n" +
+	" GetCurrentRevocationListsRequest\x12\x1d\n" +
+	"\x05ca_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x04caId\"\x84\x01\n" +
+	"!GetCurrentRevocationListsResponse\x12_\n" +
+	"\x10revocation_lists\x18\x01 \x03(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x0frevocationLists2\xf6\x1b\n" +
 	"\x1bCertificateAuthorityService\x12\xff\x01\n" +
 	"\x1aCreateCertificateAuthority\x12Q.otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest\x1aR.otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityResponse\":\x82\xd3\xe4\x93\x024:\x15certificate_authority\"\x1b/v1/certificate-authorities\x12\xf2\x01\n" +
 	"\x1aImportCertificateAuthority\x12Q.otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest\x1aR.otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/certificate-authorities/import\x12\x88\x02\n" +
@@ -1285,7 +1377,8 @@ const file_otpki_public_issuance_certificate_authority_v1_certificate_authority_
 	"\x1aUpdateCertificateAuthority\x12Q.otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest\x1aR.otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityResponse\"\xa7\x01\x82\xd3\xe4\x93\x02\xa0\x01:\x15certificate_authorityZO:\x15certificate_authority26/v1/certificate-authorities/{certificate_authority.id}\x1a6/v1/certificate-authorities/{certificate_authority.id}\x12\xf0\x01\n" +
 	"\x1aDeleteCertificateAuthority\x12Q.otpki.public.issuance.certificate_authority.v1.DeleteCertificateAuthorityRequest\x1aR.otpki.public.issuance.certificate_authority.v1.DeleteCertificateAuthorityResponse\"+\x82\xd3\xe4\x93\x02%*#/v1/certificate-authorities/{ca_id}\x12\x9b\x02\n" +
 	"#GetCertificateAuthorityCertificates\x12Z.otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesRequest\x1a[.otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesResponse\";\x82\xd3\xe4\x93\x022\x120/v1/certificate-authorities/{ca_id}/certificates\x90\x02\x01\x12\xfa\x01\n" +
-	"\x14CreateRevocationList\x12K.otpki.public.issuance.certificate_authority.v1.CreateRevocationListRequest\x1aL.otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse\"G\x82\xd3\xe4\x93\x02A:\x01*\"</v1/certificate-authorities/{ca_id}/generate-revocation-listB\x96\x03\n" +
+	"\x14CreateRevocationList\x12K.otpki.public.issuance.certificate_authority.v1.CreateRevocationListRequest\x1aL.otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse\"G\x82\xd3\xe4\x93\x02A:\x01*\"</v1/certificate-authorities/{ca_id}/generate-revocation-list\x12\x81\x02\n" +
+	"\x19GetCurrentRevocationLists\x12P.otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest\x1aQ.otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse\"?\x82\xd3\xe4\x93\x026\x124/v1/certificate-authorities/{ca_id}/revocation-lists\x90\x02\x01B\x96\x03\n" +
 	"2com.otpki.public.issuance.certificate_authority.v1B\x19CertificateAuthorityProtoP\x01Zjgithub.com/otpki/otpki-protobuf/gen/otpki/public/issuance/certificate_authority/v1;certificate_authorityv1\xa2\x02\x04OPIC\xaa\x02-Otpki.Public.Issuance.CertificateAuthority.V1\xca\x02.Otpki\\Public_\\Issuance\\CertificateAuthority\\V1\xe2\x02:Otpki\\Public_\\Issuance\\CertificateAuthority\\V1\\GPBMetadata\xea\x021Otpki::Public::Issuance::CertificateAuthority::V1b\x06proto3"
 
 var (
@@ -1300,7 +1393,7 @@ func file_otpki_public_issuance_certificate_authority_v1_certificate_authority_p
 	return file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDescData
 }
 
-var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_goTypes = []any{
 	(*CreateCertificateAuthorityRequest)(nil),             // 0: otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest
 	(*CreateCertificateAuthorityResponse)(nil),            // 1: otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityResponse
@@ -1326,57 +1419,62 @@ var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_pr
 	(*GetCertificateAuthorityCertificatesResponse)(nil),   // 21: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesResponse
 	(*CreateRevocationListRequest)(nil),                   // 22: otpki.public.issuance.certificate_authority.v1.CreateRevocationListRequest
 	(*CreateRevocationListResponse)(nil),                  // 23: otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse
-	(*v1.CertificateAuthority)(nil),                       // 24: otpki.common.core.certificate_authority.v1.CertificateAuthority
-	(*v11.Key)(nil),                                       // 25: otpki.common.core.key.v1.Key
-	(*v12.PaginationRequest)(nil),                         // 26: otpki.common.api.query.v1.PaginationRequest
-	(*v12.PaginationResponse)(nil),                        // 27: otpki.common.api.query.v1.PaginationResponse
-	(*fieldmaskpb.FieldMask)(nil),                         // 28: google.protobuf.FieldMask
-	(*v1.CertificateAuthorityCertificate)(nil),            // 29: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	(*v13.RevocationList)(nil),                            // 30: otpki.common.core.revocation_list.v1.RevocationList
+	(*GetCurrentRevocationListsRequest)(nil),              // 24: otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest
+	(*GetCurrentRevocationListsResponse)(nil),             // 25: otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse
+	(*v1.CertificateAuthority)(nil),                       // 26: otpki.common.core.certificate_authority.v1.CertificateAuthority
+	(*v11.Key)(nil),                                       // 27: otpki.common.core.key.v1.Key
+	(*v12.PaginationRequest)(nil),                         // 28: otpki.common.api.query.v1.PaginationRequest
+	(*v12.PaginationResponse)(nil),                        // 29: otpki.common.api.query.v1.PaginationResponse
+	(*fieldmaskpb.FieldMask)(nil),                         // 30: google.protobuf.FieldMask
+	(*v1.CertificateAuthorityCertificate)(nil),            // 31: otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	(*v13.RevocationList)(nil),                            // 32: otpki.common.core.revocation_list.v1.RevocationList
 }
 var file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_depIdxs = []int32{
-	24, // 0: otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	24, // 1: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	25, // 2: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest.key_config:type_name -> otpki.common.core.key.v1.Key
-	24, // 3: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Request.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	25, // 4: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Request.key_config:type_name -> otpki.common.core.key.v1.Key
-	24, // 5: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityResponse.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	26, // 6: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
-	24, // 7: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListResponse.data:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	27, // 8: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
-	24, // 9: otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
-	28, // 10: otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest.update_mask:type_name -> google.protobuf.FieldMask
-	29, // 11: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesResponse.certificate_authority_certificates:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
-	30, // 12: otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse.revocation_lists:type_name -> otpki.common.core.revocation_list.v1.RevocationList
-	0,  // 13: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest
-	2,  // 14: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest
-	4,  // 15: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityPKCS12:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Request
-	6,  // 16: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthorityCSR:input_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityCSRRequest
-	8,  // 17: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityCertificate:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityCertificateRequest
-	10, // 18: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.RenewCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.RenewCertificateAuthorityRequest
-	12, // 19: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityRequest
-	14, // 20: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityList:input_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListRequest
-	16, // 21: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.UpdateCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest
-	18, // 22: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.DeleteCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.DeleteCertificateAuthorityRequest
-	20, // 23: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityCertificates:input_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesRequest
-	22, // 24: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateRevocationList:input_type -> otpki.public.issuance.certificate_authority.v1.CreateRevocationListRequest
-	1,  // 25: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityResponse
-	3,  // 26: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityResponse
-	5,  // 27: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityPKCS12:output_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Response
-	7,  // 28: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthorityCSR:output_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityCSRResponse
-	9,  // 29: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityCertificate:output_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityCertificateResponse
-	11, // 30: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.RenewCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.RenewCertificateAuthorityResponse
-	13, // 31: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityResponse
-	15, // 32: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityList:output_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListResponse
-	17, // 33: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.UpdateCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityResponse
-	19, // 34: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.DeleteCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.DeleteCertificateAuthorityResponse
-	21, // 35: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityCertificates:output_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesResponse
-	23, // 36: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateRevocationList:output_type -> otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse
-	25, // [25:37] is the sub-list for method output_type
-	13, // [13:25] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	26, // 0: otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	26, // 1: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	27, // 2: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest.key_config:type_name -> otpki.common.core.key.v1.Key
+	26, // 3: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Request.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	27, // 4: otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Request.key_config:type_name -> otpki.common.core.key.v1.Key
+	26, // 5: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityResponse.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	28, // 6: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListRequest.pagination:type_name -> otpki.common.api.query.v1.PaginationRequest
+	26, // 7: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListResponse.data:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	29, // 8: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListResponse.pagination:type_name -> otpki.common.api.query.v1.PaginationResponse
+	26, // 9: otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest.certificate_authority:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthority
+	30, // 10: otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest.update_mask:type_name -> google.protobuf.FieldMask
+	31, // 11: otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesResponse.certificate_authority_certificates:type_name -> otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate
+	32, // 12: otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse.revocation_lists:type_name -> otpki.common.core.revocation_list.v1.RevocationList
+	32, // 13: otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse.revocation_lists:type_name -> otpki.common.core.revocation_list.v1.RevocationList
+	0,  // 14: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityRequest
+	2,  // 15: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityRequest
+	4,  // 16: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityPKCS12:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Request
+	6,  // 17: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthorityCSR:input_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityCSRRequest
+	8,  // 18: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityCertificate:input_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityCertificateRequest
+	10, // 19: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.RenewCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.RenewCertificateAuthorityRequest
+	12, // 20: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityRequest
+	14, // 21: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityList:input_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListRequest
+	16, // 22: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.UpdateCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityRequest
+	18, // 23: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.DeleteCertificateAuthority:input_type -> otpki.public.issuance.certificate_authority.v1.DeleteCertificateAuthorityRequest
+	20, // 24: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityCertificates:input_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesRequest
+	22, // 25: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateRevocationList:input_type -> otpki.public.issuance.certificate_authority.v1.CreateRevocationListRequest
+	24, // 26: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists:input_type -> otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsRequest
+	1,  // 27: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityResponse
+	3,  // 28: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityResponse
+	5,  // 29: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityPKCS12:output_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityPKCS12Response
+	7,  // 30: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateCertificateAuthorityCSR:output_type -> otpki.public.issuance.certificate_authority.v1.CreateCertificateAuthorityCSRResponse
+	9,  // 31: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.ImportCertificateAuthorityCertificate:output_type -> otpki.public.issuance.certificate_authority.v1.ImportCertificateAuthorityCertificateResponse
+	11, // 32: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.RenewCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.RenewCertificateAuthorityResponse
+	13, // 33: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityResponse
+	15, // 34: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityList:output_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityListResponse
+	17, // 35: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.UpdateCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.UpdateCertificateAuthorityResponse
+	19, // 36: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.DeleteCertificateAuthority:output_type -> otpki.public.issuance.certificate_authority.v1.DeleteCertificateAuthorityResponse
+	21, // 37: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCertificateAuthorityCertificates:output_type -> otpki.public.issuance.certificate_authority.v1.GetCertificateAuthorityCertificatesResponse
+	23, // 38: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateRevocationList:output_type -> otpki.public.issuance.certificate_authority.v1.CreateRevocationListResponse
+	25, // 39: otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists:output_type -> otpki.public.issuance.certificate_authority.v1.GetCurrentRevocationListsResponse
+	27, // [27:40] is the sub-list for method output_type
+	14, // [14:27] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_init() }
@@ -1391,7 +1489,7 @@ func file_otpki_public_issuance_certificate_authority_v1_certificate_authority_p
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDesc), len(file_otpki_public_issuance_certificate_authority_v1_certificate_authority_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

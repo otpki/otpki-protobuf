@@ -139,6 +139,14 @@ message CreateRevocationListResponse {
   repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
 }
 
+message GetCurrentRevocationListsRequest {
+  string ca_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetCurrentRevocationListsResponse {
+  repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
+}
+
 service CertificateAuthorityService {
   rpc CreateCertificateAuthority(CreateCertificateAuthorityRequest) returns (CreateCertificateAuthorityResponse) {
     option (google.api.http) = {
@@ -208,5 +216,9 @@ service CertificateAuthorityService {
       post: "/v1/certificate-authorities/{ca_id}/generate-revocation-list"
       body: "*"
     };
+  }
+  rpc GetCurrentRevocationLists(GetCurrentRevocationListsRequest) returns (GetCurrentRevocationListsResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/revocation-lists"};
   }
 }

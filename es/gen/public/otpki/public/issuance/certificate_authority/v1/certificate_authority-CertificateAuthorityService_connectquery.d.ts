@@ -52,3 +52,7 @@ export const getCertificateAuthorityCertificates: typeof CertificateAuthoritySer
  * @generated from rpc otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.CreateRevocationList
  */
 export const createRevocationList: typeof CertificateAuthorityService["method"]["createRevocationList"];
+/**
+ * @generated from rpc otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService.GetCurrentRevocationLists
+ */
+export const getCurrentRevocationLists: typeof CertificateAuthorityService["method"]["getCurrentRevocationLists"];

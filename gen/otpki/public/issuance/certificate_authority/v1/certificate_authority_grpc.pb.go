@@ -31,6 +31,7 @@ const (
 	CertificateAuthorityService_DeleteCertificateAuthority_FullMethodName            = "/otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService/DeleteCertificateAuthority"
 	CertificateAuthorityService_GetCertificateAuthorityCertificates_FullMethodName   = "/otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService/GetCertificateAuthorityCertificates"
 	CertificateAuthorityService_CreateRevocationList_FullMethodName                  = "/otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService/CreateRevocationList"
+	CertificateAuthorityService_GetCurrentRevocationLists_FullMethodName             = "/otpki.public.issuance.certificate_authority.v1.CertificateAuthorityService/GetCurrentRevocationLists"
 )
 
 // CertificateAuthorityServiceClient is the client API for CertificateAuthorityService service.
@@ -49,6 +50,7 @@ type CertificateAuthorityServiceClient interface {
 	DeleteCertificateAuthority(ctx context.Context, in *DeleteCertificateAuthorityRequest, opts ...grpc.CallOption) (*DeleteCertificateAuthorityResponse, error)
 	GetCertificateAuthorityCertificates(ctx context.Context, in *GetCertificateAuthorityCertificatesRequest, opts ...grpc.CallOption) (*GetCertificateAuthorityCertificatesResponse, error)
 	CreateRevocationList(ctx context.Context, in *CreateRevocationListRequest, opts ...grpc.CallOption) (*CreateRevocationListResponse, error)
+	GetCurrentRevocationLists(ctx context.Context, in *GetCurrentRevocationListsRequest, opts ...grpc.CallOption) (*GetCurrentRevocationListsResponse, error)
 }
 
 type certificateAuthorityServiceClient struct {
@@ -179,6 +181,16 @@ func (c *certificateAuthorityServiceClient) CreateRevocationList(ctx context.Con
 	return out, nil
 }
 
+func (c *certificateAuthorityServiceClient) GetCurrentRevocationLists(ctx context.Context, in *GetCurrentRevocationListsRequest, opts ...grpc.CallOption) (*GetCurrentRevocationListsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCurrentRevocationListsResponse)
+	err := c.cc.Invoke(ctx, CertificateAuthorityService_GetCurrentRevocationLists_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CertificateAuthorityServiceServer is the server API for CertificateAuthorityService service.
 // All implementations must embed UnimplementedCertificateAuthorityServiceServer
 // for forward compatibility.
@@ -195,6 +207,7 @@ type CertificateAuthorityServiceServer interface {
 	DeleteCertificateAuthority(context.Context, *DeleteCertificateAuthorityRequest) (*DeleteCertificateAuthorityResponse, error)
 	GetCertificateAuthorityCertificates(context.Context, *GetCertificateAuthorityCertificatesRequest) (*GetCertificateAuthorityCertificatesResponse, error)
 	CreateRevocationList(context.Context, *CreateRevocationListRequest) (*CreateRevocationListResponse, error)
+	GetCurrentRevocationLists(context.Context, *GetCurrentRevocationListsRequest) (*GetCurrentRevocationListsResponse, error)
 	mustEmbedUnimplementedCertificateAuthorityServiceServer()
 }
 
@@ -240,6 +253,9 @@ func (UnimplementedCertificateAuthorityServiceServer) GetCertificateAuthorityCer
 }
 func (UnimplementedCertificateAuthorityServiceServer) CreateRevocationList(context.Context, *CreateRevocationListRequest) (*CreateRevocationListResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateRevocationList not implemented")
+}
+func (UnimplementedCertificateAuthorityServiceServer) GetCurrentRevocationLists(context.Context, *GetCurrentRevocationListsRequest) (*GetCurrentRevocationListsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCurrentRevocationLists not implemented")
 }
 func (UnimplementedCertificateAuthorityServiceServer) mustEmbedUnimplementedCertificateAuthorityServiceServer() {
 }
@@ -479,6 +495,24 @@ func _CertificateAuthorityService_CreateRevocationList_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CertificateAuthorityService_GetCurrentRevocationLists_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCurrentRevocationListsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CertificateAuthorityServiceServer).GetCurrentRevocationLists(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CertificateAuthorityService_GetCurrentRevocationLists_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CertificateAuthorityServiceServer).GetCurrentRevocationLists(ctx, req.(*GetCurrentRevocationListsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CertificateAuthorityService_ServiceDesc is the grpc.ServiceDesc for CertificateAuthorityService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -533,6 +567,10 @@ var CertificateAuthorityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateRevocationList",
 			Handler:    _CertificateAuthorityService_CreateRevocationList_Handler,
+		},
+		{
+			MethodName: "GetCurrentRevocationLists",
+			Handler:    _CertificateAuthorityService_GetCurrentRevocationLists_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
