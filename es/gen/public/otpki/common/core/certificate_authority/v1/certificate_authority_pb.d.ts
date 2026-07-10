@@ -76,41 +76,53 @@ export declare type CertificateAuthority = Message<"otpki.common.core.certificat
   deltaCrlValidityPeriod?: Duration;
 
   /**
+   * maximum overlap of crl validity
+   *
+   * @generated from field: google.protobuf.Duration crl_overlap_period = 11;
+   */
+  crlOverlapPeriod?: Duration;
+
+  /**
    * Validation
    *
-   * @generated from field: repeated string crl_distribution_point_uris = 11;
+   * @generated from field: repeated string crl_distribution_point_uris = 21;
    */
   crlDistributionPointUris: string[];
 
   /**
-   * @generated from field: repeated string ocsp_uris = 12;
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 22;
+   */
+  deltaCrlDistributionPointUris: string[];
+
+  /**
+   * @generated from field: repeated string ocsp_uris = 23;
    */
   ocspUris: string[];
 
   /**
-   * @generated from field: repeated string issuer_uris = 13;
+   * @generated from field: repeated string issuer_uris = 24;
    */
   issuerUris: string[];
 
   /**
-   * @generated from field: optional string approval_profile_id = 14;
-   */
-  approvalProfileId?: string;
-
-  /**
-   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 26;
    */
   crlPartitionMode: PartitionMode;
 
   /**
-   * @generated from field: int64 num_crl_partitions = 16;
+   * @generated from field: int64 num_crl_partitions = 27;
    */
   numCrlPartitions: bigint;
 
   /**
-   * @generated from field: bool crl_include_expired = 17;
+   * @generated from field: bool crl_include_expired = 28;
    */
   crlIncludeExpired: boolean;
+
+  /**
+   * @generated from field: optional string approval_profile_id = 30;
+   */
+  approvalProfileId?: string;
 
   /**
    * not settable on creation
@@ -190,41 +202,53 @@ export declare type CertificateAuthorityJson = {
   deltaCrlValidityPeriod?: DurationJson;
 
   /**
+   * maximum overlap of crl validity
+   *
+   * @generated from field: google.protobuf.Duration crl_overlap_period = 11;
+   */
+  crlOverlapPeriod?: DurationJson;
+
+  /**
    * Validation
    *
-   * @generated from field: repeated string crl_distribution_point_uris = 11;
+   * @generated from field: repeated string crl_distribution_point_uris = 21;
    */
   crlDistributionPointUris?: string[];
 
   /**
-   * @generated from field: repeated string ocsp_uris = 12;
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 22;
+   */
+  deltaCrlDistributionPointUris?: string[];
+
+  /**
+   * @generated from field: repeated string ocsp_uris = 23;
    */
   ocspUris?: string[];
 
   /**
-   * @generated from field: repeated string issuer_uris = 13;
+   * @generated from field: repeated string issuer_uris = 24;
    */
   issuerUris?: string[];
 
   /**
-   * @generated from field: optional string approval_profile_id = 14;
-   */
-  approvalProfileId?: string;
-
-  /**
-   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 26;
    */
   crlPartitionMode?: PartitionModeJson;
 
   /**
-   * @generated from field: int64 num_crl_partitions = 16;
+   * @generated from field: int64 num_crl_partitions = 27;
    */
   numCrlPartitions?: string;
 
   /**
-   * @generated from field: bool crl_include_expired = 17;
+   * @generated from field: bool crl_include_expired = 28;
    */
   crlIncludeExpired?: boolean;
+
+  /**
+   * @generated from field: optional string approval_profile_id = 30;
+   */
+  approvalProfileId?: string;
 
   /**
    * not settable on creation
@@ -304,41 +328,53 @@ export declare type CertificateAuthorityValid = Message<"otpki.common.core.certi
   deltaCrlValidityPeriod?: Duration;
 
   /**
+   * maximum overlap of crl validity
+   *
+   * @generated from field: google.protobuf.Duration crl_overlap_period = 11;
+   */
+  crlOverlapPeriod?: Duration;
+
+  /**
    * Validation
    *
-   * @generated from field: repeated string crl_distribution_point_uris = 11;
+   * @generated from field: repeated string crl_distribution_point_uris = 21;
    */
   crlDistributionPointUris: string[];
 
   /**
-   * @generated from field: repeated string ocsp_uris = 12;
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 22;
+   */
+  deltaCrlDistributionPointUris: string[];
+
+  /**
+   * @generated from field: repeated string ocsp_uris = 23;
    */
   ocspUris: string[];
 
   /**
-   * @generated from field: repeated string issuer_uris = 13;
+   * @generated from field: repeated string issuer_uris = 24;
    */
   issuerUris: string[];
 
   /**
-   * @generated from field: optional string approval_profile_id = 14;
-   */
-  approvalProfileId?: string;
-
-  /**
-   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 26;
    */
   crlPartitionMode: PartitionMode;
 
   /**
-   * @generated from field: int64 num_crl_partitions = 16;
+   * @generated from field: int64 num_crl_partitions = 27;
    */
   numCrlPartitions: bigint;
 
   /**
-   * @generated from field: bool crl_include_expired = 17;
+   * @generated from field: bool crl_include_expired = 28;
    */
   crlIncludeExpired: boolean;
+
+  /**
+   * @generated from field: optional string approval_profile_id = 30;
+   */
+  approvalProfileId?: string;
 
   /**
    * not settable on creation

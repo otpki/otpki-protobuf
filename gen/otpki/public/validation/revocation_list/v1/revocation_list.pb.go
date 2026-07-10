@@ -118,6 +118,7 @@ type CRLDistributionPointRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CertHash      string                 `protobuf:"bytes,1,opt,name=cert_hash,json=certHash,proto3" json:"cert_hash,omitempty"`
 	PartId        string                 `protobuf:"bytes,2,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
+	Freshest      bool                   `protobuf:"varint,3,opt,name=freshest,proto3" json:"freshest,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -166,6 +167,13 @@ func (x *CRLDistributionPointRequest) GetPartId() string {
 	return ""
 }
 
+func (x *CRLDistributionPointRequest) GetFreshest() bool {
+	if x != nil {
+		return x.Freshest
+	}
+	return false
+}
+
 var File_otpki_public_validation_revocation_list_v1_revocation_list_proto protoreflect.FileDescriptor
 
 const file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawDesc = "" +
@@ -174,10 +182,11 @@ const file_otpki_public_validation_revocation_list_v1_revocation_list_proto_rawD
 	"\x18GetRevocationListRequest\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"z\n" +
 	"\x19GetRevocationListResponse\x12]\n" +
-	"\x0frevocation_list\x18\x01 \x01(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x0erevocationList\"S\n" +
+	"\x0frevocation_list\x18\x01 \x01(\v24.otpki.common.core.revocation_list.v1.RevocationListR\x0erevocationList\"o\n" +
 	"\x1bCRLDistributionPointRequest\x12\x1b\n" +
 	"\tcert_hash\x18\x01 \x01(\tR\bcertHash\x12\x17\n" +
-	"\apart_id\x18\x02 \x01(\tR\x06partId2\xff\x02\n" +
+	"\apart_id\x18\x02 \x01(\tR\x06partId\x12\x1a\n" +
+	"\bfreshest\x18\x03 \x01(\bR\bfreshest2\xff\x02\n" +
 	"\x15RevocationListService\x12\xc6\x01\n" +
 	"\x11GetRevocationList\x12D.otpki.public.validation.revocation_list.v1.GetRevocationListRequest\x1aE.otpki.public.validation.revocation_list.v1.GetRevocationListResponse\"$\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/revocation-lists/{id}\x90\x02\x01\x12\x9c\x01\n" +
 	"\x14CRLDistributionPoint\x12G.otpki.public.validation.revocation_list.v1.CRLDistributionPointRequest\x1a\x14.google.api.HttpBody\"%ص\x18\x00\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/validation/cdp.crl\x90\x02\x01B\xf2\x02\n" +

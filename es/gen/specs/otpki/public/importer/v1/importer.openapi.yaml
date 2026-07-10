@@ -1982,12 +1982,21 @@ components:
           title: delta_crl_validity_period
           description: validity period for delta crl. they are not generated if this is set to 0, should be smaller than crl_expire_period.
           $ref: '#/components/schemas/google.protobuf.Duration'
+        crlOverlapPeriod:
+          title: crl_overlap_period
+          description: maximum overlap of crl validity
+          $ref: '#/components/schemas/google.protobuf.Duration'
         crlDistributionPointUris:
           type: array
           items:
             type: string
           title: crl_distribution_point_uris
           description: Validation
+        deltaCrlDistributionPointUris:
+          type: array
+          items:
+            type: string
+          title: delta_crl_distribution_point_uris
         ocspUris:
           type: array
           items:
@@ -1998,12 +2007,6 @@ components:
           items:
             type: string
           title: issuer_uris
-        approvalProfileId:
-          type:
-            - string
-            - "null"
-          title: approval_profile_id
-          format: uuid
         crlPartitionMode:
           title: crl_partition_mode
           $ref: '#/components/schemas/otpki.common.core.certificate_authority.v1.PartitionMode'
@@ -2017,6 +2020,12 @@ components:
         crlIncludeExpired:
           type: boolean
           title: crl_include_expired
+        approvalProfileId:
+          type:
+            - string
+            - "null"
+          title: approval_profile_id
+          format: uuid
         createdAt:
           title: created_at
           description: not settable on creation
@@ -2360,6 +2369,19 @@ components:
             type: string
             format: uri
           title: crl_distribution_point_uris
+          uniqueItems: true
+        useDeltaCrlDistributionPoints:
+          type: boolean
+          title: use_delta_crl_distribution_points
+        useCaDefinedDeltaCdp:
+          type: boolean
+          title: use_ca_defined_delta_cdp
+        deltaCrlDistributionPointUris:
+          type: array
+          items:
+            type: string
+            format: uri
+          title: delta_crl_distribution_point_uris
           uniqueItems: true
         useAuthorityInformationAccess:
           type: boolean

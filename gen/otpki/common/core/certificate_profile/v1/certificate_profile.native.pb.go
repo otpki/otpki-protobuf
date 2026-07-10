@@ -60,6 +60,9 @@ type CertificateProfileNative struct {
 	CrlDistributionPointsCritical   bool
 	UseCaDefinedCdp                 bool
 	CrlDistributionPointUris        []string
+	UseDeltaCrlDistributionPoints   bool
+	UseCaDefinedDeltaCdp            bool
+	DeltaCrlDistributionPointUris   []string
 	UseAuthorityInformationAccess   bool
 	UseCaDefinedOcspUri             bool
 	OcspUris                        []string
@@ -156,6 +159,9 @@ func (n *CertificateProfileNative) ToProto() (*CertificateProfile, error) {
 	protoStruct.CrlDistributionPointsCritical = n.CrlDistributionPointsCritical
 	protoStruct.UseCaDefinedCdp = n.UseCaDefinedCdp
 	protoStruct.CrlDistributionPointUris = n.CrlDistributionPointUris
+	protoStruct.UseDeltaCrlDistributionPoints = n.UseDeltaCrlDistributionPoints
+	protoStruct.UseCaDefinedDeltaCdp = n.UseCaDefinedDeltaCdp
+	protoStruct.DeltaCrlDistributionPointUris = n.DeltaCrlDistributionPointUris
 	protoStruct.UseAuthorityInformationAccess = n.UseAuthorityInformationAccess
 	protoStruct.UseCaDefinedOcspUri = n.UseCaDefinedOcspUri
 	protoStruct.OcspUris = n.OcspUris
@@ -265,6 +271,9 @@ func (p *CertificateProfile) ToNative() (*CertificateProfileNative, error) {
 	nativeStruct.CrlDistributionPointsCritical = p.CrlDistributionPointsCritical
 	nativeStruct.UseCaDefinedCdp = p.UseCaDefinedCdp
 	nativeStruct.CrlDistributionPointUris = p.CrlDistributionPointUris
+	nativeStruct.UseDeltaCrlDistributionPoints = p.UseDeltaCrlDistributionPoints
+	nativeStruct.UseCaDefinedDeltaCdp = p.UseCaDefinedDeltaCdp
+	nativeStruct.DeltaCrlDistributionPointUris = p.DeltaCrlDistributionPointUris
 	nativeStruct.UseAuthorityInformationAccess = p.UseAuthorityInformationAccess
 	nativeStruct.UseCaDefinedOcspUri = p.UseCaDefinedOcspUri
 	nativeStruct.OcspUris = p.OcspUris

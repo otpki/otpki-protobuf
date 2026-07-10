@@ -19,7 +19,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file otpki/common/core/certificate_authority/v1/certificate_authority.proto.
  */
 export const file_otpki_common_core_certificate_authority_v1_certificate_authority: GenFile = /*@__PURE__*/
-  fileDesc("CkZvdHBraS9jb21tb24vY29yZS9jZXJ0aWZpY2F0ZV9hdXRob3JpdHkvdjEvY2VydGlmaWNhdGVfYXV0aG9yaXR5LnByb3RvEipvdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEi8ggKFENlcnRpZmljYXRlQXV0aG9yaXR5EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEgwKBG5hbWUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSGAoGa2V5X2lkGAQgASgJQgi6SAVyA7ABARIpChJhbHRlcm5hdGl2ZV9rZXlfaWQYBSABKAlCCLpIBXIDsAEBSACIAQESeQoTc2lnbmF0dXJlX2FsZ29yaXRobRgGIAEoDjIoLm90cGtpLmNvbW1vbi54NTA5LnYxLlNpZ25hdHVyZUFsZ29yaXRobUIyukgFggECEAGKtRgXeDUwOS5TaWduYXR1cmVBbGdvcml0aG2StRgLY3J5cHRvL3g1MDkShQEKH2FsdGVybmF0aXZlX3NpZ25hdHVyZV9hbGdvcml0aG0YByABKA4yKC5vdHBraS5jb21tb24ueDUwOS52MS5TaWduYXR1cmVBbGdvcml0aG1CMrpIBYIBAhABirUYF3g1MDkuU2lnbmF0dXJlQWxnb3JpdGhtkrUYC2NyeXB0by94NTA5EkcKFGNlcnRpZmljYXRlX3RlbXBsYXRlGAggASgLMikub3Rwa2kuY29tbW9uLng1MDkudjEuQ2VydGlmaWNhdGVUZW1wbGF0ZRJRChNjcmxfdmFsaWRpdHlfcGVyaW9kGAkgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQhmKtRgNdGltZS5EdXJhdGlvbpK1GAR0aW1lElcKGWRlbHRhX2NybF92YWxpZGl0eV9wZXJpb2QYCiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CGYq1GA10aW1lLkR1cmF0aW9ukrUYBHRpbWUSIwobY3JsX2Rpc3RyaWJ1dGlvbl9wb2ludF91cmlzGAsgAygJEhEKCW9jc3BfdXJpcxgMIAMoCRITCgtpc3N1ZXJfdXJpcxgNIAMoCRIqChNhcHByb3ZhbF9wcm9maWxlX2lkGA4gASgJQgi6SAVyA7ABAUgBiAEBElUKEmNybF9wYXJ0aXRpb25fbW9kZRgPIAEoDjI5Lm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5QYXJ0aXRpb25Nb2RlEiMKEm51bV9jcmxfcGFydGl0aW9ucxgQIAEoA0IHukgEIgIoABIbChNjcmxfaW5jbHVkZV9leHBpcmVkGBEgASgIEksKCmNyZWF0ZWRfYXQYyQEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIaukcCGAGKtRgJdGltZS5UaW1lkrUYBHRpbWUSSwoKdXBkYXRlZF9hdBjKASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZToEmLUYAUIVChNfYWx0ZXJuYXRpdmVfa2V5X2lkQhYKFF9hcHByb3ZhbF9wcm9maWxlX2lkIvEBCh9DZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlEhQKAmlkGAEgASgJQgi6SAVyA7ABARIqChhjZXJ0aWZpY2F0ZV9hdXRob3JpdHlfaWQYAiABKAlCCLpIBXIDsAEBEhMKC2NlcnRpZmljYXRlGAMgASgMEhkKEWNlcnRpZmljYXRlX2NoYWluGAQgAygMEiwKFWlzc3VlZF9jZXJ0aWZpY2F0ZV9pZBgFIAEoCUIIukgFcgOwAQFIAIgBARIUCgxkaXNwbGF5X25hbWUYBiABKAlCGAoWX2lzc3VlZF9jZXJ0aWZpY2F0ZV9pZCJ8CiJDZXJ0aWZpY2F0ZUF1dGhvcml0eUNlcnRpZmljYXRlS2V5EiMKEWNhX2NlcnRpZmljYXRlX2lkGAEgASgJQgi6SAVyA7ABARIYCgZrZXlfaWQYAiABKAlCCLpIBXIDsAEBEhcKD2FsdGVybmF0aXZlX2tleRgDIAEoCCpmCg1QYXJ0aXRpb25Nb2RlEh4KGlBBUlRJVElPTl9NT0RFX1VOU1BFQ0lGSUVEEAASGAoUUEFSVElUSU9OX01PREVfRklYRUQQARIbChdQQVJUSVRJT05fTU9ERV9NU0NPTVBBVBACQpQCCi5jb20ub3Rwa2kuY29tbW9uLmNvcmUuY2VydGlmaWNhdGVfYXV0aG9yaXR5LnYxQhlDZXJ0aWZpY2F0ZUF1dGhvcml0eVByb3RvUAGiAgRPQ0NDqgIpT3Rwa2kuQ29tbW9uLkNvcmUuQ2VydGlmaWNhdGVBdXRob3JpdHkuVjHKAilPdHBraVxDb21tb25cQ29yZVxDZXJ0aWZpY2F0ZUF1dGhvcml0eVxWMeICNU90cGtpXENvbW1vblxDb3JlXENlcnRpZmljYXRlQXV0aG9yaXR5XFYxXEdQQk1ldGFkYXRh6gItT3Rwa2k6OkNvbW1vbjo6Q29yZTo6Q2VydGlmaWNhdGVBdXRob3JpdHk6OlYxYgZwcm90bzM", [file_buf_validate_validate, file_google_protobuf_duration, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template, file_otpki_common_x509_v1_x509]);
+  fileDesc("CkZvdHBraS9jb21tb24vY29yZS9jZXJ0aWZpY2F0ZV9hdXRob3JpdHkvdjEvY2VydGlmaWNhdGVfYXV0aG9yaXR5LnByb3RvEipvdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjEi7wkKFENlcnRpZmljYXRlQXV0aG9yaXR5EhkKAmlkGAEgASgJQg26RwIYAbpIBXIDsAEBEgwKBG5hbWUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSGAoGa2V5X2lkGAQgASgJQgi6SAVyA7ABARIpChJhbHRlcm5hdGl2ZV9rZXlfaWQYBSABKAlCCLpIBXIDsAEBSACIAQESeQoTc2lnbmF0dXJlX2FsZ29yaXRobRgGIAEoDjIoLm90cGtpLmNvbW1vbi54NTA5LnYxLlNpZ25hdHVyZUFsZ29yaXRobUIyukgFggECEAGKtRgXeDUwOS5TaWduYXR1cmVBbGdvcml0aG2StRgLY3J5cHRvL3g1MDkShQEKH2FsdGVybmF0aXZlX3NpZ25hdHVyZV9hbGdvcml0aG0YByABKA4yKC5vdHBraS5jb21tb24ueDUwOS52MS5TaWduYXR1cmVBbGdvcml0aG1CMrpIBYIBAhABirUYF3g1MDkuU2lnbmF0dXJlQWxnb3JpdGhtkrUYC2NyeXB0by94NTA5EkcKFGNlcnRpZmljYXRlX3RlbXBsYXRlGAggASgLMikub3Rwa2kuY29tbW9uLng1MDkudjEuQ2VydGlmaWNhdGVUZW1wbGF0ZRJRChNjcmxfdmFsaWRpdHlfcGVyaW9kGAkgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQhmKtRgNdGltZS5EdXJhdGlvbpK1GAR0aW1lElcKGWRlbHRhX2NybF92YWxpZGl0eV9wZXJpb2QYCiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb25CGYq1GA10aW1lLkR1cmF0aW9ukrUYBHRpbWUSUAoSY3JsX292ZXJsYXBfcGVyaW9kGAsgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uQhmKtRgNdGltZS5EdXJhdGlvbpK1GAR0aW1lEiMKG2NybF9kaXN0cmlidXRpb25fcG9pbnRfdXJpcxgVIAMoCRIpCiFkZWx0YV9jcmxfZGlzdHJpYnV0aW9uX3BvaW50X3VyaXMYFiADKAkSEQoJb2NzcF91cmlzGBcgAygJEhMKC2lzc3Vlcl91cmlzGBggAygJElUKEmNybF9wYXJ0aXRpb25fbW9kZRgaIAEoDjI5Lm90cGtpLmNvbW1vbi5jb3JlLmNlcnRpZmljYXRlX2F1dGhvcml0eS52MS5QYXJ0aXRpb25Nb2RlEiMKEm51bV9jcmxfcGFydGl0aW9ucxgbIAEoA0IHukgEIgIoABIbChNjcmxfaW5jbHVkZV9leHBpcmVkGBwgASgIEioKE2FwcHJvdmFsX3Byb2ZpbGVfaWQYHiABKAlCCLpIBXIDsAEBSAGIAQESSwoKY3JlYXRlZF9hdBjJASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQhq6RwIYAYq1GAl0aW1lLlRpbWWStRgEdGltZRJLCgp1cGRhdGVkX2F0GMoBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCGrpHAhgBirUYCXRpbWUuVGltZZK1GAR0aW1lOgSYtRgBQhUKE19hbHRlcm5hdGl2ZV9rZXlfaWRCFgoUX2FwcHJvdmFsX3Byb2ZpbGVfaWQi8QEKH0NlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGUSFAoCaWQYASABKAlCCLpIBXIDsAEBEioKGGNlcnRpZmljYXRlX2F1dGhvcml0eV9pZBgCIAEoCUIIukgFcgOwAQESEwoLY2VydGlmaWNhdGUYAyABKAwSGQoRY2VydGlmaWNhdGVfY2hhaW4YBCADKAwSLAoVaXNzdWVkX2NlcnRpZmljYXRlX2lkGAUgASgJQgi6SAVyA7ABAUgAiAEBEhQKDGRpc3BsYXlfbmFtZRgGIAEoCUIYChZfaXNzdWVkX2NlcnRpZmljYXRlX2lkInwKIkNlcnRpZmljYXRlQXV0aG9yaXR5Q2VydGlmaWNhdGVLZXkSIwoRY2FfY2VydGlmaWNhdGVfaWQYASABKAlCCLpIBXIDsAEBEhgKBmtleV9pZBgCIAEoCUIIukgFcgOwAQESFwoPYWx0ZXJuYXRpdmVfa2V5GAMgASgIKmYKDVBhcnRpdGlvbk1vZGUSHgoaUEFSVElUSU9OX01PREVfVU5TUEVDSUZJRUQQABIYChRQQVJUSVRJT05fTU9ERV9GSVhFRBABEhsKF1BBUlRJVElPTl9NT0RFX01TQ09NUEFUEAJClAIKLmNvbS5vdHBraS5jb21tb24uY29yZS5jZXJ0aWZpY2F0ZV9hdXRob3JpdHkudjFCGUNlcnRpZmljYXRlQXV0aG9yaXR5UHJvdG9QAaICBE9DQ0OqAilPdHBraS5Db21tb24uQ29yZS5DZXJ0aWZpY2F0ZUF1dGhvcml0eS5WMcoCKU90cGtpXENvbW1vblxDb3JlXENlcnRpZmljYXRlQXV0aG9yaXR5XFYx4gI1T3Rwa2lcQ29tbW9uXENvcmVcQ2VydGlmaWNhdGVBdXRob3JpdHlcVjFcR1BCTWV0YWRhdGHqAi1PdHBraTo6Q29tbW9uOjpDb3JlOjpDZXJ0aWZpY2F0ZUF1dGhvcml0eTo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_duration, file_google_protobuf_timestamp, file_openapiv3_annotations, file_otpki_common_api_v1_native_type, file_otpki_common_x509_v1_certificate_template, file_otpki_common_x509_v1_x509]);
 
 /**
  * @generated from message otpki.common.core.certificate_authority.v1.CertificateAuthority
@@ -84,41 +84,53 @@ export type CertificateAuthority = Message<"otpki.common.core.certificate_author
   deltaCrlValidityPeriod?: Duration;
 
   /**
+   * maximum overlap of crl validity
+   *
+   * @generated from field: google.protobuf.Duration crl_overlap_period = 11;
+   */
+  crlOverlapPeriod?: Duration;
+
+  /**
    * Validation
    *
-   * @generated from field: repeated string crl_distribution_point_uris = 11;
+   * @generated from field: repeated string crl_distribution_point_uris = 21;
    */
   crlDistributionPointUris: string[];
 
   /**
-   * @generated from field: repeated string ocsp_uris = 12;
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 22;
+   */
+  deltaCrlDistributionPointUris: string[];
+
+  /**
+   * @generated from field: repeated string ocsp_uris = 23;
    */
   ocspUris: string[];
 
   /**
-   * @generated from field: repeated string issuer_uris = 13;
+   * @generated from field: repeated string issuer_uris = 24;
    */
   issuerUris: string[];
 
   /**
-   * @generated from field: optional string approval_profile_id = 14;
-   */
-  approvalProfileId?: string;
-
-  /**
-   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 26;
    */
   crlPartitionMode: PartitionMode;
 
   /**
-   * @generated from field: int64 num_crl_partitions = 16;
+   * @generated from field: int64 num_crl_partitions = 27;
    */
   numCrlPartitions: bigint;
 
   /**
-   * @generated from field: bool crl_include_expired = 17;
+   * @generated from field: bool crl_include_expired = 28;
    */
   crlIncludeExpired: boolean;
+
+  /**
+   * @generated from field: optional string approval_profile_id = 30;
+   */
+  approvalProfileId?: string;
 
   /**
    * not settable on creation
@@ -198,41 +210,53 @@ export type CertificateAuthorityJson = {
   deltaCrlValidityPeriod?: DurationJson;
 
   /**
+   * maximum overlap of crl validity
+   *
+   * @generated from field: google.protobuf.Duration crl_overlap_period = 11;
+   */
+  crlOverlapPeriod?: DurationJson;
+
+  /**
    * Validation
    *
-   * @generated from field: repeated string crl_distribution_point_uris = 11;
+   * @generated from field: repeated string crl_distribution_point_uris = 21;
    */
   crlDistributionPointUris?: string[];
 
   /**
-   * @generated from field: repeated string ocsp_uris = 12;
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 22;
+   */
+  deltaCrlDistributionPointUris?: string[];
+
+  /**
+   * @generated from field: repeated string ocsp_uris = 23;
    */
   ocspUris?: string[];
 
   /**
-   * @generated from field: repeated string issuer_uris = 13;
+   * @generated from field: repeated string issuer_uris = 24;
    */
   issuerUris?: string[];
 
   /**
-   * @generated from field: optional string approval_profile_id = 14;
-   */
-  approvalProfileId?: string;
-
-  /**
-   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 26;
    */
   crlPartitionMode?: PartitionModeJson;
 
   /**
-   * @generated from field: int64 num_crl_partitions = 16;
+   * @generated from field: int64 num_crl_partitions = 27;
    */
   numCrlPartitions?: string;
 
   /**
-   * @generated from field: bool crl_include_expired = 17;
+   * @generated from field: bool crl_include_expired = 28;
    */
   crlIncludeExpired?: boolean;
+
+  /**
+   * @generated from field: optional string approval_profile_id = 30;
+   */
+  approvalProfileId?: string;
 
   /**
    * not settable on creation
@@ -312,41 +336,53 @@ export type CertificateAuthorityValid = Message<"otpki.common.core.certificate_a
   deltaCrlValidityPeriod?: Duration;
 
   /**
+   * maximum overlap of crl validity
+   *
+   * @generated from field: google.protobuf.Duration crl_overlap_period = 11;
+   */
+  crlOverlapPeriod?: Duration;
+
+  /**
    * Validation
    *
-   * @generated from field: repeated string crl_distribution_point_uris = 11;
+   * @generated from field: repeated string crl_distribution_point_uris = 21;
    */
   crlDistributionPointUris: string[];
 
   /**
-   * @generated from field: repeated string ocsp_uris = 12;
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 22;
+   */
+  deltaCrlDistributionPointUris: string[];
+
+  /**
+   * @generated from field: repeated string ocsp_uris = 23;
    */
   ocspUris: string[];
 
   /**
-   * @generated from field: repeated string issuer_uris = 13;
+   * @generated from field: repeated string issuer_uris = 24;
    */
   issuerUris: string[];
 
   /**
-   * @generated from field: optional string approval_profile_id = 14;
-   */
-  approvalProfileId?: string;
-
-  /**
-   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 15;
+   * @generated from field: otpki.common.core.certificate_authority.v1.PartitionMode crl_partition_mode = 26;
    */
   crlPartitionMode: PartitionMode;
 
   /**
-   * @generated from field: int64 num_crl_partitions = 16;
+   * @generated from field: int64 num_crl_partitions = 27;
    */
   numCrlPartitions: bigint;
 
   /**
-   * @generated from field: bool crl_include_expired = 17;
+   * @generated from field: bool crl_include_expired = 28;
    */
   crlIncludeExpired: boolean;
+
+  /**
+   * @generated from field: optional string approval_profile_id = 30;
+   */
+  approvalProfileId?: string;
 
   /**
    * not settable on creation

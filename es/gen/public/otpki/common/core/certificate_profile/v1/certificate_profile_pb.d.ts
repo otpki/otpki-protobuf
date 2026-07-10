@@ -305,32 +305,47 @@ export declare type CertificateProfile = Message<"otpki.common.core.certificate_
   crlDistributionPointUris: string[];
 
   /**
-   * @generated from field: bool use_authority_information_access = 805;
+   * @generated from field: bool use_delta_crl_distribution_points = 805;
+   */
+  useDeltaCrlDistributionPoints: boolean;
+
+  /**
+   * @generated from field: bool use_ca_defined_delta_cdp = 806;
+   */
+  useCaDefinedDeltaCdp: boolean;
+
+  /**
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 807;
+   */
+  deltaCrlDistributionPointUris: string[];
+
+  /**
+   * @generated from field: bool use_authority_information_access = 808;
    */
   useAuthorityInformationAccess: boolean;
 
   /**
-   * @generated from field: bool use_ca_defined_ocsp_uri = 806;
+   * @generated from field: bool use_ca_defined_ocsp_uri = 809;
    */
   useCaDefinedOcspUri: boolean;
 
   /**
-   * @generated from field: repeated string ocsp_uris = 807;
+   * @generated from field: repeated string ocsp_uris = 810;
    */
   ocspUris: string[];
 
   /**
-   * @generated from field: bool use_ca_defined_issuer_uri = 808;
+   * @generated from field: bool use_ca_defined_issuer_uri = 811;
    */
   useCaDefinedIssuerUri: boolean;
 
   /**
-   * @generated from field: repeated string issuer_uris = 809;
+   * @generated from field: repeated string issuer_uris = 812;
    */
   issuerUris: string[];
 
   /**
-   * @generated from field: bool ocsp_no_check = 810;
+   * @generated from field: bool ocsp_no_check = 813;
    */
   ocspNoCheck: boolean;
 
@@ -659,32 +674,47 @@ export declare type CertificateProfileJson = {
   crlDistributionPointUris?: string[];
 
   /**
-   * @generated from field: bool use_authority_information_access = 805;
+   * @generated from field: bool use_delta_crl_distribution_points = 805;
+   */
+  useDeltaCrlDistributionPoints?: boolean;
+
+  /**
+   * @generated from field: bool use_ca_defined_delta_cdp = 806;
+   */
+  useCaDefinedDeltaCdp?: boolean;
+
+  /**
+   * @generated from field: repeated string delta_crl_distribution_point_uris = 807;
+   */
+  deltaCrlDistributionPointUris?: string[];
+
+  /**
+   * @generated from field: bool use_authority_information_access = 808;
    */
   useAuthorityInformationAccess?: boolean;
 
   /**
-   * @generated from field: bool use_ca_defined_ocsp_uri = 806;
+   * @generated from field: bool use_ca_defined_ocsp_uri = 809;
    */
   useCaDefinedOcspUri?: boolean;
 
   /**
-   * @generated from field: repeated string ocsp_uris = 807;
+   * @generated from field: repeated string ocsp_uris = 810;
    */
   ocspUris?: string[];
 
   /**
-   * @generated from field: bool use_ca_defined_issuer_uri = 808;
+   * @generated from field: bool use_ca_defined_issuer_uri = 811;
    */
   useCaDefinedIssuerUri?: boolean;
 
   /**
-   * @generated from field: repeated string issuer_uris = 809;
+   * @generated from field: repeated string issuer_uris = 812;
    */
   issuerUris?: string[];
 
   /**
-   * @generated from field: bool ocsp_no_check = 810;
+   * @generated from field: bool ocsp_no_check = 813;
    */
   ocspNoCheck?: boolean;
 

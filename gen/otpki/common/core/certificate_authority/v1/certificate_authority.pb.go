@@ -89,14 +89,16 @@ type CertificateAuthority struct {
 	// CRL Config
 	CrlValidityPeriod      *durationpb.Duration `protobuf:"bytes,9,opt,name=crl_validity_period,json=crlValidityPeriod,proto3" json:"crl_validity_period,omitempty"`                   // validity period for crl, next update set to this update + this period
 	DeltaCrlValidityPeriod *durationpb.Duration `protobuf:"bytes,10,opt,name=delta_crl_validity_period,json=deltaCrlValidityPeriod,proto3" json:"delta_crl_validity_period,omitempty"` // validity period for delta crl. they are not generated if this is set to 0, should be smaller than crl_expire_period.
+	CrlOverlapPeriod       *durationpb.Duration `protobuf:"bytes,11,opt,name=crl_overlap_period,json=crlOverlapPeriod,proto3" json:"crl_overlap_period,omitempty"`                     // maximum overlap of crl validity
 	// Validation
-	CrlDistributionPointUris []string      `protobuf:"bytes,11,rep,name=crl_distribution_point_uris,json=crlDistributionPointUris,proto3" json:"crl_distribution_point_uris,omitempty"`
-	OcspUris                 []string      `protobuf:"bytes,12,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
-	IssuerUris               []string      `protobuf:"bytes,13,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
-	ApprovalProfileId        *string       `protobuf:"bytes,14,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
-	CrlPartitionMode         PartitionMode `protobuf:"varint,15,opt,name=crl_partition_mode,json=crlPartitionMode,proto3,enum=otpki.common.core.certificate_authority.v1.PartitionMode" json:"crl_partition_mode,omitempty"`
-	NumCrlPartitions         int64         `protobuf:"varint,16,opt,name=num_crl_partitions,json=numCrlPartitions,proto3" json:"num_crl_partitions,omitempty"`
-	CrlIncludeExpired        bool          `protobuf:"varint,17,opt,name=crl_include_expired,json=crlIncludeExpired,proto3" json:"crl_include_expired,omitempty"`
+	CrlDistributionPointUris      []string      `protobuf:"bytes,21,rep,name=crl_distribution_point_uris,json=crlDistributionPointUris,proto3" json:"crl_distribution_point_uris,omitempty"`
+	DeltaCrlDistributionPointUris []string      `protobuf:"bytes,22,rep,name=delta_crl_distribution_point_uris,json=deltaCrlDistributionPointUris,proto3" json:"delta_crl_distribution_point_uris,omitempty"`
+	OcspUris                      []string      `protobuf:"bytes,23,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
+	IssuerUris                    []string      `protobuf:"bytes,24,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
+	CrlPartitionMode              PartitionMode `protobuf:"varint,26,opt,name=crl_partition_mode,json=crlPartitionMode,proto3,enum=otpki.common.core.certificate_authority.v1.PartitionMode" json:"crl_partition_mode,omitempty"`
+	NumCrlPartitions              int64         `protobuf:"varint,27,opt,name=num_crl_partitions,json=numCrlPartitions,proto3" json:"num_crl_partitions,omitempty"`
+	CrlIncludeExpired             bool          `protobuf:"varint,28,opt,name=crl_include_expired,json=crlIncludeExpired,proto3" json:"crl_include_expired,omitempty"`
+	ApprovalProfileId             *string       `protobuf:"bytes,30,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -205,9 +207,23 @@ func (x *CertificateAuthority) GetDeltaCrlValidityPeriod() *durationpb.Duration 
 	return nil
 }
 
+func (x *CertificateAuthority) GetCrlOverlapPeriod() *durationpb.Duration {
+	if x != nil {
+		return x.CrlOverlapPeriod
+	}
+	return nil
+}
+
 func (x *CertificateAuthority) GetCrlDistributionPointUris() []string {
 	if x != nil {
 		return x.CrlDistributionPointUris
+	}
+	return nil
+}
+
+func (x *CertificateAuthority) GetDeltaCrlDistributionPointUris() []string {
+	if x != nil {
+		return x.DeltaCrlDistributionPointUris
 	}
 	return nil
 }
@@ -224,13 +240,6 @@ func (x *CertificateAuthority) GetIssuerUris() []string {
 		return x.IssuerUris
 	}
 	return nil
-}
-
-func (x *CertificateAuthority) GetApprovalProfileId() string {
-	if x != nil && x.ApprovalProfileId != nil {
-		return *x.ApprovalProfileId
-	}
-	return ""
 }
 
 func (x *CertificateAuthority) GetCrlPartitionMode() PartitionMode {
@@ -252,6 +261,13 @@ func (x *CertificateAuthority) GetCrlIncludeExpired() bool {
 		return x.CrlIncludeExpired
 	}
 	return false
+}
+
+func (x *CertificateAuthority) GetApprovalProfileId() string {
+	if x != nil && x.ApprovalProfileId != nil {
+		return *x.ApprovalProfileId
+	}
+	return ""
 }
 
 func (x *CertificateAuthority) GetCreatedAt() *timestamppb.Timestamp {
@@ -416,7 +432,7 @@ var File_otpki_common_core_certificate_authority_v1_certificate_authority_proto 
 
 const file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_rawDesc = "" +
 	"\n" +
-	"Fotpki/common/core/certificate_authority/v1/certificate_authority.proto\x12*otpki.common.core.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xa6\v\n" +
+	"Fotpki/common/core/certificate_authority/v1/certificate_authority.proto\x12*otpki.common.core.certificate_authority.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a/otpki/common/x509/v1/certificate_template.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xd4\f\n" +
 	"\x14CertificateAuthority\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
@@ -428,15 +444,17 @@ const file_otpki_common_core_certificate_authority_v1_certificate_authority_prot
 	"\x14certificate_template\x18\b \x01(\v2).otpki.common.x509.v1.CertificateTemplateR\x13certificateTemplate\x12d\n" +
 	"\x13crl_validity_period\x18\t \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x11crlValidityPeriod\x12o\n" +
 	"\x19delta_crl_validity_period\x18\n" +
-	" \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x16deltaCrlValidityPeriod\x12=\n" +
-	"\x1bcrl_distribution_point_uris\x18\v \x03(\tR\x18crlDistributionPointUris\x12\x1b\n" +
-	"\tocsp_uris\x18\f \x03(\tR\bocspUris\x12\x1f\n" +
-	"\vissuer_uris\x18\r \x03(\tR\n" +
-	"issuerUris\x12=\n" +
-	"\x13approval_profile_id\x18\x0e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01\x12g\n" +
-	"\x12crl_partition_mode\x18\x0f \x01(\x0e29.otpki.common.core.certificate_authority.v1.PartitionModeR\x10crlPartitionMode\x125\n" +
-	"\x12num_crl_partitions\x18\x10 \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x10numCrlPartitions\x12.\n" +
-	"\x13crl_include_expired\x18\x11 \x01(\bR\x11crlIncludeExpired\x12V\n" +
+	" \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x16deltaCrlValidityPeriod\x12b\n" +
+	"\x12crl_overlap_period\x18\v \x01(\v2\x19.google.protobuf.DurationB\x19\x8a\xb5\x18\rtime.Duration\x92\xb5\x18\x04timeR\x10crlOverlapPeriod\x12=\n" +
+	"\x1bcrl_distribution_point_uris\x18\x15 \x03(\tR\x18crlDistributionPointUris\x12H\n" +
+	"!delta_crl_distribution_point_uris\x18\x16 \x03(\tR\x1ddeltaCrlDistributionPointUris\x12\x1b\n" +
+	"\tocsp_uris\x18\x17 \x03(\tR\bocspUris\x12\x1f\n" +
+	"\vissuer_uris\x18\x18 \x03(\tR\n" +
+	"issuerUris\x12g\n" +
+	"\x12crl_partition_mode\x18\x1a \x01(\x0e29.otpki.common.core.certificate_authority.v1.PartitionModeR\x10crlPartitionMode\x125\n" +
+	"\x12num_crl_partitions\x18\x1b \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x10numCrlPartitions\x12.\n" +
+	"\x13crl_include_expired\x18\x1c \x01(\bR\x11crlIncludeExpired\x12=\n" +
+	"\x13approval_profile_id\x18\x1e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +
@@ -491,14 +509,15 @@ var file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_
 	5, // 2: otpki.common.core.certificate_authority.v1.CertificateAuthority.certificate_template:type_name -> otpki.common.x509.v1.CertificateTemplate
 	6, // 3: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_validity_period:type_name -> google.protobuf.Duration
 	6, // 4: otpki.common.core.certificate_authority.v1.CertificateAuthority.delta_crl_validity_period:type_name -> google.protobuf.Duration
-	0, // 5: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_partition_mode:type_name -> otpki.common.core.certificate_authority.v1.PartitionMode
-	7, // 6: otpki.common.core.certificate_authority.v1.CertificateAuthority.created_at:type_name -> google.protobuf.Timestamp
-	7, // 7: otpki.common.core.certificate_authority.v1.CertificateAuthority.updated_at:type_name -> google.protobuf.Timestamp
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	6, // 5: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_overlap_period:type_name -> google.protobuf.Duration
+	0, // 6: otpki.common.core.certificate_authority.v1.CertificateAuthority.crl_partition_mode:type_name -> otpki.common.core.certificate_authority.v1.PartitionMode
+	7, // 7: otpki.common.core.certificate_authority.v1.CertificateAuthority.created_at:type_name -> google.protobuf.Timestamp
+	7, // 8: otpki.common.core.certificate_authority.v1.CertificateAuthority.updated_at:type_name -> google.protobuf.Timestamp
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_otpki_common_core_certificate_authority_v1_certificate_authority_proto_init() }

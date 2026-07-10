@@ -195,12 +195,15 @@ type CertificateProfile struct {
 	CrlDistributionPointsCritical bool     `protobuf:"varint,802,opt,name=crl_distribution_points_critical,json=crlDistributionPointsCritical,proto3" json:"crl_distribution_points_critical,omitempty"`
 	UseCaDefinedCdp               bool     `protobuf:"varint,803,opt,name=use_ca_defined_cdp,json=useCaDefinedCdp,proto3" json:"use_ca_defined_cdp,omitempty"`
 	CrlDistributionPointUris      []string `protobuf:"bytes,804,rep,name=crl_distribution_point_uris,json=crlDistributionPointUris,proto3" json:"crl_distribution_point_uris,omitempty"`
-	UseAuthorityInformationAccess bool     `protobuf:"varint,805,opt,name=use_authority_information_access,json=useAuthorityInformationAccess,proto3" json:"use_authority_information_access,omitempty"`
-	UseCaDefinedOcspUri           bool     `protobuf:"varint,806,opt,name=use_ca_defined_ocsp_uri,json=useCaDefinedOcspUri,proto3" json:"use_ca_defined_ocsp_uri,omitempty"`
-	OcspUris                      []string `protobuf:"bytes,807,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
-	UseCaDefinedIssuerUri         bool     `protobuf:"varint,808,opt,name=use_ca_defined_issuer_uri,json=useCaDefinedIssuerUri,proto3" json:"use_ca_defined_issuer_uri,omitempty"`
-	IssuerUris                    []string `protobuf:"bytes,809,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
-	OcspNoCheck                   bool     `protobuf:"varint,810,opt,name=ocsp_no_check,json=ocspNoCheck,proto3" json:"ocsp_no_check,omitempty"`
+	UseDeltaCrlDistributionPoints bool     `protobuf:"varint,805,opt,name=use_delta_crl_distribution_points,json=useDeltaCrlDistributionPoints,proto3" json:"use_delta_crl_distribution_points,omitempty"`
+	UseCaDefinedDeltaCdp          bool     `protobuf:"varint,806,opt,name=use_ca_defined_delta_cdp,json=useCaDefinedDeltaCdp,proto3" json:"use_ca_defined_delta_cdp,omitempty"`
+	DeltaCrlDistributionPointUris []string `protobuf:"bytes,807,rep,name=delta_crl_distribution_point_uris,json=deltaCrlDistributionPointUris,proto3" json:"delta_crl_distribution_point_uris,omitempty"`
+	UseAuthorityInformationAccess bool     `protobuf:"varint,808,opt,name=use_authority_information_access,json=useAuthorityInformationAccess,proto3" json:"use_authority_information_access,omitempty"`
+	UseCaDefinedOcspUri           bool     `protobuf:"varint,809,opt,name=use_ca_defined_ocsp_uri,json=useCaDefinedOcspUri,proto3" json:"use_ca_defined_ocsp_uri,omitempty"`
+	OcspUris                      []string `protobuf:"bytes,810,rep,name=ocsp_uris,json=ocspUris,proto3" json:"ocsp_uris,omitempty"`
+	UseCaDefinedIssuerUri         bool     `protobuf:"varint,811,opt,name=use_ca_defined_issuer_uri,json=useCaDefinedIssuerUri,proto3" json:"use_ca_defined_issuer_uri,omitempty"`
+	IssuerUris                    []string `protobuf:"bytes,812,rep,name=issuer_uris,json=issuerUris,proto3" json:"issuer_uris,omitempty"`
+	OcspNoCheck                   bool     `protobuf:"varint,813,opt,name=ocsp_no_check,json=ocspNoCheck,proto3" json:"ocsp_no_check,omitempty"`
 	// other
 	CnPrefix                        string   `protobuf:"bytes,901,opt,name=cn_prefix,json=cnPrefix,proto3" json:"cn_prefix,omitempty"`
 	CnSuffix                        string   `protobuf:"bytes,902,opt,name=cn_suffix,json=cnSuffix,proto3" json:"cn_suffix,omitempty"`
@@ -557,6 +560,27 @@ func (x *CertificateProfile) GetCrlDistributionPointUris() []string {
 	return nil
 }
 
+func (x *CertificateProfile) GetUseDeltaCrlDistributionPoints() bool {
+	if x != nil {
+		return x.UseDeltaCrlDistributionPoints
+	}
+	return false
+}
+
+func (x *CertificateProfile) GetUseCaDefinedDeltaCdp() bool {
+	if x != nil {
+		return x.UseCaDefinedDeltaCdp
+	}
+	return false
+}
+
+func (x *CertificateProfile) GetDeltaCrlDistributionPointUris() []string {
+	if x != nil {
+		return x.DeltaCrlDistributionPointUris
+	}
+	return nil
+}
+
 func (x *CertificateProfile) GetUseAuthorityInformationAccess() bool {
 	if x != nil {
 		return x.UseAuthorityInformationAccess
@@ -645,7 +669,7 @@ var File_otpki_common_core_certificate_profile_v1_certificate_profile_proto prot
 
 const file_otpki_common_core_certificate_profile_v1_certificate_profile_proto_rawDesc = "" +
 	"\n" +
-	"Botpki/common/core/certificate_profile/v1/certificate_profile.proto\x12(otpki.common.core.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xd5!\n" +
+	"Botpki/common/core/certificate_profile/v1/certificate_profile.proto\x12(otpki.common.core.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xb5#\n" +
 	"\x12CertificateProfile\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
@@ -695,14 +719,17 @@ const file_otpki_common_core_certificate_profile_v1_certificate_profile_proto_ra
 	"\x1buse_crl_distribution_points\x18\xa1\x06 \x01(\bR\x18useCrlDistributionPoints\x12H\n" +
 	" crl_distribution_points_critical\x18\xa2\x06 \x01(\bR\x1dcrlDistributionPointsCritical\x12,\n" +
 	"\x12use_ca_defined_cdp\x18\xa3\x06 \x01(\bR\x0fuseCaDefinedCdp\x12O\n" +
-	"\x1bcrl_distribution_point_uris\x18\xa4\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x18crlDistributionPointUris\x12H\n" +
-	" use_authority_information_access\x18\xa5\x06 \x01(\bR\x1duseAuthorityInformationAccess\x125\n" +
-	"\x17use_ca_defined_ocsp_uri\x18\xa6\x06 \x01(\bR\x13useCaDefinedOcspUri\x12-\n" +
-	"\tocsp_uris\x18\xa7\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\bocspUris\x129\n" +
-	"\x19use_ca_defined_issuer_uri\x18\xa8\x06 \x01(\bR\x15useCaDefinedIssuerUri\x121\n" +
-	"\vissuer_uris\x18\xa9\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\n" +
+	"\x1bcrl_distribution_point_uris\x18\xa4\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x18crlDistributionPointUris\x12I\n" +
+	"!use_delta_crl_distribution_points\x18\xa5\x06 \x01(\bR\x1duseDeltaCrlDistributionPoints\x127\n" +
+	"\x18use_ca_defined_delta_cdp\x18\xa6\x06 \x01(\bR\x14useCaDefinedDeltaCdp\x12Z\n" +
+	"!delta_crl_distribution_point_uris\x18\xa7\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\x1ddeltaCrlDistributionPointUris\x12H\n" +
+	" use_authority_information_access\x18\xa8\x06 \x01(\bR\x1duseAuthorityInformationAccess\x125\n" +
+	"\x17use_ca_defined_ocsp_uri\x18\xa9\x06 \x01(\bR\x13useCaDefinedOcspUri\x12-\n" +
+	"\tocsp_uris\x18\xaa\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\bocspUris\x129\n" +
+	"\x19use_ca_defined_issuer_uri\x18\xab\x06 \x01(\bR\x15useCaDefinedIssuerUri\x121\n" +
+	"\vissuer_uris\x18\xac\x06 \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\x88\x01\x01R\n" +
 	"issuerUris\x12#\n" +
-	"\rocsp_no_check\x18\xaa\x06 \x01(\bR\vocspNoCheck\x12%\n" +
+	"\rocsp_no_check\x18\xad\x06 \x01(\bR\vocspNoCheck\x12%\n" +
 	"\tcn_prefix\x18\x85\a \x01(\tB\a\xbaH\x04r\x02\x18@R\bcnPrefix\x12%\n" +
 	"\tcn_suffix\x18\x86\a \x01(\tB\a\xbaH\x04r\x02\x18@R\bcnSuffix\x12C\n" +
 	"\x15custom_ext_key_usages\x18\x87\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x12customExtKeyUsages\x12H\n" +

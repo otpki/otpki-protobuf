@@ -43,6 +43,11 @@ paths:
           schema:
             type: string
             title: part_id
+        - name: freshest
+          in: query
+          schema:
+            type: boolean
+            title: freshest
       responses:
         "200":
           description: Success
@@ -271,6 +276,9 @@ components:
         partId:
           type: string
           title: part_id
+        freshest:
+          type: boolean
+          title: freshest
       title: CRLDistributionPointRequest
       additionalProperties: false
     otpki.public.validation.revocation_list.v1.GetRevocationListRequest:

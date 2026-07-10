@@ -1460,6 +1460,19 @@ components:
             format: uri
           title: crl_distribution_point_uris
           uniqueItems: true
+        useDeltaCrlDistributionPoints:
+          type: boolean
+          title: use_delta_crl_distribution_points
+        useCaDefinedDeltaCdp:
+          type: boolean
+          title: use_ca_defined_delta_cdp
+        deltaCrlDistributionPointUris:
+          type: array
+          items:
+            type: string
+            format: uri
+          title: delta_crl_distribution_point_uris
+          uniqueItems: true
         useAuthorityInformationAccess:
           type: boolean
           title: use_authority_information_access

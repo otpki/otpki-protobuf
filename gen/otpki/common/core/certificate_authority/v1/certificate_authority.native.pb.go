@@ -24,13 +24,15 @@ type CertificateAuthorityNative struct {
 	CertificateTemplate           *v1.CertificateTemplate
 	CrlValidityPeriod             time.Duration
 	DeltaCrlValidityPeriod        time.Duration
+	CrlOverlapPeriod              time.Duration
 	CrlDistributionPointUris      []string
+	DeltaCrlDistributionPointUris []string
 	OcspUris                      []string
 	IssuerUris                    []string
-	ApprovalProfileId             uuid.NullUUID
 	CrlPartitionMode              PartitionMode
 	NumCrlPartitions              int64
 	CrlIncludeExpired             bool
+	ApprovalProfileId             uuid.NullUUID
 	CreatedAt                     time.Time
 	UpdatedAt                     time.Time
 }
@@ -73,16 +75,21 @@ func (n *CertificateAuthorityNative) ToProto() (*CertificateAuthority, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting DeltaCrlValidityPeriod: %w", err)
 	}
+	protoStruct.CrlOverlapPeriod, err = convertDurationToProto(n.CrlOverlapPeriod)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CrlOverlapPeriod: %w", err)
+	}
 	protoStruct.CrlDistributionPointUris = n.CrlDistributionPointUris
+	protoStruct.DeltaCrlDistributionPointUris = n.DeltaCrlDistributionPointUris
 	protoStruct.OcspUris = n.OcspUris
 	protoStruct.IssuerUris = n.IssuerUris
+	protoStruct.CrlPartitionMode = n.CrlPartitionMode
+	protoStruct.NumCrlPartitions = n.NumCrlPartitions
+	protoStruct.CrlIncludeExpired = n.CrlIncludeExpired
 	protoStruct.ApprovalProfileId, err = convertNullUUIDToProto(n.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
-	protoStruct.CrlPartitionMode = n.CrlPartitionMode
-	protoStruct.NumCrlPartitions = n.NumCrlPartitions
-	protoStruct.CrlIncludeExpired = n.CrlIncludeExpired
 	protoStruct.CreatedAt, err = convertTimeToProto(n.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAt: %w", err)
@@ -132,16 +139,21 @@ func (p *CertificateAuthority) ToNative() (*CertificateAuthorityNative, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting DeltaCrlValidityPeriodNative: %w", err)
 	}
+	nativeStruct.CrlOverlapPeriod, err = convertProtoToDuration(p.CrlOverlapPeriod)
+	if err != nil {
+		return nil, fmt.Errorf("error converting CrlOverlapPeriodNative: %w", err)
+	}
 	nativeStruct.CrlDistributionPointUris = p.CrlDistributionPointUris
+	nativeStruct.DeltaCrlDistributionPointUris = p.DeltaCrlDistributionPointUris
 	nativeStruct.OcspUris = p.OcspUris
 	nativeStruct.IssuerUris = p.IssuerUris
+	nativeStruct.CrlPartitionMode = p.CrlPartitionMode
+	nativeStruct.NumCrlPartitions = p.NumCrlPartitions
+	nativeStruct.CrlIncludeExpired = p.CrlIncludeExpired
 	nativeStruct.ApprovalProfileId, err = convertProtoToNullUUID(p.ApprovalProfileId)
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
-	nativeStruct.CrlPartitionMode = p.CrlPartitionMode
-	nativeStruct.NumCrlPartitions = p.NumCrlPartitions
-	nativeStruct.CrlIncludeExpired = p.CrlIncludeExpired
 	nativeStruct.CreatedAt, err = convertProtoToTime(p.CreatedAt)
 	if err != nil {
 		return nil, fmt.Errorf("error converting CreatedAtNative: %w", err)

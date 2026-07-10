@@ -176,22 +176,30 @@ message CertificateProfile {
       string: {uri: true}
     }
   }];
-  bool use_authority_information_access = 805;
-  bool use_ca_defined_ocsp_uri = 806;
-  repeated string ocsp_uris = 807 [(buf.validate.field).repeated = {
+  bool use_delta_crl_distribution_points = 805;
+  bool use_ca_defined_delta_cdp = 806;
+  repeated string delta_crl_distribution_point_uris = 807 [(buf.validate.field).repeated = {
     unique: true
     items: {
       string: {uri: true}
     }
   }];
-  bool use_ca_defined_issuer_uri = 808;
-  repeated string issuer_uris = 809 [(buf.validate.field).repeated = {
+  bool use_authority_information_access = 808;
+  bool use_ca_defined_ocsp_uri = 809;
+  repeated string ocsp_uris = 810 [(buf.validate.field).repeated = {
     unique: true
     items: {
       string: {uri: true}
     }
   }];
-  bool ocsp_no_check = 810;
+  bool use_ca_defined_issuer_uri = 811;
+  repeated string issuer_uris = 812 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uri: true}
+    }
+  }];
+  bool ocsp_no_check = 813;
 
   // other
   string cn_prefix = 901 [(buf.validate.field).string.max_len = 64];

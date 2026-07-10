@@ -18,6 +18,7 @@ message GetRevocationListResponse {
 message CRLDistributionPointRequest {
   string cert_hash = 1;
   string part_id = 2;
+  bool freshest = 3;
 }
 
 service RevocationListService {

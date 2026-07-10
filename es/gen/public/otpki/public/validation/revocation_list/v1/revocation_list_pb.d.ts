@@ -81,6 +81,11 @@ export declare type CRLDistributionPointRequest = Message<"otpki.public.validati
    * @generated from field: string part_id = 2;
    */
   partId: string;
+
+  /**
+   * @generated from field: bool freshest = 3;
+   */
+  freshest: boolean;
 };
 
 /**
@@ -96,6 +101,11 @@ export declare type CRLDistributionPointRequestJson = {
    * @generated from field: string part_id = 2;
    */
   partId?: string;
+
+  /**
+   * @generated from field: bool freshest = 3;
+   */
+  freshest?: boolean;
 };
 
 export declare type CRLDistributionPointRequestValid = CRLDistributionPointRequest;

@@ -46,17 +46,22 @@ message CertificateAuthority {
     (api.v1.go_native_type) = "time.Duration",
     (api.v1.go_native_import_path) = "time"
   ]; // validity period for delta crl. they are not generated if this is set to 0, should be smaller than crl_expire_period.
+  google.protobuf.Duration crl_overlap_period = 11 [
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // maximum overlap of crl validity
 
   // Validation
-  repeated string crl_distribution_point_uris = 11;
-  repeated string ocsp_uris = 12;
-  repeated string issuer_uris = 13;
+  repeated string crl_distribution_point_uris = 21;
+  repeated string delta_crl_distribution_point_uris = 22;
+  repeated string ocsp_uris = 23;
+  repeated string issuer_uris = 24;
 
-  optional string approval_profile_id = 14 [(buf.validate.field).string.uuid = true];
+  PartitionMode crl_partition_mode = 26;
+  int64 num_crl_partitions = 27 [(buf.validate.field).int64.gte = 0];
+  bool crl_include_expired = 28;
 
-  PartitionMode crl_partition_mode = 15;
-  int64 num_crl_partitions = 16 [(buf.validate.field).int64.gte = 0];
-  bool crl_include_expired = 17;
+  optional string approval_profile_id = 30 [(buf.validate.field).string.uuid = true];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
