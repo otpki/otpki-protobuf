@@ -54,6 +54,7 @@ type EndEntityProfileNative struct {
 	UseCustomCertificateExts         bool
 	ApprovalProfileId                uuid.NullUUID
 	AllowedRequests                  int64
+	AllowRenewalBeforeExpirationDays int64
 }
 
 // ToProto converts a EndEntityProfileNative to a EndEntityProfile
@@ -141,6 +142,7 @@ func (n *EndEntityProfileNative) ToProto() (*EndEntityProfile, error) {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
 	protoStruct.AllowedRequests = n.AllowedRequests
+	protoStruct.AllowRenewalBeforeExpirationDays = n.AllowRenewalBeforeExpirationDays
 	return protoStruct, nil
 }
 
@@ -229,6 +231,7 @@ func (p *EndEntityProfile) ToNative() (*EndEntityProfileNative, error) {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
 	nativeStruct.AllowedRequests = p.AllowedRequests
+	nativeStruct.AllowRenewalBeforeExpirationDays = p.AllowRenewalBeforeExpirationDays
 	return nativeStruct, nil
 }
 

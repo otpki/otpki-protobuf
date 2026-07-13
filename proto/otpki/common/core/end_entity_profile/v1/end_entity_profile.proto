@@ -149,4 +149,5 @@ message EndEntityProfile {
   bool use_custom_certificate_exts = 805; // allow EE to add to custom exts (will be concatenated with cert profile)
   optional string approval_profile_id = 806 [(buf.validate.field).string.uuid = true];
   int64 allowed_requests = 807 [(buf.validate.field).int64.gte = 0];
+  int64 allow_renewal_before_expiration_days = 808 [(buf.validate.field).int64.gte = 0]; // if > 0, a GENERATED EE may renew without consuming requests when any EE certificate expires within this many 24-hour periods
 }

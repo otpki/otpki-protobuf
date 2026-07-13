@@ -1468,6 +1468,14 @@ components:
           title: allowed_requests
           minimum: 0
           format: int64
+        allowRenewalBeforeExpirationDays:
+          type:
+            - integer
+            - string
+          title: allow_renewal_before_expiration_days
+          minimum: 0
+          format: int64
+          description: if > 0, a GENERATED EE may renew without consuming requests when any EE certificate expires within this many 24-hour periods
       title: EndEntityProfile
       additionalProperties: false
     otpki.common.core.end_entity_profile.v1.EndEntityProfileSANAttribute:

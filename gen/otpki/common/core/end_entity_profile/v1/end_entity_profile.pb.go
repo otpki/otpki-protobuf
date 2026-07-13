@@ -317,11 +317,12 @@ type EndEntityProfile struct {
 	UseNameConstraintsExcluded       bool `protobuf:"varint,803,opt,name=use_name_constraints_excluded,json=useNameConstraintsExcluded,proto3" json:"use_name_constraints_excluded,omitempty"`
 	NameConstraintsExcludedRequired  bool `protobuf:"varint,804,opt,name=name_constraints_excluded_required,json=nameConstraintsExcludedRequired,proto3" json:"name_constraints_excluded_required,omitempty"`
 	// explicitly do not allow custom ext key usages as key usage is a feature of certificate issuance, not identity
-	UseCustomCertificateExts bool    `protobuf:"varint,805,opt,name=use_custom_certificate_exts,json=useCustomCertificateExts,proto3" json:"use_custom_certificate_exts,omitempty"` // allow EE to add to custom exts (will be concatenated with cert profile)
-	ApprovalProfileId        *string `protobuf:"bytes,806,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
-	AllowedRequests          int64   `protobuf:"varint,807,opt,name=allowed_requests,json=allowedRequests,proto3" json:"allowed_requests,omitempty"`
-	unknownFields            protoimpl.UnknownFields
-	sizeCache                protoimpl.SizeCache
+	UseCustomCertificateExts         bool    `protobuf:"varint,805,opt,name=use_custom_certificate_exts,json=useCustomCertificateExts,proto3" json:"use_custom_certificate_exts,omitempty"` // allow EE to add to custom exts (will be concatenated with cert profile)
+	ApprovalProfileId                *string `protobuf:"bytes,806,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
+	AllowedRequests                  int64   `protobuf:"varint,807,opt,name=allowed_requests,json=allowedRequests,proto3" json:"allowed_requests,omitempty"`
+	AllowRenewalBeforeExpirationDays int64   `protobuf:"varint,808,opt,name=allow_renewal_before_expiration_days,json=allowRenewalBeforeExpirationDays,proto3" json:"allow_renewal_before_expiration_days,omitempty"` // if > 0, a GENERATED EE may renew without consuming requests when any EE certificate expires within this many 24-hour periods
+	unknownFields                    protoimpl.UnknownFields
+	sizeCache                        protoimpl.SizeCache
 }
 
 func (x *EndEntityProfile) Reset() {
@@ -648,6 +649,13 @@ func (x *EndEntityProfile) GetAllowedRequests() int64 {
 	return 0
 }
 
+func (x *EndEntityProfile) GetAllowRenewalBeforeExpirationDays() int64 {
+	if x != nil {
+		return x.AllowRenewalBeforeExpirationDays
+	}
+	return 0
+}
+
 var File_otpki_common_core_end_entity_profile_v1_end_entity_profile_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_end_entity_profile_v1_end_entity_profile_proto_rawDesc = "" +
@@ -678,7 +686,7 @@ const file_otpki_common_core_end_entity_profile_v1_end_entity_profile_proto_rawD
 	"\n" +
 	"validation\x18\x06 \x01(\bR\n" +
 	"validation\x12\x14\n" +
-	"\x05regex\x18\a \x01(\tR\x05regex\"\x94\x18\n" +
+	"\x05regex\x18\a \x01(\tR\x05regex\"\xee\x18\n" +
 	"\x10EndEntityProfile\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
@@ -724,7 +732,8 @@ const file_otpki_common_core_end_entity_profile_v1_end_entity_profile_proto_rawD
 	"\"name_constraints_excluded_required\x18\xa4\x06 \x01(\bR\x1fnameConstraintsExcludedRequired\x12>\n" +
 	"\x1buse_custom_certificate_exts\x18\xa5\x06 \x01(\bR\x18useCustomCertificateExts\x12>\n" +
 	"\x13approval_profile_id\x18\xa6\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11approvalProfileId\x88\x01\x01\x123\n" +
-	"\x10allowed_requests\x18\xa7\x06 \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x0fallowedRequests:\x04\x98\xb5\x18\x01B\x16\n" +
+	"\x10allowed_requests\x18\xa7\x06 \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x0fallowedRequests\x12X\n" +
+	"$allow_renewal_before_expiration_days\x18\xa8\x06 \x01(\x03B\a\xbaH\x04\"\x02(\x00R allowRenewalBeforeExpirationDays:\x04\x98\xb5\x18\x01B\x16\n" +
 	"\x14_approval_profile_id*\xa8\x02\n" +
 	"\"EndEntityPasswordGenerationCharset\x126\n" +
 	"2END_ENTITY_PASSWORD_GENERATION_CHARSET_UNSPECIFIED\x10\x00\x126\n" +

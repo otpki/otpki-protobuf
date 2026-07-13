@@ -465,6 +465,13 @@ export declare type EndEntityProfile = Message<"otpki.common.core.end_entity_pro
    * @generated from field: int64 allowed_requests = 807;
    */
   allowedRequests: bigint;
+
+  /**
+   * if > 0, a GENERATED EE may renew without consuming requests when any EE certificate expires within this many 24-hour periods
+   *
+   * @generated from field: int64 allow_renewal_before_expiration_days = 808;
+   */
+  allowRenewalBeforeExpirationDays: bigint;
 };
 
 /**
@@ -744,6 +751,13 @@ export declare type EndEntityProfileJson = {
    * @generated from field: int64 allowed_requests = 807;
    */
   allowedRequests?: string;
+
+  /**
+   * if > 0, a GENERATED EE may renew without consuming requests when any EE certificate expires within this many 24-hour periods
+   *
+   * @generated from field: int64 allow_renewal_before_expiration_days = 808;
+   */
+  allowRenewalBeforeExpirationDays?: string;
 };
 
 export declare type EndEntityProfileValid = EndEntityProfile;
