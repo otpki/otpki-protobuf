@@ -98,7 +98,7 @@ type CertificateAuthority struct {
 	CrlPartitionMode              PartitionMode `protobuf:"varint,26,opt,name=crl_partition_mode,json=crlPartitionMode,proto3,enum=otpki.common.core.certificate_authority.v1.PartitionMode" json:"crl_partition_mode,omitempty"`
 	NumCrlPartitions              int64         `protobuf:"varint,27,opt,name=num_crl_partitions,json=numCrlPartitions,proto3" json:"num_crl_partitions,omitempty"`
 	CrlIncludeExpired             bool          `protobuf:"varint,28,opt,name=crl_include_expired,json=crlIncludeExpired,proto3" json:"crl_include_expired,omitempty"`
-	ApprovalProfileId             *string       `protobuf:"bytes,30,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
+	ApprovalProfileId             *string       `protobuf:"bytes,29,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
 	// not settable on creation
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,201,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// not settable on creation
@@ -454,7 +454,7 @@ const file_otpki_common_core_certificate_authority_v1_certificate_authority_prot
 	"\x12crl_partition_mode\x18\x1a \x01(\x0e29.otpki.common.core.certificate_authority.v1.PartitionModeR\x10crlPartitionMode\x125\n" +
 	"\x12num_crl_partitions\x18\x1b \x01(\x03B\a\xbaH\x04\"\x02(\x00R\x10numCrlPartitions\x12.\n" +
 	"\x13crl_include_expired\x18\x1c \x01(\bR\x11crlIncludeExpired\x12=\n" +
-	"\x13approval_profile_id\x18\x1e \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01\x12V\n" +
+	"\x13approval_profile_id\x18\x1d \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x01R\x11approvalProfileId\x88\x01\x01\x12V\n" +
 	"\n" +
 	"created_at\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampB\x1a\xbaG\x02\x18\x01\x8a\xb5\x18\ttime.Time\x92\xb5\x18\x04timeR\tcreatedAt\x12V\n" +
 	"\n" +

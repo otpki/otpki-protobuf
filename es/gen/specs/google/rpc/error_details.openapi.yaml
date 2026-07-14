@@ -1,0 +1,562 @@
+openapi: 3.1.0
+info:
+  title: google.rpc
+paths: {}
+components:
+  schemas:
+    google.protobuf.Duration:
+      type: string
+      format: duration
+      description: |-
+        A Duration represents a signed, fixed-length span of time represented
+         as a count of seconds and fractions of seconds at nanosecond
+         resolution. It is independent of any calendar and concepts like "day"
+         or "month". It is related to Timestamp in that the difference between
+         two Timestamp values is a Duration and it can be added or subtracted
+         from a Timestamp. Range is approximately +-10,000 years.
+
+         # Examples
+
+         Example 1: Compute Duration from two Timestamps in pseudo code.
+
+             Timestamp start = ...;
+             Timestamp end = ...;
+             Duration duration = ...;
+
+             duration.seconds = end.seconds - start.seconds;
+             duration.nanos = end.nanos - start.nanos;
+
+             if (duration.seconds < 0 && duration.nanos > 0) {
+               duration.seconds += 1;
+               duration.nanos -= 1000000000;
+             } else if (duration.seconds > 0 && duration.nanos < 0) {
+               duration.seconds -= 1;
+               duration.nanos += 1000000000;
+             }
+
+         Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.
+
+             Timestamp start = ...;
+             Duration duration = ...;
+             Timestamp end = ...;
+
+             end.seconds = start.seconds + duration.seconds;
+             end.nanos = start.nanos + duration.nanos;
+
+             if (end.nanos < 0) {
+               end.seconds -= 1;
+               end.nanos += 1000000000;
+             } else if (end.nanos >= 1000000000) {
+               end.seconds += 1;
+               end.nanos -= 1000000000;
+             }
+
+         Example 3: Compute Duration from datetime.timedelta in Python.
+
+             td = datetime.timedelta(days=3, minutes=10)
+             duration = Duration()
+             duration.FromTimedelta(td)
+
+         # JSON Mapping
+
+         In JSON format, the Duration type is encoded as a string rather than an
+         object, where the string ends in the suffix "s" (indicating seconds) and
+         is preceded by the number of seconds, with nanoseconds expressed as
+         fractional seconds. For example, 3 seconds with 0 nanoseconds should be
+         encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
+         be expressed in JSON format as "3.000000001s", and 3 seconds and 1
+         microsecond should be expressed in JSON format as "3.000001s".
+    google.rpc.BadRequest:
+      type: object
+      properties:
+        fieldViolations:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.rpc.BadRequest.FieldViolation'
+          title: field_violations
+          description: Describes all violations in a client request.
+      title: BadRequest
+      additionalProperties: false
+      description: |-
+        Describes violations in a client request. This error type focuses on the
+         syntactic aspects of the request.
+    google.rpc.BadRequest.FieldViolation:
+      type: object
+      properties:
+        field:
+          type: string
+          title: field
+          description: |-
+            A path that leads to a field in the request body. The value will be a
+             sequence of dot-separated identifiers that identify a protocol buffer
+             field.
+
+             Consider the following:
+
+                 message CreateContactRequest {
+                   message EmailAddress {
+                     enum Type {
+                       TYPE_UNSPECIFIED = 0;
+                       HOME = 1;
+                       WORK = 2;
+                     }
+
+                     optional string email = 1;
+                     repeated EmailType type = 2;
+                   }
+
+                   string full_name = 1;
+                   repeated EmailAddress email_addresses = 2;
+                 }
+
+             In this example, in proto `field` could take one of the following values:
+
+             * `full_name` for a violation in the `full_name` value
+             * `email_addresses[0].email` for a violation in the `email` field of the
+               first `email_addresses` message
+             * `email_addresses[2].type[1]` for a violation in the second `type`
+               value in the third `email_addresses` message.
+
+             In JSON, the same values are represented as:
+
+             * `fullName` for a violation in the `fullName` value
+             * `emailAddresses[0].email` for a violation in the `email` field of the
+               first `emailAddresses` message
+             * `emailAddresses[2].type[1]` for a violation in the second `type`
+               value in the third `emailAddresses` message.
+        description:
+          type: string
+          title: description
+          description: A description of why the request element is bad.
+        reason:
+          type: string
+          title: reason
+          description: |-
+            The reason of the field-level error. This is a constant value that
+             identifies the proximate cause of the field-level error. It should
+             uniquely identify the type of the FieldViolation within the scope of the
+             google.rpc.ErrorInfo.domain. This should be at most 63
+             characters and match a regular expression of `[A-Z][A-Z0-9_]+[A-Z0-9]`,
+             which represents UPPER_SNAKE_CASE.
+        localizedMessage:
+          title: localized_message
+          description: |-
+            Provides a localized error message for field-level errors that is safe to
+             return to the API consumer.
+          $ref: '#/components/schemas/google.rpc.LocalizedMessage'
+      title: FieldViolation
+      additionalProperties: false
+      description: A message type used to describe a single bad request field.
+    google.rpc.DebugInfo:
+      type: object
+      properties:
+        stackEntries:
+          type: array
+          items:
+            type: string
+          title: stack_entries
+          description: The stack trace entries indicating where the error occurred.
+        detail:
+          type: string
+          title: detail
+          description: Additional debugging information provided by the server.
+      title: DebugInfo
+      additionalProperties: false
+      description: Describes additional debugging info.
+    google.rpc.ErrorInfo:
+      type: object
+      properties:
+        reason:
+          type: string
+          title: reason
+          description: |-
+            The reason of the error. This is a constant value that identifies the
+             proximate cause of the error. Error reasons are unique within a particular
+             domain of errors. This should be at most 63 characters and match a
+             regular expression of `[A-Z][A-Z0-9_]+[A-Z0-9]`, which represents
+             UPPER_SNAKE_CASE.
+        domain:
+          type: string
+          title: domain
+          description: |-
+            The logical grouping to which the "reason" belongs. The error domain
+             is typically the registered service name of the tool or product that
+             generates the error. Example: "pubsub.googleapis.com". If the error is
+             generated by some common infrastructure, the error domain must be a
+             globally unique value that identifies the infrastructure. For Google API
+             infrastructure, the error domain is "googleapis.com".
+        metadata:
+          type: object
+          title: metadata
+          additionalProperties:
+            type: string
+            title: value
+          description: |-
+            Additional structured details about this error.
+
+             Keys must match a regular expression of `[a-z][a-zA-Z0-9-_]+` but should
+             ideally be lowerCamelCase. Also, they must be limited to 64 characters in
+             length. When identifying the current value of an exceeded limit, the units
+             should be contained in the key, not the value.  For example, rather than
+             `{"instanceLimit": "100/request"}`, should be returned as,
+             `{"instanceLimitPerRequest": "100"}`, if the client exceeds the number of
+             instances that can be created in a single (batch) request.
+      title: ErrorInfo
+      additionalProperties: false
+      description: |-
+        Describes the cause of the error with structured details.
+
+         Example of an error when contacting the "pubsub.googleapis.com" API when it
+         is not enabled:
+
+             { "reason": "API_DISABLED"
+               "domain": "googleapis.com"
+               "metadata": {
+                 "resource": "projects/123",
+                 "service": "pubsub.googleapis.com"
+               }
+             }
+
+         This response indicates that the pubsub.googleapis.com API is not enabled.
+
+         Example of an error that is returned when attempting to create a Spanner
+         instance in a region that is out of stock:
+
+             { "reason": "STOCKOUT"
+               "domain": "spanner.googleapis.com",
+               "metadata": {
+                 "availableRegions": "us-central1,us-east2"
+               }
+             }
+    google.rpc.ErrorInfo.MetadataEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: MetadataEntry
+      additionalProperties: false
+    google.rpc.Help:
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.rpc.Help.Link'
+          title: links
+          description: URL(s) pointing to additional information on handling the current error.
+      title: Help
+      additionalProperties: false
+      description: |-
+        Provides links to documentation or for performing an out of band action.
+
+         For example, if a quota check failed with an error indicating the calling
+         project hasn't enabled the accessed service, this can contain a URL pointing
+         directly to the right place in the developer console to flip the bit.
+    google.rpc.Help.Link:
+      type: object
+      properties:
+        description:
+          type: string
+          title: description
+          description: Describes what the link offers.
+        url:
+          type: string
+          title: url
+          description: The URL of the link.
+      title: Link
+      additionalProperties: false
+      description: Describes a URL link.
+    google.rpc.LocalizedMessage:
+      type: object
+      properties:
+        locale:
+          type: string
+          title: locale
+          description: |-
+            The locale used following the specification defined at
+             https://www.rfc-editor.org/rfc/bcp/bcp47.txt.
+             Examples are: "en-US", "fr-CH", "es-MX"
+        message:
+          type: string
+          title: message
+          description: The localized error message in the above locale.
+      title: LocalizedMessage
+      additionalProperties: false
+      description: |-
+        Provides a localized error message that is safe to return to the user
+         which can be attached to an RPC error.
+    google.rpc.PreconditionFailure:
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.rpc.PreconditionFailure.Violation'
+          title: violations
+          description: Describes all precondition violations.
+      title: PreconditionFailure
+      additionalProperties: false
+      description: |-
+        Describes what preconditions have failed.
+
+         For example, if an RPC failed because it required the Terms of Service to be
+         acknowledged, it could list the terms of service violation in the
+         PreconditionFailure message.
+    google.rpc.PreconditionFailure.Violation:
+      type: object
+      properties:
+        type:
+          type: string
+          title: type
+          description: |-
+            The type of PreconditionFailure. We recommend using a service-specific
+             enum type to define the supported precondition violation subjects. For
+             example, "TOS" for "Terms of Service violation".
+        subject:
+          type: string
+          title: subject
+          description: |-
+            The subject, relative to the type, that failed.
+             For example, "google.com/cloud" relative to the "TOS" type would indicate
+             which terms of service is being referenced.
+        description:
+          type: string
+          title: description
+          description: |-
+            A description of how the precondition failed. Developers can use this
+             description to understand how to fix the failure.
+
+             For example: "Terms of service not accepted".
+      title: Violation
+      additionalProperties: false
+      description: A message type used to describe a single precondition failure.
+    google.rpc.QuotaFailure:
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.rpc.QuotaFailure.Violation'
+          title: violations
+          description: Describes all quota violations.
+      title: QuotaFailure
+      additionalProperties: false
+      description: |-
+        Describes how a quota check failed.
+
+         For example if a daily limit was exceeded for the calling project,
+         a service could respond with a QuotaFailure detail containing the project
+         id and the description of the quota limit that was exceeded.  If the
+         calling project hasn't enabled the service in the developer console, then
+         a service could respond with the project id and set `service_disabled`
+         to true.
+
+         Also see RetryInfo and Help types for other details about handling a
+         quota failure.
+    google.rpc.QuotaFailure.Violation:
+      type: object
+      properties:
+        subject:
+          type: string
+          title: subject
+          description: |-
+            The subject on which the quota check failed.
+             For example, "clientip:<ip address of client>" or "project:<Google
+             developer project id>".
+        description:
+          type: string
+          title: description
+          description: |-
+            A description of how the quota check failed. Clients can use this
+             description to find more about the quota configuration in the service's
+             public documentation, or find the relevant quota limit to adjust through
+             developer console.
+
+             For example: "Service disabled" or "Daily Limit for read operations
+             exceeded".
+        apiService:
+          type: string
+          title: api_service
+          description: |-
+            The API Service from which the `QuotaFailure.Violation` orginates. In
+             some cases, Quota issues originate from an API Service other than the one
+             that was called. In other words, a dependency of the called API Service
+             could be the cause of the `QuotaFailure`, and this field would have the
+             dependency API service name.
+
+             For example, if the called API is Kubernetes Engine API
+             (container.googleapis.com), and a quota violation occurs in the
+             Kubernetes Engine API itself, this field would be
+             "container.googleapis.com". On the other hand, if the quota violation
+             occurs when the Kubernetes Engine API creates VMs in the Compute Engine
+             API (compute.googleapis.com), this field would be
+             "compute.googleapis.com".
+        quotaMetric:
+          type: string
+          title: quota_metric
+          description: |-
+            The metric of the violated quota. A quota metric is a named counter to
+             measure usage, such as API requests or CPUs. When an activity occurs in a
+             service, such as Virtual Machine allocation, one or more quota metrics
+             may be affected.
+
+             For example, "compute.googleapis.com/cpus_per_vm_family",
+             "storage.googleapis.com/internet_egress_bandwidth".
+        quotaId:
+          type: string
+          title: quota_id
+          description: |-
+            The id of the violated quota. Also know as "limit name", this is the
+             unique identifier of a quota in the context of an API service.
+
+             For example, "CPUS-PER-VM-FAMILY-per-project-region".
+        quotaDimensions:
+          type: object
+          title: quota_dimensions
+          additionalProperties:
+            type: string
+            title: value
+          description: |-
+            The dimensions of the violated quota. Every non-global quota is enforced
+             on a set of dimensions. While quota metric defines what to count, the
+             dimensions specify for what aspects the counter should be increased.
+
+             For example, the quota "CPUs per region per VM family" enforces a limit
+             on the metric "compute.googleapis.com/cpus_per_vm_family" on dimensions
+             "region" and "vm_family". And if the violation occurred in region
+             "us-central1" and for VM family "n1", the quota_dimensions would be,
+
+             {
+               "region": "us-central1",
+               "vm_family": "n1",
+             }
+
+             When a quota is enforced globally, the quota_dimensions would always be
+             empty.
+        quotaValue:
+          type:
+            - integer
+            - string
+          title: quota_value
+          format: int64
+          description: |-
+            The enforced quota value at the time of the `QuotaFailure`.
+
+             For example, if the enforced quota value at the time of the
+             `QuotaFailure` on the number of CPUs is "10", then the value of this
+             field would reflect this quantity.
+        futureQuotaValue:
+          type:
+            - integer
+            - string
+            - "null"
+          title: future_quota_value
+          format: int64
+          description: |-
+            The new quota value being rolled out at the time of the violation. At the
+             completion of the rollout, this value will be enforced in place of
+             quota_value. If no rollout is in progress at the time of the violation,
+             this field is not set.
+
+             For example, if at the time of the violation a rollout is in progress
+             changing the number of CPUs quota from 10 to 20, 20 would be the value of
+             this field.
+      title: Violation
+      additionalProperties: false
+      description: |-
+        A message type used to describe a single quota violation.  For example, a
+         daily quota or a custom quota that was exceeded.
+    google.rpc.QuotaFailure.Violation.QuotaDimensionsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: QuotaDimensionsEntry
+      additionalProperties: false
+    google.rpc.RequestInfo:
+      type: object
+      properties:
+        requestId:
+          type: string
+          title: request_id
+          description: |-
+            An opaque string that should only be interpreted by the service generating
+             it. For example, it can be used to identify requests in the service's logs.
+        servingData:
+          type: string
+          title: serving_data
+          description: |-
+            Any data that was used to serve this request. For example, an encrypted
+             stack trace that can be sent back to the service provider for debugging.
+      title: RequestInfo
+      additionalProperties: false
+      description: |-
+        Contains metadata about the request that clients can attach when filing a bug
+         or providing other forms of feedback.
+    google.rpc.ResourceInfo:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          title: resource_type
+          description: |-
+            A name for the type of resource being accessed, e.g. "sql table",
+             "cloud storage bucket", "file", "Google calendar"; or the type URL
+             of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
+        resourceName:
+          type: string
+          title: resource_name
+          description: |-
+            The name of the resource being accessed.  For example, a shared calendar
+             name: "example.com_4fghdhgsrgh@group.calendar.google.com", if the current
+             error is
+             [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
+        owner:
+          type: string
+          title: owner
+          description: |-
+            The owner of the resource (optional).
+             For example, "user:<owner email>" or "project:<Google developer project
+             id>".
+        description:
+          type: string
+          title: description
+          description: |-
+            Describes what error is encountered when accessing this resource.
+             For example, updating a cloud project may require the `writer` permission
+             on the developer console project.
+      title: ResourceInfo
+      additionalProperties: false
+      description: Describes the resource that is being accessed.
+    google.rpc.RetryInfo:
+      type: object
+      properties:
+        retryDelay:
+          title: retry_delay
+          description: Clients should wait at least this long between retrying the same request.
+          $ref: '#/components/schemas/google.protobuf.Duration'
+      title: RetryInfo
+      additionalProperties: false
+      description: |-
+        Describes when the clients can retry a failed request. Clients could ignore
+         the recommendation here or retry when this information is missing from error
+         responses.
+
+         It's always recommended that clients should use exponential backoff when
+         retrying.
+
+         Clients should wait until `retry_delay` amount of time has passed since
+         receiving the error response before retrying.  If retrying requests also
+         fail, clients should use an exponential backoff scheme to gradually increase
+         the delay between retries based on `retry_delay`, until either a maximum
+         number of retries have been reached or a maximum retry delay cap has been
+         reached.
+security: []

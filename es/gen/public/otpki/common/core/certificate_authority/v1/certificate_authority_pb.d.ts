@@ -120,7 +120,7 @@ export declare type CertificateAuthority = Message<"otpki.common.core.certificat
   crlIncludeExpired: boolean;
 
   /**
-   * @generated from field: optional string approval_profile_id = 30;
+   * @generated from field: optional string approval_profile_id = 29;
    */
   approvalProfileId?: string;
 
@@ -246,7 +246,7 @@ export declare type CertificateAuthorityJson = {
   crlIncludeExpired?: boolean;
 
   /**
-   * @generated from field: optional string approval_profile_id = 30;
+   * @generated from field: optional string approval_profile_id = 29;
    */
   approvalProfileId?: string;
 
@@ -372,7 +372,7 @@ export declare type CertificateAuthorityValid = Message<"otpki.common.core.certi
   crlIncludeExpired: boolean;
 
   /**
-   * @generated from field: optional string approval_profile_id = 30;
+   * @generated from field: optional string approval_profile_id = 29;
    */
   approvalProfileId?: string;
 

@@ -75,6 +75,7 @@ type CertificateProfileNative struct {
 	CustomCertificateExts           []uuid.UUID
 	AvailableCertificateAuthorities []uuid.UUID
 	ApprovalProfileId               uuid.NullUUID
+	Ephemeral                       bool
 }
 
 // ToProto converts a CertificateProfileNative to a CertificateProfile
@@ -186,6 +187,7 @@ func (n *CertificateProfileNative) ToProto() (*CertificateProfile, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileId: %w", err)
 	}
+	protoStruct.Ephemeral = n.Ephemeral
 	return protoStruct, nil
 }
 
@@ -298,6 +300,7 @@ func (p *CertificateProfile) ToNative() (*CertificateProfileNative, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error converting ApprovalProfileIdNative: %w", err)
 	}
+	nativeStruct.Ephemeral = p.Ephemeral
 	return nativeStruct, nil
 }
 

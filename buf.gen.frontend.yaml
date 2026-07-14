@@ -28,3 +28,8 @@ inputs:
     paths:
       - proto/otpki/public
       - proto/otpki/common
+  # google.rpc.BadRequest is attached as a connect error detail for field
+  # validation failures; nothing imports it, so it needs an explicit input
+  - module: buf.build/googleapis/googleapis
+    paths:
+      - google/rpc/error_details.proto

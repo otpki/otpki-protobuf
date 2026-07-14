@@ -380,6 +380,11 @@ export declare type CertificateProfile = Message<"otpki.common.core.certificate_
    * @generated from field: optional string approval_profile_id = 906;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: bool ephemeral = 907;
+   */
+  ephemeral: boolean;
 };
 
 /**
@@ -749,6 +754,11 @@ export declare type CertificateProfileJson = {
    * @generated from field: optional string approval_profile_id = 906;
    */
   approvalProfileId?: string;
+
+  /**
+   * @generated from field: bool ephemeral = 907;
+   */
+  ephemeral?: boolean;
 };
 
 export declare type CertificateProfileValid = CertificateProfile;

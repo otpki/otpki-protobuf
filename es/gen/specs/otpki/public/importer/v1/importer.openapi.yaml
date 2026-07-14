@@ -2445,6 +2445,9 @@ components:
             - "null"
           title: approval_profile_id
           format: uuid
+        ephemeral:
+          type: boolean
+          title: ephemeral
       title: CertificateProfile
       additionalProperties: false
     otpki.common.core.certificate_profile.v1.CertificateProfileKind:

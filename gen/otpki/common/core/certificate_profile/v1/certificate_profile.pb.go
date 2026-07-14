@@ -211,6 +211,7 @@ type CertificateProfile struct {
 	CustomCertificateExts           []string `protobuf:"bytes,904,rep,name=custom_certificate_exts,json=customCertificateExts,proto3" json:"custom_certificate_exts,omitempty"`
 	AvailableCertificateAuthorities []string `protobuf:"bytes,905,rep,name=available_certificate_authorities,json=availableCertificateAuthorities,proto3" json:"available_certificate_authorities,omitempty"`
 	ApprovalProfileId               *string  `protobuf:"bytes,906,opt,name=approval_profile_id,json=approvalProfileId,proto3,oneof" json:"approval_profile_id,omitempty"`
+	Ephemeral                       bool     `protobuf:"varint,907,opt,name=ephemeral,proto3" json:"ephemeral,omitempty"`
 	unknownFields                   protoimpl.UnknownFields
 	sizeCache                       protoimpl.SizeCache
 }
@@ -665,11 +666,18 @@ func (x *CertificateProfile) GetApprovalProfileId() string {
 	return ""
 }
 
+func (x *CertificateProfile) GetEphemeral() bool {
+	if x != nil {
+		return x.Ephemeral
+	}
+	return false
+}
+
 var File_otpki_common_core_certificate_profile_v1_certificate_profile_proto protoreflect.FileDescriptor
 
 const file_otpki_common_core_certificate_profile_v1_certificate_profile_proto_rawDesc = "" +
 	"\n" +
-	"Botpki/common/core/certificate_profile/v1/certificate_profile.proto\x12(otpki.common.core.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xb5#\n" +
+	"Botpki/common/core/certificate_profile/v1/certificate_profile.proto\x12(otpki.common.core.certificate_profile.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bopenapiv3/annotations.proto\x1a%otpki/common/api/v1/native_type.proto\x1a\"otpki/common/core/key/v1/key.proto\x1a\x1fotpki/common/x509/v1/x509.proto\"\xd4#\n" +
 	"\x12CertificateProfile\x12\x1d\n" +
 	"\x02id\x18\x01 \x01(\tB\r\xbaG\x02\x18\x01\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x03\x18@R\x04name\x12 \n" +
@@ -735,7 +743,8 @@ const file_otpki_common_core_certificate_profile_v1_certificate_profile_proto_ra
 	"\x15custom_ext_key_usages\x18\x87\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x12customExtKeyUsages\x12H\n" +
 	"\x17custom_certificate_exts\x18\x88\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x15customCertificateExts\x12\\\n" +
 	"!available_certificate_authorities\x18\x89\a \x03(\tB\x0f\xbaH\f\x92\x01\t\x18\x01\"\x05r\x03\xb0\x01\x01R\x1favailableCertificateAuthorities\x12>\n" +
-	"\x13approval_profile_id\x18\x8a\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11approvalProfileId\x88\x01\x01:\x04\x98\xb5\x18\x01B\x16\n" +
+	"\x13approval_profile_id\x18\x8a\a \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\x11approvalProfileId\x88\x01\x01\x12\x1d\n" +
+	"\tephemeral\x18\x8b\a \x01(\bR\tephemeral:\x04\x98\xb5\x18\x01B\x16\n" +
 	"\x14_approval_profile_id*\xb6\x01\n" +
 	"\x16CertificateProfileKind\x12(\n" +
 	"$CERTIFICATE_PROFILE_KIND_UNSPECIFIED\x10\x00\x12$\n" +

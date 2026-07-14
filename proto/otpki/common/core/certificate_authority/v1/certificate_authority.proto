@@ -60,8 +60,7 @@ message CertificateAuthority {
   PartitionMode crl_partition_mode = 26;
   int64 num_crl_partitions = 27 [(buf.validate.field).int64.gte = 0];
   bool crl_include_expired = 28;
-
-  optional string approval_profile_id = 30 [(buf.validate.field).string.uuid = true];
+  optional string approval_profile_id = 29 [(buf.validate.field).string.uuid = true];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
