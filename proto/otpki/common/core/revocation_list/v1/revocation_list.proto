@@ -4,6 +4,8 @@ package otpki.common.core.revocation_list.v1;
 import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/x509/v1/x509.proto";
 
 // RevocationList contains a Certificate Revocation List (CRL) as specified by RFC 5280 as raw DER bytes
 message RevocationList {
@@ -25,4 +27,25 @@ message RevocationList {
   // Update timestamps
   google.protobuf.Timestamp this_update = 12;
   google.protobuf.Timestamp next_update = 13;
+}
+
+message RevokedCertificateInfo {
+  option (api.v1.generate_native) = true;
+  bytes certificate_serial_number = 1 [
+    (api.v1.go_native_type) = "*big.Int",
+    (api.v1.go_native_import_path) = "math/big"
+  ];
+  x509.v1.RevocationReasonCode revocation_reason_code = 2;
+  google.protobuf.Timestamp revoked_at = 3 [
+    (api.v1.go_native_type) = "*time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  optional google.protobuf.Timestamp certificate_not_after = 4 [
+    (api.v1.go_native_type) = "*time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  string key_id = 5 [(buf.validate.field).string.uuid = true];
+  string ca_id = 6 [(buf.validate.field).string.uuid = true];
+  optional string issued_certificate_id = 7 [(buf.validate.field).string.uuid = true];
+  string partition_identifier = 8;
 }

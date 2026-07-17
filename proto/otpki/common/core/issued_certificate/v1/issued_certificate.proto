@@ -34,7 +34,6 @@ message IssuedCertificate {
     (api.v1.go_native_import_path) = "time"
   ];
   optional x509.v1.RevocationReasonCode revocation_reason_code = 11;
-  bool in_crl = 12;
 
   optional string issued_by_ca_certificate_id = 13 [(buf.validate.field).string.uuid = true];
   string issued_from_certificate_profile_id = 14 [(buf.validate.field).string.uuid = true];

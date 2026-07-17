@@ -1,0 +1,44 @@
+syntax = "proto3";
+package otpki.public.issuance.revocation.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message RevokeIssuedCertificatesRequest {
+  repeated string certificate_ids = 1 [(buf.validate.field).repeated = {
+    unique: true
+    items: {string: {uuid: true}}
+  }];
+  common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
+}
+
+message RevokeIssuedCertificatesResponse {}
+
+message RevokeBySerialRequest {
+  string certificate_serial_number = 1; // base 10 string of big int
+  common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
+  optional google.protobuf.Timestamp revoked_at = 3;
+  optional google.protobuf.Timestamp certificate_not_after = 4;
+  string issuer_key_hash = 5; // public key SHA1 hex encoded
+  optional string key_id = 6 [(buf.validate.field).string.uuid = true]; // instead of hash lookup
+}
+
+message RevokeBySerialResponse {}
+
+service RevocationService {
+  rpc RevokeIssuedCertificates(RevokeIssuedCertificatesRequest) returns (RevokeIssuedCertificatesResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificates/revoke"
+      body: "*"
+    };
+  }
+  rpc RevokeBySerial(RevokeBySerialRequest) returns (RevokeBySerialResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificates/revoke/serial"
+      body: "*"
+    };
+  }
+}

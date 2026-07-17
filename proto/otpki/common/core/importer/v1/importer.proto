@@ -14,6 +14,7 @@ import "otpki/common/core/issuer/v1/issuer.proto";
 import "otpki/common/core/key/v1/key.proto";
 import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
 import "otpki/common/core/publisher/v1/publisher.proto";
+import "otpki/common/core/revocation_list/v1/revocation_list.proto";
 
 // Export Pagination options allow the user to specify either:
 // Specific page-queries of specific models to export  - or -
@@ -39,6 +40,7 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest certificate_authority_keys = 17;
   otpki.common.api.query.v1.PaginationRequest publishers = 18;
   otpki.common.api.query.v1.PaginationRequest end_entity_issuance_requests = 19;
+  otpki.common.api.query.v1.PaginationRequest revoked_certificate_info = 20;
 }
 
 // The full message format for export and import routes.
@@ -67,6 +69,7 @@ message ExportData {
   repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey certificate_authority_keys = 17;
   repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
   repeated otpki.common.core.end_entity.v1.EndEntityIssuanceRequest end_entity_issuance_requests = 19;
+  repeated otpki.common.core.revocation_list.v1.RevokedCertificateInfo revoked_certificate_info = 20;
 }
 
 // Controls import behavior when an incoming record already exists
