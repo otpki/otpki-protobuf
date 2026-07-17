@@ -94,6 +94,17 @@ func (x *GetEndEntityCertificatesRequest) GetEndEntityIdUUID() uuid.UUID {
 	return uuid.UUID{}
 }
 
+// GetIssuanceRequestIdUUID returns IssuanceRequestId as a UUID when possible.
+func (x *GetIssuanceByRequestIDRequest) GetIssuanceRequestIdUUID() uuid.UUID {
+	if x != nil {
+		value, err := convertProtoToUUID(x.IssuanceRequestId)
+		if err == nil {
+			return value
+		}
+	}
+	return uuid.UUID{}
+}
+
 // GetKeyIdUUID returns KeyId as a UUID when possible.
 func (x *SignKeyRequest) GetKeyIdUUID() uuid.UUID {
 	if x != nil {

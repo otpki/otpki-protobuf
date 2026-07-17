@@ -12,6 +12,7 @@ import type { CertificateProfile, CertificateProfileJson } from "../../../../com
 import type { EnrollmentAttempt, EnrollmentAttemptJson, EnrollmentAttemptValid, EnrollmentResponse, EnrollmentResponseJson } from "../../../../common/core/enroller/v1/enroller_pb.js";
 import type { HashAlgorithm, HashAlgorithmJson, RevocationReasonCode, RevocationReasonCodeJson } from "../../../../common/x509/v1/x509_pb.js";
 import type { EndEntityCertificate, EndEntityCertificateJson } from "../../../../common/core/end_entity_certificate/v1/end_entity_certificate_pb.js";
+import type { IssuanceResponse, IssuanceResponseJson } from "../../../../common/core/issuer/v1/issuer_pb.js";
 
 /**
  * Describes the file otpki/public/plugin/runtime/v1/runtime.proto.
@@ -1224,6 +1225,70 @@ export declare type GetEndEntityCertificatesResponseValid = GetEndEntityCertific
 export declare const GetEndEntityCertificatesResponseSchema: GenMessage<GetEndEntityCertificatesResponse, {jsonType: GetEndEntityCertificatesResponseJson, validType: GetEndEntityCertificatesResponseValid}>;
 
 /**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest
+ */
+export declare type GetIssuanceByRequestIDRequest = Message<"otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest"> & {
+  /**
+   * @generated from field: string issuance_request_id = 1;
+   */
+  issuanceRequestId: string;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest
+ */
+export declare type GetIssuanceByRequestIDRequestJson = {
+  /**
+   * @generated from field: string issuance_request_id = 1;
+   */
+  issuanceRequestId?: string;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest
+ */
+export declare type GetIssuanceByRequestIDRequestValid = Message<"otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest"> & {
+  /**
+   * @generated from field: string issuance_request_id = 1;
+   */
+  issuanceRequestId: string;
+};
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest.
+ * Use `create(GetIssuanceByRequestIDRequestSchema)` to create a new message.
+ */
+export declare const GetIssuanceByRequestIDRequestSchema: GenMessage<GetIssuanceByRequestIDRequest, {jsonType: GetIssuanceByRequestIDRequestJson, validType: GetIssuanceByRequestIDRequestValid}>;
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDResponse
+ */
+export declare type GetIssuanceByRequestIDResponse = Message<"otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDResponse"> & {
+  /**
+   * @generated from field: otpki.common.core.issuer.v1.IssuanceResponse issuance_response = 1;
+   */
+  issuanceResponse?: IssuanceResponse;
+};
+
+/**
+ * @generated from message otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDResponse
+ */
+export declare type GetIssuanceByRequestIDResponseJson = {
+  /**
+   * @generated from field: otpki.common.core.issuer.v1.IssuanceResponse issuance_response = 1;
+   */
+  issuanceResponse?: IssuanceResponseJson;
+};
+
+export declare type GetIssuanceByRequestIDResponseValid = GetIssuanceByRequestIDResponse;
+
+/**
+ * Describes the message otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDResponse.
+ * Use `create(GetIssuanceByRequestIDResponseSchema)` to create a new message.
+ */
+export declare const GetIssuanceByRequestIDResponseSchema: GenMessage<GetIssuanceByRequestIDResponse, {jsonType: GetIssuanceByRequestIDResponseJson, validType: GetIssuanceByRequestIDResponseValid}>;
+
+/**
  * @generated from message otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot
  */
 export declare type IssuedCertificateStatusSnapshot = Message<"otpki.public.plugin.runtime.v1.IssuedCertificateStatusSnapshot"> & {
@@ -2170,6 +2235,14 @@ export declare const PluginRuntimeService: GenService<{
     methodKind: "unary";
     input: typeof GetEndEntityCertificatesRequestSchema;
     output: typeof GetEndEntityCertificatesResponseSchema;
+  },
+  /**
+   * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuanceByRequestID
+   */
+  getIssuanceByRequestID: {
+    methodKind: "unary";
+    input: typeof GetIssuanceByRequestIDRequestSchema;
+    output: typeof GetIssuanceByRequestIDResponseSchema;
   },
   /**
    * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots

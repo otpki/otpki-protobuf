@@ -597,6 +597,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.GetEndEntityCertificatesResponse'
+  /otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuanceByRequestID:
+    post:
+      tags:
+        - otpki.public.plugin.runtime.v1.PluginRuntimeService
+      summary: GetIssuanceByRequestID
+      operationId: otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuanceByRequestID
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDResponse'
   /otpki.public.plugin.runtime.v1.PluginRuntimeService/GetIssuedCertificateStatusSnapshotByCertID:
     post:
       tags:
@@ -2029,6 +2064,46 @@ components:
           $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
       title: EnrollmentResponse
       additionalProperties: false
+    otpki.common.core.issuer.v1.IssuanceResponse:
+      type: object
+      properties:
+        issuanceRequestId:
+          type: string
+          title: issuance_request_id
+          format: uuid
+        status:
+          title: status
+          $ref: '#/components/schemas/otpki.common.core.issuer.v1.IssuanceStatus'
+        certificateId:
+          type:
+            - string
+            - "null"
+          title: certificate_id
+          format: uuid
+        certificate:
+          type: string
+          title: certificate
+          format: byte
+        certificateChain:
+          type: array
+          items:
+            type: string
+            format: byte
+          title: certificate_chain
+          description: does not contain end entity certificate
+      title: IssuanceResponse
+      additionalProperties: false
+    otpki.common.core.issuer.v1.IssuanceStatus:
+      type: string
+      title: IssuanceStatus
+      enum:
+        - ISSUANCE_STATUS_UNSPECIFIED
+        - ISSUANCE_STATUS_NEW
+        - ISSUANCE_STATUS_FAILED
+        - ISSUANCE_STATUS_GENERATED
+        - ISSUANCE_STATUS_REJECTED
+        - ISSUANCE_STATUS_WAITING_FOR_APPROVAL
+      description: IssuanceStatus is congruent to EndEntityStatus
     otpki.common.core.issuer.v1.IssuingProtocol:
       type: string
       title: IssuingProtocol
@@ -2977,6 +3052,25 @@ components:
           title: end_entity
           $ref: '#/components/schemas/otpki.common.core.end_entity.v1.EndEntity'
       title: GetEndEntityResponse
+      additionalProperties: false
+    otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDRequest:
+      type: object
+      properties:
+        issuanceRequestId:
+          type: string
+          title: issuance_request_id
+          format: uuid
+      title: GetIssuanceByRequestIDRequest
+      required:
+        - issuanceRequestId
+      additionalProperties: false
+    otpki.public.plugin.runtime.v1.GetIssuanceByRequestIDResponse:
+      type: object
+      properties:
+        issuanceResponse:
+          title: issuance_response
+          $ref: '#/components/schemas/otpki.common.core.issuer.v1.IssuanceResponse'
+      title: GetIssuanceByRequestIDResponse
       additionalProperties: false
     otpki.public.plugin.runtime.v1.GetIssuedCertificateStatusSnapshotByCertIDRequest:
       type: object

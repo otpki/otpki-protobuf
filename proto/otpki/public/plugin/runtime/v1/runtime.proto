@@ -10,6 +10,7 @@ import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
 import "otpki/common/core/end_entity_certificate/v1/end_entity_certificate.proto";
 import "otpki/common/core/enroller/v1/enroller.proto";
+import "otpki/common/core/issuer/v1/issuer.proto";
 import "otpki/common/core/key/v1/key.proto";
 import "otpki/common/x509/v1/x509.proto";
 
@@ -174,6 +175,17 @@ message GetEndEntityCertificatesResponse {
   repeated common.core.end_entity_certificate.v1.EndEntityCertificate end_entity_certificates = 1;
 }
 
+message GetIssuanceByRequestIDRequest {
+  string issuance_request_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetIssuanceByRequestIDResponse {
+  common.core.issuer.v1.IssuanceResponse issuance_response = 1;
+}
+
 message IssuedCertificateStatusSnapshot {
   string certificate_id = 1;
   google.protobuf.Timestamp status_updated_at = 2;
@@ -301,6 +313,7 @@ service PluginRuntimeService {
   rpc RevokeEndEntityCertificate(RevokeEndEntityCertificateRequest) returns (RevokeEndEntityCertificateResponse);
   rpc GetEndEntityCertificateBySerialNumber(GetEndEntityCertificateBySerialNumberRequest) returns (GetEndEntityCertificateBySerialNumberResponse);
   rpc GetEndEntityCertificates(GetEndEntityCertificatesRequest) returns (GetEndEntityCertificatesResponse);
+  rpc GetIssuanceByRequestID(GetIssuanceByRequestIDRequest) returns (GetIssuanceByRequestIDResponse);
   rpc ListIssuedCertificateStatusSnapshots(ListIssuedCertificateStatusSnapshotsRequest) returns (ListIssuedCertificateStatusSnapshotsResponse);
   rpc GetIssuedCertificateStatusSnapshotByCertID(GetIssuedCertificateStatusSnapshotByCertIDRequest) returns (GetIssuedCertificateStatusSnapshotByCertIDResponse);
   rpc SignKey(SignKeyRequest) returns (SignKeyResponse);

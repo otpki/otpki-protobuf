@@ -90,6 +90,11 @@ export const getEndEntityCertificateBySerialNumber = PluginRuntimeService.method
 export const getEndEntityCertificates = PluginRuntimeService.method.getEndEntityCertificates;
 
 /**
+ * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.GetIssuanceByRequestID
+ */
+export const getIssuanceByRequestID = PluginRuntimeService.method.getIssuanceByRequestID;
+
+/**
  * @generated from rpc otpki.public.plugin.runtime.v1.PluginRuntimeService.ListIssuedCertificateStatusSnapshots
  */
 export const listIssuedCertificateStatusSnapshots = PluginRuntimeService.method.listIssuedCertificateStatusSnapshots;
