@@ -66,65 +66,47 @@ message CertificateTemplate {
   // profile can prevent permitted constraints from being set
   repeated string permitted_dns_domains = 801 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {hostname: true}
-    }
+    items: {string: {hostname: true}}
   }];
   repeated string permitted_ip_ranges = 802 [
     (api.v1.go_native_type) = "[]*net.IPNet",
     (api.v1.go_native_import_path) = "net",
     (buf.validate.field).repeated = {
       unique: true
-      items: {
-        string: {ip_with_prefixlen: true}
-      }
+      items: {string: {ip_with_prefixlen: true}}
     }
   ];
   repeated string permitted_email_addresses = 803 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {email: true}
-    }
+    items: {string: {email: true}}
   }];
   repeated string permitted_uri_domains = 804 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uri: true}
-    }
+    items: {string: {uri: true}}
   }];
   // profile can prevent excluded constraints from being set
   repeated string excluded_dns_domains = 805 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {hostname: true}
-    }
+    items: {string: {hostname: true}}
   }];
   repeated string excluded_ip_ranges = 806 [
     (api.v1.go_native_type) = "[]*net.IPNet",
     (api.v1.go_native_import_path) = "net",
     (buf.validate.field).repeated = {
       unique: true
-      items: {
-        string: {ip_with_prefixlen: true}
-      }
+      items: {string: {ip_with_prefixlen: true}}
     }
   ];
   repeated string excluded_email_addresses = 807 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {email: true}
-    }
+    items: {string: {email: true}}
   }];
   repeated string excluded_uri_domains = 808 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uri: true}
-    }
+    items: {string: {uri: true}}
   }];
   repeated string custom_certificate_extension_ids = 809 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uuid: true}
-    }
+    items: {string: {uuid: true}}
   }];
 }

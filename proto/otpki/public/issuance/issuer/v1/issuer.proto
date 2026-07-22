@@ -30,9 +30,7 @@ message GetIssuanceByRequestIDResponse {
 message RevokeIssuedCertificatesRequest {
   repeated string certificate_ids = 1 [(buf.validate.field).repeated = {
     unique: true
-    items: {
-      string: {uuid: true}
-    }
+    items: {string: {uuid: true}}
   }];
   common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
 }

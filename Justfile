@@ -1,32 +1,43 @@
-set dotenv-load := true
+set dotenv-load := false
 
 # ------------------------------------------------------------------
 # Paths / Config
 # ------------------------------------------------------------------
 
 root            := justfile_directory()
-bin_path        := root / "bin"
-tool_path       := root / ".tool"
+tool_path       := root / ".tool/bin"
 
-export PATH := tool_path + ":" + bin_path + ":" + env_var("PATH")
 
-default: check
+export PATH := tool_path + ":" + env_var("PATH")
+export AQUA_ROOT_DIR := root + "/.tool"
+export AQUA_DISABLE_POLICY := "true"
+
+default:
+    @just --list
+
+shell:
+    exec "${SHELL:-/bin/sh}" -i
 
 # -----------------------------
-# binny bootstrap + installs
+# aqua bootstrap + installs
 # -----------------------------
 
-# install binny into the tools directory
-binny:
-    mkdir -p {{tool_path}}
-    test -x {{tool_path}}/binny || curl -sSfL https://get.anchore.io/binny | sh -s -- -b {{tool_path}}
+# dependency to ensure tool dir exists
+tools-dir:
+    mkdir -p "{{ tool_path }}"
 
-# install tools necessary to build the application
-tools:
-    {{tool_path}}/binny install
+# install aqua into the tools directory
+aqua: tools-dir
+    test -x {{tool_path}}/aqua || curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.2/aqua-installer | bash
+
+tools *tags: (tools-aqua tags)
+
+# install aqua based tools
+tools-aqua *tags: aqua
+    aqua install {{ if tags == "" { "" } else { "-t " + replace(tags, " ", " -t ") } }}
 
 clean:
-    rm -rf gen es
+    rm -rf gen
 
 lint: breaking
     buf lint
@@ -40,11 +51,6 @@ build:
 breaking:
     buf breaking --against '.git#ref=refs/remotes/origin/master' || true
 
-gen:
-    buf generate
-    buf generate --template buf.gen.common.yaml
-    npm install && npm run generate && npm run generate:registry
-
 update:
     #go get -u all && go mod tidy
     mkdir -p proto/openapiv3
@@ -57,13 +63,4 @@ update:
       -o proto/openapiv3/OpenAPIv3.proto
     buf dep update
 
-
-native-type:
-    protoc \
-    --go_out=. \
-    --go_opt=Mproto/otpki/common/api/v1/native_type.proto=tools/protoc-gen-native/api \
-    ./proto/otpki/common/api/v1/native_type.proto
-
-check: binny update tools clean format lint build gen
-    go mod tidy
-    go test ./... # run a test to ensure all files compile
+check: tools update tools clean format lint build

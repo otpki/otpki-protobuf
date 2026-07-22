@@ -42,9 +42,7 @@ message SmtpCertTriggerConfig {
   // Recipients the published certificate is emailed to
   repeated string recipients = 3 [(buf.validate.field).repeated = {
     min_items: 1
-    items: {
-      string: {email: true}
-    }
+    items: {string: {email: true}}
   }];
   string subject = 4;
 }
@@ -59,9 +57,7 @@ message SmtpCrlTriggerConfig {
   // Recipients the published CRL is emailed to
   repeated string recipients = 2 [(buf.validate.field).repeated = {
     min_items: 1
-    items: {
-      string: {email: true}
-    }
+    items: {string: {email: true}}
   }];
   string subject = 3;
 }
