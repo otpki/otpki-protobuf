@@ -13,7 +13,10 @@ message EndEntityCertificate {
   string issued_certificate_id = 3 [(buf.validate.field).string.uuid = true];
   bytes certificate = 4;
   repeated bytes certificate_chain = 5;
-  bytes serial_number = 6;
+  bytes serial_number = 6 [
+    (api.v1.go_native_type) = "*big.Int",
+    (api.v1.go_native_import_path) = "math/big"
+  ];
   string display_name = 7;
   repeated x509.v1.SubjectDNAttribute subject_dn = 8;
   repeated x509.v1.SubjectDNAttribute issuer_dn = 9;

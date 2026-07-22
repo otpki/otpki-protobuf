@@ -5,6 +5,7 @@ import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
+import "otpki/common/api/v1/native_type.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
@@ -157,7 +158,11 @@ message RevokeEndEntityCertificateRequest {
 message RevokeEndEntityCertificateResponse {}
 
 message GetEndEntityCertificateBySerialNumberRequest {
-  bytes serial_number = 1 [(buf.validate.field).required = true];
+  bytes serial_number = 1 [
+    (common.api.v1.go_native_type) = "*big.Int",
+    (common.api.v1.go_native_import_path) = "math/big",
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetEndEntityCertificateBySerialNumberResponse {
@@ -192,7 +197,10 @@ message IssuedCertificateStatusSnapshot {
 
   bytes certificate_der = 10;
   repeated bytes certificate_chain_der = 11;
-  bytes serial_number = 12;
+  bytes serial_number = 12 [
+    (common.api.v1.go_native_type) = "*big.Int",
+    (common.api.v1.go_native_import_path) = "math/big"
+  ];
   google.protobuf.Timestamp not_before = 13;
   google.protobuf.Timestamp not_after = 14;
 
@@ -226,7 +234,10 @@ message CertificateStatusCertID {
   common.x509.v1.HashAlgorithm hash_algorithm = 1;
   bytes issuer_name_hash = 2;
   bytes issuer_key_hash = 3;
-  bytes serial_number = 4;
+  bytes serial_number = 4 [
+    (common.api.v1.go_native_type) = "*big.Int",
+    (common.api.v1.go_native_import_path) = "math/big"
+  ];
 }
 
 message GetIssuedCertificateStatusSnapshotByCertIDRequest {

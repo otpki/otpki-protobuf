@@ -13,7 +13,10 @@ message IssuedCertificate {
   string id = 1 [(buf.validate.field).string.uuid = true];
   bytes certificate = 2;
   repeated bytes certificate_chain = 3;
-  bytes serial_number = 4;
+  bytes serial_number = 4 [
+    (api.v1.go_native_type) = "*big.Int",
+    (api.v1.go_native_import_path) = "math/big"
+  ];
   string display_name = 5;
   repeated x509.v1.SubjectDNAttribute subject_dn = 6;
   repeated x509.v1.SubjectDNAttribute issuer_dn = 7;
