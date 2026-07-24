@@ -3,6 +3,7 @@ package otpki.common.core.end_entity.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
@@ -152,4 +153,9 @@ message EndEntity {
 message EndEntityIssuanceRequest {
   string end_entity_id = 1;
   string issuance_request_id = 2;
+}
+
+message EndEntityMutation {
+  EndEntity end_entity = 1 [(buf.validate.field).required = true];
+  google.protobuf.FieldMask update_mask = 2;
 }
