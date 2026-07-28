@@ -106,7 +106,7 @@ message CertificateProfile {
   bool allow_csr_subject_dn_override = 402; // use DN from CSR
   bool allow_csr_key_usage_override = 403; // use key usage from CSR
   bool allow_csr_extension_override = 404;
-  bool oid_list_is_whitelist = 405; // when true, only OIDs in the list are overrideable, otherwise all extensions are overrideable EXCEPT those in the list
+  bool oid_list_is_allowlist = 405; // when true, only OIDs in the list are overrideable, otherwise all extensions are overrideable EXCEPT those in the list
   repeated string oid_list = 406 [(buf.validate.field).repeated = {
     unique: true
     items: {string: {pattern: "^([0-2])((\\.0)|(\\.[1-9][0-9]*))*$"}}
