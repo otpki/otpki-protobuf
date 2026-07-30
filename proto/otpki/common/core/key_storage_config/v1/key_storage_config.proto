@@ -7,7 +7,6 @@ import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/api/v1/native_type.proto";
-import "otpki/common/core/key_storage_config/v1/enum.proto";
 
 message KeyStorageConfig {
   option (api.v1.generate_native) = true;
@@ -20,7 +19,10 @@ message KeyStorageConfig {
     (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
   string description = 3;
-  KeyDriverType key_driver_type = 4 [(buf.validate.field).enum.defined_only = true];
+  string key_driver_type = 4 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"
+  ];
   google.protobuf.Any config_data = 5;
   optional string crypto_key_id = 6 [(buf.validate.field).string.uuid = true];
 

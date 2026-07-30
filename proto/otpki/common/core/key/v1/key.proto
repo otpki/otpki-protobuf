@@ -6,7 +6,6 @@ import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
-import "otpki/common/core/key_storage_config/v1/enum.proto";
 
 enum KeyType {
   KEY_TYPE_UNSPECIFIED = 0;
@@ -201,7 +200,7 @@ message Key {
     (buf.validate.field).string.uuid = true,
     (buf.validate.field).required = true
   ];
-  key_storage_config.v1.KeyDriverType key_driver_type = 8;
+  string key_driver_type = 8 [(buf.validate.field).string.pattern = "^$|^[a-z][a-z0-9._-]*$"];
   // not settable on creation
   string public_key_pem = 9 [(openapi.v3.property).read_only = true]; // PEM encoded
   string public_key_hash = 10 [(openapi.v3.property).read_only = true];
