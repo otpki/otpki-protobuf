@@ -201,6 +201,7 @@ enum SANAttrType {
   // requires marshaler
   SAN_ATTR_TYPE_MS_UPN = 5;
   SAN_ATTR_TYPE_KRB5_KPN = 6;
+  SAN_ATTR_TYPE_HW_MODULE = 7;
 
   SAN_ATTR_TYPE_OID = 101;
 }
