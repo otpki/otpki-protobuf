@@ -37,7 +37,6 @@ enum Resource {
   RESOURCE_TASKLOG = 111;
 
   // enrollment protocol resources
-  RESOURCE_ACME_PROTOCOL_CONFIG = 201;
   RESOURCE_EST_PROTOCOL_CONFIG = 202;
   RESOURCE_MSAE_PROTOCOL_CONFIG = 203;
   RESOURCE_SCEP_PROTOCOL_CONFIG = 204;
@@ -57,9 +56,16 @@ enum Resource {
   RESOURCE_ISSUANCE_REQUEST = 401;
 }
 
+message ActionMetadata {
+  Action action = 1;
+  string label = 2;
+}
+
 message ResourceActions {
   Resource resource = 1;
   repeated Action actions = 2;
+  string label = 3;
+  repeated ActionMetadata action_metadata = 4;
 }
 
 message Group {

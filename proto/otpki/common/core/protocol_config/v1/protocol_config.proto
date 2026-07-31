@@ -1,0 +1,28 @@
+syntax = "proto3";
+package otpki.common.core.protocol_config.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+
+// ProtocolConfig is the protocol-neutral persistence envelope used by
+// compile-time protocol plugins. config_data contains the plugin-owned typed
+// configuration message.
+message ProtocolConfig {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
+  string name = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 1
+  ];
+  string protocol_type = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"
+  ];
+  google.protobuf.Any config_data = 4 [(buf.validate.field).required = true];
+  google.protobuf.Timestamp created_at = 5 [(openapi.v3.property).read_only = true];
+  google.protobuf.Timestamp updated_at = 6 [(openapi.v3.property).read_only = true];
+}
