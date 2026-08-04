@@ -19,6 +19,7 @@ enum PublisherTransport {
   PUBLISHER_TRANSPORT_HTTP = 2;
   PUBLISHER_TRANSPORT_SCP = 3;
   PUBLISHER_TRANSPORT_SMTP = 4;
+  PUBLISHER_TRANSPORT_LDAP = 5;
 }
 
 enum PublisherTriggerEvent {
