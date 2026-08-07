@@ -36,9 +36,6 @@ enum Resource {
   RESOURCE_PUBLISHER = 110;
   RESOURCE_TASKLOG = 111;
 
-  // enrollment protocol resources
-  RESOURCE_OCSP_PROTOCOL_CONFIG = 207;
-
   // auth resources
   RESOURCE_GROUP = 301;
   RESOURCE_ROLE = 302;
