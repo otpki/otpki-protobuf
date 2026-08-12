@@ -132,7 +132,10 @@ message User {
   ];
   string first_name = 3;
   string last_name = 4;
-  string email = 5 [(buf.validate.field).string.email = true];
+  string email = 5 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.email = true
+  ];
   string description = 6;
   bool disabled = 7;
   bool is_system_user = 8 [(openapi.v3.property).read_only = true];
