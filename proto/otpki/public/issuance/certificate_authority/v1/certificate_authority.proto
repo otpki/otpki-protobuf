@@ -3,6 +3,7 @@ package otpki.public.issuance.certificate_authority.v1;
 
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
+import "google/api/httpbody.proto";
 import "google/protobuf/field_mask.proto";
 import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
@@ -127,6 +128,17 @@ message GetCertificateAuthorityCertificatesResponse {
   repeated common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificates = 1;
 }
 
+message GetCertificateIssuerRequest {
+  string certificate_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetCertificateIssuerResponse {
+  common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificate = 1;
+}
+
 message CreateRevocationListRequest {
   string ca_id = 1 [
     (buf.validate.field).string.uuid = true,
@@ -210,6 +222,12 @@ service CertificateAuthorityService {
   rpc GetCertificateAuthorityCertificates(GetCertificateAuthorityCertificatesRequest) returns (GetCertificateAuthorityCertificatesResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/certificates"};
+  }
+  // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+  // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+  rpc GetCertificateIssuer(GetCertificateIssuerRequest) returns (google.api.HttpBody) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificate-authorities/certificates/{certificate_id}/certificate.cer"};
   }
   rpc CreateRevocationList(CreateRevocationListRequest) returns (CreateRevocationListResponse) {
     option (google.api.http) = {
