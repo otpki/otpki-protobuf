@@ -17,7 +17,9 @@ message LdapConfig {
   // Tried in order on fail
   repeated string hostnames = 1 [(buf.validate.field).repeated = {
     min_items: 1
-    items: {string: {min_len: 1}}
+    items: {
+      string: {min_len: 1}
+    }
   }];
   int64 port = 2 [(buf.validate.field).int64 = {
     gte: 1

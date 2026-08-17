@@ -15,31 +15,45 @@ message Extension {
 message Name {
   repeated string country = 1 [
     (buf.validate.field).repeated.unique = true,
-    (buf.validate.field).repeated.items = {string: {min_len: 1}}
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
   ];
   repeated string organization = 2 [
     (buf.validate.field).repeated.unique = true,
-    (buf.validate.field).repeated.items = {string: {min_len: 1}}
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
   ];
   repeated string organizational_unit = 3 [
     (buf.validate.field).repeated.unique = true,
-    (buf.validate.field).repeated.items = {string: {min_len: 1}}
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
   ];
   repeated string locality = 4 [
     (buf.validate.field).repeated.unique = true,
-    (buf.validate.field).repeated.items = {string: {min_len: 1}}
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
   ];
   repeated string province = 5 [
     (buf.validate.field).repeated.unique = true,
-    (buf.validate.field).repeated.items = {string: {min_len: 1}}
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
   ];
   repeated string street_address = 6 [
     (buf.validate.field).repeated.unique = true,
-    (buf.validate.field).repeated.items = {string: {min_len: 1}}
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
   ];
   repeated string postal_code = 7 [
     (buf.validate.field).repeated.unique = true,
-    (buf.validate.field).repeated.items = {string: {min_len: 1}}
+    (buf.validate.field).repeated.items = {
+      string: {min_len: 1}
+    }
   ];
   string serial_number = 8 [(buf.validate.field).required = false];
   string common_name = 9 [(buf.validate.field).string.min_len = 1];

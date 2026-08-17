@@ -103,13 +103,17 @@ message EndEntityProfile {
   // issuance information
   repeated string available_certificate_profile_ids = 601 [(buf.validate.field).repeated = {
     unique: true
-    items: {string: {uuid: true}}
+    items: {
+      string: {uuid: true}
+    }
   }];
   string default_certificate_profile_id = 602 [(buf.validate.field).string.uuid = true];
 
   repeated string available_certificate_authority_ids = 603 [(buf.validate.field).repeated = {
     unique: true
-    items: {string: {uuid: true}}
+    items: {
+      string: {uuid: true}
+    }
   }];
   string default_certificate_authority_id = 604 [(buf.validate.field).string.uuid = true];
 

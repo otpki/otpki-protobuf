@@ -29,7 +29,9 @@ message GetRoleResponse {
 message GetManyRolesRequest {
   repeated string ids = 1 [(buf.validate.field).repeated = {
     unique: true
-    items: {string: {uuid: true}}
+    items: {
+      string: {uuid: true}
+    }
   }];
 }
 

@@ -4,13 +4,14 @@ package otpki.public.issuance.revocation.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/x509/v1/x509.proto";
 
 message RevokeIssuedCertificatesRequest {
   repeated string certificate_ids = 1 [(buf.validate.field).repeated = {
     unique: true
-    items: {string: {uuid: true}}
+    items: {
+      string: {uuid: true}
+    }
   }];
   common.x509.v1.RevocationReasonCode revocation_reason_code = 2;
 }
