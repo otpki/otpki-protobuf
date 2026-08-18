@@ -49,7 +49,7 @@ build:
     buf build
 
 breaking:
-    buf breaking --against '.git#ref=refs/remotes/origin/master' || true
+    buf breaking --against '.git#ref=refs/remotes/origin/master'
 
 update:
     #go get -u all && go mod tidy
