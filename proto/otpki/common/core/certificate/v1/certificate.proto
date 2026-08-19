@@ -1,0 +1,97 @@
+syntax = "proto3";
+package otpki.common.core.certificate.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
+
+enum IssuingProtocol {
+  ISSUING_PROTOCOL_UNSPECIFIED = 0;
+  ISSUING_PROTOCOL_API = 1;
+  ISSUING_PROTOCOL_SCEP = 2;
+  ISSUING_PROTOCOL_ACME = 3;
+  ISSUING_PROTOCOL_EST = 4;
+  ISSUING_PROTOCOL_MSAE = 5;
+  ISSUING_PROTOCOL_CMP = 6;
+  ISSUING_PROTOCOL_IMPORT = 7;
+}
+
+message CertificateIssuanceMetadata {
+  string issued_from_certificate_profile_id = 1 [(buf.validate.field).string.uuid = true];
+  optional string end_entity_id = 2 [(buf.validate.field).string.uuid = true];
+  string issued_by_certificate_authority_id = 3 [(buf.validate.field).string.uuid = true];
+  string issued_by_key_id = 4 [(buf.validate.field).string.uuid = true];
+  optional string issued_by_alternative_key_id = 5 [(buf.validate.field).string.uuid = true];
+  optional string issuer_certificate_id = 6 [(buf.validate.field).string.uuid = true];
+
+  IssuingProtocol protocol_used = 11;
+  string partition_identifier = 12;
+}
+
+message CertificateRevocationMetadata {
+  google.protobuf.Timestamp revoked_at = 1 [
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  string revocation_reason = 2;
+  string partition_identifier = 3;
+}
+
+message CertificateAuthorityMetadata {
+  string certificate_authority_id = 1 [(buf.validate.field).string.uuid = true];
+  uint64 generation = 2 [(buf.validate.field).uint64.gt = 0];
+
+  string key_id = 4 [(buf.validate.field).string.uuid = true];
+  optional string alternative_key_id = 5 [(buf.validate.field).string.uuid = true];
+
+  // |        state        | activated_at | retired_at |
+  // |---------------------|--------------|------------|
+  // | staged rollover     |     NULL     |    NULL    |
+  // | active              |     set      |    NULL    |
+  // | historical/renewed  |     set      |    set     |
+  optional google.protobuf.Timestamp activated_at = 6;
+  optional google.protobuf.Timestamp retired_at = 7;
+}
+
+message Certificate {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
+  string provider_id = 2 [(buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"];
+  google.protobuf.Any provider_metadata = 3;
+  // import will only respect the first entry in this list as this current cert
+  repeated common.core.certificate_authority.v1.CertificateAuthorityArtifact certificate_chain = 4;
+
+  bytes fingerprint_sha256 = 11;
+  string display_name = 12;
+  string serial_display = 13;
+  string subject_display = 14;
+  string issuer_display = 15;
+  optional google.protobuf.Timestamp not_before = 16;
+  optional google.protobuf.Timestamp not_after = 17;
+
+  // certificates issued by us will have these fields
+  optional CertificateIssuanceMetadata issuance_metadata = 21;
+
+  // certificates revoked by us will have these fields
+  optional CertificateRevocationMetadata revocation_metadata = 31;
+
+  // ca certificates managed by us will have these fields
+  optional CertificateAuthorityMetadata authority_metadata = 41;
+
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

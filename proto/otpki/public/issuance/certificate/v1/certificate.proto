@@ -1,0 +1,96 @@
+syntax = "proto3";
+package otpki.public.issuance.certificate.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/certificate/v1/certificate.proto";
+
+message GetCertificateRequest {
+  string certificate_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetCertificateResponse {
+  common.core.certificate.v1.Certificate certificate = 1;
+}
+
+message GetCertificateBySerialNumberRequest {
+  bytes serial_number = 1 [(buf.validate.field).required = true];
+}
+
+message GetCertificateBySerialNumberResponse {
+  common.core.certificate.v1.Certificate certificate = 1;
+}
+
+message GetCertificateListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetCertificateListResponse {
+  repeated common.core.certificate.v1.Certificate data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message RevokeCertificatesRequest {
+  repeated string certificate_ids = 1 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+  // it is up to the CA provider what to make of this string
+  string revocation_reason_code = 2;
+}
+
+message RevokeCertificatesResponse {}
+
+message RevokeCertificateBySerialRequest {
+  string certificate_serial_number = 1; // base 10 string of big int
+  // it is up to the CA provider what to make of this string
+  string revocation_reason_code = 2;
+  optional google.protobuf.Timestamp revoked_at = 3;
+  optional google.protobuf.Timestamp certificate_not_after = 4;
+  string certificate_authority_id = 5 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+  string issuer_key_hash = 6; // public key SHA1 hex encoded
+  optional string key_id = 7 [(buf.validate.field).string.uuid = true]; // instead of hash lookup
+}
+
+message RevokeCertificateBySerialResponse {}
+
+service CertificateService {
+  rpc GetCertificate(GetCertificateRequest) returns (GetCertificateResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificates/{certificate_id}"};
+  }
+  rpc GetCertificateBySerialNumber(GetCertificateBySerialNumberRequest) returns (GetCertificateBySerialNumberResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/certificates/by-serial-number/{serial_number}"};
+  }
+  rpc GetCertificateList(GetCertificateListRequest) returns (GetCertificateListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {
+      put: "/v1/certificates"
+      body: "pagination"
+      additional_bindings: {get: "/v1/certificates"}
+    };
+  }
+  rpc RevokeCertificates(RevokeCertificatesRequest) returns (RevokeCertificatesResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificates/revoke"
+      body: "*"
+    };
+  }
+  rpc RevokeCertificateBySerial(RevokeCertificateBySerialRequest) returns (RevokeCertificateBySerialResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificates/by-serial-number/{certificate_serial_number}/revoke"
+      body: "*"
+    };
+  }
+}

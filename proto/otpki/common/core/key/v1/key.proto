@@ -165,22 +165,15 @@ enum KeyType {
   KEY_TYPE_SLHDSA_SHA256F = 4019;
   KEY_TYPE_SLHDSA_SHAKE256F = 4020;
 
-  // ML-KEM (FIPS 203)
-  KEY_TYPE_MLKEM_512 = 4100;
-  KEY_TYPE_MLKEM_768 = 4101;
-  KEY_TYPE_MLKEM_1024 = 4102;
-
-  // Hash-Based Signatures (NIST SP 800-208)
-  KEY_TYPE_LMS = 4200;
-  KEY_TYPE_HSS = 4201;
-  KEY_TYPE_XMSS = 4202;
-}
-
-enum KeyUsage {
-  KEY_USAGE_UNSPECIFIED = 0;
-  KEY_USAGE_SIGN_VERIFY = 1;
-  KEY_USAGE_ENCRYPT_DECRYPT = 2;
-  KEY_USAGE_KEY_AGREEMENT = 3;
+  //  // ML-KEM (FIPS 203)
+  //  KEY_TYPE_MLKEM_512 = 4100;
+  //  KEY_TYPE_MLKEM_768 = 4101;
+  //  KEY_TYPE_MLKEM_1024 = 4102;
+  //
+  //  // Hash-Based Signatures (NIST SP 800-208)
+  //  KEY_TYPE_LMS = 4200;
+  //  KEY_TYPE_HSS = 4201;
+  //  KEY_TYPE_XMSS = 4202;
 }
 
 message Key {
@@ -194,13 +187,12 @@ message Key {
   ];
   string description = 3;
   KeyType key_type = 4;
-  repeated KeyUsage key_usage = 5;
   google.protobuf.Any key_config_data = 6;
   string key_storage_config_id = 7 [
     (buf.validate.field).string.uuid = true,
     (buf.validate.field).required = true
   ];
-  string key_driver_type = 8 [(buf.validate.field).string.pattern = "^$|^[a-z][a-z0-9._-]*$"];
+  string key_driver_type = 8 [(buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"];
   // not settable on creation
   string public_key_pem = 9 [(openapi.v3.property).read_only = true]; // PEM encoded
   string public_key_hash = 10 [(openapi.v3.property).read_only = true];

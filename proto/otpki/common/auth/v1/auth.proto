@@ -16,7 +16,7 @@ enum Action {
   ACTION_DELETE = 4;
 
   // certificates/ee
-  ACTION_ISSUE = 201;
+  // ACTION_ISSUE = 201;
   ACTION_REVOKE = 202;
 }
 
@@ -45,7 +45,7 @@ enum Resource {
   RESOURCE_WORK_ITEM = 306;
 
   // request resources
-  RESOURCE_ISSUANCE_REQUEST = 401;
+  // RESOURCE_ISSUANCE_REQUEST = 401;
 }
 
 message ActionMetadata {

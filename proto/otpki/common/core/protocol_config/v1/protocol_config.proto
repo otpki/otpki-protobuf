@@ -5,24 +5,39 @@ import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
+import "otpki/common/api/v1/native_type.proto";
 
 // ProtocolConfig is the protocol-neutral persistence envelope used by
 // compile-time protocol plugins. config_data contains the plugin-owned typed
 // configuration message.
 message ProtocolConfig {
+  option (api.v1.generate_native) = true;
+  // not settable on creation
   string id = 1 [
     (buf.validate.field).string.uuid = true,
     (openapi.v3.property).read_only = true
   ];
   string name = 2 [
     (buf.validate.field).required = true,
-    (buf.validate.field).string.min_len = 1
+    (buf.validate.field).string.min_len = 3
   ];
-  string protocol_type = 3 [
+  string description = 3;
+  string protocol_type = 4 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"
   ];
-  google.protobuf.Any config_data = 4 [(buf.validate.field).required = true];
-  google.protobuf.Timestamp created_at = 5 [(openapi.v3.property).read_only = true];
-  google.protobuf.Timestamp updated_at = 6 [(openapi.v3.property).read_only = true];
+  google.protobuf.Any config_data = 5;
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
 }

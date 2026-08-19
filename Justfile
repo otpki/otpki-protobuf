@@ -39,7 +39,7 @@ tools-aqua *tags: aqua
 clean:
     rm -rf gen
 
-lint: breaking
+lint:
     buf lint
 
 format:
@@ -63,4 +63,4 @@ update:
       -o proto/openapiv3/OpenAPIv3.proto
     buf dep update
 
-check: tools update tools clean format lint build
+check: tools update tools clean format lint breaking build

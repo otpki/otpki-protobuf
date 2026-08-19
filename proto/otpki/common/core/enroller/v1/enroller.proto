@@ -5,45 +5,53 @@ import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/core/certificate/v1/certificate.proto";
+import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
-import "otpki/common/core/issuer/v1/issuer.proto";
 
-enum EnrollmentDataType {
-  ENROLLMENT_DATA_TYPE_UNSPECIFIED = 0;
-  ENROLLMENT_DATA_TYPE_PKCS10 = 1;
-  ENROLLMENT_DATA_TYPE_CRMF = 2;
+enum EnrollmentRequestStatus {
+  ENROLLMENT_REQUEST_STATUS_UNSPECIFIED = 0;
+  ENROLLMENT_REQUEST_STATUS_PENDING = 1;
+  ENROLLMENT_REQUEST_STATUS_APPROVED = 2;
+  ENROLLMENT_REQUEST_STATUS_ISSUED = 3;
+  ENROLLMENT_REQUEST_STATUS_FAILED = 4;
 }
 
-message EnrollmentAttempt {
-  option (api.v1.generate_native) = true;
-  string end_entity_id = 2 [(buf.validate.field).string.uuid = true];
-  bytes data = 3;
-  EnrollmentDataType data_type = 4;
-  issuer.v1.IssuingProtocol protocol_used = 5;
+// direct enrollment input, there is no durable enrollment object
+message EnrollmentRequest {
+  optional string end_entity_id = 1 [(buf.validate.field).string.uuid = true];
+  certificate_authority.v1.CertificateAuthorityArtifact request = 2;
+  // For coming back to claim a previously deferred enrollment.
+  optional string request_id = 3 [(buf.validate.field).string.uuid = true];
+}
 
-  // not settable on creation
+message EnrollmentResponse {
+  certificate.v1.Certificate certificate = 1;
+  end_entity.v1.EndEntity end_entity = 2;
+  // Set when the enrollment was deferred or fulfilled through a request record.
+  optional string request_id = 3 [(buf.validate.field).string.uuid = true];
+}
+
+// A durable record for a deferred enrollment request. It is only created when
+// an enrollment cannot be fulfilled immediately (approval or CA unavailable).
+message EnrollmentRequestRecord {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
+  string end_entity_id = 2 [(buf.validate.field).string.uuid = true];
+  EnrollmentRequestStatus status = 3;
+  optional string certificate_id = 4 [(buf.validate.field).string.uuid = true];
+  certificate_authority.v1.CertificateAuthorityArtifact request = 5;
+  certificate.v1.IssuingProtocol protocol = 6;
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,
     (api.v1.go_native_type) = "time.Time",
     (api.v1.go_native_import_path) = "time"
   ];
-  // not settable on creation
   google.protobuf.Timestamp updated_at = 202 [
     (openapi.v3.property).read_only = true,
     (api.v1.go_native_type) = "time.Time",
     (api.v1.go_native_import_path) = "time"
   ];
-}
-
-message EnrollmentResponse {
-  optional string issuance_request_id = 2 [(buf.validate.field).string.uuid = true];
-  optional string certificate_id = 3 [(buf.validate.field).string.uuid = true];
-  bytes certificate = 4;
-  repeated bytes certificate_chain = 5; // does not contain end entity certificate
-  // repeated bytes key_data = 4; // for key recovery/ca generated token
-
-  // the status of the end entity is the status of the active attempt
-  // since end entities can only have 1 concurrent active attempt
-  // a new attempt cannot be made if the end entity is in a pending state
-  end_entity.v1.EndEntity end_entity = 6;
 }

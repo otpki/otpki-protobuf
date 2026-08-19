@@ -3,18 +3,17 @@ package otpki.common.core.importer.v1;
 
 import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/auth/v1/auth.proto";
+import "otpki/common/core/certificate/v1/certificate.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/certificate_extension/v1/certificate_extension.proto";
 import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
 import "otpki/common/core/end_entity_profile/v1/end_entity_profile.proto";
+import "otpki/common/core/enroller/v1/enroller.proto";
 import "otpki/common/core/extended_key_usage/v1/extended_key_usage.proto";
-import "otpki/common/core/issued_certificate/v1/issued_certificate.proto";
-import "otpki/common/core/issuer/v1/issuer.proto";
 import "otpki/common/core/key/v1/key.proto";
 import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
 import "otpki/common/core/publisher/v1/publisher.proto";
-import "otpki/common/core/revocation_list/v1/revocation_list.proto";
 
 // Export Pagination options allow the user to specify either:
 // Specific page-queries of specific models to export  - or -
@@ -34,13 +33,9 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest custom_ekus = 11;
   otpki.common.api.query.v1.PaginationRequest custom_certificate_extensions = 12;
   otpki.common.api.query.v1.PaginationRequest certificate_authorities = 13;
-  otpki.common.api.query.v1.PaginationRequest issuance_requests = 14;
   otpki.common.api.query.v1.PaginationRequest certificates = 15;
-  otpki.common.api.query.v1.PaginationRequest certificate_authority_certificates = 16;
-  otpki.common.api.query.v1.PaginationRequest certificate_authority_keys = 17;
   otpki.common.api.query.v1.PaginationRequest publishers = 18;
-  otpki.common.api.query.v1.PaginationRequest end_entity_issuance_requests = 19;
-  otpki.common.api.query.v1.PaginationRequest revoked_certificate_info = 20;
+  otpki.common.api.query.v1.PaginationRequest enrollment_requests = 19;
 }
 
 // The full message format for export and import routes.
@@ -63,13 +58,9 @@ message ExportData {
   repeated otpki.common.core.extended_key_usage.v1.CustomExtKeyUsage custom_ekus = 11;
   repeated otpki.common.core.certificate_extension.v1.CustomCertificateExtension custom_certificate_extensions = 12;
   repeated otpki.common.core.certificate_authority.v1.CertificateAuthority certificate_authorities = 13;
-  repeated otpki.common.core.issuer.v1.IssuanceRequest issuance_requests = 14;
-  repeated otpki.common.core.issued_certificate.v1.IssuedCertificate certificates = 15;
-  repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificates = 16;
-  repeated otpki.common.core.certificate_authority.v1.CertificateAuthorityCertificateKey certificate_authority_keys = 17;
+  repeated otpki.common.core.certificate.v1.Certificate certificates = 15;
   repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
-  repeated otpki.common.core.end_entity.v1.EndEntityIssuanceRequest end_entity_issuance_requests = 19;
-  repeated otpki.common.core.revocation_list.v1.RevokedCertificateInfo revoked_certificate_info = 20;
+  repeated otpki.common.core.enroller.v1.EnrollmentRequestRecord enrollment_requests = 19;
 }
 
 // Controls import behavior when an incoming record already exists
