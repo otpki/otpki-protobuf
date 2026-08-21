@@ -16,6 +16,20 @@ message ScpConfig {
     gte: 1
     lte: 65535
   }];
+  repeated string known_hosts = 5 [(buf.validate.field).repeated = {
+    items: {
+      string: {min_len: 1}
+    }
+  }]; // entries that would normally go in a hosts file
+  string known_hosts_file = 6; // like /etc/hosts
+  bool host_key_insecure = 7; // needed for no hosts specified
+
+  option (buf.validate.message).cel = {
+    // This is going to happen in zod too
+    id: "scp_host_key_verification"
+    message: "known_hosts, known_hosts_file, or host_key_insecure must be set"
+    expression: "size(this.known_hosts) > 0 || this.known_hosts_file != '' || this.host_key_insecure"
+  };
 }
 
 // Per-trigger config for an SCP certificate (issuance or revocation) trigger
