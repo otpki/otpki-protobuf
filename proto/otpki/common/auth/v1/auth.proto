@@ -254,6 +254,10 @@ enum WorkItemStatus {
   WORK_ITEM_STATUS_PENDING = 1;
   WORK_ITEM_STATUS_APPROVED = 2;
   WORK_ITEM_STATUS_REJECTED = 3;
+  // Approved, but applying the pending change failed. status_reason carries
+  // the error. The item can be edited (returning it to PENDING) or approved
+  // again to retry applying the same payload.
+  WORK_ITEM_STATUS_FAILED = 4;
 }
 
 message WorkItem {
@@ -269,6 +273,9 @@ message WorkItem {
   repeated WorkItemApproval approvals = 7 [(openapi.v3.property).read_only = true];
   // Optional to-be-applied mutation payload associated with this work item
   google.protobuf.Any pending_data = 8;
+  // Reason for the current status, e.g. the error that failed an approved
+  // payload's application.
+  string status_reason = 9 [(openapi.v3.property).read_only = true];
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,

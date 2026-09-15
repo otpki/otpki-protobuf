@@ -14,6 +14,8 @@ message CreateEndEntityRequest {
 
 message CreateEndEntityResponse {
   string id = 1 [(buf.validate.field).string.uuid = true];
+  // Set when the creation was deferred to an approval work item.
+  optional string work_item_id = 2 [(buf.validate.field).string.uuid = true];
 }
 
 message GetEndEntityRequest {
@@ -50,7 +52,10 @@ message UpdateEndEntityRequest {
   google.protobuf.FieldMask update_mask = 2;
 }
 
-message UpdateEndEntityResponse {}
+message UpdateEndEntityResponse {
+  // Set when the update was deferred to an approval work item.
+  optional string work_item_id = 1 [(buf.validate.field).string.uuid = true];
+}
 
 message GetEndEntityCertificatesRequest {
   string end_entity_id = 1 [

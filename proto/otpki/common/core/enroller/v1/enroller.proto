@@ -30,6 +30,10 @@ message EnrollmentResponse {
   end_entity.v1.EndEntity end_entity = 2;
   // Set when the enrollment was deferred or fulfilled through a request record.
   optional string request_id = 3 [(buf.validate.field).string.uuid = true];
+  // All pending request records for the end entity, newest first. An end
+  // entity can have several outstanding requests when its enrollment counter
+  // allows more than one issuance.
+  repeated string pending_request_ids = 4 [(buf.validate.field).repeated.items.string.uuid = true];
 }
 
 // A durable record for a deferred enrollment request. It is only created when
