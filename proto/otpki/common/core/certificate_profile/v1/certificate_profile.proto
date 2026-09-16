@@ -2,26 +2,38 @@ syntax = "proto3";
 package otpki.common.core.certificate_profile.v1;
 
 import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
-import "otpki/common/core/key/v1/key.proto";
-import "otpki/common/x509/v1/x509.proto";
 
-enum CertificateProfileKind {
-  CERTIFICATE_PROFILE_KIND_UNSPECIFIED = 0;
-  CERTIFICATE_PROFILE_KIND_ROOT_CA = 1; // root CA cannot be used within end entity profile, while sub-ca and EE can.
-  CERTIFICATE_PROFILE_KIND_SUB_CA = 2;
-  CERTIFICATE_PROFILE_KIND_END_ENTITY = 3;
+enum CertificateProfilePurpose {
+  CERTIFICATE_PROFILE_PURPOSE_UNSPECIFIED = 0;
+  // Self-signed/root credential
+  CERTIFICATE_PROFILE_PURPOSE_ROOT_CA = 1;
+  // A credential representing a sub ca, valid
+  // for providers which support hierarchy such as x509 and cvc
+  CERTIFICATE_PROFILE_PURPOSE_SUB_CA = 2;
+  // Normal issued credential
+  CERTIFICATE_PROFILE_PURPOSE_END_ENTITY = 3;
 }
 
-enum KeyIdentifierHashAlgorithm {
-  KEY_IDENTIFIER_HASH_ALGORITHM_UNSPECIFIED = 0; // should default to sha256 (like in go 1.25)
-  KEY_IDENTIFIER_HASH_ALGORITHM_SHA_1 = 1;
-  KEY_IDENTIFIER_HASH_ALGORITHM_SHA_256 = 2;
-  KEY_IDENTIFIER_HASH_ALGORITHM_SHA_384 = 3;
-  KEY_IDENTIFIER_HASH_ALGORITHM_SHA_512 = 4;
+enum DayOfWeek {
+  DAY_OF_WEEK_UNSPECIFIED = 0;
+  DAY_OF_WEEK_SUNDAY = 1;
+  DAY_OF_WEEK_MONDAY = 2;
+  DAY_OF_WEEK_TUESDAY = 3;
+  DAY_OF_WEEK_WEDNESDAY = 4;
+  DAY_OF_WEEK_THURSDAY = 5;
+  DAY_OF_WEEK_FRIDAY = 6;
+  DAY_OF_WEEK_SATURDAY = 7;
+}
+
+enum ExpirationAdjustmentDirection {
+  EXPIRATION_ADJUSTMENT_DIRECTION_UNSPECIFIED = 0; // default to day-- (earlier)
+  EXPIRATION_ADJUSTMENT_DIRECTION_EARLIER = 1; // day--
+  EXPIRATION_ADJUSTMENT_DIRECTION_LATER = 2; // day++
 }
 
 message CertificateProfile {
@@ -35,12 +47,12 @@ message CertificateProfile {
     max_len: 64
   }];
   string description = 3;
-  CertificateProfileKind kind = 4 [(buf.validate.field).enum = {
+
+  CertificateProfilePurpose purpose = 4 [(buf.validate.field).enum = {
     not_in: [0]
     defined_only: true
   }];
 
-  // db details
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,
@@ -54,174 +66,77 @@ message CertificateProfile {
     (api.v1.go_native_import_path) = "time"
   ];
 
-  // signature algo/keys
-  repeated key.v1.KeyType available_key_types = 301 [(buf.validate.field).repeated = {
-    unique: true
-    items: {
-      enum: {
-        defined_only: true
-        not_in: [0]
-      }
-    }
-  }];
-  x509.v1.SignatureAlgorithm signature_algorithm = 302 [
-    (buf.validate.field).enum.defined_only = true,
-    (api.v1.go_native_type) = "x509.SignatureAlgorithm",
-    (api.v1.go_native_import_path) = "crypto/x509"
-  ]; // UNSPECIFIED == inherit from CA
-  repeated key.v1.KeyType available_alternative_key_types = 303 [(buf.validate.field).repeated = {
-    unique: true
-    items: {
-      enum: {
-        defined_only: true
-        not_in: [0]
-      }
-    }
-  }];
-  // TODO: alt sig algo not enforced (dependent on go fork)
-  x509.v1.SignatureAlgorithm alternative_signature_algorithm = 304 [
-    (buf.validate.field).enum.defined_only = true,
-    (api.v1.go_native_type) = "x509.SignatureAlgorithm",
-    (api.v1.go_native_import_path) = "crypto/x509"
-  ]; // when len(alt key types) == 0, alt sig algo is ignored, no alt sig, UNSPECIFIED == inherit from CA
-
   // validity
-  google.protobuf.Duration validity_duration = 305 [
+  // not_before must always be less than or equal to not_after
+  // not_after and not_before must fall within the CAs validity dates
+
+  // not_before = issuance time + validity_offset
+  // not_after = not_before + validity_duration
+  google.protobuf.Duration validity_duration = 301 [
     (api.v1.go_native_type) = "time.Duration",
     (api.v1.go_native_import_path) = "time"
   ];
-  google.protobuf.Timestamp validity_end_date = 306 [
+  // if both end date and duration are specified, shortest is what is issued
+  // not_before = issuance time + validity_offset
+  // not_after = validity_end_date
+  // for undefined validity, set end date to 9999-12-31 23:59:59+00:00
+  google.protobuf.Timestamp validity_end_date = 302 [
     (api.v1.go_native_type) = "time.Time",
     (api.v1.go_native_import_path) = "time"
-  ]; // if both end date and duration are specified, shortest is what is issued
-  google.protobuf.Duration validity_offset = 307 [
+  ];
+  // commonly negative, i.e. -10min
+  google.protobuf.Duration validity_offset = 303 [
     (api.v1.go_native_type) = "time.Duration",
     (api.v1.go_native_import_path) = "time"
-  ]; // default should be 10 min if unset, during fixed date, only notBefore is offset
-  repeated x509.v1.DayOfWeek forbidden_expiration_days = 308 [(buf.validate.field).repeated.unique = true]; // Days on which certificates should not expire
-  x509.v1.ExpirationAdjustmentDirection expiration_adjustment_direction = 309; // Direction of adjustment for forbidden expiry
+  ];
+  // allows requesting a specific notAfter date in issued
+  // if true, the validity profile value can be override with
+  // the start and end time specified when adding the EE, if allowed by EE profile
+  // or the requested validity from the certificate request, given the protocol supports it (CMP)
+  bool allow_validity_override = 304;
+  // given the validity is still within the acceptable range,
+  // during validity override, allow not_after to be before issuance time (now)
+  bool allow_expired_validity_end_date = 305;
 
-  // permissions
-  bool allow_validity_override = 401; // use validity from EE profile (profile takes precedence)
-  bool allow_csr_subject_dn_override = 402; // use DN from CSR
-  bool allow_csr_key_usage_override = 403; // use key usage from CSR
-  bool allow_csr_extension_override = 404;
-  bool oid_list_is_allowlist = 405; // when true, only OIDs in the list are overrideable, otherwise all extensions are overrideable EXCEPT those in the list
-  repeated string oid_list = 406 [(buf.validate.field).repeated = {
+  // Days on which credential should not expire
+  repeated DayOfWeek forbidden_expiration_days = 311 [(buf.validate.field).repeated = {
     unique: true
     items: {
-      string: {pattern: "^([0-2])((\\.0)|(\\.[1-9][0-9]*))*$"}
-    }
-  }];
-
-  // X.509v3 constraints
-  bool basic_constraints_valid = 501;
-  // bool is_ca = 1; // will be set by certificate profile kind
-  // max path length settings will be ignore in EndEntity certificate profile
-  int64 max_path_length = 502; // 0 == no max length, unless following bool is set
-  bool max_path_length_zero = 503; // flag (from go crypto/x509) that indicates that 0 (uninitialized) path length is actually intended
-  bool include_authority_key_identifier = 504;
-  KeyIdentifierHashAlgorithm aki_hash_algorithm = 505 [(buf.validate.field).enum.defined_only = true]; // takes first 20 bytes of hash for AKI
-  bool include_subject_key_identifier = 506; // kind != EE causes this to get locked to true
-  KeyIdentifierHashAlgorithm ski_hash_algorithm = 507 [(buf.validate.field).enum.defined_only = true]; // takes first 20 bytes of hash for SKI
-
-  // X.509v3 usages
-  bool use_key_usage = 601;
-  bool key_usage_critical = 602;
-  bool remove_encryption_usage_on_ecc_keys = 603; // remove key encipherment and data encipherment if using an ECC signing algo
-  repeated x509.v1.KeyUsage key_usages = 604 [
-    (api.v1.go_native_type) = "x509.KeyUsage",
-    (api.v1.go_native_import_path) = "crypto/x509",
-    (buf.validate.field).repeated = {
-      unique: true
-      items: {
-        enum: {
-          defined_only: true
-          not_in: [0]
-        }
+      enum: {
+        not_in: [0]
+        defined_only: true
       }
     }
-  ];
-  bool use_extended_key_usage = 605;
-  bool extended_key_usage_critical = 606;
-  repeated x509.v1.ExtKeyUsage extended_key_usages = 607 [
-    (api.v1.go_native_type) = "[]x509.ExtKeyUsage",
-    (api.v1.go_native_import_path) = "crypto/x509",
-    (buf.validate.field).repeated = {
-      unique: true
-      items: {
-        enum: {
-          defined_only: true
-          not_in: [0]
-        }
-      }
-    }
-  ];
+  }];
+  // Direction of adjustment for forbidden expiry
+  ExpirationAdjustmentDirection expiration_adjustment_direction = 312 [(buf.validate.field).enum.defined_only = true];
 
-  // X.509v3 names
-  bool use_subject_alternative_name = 701; // san is set during EE or CA creation
-  bool subject_alternative_name_critical = 702;
-  bool use_issuer_alternative_name = 703;
-  bool issuer_alternative_name_critical = 704;
-  bool use_name_constraints = 705; // name constraints are set during EE or CA creation
-  bool name_constraints_critical = 706;
+  // when true, certificates skip all accounting and the database
+  // best combined with short lived certificates that will not be revoked
+  bool ephemeral_certificate = 401;
 
-  // X.509v3 validation
-  bool use_crl_distribution_points = 801;
-  bool crl_distribution_points_critical = 802;
-  bool use_ca_defined_cdp = 803;
-  repeated string crl_distribution_point_uris = 804 [(buf.validate.field).repeated = {
-    unique: true
-    items: {
-      string: {uri: true}
-    }
-  }];
-  bool use_delta_crl_distribution_points = 805;
-  bool use_ca_defined_delta_cdp = 806;
-  repeated string delta_crl_distribution_point_uris = 807 [(buf.validate.field).repeated = {
-    unique: true
-    items: {
-      string: {uri: true}
-    }
-  }];
-  bool use_authority_information_access = 808;
-  bool use_ca_defined_ocsp_uri = 809;
-  repeated string ocsp_uris = 810 [(buf.validate.field).repeated = {
-    unique: true
-    items: {
-      string: {uri: true}
-    }
-  }];
-  bool use_ca_defined_issuer_uri = 811;
-  repeated string issuer_uris = 812 [(buf.validate.field).repeated = {
-    unique: true
-    items: {
-      string: {uri: true}
-    }
-  }];
-  bool ocsp_no_check = 813;
-
-  // other
-  string cn_prefix = 901 [(buf.validate.field).string.max_len = 64];
-  string cn_suffix = 902 [(buf.validate.field).string.max_len = 64];
-  repeated string custom_ext_key_usages = 903 [(buf.validate.field).repeated = {
+  // if this list is empty, it means all CAs are allowed
+  repeated string allowed_certificate_authority_ids = 501 [(buf.validate.field).repeated = {
     unique: true
     items: {
       string: {uuid: true}
     }
   }];
-  repeated string custom_certificate_exts = 904 [(buf.validate.field).repeated = {
+
+  // require approvals for any operations involving enrollment or in any way editing an end entity, which
+  // includes changing the status as a precursor for certificate renewal.
+  optional string add_edit_end_entity_approval_profile_id = 511 [(buf.validate.field).string.uuid = true];
+  // require approvals to revoke a CA or end entity
+  optional string revocation_approval_profile_id = 512 [(buf.validate.field).string.uuid = true];
+
+  repeated string publisher_ids = 521 [(buf.validate.field).repeated = {
     unique: true
     items: {
       string: {uuid: true}
     }
   }];
-  repeated string available_certificate_authorities = 905 [(buf.validate.field).repeated = {
-    unique: true
-    items: {
-      string: {uuid: true}
-    }
-  }];
-  optional string approval_profile_id = 906 [(buf.validate.field).string.uuid = true];
-  bool ephemeral = 907;
+
+  // this is a plugin provided ID such as "x509", "cvc", "ssh", etc.
+  string provider_id = 1001 [(buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"];
+  google.protobuf.Any provider_config = 1002;
 }

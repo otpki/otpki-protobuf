@@ -2,17 +2,86 @@ syntax = "proto3";
 package otpki.common.core.certificate_authority.v1;
 
 import "buf/validate/validate.proto";
-import "google/protobuf/duration.proto";
+import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
-import "otpki/common/x509/v1/certificate_template.proto";
-import "otpki/common/x509/v1/x509.proto";
 
-enum PartitionMode {
-  PARTITION_MODE_UNSPECIFIED = 0;
-  PARTITION_MODE_FIXED = 1;
-  PARTITION_MODE_MSCOMPAT = 2;
+// Describes what a provider-native artifact contains. "format" is intentionally
+// a string so certificate providers can add formats without changing core.
+// Examples:
+//   x509: "x509-der", "pkcs10-der"
+//   cvc:  "cvc-der", "cvc-request-der"
+//   ssh:  "openssh-public-key", "openssh-certificate"
+message CertificateAuthorityArtifact {
+  string format = 1;
+  bytes data = 2;
+}
+
+// LinkCertificate is a provider-neutral wrapper for a link (new-with-old)
+// certificate produced during CA renewal or rollover. The first artifact in
+// certificate_chain is the link certificate itself; remaining artifacts, if any,
+// are its issuer chain.
+message LinkCertificate {
+  // certificate id, set once persisted
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
+
+  // link certificate first, then issuer(s)
+  repeated CertificateAuthorityArtifact certificate_chain = 2;
+
+  // provider-specific metadata for the link certificate
+  google.protobuf.Any provider_metadata = 3;
+
+  // validity boundaries of the link certificate
+  optional google.protobuf.Timestamp not_before = 4;
+  optional google.protobuf.Timestamp not_after = 5;
+
+  // the link certificate's place in the CA lifecycle
+  uint64 generation = 6;
+
+  // key bound by the link certificate (the new CA key)
+  string key_id = 7 [(buf.validate.field).string.uuid = true];
+
+  // optional alternative key bound by the link certificate
+  optional string alternative_key_id = 8 [(buf.validate.field).string.uuid = true];
+}
+
+enum CertificateAuthorityStatus {
+  CERTIFICATE_AUTHORITY_STATUS_UNSPECIFIED = 0;
+
+  // the status of a CA without a keypair
+  // this may be useful for import/export operations, but not currently
+  // needed
+  //  CERTIFICATE_AUTHORITY_STATUS_UNINITIALIZED = 1;
+  // this CA does not have a certificate/chain yet. it is waiting
+  // for a CSR to be signed
+  CERTIFICATE_AUTHORITY_STATUS_WAITING_FOR_CERTIFICATE_RESPONSE = 2;
+  // this CA has a keypair and certificate chain
+  CERTIFICATE_AUTHORITY_STATUS_ACTIVE = 3;
+  // this CA has a keypair and certificate chain, but can temporarily not
+  // issue
+  CERTIFICATE_AUTHORITY_STATUS_OFFLINE = 4;
+  // the current CA certificate is expired
+  CERTIFICATE_AUTHORITY_STATUS_EXPIRED = 5;
+  // this CA is dead. you cannot recover from a revoked state
+  // and we do not honor updated revocation status.
+  CERTIFICATE_AUTHORITY_STATUS_REVOKED = 6;
+  // we do not do lifecycle or state tracking, the CA is external
+  CERTIFICATE_AUTHORITY_STATUS_EXTERNAL = 7;
+}
+
+enum CertificateAuthorityIssuer {
+  // unspecified defaults to self-signed
+  CERTIFICATE_AUTHORITY_ISSUER_UNSPECIFIED = 0;
+  // self-signed certs
+  CERTIFICATE_AUTHORITY_ISSUER_SELF_SIGNED = 1;
+  // signed by another OTPKI managed CA
+  CERTIFICATE_AUTHORITY_ISSUER_MANAGED_CA = 2;
+  // signed by an external CA
+  CERTIFICATE_AUTHORITY_ISSUER_EXTERNAL_CA = 3;
 }
 
 message CertificateAuthority {
@@ -21,46 +90,29 @@ message CertificateAuthority {
     (buf.validate.field).string.uuid = true,
     (openapi.v3.property).read_only = true
   ]; // not settable on creation
-  string name = 2;
+  string name = 2 [(buf.validate.field).string = {
+    min_len: 3
+    max_len: 64
+  }];
   string description = 3;
-  string key_id = 4 [(buf.validate.field).string.uuid = true];
-  optional string alternative_key_id = 5 [(buf.validate.field).string.uuid = true];
-  x509.v1.SignatureAlgorithm signature_algorithm = 6 [
-    (buf.validate.field).enum.defined_only = true,
-    (api.v1.go_native_type) = "x509.SignatureAlgorithm",
-    (api.v1.go_native_import_path) = "crypto/x509"
+  CertificateAuthorityStatus status = 4 [(openapi.v3.property).read_only = true];
+
+  // these are the currently active keys. key_id is not set for external
+  // (unmanaged) certificate authorities that are only used as trust anchors
+  optional string key_id = 101 [(buf.validate.field).string.uuid = true];
+  optional string alternative_key_id = 102 [(buf.validate.field).string.uuid = true];
+
+  // a new key staged for CA rollover. Presence means a rollover has been
+  // prepared. it is promoted to key by ActivateCertificateAuthorityRollover
+  optional string rollover_key_id = 103 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
   ];
-  x509.v1.SignatureAlgorithm alternative_signature_algorithm = 7 [
-    (buf.validate.field).enum.defined_only = true,
-    (api.v1.go_native_type) = "x509.SignatureAlgorithm",
-    (api.v1.go_native_import_path) = "crypto/x509"
+
+  optional string rollover_alternative_key_id = 104 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
   ];
-  x509.v1.CertificateTemplate certificate_template = 8;
-
-  // CRL Config
-  google.protobuf.Duration crl_validity_period = 9 [
-    (api.v1.go_native_type) = "time.Duration",
-    (api.v1.go_native_import_path) = "time"
-  ]; // validity period for crl, next update set to this update + this period
-  google.protobuf.Duration delta_crl_validity_period = 10 [
-    (api.v1.go_native_type) = "time.Duration",
-    (api.v1.go_native_import_path) = "time"
-  ]; // validity period for delta crl. they are not generated if this is set to 0, should be smaller than crl_expire_period.
-  google.protobuf.Duration crl_overlap_period = 11 [
-    (api.v1.go_native_type) = "time.Duration",
-    (api.v1.go_native_import_path) = "time"
-  ]; // maximum overlap of crl validity
-
-  // Validation
-  repeated string crl_distribution_point_uris = 21;
-  repeated string delta_crl_distribution_point_uris = 22;
-  repeated string ocsp_uris = 23;
-  repeated string issuer_uris = 24;
-
-  PartitionMode crl_partition_mode = 26;
-  int64 num_crl_partitions = 27 [(buf.validate.field).int64.gte = 0];
-  bool crl_include_expired = 28;
-  optional string approval_profile_id = 29 [(buf.validate.field).string.uuid = true];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
@@ -74,19 +126,67 @@ message CertificateAuthority {
     (api.v1.go_native_type) = "time.Time",
     (api.v1.go_native_import_path) = "time"
   ];
-}
 
-message CertificateAuthorityCertificate {
-  string id = 1 [(buf.validate.field).string.uuid = true];
-  string certificate_authority_id = 2 [(buf.validate.field).string.uuid = true];
-  bytes certificate = 3;
-  repeated bytes certificate_chain = 4;
-  optional string issued_certificate_id = 5 [(buf.validate.field).string.uuid = true];
-  string display_name = 6;
-}
+  // ca cert spec
+  CertificateAuthorityIssuer issuer = 301 [(buf.validate.field).enum.defined_only = true];
+  // parent CA ID when issuer mode == "managed ca"
+  optional string issuer_certificate_authority_id = 302 [(buf.validate.field).string.uuid = true];
+  // certificate profile used when CA cert is internally issued
+  string certificate_profile_id = 303 [(buf.validate.field).string.uuid = true];
 
-message CertificateAuthorityCertificateKey {
-  string ca_certificate_id = 1 [(buf.validate.field).string.uuid = true];
-  string key_id = 2 [(buf.validate.field).string.uuid = true];
-  bool alternative_key = 3;
+  // this affects children, not CA cert
+  // if true, the enrollment does not require or create persistent EE
+  bool ephemeral_end_entity = 401;
+  // if true, issued certificate and metadata is not persisted
+  bool ephemeral_certificate = 402;
+  // do not transition end entity into GENERATED state, do not
+  // reduce from its counter
+  bool leave_end_entity_unfinished = 403;
+
+  // require approvals for any operations involving enrollment or in any way editing an end entity, which
+  // includes changing the status as a precursor for certificate renewal. the certificate profile takes
+  // precedence, this is just an optional fallback
+  optional string add_edit_end_entity_approval_profile_id = 501 [(buf.validate.field).string.uuid = true];
+  // approval profile to use during CA or end entity revocation. the certificate profile takes precedence,
+  // this is just an optional fallback.
+  optional string revocation_approval_profile_id = 502 [(buf.validate.field).string.uuid = true];
+  // approval profile to use during CA activation state change
+  optional string ca_activation_approval_profile_id = 503 [(buf.validate.field).string.uuid = true];
+
+  repeated string publisher_ids = 511 [(buf.validate.field).repeated = {
+    unique: true
+    items: {
+      string: {uuid: true}
+    }
+  }];
+
+  // this is a string because it is informative and
+  // it is up to the provider to map their reason to a human
+  // readable string
+  string revocation_reason = 601;
+  optional google.protobuf.Timestamp revoked_at = 602;
+
+  // current active CA credential chain. provider-native CA cert first,
+  // issuer(s) after it, trust anchor last. for SSH this will normally contain a
+  // single provider-native CA public credential rather than an x509 chain.
+  repeated CertificateAuthorityArtifact certificate_chain = 701 [(openapi.v3.property).read_only = true];
+
+  // previous active CA leaf credentials, oldest first and newest last. this is
+  // deliberately close to EJBCA's renewedcertificatechain rather than storing
+  // a second complete authority object per renewal.
+  repeated CertificateAuthorityArtifact renewed_certificates = 702 [(openapi.v3.property).read_only = true];
+
+  // certificate/credential chain corresponding to rollover_key. empty until a
+  // rollover response has been received or internally issued. activation swaps
+  // this into certificate_chain and archives the old active leaf credential.
+  repeated CertificateAuthorityArtifact rollover_certificate_chain = 703 [(openapi.v3.property).read_only = true];
+
+  // link (new-with-old) certificates created during renewal or rollover.
+  // provider-neutral artifacts; the first chain artifact is the link certificate
+  // and the rest, if any, are its issuer chain.
+  repeated LinkCertificate link_certificates = 704 [(openapi.v3.property).read_only = true];
+
+  // this is a plugin provided ID such as "x509", "cvc", "ssh", etc.
+  string provider_id = 1001 [(buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"];
+  google.protobuf.Any provider_config = 1002;
 }

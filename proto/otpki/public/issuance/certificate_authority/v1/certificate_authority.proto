@@ -5,87 +5,40 @@ import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
 import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/core/certificate/v1/certificate.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/key/v1/key.proto";
 import "otpki/common/core/revocation_list/v1/revocation_list.proto";
 
 message CreateCertificateAuthorityRequest {
-  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // optional imported full chain. if supplied, the provider validates that the
+  // first credential belongs to certificate_authority.key and installs it as
+  // the active chain.
+  //
+  // if omitted:
+  //   SELF_SIGNED  -> issue locally when possible
+  //   MANAGED_CA   -> parent signs when online, otherwise return a CSR
+  //   EXTERNAL_CA  -> return a CSR and create the CA in WAITING state
+  repeated common.core.certificate_authority.v1.CertificateAuthorityArtifact certificate_chain = 2;
 }
 
 message CreateCertificateAuthorityResponse {
-  string id = 1 [(buf.validate.field).string.uuid = true];
-  string warning = 2;
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // set only when the CA could not be issued synchronously. the request is
+  // ephemeral and is not persisted by the CA service.
+  common.core.certificate_authority.v1.CertificateAuthorityArtifact signing_request = 2;
 }
-
-message ImportCertificateAuthorityRequest {
-  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
-  bytes certificate_pem = 2;
-  bytes p7b_certificate_chain = 3;
-  common.core.key.v1.Key key_config = 4 [(buf.validate.field).required = true];
-  bytes key_pem = 5 [(buf.validate.field).required = true];
-  string password = 6;
-}
-
-message ImportCertificateAuthorityResponse {
-  string id = 1 [(buf.validate.field).string.uuid = true];
-}
-
-message ImportCertificateAuthorityPKCS12Request {
-  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
-  common.core.key.v1.Key key_config = 2 [(buf.validate.field).required = true];
-  bytes p12 = 3 [(buf.validate.field).required = true];
-  string password = 4;
-}
-
-message ImportCertificateAuthorityPKCS12Response {
-  string id = 1 [(buf.validate.field).string.uuid = true];
-}
-
-message CreateCertificateAuthorityCSRRequest {
-  string ca_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
-  string key_id = 2 [(buf.validate.field).string.uuid = true];
-}
-
-message CreateCertificateAuthorityCSRResponse {
-  bytes certificate_request_der = 1;
-}
-
-message ImportCertificateAuthorityCertificateRequest {
-  string ca_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
-  bytes certificate_pem = 2;
-  bytes p7b_certificate_chain = 3;
-}
-
-message ImportCertificateAuthorityCertificateResponse {
-  string ca_certificate_id = 1 [(buf.validate.field).string.uuid = true];
-}
-
-message RenewCertificateAuthorityRequest {
-  string ca_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
-  optional string next_key_id = 2 [(buf.validate.field).string.uuid = true];
-  optional string next_alt_key_id = 3 [(buf.validate.field).string.uuid = true];
-}
-
-message RenewCertificateAuthorityResponse {}
-
-// ---- STORE ----
 
 message GetCertificateAuthorityRequest {
-  string ca_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
 }
 
 message GetCertificateAuthorityResponse {
@@ -109,23 +62,260 @@ message UpdateCertificateAuthorityRequest {
 message UpdateCertificateAuthorityResponse {}
 
 message DeleteCertificateAuthorityRequest {
-  string ca_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
 }
 
 message DeleteCertificateAuthorityResponse {}
 
-message GetCertificateAuthorityCertificatesRequest {
-  string ca_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
+message ActivateCertificateAuthorityRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
 }
 
-message GetCertificateAuthorityCertificatesResponse {
-  repeated common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificates = 1;
+message ActivateCertificateAuthorityResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // set when the CA has an activation approval profile and the request was
+  // queued for approval instead of being applied immediately.
+  optional string work_item_id = 2 [(buf.validate.field).string.uuid = true];
+}
+
+message DeactivateCertificateAuthorityRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+}
+
+message DeactivateCertificateAuthorityResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // set when the CA has an activation approval profile and the request was
+  // queued for approval instead of being applied immediately.
+  optional string work_item_id = 2 [(buf.validate.field).string.uuid = true];
+}
+
+message GenerateCertificateAuthoritySigningRequestRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+}
+
+message GenerateCertificateAuthoritySigningRequestResponse {
+  common.core.certificate_authority.v1.CertificateAuthorityArtifact signing_request = 1;
+}
+
+message ImportCertificateAuthorityCertificateRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+
+  // full provider-native chain. CA credential first, issuer(s) after it,
+  // trust anchor last.
+  repeated common.core.certificate_authority.v1.CertificateAuthorityArtifact certificate_chain = 2;
+
+  // ask the provider to create a new-with-old/link certificate for the
+  // imported CA certificate.
+  bool create_link_certificate = 3;
+}
+
+message ImportCertificateAuthorityCertificateResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // set when create_link_certificate was requested and the provider produced
+  // a link certificate.
+  common.core.certificate.v1.Certificate link_certificate = 2;
+}
+
+message ImportCertificateAuthorityRequest {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
+
+  // key configuration is only required when importing the private key as well;
+  // for external/unmanaged CAs that are used only as trust anchors, this can
+  // be omitted and only the certificate chain is provided.
+  common.core.key.v1.Key key_config = 2;
+
+  // Provider/key-service recognized format.
+  //
+  // Examples:
+  //   "pkcs8-pem"
+  //   "pkcs8-der"
+  //   "openssh-private-key"
+  //   "provider-native"
+  string key_format = 3;
+  bytes key_material = 4;
+
+  // Password protecting key_material, if applicable.
+  // input only, never persist or return this value.
+  optional string password = 5;
+
+  // CA credential first, issuer(s) after it, trust anchor last.
+  repeated common.core.certificate_authority.v1.CertificateAuthorityArtifact certificate_chain = 10;
+}
+
+message ImportCertificateAuthorityResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+}
+
+message ImportCertificateAuthorityBundleRequest {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1 [(buf.validate.field).required = true];
+
+  common.core.key.v1.Key key_config = 2 [(buf.validate.field).required = true];
+
+  // Examples:
+  //   "pkcs12"
+  //   "pem-bundle"
+  //   "provider-native"
+  string format = 3;
+
+  bytes data = 4 [(buf.validate.field).bytes.min_len = 1];
+
+  optional string password = 5;
+}
+
+message ImportCertificateAuthorityBundleResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+}
+
+// Renew uses the existing active key. Rekeying uses PrepareRollover followed
+// by ActivateRollover. keeping these separate makes lifecycle state obvious.
+message RenewCertificateAuthorityRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+
+  // attempt to suggest a cert start time
+  optional google.protobuf.Timestamp not_before = 2;
+
+  // ask the provider to create a new-with-old/link certificate. providers may
+  // force this behavior (CVC) or reject it if unsupported (SSH).
+  bool create_link_certificate = 3;
+}
+
+message RenewCertificateAuthorityResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // empty when renewal was completed synchronously. set when the issuer is
+  // external or a managed parent cannot sign synchronously. no pending request
+  // object is stored, re-run GenerateSigningRequest (RENEWAL) if it is lost.
+  common.core.certificate_authority.v1.CertificateAuthorityArtifact signing_request = 2;
+
+  // set when create_link_certificate was requested and the provider produced
+  // a link certificate synchronously.
+  common.core.certificate.v1.Certificate link_certificate = 3;
+}
+
+message PrepareCertificateAuthorityRolloverRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+
+  // keys are created/imported by the key service first, then referenced here.
+  string key = 2 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+  optional string alternative_key = 3 [(buf.validate.field).string.uuid = true];
+
+  // attempt to suggest a cert start time
+  optional google.protobuf.Timestamp not_before = 4;
+
+  // ask the provider to create a new-with-old/link certificate. providers may
+  // force this behavior (CVC) or reject it if unsupported (SSH).
+  bool create_link_certificate = 5;
+}
+
+message PrepareCertificateAuthorityRolloverResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // empty if the rollover certificate was created synchronously, otherwise
+  // this is the ephemeral request for rollover_key.
+  common.core.certificate_authority.v1.CertificateAuthorityArtifact signing_request = 2;
+
+  // set when create_link_certificate was requested and the provider produced
+  // a link certificate synchronously.
+  common.core.certificate.v1.Certificate link_certificate = 3;
+}
+
+message ActivateCertificateAuthorityRolloverRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+}
+
+message ActivateCertificateAuthorityRolloverResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+}
+
+message CancelCertificateAuthorityRolloverRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+}
+
+message CancelCertificateAuthorityRolloverResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+}
+
+message RevokeCertificateAuthorityRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+
+  // provider maps this stable/human input into whatever revocation semantics
+  // exist for the selected CA type.
+  string reason = 2 [(buf.validate.field).string.min_len = 1];
+
+  // defaults to now. providers that do not support backdated revocation may
+  // reject a supplied value.
+  optional google.protobuf.Timestamp revoked_at = 3;
+
+  // EJBCA-adjacent option, also revoke credentials issued by this CA. this is
+  // only possible for credentials that we actually issued/stored
+  bool revoke_issued_certificates = 4;
+}
+
+message RevokeCertificateAuthorityResponse {
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
+
+  // set when the CA has a revocation approval profile and the request was
+  // queued for approval instead of being applied immediately.
+  optional string work_item_id = 2 [(buf.validate.field).string.uuid = true];
+}
+
+message CreateRevocationListRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+  bool is_delta = 2;
+}
+
+message CreateRevocationListResponse {
+  repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
+}
+
+message GetCurrentRevocationListsRequest {
+  string id = 1 [(buf.validate.field) = {
+    required: true
+    string: {uuid: true}
+  }];
+}
+
+message GetCurrentRevocationListsResponse {
+  repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
 }
 
 message GetCertificateIssuerRequest {
@@ -136,27 +326,9 @@ message GetCertificateIssuerRequest {
 }
 
 message GetCertificateIssuerResponse {
-  common.core.certificate_authority.v1.CertificateAuthorityCertificate certificate_authority_certificate = 1;
-}
-
-message CreateRevocationListRequest {
-  string ca_id = 1 [
-    (buf.validate.field).string.uuid = true,
-    (buf.validate.field).required = true
-  ];
-  bool is_delta = 2;
-}
-
-message CreateRevocationListResponse {
-  repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
-}
-
-message GetCurrentRevocationListsRequest {
-  string ca_id = 1 [(buf.validate.field).string.uuid = true];
-}
-
-message GetCurrentRevocationListsResponse {
-  repeated otpki.common.core.revocation_list.v1.RevocationList revocation_lists = 1;
+  string id = 1 [(buf.validate.field).string.uuid = true];
+  common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 2;
+  common.core.certificate_authority.v1.CertificateAuthorityArtifact issuer = 3;
 }
 
 service CertificateAuthorityService {
@@ -166,38 +338,12 @@ service CertificateAuthorityService {
       body: "certificate_authority"
     };
   }
-  rpc ImportCertificateAuthority(ImportCertificateAuthorityRequest) returns (ImportCertificateAuthorityResponse) {
-    option (google.api.http) = {
-      post: "/v1/certificate-authorities/import"
-      body: "*"
-    };
-  }
-  rpc ImportCertificateAuthorityPKCS12(ImportCertificateAuthorityPKCS12Request) returns (ImportCertificateAuthorityPKCS12Response) {
-    option (google.api.http) = {
-      post: "/v1/certificate-authorities/import-p12"
-      body: "*"
-    };
-  }
-  rpc CreateCertificateAuthorityCSR(CreateCertificateAuthorityCSRRequest) returns (CreateCertificateAuthorityCSRResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/key/{key_id}/generate-certificate-request"};
-  }
-  rpc ImportCertificateAuthorityCertificate(ImportCertificateAuthorityCertificateRequest) returns (ImportCertificateAuthorityCertificateResponse) {
-    option (google.api.http) = {
-      post: "/v1/certificate-authorities/{ca_id}/import-certificate"
-      body: "*"
-    };
-  }
-  rpc RenewCertificateAuthority(RenewCertificateAuthorityRequest) returns (RenewCertificateAuthorityResponse) {
-    option (google.api.http) = {
-      post: "/v1/certificate-authorities/{ca_id}/renew"
-      body: "*"
-    };
-  }
+
   rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}"};
+    option (google.api.http) = {get: "/v1/certificate-authorities/{id}"};
   }
+
   rpc GetCertificateAuthorityList(GetCertificateAuthorityListRequest) returns (GetCertificateAuthorityListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
@@ -206,6 +352,7 @@ service CertificateAuthorityService {
       additional_bindings: {get: "/v1/certificate-authorities"}
     };
   }
+
   rpc UpdateCertificateAuthority(UpdateCertificateAuthorityRequest) returns (UpdateCertificateAuthorityResponse) {
     option (google.api.http) = {
       put: "/v1/certificate-authorities/{certificate_authority.id}"
@@ -216,27 +363,90 @@ service CertificateAuthorityService {
       }
     };
   }
+
   rpc DeleteCertificateAuthority(DeleteCertificateAuthorityRequest) returns (DeleteCertificateAuthorityResponse) {
-    option (google.api.http) = {delete: "/v1/certificate-authorities/{ca_id}"};
+    option (google.api.http) = {delete: "/v1/certificate-authorities/{id}"};
   }
-  rpc GetCertificateAuthorityCertificates(GetCertificateAuthorityCertificatesRequest) returns (GetCertificateAuthorityCertificatesResponse) {
+
+  rpc ActivateCertificateAuthority(ActivateCertificateAuthorityRequest) returns (ActivateCertificateAuthorityResponse) {
+    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/activate"};
+  }
+
+  rpc DeactivateCertificateAuthority(DeactivateCertificateAuthorityRequest) returns (DeactivateCertificateAuthorityResponse) {
+    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/deactivate"};
+  }
+
+  rpc GenerateCertificateAuthoritySigningRequest(GenerateCertificateAuthoritySigningRequestRequest) returns (GenerateCertificateAuthoritySigningRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{id}/generate-signing-request"
+      body: "*"
+    };
+  }
+
+  rpc ImportCertificateAuthorityCertificate(ImportCertificateAuthorityCertificateRequest) returns (ImportCertificateAuthorityCertificateResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{id}/import-certificate"
+      body: "*"
+    };
+  }
+
+  rpc ImportCertificateAuthority(ImportCertificateAuthorityRequest) returns (ImportCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/import"
+      body: "*"
+    };
+  }
+
+  rpc ImportCertificateAuthorityBundle(ImportCertificateAuthorityBundleRequest) returns (ImportCertificateAuthorityBundleResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/import-bundle"
+      body: "*"
+    };
+  }
+
+  rpc RenewCertificateAuthority(RenewCertificateAuthorityRequest) returns (RenewCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{id}/renew"
+      body: "*"
+    };
+  }
+
+  rpc PrepareCertificateAuthorityRollover(PrepareCertificateAuthorityRolloverRequest) returns (PrepareCertificateAuthorityRolloverResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{id}/prepare-rollover"
+      body: "*"
+    };
+  }
+
+  rpc ActivateCertificateAuthorityRollover(ActivateCertificateAuthorityRolloverRequest) returns (ActivateCertificateAuthorityRolloverResponse) {
+    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/activate-rollover"};
+  }
+
+  rpc CancelCertificateAuthorityRollover(CancelCertificateAuthorityRolloverRequest) returns (CancelCertificateAuthorityRolloverResponse) {
+    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/cancel-rollover"};
+  }
+
+  rpc RevokeCertificateAuthority(RevokeCertificateAuthorityRequest) returns (RevokeCertificateAuthorityResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{id}/revoke"
+      body: "*"
+    };
+  }
+
+  rpc CreateRevocationList(CreateRevocationListRequest) returns (CreateRevocationListResponse) {
+    option (google.api.http) = {
+      post: "/v1/certificate-authorities/{id}/generate-revocation-list"
+      body: "*"
+    };
+  }
+  rpc GetCurrentRevocationLists(GetCurrentRevocationListsRequest) returns (GetCurrentRevocationListsResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/certificates"};
+    option (google.api.http) = {get: "/v1/certificate-authorities/{id}/revocation-lists"};
   }
   // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
   // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
   rpc GetCertificateIssuer(GetCertificateIssuerRequest) returns (google.api.HttpBody) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {get: "/v1/certificate-authorities/certificates/{certificate_id}/certificate.cer"};
-  }
-  rpc CreateRevocationList(CreateRevocationListRequest) returns (CreateRevocationListResponse) {
-    option (google.api.http) = {
-      post: "/v1/certificate-authorities/{ca_id}/generate-revocation-list"
-      body: "*"
-    };
-  }
-  rpc GetCurrentRevocationLists(GetCurrentRevocationListsRequest) returns (GetCurrentRevocationListsResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/{ca_id}/revocation-lists"};
   }
 }

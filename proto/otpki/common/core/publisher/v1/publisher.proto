@@ -4,43 +4,19 @@ package otpki.common.core.publisher.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
-import "google/protobuf/descriptor.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
-
-/***
- * A Publisher is a generic publishing entity
- */
-
-enum PublisherTransport {
-  PUBLISHER_TRANSPORT_UNSPECIFIED = 0;
-  PUBLISHER_TRANSPORT_VS = 1;
-  PUBLISHER_TRANSPORT_HTTP = 2;
-  PUBLISHER_TRANSPORT_SCP = 3;
-  PUBLISHER_TRANSPORT_SMTP = 4;
-  PUBLISHER_TRANSPORT_LDAP = 5;
-}
+import "otpki/common/core/certificate/v1/certificate.proto";
+import "otpki/common/core/end_entity/v1/end_entity.proto";
+import "otpki/common/core/revocation_list/v1/revocation_list.proto";
 
 enum PublisherTriggerEvent {
   PUBLISHER_TRIGGER_EVENT_UNSPECIFIED = 0;
-  PUBLISHER_TRIGGER_EVENT_CERT_ISSUED = 1;
-  PUBLISHER_TRIGGER_EVENT_CERT_REVOKED = 2;
-  PUBLISHER_TRIGGER_EVENT_CRL_PUBLISHED = 3;
-  PUBLISHER_TRIGGER_EVENT_EE_CREDENTIALS = 4;
-}
-
-enum PublisherLookup {
-  PUBLISHER_LOOKUP_UNSPECIFIED = 0;
-  PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY = 1;
-  PUBLISHER_LOOKUP_CERTIFICATE_PROFILE = 2;
-  PUBLISHER_LOOKUP_KEY = 3;
-  PUBLISHER_LOOKUP_END_ENTITY_PROFILE = 4;
-  PUBLISHER_LOOKUP_END_ENTITY = 5;
-}
-
-extend google.protobuf.FieldOptions {
-  optional PublisherLookup lookup = 50010;
+  PUBLISHER_TRIGGER_EVENT_CERTIFICATE_ISSUED = 1; // can subscribe via cert profile or CA (prof takes precedence)
+  PUBLISHER_TRIGGER_EVENT_CERTIFICATE_REVOKED = 2; // can subscribe via cert profile or CA (prof takes precedence)
+  PUBLISHER_TRIGGER_EVENT_REVOCATION_LIST_PUBLISHED = 3; // can subscribe via cert profile or CA (prof takes precedence)
+  PUBLISHER_TRIGGER_EVENT_END_ENTITY_CREDENTIALS_ISSUED = 4; // can subscribe via end entity (can come from ee prof during enrollment)
 }
 
 message Publisher {
@@ -48,20 +24,18 @@ message Publisher {
   // not settable on creation
   string id = 1 [
     (buf.validate.field).string.uuid = true,
-    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (openapi.v3.property).read_only = true
   ];
   string name = 2 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.min_len = 3
   ];
   string description = 3;
-  PublisherTransport transport = 4 [(buf.validate.field).enum = {
-    defined_only: true
-    not_in: [0]
-  }];
-  google.protobuf.Any config = 5;
-  repeated PublisherTrigger triggers = 6 [(buf.validate.field).repeated.min_items = 1];
+  string publisher_type = 4 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"
+  ];
+  google.protobuf.Any config_data = 5;
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
@@ -77,44 +51,20 @@ message Publisher {
   ];
 }
 
-message PublisherTrigger {
-  PublisherTriggerEvent event = 1 [(buf.validate.field).enum = {
-    defined_only: true
-    not_in: [0]
-  }];
-  google.protobuf.Any config = 2;
+message RevocationListPublishedPayload {
+  revocation_list.v1.RevocationList revocation_list = 1;
 }
 
-message CrlTriggerConfig {
-  string ca_id = 1 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).string.uuid = true,
-    (lookup) = PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY
-  ];
+message CertificatePublishedPayload {
+  certificate.v1.Certificate certificate = 1;
 }
 
-message CertTriggerConfig {
-  oneof target {
-    option (buf.validate.oneof).required = true;
-    string ca_id = 1 [
-      (buf.validate.field).string.uuid = true,
-      (lookup) = PUBLISHER_LOOKUP_CERTIFICATE_AUTHORITY
-    ];
-    string certificate_profile_id = 2 [
-      (buf.validate.field).string.uuid = true,
-      (lookup) = PUBLISHER_LOOKUP_CERTIFICATE_PROFILE
-    ];
-  }
+message CertificateRevokedPayload {
+  certificate.v1.Certificate certificate = 1;
 }
 
-message PublisherTransportDescriptor {
-  PublisherTransport transport = 1;
-  string config_type_url = 2;
-  repeated PublisherTriggerSpec triggers = 3;
-}
-
-message PublisherTriggerSpec {
-  PublisherTriggerEvent event = 1;
-  string config_type_url = 2;
-  string payload_type_url = 3;
+message EndEntityCredentialsIssuedPayload {
+  end_entity.v1.EndEntity end_entity = 1;
+  // should be able to extract this from enrollment even if not stored in DB as cleartext
+  string password = 2; // envcrypto encrypted password
 }

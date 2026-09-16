@@ -53,14 +53,6 @@ message GetPublisherListResponse {
   common.api.query.v1.PaginationResponse pagination = 2;
 }
 
-// Transport meta
-
-message GetPublisherTransportsRequest {}
-
-message GetPublisherTransportsResponse {
-  repeated common.core.publisher.v1.PublisherTransportDescriptor transports = 1;
-}
-
 // -- Testing
 
 message TestPublisherConnectionRequest {
@@ -109,10 +101,6 @@ service PublisherService {
       body: "pagination"
       additional_bindings: {get: "/v1/publishers"}
     };
-  }
-  rpc GetPublisherTransports(GetPublisherTransportsRequest) returns (GetPublisherTransportsResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/publisher-transports"};
   }
   rpc TestPublisherConnection(TestPublisherConnectionRequest) returns (TestPublisherConnectionResponse) {
     option (google.api.http) = {

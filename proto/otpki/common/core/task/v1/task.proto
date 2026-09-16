@@ -2,18 +2,13 @@ syntax = "proto3";
 package otpki.common.core.task.v1;
 
 import "buf/validate/validate.proto";
+import "google/protobuf/any.proto";
 
 enum TaskType {
   TASK_TYPE_UNSPECIFIED = 0;
   TASK_TYPE_CRL_GEN = 1;
   TASK_TYPE_DELTA_CRL_GEN = 2;
-  TASK_TYPE_CRL_PUB = 3;
-  TASK_TYPE_CERT_PUB = 4;
-
-  TASK_TYPE_ON_CERT_ISSUE = 11;
-  TASK_TYPE_ON_CERT_REVOKE = 12;
-
-  TASK_TYPE_EE_CREDENTIALS_MAIL = 21;
+  TASK_TYPE_PUBLISH = 31;
 }
 
 message CrlGenTask {
@@ -24,33 +19,7 @@ message DeltaCrlGenTask {
 }
 
 // Publish Tasks
-message OnCertIssueTask {
+message PublishTask {
   string publisher_id = 1 [(buf.validate.field).string.uuid = true];
-  string ca_id = 2 [(buf.validate.field).string.uuid = true];
-  string certificate_profile_id = 3 [(buf.validate.field).string.uuid = true];
-  string certificate_id = 4 [(buf.validate.field).string.uuid = true];
-  bytes certificate_der = 5;
-}
-message OnCertRevokeTask {
-  string publisher_id = 1 [(buf.validate.field).string.uuid = true];
-  string ca_id = 2 [(buf.validate.field).string.uuid = true];
-  string certificate_profile_id = 3 [(buf.validate.field).string.uuid = true];
-  string certificate_id = 4 [(buf.validate.field).string.uuid = true];
-  bytes certificate_der = 5;
-}
-
-message CrlPubTask {
-  string publisher_id = 1 [(buf.validate.field).string.uuid = true];
-  string ca_id = 2 [(buf.validate.field).string.uuid = true];
-  string crl_id = 3 [(buf.validate.field).string.uuid = true];
-}
-
-// Notification Tasks
-message EndEntityCredentialsMailTask {
-  string end_entity_id = 1 [(buf.validate.field).string.uuid = true];
-  string publisher_id = 2 [(buf.validate.field).string.uuid = true];
-  string email = 3;
-  string login_id = 4;
-  bytes password_ciphertext = 5; // envcrypto-encrypted cleartext password
-  string end_entity_profile_id = 6 [(buf.validate.field).string.uuid = true];
+  google.protobuf.Any payload = 2; // this should be a well-defined payload type from core.publisher.v1
 }

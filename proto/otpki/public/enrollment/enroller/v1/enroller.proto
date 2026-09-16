@@ -3,59 +3,52 @@ package otpki.public.enrollment.enroller.v1;
 
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
-import "otpki/common/api/query/v1/query.proto";
+import "google/protobuf/field_mask.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
 import "otpki/common/core/enroller/v1/enroller.proto";
 
-message CreateEnrollmentAttemptRequest {
-  // Exactly one of enrollment_attempt.end_entity_id or end_entity must be set.
-  common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1 [(buf.validate.field).required = true];
+message EnrollRequest {
+  common.core.enroller.v1.EnrollmentRequest enrollment = 1 [(buf.validate.field).required = true];
+  // set when creating an ephemeral or persistent end entity inline, or (with
+  // end_entity_update_mask) to update fields on the end entity being enrolled
   common.core.end_entity.v1.EndEntity end_entity = 2;
+  string login_id = 3;
+  string password = 4;
+  // Field updates applied to an existing end entity before issuance. Requires
+  // end_entity plus enrollment.end_entity_id or login_id, and lists which
+  // end_entity fields to apply.
+  google.protobuf.FieldMask end_entity_update_mask = 5;
 }
 
-message CreateEnrollmentAttemptResponse {
-  common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
+message EnrollResponse {
+  common.core.enroller.v1.EnrollmentResponse enrollment = 1;
 }
 
-message CreateEnrollmentAttemptForExistingEndEntityRequest {
-  // Exactly one of enrollment_attempt.end_entity_id or login_id should be set.
-  common.core.enroller.v1.EnrollmentAttempt enrollment_attempt = 1 [(buf.validate.field).required = true];
+message GetEnrollmentStatusRequest {
+  // identify the pending/issued enrollment by end entity ID
+  string end_entity_id = 1 [(buf.validate.field).string.uuid = true];
+  // or by the end entity's login ID
   string login_id = 2;
-  string password = 3;
+  // or by the request ID that was returned when the enrollment was deferred
+  string request_id = 3 [(buf.validate.field).string.uuid = true];
+  // the end entity's password — required for end_entity_id/login_id lookups
+  // when the end entity has one set. Not needed for request_id lookups: the
+  // request ID is itself the deferred-enrollment credential.
+  string password = 4;
 }
 
-message CreateEnrollmentAttemptForExistingEndEntityResponse {
-  common.core.enroller.v1.EnrollmentResponse enrollment_response = 1;
-}
-
-message GetEnrollmentAttemptListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
-}
-
-message GetEnrollmentAttemptListResponse {
-  repeated common.core.enroller.v1.EnrollmentAttempt data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+message GetEnrollmentStatusResponse {
+  common.core.enroller.v1.EnrollmentResponse enrollment = 1;
 }
 
 service EnrollerService {
-  rpc CreateEnrollmentAttempt(CreateEnrollmentAttemptRequest) returns (CreateEnrollmentAttemptResponse) {
+  rpc Enroll(EnrollRequest) returns (EnrollResponse) {
     option (google.api.http) = {
       post: "/v1/enrollment"
       body: "*"
     };
   }
-  rpc CreateEnrollmentAttemptForExistingEndEntity(CreateEnrollmentAttemptForExistingEndEntityRequest) returns (CreateEnrollmentAttemptForExistingEndEntityResponse) {
-    option (google.api.http) = {
-      post: "/v1/enroll-existing"
-      body: "*"
-    };
-  }
-  rpc GetEnrollmentAttemptList(GetEnrollmentAttemptListRequest) returns (GetEnrollmentAttemptListResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {
-      put: "/v1/enrollment"
-      body: "pagination"
-      additional_bindings: {get: "/v1/enrollment"}
-    };
+  rpc GetEnrollmentStatus(GetEnrollmentStatusRequest) returns (GetEnrollmentStatusResponse) {
+    option (google.api.http) = {get: "/v1/enrollment/status"};
   }
 }

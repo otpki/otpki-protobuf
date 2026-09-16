@@ -237,20 +237,3 @@ message SANAttribute {
   string attribute_value = 2;
   string oid = 3; // oid only needed for SAN_ATTR_TYPE_OID
 }
-
-enum DayOfWeek {
-  DAY_OF_WEEK_UNSPECIFIED = 0;
-  DAY_OF_WEEK_SUNDAY = 1;
-  DAY_OF_WEEK_MONDAY = 2;
-  DAY_OF_WEEK_TUESDAY = 3;
-  DAY_OF_WEEK_WEDNESDAY = 4;
-  DAY_OF_WEEK_THURSDAY = 5;
-  DAY_OF_WEEK_FRIDAY = 6;
-  DAY_OF_WEEK_SATURDAY = 7;
-}
-
-enum ExpirationAdjustmentDirection {
-  EXPIRATION_ADJUSTMENT_DIRECTION_UNSPECIFIED = 0; // default to day-- (earlier)
-  EXPIRATION_ADJUSTMENT_DIRECTION_EARLIER = 1; // day--
-  EXPIRATION_ADJUSTMENT_DIRECTION_LATER = 2; // day++
-}
