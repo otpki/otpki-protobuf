@@ -223,8 +223,16 @@ message OIDCProvider {
     (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
     (buf.validate.field).string.uri = true
   ];
-  string redirect_url = 8 [(buf.validate.field).string.uri = true];
-  string post_logout_url = 9;
+  // absolute URI or root-relative path (e.g. /auth/callback). relative values
+  // resolve dynamically against the origin the login was initiated on
+  string redirect_url = 8 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.uri_ref = true
+  ];
+  string post_logout_url = 9 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.uri_ref = true
+  ];
   repeated string scopes = 10 [
     (buf.validate.field).repeated.unique = true,
     (buf.validate.field).repeated.items.string.min_len = 1
