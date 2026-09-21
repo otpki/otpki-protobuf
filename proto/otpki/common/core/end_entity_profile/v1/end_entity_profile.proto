@@ -71,7 +71,8 @@ message EndEntityProfile {
       string: {uuid: true}
     }
   }];
-  string default_certificate_profile_id = 402 [(buf.validate.field).string.uuid = true];
+  // if omitted, the end entity must specify a certificate profile itself
+  optional string default_certificate_profile_id = 402 [(buf.validate.field).string.uuid = true];
 
   repeated string available_certificate_authority_ids = 411 [(buf.validate.field).repeated = {
     unique: true
@@ -79,7 +80,8 @@ message EndEntityProfile {
       string: {uuid: true}
     }
   }];
-  string default_certificate_authority_id = 412 [(buf.validate.field).string.uuid = true];
+  // if omitted, the end entity must specify a certificate authority itself
+  optional string default_certificate_authority_id = 412 [(buf.validate.field).string.uuid = true];
 
   // if these publishers support "end entity notification", end entity events
   // that would result in notification are published here

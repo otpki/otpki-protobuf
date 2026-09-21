@@ -49,7 +49,10 @@ message EndEntity {
   string password_clear = 7 [(openapi.v3.property).read_only = true];
   string description = 8;
 
-  optional string end_entity_profile_id = 11 [(buf.validate.field).string.uuid = true];
+  string end_entity_profile_id = 11 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
   string certificate_profile_id = 12 [(buf.validate.field).string.uuid = true];
   string certificate_authority_id = 13 [(buf.validate.field).string.uuid = true];
 
