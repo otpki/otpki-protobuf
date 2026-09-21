@@ -8,6 +8,7 @@ enum TaskType {
   TASK_TYPE_UNSPECIFIED = 0;
   TASK_TYPE_CRL_GEN = 1;
   TASK_TYPE_DELTA_CRL_GEN = 2;
+  TASK_TYPE_USER_PASSWORD_EXPIRE = 3;
   TASK_TYPE_PUBLISH = 31;
 }
 
@@ -17,6 +18,11 @@ message CrlGenTask {
 message DeltaCrlGenTask {
   string ca_id = 1 [(buf.validate.field).string.uuid = true];
 }
+
+// UserPasswordExpireTask expires enrollment passwords on NEW end entities
+// whose end entity profile configures password_expiration and which have not
+// enrolled within that duration since they were last modified.
+message UserPasswordExpireTask {}
 
 // Publish Tasks
 message PublishTask {

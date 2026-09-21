@@ -56,6 +56,11 @@ message EndEntityProfile {
   ]; // can be unset, or >= 4
   int64 minimum_password_strength = 316; // floor((# chars in PW)*log2(# chars in charset))
   bool store_cleartext_password = 317; // this stores an encrypted copy of the password rather than just the hash
+  google.protobuf.Duration password_expiration = 318 [
+    (buf.validate.field).duration.gte = {seconds: 0},
+    (api.v1.go_native_type) = "time.Duration",
+    (api.v1.go_native_import_path) = "time"
+  ]; // if > 0, a NEW end entity that has not enrolled within this duration since it was last edited is set to GENERATED and can no longer enroll
   bool use_email = 321; // EE creation allows email to be specified
   bool email_required = 322; // EE creation requires email to be specified
   bool email_domain_modifiable = 323; // false == EE creation does not allow domain (@example.com) to be specified
