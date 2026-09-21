@@ -54,37 +54,37 @@ message GetCertificateProfileListResponse {
 service CertificateProfileService {
   rpc CreateCertificateProfile(CreateCertificateProfileRequest) returns (CreateCertificateProfileResponse) {
     option (google.api.http) = {
-      post: "/v1/profiles/certificate"
+      post: "/v1/issuance/profiles/certificate"
       body: "profile"
     };
   }
 
   rpc GetCertificateProfile(GetCertificateProfileRequest) returns (GetCertificateProfileResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/profiles/certificate/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/profiles/certificate/{id}"};
   }
 
   rpc UpdateCertificateProfile(UpdateCertificateProfileRequest) returns (UpdateCertificateProfileResponse) {
     option (google.api.http) = {
-      put: "/v1/profiles/certificate/{profile.id}"
+      put: "/v1/issuance/profiles/certificate/{profile.id}"
       body: "profile"
       additional_bindings: {
-        patch: "/v1/profiles/certificate/{profile.id}"
+        patch: "/v1/issuance/profiles/certificate/{profile.id}"
         body: "profile"
       }
     };
   }
 
   rpc DeleteCertificateProfile(DeleteCertificateProfileRequest) returns (DeleteCertificateProfileResponse) {
-    option (google.api.http) = {delete: "/v1/profiles/certificate/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/profiles/certificate/{id}"};
   }
 
   rpc GetCertificateProfileList(GetCertificateProfileListRequest) returns (GetCertificateProfileListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/profiles/certificate"
+      put: "/v1/issuance/profiles/certificate"
       body: "pagination"
-      additional_bindings: {get: "/v1/profiles/certificate"}
+      additional_bindings: {get: "/v1/issuance/profiles/certificate"}
     };
   }
 }

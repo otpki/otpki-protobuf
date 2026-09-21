@@ -35,25 +35,25 @@ service TaskLogService {
   rpc GetTaskLogList(GetTaskLogListRequest) returns (GetTaskLogListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/task-logs"
+      put: "/v1/issuance/task-logs"
       body: "pagination"
-      additional_bindings: {get: "/v1/task-logs"}
+      additional_bindings: {get: "/v1/issuance/task-logs"}
     };
   }
   rpc GetTaskQueues(GetTaskQueuesRequest) returns (GetTaskQueuesResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/task-logs/queues"
+      put: "/v1/issuance/task-logs/queues"
       body: "pagination"
-      additional_bindings: {get: "/v1/task-logs/queues"}
+      additional_bindings: {get: "/v1/issuance/task-logs/queues"}
     };
   }
   rpc GetTaskQueueInfo(GetTaskQueueInfoRequest) returns (GetTaskQueueInfoResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/task-logs/queue/info"
+      put: "/v1/issuance/task-logs/queue/info"
       body: "queue"
-      additional_bindings: {get: "/v1/task-logs/queue/info"}
+      additional_bindings: {get: "/v1/issuance/task-logs/queue/info"}
     };
   }
 }

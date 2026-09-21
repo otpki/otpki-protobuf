@@ -51,26 +51,26 @@ message GetPQKeyTypesResponse {
 service KeyService {
   rpc GetKey(GetKeyRequest) returns (GetKeyResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/keys/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/keys/{id}"};
   }
   rpc GetKeyList(GetKeyListRequest) returns (GetKeyListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/keys"
+      put: "/v1/issuance/keys"
       body: "pagination"
-      additional_bindings: {get: "/v1/keys"}
+      additional_bindings: {get: "/v1/issuance/keys"}
     };
   }
   rpc CreateKey(CreateKeyRequest) returns (CreateKeyResponse) {
     option (google.api.http) = {
-      post: "/v1/keys"
+      post: "/v1/issuance/keys"
       body: "key"
     };
   }
   rpc DeleteKey(DeleteKeyRequest) returns (DeleteKeyResponse) {
-    option (google.api.http) = {delete: "/v1/keys/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/keys/{id}"};
   }
   rpc GetPQKeyTypes(GetPQKeyTypesRequest) returns (GetPQKeyTypesResponse) {
-    option (google.api.http) = {get: "/v1/key-types/pq"};
+    option (google.api.http) = {get: "/v1/issuance/key-types/pq"};
   }
 }

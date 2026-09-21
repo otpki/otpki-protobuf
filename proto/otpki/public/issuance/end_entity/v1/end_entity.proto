@@ -87,43 +87,43 @@ message RevokeEndEntityResponse {
 service EndEntityService {
   rpc CreateEndEntity(CreateEndEntityRequest) returns (CreateEndEntityResponse) {
     option (google.api.http) = {
-      post: "/v1/end-entities"
+      post: "/v1/issuance/end-entities"
       body: "end_entity"
     };
   }
 
   rpc GetEndEntity(GetEndEntityRequest) returns (GetEndEntityResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/end-entities/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/end-entities/{id}"};
   }
   rpc GetEndEntityList(GetEndEntityListRequest) returns (GetEndEntityListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/end-entities"
+      put: "/v1/issuance/end-entities"
       body: "pagination"
-      additional_bindings: {get: "/v1/end-entities"}
+      additional_bindings: {get: "/v1/issuance/end-entities"}
     };
   }
   rpc DeleteEndEntity(DeleteEndEntityRequest) returns (DeleteEndEntityResponse) {
-    option (google.api.http) = {delete: "/v1/end-entities/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/end-entities/{id}"};
   }
   rpc UpdateEndEntity(UpdateEndEntityRequest) returns (UpdateEndEntityResponse) {
     option (google.api.http) = {
-      put: "/v1/end-entities/{end_entity.id}"
+      put: "/v1/issuance/end-entities/{end_entity.id}"
       body: "end_entity"
       additional_bindings: {
-        patch: "/v1/end-entities/{end_entity.id}"
+        patch: "/v1/issuance/end-entities/{end_entity.id}"
         body: "end_entity"
       }
     };
   }
   rpc GetEndEntityCertificates(GetEndEntityCertificatesRequest) returns (GetEndEntityCertificatesResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/end-entities/{end_entity_id}/certificates"};
+    option (google.api.http) = {get: "/v1/issuance/end-entities/{end_entity_id}/certificates"};
   }
   rpc RevokeEndEntity(RevokeEndEntityRequest) returns (RevokeEndEntityResponse) {
     option (google.api.http) = {
-      post: "/v1/end-entities/{end_entity_id}/revoke"
+      post: "/v1/issuance/end-entities/{end_entity_id}/revoke"
       body: "*"
     };
   }

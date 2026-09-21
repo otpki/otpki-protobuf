@@ -72,45 +72,45 @@ message TestPublisherPublishResponse {}
 service PublisherService {
   rpc CreatePublisher(CreatePublisherRequest) returns (CreatePublisherResponse) {
     option (google.api.http) = {
-      post: "/v1/publishers"
+      post: "/v1/issuance/publishers"
       body: "publisher"
     };
   }
   rpc GetPublisher(GetPublisherRequest) returns (GetPublisherResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/publishers/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/publishers/{id}"};
   }
   rpc UpdatePublisher(UpdatePublisherRequest) returns (UpdatePublisherResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/publishers/{publisher.id}"
+      put: "/v1/issuance/publishers/{publisher.id}"
       body: "publisher"
       additional_bindings: {
-        patch: "/v1/publishers/{publisher.id}"
+        patch: "/v1/issuance/publishers/{publisher.id}"
         body: "publisher"
       }
     };
   }
   rpc DeletePublisher(DeletePublisherRequest) returns (DeletePublisherResponse) {
-    option (google.api.http) = {delete: "/v1/publishers/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/publishers/{id}"};
   }
   rpc GetPublisherList(GetPublisherListRequest) returns (GetPublisherListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/publishers"
+      put: "/v1/issuance/publishers"
       body: "pagination"
-      additional_bindings: {get: "/v1/publishers"}
+      additional_bindings: {get: "/v1/issuance/publishers"}
     };
   }
   rpc TestPublisherConnection(TestPublisherConnectionRequest) returns (TestPublisherConnectionResponse) {
     option (google.api.http) = {
-      post: "/v1/publishers/test"
+      post: "/v1/issuance/publishers/test"
       body: "publisher"
     };
   }
   rpc TestPublisherPublish(TestPublisherPublishRequest) returns (TestPublisherPublishResponse) {
     option (google.api.http) = {
-      post: "/v1/publishers/test-publish"
+      post: "/v1/issuance/publishers/test-publish"
       body: "*"
     };
   }

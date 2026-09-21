@@ -24,7 +24,7 @@ message CRLDistributionPointRequest {
 service RevocationListService {
   rpc GetRevocationList(GetRevocationListRequest) returns (GetRevocationListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/revocation-lists/{id}"};
+    option (google.api.http) = {get: "/v1/validation/revocation-lists/{id}"};
   }
 
   // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME

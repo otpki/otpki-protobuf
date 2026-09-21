@@ -78,9 +78,9 @@ service ImporterService {
   // If Pagination is empty all data will be exported.
   rpc ExportData(ExportDataRequest) returns (ExportDataResponse) {
     option (google.api.http) = {
-      put: "/v1/importer/export"
+      put: "/v1/issuance/importer/export"
       body: "export_pagination"
-      additional_bindings: {get: "/v1/importer/export"}
+      additional_bindings: {get: "/v1/issuance/importer/export"}
     };
   }
   // The ImportData route takes a message in the format of an ExportData message.
@@ -89,35 +89,35 @@ service ImporterService {
   // existing entities on the target system.
   rpc ImportData(ImportDataRequest) returns (ImportDataResponse) {
     option (google.api.http) = {
-      post: "/v1/importer/import"
+      post: "/v1/issuance/importer/import"
       body: "data"
     };
   }
   rpc ExportDataRaw(ExportDataRawRequest) returns (ExportDataRawResponse) {
     option (google.api.http) = {
-      put: "/v1/importer/export/raw"
+      put: "/v1/issuance/importer/export/raw"
       body: "export_pagination"
-      additional_bindings: {get: "/v1/importer/export/raw"}
+      additional_bindings: {get: "/v1/issuance/importer/export/raw"}
     };
   }
   rpc ImportDataRaw(ImportDataRawRequest) returns (ImportDataRawResponse) {
     option (google.api.http) = {
-      post: "/v1/importer/import/raw"
+      post: "/v1/issuance/importer/import/raw"
       body: "data"
     };
   }
   rpc ExportDataStream(ExportDataStreamRequest) returns (stream ExportDataStreamResponse) {
     option (google.api.http) = {
-      put: "/v1/importer/export/stream"
+      put: "/v1/issuance/importer/export/stream"
       body: "export_pagination"
-      additional_bindings: {get: "/v1/importer/export/stream"}
+      additional_bindings: {get: "/v1/issuance/importer/export/stream"}
     };
   }
   rpc ExportDataRawStream(ExportDataRawStreamRequest) returns (stream ExportDataRawStreamResponse) {
     option (google.api.http) = {
-      put: "/v1/importer/export/raw/stream"
+      put: "/v1/issuance/importer/export/raw/stream"
       body: "export_pagination"
-      additional_bindings: {get: "/v1/importer/export/raw/stream"}
+      additional_bindings: {get: "/v1/issuance/importer/export/raw/stream"}
     };
   }
   rpc ImportDataStream(stream ImportDataStreamRequest) returns (ImportDataStreamResponse);

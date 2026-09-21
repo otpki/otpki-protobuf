@@ -334,119 +334,119 @@ message GetCertificateIssuerResponse {
 service CertificateAuthorityService {
   rpc CreateCertificateAuthority(CreateCertificateAuthorityRequest) returns (CreateCertificateAuthorityResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities"
+      post: "/v1/issuance/certificate-authorities"
       body: "certificate_authority"
     };
   }
 
   rpc GetCertificateAuthority(GetCertificateAuthorityRequest) returns (GetCertificateAuthorityResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/certificate-authorities/{id}"};
   }
 
   rpc GetCertificateAuthorityList(GetCertificateAuthorityListRequest) returns (GetCertificateAuthorityListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/certificate-authorities"
+      put: "/v1/issuance/certificate-authorities"
       body: "pagination"
-      additional_bindings: {get: "/v1/certificate-authorities"}
+      additional_bindings: {get: "/v1/issuance/certificate-authorities"}
     };
   }
 
   rpc UpdateCertificateAuthority(UpdateCertificateAuthorityRequest) returns (UpdateCertificateAuthorityResponse) {
     option (google.api.http) = {
-      put: "/v1/certificate-authorities/{certificate_authority.id}"
+      put: "/v1/issuance/certificate-authorities/{certificate_authority.id}"
       body: "certificate_authority"
       additional_bindings: {
-        patch: "/v1/certificate-authorities/{certificate_authority.id}"
+        patch: "/v1/issuance/certificate-authorities/{certificate_authority.id}"
         body: "certificate_authority"
       }
     };
   }
 
   rpc DeleteCertificateAuthority(DeleteCertificateAuthorityRequest) returns (DeleteCertificateAuthorityResponse) {
-    option (google.api.http) = {delete: "/v1/certificate-authorities/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/certificate-authorities/{id}"};
   }
 
   rpc ActivateCertificateAuthority(ActivateCertificateAuthorityRequest) returns (ActivateCertificateAuthorityResponse) {
-    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/activate"};
+    option (google.api.http) = {post: "/v1/issuance/certificate-authorities/{id}/activate"};
   }
 
   rpc DeactivateCertificateAuthority(DeactivateCertificateAuthorityRequest) returns (DeactivateCertificateAuthorityResponse) {
-    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/deactivate"};
+    option (google.api.http) = {post: "/v1/issuance/certificate-authorities/{id}/deactivate"};
   }
 
   rpc GenerateCertificateAuthoritySigningRequest(GenerateCertificateAuthoritySigningRequestRequest) returns (GenerateCertificateAuthoritySigningRequestResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{id}/generate-signing-request"
+      post: "/v1/issuance/certificate-authorities/{id}/generate-signing-request"
       body: "*"
     };
   }
 
   rpc ImportCertificateAuthorityCertificate(ImportCertificateAuthorityCertificateRequest) returns (ImportCertificateAuthorityCertificateResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{id}/import-certificate"
+      post: "/v1/issuance/certificate-authorities/{id}/import-certificate"
       body: "*"
     };
   }
 
   rpc ImportCertificateAuthority(ImportCertificateAuthorityRequest) returns (ImportCertificateAuthorityResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/import"
+      post: "/v1/issuance/certificate-authorities/import"
       body: "*"
     };
   }
 
   rpc ImportCertificateAuthorityBundle(ImportCertificateAuthorityBundleRequest) returns (ImportCertificateAuthorityBundleResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/import-bundle"
+      post: "/v1/issuance/certificate-authorities/import-bundle"
       body: "*"
     };
   }
 
   rpc RenewCertificateAuthority(RenewCertificateAuthorityRequest) returns (RenewCertificateAuthorityResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{id}/renew"
+      post: "/v1/issuance/certificate-authorities/{id}/renew"
       body: "*"
     };
   }
 
   rpc PrepareCertificateAuthorityRollover(PrepareCertificateAuthorityRolloverRequest) returns (PrepareCertificateAuthorityRolloverResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{id}/prepare-rollover"
+      post: "/v1/issuance/certificate-authorities/{id}/prepare-rollover"
       body: "*"
     };
   }
 
   rpc ActivateCertificateAuthorityRollover(ActivateCertificateAuthorityRolloverRequest) returns (ActivateCertificateAuthorityRolloverResponse) {
-    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/activate-rollover"};
+    option (google.api.http) = {post: "/v1/issuance/certificate-authorities/{id}/activate-rollover"};
   }
 
   rpc CancelCertificateAuthorityRollover(CancelCertificateAuthorityRolloverRequest) returns (CancelCertificateAuthorityRolloverResponse) {
-    option (google.api.http) = {post: "/v1/certificate-authorities/{id}/cancel-rollover"};
+    option (google.api.http) = {post: "/v1/issuance/certificate-authorities/{id}/cancel-rollover"};
   }
 
   rpc RevokeCertificateAuthority(RevokeCertificateAuthorityRequest) returns (RevokeCertificateAuthorityResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{id}/revoke"
+      post: "/v1/issuance/certificate-authorities/{id}/revoke"
       body: "*"
     };
   }
 
   rpc CreateRevocationList(CreateRevocationListRequest) returns (CreateRevocationListResponse) {
     option (google.api.http) = {
-      post: "/v1/certificate-authorities/{id}/generate-revocation-list"
+      post: "/v1/issuance/certificate-authorities/{id}/generate-revocation-list"
       body: "*"
     };
   }
   rpc GetCurrentRevocationLists(GetCurrentRevocationListsRequest) returns (GetCurrentRevocationListsResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/{id}/revocation-lists"};
+    option (google.api.http) = {get: "/v1/issuance/certificate-authorities/{id}/revocation-lists"};
   }
   // buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
   // buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
   rpc GetCertificateIssuer(GetCertificateIssuerRequest) returns (google.api.HttpBody) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificate-authorities/certificates/{certificate_id}/certificate.cer"};
+    option (google.api.http) = {get: "/v1/issuance/certificate-authorities/certificates/{certificate_id}/certificate.cer"};
   }
 }

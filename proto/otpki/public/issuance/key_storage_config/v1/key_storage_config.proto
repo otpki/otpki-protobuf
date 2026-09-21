@@ -80,46 +80,46 @@ message DeactivateKeyStorageConfigResponse {}
 service KeyStorageConfigService {
   rpc CreateKeyStorageConfig(CreateKeyStorageConfigRequest) returns (CreateKeyStorageConfigResponse) {
     option (google.api.http) = {
-      post: "/v1/key-storage-configs"
+      post: "/v1/issuance/key-storage-configs"
       body: "config"
     };
   }
   rpc GetKeyStorageConfig(GetKeyStorageConfigRequest) returns (GetKeyStorageConfigResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/key-storage-configs/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/key-storage-configs/{id}"};
   }
   rpc UpdateKeyStorageConfig(UpdateKeyStorageConfigRequest) returns (UpdateKeyStorageConfigResponse) {
     option (google.api.http) = {
-      put: "/v1/key-storage-configs/{config.id}"
+      put: "/v1/issuance/key-storage-configs/{config.id}"
       body: "config"
     };
   }
   rpc DeleteKeyStorageConfig(DeleteKeyStorageConfigRequest) returns (DeleteKeyStorageConfigResponse) {
-    option (google.api.http) = {delete: "/v1/key-storage-configs/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/key-storage-configs/{id}"};
   }
   rpc GetKeyStorageConfigList(GetKeyStorageConfigListRequest) returns (GetKeyStorageConfigListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/key-storage-configs"
+      put: "/v1/issuance/key-storage-configs"
       body: "pagination"
-      additional_bindings: {get: "/v1/key-storage-configs"}
+      additional_bindings: {get: "/v1/issuance/key-storage-configs"}
     };
   }
   rpc SendKeyDriverMessage(SendKeyDriverMessageRequest) returns (SendKeyDriverMessageResponse) {
     option (google.api.http) = {
-      post: "/v1/key-storage-configs/{message.key_storage_config_id}/message"
+      post: "/v1/issuance/key-storage-configs/{message.key_storage_config_id}/message"
       body: "message.message"
     };
   }
   rpc ActivateKeyStorageConfig(ActivateKeyStorageConfigRequest) returns (ActivateKeyStorageConfigResponse) {
     option (google.api.http) = {
-      post: "/v1/key-storage-configs/{activation.key_storage_config_id}/activate"
+      post: "/v1/issuance/key-storage-configs/{activation.key_storage_config_id}/activate"
       body: "activation"
     };
   }
   rpc DeactivateKeyStorageConfig(DeactivateKeyStorageConfigRequest) returns (DeactivateKeyStorageConfigResponse) {
     option (google.api.http) = {
-      post: "/v1/key-storage-configs/{key_storage_config_id}/deactivate"
+      post: "/v1/issuance/key-storage-configs/{key_storage_config_id}/deactivate"
       body: "*"
     };
   }

@@ -77,6 +77,6 @@ message GetDashboardMetricsResponse {
 service MetricsService {
   rpc GetDashboardMetrics(GetDashboardMetricsRequest) returns (GetDashboardMetricsResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/metrics/dashboard"};
+    option (google.api.http) = {get: "/v1/issuance/metrics/dashboard"};
   }
 }

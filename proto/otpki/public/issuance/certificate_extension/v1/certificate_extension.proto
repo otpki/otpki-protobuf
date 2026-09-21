@@ -54,33 +54,33 @@ message GetCustomCertificateExtensionListResponse {
 service CertificateExtensionService {
   rpc CreateCustomCertificateExtension(CreateCustomCertificateExtensionRequest) returns (CreateCustomCertificateExtensionResponse) {
     option (google.api.http) = {
-      post: "/v1/custom-extensions"
+      post: "/v1/issuance/custom-extensions"
       body: "extension"
     };
   }
   rpc GetCustomCertificateExtension(GetCustomCertificateExtensionRequest) returns (GetCustomCertificateExtensionResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/custom-extensions/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/custom-extensions/{id}"};
   }
   rpc UpdateCustomCertificateExtension(UpdateCustomCertificateExtensionRequest) returns (UpdateCustomCertificateExtensionResponse) {
     option (google.api.http) = {
-      put: "/v1/custom-extensions/{extension.id}"
+      put: "/v1/issuance/custom-extensions/{extension.id}"
       body: "extension"
       additional_bindings: {
-        patch: "/v1/custom-extensions/{extension.id}"
+        patch: "/v1/issuance/custom-extensions/{extension.id}"
         body: "extension"
       }
     };
   }
   rpc DeleteCustomCertificateExtension(DeleteCustomCertificateExtensionRequest) returns (DeleteCustomCertificateExtensionResponse) {
-    option (google.api.http) = {delete: "/v1/custom-extensions/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/custom-extensions/{id}"};
   }
   rpc GetCustomCertificateExtensionList(GetCustomCertificateExtensionListRequest) returns (GetCustomCertificateExtensionListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/custom-extensions"
+      put: "/v1/issuance/custom-extensions"
       body: "pagination"
-      additional_bindings: {get: "/v1/custom-extensions"}
+      additional_bindings: {get: "/v1/issuance/custom-extensions"}
     };
   }
 }

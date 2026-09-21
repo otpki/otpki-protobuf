@@ -54,37 +54,37 @@ message GetEndEntityProfileListResponse {
 service EndEntityProfileService {
   rpc CreateEndEntityProfile(CreateEndEntityProfileRequest) returns (CreateEndEntityProfileResponse) {
     option (google.api.http) = {
-      post: "/v1/profiles/end-entity"
+      post: "/v1/issuance/profiles/end-entity"
       body: "profile"
     };
   }
 
   rpc GetEndEntityProfile(GetEndEntityProfileRequest) returns (GetEndEntityProfileResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/profiles/end-entity/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/profiles/end-entity/{id}"};
   }
 
   rpc UpdateEndEntityProfile(UpdateEndEntityProfileRequest) returns (UpdateEndEntityProfileResponse) {
     option (google.api.http) = {
-      put: "/v1/profiles/end-entity/{profile.id}"
+      put: "/v1/issuance/profiles/end-entity/{profile.id}"
       body: "profile"
       additional_bindings: {
-        patch: "/v1/profiles/end-entity/{profile.id}"
+        patch: "/v1/issuance/profiles/end-entity/{profile.id}"
         body: "profile"
       }
     };
   }
 
   rpc DeleteEndEntityProfile(DeleteEndEntityProfileRequest) returns (DeleteEndEntityProfileResponse) {
-    option (google.api.http) = {delete: "/v1/profiles/end-entity/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/profiles/end-entity/{id}"};
   }
 
   rpc GetEndEntityProfileList(GetEndEntityProfileListRequest) returns (GetEndEntityProfileListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/profiles/end-entity"
+      put: "/v1/issuance/profiles/end-entity"
       body: "pagination"
-      additional_bindings: {get: "/v1/profiles/end-entity"}
+      additional_bindings: {get: "/v1/issuance/profiles/end-entity"}
     };
   }
 }

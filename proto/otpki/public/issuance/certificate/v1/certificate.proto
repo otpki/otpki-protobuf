@@ -67,29 +67,29 @@ message RevokeCertificateBySerialResponse {}
 service CertificateService {
   rpc GetCertificate(GetCertificateRequest) returns (GetCertificateResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificates/{certificate_id}"};
+    option (google.api.http) = {get: "/v1/issuance/certificates/{certificate_id}"};
   }
   rpc GetCertificateBySerialNumber(GetCertificateBySerialNumberRequest) returns (GetCertificateBySerialNumberResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/certificates/by-serial-number/{serial_number}"};
+    option (google.api.http) = {get: "/v1/issuance/certificates/by-serial-number/{serial_number}"};
   }
   rpc GetCertificateList(GetCertificateListRequest) returns (GetCertificateListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/certificates"
+      put: "/v1/issuance/certificates"
       body: "pagination"
-      additional_bindings: {get: "/v1/certificates"}
+      additional_bindings: {get: "/v1/issuance/certificates"}
     };
   }
   rpc RevokeCertificates(RevokeCertificatesRequest) returns (RevokeCertificatesResponse) {
     option (google.api.http) = {
-      post: "/v1/certificates/revoke"
+      post: "/v1/issuance/certificates/revoke"
       body: "*"
     };
   }
   rpc RevokeCertificateBySerial(RevokeCertificateBySerialRequest) returns (RevokeCertificateBySerialResponse) {
     option (google.api.http) = {
-      post: "/v1/certificates/by-serial-number/{certificate_serial_number}/revoke"
+      post: "/v1/issuance/certificates/by-serial-number/{certificate_serial_number}/revoke"
       body: "*"
     };
   }

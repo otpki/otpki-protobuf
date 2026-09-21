@@ -54,33 +54,33 @@ message GetCustomExtKeyUsageListResponse {
 service ExtendedKeyUsageService {
   rpc CreateCustomExtKeyUsage(CreateCustomExtKeyUsageRequest) returns (CreateCustomExtKeyUsageResponse) {
     option (google.api.http) = {
-      post: "/v1/custom-ext-key-usages"
+      post: "/v1/issuance/custom-ext-key-usages"
       body: "key_usage"
     };
   }
   rpc GetCustomExtKeyUsage(GetCustomExtKeyUsageRequest) returns (GetCustomExtKeyUsageResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/custom-ext-key-usages/{id}"};
+    option (google.api.http) = {get: "/v1/issuance/custom-ext-key-usages/{id}"};
   }
   rpc UpdateCustomExtKeyUsage(UpdateCustomExtKeyUsageRequest) returns (UpdateCustomExtKeyUsageResponse) {
     option (google.api.http) = {
-      put: "/v1/custom-ext-key-usages/{key_usage.id}"
+      put: "/v1/issuance/custom-ext-key-usages/{key_usage.id}"
       body: "key_usage"
       additional_bindings: {
-        patch: "/v1/custom-ext-key-usages/{key_usage.id}"
+        patch: "/v1/issuance/custom-ext-key-usages/{key_usage.id}"
         body: "key_usage"
       }
     };
   }
   rpc DeleteCustomExtKeyUsage(DeleteCustomExtKeyUsageRequest) returns (DeleteCustomExtKeyUsageResponse) {
-    option (google.api.http) = {delete: "/v1/custom-ext-key-usages/{id}"};
+    option (google.api.http) = {delete: "/v1/issuance/custom-ext-key-usages/{id}"};
   }
   rpc GetCustomExtKeyUsageList(GetCustomExtKeyUsageListRequest) returns (GetCustomExtKeyUsageListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
-      put: "/v1/custom-ext-key-usages"
+      put: "/v1/issuance/custom-ext-key-usages"
       body: "pagination"
-      additional_bindings: {get: "/v1/custom-ext-key-usages"}
+      additional_bindings: {get: "/v1/issuance/custom-ext-key-usages"}
     };
   }
 }
