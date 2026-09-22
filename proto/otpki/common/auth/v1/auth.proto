@@ -81,6 +81,17 @@ message Group {
   ];
 }
 
+// RoleSource records how a role came to exist. It is managed internally and
+// cannot be set through the public API.
+enum RoleSource {
+  // ROLE_SOURCE_UNSPECIFIED is a manually created role; every field is mutable.
+  ROLE_SOURCE_UNSPECIFIED = 0;
+  // ROLE_SOURCE_OIDC is a role auto-provisioned by the OIDC login flow. The
+  // name is the claim-mapping key and cannot be changed, but the description
+  // and permissions remain mutable, and the role may be deleted manually.
+  ROLE_SOURCE_OIDC = 1;
+}
+
 message Role {
   option (api.v1.generate_native) = true;
   string id = 1 [
@@ -90,6 +101,7 @@ message Role {
   string name = 2 [(buf.validate.field).string.min_len = 3];
   string description = 3;
   bool system_role = 4;
+  RoleSource source = 5 [(openapi.v3.property).read_only = true];
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,
