@@ -84,6 +84,57 @@ message RevokeEndEntityResponse {
   optional string work_item_id = 1 [(buf.validate.field).string.uuid = true];
 }
 
+message MarkEndEntityForKeyRecoveryRequest {
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message MarkEndEntityForKeyRecoveryResponse {
+  // set when marking was queued for approval per the certificate profile or
+  // CA key recovery approval profile.
+  optional string work_item_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message UnmarkEndEntityForKeyRecoveryRequest {
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message UnmarkEndEntityForKeyRecoveryResponse {
+  // set when unmarking was queued for approval per the certificate profile
+  // or CA key recovery approval profile.
+  optional string work_item_id = 1 [(buf.validate.field).string.uuid = true];
+}
+
+message GetEndEntityKeyRecoveryDataListRequest {
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message GetEndEntityKeyRecoveryDataListResponse {
+  // archived keys, newest first. key material is never populated here.
+  repeated common.core.end_entity.v1.EndEntityKeyRecoveryData data = 1;
+}
+
+message DeleteEndEntityKeyRecoveryDataRequest {
+  string end_entity_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  string id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteEndEntityKeyRecoveryDataResponse {}
+
 service EndEntityService {
   rpc CreateEndEntity(CreateEndEntityRequest) returns (CreateEndEntityResponse) {
     option (google.api.http) = {
@@ -126,5 +177,21 @@ service EndEntityService {
       post: "/v1/issuance/end-entities/{end_entity_id}/revoke"
       body: "*"
     };
+  }
+  rpc MarkEndEntityForKeyRecovery(MarkEndEntityForKeyRecoveryRequest) returns (MarkEndEntityForKeyRecoveryResponse) {
+    option (google.api.http) = {
+      post: "/v1/issuance/end-entities/{end_entity_id}/key-recovery"
+      body: "*"
+    };
+  }
+  rpc UnmarkEndEntityForKeyRecovery(UnmarkEndEntityForKeyRecoveryRequest) returns (UnmarkEndEntityForKeyRecoveryResponse) {
+    option (google.api.http) = {delete: "/v1/issuance/end-entities/{end_entity_id}/key-recovery"};
+  }
+  rpc GetEndEntityKeyRecoveryDataList(GetEndEntityKeyRecoveryDataListRequest) returns (GetEndEntityKeyRecoveryDataListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/issuance/end-entities/{end_entity_id}/key-recovery-data"};
+  }
+  rpc DeleteEndEntityKeyRecoveryData(DeleteEndEntityKeyRecoveryDataRequest) returns (DeleteEndEntityKeyRecoveryDataResponse) {
+    option (google.api.http) = {delete: "/v1/issuance/end-entities/{end_entity_id}/key-recovery-data/{id}"};
   }
 }

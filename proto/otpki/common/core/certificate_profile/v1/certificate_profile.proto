@@ -128,6 +128,9 @@ message CertificateProfile {
   optional string add_edit_end_entity_approval_profile_id = 511 [(buf.validate.field).string.uuid = true];
   // require approvals to revoke a CA or end entity
   optional string revocation_approval_profile_id = 512 [(buf.validate.field).string.uuid = true];
+  // require approvals to mark an end entity for key recovery. falls back to
+  // the CA's key_recovery_approval_profile_id when unset
+  optional string key_recovery_approval_profile_id = 513 [(buf.validate.field).string.uuid = true];
 
   repeated string publisher_ids = 521 [(buf.validate.field).repeated = {
     unique: true

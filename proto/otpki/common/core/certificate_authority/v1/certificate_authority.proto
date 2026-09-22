@@ -152,6 +152,9 @@ message CertificateAuthority {
   optional string revocation_approval_profile_id = 502 [(buf.validate.field).string.uuid = true];
   // approval profile to use during CA activation state change
   optional string ca_activation_approval_profile_id = 503 [(buf.validate.field).string.uuid = true];
+  // approval profile to use when marking an end entity for key recovery. the
+  // certificate profile takes precedence, this is just an optional fallback.
+  optional string key_recovery_approval_profile_id = 504 [(buf.validate.field).string.uuid = true];
 
   repeated string publisher_ids = 511 [(buf.validate.field).repeated = {
     unique: true

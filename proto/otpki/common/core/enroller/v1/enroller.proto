@@ -8,6 +8,7 @@ import "otpki/common/api/v1/native_type.proto";
 import "otpki/common/core/certificate/v1/certificate.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
+import "otpki/common/core/key/v1/key.proto";
 
 enum EnrollmentRequestStatus {
   ENROLLMENT_REQUEST_STATUS_UNSPECIFIED = 0;
@@ -17,12 +18,61 @@ enum EnrollmentRequestStatus {
   ENROLLMENT_REQUEST_STATUS_FAILED = 4;
 }
 
+// KeystoreFormat is the serialization format for a downloaded end entity
+// keystore (private key plus certificate chain).
+enum KeystoreFormat {
+  KEYSTORE_FORMAT_UNSPECIFIED = 0;
+  KEYSTORE_FORMAT_PKCS12 = 1;
+  // PEM bundle: PEM-encoded private key followed by the PEM-encoded
+  // certificate chain. The private key is encrypted when a password is
+  // provided.
+  KEYSTORE_FORMAT_PEM = 2;
+}
+
+// ServerKeyGeneration requests that the server generate the key pair for the
+// enrollment and return a downloadable keystore containing the private key
+// and issued certificate chain.
+message ServerKeyGeneration {
+  // The type of key to generate. Must be allowed by the certificate profile.
+  key.v1.KeyType key_type = 1 [(buf.validate.field).enum = {
+    not_in: [0]
+    defined_only: true
+  }];
+  // The format of the returned keystore. Defaults to PKCS#12.
+  KeystoreFormat keystore_format = 2 [(buf.validate.field).enum.defined_only = true];
+  // Password protecting the returned keystore. The end entity password is
+  // used when unset.
+  string keystore_password = 3;
+}
+
+// KeyRecovery claims key material archived for the end entity. The end
+// entity must be in END_ENTITY_STATUS_KEY_RECOVERY. a successful claim
+// returns it to END_ENTITY_STATUS_GENERATED.
+message KeyRecovery {
+  // The format of the returned keystore. Defaults to PKCS#12.
+  KeystoreFormat keystore_format = 1 [(buf.validate.field).enum.defined_only = true];
+  // Password protecting the returned keystore. The end entity password is
+  // used when unset.
+  string keystore_password = 2;
+  // A specific archived key to recover. The most recently archived key is
+  // returned when unset.
+  optional string key_recovery_data_id = 3 [(buf.validate.field).string.uuid = true];
+}
+
 // direct enrollment input, there is no durable enrollment object
 message EnrollmentRequest {
   optional string end_entity_id = 1 [(buf.validate.field).string.uuid = true];
   certificate_authority.v1.CertificateAuthorityArtifact request = 2;
   // For coming back to claim a previously deferred enrollment.
   optional string request_id = 3 [(buf.validate.field).string.uuid = true];
+  // Generate the key pair server-side and return a keystore. When a request
+  // artifact is also supplied, its subject and extensions are re-signed with
+  // the generated key, otherwise a request is synthesized from the end
+  // entity's provider configuration.
+  ServerKeyGeneration server_key_generation = 4;
+  // Claim archived key material for an end entity marked for key recovery
+  // instead of issuing a new certificate.
+  KeyRecovery key_recovery = 5;
 }
 
 message EnrollmentResponse {
@@ -34,6 +84,9 @@ message EnrollmentResponse {
   // entity can have several outstanding requests when its enrollment counter
   // allows more than one issuance.
   repeated string pending_request_ids = 4 [(buf.validate.field).repeated.items.string.uuid = true];
+  // The requested keystore, set when the enrollment used
+  // server_key_generation or key_recovery. The format is "pkcs12" or "pem".
+  certificate_authority.v1.CertificateAuthorityArtifact keystore = 5;
 }
 
 // A durable record for a deferred enrollment request. It is only created when

@@ -36,6 +36,7 @@ message ExportPagination {
   otpki.common.api.query.v1.PaginationRequest certificates = 15;
   otpki.common.api.query.v1.PaginationRequest publishers = 18;
   otpki.common.api.query.v1.PaginationRequest enrollment_requests = 19;
+  otpki.common.api.query.v1.PaginationRequest end_entity_key_recovery_data = 20;
 }
 
 // The full message format for export and import routes.
@@ -61,6 +62,9 @@ message ExportData {
   repeated otpki.common.core.certificate.v1.Certificate certificates = 15;
   repeated otpki.common.core.publisher.v1.Publisher publishers = 18;
   repeated otpki.common.core.enroller.v1.EnrollmentRequestRecord enrollment_requests = 19;
+  // archived key material is exported decrypted (PKCS#8) and re-encrypted on
+  // import, like cleartext end entity passwords
+  repeated otpki.common.core.end_entity.v1.EndEntityKeyRecoveryData end_entity_key_recovery_data = 20;
 }
 
 // Controls import behavior when an incoming record already exists

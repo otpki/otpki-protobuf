@@ -65,6 +65,10 @@ message EndEntityProfile {
     expression: "this == '' || this.isHostname()" // allow empty hostname
   }]; // if use_email == true and domain == "", it must be modifiable
 
+  bool use_key_recoverable = 331; // EE creation allows the key_recoverable flag to be specified
+  bool key_recoverable = 332; // default key_recoverable value for new end entities
+  bool key_recoverable_required = 333; // EE creation forces key_recoverable to true
+
   repeated string available_certificate_profile_ids = 401 [(buf.validate.field).repeated = {
     unique: true
     items: {

@@ -7,6 +7,7 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
 import "otpki/common/api/v1/native_type.proto";
+import "otpki/common/core/key/v1/key.proto";
 
 enum EndEntityStatus {
   END_ENTITY_STATUS_UNSPECIFIED = 0;
@@ -15,6 +16,7 @@ enum EndEntityStatus {
   END_ENTITY_STATUS_GENERATED = 3; // certificate generation has succeeded and certificate has been fetched
   END_ENTITY_STATUS_REVOKED = 4; // end entity is revoked
   END_ENTITY_STATUS_WAITING_FOR_APPROVAL = 5; // end entity has not been created, waiting for approval (this should not persist in DB)
+  END_ENTITY_STATUS_KEY_RECOVERY = 6; // end entity is marked for key recovery; archived key material can be claimed through enrollment, after which the end entity returns to GENERATED
 }
 
 enum LoginIDScheme {
@@ -48,6 +50,13 @@ message EndEntity {
   string password = 6;
   string password_clear = 7 [(openapi.v3.property).read_only = true];
   string description = 8;
+
+  // Whether server-generated private keys are archived for key recovery.
+  // Key material is stored encrypted with the environment token and can be
+  // recovered by the end entity once an administrator marks the end entity
+  // for key recovery. Defaults and constraints come from the end entity
+  // profile.
+  bool key_recoverable = 9;
 
   string end_entity_profile_id = 11 [
     (buf.validate.field).string.uuid = true,
@@ -100,4 +109,48 @@ message EndEntity {
   // this is a plugin provided ID such as "x509", "cvc", "ssh", etc.
   string provider_id = 1001 [(buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"];
   google.protobuf.Any provider_config = 1002;
+}
+
+// EndEntityKeyRecoveryData is private key material archived for key recovery
+// for an end entity. The key material is a PKCS#8 private key stored
+// encrypted with the environment token. it is only returned decrypted on a
+// successful recovery or export.
+message EndEntityKeyRecoveryData {
+  option (api.v1.generate_native) = true;
+
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ]; // not settable on creation
+
+  string end_entity_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+
+  // the certificate issued for the archived key pair, if issuance completed
+  optional string certificate_id = 3 [(buf.validate.field).string.uuid = true];
+
+  // the type of the archived key
+  key.v1.KeyType key_type = 4 [(buf.validate.field).enum = {
+    not_in: [0]
+    defined_only: true
+  }];
+
+  // the archived key material as a PKCS#8 private key; only populated on
+  // export and recovery responses, omitted from ordinary reads
+  bytes key_data = 5 [(openapi.v3.property).read_only = true];
+
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
 }
