@@ -18,6 +18,7 @@ enum Action {
   // certificates/ee
   // ACTION_ISSUE = 201;
   ACTION_REVOKE = 202;
+  ACTION_ENROLL = 203;
 }
 
 enum Resource {
