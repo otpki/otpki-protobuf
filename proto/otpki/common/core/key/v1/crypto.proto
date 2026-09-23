@@ -1,6 +1,14 @@
 syntax = "proto3";
 package otpki.common.core.key.v1;
 
+import "google/protobuf/any.proto";
+import "otpki/common/x509/v1/x509.proto";
+
+message ExtendedSignOptions {
+  otpki.common.x509.v1.SignatureAlgorithm signature_algorithm = 1;
+  optional google.protobuf.Any opts = 2; // custom serialized format to build crypto.SignerOpts
+}
+
 message RSAPSSOptions {
   int32 salt_length = 1;
   uint32 hash = 2;
