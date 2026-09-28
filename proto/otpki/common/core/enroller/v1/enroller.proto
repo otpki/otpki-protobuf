@@ -101,6 +101,12 @@ message EnrollmentRequestRecord {
   optional string certificate_id = 4 [(buf.validate.field).string.uuid = true];
   certificate_authority.v1.CertificateAuthorityArtifact request = 5;
   certificate.v1.IssuingProtocol protocol = 6;
+  // work_item_id links this record to the approval work item that created it,
+  // when issuance was deferred pending approval. set by the server.
+  optional string work_item_id = 7 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,
     (api.v1.go_native_type) = "time.Time",
