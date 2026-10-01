@@ -20,6 +20,10 @@ message TaskLogEntry {
   TaskState state = 4;
   string payload = 5;
 
+  // Log record lifecycle
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+
   //Completed fields
   string result = 11;
   google.protobuf.Timestamp completed_at = 12;
