@@ -3,7 +3,9 @@ package otpki.public.auth.user.v1;
 
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/duration.proto";
 import "google/protobuf/field_mask.proto";
+import "google/protobuf/timestamp.proto";
 import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/auth/v1/auth.proto";
 
@@ -31,23 +33,6 @@ message GetUserByUsernameRequest {
 }
 
 message GetUserByUsernameResponse {
-  common.auth.v1.User user = 1;
-}
-
-message GetUserByOIDCSubjectAndIssuerRequest {
-  string sub = 1 [(buf.validate.field).required = true];
-  string iss = 2 [(buf.validate.field).required = true];
-}
-
-message GetUserByOIDCSubjectAndIssuerResponse {
-  common.auth.v1.User user = 1;
-}
-
-message GetUserByCertificateRequest {
-  bytes certificate = 1 [(buf.validate.field).required = true]; // should be der encoded (base64 in json mode)
-}
-
-message GetUserByCertificateResponse {
   common.auth.v1.User user = 1;
 }
 
@@ -82,6 +67,96 @@ message GetCurrentUserResponse {
   common.auth.v1.User user = 1;
 }
 
+// MintUserClientCertificateRequest mints an administrative client
+// certificate for a user so the OIDC provider's X.509 authenticator can
+// issue tokens for them (e.g. Keycloak direct grant). The certificate and
+// key are returned to the caller only; they are never persisted.
+message MintUserClientCertificateRequest {
+  // user to mint the credential for
+  string user_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  // Subject Common Name on the issued certificate. Defaults to the user's
+  // username; must match the mapping configured on the provider's X.509
+  // authenticator.
+  string common_name = 2 [(buf.validate.field).string.max_len = 64];
+  // certificate validity period. defaults to 90 days
+  google.protobuf.Duration validity = 3 [(buf.validate.field).duration.gte = {seconds: 60}];
+  // optional PKCS#12 export password. When empty a password is generated and
+  // returned in the response.
+  string pkcs12_password = 4;
+  // issuer override. When empty the built-in default issuer is used.
+  string issuer_id = 5 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message MintUserClientCertificateResponse {
+  // PKCS#12 bundle containing the certificate, its chain, and private key
+  bytes pkcs12_bundle = 1;
+  // PEM-encoded leaf certificate
+  string certificate_pem = 2;
+  // PEM-encoded issuing CA certificate
+  string issuer_certificate_pem = 3;
+  // the PKCS#12 password, populated only when it was generated server-side
+  string pkcs12_password = 4;
+  google.protobuf.Timestamp not_after = 5;
+}
+
+// ClientCertificateIssuer is a CA that signs administrative user client
+// certificates. The issuer CA certificate must be imported into the OIDC
+// provider's X.509 truststore for minted credentials to authenticate.
+message ClientCertificateIssuer {
+  string id = 1;
+  string name = 2;
+  // PEM-encoded issuing CA certificate; import this into the OIDC provider's
+  // client certificate truststore
+  string certificate_pem = 3;
+  google.protobuf.Timestamp not_after = 4;
+}
+
+message GetClientCertificateIssuerRequest {
+  // issuer ID; empty returns the built-in default issuer
+  string id = 1 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message GetClientCertificateIssuerResponse {
+  ClientCertificateIssuer issuer = 1;
+}
+
+message GetClientCertificateIssuerListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetClientCertificateIssuerListResponse {
+  repeated ClientCertificateIssuer data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+// CreateClientCertificateIssuerRequest registers a new issuer backed by an
+// existing signing key. The issuer CA certificate is self-signed from the
+// key's public material.
+message CreateClientCertificateIssuerRequest {
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 128
+  ];
+  // existing key (in a key storage config) used to sign minted client certs
+  string key_id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message CreateClientCertificateIssuerResponse {
+  ClientCertificateIssuer issuer = 1;
+}
+
 message CheckCurrentUserPermissionRequest {
   common.auth.v1.Resource resource_type = 1;
   common.auth.v1.Action action_type = 2;
@@ -105,14 +180,6 @@ service UserService {
   rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {get: "/v1/auth/users/by-username/{username}"};
-  }
-  rpc GetUserByOIDCSubjectAndIssuer(GetUserByOIDCSubjectAndIssuerRequest) returns (GetUserByOIDCSubjectAndIssuerResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/auth/users/by-oidc"}; // needs query params to get
-  }
-  rpc GetUserByCertificate(GetUserByCertificateRequest) returns (GetUserByCertificateResponse) {
-    option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/auth/users/by-cert/{certificate}"};
   }
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
     option (google.api.http) = {
@@ -146,6 +213,35 @@ service UserService {
     option idempotency_level = NO_SIDE_EFFECTS;
     option (google.api.http) = {
       post: "/v1/auth/users/check-permission"
+      body: "*"
+    };
+  }
+  // MintUserClientCertificate mints an administrative client certificate
+  // bundle (PKCS#12) for a user, usable for X.509 direct-grant login at the
+  // OIDC provider. The credential is never persisted by OTPKI.
+  rpc MintUserClientCertificate(MintUserClientCertificateRequest) returns (MintUserClientCertificateResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/users/{user_id}:mint-client-certificate"
+      body: "*"
+    };
+  }
+  // GetClientCertificateIssuer returns the CA certificate that signs
+  // administrative user client certificates. Import it into the OIDC
+  // provider's X.509 truststore so it accepts minted credentials.
+  rpc GetClientCertificateIssuer(GetClientCertificateIssuerRequest) returns (GetClientCertificateIssuerResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/client-certificate-issuer"};
+  }
+  // GetClientCertificateIssuerList returns all registered issuers.
+  rpc GetClientCertificateIssuerList(GetClientCertificateIssuerListRequest) returns (GetClientCertificateIssuerListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/client-certificate-issuer/list"};
+  }
+  // CreateClientCertificateIssuer registers an issuer backed by an existing
+  // signing key. the CA certificate is self-signed from that key.
+  rpc CreateClientCertificateIssuer(CreateClientCertificateIssuerRequest) returns (CreateClientCertificateIssuerResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/client-certificate-issuer"
       body: "*"
     };
   }

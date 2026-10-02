@@ -45,8 +45,9 @@ enum Resource {
   RESOURCE_APPROVAL_PROFILE = 305;
   RESOURCE_WORK_ITEM = 306;
 
-  // request resources
-  // RESOURCE_ISSUANCE_REQUEST = 401;
+  // administrative user mTLS credentials minted for OIDC provider X.509
+  // authentication (e.g. Keycloak). Not related to PKI end entities.
+  RESOURCE_USER_CLIENT_CERTIFICATE = 401;
 }
 
 message ActionMetadata {
@@ -152,7 +153,7 @@ message User {
   string description = 6;
   bool disabled = 7;
   bool is_system_user = 8 [(openapi.v3.property).read_only = true];
-  bytes certificate = 9;
+  reserved 9;
   string oidc_issuer = 10 [(openapi.v3.property).read_only = true];
   string oidc_subject = 11 [(openapi.v3.property).read_only = true];
   repeated string groups = 12 [(buf.validate.field).repeated = {
@@ -256,6 +257,17 @@ message OIDCProvider {
   google.protobuf.Duration session_max_length = 13 [(buf.validate.field).duration.gte = {seconds: 0}];
   bool create_unknown_users = 14;
   bool create_unknown_roles = 15;
+
+  // X.509 direct access grant (e.g. Keycloak "X509/Validate Username" flow).
+  // When enabled, OTPKI accepts a client certificate in the configured
+  // forwarded header and exchanges it for an access token on the user's
+  // behalf at this provider's token endpoint.
+  bool x509_direct_grant_enabled = 16;
+  // HTTP header carrying the RFC 9440 client certificate byte sequence
+  // (":<base64 DER>:") on the provider's token request. Must match the
+  // provider's x509cert-lookup SPI configuration (Keycloak "rfc9440"
+  // provider default: Client-Cert).
+  string x509_cert_forward_header = 17 [(buf.validate.field).string.max_len = 128];
 
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
