@@ -4,15 +4,22 @@ package otpki.public.plugin.key_driver.v1;
 
 import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
+import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
 
 // Public wire envelope for a driver-specific operation.
 //
 // Core OTPKI resolves key_storage_config_id, loads the compiled-in driver, and
 // passes message directly to keydriver.MessageHandler.
 message KeyDriverMessage {
-  string key_storage_config_id = 1 [(buf.validate.field).string.uuid = true];
+  optional string key_storage_config_id = 1 [(buf.validate.field).string.uuid = true];
 
   google.protobuf.Any message = 2 [(buf.validate.field).required = true];
+
+  // Inline key storage configuration. When set, the driver operates on this
+  // unsaved configuration instead of loading the config referenced by
+  // key_storage_config_id. This lets the frontend run driver-specific queries
+  // (e.g. proxy route discovery) before the config is persisted.
+  common.core.key_storage_config.v1.KeyStorageConfig config = 3;
 }
 
 // Persisted core metadata used to protect driver-specific key configuration.

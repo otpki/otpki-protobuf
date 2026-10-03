@@ -331,3 +331,39 @@ message WorkItemApproval {
     (api.v1.go_native_import_path) = "time"
   ];
 }
+
+// ClientCertificateIssuer is a CA that signs administrative user client
+// certificates. The issuer CA certificate must be imported into the OIDC
+// provider's X.509 truststore for minted credentials to authenticate.
+message ClientCertificateIssuer {
+  option (api.v1.generate_native) = true;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
+  string name = 2;
+  // PEM-encoded issuing CA certificate, import this into the OIDC provider's
+  // client certificate truststore
+  string certificate_pem = 3 [(openapi.v3.property).read_only = true];
+  google.protobuf.Timestamp not_after = 4 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  // signing key backing the issuer's CA certificate
+  string key_id = 5 [
+    (buf.validate.field).string.uuid = true,
+    (openapi.v3.property).read_only = true
+  ];
+  // not settable on creation
+  google.protobuf.Timestamp created_at = 201 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+  google.protobuf.Timestamp updated_at = 202 [
+    (openapi.v3.property).read_only = true,
+    (api.v1.go_native_type) = "time.Time",
+    (api.v1.go_native_import_path) = "time"
+  ];
+}

@@ -29,7 +29,7 @@ message KeyStorageConfig {
   // activation
   // if this is false, this config cannot be activated and is always "active"
   // if it is true, activation is always required.
-  // note: if the key driver requires an activation pin (like pkcs11proxy) you
+  // note: if the key driver requires an activation pin (like p11kms) you
   // must enable activation
   bool enable_activation = 7;
   // if this is true, on the first activation, the resulting activation code
