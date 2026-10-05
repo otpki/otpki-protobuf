@@ -1,0 +1,110 @@
+syntax = "proto3";
+package otpki.public.auth.client_cert.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "otpki/common/api/query/v1/query.proto";
+import "otpki/common/auth/v1/auth.proto";
+
+message GetIssuerRequest {
+  string id = 1 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message GetIssuerResponse {
+  common.auth.v1.ClientCertificateIssuer issuer = 1;
+}
+
+message GetIssuerListRequest {
+  common.api.query.v1.PaginationRequest pagination = 1;
+}
+
+message GetIssuerListResponse {
+  repeated common.auth.v1.ClientCertificateIssuer data = 1;
+  common.api.query.v1.PaginationResponse pagination = 2;
+}
+
+message CreateIssuerRequest {
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.max_len = 128
+  ];
+  // existing key (in a key storage config) used to sign minted client certs
+  string key_id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message CreateIssuerResponse {
+  common.auth.v1.ClientCertificateIssuer issuer = 1;
+}
+
+message DeleteIssuerRequest {
+  string id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+}
+
+message DeleteIssuerResponse {}
+
+message MintClientCertificateRequest {
+  // user to mint the credential for
+  string user_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  // Subject Common Name on the issued certificate. Defaults to the user's
+  // username
+  string common_name = 2 [(buf.validate.field).string.max_len = 64];
+  // certificate validity period. defaults to 90 days
+  google.protobuf.Duration validity = 3 [(buf.validate.field).duration.gte = {seconds: 60}];
+  // optional PKCS#12 export password. when empty a password is generated and
+  // returned in the response.
+  string pkcs12_password = 4;
+  // issuer override. when empty the built-in default issuer is used.
+  string issuer_id = 5 [
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE,
+    (buf.validate.field).string.uuid = true
+  ];
+}
+
+message MintClientCertificateResponse {
+  bytes pkcs12_bundle = 1;
+  string certificate_pem = 2;
+  string issuer_certificate_pem = 3;
+  // the PKCS#12 password, populated only when it was generated server-side
+  string pkcs12_password = 4;
+  google.protobuf.Timestamp not_after = 5;
+}
+
+service ClientCertificateService {
+  rpc GetIssuer(GetIssuerRequest) returns (GetIssuerResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/client-certificate-issuer"};
+  }
+  rpc GetIssuerList(GetIssuerListRequest) returns (GetIssuerListResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+    option (google.api.http) = {get: "/v1/auth/client-certificate-issuer/list"};
+  }
+  rpc CreateIssuer(CreateIssuerRequest) returns (CreateIssuerResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/client-certificate-issuer"
+      body: "*"
+    };
+  }
+  rpc DeleteIssuer(DeleteIssuerRequest) returns (DeleteIssuerResponse) {
+    option (google.api.http) = {delete: "/v1/auth/client-certificate-issuer/{id}"};
+  }
+  rpc MintClientCertificate(MintClientCertificateRequest) returns (MintClientCertificateResponse) {
+    option (google.api.http) = {
+      post: "/v1/auth/users/{user_id}:mint-client-certificate"
+      body: "*"
+    };
+  }
+}
