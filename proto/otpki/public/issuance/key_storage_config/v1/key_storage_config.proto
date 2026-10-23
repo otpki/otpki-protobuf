@@ -8,7 +8,6 @@ import "google/protobuf/field_mask.proto";
 import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/key_storage_config/v1/activation.proto";
 import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
-import "otpki/public/plugin/key_driver/v1/plugin.proto";
 
 message CreateKeyStorageConfigRequest {
   common.core.key_storage_config.v1.KeyStorageConfig config = 1 [(buf.validate.field).required = true];
@@ -55,7 +54,9 @@ message GetKeyStorageConfigListResponse {
 }
 
 message SendKeyDriverMessageRequest {
-  plugin.key_driver.v1.KeyDriverMessage message = 1;
+  optional string key_storage_config_id = 1 [(buf.validate.field).string.uuid = true];
+  google.protobuf.Any driver_message = 2;
+  common.core.key_storage_config.v1.KeyStorageConfig inline_config = 3;
 }
 
 message SendKeyDriverMessageResponse {
@@ -107,8 +108,8 @@ service KeyStorageConfigService {
   }
   rpc SendKeyDriverMessage(SendKeyDriverMessageRequest) returns (SendKeyDriverMessageResponse) {
     option (google.api.http) = {
-      post: "/v1/issuance/key-storage-configs/{message.key_storage_config_id}/message"
-      body: "message.message"
+      post: "/v1/issuance/key-storage-configs/{key_storage_config_id}/message"
+      body: "*"
     };
   }
   rpc ActivateKeyStorageConfig(ActivateKeyStorageConfigRequest) returns (ActivateKeyStorageConfigResponse) {
