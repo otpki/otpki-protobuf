@@ -269,6 +269,8 @@ message OIDCProvider {
   // provider default: Client-Cert).
   string x509_cert_forward_header = 17 [(buf.validate.field).string.max_len = 128];
 
+  // Managed by the SaaS platform, tenants cannot modify or remove it.
+  bool platform_managed = 18 [(openapi.v3.property).read_only = true];
   // not settable on creation
   google.protobuf.Timestamp created_at = 201 [
     (openapi.v3.property).read_only = true,
