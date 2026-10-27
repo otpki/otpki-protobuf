@@ -86,20 +86,27 @@ message MintClientCertificateResponse {
 service ClientCertificateService {
   rpc GetIssuer(GetIssuerRequest) returns (GetIssuerResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/auth/client-certificate-issuer"};
+    option (google.api.http) = {
+      get: "/v1/auth/client-certificate-issuers/{id}"
+      additional_bindings: {get: "/v1/auth/client-certificate-issuers/default"}
+    };
   }
   rpc GetIssuerList(GetIssuerListRequest) returns (GetIssuerListResponse) {
     option idempotency_level = NO_SIDE_EFFECTS;
-    option (google.api.http) = {get: "/v1/auth/client-certificate-issuer/list"};
+    option (google.api.http) = {
+      put: "/v1/auth/client-certificate-issuers"
+      body: "pagination"
+      additional_bindings: {get: "/v1/auth/client-certificate-issuers"}
+    };
   }
   rpc CreateIssuer(CreateIssuerRequest) returns (CreateIssuerResponse) {
     option (google.api.http) = {
-      post: "/v1/auth/client-certificate-issuer"
+      post: "/v1/auth/client-certificate-issuers"
       body: "*"
     };
   }
   rpc DeleteIssuer(DeleteIssuerRequest) returns (DeleteIssuerResponse) {
-    option (google.api.http) = {delete: "/v1/auth/client-certificate-issuer/{id}"};
+    option (google.api.http) = {delete: "/v1/auth/client-certificate-issuers/{id}"};
   }
   rpc MintClientCertificate(MintClientCertificateRequest) returns (MintClientCertificateResponse) {
     option (google.api.http) = {
