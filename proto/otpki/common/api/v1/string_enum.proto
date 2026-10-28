@@ -4,12 +4,6 @@ package otpki.common.api.v1;
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.EnumValueOptions {
-  // string_value is the string representation of the enum value for grpc-gateway un/marshaling (http routes)
+  // custom enum spelling for HTTP JSON serialization and parsing
   optional string string_value = 50004;
-}
-
-extend google.protobuf.FieldOptions {
-  // when set to true, this field will use string representations for enums for that particular
-  // field. this allows you to use enum string conversion on a per-field and per-message basis.
-  optional bool string_enum = 50005;
 }

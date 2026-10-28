@@ -4,7 +4,6 @@ package otpki.common.api.query.v1;
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
-import "otpki/common/api/v1/string_enum.proto";
 
 extend google.protobuf.FieldOptions {
   optional bool filterable = 60001;
@@ -15,8 +14,8 @@ extend google.protobuf.FieldOptions {
 
 enum SortOrder {
   SORT_ORDER_UNSPECIFIED = 0;
-  SORT_ORDER_DESC = 1 [(api.v1.string_value) = "desc"];
-  SORT_ORDER_ASC = 2 [(api.v1.string_value) = "asc"];
+  SORT_ORDER_DESC = 1;
+  SORT_ORDER_ASC = 2;
 }
 
 enum FilterOperator {

@@ -100,12 +100,8 @@ service ImporterService {
       additional_bindings: {get: "/v1/issuance/importer/export/raw"}
     };
   }
-  rpc ImportDataRaw(ImportDataRawRequest) returns (ImportDataRawResponse) {
-    option (google.api.http) = {
-      post: "/v1/issuance/importer/import/raw"
-      body: "data"
-    };
-  }
+  // the raw HTTP upload is registered explicitly so its body stays unencoded
+  rpc ImportDataRaw(ImportDataRawRequest) returns (ImportDataRawResponse);
   rpc ExportDataStream(ExportDataStreamRequest) returns (stream ExportDataStreamResponse) {
     option (google.api.http) = {
       put: "/v1/issuance/importer/export/stream"
