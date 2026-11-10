@@ -4,9 +4,8 @@ set dotenv-load := false
 # Paths / Config
 # ------------------------------------------------------------------
 
-root            := justfile_directory()
-tool_path       := root / ".tool/bin"
-
+root := justfile_directory()
+tool_path := root / ".tool/bin"
 
 export PATH := tool_path + ":" + env_var("PATH")
 export AQUA_ROOT_DIR := root + "/.tool"
@@ -22,18 +21,13 @@ shell:
 # aqua bootstrap + installs
 # -----------------------------
 
-# dependency to ensure tool dir exists
-tools-dir:
+# install aqua itself into .tool/bin — no global install needed
+aqua:
     mkdir -p "{{ tool_path }}"
+    test -x "{{ tool_path }}/aqua" || curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.1/aqua-installer | bash
 
-# install aqua into the tools directory
-aqua: tools-dir
-    test -x {{tool_path}}/aqua || curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.2/aqua-installer | bash
-
-tools *tags: (tools-aqua tags)
-
-# install aqua based tools
-tools-aqua *tags: aqua
+# install every tool pinned in .aqua.yaml (or a tag subset: just tools lint)
+tools *tags: aqua
     aqua install {{ if tags == "" { "" } else { "-t " + replace(tags, " ", " -t ") } }}
 
 clean:
@@ -45,11 +39,17 @@ lint:
 format:
     buf format -w
 
+alias fmt := format
+
+# buf format diffs without rewriting; empty output means formatted.
+format-check:
+    buf format --diff --exit-code
+
 build:
     buf build
 
 breaking:
-    buf breaking --against '.git#ref=refs/remotes/origin/master'
+    buf breaking --against '.git#ref=refs/remotes/origin/main'
 
 update:
     #go get -u all && go mod tidy
@@ -63,4 +63,4 @@ update:
       -o proto/openapiv3/OpenAPIv3.proto
     buf dep update
 
-check: tools update tools clean format lint breaking build
+check: tools update clean format lint breaking build

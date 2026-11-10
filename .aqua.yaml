@@ -2,7 +2,7 @@
 
 registries:
   - type: standard
-    ref: v4.552.0 # renovate: depName=aquaproj/aqua-registry
+    ref: v4.582.0 # renovate: depName=aquaproj/aqua-registry
 
 packages:
-  - name: bufbuild/buf@v1.72.0
+  - name: bufbuild/buf@v1.75.0
