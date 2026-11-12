@@ -1,41 +1,24 @@
 name: Check
 
-permissions:
-  id-token: write
-  contents: read
-
 on:
   pull_request:
-    branches: [ master ]
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   check:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout PR head
-      uses: actions/checkout@v6
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-        fetch-depth: 1
-
-    - name: Fetch latest master commit only
-      run: |
-        git fetch --no-tags --depth=1 origin \
-          +refs/heads/master:refs/remotes/origin/master
-
-    - name: Setup Just
-      uses: extractions/setup-just@v3
-        
-    - name: Run just check
-      run: just check
-      
-    - name: Check for file changes
-      run: |
-        if [ -n "$(git status --porcelain)" ]; then
-          echo "File has changed! Either .gitignore or formatting changes required."
-          git status --porcelain
-          exit 1
-        else
-          echo "No changes needed."
-        fi
+    uses: otpki/.github/.github/workflows/reusable-go-check.yml@v1
+    with:
+      setup-go: false
+      # buf breaking diffs against refs/remotes/origin/main (see Justfile).
+      fetch-base-ref: main
+      commands: just check
