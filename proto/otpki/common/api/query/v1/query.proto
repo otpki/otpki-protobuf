@@ -10,6 +10,8 @@ extend google.protobuf.FieldOptions {
   optional bool sortable = 60002;
   repeated FilterOperator allowed_filter_operators = 60003;
   repeated SortOperator allowed_sort_operators = 60004;
+  optional string column = 60005;
+  optional bool nested = 60006;
 }
 
 enum SortOrder {
