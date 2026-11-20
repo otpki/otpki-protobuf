@@ -4,9 +4,9 @@ package otpki.public.auth.oidc_provider.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/api/v1/auth_required.proto";
 import "otpki/common/auth/v1/auth.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateOIDCProviderRequest {
   common.auth.v1.OIDCProvider oidc_provider = 1 [(buf.validate.field).required = true];
@@ -60,12 +60,12 @@ message DeleteOIDCProviderRequest {
 message DeleteOIDCProviderResponse {}
 
 message GetOIDCProviderListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetOIDCProviderListResponse {
   repeated common.auth.v1.OIDCProvider data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 // unauthenticated route so user can make actual

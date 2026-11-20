@@ -3,8 +3,8 @@ package otpki.public.issuance.key.v1;
 
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/key/v1/key.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message GetKeyRequest {
   string id = 1 [
@@ -26,12 +26,12 @@ message CreateKeyResponse {
 }
 
 message GetKeyListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetKeyListResponse {
   repeated common.core.key.v1.Key data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 message DeleteKeyRequest {

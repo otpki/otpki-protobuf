@@ -4,8 +4,8 @@ package otpki.public.issuance.extended_key_usage.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/extended_key_usage/v1/extended_key_usage.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateCustomExtKeyUsageRequest {
   common.core.extended_key_usage.v1.CustomExtKeyUsage key_usage = 1 [(buf.validate.field).required = true];
@@ -43,12 +43,12 @@ message DeleteCustomExtKeyUsageRequest {
 message DeleteCustomExtKeyUsageResponse {}
 
 message GetCustomExtKeyUsageListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetCustomExtKeyUsageListResponse {
   repeated common.core.extended_key_usage.v1.CustomExtKeyUsage data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 service ExtendedKeyUsageService {

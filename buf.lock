@@ -7,3 +7,6 @@ deps:
   - name: buf.build/googleapis/googleapis
     commit: 8ac61b9e502343289c8c42b17aa5b245
     digest: b5:0318e73c2dec49c5742f0c119642a5cb7fcd9e2d5200a2b478bc1efd93f7aaa06d5431f5e1e5713095101fc990b026a806fa429af80432ec8d1ceefbe07bb817
+  - name: buf.build/omnitrust/pgprotopaginate
+    commit: f3c95639ea0944a4a874238d140b597e
+    digest: b5:63657d0c363300af47c94f54835af5cdda8e742d419841a2f8f275ad8b6a01ed713ca6b4cef00f58d9df93964dd8e6ecf7b667135dd438d6976e640dd7a6bd5e

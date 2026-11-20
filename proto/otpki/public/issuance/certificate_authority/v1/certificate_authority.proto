@@ -6,11 +6,11 @@ import "google/api/annotations.proto";
 import "google/api/httpbody.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/certificate/v1/certificate.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
 import "otpki/common/core/key/v1/key.proto";
 import "otpki/common/core/revocation_list/v1/revocation_list.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateCertificateAuthorityRequest {
   common.core.certificate_authority.v1.CertificateAuthority certificate_authority = 1;
@@ -46,12 +46,12 @@ message GetCertificateAuthorityResponse {
 }
 
 message GetCertificateAuthorityListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetCertificateAuthorityListResponse {
   repeated common.core.certificate_authority.v1.CertificateAuthority data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 message UpdateCertificateAuthorityRequest {

@@ -4,8 +4,8 @@ package otpki.public.auth.role.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/auth/v1/auth.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateRoleRequest {
   common.auth.v1.Role role = 1 [(buf.validate.field).required = true];
@@ -78,12 +78,12 @@ message DeleteRoleRequest {
 message DeleteRoleResponse {}
 
 message GetRoleListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetRoleListResponse {
   repeated common.auth.v1.Role data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 message SetRolePermissionsRequest {

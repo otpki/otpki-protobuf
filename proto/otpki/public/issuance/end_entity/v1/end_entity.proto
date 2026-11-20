@@ -4,9 +4,9 @@ package otpki.public.issuance.end_entity.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/certificate/v1/certificate.proto";
 import "otpki/common/core/end_entity/v1/end_entity.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateEndEntityRequest {
   common.core.end_entity.v1.EndEntity end_entity = 1 [(buf.validate.field).required = true];
@@ -30,12 +30,12 @@ message GetEndEntityResponse {
 }
 
 message GetEndEntityListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetEndEntityListResponse {
   repeated common.core.end_entity.v1.EndEntity data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 message DeleteEndEntityRequest {

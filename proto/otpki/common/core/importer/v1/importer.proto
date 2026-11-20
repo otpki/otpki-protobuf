@@ -1,7 +1,6 @@
 syntax = "proto3";
 package otpki.common.core.importer.v1;
 
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/auth/v1/auth.proto";
 import "otpki/common/core/certificate/v1/certificate.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
@@ -14,29 +13,30 @@ import "otpki/common/core/extended_key_usage/v1/extended_key_usage.proto";
 import "otpki/common/core/key/v1/key.proto";
 import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
 import "otpki/common/core/publisher/v1/publisher.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 // Export Pagination options allow the user to specify either:
 // Specific page-queries of specific models to export  - or -
 // export of everything.
 // If any pagination data is set, only that data will be included for export.
 message ExportPagination {
-  otpki.common.api.query.v1.PaginationRequest permissions = 1;
-  otpki.common.api.query.v1.PaginationRequest roles = 2;
-  otpki.common.api.query.v1.PaginationRequest approval_profiles = 3;
+  otpki.pgprotopaginate.v1.PaginationRequest permissions = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest roles = 2;
+  otpki.pgprotopaginate.v1.PaginationRequest approval_profiles = 3;
 
-  otpki.common.api.query.v1.PaginationRequest end_entity_profiles = 5;
-  otpki.common.api.query.v1.PaginationRequest end_entities = 6;
+  otpki.pgprotopaginate.v1.PaginationRequest end_entity_profiles = 5;
+  otpki.pgprotopaginate.v1.PaginationRequest end_entities = 6;
 
-  otpki.common.api.query.v1.PaginationRequest key_storage_configs = 8;
-  otpki.common.api.query.v1.PaginationRequest keys = 9;
-  otpki.common.api.query.v1.PaginationRequest certificate_profiles = 10;
-  otpki.common.api.query.v1.PaginationRequest custom_ekus = 11;
-  otpki.common.api.query.v1.PaginationRequest custom_certificate_extensions = 12;
-  otpki.common.api.query.v1.PaginationRequest certificate_authorities = 13;
-  otpki.common.api.query.v1.PaginationRequest certificates = 15;
-  otpki.common.api.query.v1.PaginationRequest publishers = 18;
-  otpki.common.api.query.v1.PaginationRequest enrollment_requests = 19;
-  otpki.common.api.query.v1.PaginationRequest end_entity_key_recovery_data = 20;
+  otpki.pgprotopaginate.v1.PaginationRequest key_storage_configs = 8;
+  otpki.pgprotopaginate.v1.PaginationRequest keys = 9;
+  otpki.pgprotopaginate.v1.PaginationRequest certificate_profiles = 10;
+  otpki.pgprotopaginate.v1.PaginationRequest custom_ekus = 11;
+  otpki.pgprotopaginate.v1.PaginationRequest custom_certificate_extensions = 12;
+  otpki.pgprotopaginate.v1.PaginationRequest certificate_authorities = 13;
+  otpki.pgprotopaginate.v1.PaginationRequest certificates = 15;
+  otpki.pgprotopaginate.v1.PaginationRequest publishers = 18;
+  otpki.pgprotopaginate.v1.PaginationRequest enrollment_requests = 19;
+  otpki.pgprotopaginate.v1.PaginationRequest end_entity_key_recovery_data = 20;
 }
 
 // The full message format for export and import routes.

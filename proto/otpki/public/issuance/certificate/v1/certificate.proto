@@ -4,8 +4,8 @@ package otpki.public.issuance.certificate.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/certificate/v1/certificate.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message GetCertificateRequest {
   string certificate_id = 1 [
@@ -27,12 +27,12 @@ message GetCertificateBySerialNumberResponse {
 }
 
 message GetCertificateListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetCertificateListResponse {
   repeated common.core.certificate.v1.Certificate data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 message RevokeCertificatesRequest {
