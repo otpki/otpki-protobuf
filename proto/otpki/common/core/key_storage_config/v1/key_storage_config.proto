@@ -5,8 +5,8 @@ import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/api/v1/native_type.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message KeyStorageConfig {
   option (api.v1.generate_native) = true;
@@ -41,8 +41,8 @@ message KeyStorageConfig {
   // the end user, and not sortable or filterable.
   bool is_activated = 9 [
     (openapi.v3.property).read_only = true,
-    (otpki.common.api.query.v1.sortable) = false,
-    (otpki.common.api.query.v1.filterable) = false
+    (otpki.pgprotopaginate.v1.sortable) = false,
+    (otpki.pgprotopaginate.v1.filterable) = false
   ];
 
   // when verify activation is true, the resulting activation code (whether via SSS or direct)

@@ -5,9 +5,9 @@ import "buf/validate/validate.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "openapiv3/annotations.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/api/v1/native_type.proto";
 import "otpki/common/core/certificate_authority/v1/certificate_authority.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 enum IssuingProtocol {
   ISSUING_PROTOCOL_UNSPECIFIED = 0;
@@ -23,45 +23,45 @@ enum IssuingProtocol {
 message CertificateIssuanceMetadata {
   string issued_from_certificate_profile_id = 1 [
     (buf.validate.field).string.uuid = true,
-    (otpki.common.api.query.v1.filterable) = true,
-    (otpki.common.api.query.v1.sortable) = false,
-    (otpki.common.api.query.v1.column) = "issued_certificates.issued_from_certificate_profile_id"
+    (otpki.pgprotopaginate.v1.filterable) = true,
+    (otpki.pgprotopaginate.v1.sortable) = false,
+    (otpki.pgprotopaginate.v1.column) = "issued_certificates.issued_from_certificate_profile_id"
   ];
   optional string end_entity_id = 2 [
     (buf.validate.field).string.uuid = true,
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
   string issued_by_certificate_authority_id = 3 [
     (buf.validate.field).string.uuid = true,
-    (otpki.common.api.query.v1.filterable) = true,
-    (otpki.common.api.query.v1.sortable) = false,
-    (otpki.common.api.query.v1.column) = "issued_certificates.issued_by_certificate_authority_id"
+    (otpki.pgprotopaginate.v1.filterable) = true,
+    (otpki.pgprotopaginate.v1.sortable) = false,
+    (otpki.pgprotopaginate.v1.column) = "issued_certificates.issued_by_certificate_authority_id"
   ];
   string issued_by_key_id = 4 [
     (buf.validate.field).string.uuid = true,
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
   optional string issued_by_alternative_key_id = 5 [
     (buf.validate.field).string.uuid = true,
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
   optional string issuer_certificate_id = 6 [
     (buf.validate.field).string.uuid = true,
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
 
   IssuingProtocol protocol_used = 11 [
-    (otpki.common.api.query.v1.filterable) = true,
-    (otpki.common.api.query.v1.sortable) = false,
-    (otpki.common.api.query.v1.column) = "issued_certificates.protocol_used"
+    (otpki.pgprotopaginate.v1.filterable) = true,
+    (otpki.pgprotopaginate.v1.sortable) = false,
+    (otpki.pgprotopaginate.v1.column) = "issued_certificates.protocol_used"
   ];
   string partition_identifier = 12 [
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
 }
 
@@ -98,13 +98,13 @@ message Certificate {
   ];
   string provider_id = 2 [(buf.validate.field).string.pattern = "^[a-z][a-z0-9._-]*$"];
   google.protobuf.Any provider_metadata = 3 [
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
   // import will only respect the first entry in this list as this current cert
   repeated common.core.certificate_authority.v1.CertificateAuthorityArtifact certificate_chain = 4 [
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
 
   bytes fingerprint_sha256 = 11;
@@ -117,25 +117,25 @@ message Certificate {
 
   // certificates issued by us will have these fields
   optional CertificateIssuanceMetadata issuance_metadata = 21 [
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false,
-    (otpki.common.api.query.v1.nested) = true
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false,
+    (otpki.pgprotopaginate.v1.nested) = true
   ];
 
   // certificates revoked by us will have these fields
   optional CertificateRevocationMetadata revocation_metadata = 31 [
-    (otpki.common.api.query.v1.sortable) = false,
-    (otpki.common.api.query.v1.column) = "ri.revocation_metadata",
-    (otpki.common.api.query.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_NULL,
-    (otpki.common.api.query.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_NOT_NULL,
-    (otpki.common.api.query.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_EMPTY,
-    (otpki.common.api.query.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_NOT_EMPTY
+    (otpki.pgprotopaginate.v1.sortable) = false,
+    (otpki.pgprotopaginate.v1.column) = "ri.revocation_metadata",
+    (otpki.pgprotopaginate.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_NULL,
+    (otpki.pgprotopaginate.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_NOT_NULL,
+    (otpki.pgprotopaginate.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_EMPTY,
+    (otpki.pgprotopaginate.v1.allowed_filter_operators) = FILTER_OPERATOR_IS_NOT_EMPTY
   ];
 
   // ca certificates managed by us will have these fields
   optional CertificateAuthorityMetadata authority_metadata = 41 [
-    (otpki.common.api.query.v1.filterable) = false,
-    (otpki.common.api.query.v1.sortable) = false
+    (otpki.pgprotopaginate.v1.filterable) = false,
+    (otpki.pgprotopaginate.v1.sortable) = false
   ];
 
   google.protobuf.Timestamp created_at = 201 [

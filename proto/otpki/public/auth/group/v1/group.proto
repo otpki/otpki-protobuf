@@ -4,8 +4,8 @@ package otpki.public.auth.group.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/auth/v1/auth.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateGroupRequest {
   common.auth.v1.Group group = 1 [(buf.validate.field).required = true];
@@ -56,12 +56,12 @@ message DeleteGroupRequest {
 message DeleteGroupResponse {}
 
 message GetGroupListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetGroupListResponse {
   repeated common.auth.v1.Group data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 service GroupService {

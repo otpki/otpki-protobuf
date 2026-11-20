@@ -4,8 +4,8 @@ package otpki.public.issuance.publisher.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/publisher/v1/publisher.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 // -- Publishers
 
@@ -45,12 +45,12 @@ message DeletePublisherRequest {
 message DeletePublisherResponse {}
 
 message GetPublisherListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetPublisherListResponse {
   repeated common.core.publisher.v1.Publisher data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 // -- Testing

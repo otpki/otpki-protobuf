@@ -4,8 +4,8 @@ package otpki.public.auth.approval_profile.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/auth/v1/auth.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateApprovalProfileRequest {
   common.auth.v1.ApprovalProfile approval_profile = 1 [(buf.validate.field).required = true];
@@ -43,12 +43,12 @@ message DeleteApprovalProfileRequest {
 message DeleteApprovalProfileResponse {}
 
 message GetApprovalProfileListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetApprovalProfileListResponse {
   repeated common.auth.v1.ApprovalProfile data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 service ApprovalProfileService {

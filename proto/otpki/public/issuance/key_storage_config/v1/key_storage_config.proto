@@ -5,9 +5,9 @@ import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/key_storage_config/v1/activation.proto";
 import "otpki/common/core/key_storage_config/v1/key_storage_config.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateKeyStorageConfigRequest {
   common.core.key_storage_config.v1.KeyStorageConfig config = 1 [(buf.validate.field).required = true];
@@ -45,12 +45,12 @@ message DeleteKeyStorageConfigRequest {
 message DeleteKeyStorageConfigResponse {}
 
 message GetKeyStorageConfigListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetKeyStorageConfigListResponse {
   repeated common.core.key_storage_config.v1.KeyStorageConfig data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 message SendKeyDriverMessageRequest {

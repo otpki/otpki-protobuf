@@ -4,8 +4,8 @@ package otpki.public.issuance.certificate_profile.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/certificate_profile/v1/certificate_profile.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateCertificateProfileRequest {
   common.core.certificate_profile.v1.CertificateProfile profile = 1 [(buf.validate.field).required = true];
@@ -43,12 +43,12 @@ message DeleteCertificateProfileRequest {
 message DeleteCertificateProfileResponse {}
 
 message GetCertificateProfileListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetCertificateProfileListResponse {
   repeated common.core.certificate_profile.v1.CertificateProfile data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 service CertificateProfileService {

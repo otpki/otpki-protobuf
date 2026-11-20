@@ -4,8 +4,8 @@ package otpki.public.issuance.certificate_extension.v1;
 import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/field_mask.proto";
-import "otpki/common/api/query/v1/query.proto";
 import "otpki/common/core/certificate_extension/v1/certificate_extension.proto";
+import "otpki/pgprotopaginate/v1/query.proto";
 
 message CreateCustomCertificateExtensionRequest {
   common.core.certificate_extension.v1.CustomCertificateExtension extension = 1 [(buf.validate.field).required = true];
@@ -43,12 +43,12 @@ message DeleteCustomCertificateExtensionRequest {
 message DeleteCustomCertificateExtensionResponse {}
 
 message GetCustomCertificateExtensionListRequest {
-  common.api.query.v1.PaginationRequest pagination = 1;
+  otpki.pgprotopaginate.v1.PaginationRequest pagination = 1;
 }
 
 message GetCustomCertificateExtensionListResponse {
   repeated common.core.certificate_extension.v1.CustomCertificateExtension data = 1;
-  common.api.query.v1.PaginationResponse pagination = 2;
+  otpki.pgprotopaginate.v1.PaginationResponse pagination = 2;
 }
 
 service CertificateExtensionService {
